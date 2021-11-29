@@ -1,0 +1,12 @@
+{
+    "ID": "KillLincolnHunt_DoD",
+    "questName": "Lincoln Hunt",
+    "stageName": "Hunt down and kill Lincoln Hunt, he has menaced these Lands far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Grand Healing Tide Flask",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_LincolnHunt_DoD",
+    "amount": 1,
+    "rewardAmount": 4,
+    "rewardName": "GrandHealingTidePotion"
+}

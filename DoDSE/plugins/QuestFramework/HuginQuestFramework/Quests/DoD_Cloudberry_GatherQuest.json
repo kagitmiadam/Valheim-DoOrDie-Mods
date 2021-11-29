@@ -1,0 +1,12 @@
+{
+    "ID": "GatherCloudberry_DoD",
+    "questName": "Gathering - Cloudberry",
+    "stageName": "Gather {amount} {thing} from Cloudberry Bushes.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Mead Stamina Medium",
+    "objectiveName": "Progress: {progress}/20",
+    "type": 0,
+    "thing": "Cloudberry",
+    "amount": 20,
+    "rewardAmount": 5,
+    "rewardName": "MeadStaminaMedium"
+}

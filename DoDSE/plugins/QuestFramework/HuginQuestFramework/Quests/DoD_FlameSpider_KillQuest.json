@@ -1,0 +1,12 @@
+{
+    "ID": "KillFlameSpider_DoD",
+    "questName": "Flame Spider Hunting",
+    "stageName": "Hunt {amount} Flame Spider's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 1,
+    "thing": "RRRM_FlameSpider_DoD",
+    "amount": 10,
+    "rewardAmount": 130,
+    "rewardName": "Coins"
+}

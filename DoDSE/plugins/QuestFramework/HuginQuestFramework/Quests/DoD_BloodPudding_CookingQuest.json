@@ -1,0 +1,12 @@
+{
+    "ID": "CookBloodPudding_DoD",
+    "questName": "Cooking - Blood Pudding",
+    "stageName": "Cook and collect {amount} {thing} at a cooking station.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Infused Gemstone's",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 0,
+    "thing": "BloodPudding",
+    "amount": 10,
+    "rewardAmount": 5,
+    "rewardName": "InfusedGemstone_DoD"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "KillTheElder_DoD",
+    "questName": "The Elder",
+    "stageName": "Hunt down and kill The Elder, he has menaced these Forests far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Lesser Stamina Vial",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "gd_king",
+    "amount": 1,
+    "rewardAmount": 4,
+    "rewardName": "LesserStaminaVial"
+}

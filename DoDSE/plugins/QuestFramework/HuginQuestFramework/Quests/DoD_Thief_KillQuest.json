@@ -1,0 +1,12 @@
+{
+    "ID": "KillThief_DoD",
+    "questName": "Thief Hunting",
+    "stageName": "Hunt {amount} Thief.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Grey Pearl",
+    "objectiveName": "Progress: {progress}/5",
+    "type": 1,
+    "thing": "RRRN_Thief_DoD",
+    "amount": 5,
+    "rewardAmount": 2,
+    "rewardName": "GreyPearl_DoD"
+}

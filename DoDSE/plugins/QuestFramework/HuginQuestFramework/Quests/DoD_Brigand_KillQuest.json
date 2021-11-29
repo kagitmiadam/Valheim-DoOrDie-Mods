@@ -1,0 +1,12 @@
+{
+    "ID": "KillBrigand_DoD",
+    "questName": "Brigand Hunting",
+    "stageName": "Hunt {amount} Brigand's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Grey Pearl",
+    "objectiveName": "Progress: {progress}/5",
+    "type": 1,
+    "thing": "RRRN_Brigand_DoD",
+    "amount": 5,
+    "rewardAmount": 3,
+    "rewardName": "GreyPearl_DoD"
+}

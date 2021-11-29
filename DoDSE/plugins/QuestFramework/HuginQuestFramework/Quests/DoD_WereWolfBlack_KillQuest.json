@@ -1,0 +1,12 @@
+{
+    "ID": "KillWereWolfBlack_DoD",
+    "questName": "Werewolf Hunting",
+    "stageName": "Hunt {amount} Werewolf's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/6",
+    "type": 1,
+    "thing": "WereWolfBlack",
+    "amount": 6,
+    "rewardAmount": 115,
+    "rewardName": "Coins"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "GatherBarley_DoD",
+    "questName": "Gathering - Barley",
+    "stageName": "Collect {amount} {thing} from the Plains's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Bread",
+    "objectiveName": "Progress: {progress}/30",
+    "type": 0,
+    "thing": "Barley",
+    "amount": 30,
+    "rewardAmount": 15,
+    "rewardName": "Bread"
+}

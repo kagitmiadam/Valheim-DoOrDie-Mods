@@ -1,0 +1,12 @@
+{
+    "ID": "KillLazarusDeamonne_DoD",
+    "questName": "Lazarus Deamonne",
+    "stageName": "Hunt down and kill Lazarus Deamonne, he has menaced these Lands far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Medium Spiritual Healing Flask",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_LazarusDeamonne_DoD",
+    "amount": 1,
+    "rewardAmount": 4,
+    "rewardName": "MediumSpiritualHealingFlask"
+}

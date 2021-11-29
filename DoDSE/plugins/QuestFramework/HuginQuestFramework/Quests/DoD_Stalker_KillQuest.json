@@ -1,0 +1,12 @@
+{
+    "ID": "KillStalker_DoD",
+    "questName": "Stalker Hunting",
+    "stageName": "Hunt {amount} Stalker's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Grey Pearl",
+    "objectiveName": "Progress: {progress}/5",
+    "type": 1,
+    "thing": "RRRN_Stalker_DoD",
+    "amount": 5,
+    "rewardAmount": 6,
+    "rewardName": "GreyPearl_DoD"
+}

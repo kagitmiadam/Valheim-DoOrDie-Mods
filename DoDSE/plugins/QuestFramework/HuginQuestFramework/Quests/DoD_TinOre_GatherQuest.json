@@ -1,0 +1,12 @@
+{
+    "ID": "GatherTinOre_DoD",
+    "questName": "Mining - Tin",
+    "stageName": "Collect {amount} {thing} from Tin Deposit's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/15",
+    "type": 0,
+    "thing": "TinOre",
+    "amount": 15,
+    "rewardAmount": 10,
+    "rewardName": "Tin"
+}

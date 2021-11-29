@@ -1,0 +1,12 @@
+{
+    "ID": "GatherHoney_DoD",
+    "questName": "Collecting - Honey",
+    "stageName": "Collect {amount} {thing} from Beehive's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Queen Bee",
+    "objectiveName": "Progress: {progress}/100",
+    "type": 0,
+    "thing": "Honey",
+    "amount": 100,
+    "rewardAmount": 2,
+    "rewardName": "QueenBee"
+}

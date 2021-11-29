@@ -1,0 +1,12 @@
+{
+    "ID": "GatherCarrot_DoD",
+    "questName": "Gardening - Carrot",
+    "stageName": "Gather {amount} {thing} from your Garden.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Carrot Soup",
+    "objectiveName": "Progress: {progress}/20",
+    "type": 0,
+    "thing": "Carrot",
+    "amount": 20,
+    "rewardAmount": 5,
+    "rewardName": "CarrotSoup"
+}

@@ -1,0 +1,328 @@
+{
+   "sOriginalPrefabName" : "IceGolem",
+   "sNewPrefabName" : "Neige_DoD",
+   "Category_Appearance" : {
+      "vScale" : {
+         "fX" : 0.5,
+         "fY" : 0.5,
+         "fZ" : 0.5
+      },
+      "cTintColor" : null,
+      "cTintItems" : null,
+      "cBodySmoke" : null,
+      "cBodyFlames" : null
+   },
+   "Category_Character" : {
+      "sName" : "Neige",
+      "sFaction" : "MountainMonsters",
+      "bBoss" : true,
+      "sBossEvent" : "",
+      "sDefeatSetGlobalKey" : "defeated_Neige",
+      "fMoveSpeedMulti" : 1,
+      "bToleratesWater" : true,
+      "bToleratesFire" : false,
+      "bToleratesSmoke" : true,
+      "fHealth" : 16000,
+      "dDamageTaken" : {
+         "m_blunt" : "Resistant",
+         "m_slash" : "VeryResistant",
+         "m_pierce" : "Immune",
+         "m_chop" : "Ignore",
+         "m_pickaxe" : "Immune",
+         "m_fire" : "VeryWeak",
+         "m_frost" : "Immune",
+         "m_lightning" : "Immune",
+         "m_poison" : "Immune",
+         "m_spirit" : "Immune"
+      }
+   },
+   "Category_Humanoid" : {
+      "dtAttackDamageOverride" : null,
+      "fAttackDamageTotalOverride" : 280,
+      "sAttackProjectileOverride" : null,
+      "aDefaultItems" : [
+        "icegolem_taunt",
+		"@1",
+		"icegolem_stomp",
+		"@2",
+        "icegolem_jump_groundslam",
+		"@3",
+		"icegolem_stomp_combo",
+		"@4",
+        "icegolem_groundslam",
+		"@5",
+		"@6"
+      ],
+      "aRandomWeapon" : [
+         
+      ],
+      "aRandomArmor" : [
+         
+      ],
+      "aRandomShield" : [
+         
+      ],
+      "aaRandomSets" : [
+         
+      ],
+	  "aAdvancedCustomAttacks" : [
+         {
+            "sOriginalPrefabName" : "GoblinKing_Nova",
+            "sTargetAnim" : "cast1",
+            "fAIAttackInterval" : 30,
+            "bAIPrioritized" : true,
+            "dtAttackDamageOverride" : {
+                 "fDamage" : 0,
+                 "fBlunt" : 0,
+                 "fSlash" : 0,
+                 "fPierce" : 0,
+                 "fChop" : 0,
+                 "fPickaxe" : 0,
+                 "fFire" : 0,
+                 "fFrost" : 285,
+                 "fLightning" : 0,
+                 "fPoison" : 0,
+                 "fSpirit" : 0
+            },
+            "fAttackDamageTotalOverride" : null,
+            "sAttackProjectileOverride" : null,
+            "aStartEffects" : [
+				"VFX_IceRestoration_DoD"
+			],
+            "aHitEffects" : [
+               "vfx_ice_destroyed"
+            ],
+            "aTriggerEffects" : null
+         },
+         {
+            "sOriginalPrefabName" : "dragon_coldbreath",
+            "sTargetAnim" : "cast2",
+            "fAIAttackInterval" : 50,
+            "bAIPrioritized" : true,
+            "dtAttackDamageOverride" : {
+                 "fDamage" : 0,
+                 "fBlunt" : 0,
+                 "fSlash" : 0,
+                 "fPierce" : 0,
+                 "fChop" : 0,
+                 "fPickaxe" : 0,
+                 "fFire" : 0,
+                 "fFrost" : 290,
+                 "fLightning" : 0,
+                 "fPoison" : 0,
+                 "fSpirit" : 0
+            },
+            "fAttackDamageTotalOverride" : null,
+            "sAttackProjectileOverride" : null,
+            "aStartEffects" : null,
+            "aHitEffects" : null,
+            "aTriggerEffects" : null
+         },
+         {
+            "sOriginalPrefabName" : "dragon_spit_shotgun",
+            "sTargetAnim" : "cast1",
+            "fAIAttackInterval" : 70,
+            "bAIPrioritized" : true,
+            "dtAttackDamageOverride" : {
+                 "fDamage" : 0,
+                 "fBlunt" : 0,
+                 "fSlash" : 0,
+                 "fPierce" : 0,
+                 "fChop" : 0,
+                 "fPickaxe" : 0,
+                 "fFire" : 0,
+                 "fFrost" : 295,
+                 "fLightning" : 0,
+                 "fPoison" : 0,
+                 "fSpirit" : 0
+            },
+            "fAttackDamageTotalOverride" : null,
+            "sAttackProjectileOverride" : null,
+            "aStartEffects" : null,
+            "aHitEffects" : null,
+            "aTriggerEffects" : null
+         },
+         {
+            "sOriginalPrefabName" : "hatchling_spit_cold",
+            "sTargetAnim" : "cast1",
+            "fAIAttackInterval" : 60,
+            "bAIPrioritized" : true,
+            "dtAttackDamageOverride" : {
+                 "fDamage" : 0,
+                 "fBlunt" : 0,
+                 "fSlash" : 0,
+                 "fPierce" : 0,
+                 "fChop" : 0,
+                 "fPickaxe" : 0,
+                 "fFire" : 0,
+                 "fFrost" : 270,
+                 "fLightning" : 0,
+                 "fPoison" : 0,
+                 "fSpirit" : 0
+            },
+            "fAttackDamageTotalOverride" : null,
+            "sAttackProjectileOverride" : null,
+            "aStartEffects" : null,
+            "aHitEffects" : null,
+            "aTriggerEffects" : null
+         },
+         {
+            "sOriginalPrefabName" : "dragon_coldbreath_OLD",
+            "sTargetAnim" : "cast2",
+            "fAIAttackInterval" : 40,
+            "bAIPrioritized" : true,
+            "dtAttackDamageOverride" : {
+                 "fDamage" : 0,
+                 "fBlunt" : 0,
+                 "fSlash" : 0,
+                 "fPierce" : 0,
+                 "fChop" : 0,
+                 "fPickaxe" : 0,
+                 "fFire" : 0,
+                 "fFrost" : 270,
+                 "fLightning" : 0,
+                 "fPoison" : 0,
+                 "fSpirit" : 0
+            },
+            "fAttackDamageTotalOverride" : null,
+            "sAttackProjectileOverride" : null,
+            "aStartEffects" : null,
+            "aHitEffects" : null,
+            "aTriggerEffects" : null
+         },
+         {
+            "sOriginalPrefabName" : "dragon_coldbreath_OLD",
+            "sTargetAnim" : "cast2",
+            "fAIAttackInterval" : 90,
+            "bAIPrioritized" : true,
+            "dtAttackDamageOverride" : {
+                 "fDamage" : 0,
+                 "fBlunt" : 0,
+                 "fSlash" : 0,
+                 "fPierce" : 0,
+                 "fChop" : 0,
+                 "fPickaxe" : 0,
+                 "fFire" : 0,
+                 "fFrost" : 170,
+                 "fLightning" : 0,
+                 "fPoison" : 0,
+                 "fSpirit" : 0
+            },
+            "fAttackDamageTotalOverride" : null,
+            "sAttackProjectileOverride" : null,
+            "aStartEffects" : [
+				"VFX_IceTornado_DoD"
+			],
+            "aHitEffects" : [
+				"RRRM_IceGolemCR_DoD"
+			],
+            "aTriggerEffects" : null
+         }
+	  ]
+   },
+   "Category_BaseAI" : {
+      "fViewRange" : 30,
+      "fViewAngle" : 90,
+      "fHearRange" : 9999,
+      "sPathAgentType" : "TrollSize",
+      "fRandomCircleInterval" : 2,
+      "fRandomMoveInterval" : 20,
+      "fRandomMoveRange" : 10,
+      "bAvoidFire" : true,
+      "bAfraidOfFire" : false,
+      "bAvoidWater" : false,
+      "sSpawnMessage" : "",
+      "sDeathMessage" : ""
+   },
+   "Category_MonsterAI" : {
+      "fAlertRange" : 20,
+      "bFleeIfHurtWhenTargetCantBeReached" : true,
+      "bFleeIfNotAlerted" : false,
+      "fFleeIfLowHealth" : 0,
+      "bCirculateWhileCharging" : false,
+      "bCirculateWhileChargingFlying" : false,
+      "bEnableHuntPlayer" : false,
+      "bAttackPlayerObjects" : true,
+      "bAttackPlayerObjectsWhenAlerted" : true,
+      "fInterceptTimeMax" : 2,
+      "fInterceptTimeMin" : 0,
+      "fMaxChaseDistance" : 0,
+      "fMinAttackInterval" : 0,
+      "fCircleTargetInterval" : 0,
+      "fCircleTargetDuration" : 2,
+      "fCircleTargetDistance" : 6,
+      "aConsumeItems" : [
+         
+      ],
+      "fConsumeRange" : 2,
+      "fConsumeSearchRange" : 5,
+      "fConsumeSearchInterval" : 10,
+      "fConsumeHeal" : 0
+   },
+   "Category_CharacterDrop" : {
+      "bReplaceOriginalDrops" : true,
+      "drDrops" : [
+         {
+            "sPrefabName" : "Ruby",
+            "iAmountMin" : 2,
+            "iAmountMax" : 8,
+            "fChance" : 0.6,
+            "bOnePerPlayer" : false,
+            "bLevelMultiplier" : false
+         },
+         {
+            "sPrefabName" : "AmberPearl",
+            "iAmountMin" : 2,
+            "iAmountMax" : 8,
+            "fChance" : 0.8,
+            "bOnePerPlayer" : false,
+            "bLevelMultiplier" : false
+         },
+         {
+            "sPrefabName" : "SilverOre",
+            "iAmountMin" : 4,
+            "iAmountMax" : 8,
+            "fChance" : 0.6,
+            "bOnePerPlayer" : false,
+            "bLevelMultiplier" : false
+         },
+         {
+            "sPrefabName" : "Crystal",
+            "iAmountMin" : 2,
+            "iAmountMax" : 4,
+            "fChance" : 1,
+            "bOnePerPlayer" : false,
+            "bLevelMultiplier" : false
+         },
+         {
+            "sPrefabName" : "InfusedGemstone_DoD",
+            "iAmountMin" : 2,
+            "iAmountMax" : 4,
+            "fChance" : 0.5,
+            "bOnePerPlayer" : false,
+            "bLevelMultiplier" : false
+         },
+         {
+            "sPrefabName" : "FreezeGland",
+            "iAmountMin" : 2,
+            "iAmountMax" : 6,
+            "fChance" : 1,
+            "bOnePerPlayer" : false,
+            "bLevelMultiplier" : false
+         }
+      ]
+   },
+   "Category_Special" : {
+      "bCanTame" : false,
+      "bAlwaysTame" : false,
+      "bCommandableWhenTame" : false,
+      "bCanProcreateWhenTame" : false,
+      "bFxNoTame" : false,
+      "bSfxNoAlert" : false,
+      "bSfxNoIdle" : false,
+      "bSfxNoHit" : false,
+      "bSfxNoDeath" : false
+   },
+   "Category_NpcOnly" : null,
+   "sConfigFormatVersion" : "0.2.0"
+}

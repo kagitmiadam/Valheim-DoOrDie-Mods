@@ -1,0 +1,12 @@
+{
+    "ID": "GatherThistle_DoD",
+    "questName": "Gathering - Thistle",
+    "stageName": "Collect {amount} {thing} from the Black Forest.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Medium Healing Mead",
+    "objectiveName": "Progress: {progress}/30",
+    "type": 0,
+    "thing": "Thistle",
+    "amount": 30,
+    "rewardAmount": 5,
+    "rewardName": "MeadHealthMedium"
+}

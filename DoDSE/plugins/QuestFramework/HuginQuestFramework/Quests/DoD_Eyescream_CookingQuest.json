@@ -1,0 +1,12 @@
+{
+    "ID": "CookEyescream_DoD",
+    "questName": "Cooking - Eyescream",
+    "stageName": "Cook and collect {amount} {thing} at a cooking station.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Infused Gemstone's",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 0,
+    "thing": "Eyescream",
+    "amount": 10,
+    "rewardAmount": 4,
+    "rewardName": "InfusedGemstone_DoD"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "CookWolfmeatskewer_DoD",
+    "questName": "Cooking - Wolf Skewer",
+    "stageName": "Cook and collect {amount} {thing} at a cooking station.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Infused Gemstone's",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 0,
+    "thing": "Wolfmeatskewer",
+    "amount": 10,
+    "rewardAmount": 4,
+    "rewardName": "InfusedGemstone_DoD"
+}

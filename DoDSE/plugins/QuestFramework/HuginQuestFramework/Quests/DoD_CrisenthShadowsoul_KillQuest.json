@@ -1,0 +1,12 @@
+{
+    "ID": "KillCrisenthShadowsoul_DoD",
+    "questName": "Crisenth Shadowsoul",
+    "stageName": "Hunt down and kill Crisenth Shadowsoul, he has menaced these Swamps far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Lesser Spiritual Healing Vial",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_CrisenthShadowsoul_DoD",
+    "amount": 1,
+    "rewardAmount": 3,
+    "rewardName": "LesserSpiritualHealingVial"
+}

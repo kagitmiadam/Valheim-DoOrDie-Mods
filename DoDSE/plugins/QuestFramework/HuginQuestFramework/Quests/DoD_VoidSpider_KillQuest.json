@@ -1,0 +1,12 @@
+{
+    "ID": "KillVoidSpider_DoD",
+    "questName": "Void Spider Hunting",
+    "stageName": "Hunt {amount} Void Spider's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 1,
+    "thing": "RRRM_VoidSpider_DoD",
+    "amount": 10,
+    "rewardAmount": 130,
+    "rewardName": "Coins"
+}

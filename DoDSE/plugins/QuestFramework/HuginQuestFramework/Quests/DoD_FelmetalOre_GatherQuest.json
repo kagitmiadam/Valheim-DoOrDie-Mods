@@ -1,0 +1,12 @@
+{
+    "ID": "GatherFelmetalOre_DoD",
+    "questName": "Mining - Felmetal Ore",
+    "stageName": "Collect {amount} {thing} from Felmetal Deposit's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Felmetal Bar",
+    "objectiveName": "Progress: {progress}/30",
+    "type": 0,
+    "thing": "FelmetalOre_DoD",
+    "amount": 30,
+    "rewardAmount": 20,
+    "rewardName": "FelmetalBar_DoD"
+}

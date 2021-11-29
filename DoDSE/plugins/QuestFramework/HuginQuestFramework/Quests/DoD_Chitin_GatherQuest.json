@@ -1,0 +1,12 @@
+{
+    "ID": "GatherChitin_DoD",
+    "questName": "Mining - Chitin",
+    "stageName": "Collect {amount} {thing} from Abyssal Barnacle's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Cooked Serpent Meat",
+    "objectiveName": "Progress: {progress}/25",
+    "type": 0,
+    "thing": "Chitin",
+    "amount": 25,
+    "rewardAmount": 15,
+    "rewardName": "SerpentMeatCooked"
+}

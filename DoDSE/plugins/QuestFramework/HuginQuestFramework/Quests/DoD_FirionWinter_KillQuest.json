@@ -1,0 +1,12 @@
+{
+    "ID": "KillFirionWinter_DoD",
+    "questName": "Firion Winter",
+    "stageName": "Hunt down and kill Firion Winter, he has menaced these Mountains far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Medium Healing Tide Flask",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_FirionWinter_DoD",
+    "amount": 1,
+    "rewardAmount": 3,
+    "rewardName": "MediumSpiritualHealingFlask"
+}

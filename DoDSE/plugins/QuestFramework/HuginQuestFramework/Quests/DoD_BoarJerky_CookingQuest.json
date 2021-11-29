@@ -1,0 +1,12 @@
+{
+    "ID": "CookBoarJerky_DoD",
+    "questName": "Cooking - Boar Jerky",
+    "stageName": "Cook and collect {amount} {thing} at a cooking station.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Infused Gemstone's",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 0,
+    "thing": "BoarJerky",
+    "amount": 10,
+    "rewardAmount": 1,
+    "rewardName": "InfusedGemstone_DoD"
+}

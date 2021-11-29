@@ -1,0 +1,12 @@
+{
+    "ID": "KillBitterstump_DoD",
+    "questName": "Bitterstump",
+    "stageName": "Hunt down and kill Bitterstump, he has menaced these Plains far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Lesser Stamina Vial",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "Bitterstump_DoD",
+    "amount": 1,
+    "rewardAmount": 3,
+    "rewardName": "LesserStaminaVial"
+}

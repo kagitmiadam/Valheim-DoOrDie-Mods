@@ -1,0 +1,12 @@
+{
+    "ID": "KillWraith_DoD",
+    "questName": "Wraith Hunting",
+    "stageName": "Hunt {amount} Wraith's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/3",
+    "type": 1,
+    "thing": "Wraith",
+    "amount": 3,
+    "rewardAmount": 60,
+    "rewardName": "Coins"
+}

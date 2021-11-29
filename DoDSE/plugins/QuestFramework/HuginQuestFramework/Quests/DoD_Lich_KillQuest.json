@@ -1,0 +1,12 @@
+{
+    "ID": "KillLich_DoD",
+    "questName": "Lich Hunting",
+    "stageName": "Hunt {amount} Lich's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Essence of the Warlock",
+    "objectiveName": "Progress: {progress}/3",
+    "type": 1,
+    "thing": "RRRM_Lich_DoD",
+    "amount": 3,
+    "rewardAmount": 3,
+    "rewardName": "WarlockItem_DoD"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "KillCinderMortem_DoD",
+    "questName": "Cinder Mortem",
+    "stageName": "Hunt down and kill Cinder Mortem, he has menaced these Lands far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Grand Spiritual Healing Flask",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_CinderMortem_DoD",
+    "amount": 1,
+    "rewardAmount": 5,
+    "rewardName": "GrandSpiritualHealingFlask"
+}

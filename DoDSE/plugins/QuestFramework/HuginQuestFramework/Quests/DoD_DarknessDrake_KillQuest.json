@@ -1,0 +1,12 @@
+{
+    "ID": "KillDarknessDrake_DoD",
+    "questName": "Black Drake Hunting",
+    "stageName": "Hunt {amount} Black Drake's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/5",
+    "type": 1,
+    "thing": "DarknessDrake_DoD",
+    "amount": 5,
+    "rewardAmount": 90,
+    "rewardName": "Coins"
+}

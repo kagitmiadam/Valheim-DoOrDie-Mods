@@ -1,0 +1,12 @@
+{
+    "ID": "GatherFineWood_DoD",
+    "questName": "Woodcutting - Birch",
+    "stageName": "Collect {amount} {thing} from Birch Tree's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/100",
+    "type": 0,
+    "thing": "FineWood",
+    "amount": 100,
+    "rewardAmount": 50,
+    "rewardName": "Coins"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "KillAssassin_DoD",
+    "questName": "Assassin Hunting",
+    "stageName": "Hunt {amount} Assassin's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Grey Pearl",
+    "objectiveName": "Progress: {progress}/5",
+    "type": 1,
+    "thing": "RRRN_Assassin_DoD",
+    "amount": 5,
+    "rewardAmount": 5,
+    "rewardName": "GreyPearl_DoD"
+}

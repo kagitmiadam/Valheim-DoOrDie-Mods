@@ -1,0 +1,12 @@
+{
+    "ID": "GatherBlueberries_DoD",
+    "questName": "Gathering - Blueberries",
+    "stageName": "Gather {amount} {thing} from Blueberry Bushes.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Queen's Jam",
+    "objectiveName": "Progress: {progress}/20",
+    "type": 0,
+    "thing": "Blueberries",
+    "amount": 20,
+    "rewardAmount": 5,
+    "rewardName": "QueensJam"
+}

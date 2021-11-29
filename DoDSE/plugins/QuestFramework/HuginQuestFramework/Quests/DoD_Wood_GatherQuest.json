@@ -1,0 +1,12 @@
+{
+    "ID": "GatherWood_DoD",
+    "questName": "Woodcutting - Beech",
+    "stageName": "Collect {amount} {thing} from Beech Tree's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/100",
+    "type": 0,
+    "thing": "Wood",
+    "amount": 100,
+    "rewardAmount": 25,
+    "rewardName": "Coins"
+}

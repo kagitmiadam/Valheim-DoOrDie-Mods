@@ -1,0 +1,12 @@
+{
+    "ID": "KillFenring_DoD",
+    "questName": "Fenring Hunting",
+    "stageName": "Hunt {amount} Fenring's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/5",
+    "type": 1,
+    "thing": "Fenring",
+    "amount": 5,
+    "rewardAmount": 60,
+    "rewardName": "Coins"
+}

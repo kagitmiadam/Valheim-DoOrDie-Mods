@@ -1,0 +1,12 @@
+{
+    "ID": "KillGoblinShaman_DoD",
+    "questName": "Fuling Shaman Hunting",
+    "stageName": "Hunt {amount} Fuling Shaman's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Essence of the Shaman",
+    "objectiveName": "Progress: {progress}/5",
+    "type": 1,
+    "thing": "GoblinShaman",
+    "amount": 5,
+    "rewardAmount": 3,
+    "rewardName": "ShamanItem_DoD"
+}

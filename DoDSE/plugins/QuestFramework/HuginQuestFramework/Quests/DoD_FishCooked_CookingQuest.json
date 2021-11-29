@@ -1,0 +1,12 @@
+{
+    "ID": "CookFishCooked_DoD",
+    "questName": "Cooking - Cooked Fish",
+    "stageName": "Cook and collect {amount} {thing} at a cooking station.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Infused Gemstone's",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 0,
+    "thing": "FishCooked",
+    "amount": 10,
+    "rewardAmount": 2,
+    "rewardName": "InfusedGemstone_DoD"
+}

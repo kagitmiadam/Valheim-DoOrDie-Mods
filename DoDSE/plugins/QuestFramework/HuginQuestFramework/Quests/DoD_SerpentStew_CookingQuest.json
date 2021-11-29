@@ -1,0 +1,12 @@
+{
+    "ID": "CookSerpentStew_DoD",
+    "questName": "Cooking - Serpent Stew",
+    "stageName": "Cook and collect {amount} {thing} at a cooking station.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Infused Gemstone's",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 0,
+    "thing": "SerpentStew",
+    "amount": 10,
+    "rewardAmount": 5,
+    "rewardName": "InfusedGemstone_DoD"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "CookBlackSoup_DoD",
+    "questName": "Cooking - Black Soup",
+    "stageName": "Cook and collect {amount} {thing} at a cooking station.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Infused Gemstone's",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 0,
+    "thing": "BlackSoup",
+    "amount": 10,
+    "rewardAmount": 3,
+    "rewardName": "InfusedGemstone_DoD"
+}

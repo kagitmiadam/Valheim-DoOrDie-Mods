@@ -1,0 +1,12 @@
+{
+    "ID": "KillHatchling_DoD",
+    "questName": "Hatchling Hunting",
+    "stageName": "Hunt {amount} Hatchling's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Frost Arrow",
+    "objectiveName": "Progress: {progress}/5",
+    "type": 1,
+    "thing": "Hatchling",
+    "amount": 5,
+    "rewardAmount": 40,
+    "rewardName": "ArrowFrost"
+}

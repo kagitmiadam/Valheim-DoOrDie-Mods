@@ -1,0 +1,12 @@
+{
+    "ID": "GatherRaspberry_DoD",
+    "questName": "Gathering - Raspberries",
+    "stageName": "Gather {amount} {thing} from Raspberry Bushes.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Queen's Jam",
+    "objectiveName": "Progress: {progress}/30",
+    "type": 0,
+    "thing": "Raspberry",
+    "amount": 30,
+    "rewardAmount": 3,
+    "rewardName": "QueensJam"
+}

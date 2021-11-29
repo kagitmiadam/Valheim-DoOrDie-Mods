@@ -1,0 +1,12 @@
+{
+    "ID": "KillFarkas_DoD",
+    "questName": "Farkas",
+    "stageName": "Hunt down and kill Farkas, he has menaced these Mountains far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Medium Stamina Flask",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "Farkas_DoD",
+    "amount": 1,
+    "rewardAmount": 3,
+    "rewardName": "MediumStaminaFlask"
+}

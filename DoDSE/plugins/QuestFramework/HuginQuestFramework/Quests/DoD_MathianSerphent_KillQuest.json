@@ -1,0 +1,12 @@
+{
+    "ID": "KillMathianSerphent_DoD",
+    "questName": "Mathian Serphent",
+    "stageName": "Hunt down and kill Mathian Serphent, he has menaced these Plains far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Medium Healing Tide Flask",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_MathianSerphent_DoD",
+    "amount": 1,
+    "rewardAmount": 3,
+    "rewardName": "MediumHealingTideFlask"
+}

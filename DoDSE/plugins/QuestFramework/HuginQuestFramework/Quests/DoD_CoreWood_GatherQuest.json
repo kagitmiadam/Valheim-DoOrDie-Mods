@@ -1,0 +1,12 @@
+{
+    "ID": "GatherCoreWood_DoD",
+    "questName": "Woodcutting - Pine",
+    "stageName": "Collect {amount} {thing} from Pine Tree's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/100",
+    "type": 0,
+    "thing": "RoundLog",
+    "amount": 100,
+    "rewardAmount": 35,
+    "rewardName": "Coins"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "GatherBlackMetalScrap_DoD",
+    "questName": "Collecting - Black Metal Scrap",
+    "stageName": "Collect {amount} {thing} from the Plains.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Black Metal",
+    "objectiveName": "Progress: {progress}/30",
+    "type": 0,
+    "thing": "BlackMetalScrap",
+    "amount": 30,
+    "rewardAmount": 20,
+    "rewardName": "BlackMetal"
+}

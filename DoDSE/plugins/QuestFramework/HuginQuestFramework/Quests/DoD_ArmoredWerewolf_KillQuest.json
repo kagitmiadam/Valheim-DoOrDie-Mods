@@ -1,0 +1,12 @@
+{
+    "ID": "KillWereWolfBlackArmored_DoD",
+    "questName": "Armored Werewolf Hunting",
+    "stageName": "Hunt {amount} Armored Werewolf's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/4",
+    "type": 1,
+    "thing": "WereWolfBlackArmored",
+    "amount": 4,
+    "rewardAmount": 115,
+    "rewardName": "Coins"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "KillElderSpawnML_DoD",
+    "questName": "Corrupted Elderling Hunting",
+    "stageName": "Hunt {amount} Corrupted Elderling's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/5",
+    "type": 1,
+    "thing": "RRRM_ElderSpawn_ML_DoD",
+    "amount": 5,
+    "rewardAmount": 130,
+    "rewardName": "Coins"
+}

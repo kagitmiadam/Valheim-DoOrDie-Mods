@@ -1,0 +1,12 @@
+{
+    "ID": "KillFrostSpider_DoD",
+    "questName": "Frost Spider Hunting",
+    "stageName": "Hunt {amount} Frost Spider's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/5",
+    "type": 1,
+    "thing": "RRRM_FrostSpider_DoD",
+    "amount": 5,
+    "rewardAmount": 60,
+    "rewardName": "Coins"
+}

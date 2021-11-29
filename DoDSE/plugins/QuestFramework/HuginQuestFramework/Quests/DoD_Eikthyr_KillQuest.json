@@ -1,0 +1,12 @@
+{
+    "ID": "KillEikthyr",
+    "questName": "Eikthyr",
+    "stageName": "Hunt down and kill Eikthyr, he has menaced these Meadows far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Lesser Stamina Vial",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "Eikthyr",
+    "amount": 1,
+    "rewardAmount": 3,
+    "rewardName": "LesserStaminaVial"
+}

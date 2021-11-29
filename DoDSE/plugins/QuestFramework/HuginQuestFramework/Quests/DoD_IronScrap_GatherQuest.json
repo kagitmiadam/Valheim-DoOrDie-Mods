@@ -1,0 +1,12 @@
+{
+    "ID": "GatherIronScrap_DoD",
+    "questName": "Mining - Iron Scrap",
+    "stageName": "Collect {amount} {thing} from Muddy Scrap Pile's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Iron",
+    "objectiveName": "Progress: {progress}/15",
+    "type": 0,
+    "thing": "IronScrap",
+    "amount": 15,
+    "rewardAmount": 10,
+    "rewardName": "Iron"
+}

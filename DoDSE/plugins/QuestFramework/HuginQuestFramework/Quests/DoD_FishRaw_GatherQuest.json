@@ -1,0 +1,12 @@
+{
+    "ID": "GatherFishRaw_DoD",
+    "questName": "Fishing - Fish Raw",
+    "stageName": "Collect {amount} {thing} from Fishing.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Fish Wraps",
+    "objectiveName": "Progress: {progress}/20",
+    "type": 0,
+    "thing": "FishRaw",
+    "amount": 20,
+    "rewardAmount": 5,
+    "rewardName": "FishWraps"
+}

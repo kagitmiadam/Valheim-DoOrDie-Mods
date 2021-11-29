@@ -1,0 +1,12 @@
+{
+    "ID": "KillDraugrEliteMV_DoD",
+    "questName": "Elite Gjenganger Hunting",
+    "stageName": "Hunt {amount} Elite Gjenganger's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Infused Gemstone",
+    "objectiveName": "Progress: {progress}/8",
+    "type": 1,
+    "thing": "RRRM_Draugr_EliteMV_DoD",
+    "amount": 8,
+    "rewardAmount": 6,
+    "rewardName": "InfusedGemstone_DoD"
+}

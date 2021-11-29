@@ -1,0 +1,12 @@
+{
+    "ID": "KillBlackSpider_DoD",
+    "questName": "Black Spider Hunting",
+    "stageName": "Hunt {amount} Black Spider's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 1,
+    "thing": "RRRM_BlackSpider_DoD",
+    "amount": 10,
+    "rewardAmount": 100,
+    "rewardName": "Coins"
+}

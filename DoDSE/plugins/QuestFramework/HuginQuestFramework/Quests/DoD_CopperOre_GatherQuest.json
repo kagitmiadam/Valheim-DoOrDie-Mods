@@ -1,0 +1,12 @@
+{
+    "ID": "GatherCopperOre_DoD",
+    "questName": "Mining - Copper",
+    "stageName": "Collect {amount} {thing} from Copper Deposit's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/15",
+    "type": 0,
+    "thing": "CopperOre",
+    "amount": 15,
+    "rewardAmount": 10,
+    "rewardName": "Copper"
+}

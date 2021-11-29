@@ -1,0 +1,12 @@
+{
+    "ID": "KillSkeleton_DoD",
+    "questName": "Skeleton Hunting",
+    "stageName": "Hunt {amount} Skeleton Elite.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/15",
+    "type": 1,
+    "thing": "Skeleton",
+    "amount": 15,
+    "rewardAmount": 20,
+    "rewardName": "Coins"
+}

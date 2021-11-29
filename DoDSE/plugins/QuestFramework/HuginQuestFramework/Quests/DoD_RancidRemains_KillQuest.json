@@ -1,0 +1,12 @@
+{
+    "ID": "KillRancidRemains_DoD",
+    "questName": "Rancid Remains Hunting",
+    "stageName": "Hunt {amount} Rancid Remains.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/3",
+    "type": 1,
+    "thing": "Skeleton_Poison",
+    "amount": 3,
+    "rewardAmount": 50,
+    "rewardName": "Coins"
+}

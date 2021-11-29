@@ -1,0 +1,12 @@
+{
+    "ID": "KillShadowWarrior_DoD",
+    "questName": "Shadow Warrior Hunting",
+    "stageName": "Hunt {amount} Shadow Warrior's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/8",
+    "type": 1,
+    "thing": "RRRN_ShadowWarrior_DoD",
+    "amount": 8,
+    "rewardAmount": 100,
+    "rewardName": "Coins"
+}

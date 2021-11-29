@@ -1,0 +1,12 @@
+{
+    "ID": "KillYeti_DoD",
+    "questName": "Yeti Hunting",
+    "stageName": "Hunt {amount} Yeti's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/3",
+    "type": 1,
+    "thing": "Yeti",
+    "amount": 3,
+    "rewardAmount": 60,
+    "rewardName": "Coins"
+}

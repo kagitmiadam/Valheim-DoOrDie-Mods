@@ -1,0 +1,12 @@
+{
+    "ID": "GatherMushroomYellow_DoD",
+    "questName": "Gathering - Yellow Mushrooms",
+    "stageName": "Gather {amount} {thing} from dark places.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Mead Stamina Minor",
+    "objectiveName": "Progress: {progress}/25",
+    "type": 0,
+    "thing": "MushroomYellow",
+    "amount": 25,
+    "rewardAmount": 5,
+    "rewardName": "MeadBaseStaminaMinor"
+}

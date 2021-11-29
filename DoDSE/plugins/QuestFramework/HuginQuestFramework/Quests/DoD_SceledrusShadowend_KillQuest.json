@@ -1,0 +1,12 @@
+{
+    "ID": "KillSceledrusShadowend_DoD",
+    "questName": "Sceledrus Shadowend",
+    "stageName": "Hunt down and kill Sceledrus Shadowend, he has menaced these Plains far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Medium Healing Tide Flask",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_SceledrusShadowend_DoD",
+    "amount": 1,
+    "rewardAmount": 4,
+    "rewardName": "MediumHealingTideFlask"
+}

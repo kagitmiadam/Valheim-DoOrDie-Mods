@@ -1,0 +1,12 @@
+{
+    "ID": "KillGoblinBrute_DoD",
+    "questName": "Fuling Brute Hunting",
+    "stageName": "Hunt {amount} Fuling Brute's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/3",
+    "type": 1,
+    "thing": "GoblinBrute",
+    "amount": 3,
+    "rewardAmount": 100,
+    "rewardName": "Coins"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "KillNeck_DoD",
+    "questName": "Neck Hunting",
+    "stageName": "Hunt {amount} Neck.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 1,
+    "thing": "Neck",
+    "amount": 10,
+    "rewardAmount": 10,
+    "rewardName": "Coins"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "GatherFlax_DoD",
+    "questName": "Gathering - Flax",
+    "stageName": "Collect {amount} {thing} from the Plain's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Linen Thread",
+    "objectiveName": "Progress: {progress}/30",
+    "type": 0,
+    "thing": "Flax",
+    "amount": 30,
+    "rewardAmount": 15,
+    "rewardName": "LinenThread"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "KillLuxFrost_DoD",
+    "questName": "Lux Frost",
+    "stageName": "Hunt down and kill Lux Frost, he has menaced these Mountains far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Medium Healing Tide Flask",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_LuxFrost_DoD",
+    "amount": 1,
+    "rewardAmount": 3,
+    "rewardName": "MediumHealingTideFlask"
+}

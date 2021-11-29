@@ -1,0 +1,623 @@
+#### DoD Vanilla Changes ####
+# Fuling
+Fuling:
+  size: 0.02
+  Plains:
+    nokey_defeated_goblinking:
+      health:
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      damage: 
+          0: 1
+          1: 1.1
+          2: 1.2
+          3: 1.3
+          4: 1.4
+          5: 1.5
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+    key_defeated_goblinking:
+      health:
+          0: 1.5
+          1: 1.55
+          2: 1.6
+          3: 1.65
+          4: 1.7
+          5: 1.75
+      damage: 
+          0: 1.5
+          1: 1.6
+          2: 1.7
+          3: 1.8
+          4: 1.9
+          5: 2
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+#Fuling Shaman
+Fuling Shaman:
+  size: 0.02
+  Plains:
+    nokey_defeated_goblinking:
+      health:
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      damage: 
+          0: 1
+          1: 1.1
+          2: 1.2
+          3: 1.3
+          4: 1.4
+          5: 1.5
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+    key_defeated_goblinking:
+      health:
+          0: 1.5
+          1: 1.55
+          2: 1.6
+          3: 1.65
+          4: 1.7
+          5: 1.75
+      damage: 
+          0: 1.5
+          1: 1.6
+          2: 1.7
+          3: 1.8
+          4: 1.9
+          5: 2
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+#Fuling Berserker
+Fuling Berserker:
+  size: 0.02
+  Plains:
+    nokey_defeated_goblinking:
+      health:
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      damage: 
+          0: 1
+          1: 1.1
+          2: 1.2
+          3: 1.3
+          4: 1.4
+          5: 1.5
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+    key_defeated_goblinking:
+      health:
+          0: 1.5
+          1: 1.55
+          2: 1.6
+          3: 1.65
+          4: 1.7
+          5: 1.75
+      damage: 
+          0: 1.5
+          1: 1.6
+          2: 1.7
+          3: 1.8
+          4: 1.9
+          5: 2
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+# Lox
+Lox:
+  size: 0.02
+  Plains:
+    nokey_defeated_goblinking:
+      health:
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      damage: 
+          0: 1
+          1: 1.1
+          2: 1.2
+          3: 1.3
+          4: 1.4
+          5: 1.5
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+    key_defeated_goblinking:
+      health:
+          0: 1.5
+          1: 1.55
+          2: 1.6
+          3: 1.65
+          4: 1.7
+          5: 1.75
+      damage: 
+          0: 1.5
+          1: 1.6
+          2: 1.7
+          3: 1.8
+          4: 1.9
+          5: 2
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+# Deathsquito
+Deathsquito:
+  size: 0.02
+  Plains:
+    nokey_defeated_goblinking:
+      health:
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      damage: 
+          0: 1
+          1: 1.1
+          2: 1.2
+          3: 1.3
+          4: 1.4
+          5: 1.5
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+    key_defeated_goblinking:
+      health:
+          0: 1.5
+          1: 1.55
+          2: 1.6
+          3: 1.65
+          4: 1.7
+          5: 1.75
+      damage: 
+          0: 1.5
+          1: 1.6
+          2: 1.7
+          3: 1.8
+          4: 1.9
+          5: 2
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+# Voidling
+Voidling:
+  size: 0.02
+  infusion: 
+      Fire: 0
+      Frost: 0
+      Lightning: 0
+      Spirit: 18
+      Poison: 0
+      Chaos: 18
+  Plains:
+    nokey_defeated_goblinking:
+      health:
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      damage: 
+          0: 1
+          1: 1.1
+          2: 1.2
+          3: 1.3
+          4: 1.4
+          5: 1.5
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+    key_defeated_goblinking:
+      health:
+          0: 1.5
+          1: 1.55
+          2: 1.6
+          3: 1.65
+          4: 1.7
+          5: 1.75
+      damage: 
+          0: 1.5
+          1: 1.6
+          2: 1.7
+          3: 1.8
+          4: 1.9
+          5: 2
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+# Stalker
+Stalker:
+  size: 0
+  infusion: 
+      Fire: 0
+      Frost: 0
+      Lightning: 0
+      Spirit: 12
+      Poison: 12
+      Chaos: 12
+  Plains:
+    nokey_defeated_goblinking:
+      health:
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      damage: 
+          0: 1
+          1: 1.1
+          2: 1.2
+          3: 1.3
+          4: 1.4
+          5: 1.5
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+    key_defeated_goblinking:
+      health:
+          0: 1.5
+          1: 1.55
+          2: 1.6
+          3: 1.65
+          4: 1.7
+          5: 1.75
+      damage: 
+          0: 1.5
+          1: 1.6
+          2: 1.7
+          3: 1.8
+          4: 1.9
+          5: 2
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+# Brown Werewolf
+Werewolf:
+  size: 0.75
+  Plains:
+    nokey_defeated_goblinking:
+      health:
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      damage: 
+          0: 1
+          1: 1.1
+          2: 1.2
+          3: 1.3
+          4: 1.4
+          5: 1.5
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+    key_defeated_goblinking:
+      health:
+          0: 1.5
+          1: 1.55
+          2: 1.6
+          3: 1.65
+          4: 1.7
+          5: 1.75
+      damage: 
+          0: 1.5
+          1: 1.6
+          2: 1.7
+          3: 1.8
+          4: 1.9
+          5: 2
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      attack speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25
+      movement speed: 
+          0: 1
+          1: 1.05
+          2: 1.1
+          3: 1.15
+          4: 1.2
+          5: 1.25

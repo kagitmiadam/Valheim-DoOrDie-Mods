@@ -1,0 +1,12 @@
+{
+    "ID": "KillBlobElite_DoD",
+    "questName": "Elite Blob Hunting",
+    "stageName": "Hunt {amount} Elite Blob.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 1,
+    "thing": "BlobElite",
+    "amount": 10,
+    "rewardAmount": 35,
+    "rewardName": "Coins"
+}

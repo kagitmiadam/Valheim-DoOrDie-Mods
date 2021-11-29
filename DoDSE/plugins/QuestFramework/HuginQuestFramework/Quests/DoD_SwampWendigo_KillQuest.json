@@ -1,0 +1,12 @@
+{
+    "ID": "KillSwampWendigo_DoD",
+    "questName": "Swamp Wendigo Hunting",
+    "stageName": "Hunt {amount} Swamp Wendigo's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/3",
+    "type": 1,
+    "thing": "WendigoSwamp",
+    "amount": 3,
+    "rewardAmount": 50,
+    "rewardName": "Coins"
+}

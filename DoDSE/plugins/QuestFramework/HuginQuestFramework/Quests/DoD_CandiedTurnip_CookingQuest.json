@@ -1,0 +1,12 @@
+{
+    "ID": "CookCandiedTurnip_DoD",
+    "questName": "Cooking - Candied Turnip",
+    "stageName": "Cook and collect {amount} {thing} at a cooking station.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Infused Gemstone's",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 0,
+    "thing": "rk_candiedturnip",
+    "amount": 10,
+    "rewardAmount": 3,
+    "rewardName": "InfusedGemstone_DoD"
+}

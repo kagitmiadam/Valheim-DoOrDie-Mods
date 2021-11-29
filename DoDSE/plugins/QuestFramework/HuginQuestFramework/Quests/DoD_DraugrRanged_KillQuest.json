@@ -1,0 +1,12 @@
+{
+    "ID": "KillDraugrRanged_DoD",
+    "questName": "Draugr Archer Hunting",
+    "stageName": "Hunt {amount} Draugr Archers.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 1,
+    "thing": "Draugr_Ranged",
+    "amount": 10,
+    "rewardAmount": 50,
+    "rewardName": "Coins"
+}

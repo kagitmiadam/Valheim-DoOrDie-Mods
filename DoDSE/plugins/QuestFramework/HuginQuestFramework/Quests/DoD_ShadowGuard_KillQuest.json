@@ -1,0 +1,12 @@
+{
+    "ID": "KillShadowGuard_DoD",
+    "questName": "Shadow Guard Hunting",
+    "stageName": "Hunt {amount} Shadow Guard's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/8",
+    "type": 1,
+    "thing": "RRRN_ShadowGuard_DoD",
+    "amount": 8,
+    "rewardAmount": 100,
+    "rewardName": "Coins"
+}

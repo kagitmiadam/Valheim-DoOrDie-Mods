@@ -1,0 +1,12 @@
+{
+    "ID": "GatherMushroomBlue_DoD",
+    "questName": "Gathering - Blue Mushrooms",
+    "stageName": "Gather {amount} {thing} from dark places.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Mead Poison Resist",
+    "objectiveName": "Progress: {progress}/25",
+    "type": 0,
+    "thing": "MushroomBlue",
+    "amount": 25,
+    "rewardAmount": 5,
+    "rewardName": "MeadBasePoisonResist"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "KillLivingLava_DoD",
+    "questName": "Living Lava Hunting",
+    "stageName": "Hunt {amount} Living Lava's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/8",
+    "type": 1,
+    "thing": "LivingLava_DoD",
+    "amount": 8,
+    "rewardAmount": 135,
+    "rewardName": "Coins"
+}

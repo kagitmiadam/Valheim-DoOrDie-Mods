@@ -1,0 +1,12 @@
+{
+    "ID": "KillEchoBlack_DoD",
+    "questName": "Echo Black",
+    "stageName": "Hunt down and kill Echo Black, he has menaced these Plains far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Medium Spiritual Healing Flask",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_EchoBlack_DoD",
+    "amount": 1,
+    "rewardAmount": 3,
+    "rewardName": "MediumSpiritualHealingFlask"
+}

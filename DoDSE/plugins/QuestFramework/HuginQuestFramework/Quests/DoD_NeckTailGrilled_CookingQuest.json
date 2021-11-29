@@ -1,0 +1,12 @@
+{
+    "ID": "CookNeckTailGrilled_DoD",
+    "questName": "Cooking - Grilled Neck Tail",
+    "stageName": "Cook {amount} {thing} at a cooking station.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Infused Gemstone's",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 0,
+    "thing": "NeckTailGrilled",
+    "amount": 10,
+    "rewardAmount": 1,
+    "rewardName": "InfusedGemstone_DoD"
+}

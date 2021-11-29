@@ -1,0 +1,12 @@
+{
+    "ID": "KillBearMountain_DoD",
+    "questName": "Mountain Bear Hunting",
+    "stageName": "Hunt {amount} Mountain Bear's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/6",
+    "type": 1,
+    "thing": "RRRM_BearMountain_DoD",
+    "amount": 6,
+    "rewardAmount": 115,
+    "rewardName": "Coins"
+}

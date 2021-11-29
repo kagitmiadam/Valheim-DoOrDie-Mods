@@ -1,0 +1,12 @@
+{
+    "ID": "KillYagluth_DoD",
+    "questName": "Yagluth",
+    "stageName": "Hunt down and kill Yagluth, he has menaced these Plains far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Medium Stamina Flask",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "GoblinKing",
+    "amount": 1,
+    "rewardAmount": 5,
+    "rewardName": "MediumStaminaFlask"
+}

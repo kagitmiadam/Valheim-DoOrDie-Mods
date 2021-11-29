@@ -1,0 +1,12 @@
+{
+    "ID": "KillGreydwarfShaman_DoD",
+    "questName": "Greydwarf Shaman Hunting",
+    "stageName": "Hunt {amount} Greydwarf Shaman.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/8",
+    "type": 1,
+    "thing": "Greydwarf_Shaman",
+    "amount": 8,
+    "rewardAmount": 15,
+    "rewardName": "Coins"
+}

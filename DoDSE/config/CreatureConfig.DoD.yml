@@ -1,0 +1,382 @@
+#### DoD Monsters ####
+## Vanilla Bosses
+Eikthyr:
+  size: 0.02
+  Meadows:
+    key_defeated_eikthyr:
+      health:
+          0: 2
+          1: 3
+          2: 4
+          3: 6
+          4: 8
+          5: 10
+      damage: 
+          0: 2
+          1: 3
+          2: 4
+          3: 6
+          4: 8
+          5: 10
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      movement speed: 
+          0: 1.1
+          1: 1.2
+          2: 1.3
+          3: 1.4
+          4: 1.5
+          5: 1.6
+The Elder:
+  size: 0.02
+  BlackForest:
+    key_defeated_gdking:
+      health:
+          0: 1.4
+          1: 1.8
+          2: 2.2
+          3: 2.8
+          4: 3.4
+          5: 4
+      damage: 
+          0: 1.4
+          1: 1.8
+          2: 2.2
+          3: 2.8
+          4: 3.4
+          5: 4
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      movement speed: 
+          0: 1.1
+          1: 1.2
+          2: 1.3
+          3: 1.4
+          4: 1.5
+          5: 1.6
+Bonemass:
+  size: 0.02
+  Swamp:
+    key_defeated_bonemass:
+      health:
+          0: 1.25
+          1: 1.5
+          2: 1.75
+          3: 2
+          4: 2.25
+          5: 2.5
+      damage: 
+          0: 1.25
+          1: 1.5
+          2: 1.75
+          3: 2
+          4: 2.25
+          5: 2.5
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      movement speed: 
+          0: 1.1
+          1: 1.2
+          2: 1.3
+          3: 1.4
+          4: 1.5
+          5: 1.6
+Moder:
+  size: 0.02
+  Mountain:
+    key_defeated_dragon:
+      health:
+          0: 1.25
+          1: 1.45
+          2: 1.65
+          3: 1.85
+          4: 2.05
+          5: 2.25
+      damage: 
+          0: 1.25
+          1: 1.45
+          2: 1.65
+          3: 1.85
+          4: 2.05
+          5: 2.25
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      movement speed:
+          0: 1.1
+          1: 1.2
+          2: 1.3
+          3: 1.4
+          4: 1.5
+          5: 1.6
+GoblinKing:
+  size: 0.02
+  Plains:
+    key_defeated_goblinking:
+      health:
+          0: 1.25
+          1: 1.4
+          2: 1.55
+          3: 1.7
+          4: 1.85
+          5: 2
+      damage: 
+          0: 1.25
+          1: 1.4
+          2: 1.55
+          3: 1.7
+          4: 1.85
+          5: 2
+      damage taken: 
+          0: 1
+          1: 0.95
+          2: 0.9
+          3: 0.85
+          4: 0.8
+          5: 0.75
+      movement speed: 
+          0: 1.1
+          1: 1.2
+          2: 1.3
+          3: 1.4
+          4: 1.5
+          5: 1.6					
+## Nomad Hunters		      
+Nomad:
+    BlackForest:
+        Health: 2.5
+        ## 100
+        Damage: 5.0
+        ## 26
+    Swamp:
+        Health: 5.0
+        ## 150
+        Damage: 10.0
+        ## 39
+    Mountain:
+        Health: 10.0
+        ## 200
+        Damage: 15.0
+        ## 65
+    Plains:
+        Health: 15.0
+        ## 250
+        Damage: 20.0
+        ## 91
+    Mistlands:
+        Health: 20.0
+        ## 300
+        Damage: 30.0
+        ## 117
+    Deep North:
+        Health: 25.0
+        ## 350
+        Damage: 40.0
+        ## 182
+    AshLands:
+        Health: 30.0
+        ## 500
+        Damage: 50.0
+        ## 208    
+Nomad Berserker:
+    BlackForest:
+        Health: 2.5
+        ## 100
+        Damage: 5.0
+        ## 26
+    Swamp:
+        Health: 5.0
+        ## 150
+        Damage: 10.0
+        ## 39
+    Mountain:
+        Health: 10.0
+        ## 200
+        Damage: 15.0
+        ## 65
+    Plains:
+        Health: 15.0
+        ## 250
+        Damage: 25.0
+        ## 91
+    Mistlands:
+        Health: 20.0
+        ## 300
+        Damage: 35.0
+        ## 117
+    Deep North:
+        Health: 25.0
+        ## 350
+        Damage: 45.0
+        ## 182
+    AshLands:
+        Health: 30.0
+        ## 500
+        Damage: 55.0
+        ## 208
+Nomad Shaman:
+    BlackForest:
+        Health: 1.0
+        ## 100
+        Damage: 5.0
+        ## 26
+    Swamp:
+        Health: 3.0
+        ## 150
+        Damage: 10.0
+        ## 39
+    Mountain:
+        Health: 8.0
+        ## 200
+        Damage: 15.0
+        ## 65
+    Plains:
+        Health: 13.0
+        ## 250
+        Damage: 20.0
+        ## 91
+    Mistlands:
+        Health: 18.0
+        ## 300
+        Damage: 30.0
+        ## 117
+    Deep North:
+        Health: 23.0
+        ## 350
+        Damage: 40.0
+        ## 182
+    AshLands:
+        Health: 28.0
+        ## 500
+        Damage: 50.0
+        ## 208
+##  Any
+Trickster:
+    size: 0
+LivingWater:
+    size: 0
+    infusion: 
+        Fire: 0
+        Frost: 0
+        Lightning: 15
+        Spirit: 15
+        Poison: 0
+        Chaos: 0
+#### DoD Mini Bosses  ####
+## Upir Grim - Meadows Daytime
+Upir Grim:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Zaine Evilian - Meadows Night time
+Zaine Evilian:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Lazarus Autumn - Black Forest Daytime
+Lazarus Autumn:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Grail Thornheart - Black Forest Night time
+Grail Thornheart:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Crisenth Shadowsoul - Swamp Daytime
+Crisenth Shadowsoul:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Jayden Shadowmend - Swamp Night time
+Jayden Shadowmend:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Lux Frost - Mountains Daytime
+Lux Frost:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Firion Winter - Mountains Night time
+Firion Winter:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Echo Black - Plains Daytime
+Echo Black:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Mathian Serphent - Plains Night time
+Mathian Serphent:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Sceledrus Shadowend - Mistlands Daytime
+Sceledrus Shadowend:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Lazarus Deamonne - Mistlands Night time
+Lazarus Deamonne:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Lincoln Hunt - Deep North Daytime
+Lincoln Hunt:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Draven Nox - Deep North Night time
+Draven Nox:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1

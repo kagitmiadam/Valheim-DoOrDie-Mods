@@ -1,0 +1,12 @@
+{
+    "ID": "KillWereWolfWhite_DoD",
+    "questName": "Female Werewolf Hunting",
+    "stageName": "Hunt {amount} Female Werewolf's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/4",
+    "type": 1,
+    "thing": "WereWolfWhite",
+    "amount": 4,
+    "rewardAmount": 130,
+    "rewardName": "Coins"
+}

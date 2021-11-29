@@ -1,0 +1,209 @@
+{
+   "sOriginalPrefabName" : "KrakenLD",
+   "sNewPrefabName" : "KrakenLD_DoD",
+   "Category_Appearance" : {
+      "vScale" : {
+         "fX" : 1,
+         "fY" : 1,
+         "fZ" : 1
+      },
+      "cTintColor" : null,
+      "cTintItems" : null,
+      "cBodySmoke" : null,
+      "cBodyFlames" : null,
+      "sCustomTexture" : null
+   },
+   "Category_Character" : {
+      "sName" : "Kraken",
+      "sFaction" : "SeaMonsters",
+      "bBoss" : true,
+      "sBossEvent" : "",
+      "sDefeatSetGlobalKey" : "defeated_kraken",
+      "fMoveSpeedMulti" : 1,
+      "bToleratesWater" : true,
+      "bToleratesFire" : false,
+      "bToleratesSmoke" : true,
+      "fHealth" : 10000,
+      "dDamageTaken" : {
+         "m_blunt" : "Immune",
+         "m_slash" : "Normal",
+         "m_pierce" : "VeryResistant",
+         "m_chop" : "VeryResistant",
+         "m_pickaxe" : "Weak",
+         "m_fire" : "Resistant",
+         "m_frost" : "Resistant",
+         "m_lightning" : "Weak",
+         "m_poison" : "VeryResistant",
+         "m_spirit" : "Immune"
+      }
+   },
+   "Category_Humanoid" : {
+      "dtAttackDamageOverride" : {
+                 "fDamage" : 0,
+                 "fBlunt" : 125,
+                 "fSlash" : 50,
+                 "fPierce" : 0,
+                 "fChop" : 50,
+                 "fPickaxe" : 50,
+                 "fFire" : 0,
+                 "fFrost" : 0,
+                 "fLightning" : 0,
+                 "fPoison" : 50,
+                 "fSpirit" : 0
+            },
+      "fAttackDamageTotalOverride" : null,
+      "sAttackProjectileOverride" : null,
+      "aDefaultItems" : [
+         "kraken_attack1",
+         "kraken_attack2",
+         "kraken_attack4",
+         "kraken_taunt"
+      ],
+      "aRandomWeapon" : [
+         
+      ],
+      "aRandomArmor" : [
+         
+      ],
+      "aRandomShield" : [
+         
+      ],
+      "aaRandomSets" : [
+         
+      ],
+      "aHitEffects" : [
+         "vfx_kraken_hit",
+         "sfx_kraken_hit"
+      ],
+      "aDeathEffects" : [
+         "sfx_kraken_death",
+         "KrakenLD_ragdoll"
+      ],
+      "aConsumeItemEffects" : [
+         
+      ],
+      "aAdvancedCustomAttacks" : null
+   },
+   "Category_BaseAI" : {
+      "fViewRange" : 50,
+      "fViewAngle" : 360,
+      "fHearRange" : 9999,
+      "aAlertedEffects" : [
+         "sfx_kraken_alert"
+      ],
+      "aIdleEffects" : [
+         "sfx_kraken_idle"
+      ],
+      "fIdleEffectsInterval" : 5,
+      "fIdleEffectsChance" : 0.5,
+      "sPathAgentType" : "BigFish",
+      "fRandomCircleInterval" : 2,
+      "fRandomMoveInterval" : 20,
+      "fRandomMoveRange" : 10,
+      "bRandomFly" : false,
+      "fChanceToTakeoff" : 1,
+      "fChanceToLand" : 1,
+      "fGroundDuration" : 10,
+      "fAirDuration" : 60,
+      "fMaxLandAltitude" : -32,
+      "fFlyAltitudeMin" : 0,
+      "fFlyAltitudeMax" : 1,
+      "fTakeoffTime" : 5,
+      "bAvoidFire" : false,
+      "bAfraidOfFire" : false,
+      "bAvoidWater" : false,
+      "sSpawnMessage" : "",
+      "sDeathMessage" : ""
+   },
+   "Category_MonsterAI" : {
+      "fAlertRange" : 50,
+      "bFleeIfHurtWhenTargetCantBeReached" : true,
+      "bFleeIfNotAlerted" : true,
+      "fFleeIfLowHealth" : 0.05,
+      "bCirculateWhileCharging" : false,
+      "bCirculateWhileChargingFlying" : false,
+      "bEnableHuntPlayer" : false,
+      "bAttackPlayerObjects" : true,
+      "bAttackPlayerObjectsWhenAlerted" : null,
+      "fInterceptTimeMax" : 2,
+      "fInterceptTimeMin" : 0,
+      "fMaxChaseDistance" : 300,
+      "fMinAttackInterval" : 2,
+      "fCircleTargetInterval" : 0,
+      "fCircleTargetDuration" : 2,
+      "fCircleTargetDistance" : 4,
+      "bSleeping" : false,
+      "bNoiseWakeup" : false,
+      "fNoiseRangeScale" : 1,
+      "fWakeupRange" : 5,
+      "aWakeupEffects" : [
+         
+      ],
+      "bAvoidLand" : true,
+      "aConsumeItems" : [
+         
+      ],
+      "fConsumeRange" : 2,
+      "fConsumeSearchRange" : 5,
+      "fConsumeSearchInterval" : 10,
+      "fConsumeHeal" : 0
+   },
+   "Category_CharacterDrop" : {
+      "bReplaceOriginalDrops" : true,
+      "drDrops" : [
+         {
+            "sPrefabName" : "SerpentMeat",
+            "iAmountMin" : 10,
+            "iAmountMax" : 15,
+            "fChance" : 1,
+            "bOnePerPlayer" : false,
+            "bLevelMultiplier" : false
+         },
+		 {
+            "sPrefabName" : "Coins",
+            "iAmountMin" : 500,
+            "iAmountMax" : 999,
+            "fChance" : 1,
+            "bOnePerPlayer" : false,
+            "bLevelMultiplier" : false
+         },
+		 {
+            "sPrefabName" : "Chitin",
+            "iAmountMin" : 10,
+            "iAmountMax" : 20,
+            "fChance" : 1,
+            "bOnePerPlayer" : false,
+            "bLevelMultiplier" : false
+         },
+		 {
+            "sPrefabName" : "GreyPearl_DoD",
+            "iAmountMin" : 5,
+            "iAmountMax" : 10,
+            "fChance" : 1,
+            "bOnePerPlayer" : false,
+            "bLevelMultiplier" : false
+         },
+		 {
+            "sPrefabName" : "InfusedGemstone_DoD",
+            "iAmountMin" : 3,
+            "iAmountMax" : 6,
+            "fChance" : 1,
+            "bOnePerPlayer" : false,
+            "bLevelMultiplier" : false
+         }
+      ]
+   },
+   "Category_Special" : {
+      "bCanTame" : false,
+      "bAlwaysTame" : false,
+      "bCommandableWhenTame" : false,
+      "bCanProcreateWhenTame" : false,
+      "bFxNoTame" : false,
+      "bSfxNoAlert" : false,
+      "bSfxNoIdle" : false,
+      "bSfxNoHit" : false,
+      "bSfxNoDeath" : false
+   },
+   "Category_NpcOnly" : null,
+   "sConfigFormatVersion" : "0.2.0"
+}

@@ -1,0 +1,12 @@
+{
+    "ID": "KillBhygshan_DoD",
+    "questName": "Bhygshan",
+    "stageName": "Hunt down and kill Bhygshan, he has menaced these Swamps far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Lesser Stamina Vial",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "Bhygshan_DoD",
+    "amount": 1,
+    "rewardAmount": 4,
+    "rewardName": "LesserStaminaVial"
+}

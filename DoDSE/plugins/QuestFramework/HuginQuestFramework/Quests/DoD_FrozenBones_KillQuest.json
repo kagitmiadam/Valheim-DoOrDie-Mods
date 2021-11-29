@@ -1,0 +1,12 @@
+{
+    "ID": "KillFrozenBones_DoD",
+    "questName": "Awakened Hunting",
+    "stageName": "Hunt {amount} Awakened.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 1,
+    "thing": "FrozenBones_DoD",
+    "amount": 10,
+    "rewardAmount": 115,
+    "rewardName": "Coins"
+}

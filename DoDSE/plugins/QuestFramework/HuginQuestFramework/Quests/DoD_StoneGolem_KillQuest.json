@@ -1,0 +1,12 @@
+{
+    "ID": "KillStoneGolem_DoD",
+    "questName": "Stone Golem Hunting",
+    "stageName": "Hunt {amount} Stone Golem's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/3",
+    "type": 1,
+    "thing": "StoneGolem",
+    "amount": 3,
+    "rewardAmount": 100,
+    "rewardName": "Coins"
+}

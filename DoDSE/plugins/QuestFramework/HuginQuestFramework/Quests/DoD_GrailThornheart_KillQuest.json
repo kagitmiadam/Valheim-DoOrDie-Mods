@@ -1,0 +1,12 @@
+{
+    "ID": "KillGrailThornheart_DoD",
+    "questName": "Grail Thornheart",
+    "stageName": "Hunt down and kill Grail Thornheart, he has menaced these Forests far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Lesser Healing Tide Vial",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_GrailThornheart_DoD",
+    "amount": 1,
+    "rewardAmount": 2,
+    "rewardName": "LesserHealingTideVial"
+}

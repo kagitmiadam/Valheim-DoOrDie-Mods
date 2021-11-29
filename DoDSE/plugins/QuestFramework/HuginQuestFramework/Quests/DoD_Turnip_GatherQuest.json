@@ -1,0 +1,12 @@
+{
+    "ID": "GatherTurnip_DoD",
+    "questName": "Gardening - Turnip",
+    "stageName": "Gather {amount} {thing} from your Garden.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Turnip Stew",
+    "objectiveName": "Progress: {progress}/20",
+    "type": 0,
+    "thing": "Turnip",
+    "amount": 20,
+    "rewardAmount": 5,
+    "rewardName": "TurnipStew"
+}

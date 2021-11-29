@@ -1,0 +1,12 @@
+{
+    "ID": "KillGoblin_DoD",
+    "questName": "Goblin Hunting",
+    "stageName": "Hunt {amount} Goblin's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/10",
+    "type": 1,
+    "thing": "Goblin",
+    "amount": 10,
+    "rewardAmount": 75,
+    "rewardName": "Coins"
+}

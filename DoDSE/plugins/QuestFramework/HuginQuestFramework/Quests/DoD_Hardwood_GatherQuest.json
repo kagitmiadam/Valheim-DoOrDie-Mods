@@ -1,0 +1,12 @@
+{
+    "ID": "GatherHardwood_DoD",
+    "questName": "Woodcutting - Oak",
+    "stageName": "Collect {amount} {thing} from Oak Tree's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/25",
+    "type": 0,
+    "thing": "Oak_DoD",
+    "amount": 25,
+    "rewardAmount": 65,
+    "rewardName": "Coins"
+}

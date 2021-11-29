@@ -1,0 +1,12 @@
+{
+    "ID": "KillTroll_DoD",
+    "questName": "Troll Hunting",
+    "stageName": "Hunt {amount} Troll.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Essence of the Berserker",
+    "objectiveName": "Progress: {progress}/3",
+    "type": 1,
+    "thing": "Troll",
+    "amount": 3,
+    "rewardAmount": 2,
+    "rewardName": "BerserkerItem_DoD"
+}

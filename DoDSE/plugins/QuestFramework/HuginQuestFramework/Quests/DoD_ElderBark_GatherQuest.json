@@ -1,0 +1,12 @@
+{
+    "ID": "GatherElderBark_DoD",
+    "questName": "Woodcutting - Ancient Tree",
+    "stageName": "Collect {amount} {thing} from Ancient Tree's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/50",
+    "type": 0,
+    "thing": "ElderBark",
+    "amount": 50,
+    "rewardAmount": 50,
+    "rewardName": "Coins"
+}

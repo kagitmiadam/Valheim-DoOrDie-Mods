@@ -1,0 +1,12 @@
+{
+    "ID": "KillDravenNox_DoD",
+    "questName": "Draven Nox",
+    "stageName": "Hunt down and kill Draven Nox, he has menaced these Lands far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Grand Spiritual Healing Flask",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_DravenNox_DoD",
+    "amount": 1,
+    "rewardAmount": 4,
+    "rewardName": "GrandSpiritualHealingFlask"
+}

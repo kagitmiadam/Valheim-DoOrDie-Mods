@@ -1,0 +1,12 @@
+{
+    "ID": "KillLazarusAutumn_DoD",
+    "questName": "Lazarus Autumn",
+    "stageName": "Hunt down and kill Lazarus Autumn, he has menaced these Forests far too long.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Lesser Spiritual Healing Vial",
+    "objectiveName": "Progress: {progress}/1",
+    "type": 1,
+    "thing": "RRRN_LazarusAutumn_DoD",
+    "amount": 1,
+    "rewardAmount": 2,
+    "rewardName": "LesserSpiritualHealingVial"
+}

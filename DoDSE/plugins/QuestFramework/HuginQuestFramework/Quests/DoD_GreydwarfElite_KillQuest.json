@@ -1,0 +1,12 @@
+{
+    "ID": "KillGreydwarfElite_DoD",
+    "questName": "Greydwarf Elite Hunting",
+    "stageName": "Hunt {amount} Greydwarf Elite.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Coins",
+    "objectiveName": "Progress: {progress}/5",
+    "type": 1,
+    "thing": "Greydwarf_Elite",
+    "amount": 5,
+    "rewardAmount": 20,
+    "rewardName": "Coins"
+}

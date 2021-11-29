@@ -1,0 +1,12 @@
+{
+    "ID": "GatherSilverOre_DoD",
+    "questName": "Mining - Silver",
+    "stageName": "Collect {amount} {thing} from Silver Vein's.",
+    "stageDesc": "Hugin will reward you {rewardAmount} Silver",
+    "objectiveName": "Progress: {progress}/15",
+    "type": 0,
+    "thing": "SilverOre",
+    "amount": 15,
+    "rewardAmount": 10,
+    "rewardName": "Silver"
+}
