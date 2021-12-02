@@ -25,7 +25,7 @@ namespace DoDMonsters
 
 		public const string PluginName = "DoOrDieMonsters";
 
-		public const string PluginVersion = "0.4.3";
+		public const string PluginVersion = "0.4.4";
 
 		private Harmony _harmony;
 
@@ -347,7 +347,25 @@ namespace DoDMonsters
 		public static GameObject DrakespitPoison2;
 		public static GameObject DrakespitVoid;
 
+		public static GameObject GreenFrog;
+		public static GameObject BlackFrog;
+		public static GameObject SpottedFrog;
+		public static GameObject GreyRabbit;
+		public static GameObject BrownRabbit;
+		public static GameObject GiantSnail;
+		public static GameObject Sheep;
+		public static GameObject Goat;
+		public static GameObject Goose;
+		public static GameObject Turtle;
+		public static GameObject Salamander;
+		public static GameObject Penguin;
+		public static GameObject Rat;
+		public static GameObject BrownLizard;
+		public static GameObject GreenLizard;
+		public static GameObject SpottedLizard;
+
 		public AssetBundle DoDAssets;
+		public AssetBundle DoDFixer;
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
 			Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -362,7 +380,7 @@ namespace DoDMonsters
 			LoadBundle();
 			LoadDoDAssets();
 			CreateDropables(); 
-			UpdateBlastFurnace();
+			UpdateBlastFurnace(); 
 			if (MonstersEnable.Value == true) {
 				CreateMonsterAbilities();
 				CreateMonsterItems();
@@ -394,6 +412,7 @@ namespace DoDMonsters
 				AddDeepNorthVegetation(); }
 			if (AshLandsVegEnable.Value == true) {
 				AddAshLandsVegetation(); }
+			AddNewAnimals();
 			ZoneManager.OnVanillaLocationsAvailable += AddLocations;
 			UnloadBundle();
 			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoDMonsters");
@@ -404,6 +423,17 @@ namespace DoDMonsters
 		}
 		private void LoadDoDAssets()
 		{
+			Sheep = DoDAssets.LoadAsset<GameObject>("Sheep_DoD");
+			Goat = DoDAssets.LoadAsset<GameObject>("Goat_DoD");
+			Goose = DoDAssets.LoadAsset<GameObject>("Goose_DoD");
+			Turtle = DoDAssets.LoadAsset<GameObject>("Turtle_DoD");
+			Salamander = DoDAssets.LoadAsset<GameObject>("Salamander_DoD");
+			Penguin = DoDAssets.LoadAsset<GameObject>("Penguin_DoD");
+			Rat = DoDAssets.LoadAsset<GameObject>("Rat_DoD");
+			BrownLizard = DoDAssets.LoadAsset<GameObject>("BrownLizard_DoD");
+			GreenLizard = DoDAssets.LoadAsset<GameObject>("GreenLizard_DoD");
+			SpottedLizard = DoDAssets.LoadAsset<GameObject>("SpottedLizard_DoD");
+
 			DrakespitFire = DoDAssets.LoadAsset<GameObject>("drake_firespit_attack_dod");
 			DrakespitArcane = DoDAssets.LoadAsset<GameObject>("drake_arcanespit_attack_dod");
 			DrakespitFrost = DoDAssets.LoadAsset<GameObject>("drake_frostspit_attack_dod");
@@ -705,6 +735,12 @@ namespace DoDMonsters
 			DarkDrake = DoDAssets.LoadAsset<GameObject>("DarknessDrake_DoD");
 			PoisonDrake = DoDAssets.LoadAsset<GameObject>("PoisonDrake_DoD");
 			BlackDrake = DoDAssets.LoadAsset<GameObject>("DarkDrake_DoD");
+			GreenFrog = DoDAssets.LoadAsset<GameObject>("GreenFrog_DoD");
+			BlackFrog = DoDAssets.LoadAsset<GameObject>("BlackFrog_DoD");
+			SpottedFrog = DoDAssets.LoadAsset<GameObject>("SpottedFrog_DoD");
+			GreyRabbit = DoDAssets.LoadAsset<GameObject>("GreyRabbit_DoD");
+			BrownRabbit = DoDAssets.LoadAsset<GameObject>("BrownRabbit_DoD");
+			GiantSnail = DoDAssets.LoadAsset<GameObject>("GiantSnail_DoD");
 
 			GameObject AoESpray = DoDAssets.LoadAsset<GameObject>("AoE_Spray_DoD");
 			GameObject BitterRoots = DoDAssets.LoadAsset<GameObject>("Bitter_RootSpawn_DoD");
@@ -776,6 +812,24 @@ namespace DoDMonsters
 			GameObject DarkDrakeRD = DoDAssets.LoadAsset<GameObject>("DarknessDrake_Ragdoll_DoD");
 			GameObject GoldDrakeRD = DoDAssets.LoadAsset<GameObject>("GoldDrake_Ragdoll_DoD");
 			GameObject GreenDrakeRD = DoDAssets.LoadAsset<GameObject>("PoisonDrake_Ragdoll_DoD");
+			GameObject GreenFrogRD = DoDAssets.LoadAsset<GameObject>("GreenFrog_RD_DoD");
+			GameObject BlackFrogRD = DoDAssets.LoadAsset<GameObject>("BlackFrog_RD_DoD");
+			GameObject SpottedFrogRD = DoDAssets.LoadAsset<GameObject>("SpottedFrog_RD_DoD");
+			GameObject GreyRabbitRD = DoDAssets.LoadAsset<GameObject>("GreyRabbit_RD_DoD");
+			GameObject BrownRabbitRD = DoDAssets.LoadAsset<GameObject>("BrownRabbit_RD_DoD");
+			GameObject GiantSnailRD = DoDAssets.LoadAsset<GameObject>("Snail_RD_DoD");
+			GameObject SheepRD = DoDAssets.LoadAsset<GameObject>("Sheep_RD_DoD");
+			GameObject GoatRD = DoDAssets.LoadAsset<GameObject>("Goat_RD_DoD");
+			GameObject GooseRD = DoDAssets.LoadAsset<GameObject>("Goose_RD_DoD");
+			GameObject PenguinRD = DoDAssets.LoadAsset<GameObject>("Penguin_RD_DoD");
+			GameObject RatRD = DoDAssets.LoadAsset<GameObject>("Rat_RD_DoD");
+			GameObject SalamanderRD = DoDAssets.LoadAsset<GameObject>("FireSalamander_RD_DoD");
+			GameObject TurtleRD = DoDAssets.LoadAsset<GameObject>("BoxTurtle_RD_DoD");
+			GameObject BrownLizardRD = DoDAssets.LoadAsset<GameObject>("BrownLizard_RD_DoD");
+			GameObject GreenLizardRD = DoDAssets.LoadAsset<GameObject>("GreenLizard_RD_DoD");
+			GameObject SpottedLizardRD = DoDAssets.LoadAsset<GameObject>("SpottedLizard_RD_DoD");
+			GameObject FarkasRD = DoDAssets.LoadAsset<GameObject>("Farkas_RD_DoD");
+			PrefabManager.Instance.AddPrefab(FarkasRD);
 			PrefabManager.Instance.AddPrefab(VilefangRD);
 			PrefabManager.Instance.AddPrefab(BlackDeerRD);
 			PrefabManager.Instance.AddPrefab(ForestWolfRD);
@@ -789,6 +843,22 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(DarkDrakeRD);
 			PrefabManager.Instance.AddPrefab(GoldDrakeRD);
 			PrefabManager.Instance.AddPrefab(GreenDrakeRD);
+			PrefabManager.Instance.AddPrefab(GreenFrogRD);
+			PrefabManager.Instance.AddPrefab(BlackFrogRD);
+			PrefabManager.Instance.AddPrefab(SpottedFrogRD);
+			PrefabManager.Instance.AddPrefab(GreyRabbitRD);
+			PrefabManager.Instance.AddPrefab(BrownRabbitRD);
+			PrefabManager.Instance.AddPrefab(GiantSnailRD);
+			PrefabManager.Instance.AddPrefab(SheepRD);
+			PrefabManager.Instance.AddPrefab(GoatRD);
+			PrefabManager.Instance.AddPrefab(GooseRD);
+			PrefabManager.Instance.AddPrefab(PenguinRD);
+			PrefabManager.Instance.AddPrefab(RatRD);
+			PrefabManager.Instance.AddPrefab(SalamanderRD);
+			PrefabManager.Instance.AddPrefab(TurtleRD);
+			PrefabManager.Instance.AddPrefab(BrownLizardRD);
+			PrefabManager.Instance.AddPrefab(GreenLizardRD);
+			PrefabManager.Instance.AddPrefab(SpottedLizardRD);
 
 			GameObject BhygshanFireballProjectile = DoDAssets.LoadAsset<GameObject>("Bhygshan_Fireball_Projectile_DoD");
 			GameObject SkirVoidboltProjectile = DoDAssets.LoadAsset<GameObject>("Skir_Voidbolt_Projectile_DoD");
@@ -867,6 +937,11 @@ namespace DoDMonsters
 			GameObject LootSpawner3 = DoDAssets.LoadAsset<GameObject>("LootSpawner_Award_Plains_DoD");
 			GameObject SmallCave = DoDAssets.LoadAsset<GameObject>("MiniCave_DoD");
 			GameObject Runestone = DoDAssets.LoadAsset<GameObject>("Runestone_DoD");
+			GameObject VisirBitter = DoDAssets.LoadAsset<GameObject>("Vegvisir_Bitterstump_DoD");
+			GameObject VisirRambone = DoDAssets.LoadAsset<GameObject>("Vegvisir_Rambore_DoD");
+			GameObject CaveDeep = DoDAssets.LoadAsset<GameObject>("CaveDeep_DoD");
+			GameObject CaveEnter = DoDAssets.LoadAsset<GameObject>("CaveEntrance_DoD");
+			GameObject BeechGround = DoDAssets.LoadAsset<GameObject>("BeechGroundCover_DoD");
 			PrefabManager.Instance.AddPrefab(CastleGate);
 			PrefabManager.Instance.AddPrefab(CastleWall);
 			PrefabManager.Instance.AddPrefab(CastleStairs);
@@ -886,6 +961,11 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(LootSpawner3);
 			PrefabManager.Instance.AddPrefab(SmallCave);
 			PrefabManager.Instance.AddPrefab(Runestone);
+			PrefabManager.Instance.AddPrefab(VisirBitter);
+			PrefabManager.Instance.AddPrefab(VisirRambone);
+			PrefabManager.Instance.AddPrefab(CaveDeep);
+			PrefabManager.Instance.AddPrefab(CaveEnter);
+			PrefabManager.Instance.AddPrefab(BeechGround);
 
 			GameObject FXSkirProtect = DoDAssets.LoadAsset<GameObject>("FX_Skir_Protect_DoD");
 			GameObject FXSkirNova = DoDAssets.LoadAsset<GameObject>("FX_Skir_Nova_DoD");
@@ -926,6 +1006,33 @@ namespace DoDMonsters
 			GameObject SFXOfferingBones = DoDAssets.LoadAsset<GameObject>("SFX_OfferingBones_DoD");
 			GameObject SFXBossSpawn = DoDAssets.LoadAsset<GameObject>("SFX_BossSpawn_DoD");
 			GameObject SFXSummoning = DoDAssets.LoadAsset<GameObject>("SFX_BossSummon_DoD");
+			GameObject SFXFrog1 = DoDAssets.LoadAsset<GameObject>("SFX_Frog1_Idle_DoD");
+			GameObject SFXFrog2 = DoDAssets.LoadAsset<GameObject>("SFX_Frog2_Idle_DoD");
+			GameObject SFXFrogD = DoDAssets.LoadAsset<GameObject>("SFX_Frog_Death_DoD");
+			GameObject SFXRabbitD = DoDAssets.LoadAsset<GameObject>("SFX_Rabbit_Death_DoD");
+			GameObject SFXSnailD = DoDAssets.LoadAsset<GameObject>("SFX_Snail_Death_DoD");
+			GameObject SFXGooseD = DoDAssets.LoadAsset<GameObject>("SFX_Goose_Death_DoD");
+			GameObject SFXGooseI = DoDAssets.LoadAsset<GameObject>("SFX_Goose_Idle_DoD");
+			GameObject SFXSheepD = DoDAssets.LoadAsset<GameObject>("SFX_Sheep_Death_DoD");
+			GameObject SFXSheepI = DoDAssets.LoadAsset<GameObject>("SFX_Sheep_Idle_DoD");
+			GameObject SFXSheepF = DoDAssets.LoadAsset<GameObject>("SFX_Sheep_Footstep_DoD");
+			GameObject SFXGoatD = DoDAssets.LoadAsset<GameObject>("SFX_Goat_Death_DoD");
+			GameObject SFXGoatI = DoDAssets.LoadAsset<GameObject>("SFX_Goat_Idle_DoD");
+			GameObject SFXPenguinD = DoDAssets.LoadAsset<GameObject>("SFX_Penguin_Death_DoD");
+			GameObject SFXSalamanderD = DoDAssets.LoadAsset<GameObject>("SFX_Salamander_Death_DoD");
+			GameObject SFXRatD = DoDAssets.LoadAsset<GameObject>("SFX_Rat_Death_DoD");
+			GameObject SFXLizardD = DoDAssets.LoadAsset<GameObject>("SFX_Lizard_Death_DoD");
+			PrefabManager.Instance.AddPrefab(SFXLizardD);
+			PrefabManager.Instance.AddPrefab(SFXRatD);
+			PrefabManager.Instance.AddPrefab(SFXSalamanderD);
+			PrefabManager.Instance.AddPrefab(SFXPenguinD);
+			PrefabManager.Instance.AddPrefab(SFXGoatI);
+			PrefabManager.Instance.AddPrefab(SFXGoatD);
+			PrefabManager.Instance.AddPrefab(SFXSheepF);
+			PrefabManager.Instance.AddPrefab(SFXSheepI);
+			PrefabManager.Instance.AddPrefab(SFXSheepD);
+			PrefabManager.Instance.AddPrefab(SFXGooseI);
+			PrefabManager.Instance.AddPrefab(SFXGooseD);
 			PrefabManager.Instance.AddPrefab(SFXLivingLavaDeath);
 			PrefabManager.Instance.AddPrefab(SFXLivingLavaHit);
 			PrefabManager.Instance.AddPrefab(SFXLivingLavaJump);
@@ -950,6 +1057,11 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(SFXOfferingBones);
 			PrefabManager.Instance.AddPrefab(SFXBossSpawn);
 			PrefabManager.Instance.AddPrefab(SFXSummoning);
+			PrefabManager.Instance.AddPrefab(SFXFrog1);
+			PrefabManager.Instance.AddPrefab(SFXFrog2);
+			PrefabManager.Instance.AddPrefab(SFXFrogD);
+			PrefabManager.Instance.AddPrefab(SFXRabbitD);
+			PrefabManager.Instance.AddPrefab(SFXSnailD);
 
 			GameObject VFXBhygshanSpray = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Spray_DoD");
 			GameObject VFXBhygshanBreath = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Breath_DoD");
@@ -1083,6 +1195,7 @@ namespace DoDMonsters
 		}
 		private void AddLocations()
 		{
+			DoDFixer = AssetUtils.LoadAssetBundleFromResources("fixer", Assembly.GetExecutingAssembly());
 			DoDAssets = AssetUtils.LoadAssetBundleFromResources("doordieassets", Assembly.GetExecutingAssembly());
 			try
 			{
@@ -1092,6 +1205,16 @@ namespace DoDMonsters
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(Rambore, new LocationConfig
 					{
 						Biome = Heightmap.Biome.Meadows,
+						Quantity = 4,
+						Priotized = true,
+						ExteriorRadius = 8f,
+						MinAltitude = 5f,
+						ClearArea = true,
+					}));
+					var Bitterstump = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Boss_Bitterstump_DoD"), false);
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(Bitterstump, new LocationConfig
+					{
+						Biome = Heightmap.Biome.BlackForest,
 						Quantity = 4,
 						Priotized = true,
 						ExteriorRadius = 8f,
@@ -1610,6 +1733,8 @@ namespace DoDMonsters
 		{
 
 			GameObject MineRockFroOre = DoDAssets.LoadAsset<GameObject>("MineRock_FroOre_DoD");
+			GameObject rockdeepnorth14 = DoDAssets.LoadAsset<GameObject>("Bush3_DeepNorth_DoD");
+			GameObject rockdeepnorth13 = DoDAssets.LoadAsset<GameObject>("Bush2_DeepNorth_DoD");
 			CustomVegetation customVegetation21 = new CustomVegetation(MineRockFroOre, new VegetationConfig
 			{
 				Max = 2f,
@@ -1622,7 +1747,6 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation21);
-			GameObject rockdeepnorth14 = DoDAssets.LoadAsset<GameObject>("Bush3_DeepNorth_DoD");
 			CustomVegetation customVegetation20 = new CustomVegetation(rockdeepnorth14, new VegetationConfig
 			{
 				Max = 3f,
@@ -1635,7 +1759,6 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation20);
-			GameObject rockdeepnorth13 = DoDAssets.LoadAsset<GameObject>("Bush2_DeepNorth_DoD");
 			CustomVegetation customVegetation19 = new CustomVegetation(rockdeepnorth13, new VegetationConfig
 			{
 				Max = 3f,
@@ -2434,6 +2557,58 @@ namespace DoDMonsters
 			GameObject gameObject1 = GreaterSurtling;
 			CustomPrefab customPrefab1 = new CustomPrefab(gameObject1, true);
 			PrefabManager.Instance.AddPrefab(customPrefab1);
+		}
+		private void AddNewAnimals()
+		{
+			//Debug.Log("DoDMonsters: Loading and Creating Critters");
+			GameObject animal16 = SpottedLizard;
+			CustomPrefab critter16 = new CustomPrefab(animal16, true);
+			PrefabManager.Instance.AddPrefab(critter16);
+			GameObject animal15 = GreenLizard;
+			CustomPrefab critter15 = new CustomPrefab(animal15, true);
+			PrefabManager.Instance.AddPrefab(critter15);
+			GameObject animal14 = BrownLizard;
+			CustomPrefab critter14 = new CustomPrefab(animal14, true);
+			PrefabManager.Instance.AddPrefab(critter14);
+			GameObject animal13 = Penguin;
+			CustomPrefab critter13 = new CustomPrefab(animal13, true);
+			PrefabManager.Instance.AddPrefab(critter13);
+			GameObject animal12 = Salamander;
+			CustomPrefab critter12 = new CustomPrefab(animal12, true);
+			PrefabManager.Instance.AddPrefab(critter12);
+			GameObject animal11 = Rat;
+			CustomPrefab critter11 = new CustomPrefab(animal11, true);
+			PrefabManager.Instance.AddPrefab(critter11);
+			GameObject animal10 = Turtle;
+			CustomPrefab critter10 = new CustomPrefab(animal10, true);
+			PrefabManager.Instance.AddPrefab(critter10);
+			GameObject animal9 = Goose;
+			CustomPrefab critter9 = new CustomPrefab(animal9, true);
+			PrefabManager.Instance.AddPrefab(critter9);
+			GameObject animal8 = Goat;
+			CustomPrefab critter8 = new CustomPrefab(animal8, true);
+			PrefabManager.Instance.AddPrefab(critter8);
+			GameObject animal7 = Sheep;
+			CustomPrefab critter7 = new CustomPrefab(animal7, true);
+			PrefabManager.Instance.AddPrefab(critter7);
+			GameObject animal6 = GiantSnail;
+			CustomPrefab critter6 = new CustomPrefab(animal6, true);
+			PrefabManager.Instance.AddPrefab(critter6);
+			GameObject animal5 = BrownRabbit;
+			CustomPrefab critter5 = new CustomPrefab(animal5, true);
+			PrefabManager.Instance.AddPrefab(critter5);
+			GameObject animal4 = GreyRabbit;
+			CustomPrefab critter4 = new CustomPrefab(animal4, true);
+			PrefabManager.Instance.AddPrefab(critter4);
+			GameObject animal3 = SpottedFrog;
+			CustomPrefab critter3 = new CustomPrefab(animal3, true);
+			PrefabManager.Instance.AddPrefab(critter3);
+			GameObject animal2 = BlackFrog;
+			CustomPrefab critter2 = new CustomPrefab(animal2, true);
+			PrefabManager.Instance.AddPrefab(critter2);
+			GameObject animal1 = GreenFrog;
+			CustomPrefab critter1 = new CustomPrefab(animal1, true);
+			PrefabManager.Instance.AddPrefab(critter1);
 		}
 		private void UpdateBlastFurnace()
 		{

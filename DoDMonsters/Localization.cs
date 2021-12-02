@@ -13,9 +13,32 @@ namespace DoDMonsters
         public static Dictionary<string, string> t; //= new Dictionary<string, string>();
         private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+								{"animal_sheep_dod", "Sheep"},
+								{"animal_goat_dod", "Goat"},
+								{"animal_goose_dod", "Goose"},
+								{"animal_penguin_dod", "Penguin"},
+								{"animal_salamander_dod", "Fire Salamander"},
+								{"animal_turtle_dod", "Box Turtle"},
+								{"animal_rat_dod", "Rat"},
+								{"animal_greenlizard_dod", "Green Lizard"},
+								{"animal_brownlizard_dod", "Brown Lizard"},
+								{"animal_spottedlizard_dod", "Spotted Lizard"},
+								{"animal_greenfrog_dod", "Green Frog"},
+								{"animal_blackfrog_dod", "Black Frog"},
+								{"animal_spottedfrog_dod", "Spotted Frog"},
+								{"animal_greyrabbit_dod", "Grey Rabbit"},
+								{"animal_brownrabbit_dod", "Brown Rabbit"},
+								{"animal_giantsnail_dod", "Giant Snail"},
+								{"piece_vegvisir_dod", "Runestone"},
 								{"prop_altar_bitterstump_dod", "Bitterstump Altar"},
 								{"item_token_skull_dod", "Skull Token"},
 								{"item_token_skull_description_dod", "Knarr the Trader likes these."},
+								{"location_bitterstumpcave_dod", "Bitterstump Altar"},
+								{"location_bitterstumpcave_text_dod", "Requires 5 Greydwarf Hearts"},
+								{"enemy_pin_bitterstump_dod", "Bitterstump's Cave"},
+								{"location_bitterstump_dod", "Bitterstump's Cave"},
+								{"lore_bitterstump_dod", "Bitterstump - Unknown"},
+
 								{"npc_skugga_dod", "Skugga"},
                                 {"npc_einherjar_dod", "Einherjar"},
 

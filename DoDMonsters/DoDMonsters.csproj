@@ -326,5 +326,8 @@
   <ItemGroup>
     <EmbeddedResource Include="doordieassets" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="fixer" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
