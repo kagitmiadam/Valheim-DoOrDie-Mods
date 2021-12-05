@@ -318,6 +318,7 @@ namespace DoDMonsters
 		public static GameObject TestingA1;
 		public static GameObject TestingA2;
 		public static GameObject TestingA3;
+		public static GameObject MineRock_FroOre_DoD;
 
 		public ConfigEntry<bool> MistlandsLocEnable;
 		public ConfigEntry<bool> MistlandsVegEnable;
@@ -333,6 +334,8 @@ namespace DoDMonsters
 		public ConfigEntry<bool> DeepNorthVegEnable;
 		public ConfigEntry<bool> AshLandsVegEnable;
 		//public ConfigEntry<bool> RamboreEnable;
+		public ConfigEntry<bool> DoDMessageEnable;
+		public ConfigEntry<bool> DoDAltarMO;
 
 		public static GameObject HardLog;
 		public static GameObject HardLogHalf;
@@ -366,6 +369,7 @@ namespace DoDMonsters
 
 		public AssetBundle DoDAssets;
 		public AssetBundle DoDFixer;
+
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
 			Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -414,6 +418,7 @@ namespace DoDMonsters
 				AddAshLandsVegetation(); }
 			AddNewAnimals();
 			ZoneManager.OnVanillaLocationsAvailable += AddLocations;
+			ZoneManager.OnVanillaLocationsAvailable += EditStartTemple;
 			UnloadBundle();
 			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoDMonsters");
 		}
@@ -423,6 +428,10 @@ namespace DoDMonsters
 		}
 		private void LoadDoDAssets()
 		{
+			GameObject EventZone1 = DoDAssets.LoadAsset<GameObject>("Eventzone_Bitterstump_DoD");
+			PrefabManager.Instance.AddPrefab(EventZone1);
+			GameObject EventZone2 = DoDAssets.LoadAsset<GameObject>("Eventzone_Rambore_DoD");
+			PrefabManager.Instance.AddPrefab(EventZone2);
 			Sheep = DoDAssets.LoadAsset<GameObject>("Sheep_DoD");
 			Goat = DoDAssets.LoadAsset<GameObject>("Goat_DoD");
 			Goose = DoDAssets.LoadAsset<GameObject>("Goose_DoD");
@@ -918,6 +927,10 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(BhygshanSummon);
 			PrefabManager.Instance.AddPrefab(AltarFarkasAlt);
 
+			GameObject MassiveCave = DoDAssets.LoadAsset<GameObject>("MassiveCave_DoD");
+			GameObject TopCave = DoDAssets.LoadAsset<GameObject>("TopCave_DoD");
+			GameObject MiddleCave = DoDAssets.LoadAsset<GameObject>("MiddleCave_DoD");
+			GameObject BotttomCave = DoDAssets.LoadAsset<GameObject>("BottomCave_DoD");
 			GameObject CastleGate = DoDAssets.LoadAsset<GameObject>("CastleGate_DoD");
 			GameObject CastleWall = DoDAssets.LoadAsset<GameObject>("CastleWall_DoD");
 			GameObject CastleStairs = DoDAssets.LoadAsset<GameObject>("CastleWallStairs_DoD");
@@ -942,6 +955,10 @@ namespace DoDMonsters
 			GameObject CaveDeep = DoDAssets.LoadAsset<GameObject>("CaveDeep_DoD");
 			GameObject CaveEnter = DoDAssets.LoadAsset<GameObject>("CaveEntrance_DoD");
 			GameObject BeechGround = DoDAssets.LoadAsset<GameObject>("BeechGroundCover_DoD");
+			PrefabManager.Instance.AddPrefab(TopCave);
+			PrefabManager.Instance.AddPrefab(MiddleCave);
+			PrefabManager.Instance.AddPrefab(BotttomCave);
+			PrefabManager.Instance.AddPrefab(MassiveCave);
 			PrefabManager.Instance.AddPrefab(CastleGate);
 			PrefabManager.Instance.AddPrefab(CastleWall);
 			PrefabManager.Instance.AddPrefab(CastleStairs);
@@ -1133,9 +1150,22 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(VFXFelOreDestroy);
 			PrefabManager.Instance.AddPrefab(VFXMineHit);
 			PrefabManager.Instance.AddPrefab(VFXPickable);
+
+			
+			MineRock_FroOre_DoD = DoDAssets.LoadAsset<GameObject>("MineRock_FroOre_DoD");
+			PrefabManager.Instance.AddPrefab(MineRock_FroOre_DoD);
+
 		}
 		public void CreateConfigurationValues()
 		{
+			DoDAltarMO = base.Config.Bind("Magic Overhaul", "Enable", defaultValue: true, new ConfigDescription("Enables the Magic Overhaul Altar at the Trophy Ring", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			DoDMessageEnable = base.Config.Bind("Start Message", "Enable", defaultValue: true, new ConfigDescription("Enables the Do or Die info book at the Trophy Ring", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
 			MistlandsLocEnable = base.Config.Bind("Mistlands Locations", "Enable", defaultValue: true, new ConfigDescription("Enables Locations in Mistlands", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
@@ -1192,6 +1222,30 @@ namespace DoDMonsters
 			{
 				IsAdminOnly = true
 			}));*/
+		}
+		private void EditStartTemple()
+		{
+			try
+			{
+				if (DoDMessageEnable.Value == true)
+				{
+					var startLocation = ZoneManager.Instance.GetZoneLocation("StartTemple");
+					var dodMessage = PrefabManager.Instance.GetPrefab("StartStone_DoD");
+					var startMessage = Instantiate(dodMessage, startLocation.m_prefab.transform);
+					startMessage.transform.localPosition = new Vector3(-8.79f, -0.05f, -3.35f);
+				}
+				if (DoDAltarMO.Value == true)
+				{
+					var startLocation = ZoneManager.Instance.GetZoneLocation("StartTemple");
+					var dodaltarmo = PrefabManager.Instance.GetPrefab("AltarPrefab");
+					var altarMO = Instantiate(dodaltarmo, startLocation.m_prefab.transform);
+					altarMO.transform.localPosition = new Vector3(-4f, -0.25f, 17f);
+				}
+			}
+			finally
+			{
+				ZoneManager.OnVanillaLocationsAvailable -= EditStartTemple;
+			}
 		}
 		private void AddLocations()
 		{
@@ -1286,6 +1340,18 @@ namespace DoDMonsters
 						ExteriorRadius = 20f,
 						MinAltitude = 10f,
 						ClearArea = true,						
+					}));
+					var AnyLoc4 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("BigCave_DoD"), false);
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc4, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Meadows,
+						Quantity = 1,
+						Priotized = true,
+						ExteriorRadius = 5f,
+						MinAltitude = 2f,
+						ClearArea = true,
+						SlopeRotation = true,
+						MaxDistance = 500
 					}));
 				}
 			}
@@ -1732,10 +1798,11 @@ namespace DoDMonsters
 		private void AddDeepNorthVegetation()
 		{
 
-			GameObject MineRockFroOre = DoDAssets.LoadAsset<GameObject>("MineRock_FroOre_DoD");
+			//GameObject MineRockFroOre = DoDAssets.LoadAsset<GameObject>("MineRock_FroOre_DoD");
 			GameObject rockdeepnorth14 = DoDAssets.LoadAsset<GameObject>("Bush3_DeepNorth_DoD");
 			GameObject rockdeepnorth13 = DoDAssets.LoadAsset<GameObject>("Bush2_DeepNorth_DoD");
-			CustomVegetation customVegetation21 = new CustomVegetation(MineRockFroOre, new VegetationConfig
+			//CustomVegetation customVegetation21 = new CustomVegetation(MineRockFroOre, new VegetationConfig
+			CustomVegetation customVegetation21 = new CustomVegetation(MineRock_FroOre_DoD, new VegetationConfig
 			{
 				Max = 2f,
 				GroupSizeMin = 1,
