@@ -318,6 +318,7 @@ namespace DoDMonsters
 		public static GameObject TestingA1;
 		public static GameObject TestingA2;
 		public static GameObject TestingA3;
+		public static GameObject MineRock_FroOre_DoD;
 
 		public ConfigEntry<bool> MistlandsLocEnable;
 		public ConfigEntry<bool> MistlandsVegEnable;
@@ -1133,6 +1134,11 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(VFXFelOreDestroy);
 			PrefabManager.Instance.AddPrefab(VFXMineHit);
 			PrefabManager.Instance.AddPrefab(VFXPickable);
+
+			
+			MineRock_FroOre_DoD = DoDAssets.LoadAsset<GameObject>("MineRock_FroOre_DoD");
+			PrefabManager.Instance.AddPrefab(MineRock_FroOre_DoD);
+
 		}
 		public void CreateConfigurationValues()
 		{
@@ -1732,10 +1738,11 @@ namespace DoDMonsters
 		private void AddDeepNorthVegetation()
 		{
 
-			GameObject MineRockFroOre = DoDAssets.LoadAsset<GameObject>("MineRock_FroOre_DoD");
+			//GameObject MineRockFroOre = DoDAssets.LoadAsset<GameObject>("MineRock_FroOre_DoD");
 			GameObject rockdeepnorth14 = DoDAssets.LoadAsset<GameObject>("Bush3_DeepNorth_DoD");
 			GameObject rockdeepnorth13 = DoDAssets.LoadAsset<GameObject>("Bush2_DeepNorth_DoD");
-			CustomVegetation customVegetation21 = new CustomVegetation(MineRockFroOre, new VegetationConfig
+			//CustomVegetation customVegetation21 = new CustomVegetation(MineRockFroOre, new VegetationConfig
+			CustomVegetation customVegetation21 = new CustomVegetation(MineRock_FroOre_DoD, new VegetationConfig
 			{
 				Max = 2f,
 				GroupSizeMin = 1,
