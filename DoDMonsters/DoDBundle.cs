@@ -336,6 +336,7 @@ namespace DoDMonsters
 		//public ConfigEntry<bool> RamboreEnable;
 		public ConfigEntry<bool> DoDMessageEnable;
 		public ConfigEntry<bool> DoDAltarMO;
+		public ConfigEntry<bool> DoDShowUnderworld;
 
 		public static GameObject HardLog;
 		public static GameObject HardLogHalf;
@@ -428,6 +429,8 @@ namespace DoDMonsters
 		}
 		private void LoadDoDAssets()
 		{
+			GameObject vegvisirUnder = DoDAssets.LoadAsset<GameObject>("Vegvisir_Underworld_DoD");
+			PrefabManager.Instance.AddPrefab(vegvisirUnder);
 			GameObject EventZone1 = DoDAssets.LoadAsset<GameObject>("Eventzone_Bitterstump_DoD");
 			PrefabManager.Instance.AddPrefab(EventZone1);
 			GameObject EventZone2 = DoDAssets.LoadAsset<GameObject>("Eventzone_Rambore_DoD");
@@ -955,6 +958,8 @@ namespace DoDMonsters
 			GameObject CaveDeep = DoDAssets.LoadAsset<GameObject>("CaveDeep_DoD");
 			GameObject CaveEnter = DoDAssets.LoadAsset<GameObject>("CaveEntrance_DoD");
 			GameObject BeechGround = DoDAssets.LoadAsset<GameObject>("BeechGroundCover_DoD");
+			GameObject StartStone = DoDAssets.LoadAsset<GameObject>("StartStone_DoD");
+			PrefabManager.Instance.AddPrefab(StartStone);
 			PrefabManager.Instance.AddPrefab(TopCave);
 			PrefabManager.Instance.AddPrefab(MiddleCave);
 			PrefabManager.Instance.AddPrefab(BotttomCave);
@@ -1158,6 +1163,10 @@ namespace DoDMonsters
 		}
 		public void CreateConfigurationValues()
 		{
+			DoDShowUnderworld = base.Config.Bind("Underworld", "Enable", defaultValue: true, new ConfigDescription("Adds a Location Rune for the Underworld to the Trophy Ring", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
 			DoDAltarMO = base.Config.Bind("Magic Overhaul", "Enable", defaultValue: true, new ConfigDescription("Enables the Magic Overhaul Altar at the Trophy Ring", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
@@ -1227,6 +1236,13 @@ namespace DoDMonsters
 		{
 			try
 			{
+				if (DoDShowUnderworld.Value == true)
+				{
+					var startLocation = ZoneManager.Instance.GetZoneLocation("StartTemple");
+					var underworld = PrefabManager.Instance.GetPrefab("Vegvisir_Underworld_DoD");
+					var underVis = Instantiate(underworld, startLocation.m_prefab.transform);
+					underVis.transform.localPosition = new Vector3(-8.79f, -0.05f, -5.35f);
+				}
 				if (DoDMessageEnable.Value == true)
 				{
 					var startLocation = ZoneManager.Instance.GetZoneLocation("StartTemple");
@@ -1249,7 +1265,7 @@ namespace DoDMonsters
 		}
 		private void AddLocations()
 		{
-			DoDFixer = AssetUtils.LoadAssetBundleFromResources("fixer", Assembly.GetExecutingAssembly());
+			//DoDFixer = AssetUtils.LoadAssetBundleFromResources("fixer", Assembly.GetExecutingAssembly());
 			DoDAssets = AssetUtils.LoadAssetBundleFromResources("doordieassets", Assembly.GetExecutingAssembly());
 			try
 			{
@@ -1351,7 +1367,7 @@ namespace DoDMonsters
 						MinAltitude = 2f,
 						ClearArea = true,
 						SlopeRotation = true,
-						MaxDistance = 500
+						MinDistance = 3000
 					}));
 				}
 			}
