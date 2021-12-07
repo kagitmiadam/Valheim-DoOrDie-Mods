@@ -10,8 +10,17 @@ namespace DoDMonsters
     public class Local
     {
         private static Localization lcl;
-        public static Dictionary<string, string> t; //= new Dictionary<string, string>();
+        public static Dictionary<string, string> t;
         private static Dictionary<string, string> english = new Dictionary<string, string>() {
+
+								{ "enemy_pin_underworld_dod", "Underworld Entrance" },
+								{ "location_mysterycaveb_dod", "Icy Cavern" },
+								{ "location_mysterycavet_dod", "Chilly Cavern" },
+								{ "location_mysterycavem_dod", "Fiery Cavern" },
+								{ "location_mysterycave_dod", "Mysterious Cave" },
+								{ "piece_startstone_dod", "Do or Die Difficulty" },
+								{ "lore_start_label_dod", "Do or Die Difficulty" },
+								{ "lore_start_dod", "Scaling difficulty is always active. The longer you are in the world and the more bosses you kill, the harder the world will become. Bosses will level up one tier per world level, after you kill them the first time. Biome creatures level up once, after you kill the Vanilla boss in that biome. All creatures gain 5% Damage and Health every world level. Maximum Stars is increased to 10 plus 3 from sector level ups." },
 
 								{"animal_sheep_dod", "Sheep"},
 								{"animal_goat_dod", "Goat"},
@@ -971,7 +980,6 @@ namespace DoDMonsters
         public static void init(string lang, Localization l)
         {
             lcl = l;
-            //string @str = PlayerPrefs.GetString("language", "");
             if (lang == "Russian")
             {
                 t = russian;
@@ -999,7 +1007,6 @@ namespace DoDMonsters
                 AddWord(new object[] { el.Key, el.Value });
                 missing += el.Key;
             }
-            //give some logger output here
         }
 
         [HarmonyPatch(typeof(Localization), "SetupLanguage")]
@@ -1007,7 +1014,6 @@ namespace DoDMonsters
         {
             public static void Postfix(Localization __instance, string language)
             {
-                //Debug.LogWarning(language);
                 init(language, __instance);
                 UpdateDictinary();
             }
