@@ -369,7 +369,7 @@ namespace DoDMonsters
 		public static GameObject SpottedLizard;
 
 		public AssetBundle DoDAssets;
-		public AssetBundle DoDFixer;
+		//public AssetBundle DoDFixer;
 
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
@@ -452,6 +452,7 @@ namespace DoDMonsters
 			DrakespitPoison1 = DoDAssets.LoadAsset<GameObject>("drake_poison_attack_dod");
 			DrakespitPoison2 = DoDAssets.LoadAsset<GameObject>("drake_poisonspit_attack_dod");
 			DrakespitVoid = DoDAssets.LoadAsset<GameObject>("drake_voidspit_attack_dod");
+
 			WandMountains = DoDAssets.LoadAsset<GameObject>("Wand_Mountain_DoD");
 			MaceMistlands = DoDAssets.LoadAsset<GameObject>("Mace_Mistlands_DoD");
 			MaceDeepNorth = DoDAssets.LoadAsset<GameObject>("Mace_DeepNorth_DoD");
@@ -1241,7 +1242,7 @@ namespace DoDMonsters
 					var startLocation = ZoneManager.Instance.GetZoneLocation("StartTemple");
 					var underworld = PrefabManager.Instance.GetPrefab("Vegvisir_Underworld_DoD");
 					var underVis = Instantiate(underworld, startLocation.m_prefab.transform);
-					underVis.transform.localPosition = new Vector3(-8.79f, -0.05f, -5.35f);
+					underVis.transform.localPosition = new Vector3(-2.01f, 0f, -11.82f);
 				}
 				if (DoDMessageEnable.Value == true)
 				{
@@ -1255,7 +1256,8 @@ namespace DoDMonsters
 					var startLocation = ZoneManager.Instance.GetZoneLocation("StartTemple");
 					var dodaltarmo = PrefabManager.Instance.GetPrefab("AltarPrefab");
 					var altarMO = Instantiate(dodaltarmo, startLocation.m_prefab.transform);
-					altarMO.transform.localPosition = new Vector3(-4f, -0.25f, 17f);
+					altarMO.transform.localPosition = new Vector3(0f, -0.05f, 0f);
+					altarMO.transform.localScale = new Vector3(0.5f, 0.25f, 0.5f);
 				}
 			}
 			finally
@@ -1337,7 +1339,7 @@ namespace DoDMonsters
 						MinAltitude = 10f,
 						ClearArea = true,
 					}));
-					var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Camp_DoD"), false);
+					/*var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Camp_DoD"), false);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc2, new LocationConfig
 					{
 						Biome = ZoneManager.AnyBiomeOf(Heightmap.Biome.Meadows, Heightmap.Biome.BlackForest, Heightmap.Biome.Swamp, Heightmap.Biome.Mountain, Heightmap.Biome.Plains, Heightmap.Biome.Mistlands),
@@ -1346,7 +1348,7 @@ namespace DoDMonsters
 						ExteriorRadius = 6f,
 						MinAltitude = 2f,
 						ClearArea = true,
-					}));
+					}));*/
 					var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Event_StoneRing_Mistlands_DoD"), false);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc3, new LocationConfig
 					{
@@ -1357,17 +1359,19 @@ namespace DoDMonsters
 						MinAltitude = 10f,
 						ClearArea = true,						
 					}));
-					var AnyLoc4 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("BigCave_DoD"), false);
+					var AnyLoc4 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Underworld_DoD"), false);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc4, new LocationConfig
 					{
 						Biome = Heightmap.Biome.Meadows,
 						Quantity = 1,
 						Priotized = true,
 						ExteriorRadius = 5f,
-						MinAltitude = 2f,
 						ClearArea = true,
 						SlopeRotation = true,
-						MinDistance = 3000
+						MinDistance = 75,
+						MaxDistance = 100,
+						//MinAltitude = 30f,
+						//MaxAltitude = 660f,
 					}));
 				}
 			}
@@ -5391,6 +5395,12 @@ namespace DoDMonsters
 		private void UnloadBundle()
 		{
 			DoDAssets?.Unload(unloadAllLoadedObjects: false);
+		}
+		[HarmonyPostfix]
+		[HarmonyPatch(typeof(Piece), "Awake")]
+		private static void DungeonPiece_Patch(Piece __instance)
+		{
+			__instance.m_allowedInDungeons = true;
 		}
 		private void OnDestroy()
 		{

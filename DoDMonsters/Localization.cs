@@ -13,12 +13,13 @@ namespace DoDMonsters
         public static Dictionary<string, string> t;
         private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
-								{ "enemy_pin_underworld_dod", "Underworld Entrance" },
+								{ "lore_underworld_dod", "The Underworld is a vast subterranean realm inhabited strange and sinister creatures. It is a place where few humans go and from where even fewer return...." },
+								{ "enemy_pin_underworld_dod", "Underworld" },
 								{ "location_mysterycaveb_dod", "Icy Cavern" },
 								{ "location_mysterycavet_dod", "Chilly Cavern" },
 								{ "location_mysterycavem_dod", "Fiery Cavern" },
-								{ "location_mysterycave_dod", "Mysterious Cave" },
-								{ "piece_startstone_dod", "Do or Die Difficulty" },
+								{ "location_mysterycave_dod", "Entrance to the Underworld" },
+								{ "piece_startstone_dod", "Welcome to Do or Die" },
 								{ "lore_start_label_dod", "Do or Die Difficulty" },
 								{ "lore_start_dod", "Scaling difficulty is always active. The longer you are in the world and the more bosses you kill, the harder the world will become. Bosses will level up one tier per world level, after you kill them the first time. Biome creatures level up once, after you kill the Vanilla boss in that biome. All creatures gain 5% Damage and Health every world level. Maximum Stars is increased to 10 plus 3 from sector level ups." },
 
