@@ -318,8 +318,9 @@ namespace DoDMonsters
 		public static GameObject TestingA1;
 		public static GameObject TestingA2;
 		public static GameObject TestingA3;
-		
+
 		// mistlands veg
+		public static GameObject MineRock_FelOre_DoD;
 		public static GameObject BlueMushroom_DoD;
 		public static GameObject PurpleMushroom_DoD;
 		public static GameObject Tree_Willow02_DoD;
@@ -350,6 +351,44 @@ namespace DoDMonsters
 
 		// deep north veg
 		public static GameObject MineRock_FroOre_DoD;
+		public static GameObject Bush3_DeepNorth_DoD;
+		public static GameObject Bush2_DeepNorth_DoD;
+		public static GameObject Bush1_DeepNorth_DoD;
+		public static GameObject WinterPine7_DoD;
+		public static GameObject Mineable_RockDN10_DoD;
+		public static GameObject Mineable_RockDN9_DoD;
+		public static GameObject Mineable_RockDN8_DoD;
+		public static GameObject Mineable_RockDN7_DoD;
+		public static GameObject Mineable_RockDN6_DoD;
+		public static GameObject Mineable_RockDN5_DoD;
+		public static GameObject Mineable_RockDN4_DoD;
+		public static GameObject Mineable_RockDN3_DoD;
+		public static GameObject Mineable_RockDN2_DoD;
+		public static GameObject Mineable_RockDN1_DoD;
+		public static GameObject WinterPine6_DoD;
+		public static GameObject WinterPine5_DoD;
+		public static GameObject WinterPine4_DoD;
+		public static GameObject WinterPine3_DoD;
+		public static GameObject WinterPine2_DoD;
+		public static GameObject WinterPine1_DoD;
+
+		// ashlands veg
+		public static GameObject Mineable_SandRock16_DoD;
+		public static GameObject Mineable_SandRock15_DoD;
+		public static GameObject Mineable_SandRock14_DoD;
+		public static GameObject Mineable_SandRock13_DoD;
+		public static GameObject Mineable_SandRock12_DoD;
+		public static GameObject Mineable_SandRock11_DoD;
+		public static GameObject Mineable_SandRock10_DoD;
+		public static GameObject Mineable_SandRock9_DoD;
+		public static GameObject Mineable_SandRock8_DoD;
+		public static GameObject Mineable_SandRock5_DoD;
+		public static GameObject Mineable_SandRock4_DoD;
+		public static GameObject Mineable_SandRock3_DoD;
+
+		// fruit trees
+		public static GameObject Tree_Banana_Pickable_DoD;
+		public static GameObject Tree_Apple_Pickable_DoD;
 
 
 		public ConfigEntry<bool> MistlandsLocEnable;
@@ -1169,6 +1208,8 @@ namespace DoDMonsters
 
 
 			// mistlands veg
+			MineRock_FelOre_DoD = DoDAssets.LoadAsset<GameObject>("MineRock_FelOre_DoD");
+			PrefabManager.Instance.AddPrefab(MineRock_FelOre_DoD);
 			BlueMushroom_DoD = DoDAssets.LoadAsset<GameObject>("BlueMushroom_DoD");
 			PrefabManager.Instance.AddPrefab(BlueMushroom_DoD);
 			PurpleMushroom_DoD = DoDAssets.LoadAsset<GameObject>("PurpleMushroom_DoD");
@@ -1225,11 +1266,84 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(Tree_Walnut_Pickable_DoD);
 
 
-
+			// deep north
 			MineRock_FroOre_DoD = DoDAssets.LoadAsset<GameObject>("MineRock_FroOre_DoD");
 			PrefabManager.Instance.AddPrefab(MineRock_FroOre_DoD);
+			Bush3_DeepNorth_DoD = DoDAssets.LoadAsset<GameObject>("Bush3_DeepNorth_DoD");
+			PrefabManager.Instance.AddPrefab(Bush3_DeepNorth_DoD);
+			Bush2_DeepNorth_DoD = DoDAssets.LoadAsset<GameObject>("Bush2_DeepNorth_DoD");
+			PrefabManager.Instance.AddPrefab(Bush2_DeepNorth_DoD);
+			Bush1_DeepNorth_DoD = DoDAssets.LoadAsset<GameObject>("Bush1_DeepNorth_DoD");
+			PrefabManager.Instance.AddPrefab(Bush1_DeepNorth_DoD);
+			Mineable_RockDN10_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN10_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_RockDN10_DoD);
+			Mineable_RockDN9_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN9_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_RockDN9_DoD);
+			Mineable_RockDN8_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN8_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_RockDN8_DoD);
+			Mineable_RockDN7_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN7_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_RockDN7_DoD);
+			Mineable_RockDN6_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN6_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_RockDN6_DoD);
+			Mineable_RockDN5_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN5_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_RockDN5_DoD);
+			Mineable_RockDN4_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN4_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_RockDN4_DoD);
+			Mineable_RockDN3_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN3_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_RockDN3_DoD);
+			Mineable_RockDN2_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN2_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_RockDN2_DoD);
+			Mineable_RockDN1_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN1_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_RockDN1_DoD);
+			WinterPine7_DoD = DoDAssets.LoadAsset<GameObject>("WinterPine7_DoD");
+			PrefabManager.Instance.AddPrefab(WinterPine7_DoD); 
+			WinterPine6_DoD = DoDAssets.LoadAsset<GameObject>("WinterPine6_DoD");
+			PrefabManager.Instance.AddPrefab(WinterPine6_DoD);
+			WinterPine5_DoD = DoDAssets.LoadAsset<GameObject>("WinterPine5_DoD");
+			PrefabManager.Instance.AddPrefab(WinterPine5_DoD);
+			WinterPine4_DoD = DoDAssets.LoadAsset<GameObject>("WinterPine4_DoD");
+			PrefabManager.Instance.AddPrefab(WinterPine4_DoD);
+			WinterPine3_DoD = DoDAssets.LoadAsset<GameObject>("WinterPine3_DoD");
+			PrefabManager.Instance.AddPrefab(WinterPine3_DoD);
+			WinterPine2_DoD = DoDAssets.LoadAsset<GameObject>("WinterPine2_DoD");
+			PrefabManager.Instance.AddPrefab(WinterPine2_DoD);
+			WinterPine1_DoD = DoDAssets.LoadAsset<GameObject>("WinterPine1_DoD");
+			PrefabManager.Instance.AddPrefab(WinterPine1_DoD);
+
+			// ashlands
+			Mineable_SandRock16_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock16_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock16_DoD);
+			Mineable_SandRock15_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock15_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock15_DoD);
+			Mineable_SandRock14_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock14_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock14_DoD);
+			Mineable_SandRock13_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock13_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock13_DoD);
+			Mineable_SandRock12_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock12_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock12_DoD);
+			Mineable_SandRock11_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock11_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock11_DoD);
+			Mineable_SandRock10_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock10_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock10_DoD);
+			Mineable_SandRock9_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock9_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock9_DoD);
+			Mineable_SandRock8_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock8_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock8_DoD);
+			Mineable_SandRock5_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock5_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock5_DoD);
+			Mineable_SandRock4_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock4_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock4_DoD);
+			Mineable_SandRock3_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock3_DoD");
+			PrefabManager.Instance.AddPrefab(Mineable_SandRock3_DoD);
+
+			// fruit trees
+			Tree_Banana_Pickable_DoD = DoDAssets.LoadAsset<GameObject>("Tree_Banana_Pickable_DoD");
+			PrefabManager.Instance.AddPrefab(Tree_Banana_Pickable_DoD);
+			Tree_Apple_Pickable_DoD = DoDAssets.LoadAsset<GameObject>("Tree_Apple_Pickable_DoD");
+			PrefabManager.Instance.AddPrefab(Tree_Apple_Pickable_DoD);
 
 		}
+
 		public void CreateConfigurationValues()
 		{
 			MistlandsLocEnable = base.Config.Bind("Mistlands Locations", "Enable", defaultValue: true, new ConfigDescription("Enables Locations in Mistlands", null, new ConfigurationManagerAttributes
@@ -1393,8 +1507,8 @@ namespace DoDMonsters
 		}
 		private void AddCustomFruitTrees()
         {
-			GameObject banana1 = DoDAssets.LoadAsset<GameObject>("Tree_Banana_Pickable_DoD");
-			CustomVegetation customBananaTree1 = new CustomVegetation(banana1, new VegetationConfig
+			
+			CustomVegetation customBananaTree1 = new CustomVegetation(Tree_Banana_Pickable_DoD, new VegetationConfig
 			{
 				Max = 1f,
 				GroupSizeMin = 1,
@@ -1408,8 +1522,7 @@ namespace DoDMonsters
 			});
 			ZoneManager.Instance.AddCustomVegetation(customBananaTree1);
 
-			GameObject floramist20 = DoDAssets.LoadAsset<GameObject>("Tree_Apple_Pickable_DoD");
-			CustomVegetation customVegetation26 = new CustomVegetation(floramist20, new VegetationConfig
+			CustomVegetation customVegetation26 = new CustomVegetation(Tree_Apple_Pickable_DoD, new VegetationConfig
 			{
 				Max = 1f,
 				GroupSizeMin = 3,
@@ -1422,25 +1535,24 @@ namespace DoDMonsters
 				MaxTilt = 20f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation26);
-
-			GameObject floramist15 = DoDAssets.LoadAsset<GameObject>("MineRock_FelOre_DoD");
-			CustomVegetation customVegetation16 = new CustomVegetation(floramist15, new VegetationConfig
-			{
-				Max = 1f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 2,
-				GroupRadius = 10f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 15f,
-				MaxTilt = 20f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation16);
+						
 		}
 		private void AddMistlandVegetation()
 		{
+			
 			var mistlandsVeg = new List<CustomVegetation>
 			{
+				new CustomVegetation(MineRock_FelOre_DoD, new VegetationConfig
+				{
+					Max = 1f,
+					GroupSizeMin = 1,
+					GroupSizeMax = 2,
+					GroupRadius = 10f,
+					BlockCheck = true,
+					Biome = Heightmap.Biome.Mistlands,
+					MinAltitude = 15f,
+					MaxTilt = 20f
+				}),
 				new CustomVegetation(BlueMushroom_DoD, new VegetationConfig
 				{
 					Max = 2f,
@@ -1755,8 +1867,6 @@ namespace DoDMonsters
 		private void AddDeepNorthVegetation()
 		{
 
-			GameObject rockdeepnorth14 = DoDAssets.LoadAsset<GameObject>("Bush3_DeepNorth_DoD");
-			GameObject rockdeepnorth13 = DoDAssets.LoadAsset<GameObject>("Bush2_DeepNorth_DoD");
 			CustomVegetation customVegetation21 = new CustomVegetation(MineRock_FroOre_DoD, new VegetationConfig
 			{
 				Max = 2f,
@@ -1769,7 +1879,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation21);
-			CustomVegetation customVegetation20 = new CustomVegetation(rockdeepnorth14, new VegetationConfig
+			CustomVegetation customVegetation20 = new CustomVegetation(Bush3_DeepNorth_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1781,7 +1891,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation20);
-			CustomVegetation customVegetation19 = new CustomVegetation(rockdeepnorth13, new VegetationConfig
+			CustomVegetation customVegetation19 = new CustomVegetation(Bush2_DeepNorth_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1793,8 +1903,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation19);
-			GameObject rockdeepnorth12 = DoDAssets.LoadAsset<GameObject>("Bush1_DeepNorth_DoD");
-			CustomVegetation customVegetation18 = new CustomVegetation(rockdeepnorth12, new VegetationConfig
+			CustomVegetation customVegetation18 = new CustomVegetation(Bush1_DeepNorth_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1806,8 +1915,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation18);
-			GameObject rockdeepnorth11 = DoDAssets.LoadAsset<GameObject>("WinterPine7_DoD");
-			CustomVegetation customVegetation17 = new CustomVegetation(rockdeepnorth11, new VegetationConfig
+			CustomVegetation customVegetation17 = new CustomVegetation(WinterPine7_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1819,8 +1927,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation17);
-			GameObject rockdeepnorth10 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN10_DoD");
-			CustomVegetation customVegetation16 = new CustomVegetation(rockdeepnorth10, new VegetationConfig
+			CustomVegetation customVegetation16 = new CustomVegetation(Mineable_RockDN10_DoD, new VegetationConfig
 			{
 				Max = 4f,
 				GroupSizeMin = 1,
@@ -1832,8 +1939,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation16);
-			GameObject rockdeepnorth9 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN9_DoD");
-			CustomVegetation customVegetation15 = new CustomVegetation(rockdeepnorth9, new VegetationConfig
+			CustomVegetation customVegetation15 = new CustomVegetation(Mineable_RockDN9_DoD, new VegetationConfig
 			{
 				Max = 4f,
 				GroupSizeMin = 1,
@@ -1845,8 +1951,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation15);
-			GameObject rockdeepnorth8 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN8_DoD");
-			CustomVegetation customVegetation14 = new CustomVegetation(rockdeepnorth8, new VegetationConfig
+			CustomVegetation customVegetation14 = new CustomVegetation(Mineable_RockDN8_DoD, new VegetationConfig
 			{
 				Max = 5f,
 				GroupSizeMin = 1,
@@ -1858,8 +1963,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation14);
-			GameObject rockdeepnorth7 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN7_DoD");
-			CustomVegetation customVegetation13 = new CustomVegetation(rockdeepnorth7, new VegetationConfig
+			CustomVegetation customVegetation13 = new CustomVegetation(Mineable_RockDN7_DoD, new VegetationConfig
 			{
 				Max = 1f,
 				GroupSizeMin = 1,
@@ -1871,8 +1975,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation13);
-			GameObject rockdeepnorth6 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN6_DoD");
-			CustomVegetation customVegetation12 = new CustomVegetation(rockdeepnorth6, new VegetationConfig
+			CustomVegetation customVegetation12 = new CustomVegetation(Mineable_RockDN6_DoD, new VegetationConfig
 			{
 				Max = 5f,
 				GroupSizeMin = 1,
@@ -1884,8 +1987,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation12);
-			GameObject rockdeepnorth5 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN5_DoD");
-			CustomVegetation customVegetation11 = new CustomVegetation(rockdeepnorth5, new VegetationConfig
+			CustomVegetation customVegetation11 = new CustomVegetation(Mineable_RockDN5_DoD, new VegetationConfig
 			{
 				Max = 1f,
 				GroupSizeMin = 1,
@@ -1897,8 +1999,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation11);
-			GameObject rockdeepnorth4 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN4_DoD");
-			CustomVegetation customVegetation10 = new CustomVegetation(rockdeepnorth4, new VegetationConfig
+			CustomVegetation customVegetation10 = new CustomVegetation(Mineable_RockDN4_DoD, new VegetationConfig
 			{
 				Max = 5f,
 				GroupSizeMin = 1,
@@ -1910,8 +2011,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation10);
-			GameObject rockdeepnorth3 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN3_DoD");
-			CustomVegetation customVegetation9 = new CustomVegetation(rockdeepnorth3, new VegetationConfig
+			CustomVegetation customVegetation9 = new CustomVegetation(Mineable_RockDN3_DoD, new VegetationConfig
 			{
 				Max = 1f,
 				GroupSizeMin = 1,
@@ -1923,8 +2023,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation9);
-			GameObject rockdeepnorth2 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN2_DoD");
-			CustomVegetation customVegetation8 = new CustomVegetation(rockdeepnorth2, new VegetationConfig
+			CustomVegetation customVegetation8 = new CustomVegetation(Mineable_RockDN2_DoD, new VegetationConfig
 			{
 				Max = 12f,
 				GroupSizeMin = 1,
@@ -1936,8 +2035,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation8);
-			GameObject rockdeepnorth1 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN1_DoD");
-			CustomVegetation customVegetation7 = new CustomVegetation(rockdeepnorth1, new VegetationConfig
+			CustomVegetation customVegetation7 = new CustomVegetation(Mineable_RockDN1_DoD, new VegetationConfig
 			{
 				Max = 12f,
 				GroupSizeMin = 1,
@@ -1949,8 +2047,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation7);
-			GameObject floradeepnorth6 = DoDAssets.LoadAsset<GameObject>("WinterPine6_DoD");
-			CustomVegetation customVegetation6 = new CustomVegetation(floradeepnorth6, new VegetationConfig
+			CustomVegetation customVegetation6 = new CustomVegetation(WinterPine6_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1963,8 +2060,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation6);
-			GameObject floradeepnorth5 = DoDAssets.LoadAsset<GameObject>("WinterPine5_DoD");
-			CustomVegetation customVegetation5 = new CustomVegetation(floradeepnorth5, new VegetationConfig
+			CustomVegetation customVegetation5 = new CustomVegetation(WinterPine5_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1977,8 +2073,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation5);
-			GameObject floradeepnorth4 = DoDAssets.LoadAsset<GameObject>("WinterPine4_DoD");
-			CustomVegetation customVegetation4 = new CustomVegetation(floradeepnorth4, new VegetationConfig
+			CustomVegetation customVegetation4 = new CustomVegetation(WinterPine4_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1991,8 +2086,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation4);
-			GameObject floradeepnorth3 = DoDAssets.LoadAsset<GameObject>("WinterPine3_DoD");
-			CustomVegetation customVegetation3 = new CustomVegetation(floradeepnorth3, new VegetationConfig
+			CustomVegetation customVegetation3 = new CustomVegetation(WinterPine3_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2005,8 +2099,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation3);
-			GameObject floradeepnorth2 = DoDAssets.LoadAsset<GameObject>("WinterPine2_DoD");
-			CustomVegetation customVegetation2 = new CustomVegetation(floradeepnorth2, new VegetationConfig
+			CustomVegetation customVegetation2 = new CustomVegetation(WinterPine2_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 3,
@@ -2019,8 +2112,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation2);
-			GameObject floradeepnorth1 = DoDAssets.LoadAsset<GameObject>("WinterPine1_DoD");
-			CustomVegetation customVegetation1 = new CustomVegetation(floradeepnorth1, new VegetationConfig
+			CustomVegetation customVegetation1 = new CustomVegetation(WinterPine1_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 3,
@@ -2038,8 +2130,7 @@ namespace DoDMonsters
 		}
 		private void AddAshLandsVegetation()
 		{
-			GameObject ashlandrock14 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock16_DoD");
-			CustomVegetation customVegetation14 = new CustomVegetation(ashlandrock14, new VegetationConfig
+			CustomVegetation customVegetation14 = new CustomVegetation(Mineable_SandRock16_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2051,8 +2142,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation14);
-			GameObject ashlandrock13 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock15_DoD");
-			CustomVegetation customVegetation13 = new CustomVegetation(ashlandrock13, new VegetationConfig
+			CustomVegetation customVegetation13 = new CustomVegetation(Mineable_SandRock15_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2064,8 +2154,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation13);
-			GameObject ashlandrock12 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock14_DoD");
-			CustomVegetation customVegetation12 = new CustomVegetation(ashlandrock12, new VegetationConfig
+			CustomVegetation customVegetation12 = new CustomVegetation(Mineable_SandRock14_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2077,8 +2166,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation12);
-			GameObject ashlandrock11 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock13_DoD");
-			CustomVegetation customVegetation11 = new CustomVegetation(ashlandrock11, new VegetationConfig
+			CustomVegetation customVegetation11 = new CustomVegetation(Mineable_SandRock13_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2090,8 +2178,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation11);
-			GameObject ashlandrock10 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock12_DoD");
-			CustomVegetation customVegetation10 = new CustomVegetation(ashlandrock10, new VegetationConfig
+			CustomVegetation customVegetation10 = new CustomVegetation(Mineable_SandRock12_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2103,8 +2190,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation10);
-			GameObject ashlandrock9 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock11_DoD");
-			CustomVegetation customVegetation9 = new CustomVegetation(ashlandrock9, new VegetationConfig
+			CustomVegetation customVegetation9 = new CustomVegetation(Mineable_SandRock11_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2116,8 +2202,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation9);
-			GameObject ashlandrock8 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock10_DoD");
-			CustomVegetation customVegetation8 = new CustomVegetation(ashlandrock8, new VegetationConfig
+			CustomVegetation customVegetation8 = new CustomVegetation(Mineable_SandRock10_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2129,8 +2214,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation8);
-			GameObject ashlandrock7 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock9_DoD");
-			CustomVegetation customVegetation7 = new CustomVegetation(ashlandrock7, new VegetationConfig
+			CustomVegetation customVegetation7 = new CustomVegetation(Mineable_SandRock9_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2142,8 +2226,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation7);
-			GameObject ashlandrock6 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock8_DoD");
-			CustomVegetation customVegetation6 = new CustomVegetation(ashlandrock6, new VegetationConfig
+			CustomVegetation customVegetation6 = new CustomVegetation(Mineable_SandRock8_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2156,8 +2239,7 @@ namespace DoDMonsters
 			});
 			//5
 			//4
-			GameObject ashlandrock3 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock5_DoD");
-			CustomVegetation customVegetation3 = new CustomVegetation(ashlandrock3, new VegetationConfig
+			CustomVegetation customVegetation3 = new CustomVegetation(Mineable_SandRock5_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2169,8 +2251,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation3);
-			GameObject ashlandrock2 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock4_DoD");
-			CustomVegetation customVegetation2 = new CustomVegetation(ashlandrock2, new VegetationConfig
+			CustomVegetation customVegetation2 = new CustomVegetation(Mineable_SandRock4_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -2182,8 +2263,7 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation2);
-			GameObject ashlandrock1 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock3_DoD");
-			CustomVegetation customVegetation1 = new CustomVegetation(ashlandrock1, new VegetationConfig
+			CustomVegetation customVegetation1 = new CustomVegetation(Mineable_SandRock3_DoD, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
