@@ -25,7 +25,7 @@ namespace DoDMonsters
 
 		public const string PluginName = "DoOrDieMonsters";
 
-		public const string PluginVersion = "0.4.4";
+		public const string PluginVersion = "0.4.5";
 
 		private Harmony _harmony;
 
@@ -320,7 +320,7 @@ namespace DoDMonsters
 		public static GameObject TestingA3;
 		public static GameObject MineRock_FroOre_DoD;
 
-		// mistlands veg
+		// Mistlands Veg
 		public static GameObject MineRock_FelOre_DoD;
 		public static GameObject BlueMushroom_DoD;
 		public static GameObject PurpleMushroom_DoD;
@@ -350,8 +350,8 @@ namespace DoDMonsters
 		public static GameObject Flora_LargeDuo_DoD;
 		public static GameObject Tree_Walnut_Pickable_DoD;
 
-		// deep north veg
-		public static GameObject MineRock_FroOre_DoD;
+		// Deep North Veg
+		//public static GameObject MineRock_FroOre_DoD;
 		public static GameObject Bush3_DeepNorth_DoD;
 		public static GameObject Bush2_DeepNorth_DoD;
 		public static GameObject Bush1_DeepNorth_DoD;
@@ -373,7 +373,7 @@ namespace DoDMonsters
 		public static GameObject WinterPine2_DoD;
 		public static GameObject WinterPine1_DoD;
 
-		// ashlands veg
+		// Ashlands Veg
 		public static GameObject Mineable_SandRock16_DoD;
 		public static GameObject Mineable_SandRock15_DoD;
 		public static GameObject Mineable_SandRock14_DoD;
@@ -390,7 +390,8 @@ namespace DoDMonsters
 		// fruit trees
 		public static GameObject Tree_Banana_Pickable_DoD;
 		public static GameObject Tree_Apple_Pickable_DoD;
-
+		public static GameObject Mushroom_Cave_Pickable_DoD;
+		public static GameObject CaveMushroom;
 
 		public ConfigEntry<bool> MistlandsLocEnable;
 		public ConfigEntry<bool> MistlandsVegEnable;
@@ -406,9 +407,11 @@ namespace DoDMonsters
 		public ConfigEntry<bool> DeepNorthVegEnable;
 		public ConfigEntry<bool> AshLandsVegEnable;
 		//public ConfigEntry<bool> RamboreEnable;
+		public ConfigEntry<bool> DoDShowUnderworld;
+		public ConfigEntry<bool> DeepNorthLocations;
+		public ConfigEntry<bool> AshLandsLocations;
 		public ConfigEntry<bool> DoDMessageEnable;
 		public ConfigEntry<bool> DoDAltarMO;
-		public ConfigEntry<bool> DoDShowUnderworld;
 
 		public static GameObject HardLog;
 		public static GameObject HardLogHalf;
@@ -439,9 +442,10 @@ namespace DoDMonsters
 		public static GameObject BrownLizard;
 		public static GameObject GreenLizard;
 		public static GameObject SpottedLizard;
+		public static GameObject BhygshanAlt;
 
 		public AssetBundle DoDAssets;
-		//public AssetBundle DoDFixer;
+		public AssetBundle DoDFixer;
 
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
@@ -490,6 +494,7 @@ namespace DoDMonsters
 			if (AshLandsVegEnable.Value == true) {
 				AddAshLandsVegetation(); }
 			AddNewAnimals();
+			ItemManager.OnItemsRegistered += ModWorldObjects;
 			ZoneManager.OnVanillaLocationsAvailable += AddLocations;
 			ZoneManager.OnVanillaLocationsAvailable += EditStartTemple;
 			UnloadBundle();
@@ -501,12 +506,77 @@ namespace DoDMonsters
 		}
 		private void LoadDoDAssets()
 		{
+			GameObject spawner1 = DoDAssets.LoadAsset<GameObject>("Spawner_FireDrake_DoD");
+			CustomPrefab spawn1 = new CustomPrefab(spawner1, false);
+			PrefabManager.Instance.AddPrefab(spawn1);
+			//Debug.Log("DoDMonsters: 0");
+			GameObject loca1 = DoDAssets.LoadAsset<GameObject>("Event_StoneRing_DeepNorth_DoD");
+			CustomPrefab loc1 = new CustomPrefab(loca1, false);
+			PrefabManager.Instance.AddPrefab(loc1);
+			GameObject loca2 = DoDAssets.LoadAsset<GameObject>("Event_StoneRing_Mistlands_DoD");
+			CustomPrefab loc2 = new CustomPrefab(loca2, false);
+			PrefabManager.Instance.AddPrefab(loc2);
+			GameObject loca3 = DoDAssets.LoadAsset<GameObject>("Event_StoneRing_Plains_DoD");
+			CustomPrefab loc3 = new CustomPrefab(loca3, false);
+			PrefabManager.Instance.AddPrefab(loc3);
+			GameObject loca4 = DoDAssets.LoadAsset<GameObject>("Loc_Boss_Bitterstump_DoD");
+			CustomPrefab loc4 = new CustomPrefab(loca4, false);
+			PrefabManager.Instance.AddPrefab(loc4);
+			GameObject loca5 = DoDAssets.LoadAsset<GameObject>("Loc_Boss_Generic");
+			CustomPrefab loc5 = new CustomPrefab(loca5, false);
+			PrefabManager.Instance.AddPrefab(loc5);
+			GameObject loca6 = DoDAssets.LoadAsset<GameObject>("Loc_Boss_Rambore_DoD");
+			CustomPrefab loc6 = new CustomPrefab(loca6, false);
+			PrefabManager.Instance.AddPrefab(loc6);
+			GameObject loca7 = DoDAssets.LoadAsset<GameObject>("Loc_Camp_DoD");
+			CustomPrefab loc7 = new CustomPrefab(loca7, false);
+			PrefabManager.Instance.AddPrefab(loc7);
+			GameObject loca8 = DoDAssets.LoadAsset<GameObject>("Loc_CastleArena_DoD");
+			CustomPrefab loc8 = new CustomPrefab(loca8, false);
+			PrefabManager.Instance.AddPrefab(loc8);
+			GameObject loca9 = DoDAssets.LoadAsset<GameObject>("Loc_MistlandsCave_DoD");
+			CustomPrefab loc9 = new CustomPrefab(loca9, false);
+			PrefabManager.Instance.AddPrefab(loc9);
+			GameObject loca10 = DoDAssets.LoadAsset<GameObject>("Loc_MistlandsTower_DoD");
+			CustomPrefab loc10 = new CustomPrefab(loca10, false);
+			PrefabManager.Instance.AddPrefab(loc10);
+			GameObject loca11 = DoDAssets.LoadAsset<GameObject>("Loc_OreMine_DoD");
+			CustomPrefab loc11 = new CustomPrefab(loca11, false);
+			PrefabManager.Instance.AddPrefab(loc11);
+			GameObject loca12 = DoDAssets.LoadAsset<GameObject>("Loc_Underworld_DoD");
+			CustomPrefab loc12 = new CustomPrefab(loca12, false);
+			PrefabManager.Instance.AddPrefab(loc12);
+			GameObject loca13 = DoDAssets.LoadAsset<GameObject>("Loc_FroOreMine_DoD");
+			CustomPrefab loc13 = new CustomPrefab(loca13, false);
+			PrefabManager.Instance.AddPrefab(loc13);
+			GameObject loca14 = DoDAssets.LoadAsset<GameObject>("Loc_HellPlatformA_DoD");
+			CustomPrefab loc14 = new CustomPrefab(loca14, false);
+			PrefabManager.Instance.AddPrefab(loc14);
+			GameObject loca15 = DoDAssets.LoadAsset<GameObject>("Loc_HellPlatformB_DoD");
+			CustomPrefab loc15 = new CustomPrefab(loca15, false);
+			PrefabManager.Instance.AddPrefab(loc15);
+			GameObject loca16 = DoDAssets.LoadAsset<GameObject>("Loc_AshTower_DoD");
+			CustomPrefab loc16 = new CustomPrefab(loca16, false);
+			PrefabManager.Instance.AddPrefab(loc16);
+
+			//Debug.Log("DoDMonsters: 1");
 			GameObject vegvisirUnder = DoDAssets.LoadAsset<GameObject>("Vegvisir_Underworld_DoD");
-			PrefabManager.Instance.AddPrefab(vegvisirUnder);
+			CustomPrefab zone1 = new CustomPrefab(vegvisirUnder, false);
+			PrefabManager.Instance.AddPrefab(zone1);
 			GameObject EventZone1 = DoDAssets.LoadAsset<GameObject>("Eventzone_Bitterstump_DoD");
-			PrefabManager.Instance.AddPrefab(EventZone1);
+			CustomPrefab zone2 = new CustomPrefab(EventZone1, false);
+			PrefabManager.Instance.AddPrefab(zone2);
 			GameObject EventZone2 = DoDAssets.LoadAsset<GameObject>("Eventzone_Rambore_DoD");
-			PrefabManager.Instance.AddPrefab(EventZone2);
+			CustomPrefab zone3 = new CustomPrefab(EventZone2, false);
+			PrefabManager.Instance.AddPrefab(zone3);
+			GameObject EnvZone1 = DoDAssets.LoadAsset<GameObject>("CaveEnv_DoD");
+			CustomPrefab zone4 = new CustomPrefab(EnvZone1, false);
+			PrefabManager.Instance.AddPrefab(zone4);
+			GameObject EnvZone2 = DoDAssets.LoadAsset<GameObject>("InteriorEnvironmentZone");
+			CustomPrefab zone5 = new CustomPrefab(EnvZone2, false);
+			PrefabManager.Instance.AddPrefab(zone5);
+			//Debug.Log("DoDMonsters: 2");
+			BhygshanAlt = DoDAssets.LoadAsset<GameObject>("BhygshanAlt_DoD");
 			Sheep = DoDAssets.LoadAsset<GameObject>("Sheep_DoD");
 			Goat = DoDAssets.LoadAsset<GameObject>("Goat_DoD");
 			Goose = DoDAssets.LoadAsset<GameObject>("Goose_DoD");
@@ -518,6 +588,7 @@ namespace DoDMonsters
 			GreenLizard = DoDAssets.LoadAsset<GameObject>("GreenLizard_DoD");
 			SpottedLizard = DoDAssets.LoadAsset<GameObject>("SpottedLizard_DoD");
 
+			//Debug.Log("DoDMonsters: 3");
 			DrakespitFire = DoDAssets.LoadAsset<GameObject>("drake_firespit_attack_dod");
 			DrakespitArcane = DoDAssets.LoadAsset<GameObject>("drake_arcanespit_attack_dod");
 			DrakespitFrost = DoDAssets.LoadAsset<GameObject>("drake_frostspit_attack_dod");
@@ -525,6 +596,7 @@ namespace DoDMonsters
 			DrakespitPoison2 = DoDAssets.LoadAsset<GameObject>("drake_poisonspit_attack_dod");
 			DrakespitVoid = DoDAssets.LoadAsset<GameObject>("drake_voidspit_attack_dod");
 
+			//Debug.Log("DoDMonsters: 4");
 			WandMountains = DoDAssets.LoadAsset<GameObject>("Wand_Mountain_DoD");
 			MaceMistlands = DoDAssets.LoadAsset<GameObject>("Mace_Mistlands_DoD");
 			MaceDeepNorth = DoDAssets.LoadAsset<GameObject>("Mace_DeepNorth_DoD");
@@ -533,9 +605,11 @@ namespace DoDMonsters
 			TestingA3 = DoDAssets.LoadAsset<GameObject>("Test_HornDragon_Attack_DoD");
 			Testing = DoDAssets.LoadAsset<GameObject>("TestingMob_DoD");
 
+			//Debug.Log("DoDMonsters: 5");
 			Skugga = DoDAssets.LoadAsset<GameObject>("Skugga_DoD");
 			Einherjar = DoDAssets.LoadAsset<GameObject>("Einherjar_DoD");
 
+			//Debug.Log("DoDMonsters: 6");
 			TexFlaAnvil = DoDAssets.LoadAsset<Sprite>("FlaAnvil_Icon_DoD");
 			TexFroAnvil = DoDAssets.LoadAsset<Sprite>("FroAnvil_Icon_DoD");
 			TexFelAnvil = DoDAssets.LoadAsset<Sprite>("FelAnvil_Icon_DoD");
@@ -543,12 +617,14 @@ namespace DoDMonsters
 			RugDWolf = DoDAssets.LoadAsset<Sprite>("RugDW_Icon_DoD");
 			RugFWolf = DoDAssets.LoadAsset<Sprite>("RugFW_Icon_DoD");
 
+			//Debug.Log("DoDMonsters: 7");
 			CBait = DoDAssets.LoadAsset<GameObject>("CarnivorBait_DoD");
 			HardLog = DoDAssets.LoadAsset<GameObject>("Hardwood_Log_DoD");
 			HardLogHalf = DoDAssets.LoadAsset<GameObject>("Hardwood_LogHalf_DoD");
 			PrefabManager.Instance.AddPrefab(HardLog);
 			PrefabManager.Instance.AddPrefab(HardLogHalf);
 
+			//Debug.Log("DoDMonsters: 8");
 			NPC_NomadAoE_Attack = DoDAssets.LoadAsset<GameObject>("NPC_NomadAoE_Attack_DoD");
 			Farkas_FrostBite = DoDAssets.LoadAsset<GameObject>("Farkas_FrostBite_DoD");
 			Farkas_Hamper_Attack = DoDAssets.LoadAsset<GameObject>("Farkas_Hamper_Attack_DoD");
@@ -591,6 +667,8 @@ namespace DoDMonsters
 			imp_icebolt_attack = DoDAssets.LoadAsset<GameObject>("imp_icebolt_attack_dod");
 			imp_stormbolt_attack = DoDAssets.LoadAsset<GameObject>("imp_stormbolt_attack_dod");
 			imp_voidbolt_attack = DoDAssets.LoadAsset<GameObject>("imp_voidbolt_attack_dod");
+
+			//Debug.Log("DoDMonsters: 9");
 			// Monster Items
 			ObsidianGolemClubs = DoDAssets.LoadAsset<GameObject>("ObsidianGolem_Clubs_DoD");
 			HelmetBhygshan = DoDAssets.LoadAsset<GameObject>("HelmetBhygshan_DoD");
@@ -613,6 +691,7 @@ namespace DoDMonsters
 			ShieldCharred = DoDAssets.LoadAsset<GameObject>("Shield_Charred_DoD");
 			SwordCharred = DoDAssets.LoadAsset<GameObject>("Sword_Charred_DoD");
 			BowCharred = DoDAssets.LoadAsset<GameObject>("Bow_Charred_DoD");
+			//Debug.Log("DoDMonsters: 10");
 			// Broken Shields
 			ShieldBGSkull = DoDAssets.LoadAsset<GameObject>("BrokenShieldBhygshan_DoD");
 			ShieldBEikthyr = DoDAssets.LoadAsset<GameObject>("BrokenShieldEikthyr_DoD");
@@ -624,6 +703,7 @@ namespace DoDMonsters
 			ShieldBFarkas = DoDAssets.LoadAsset<GameObject>("BrokenShieldFarkas_DoD");
 			ShieldBSkir = DoDAssets.LoadAsset<GameObject>("BrokenShieldSkir_DoD");
 			ShieldBYagluth = DoDAssets.LoadAsset<GameObject>("BrokenShieldYagluth_DoD");
+			//Debug.Log("DoDMonsters: 11");
 			// Shields
 			ShieldGSkull = DoDAssets.LoadAsset<GameObject>("ShieldSkullGreen_DoD");
 			ShieldEikthyr = DoDAssets.LoadAsset<GameObject>("ShieldEikthyr_DoD");
@@ -635,6 +715,7 @@ namespace DoDMonsters
 			ShieldFarkas = DoDAssets.LoadAsset<GameObject>("ShieldFarkas_DoD");
 			ShieldSkir = DoDAssets.LoadAsset<GameObject>("ShieldSkir_DoD");
 			ShieldYagluth = DoDAssets.LoadAsset<GameObject>("ShieldYagluth_DoD");
+			//Debug.Log("DoDMonsters: 12");
 			// Weapons
 			BhygshanMace = DoDAssets.LoadAsset<GameObject>("BhygshanMace_DoD");
 			BowBlackForest = DoDAssets.LoadAsset<GameObject>("Bow_BlackForest_DoD");
@@ -649,6 +730,7 @@ namespace DoDMonsters
 			SwordMistlands = DoDAssets.LoadAsset<GameObject>("Sword_Mistlands_DoD");
 			SwordDeepNorth = DoDAssets.LoadAsset<GameObject>("Sword_DeepNorth_DoD");
 			SwordAshLands = DoDAssets.LoadAsset<GameObject>("Sword_AshLands_DoD");
+			//Debug.Log("DoDMonsters: 13");
 			// Status Effect Assets
 			HoT = DoDAssets.LoadAsset<Sprite>("HoT_Icon_DoD.png");
 			Regen = DoDAssets.LoadAsset<Sprite>("Regeneration_Icon_DoD.png");
@@ -674,6 +756,7 @@ namespace DoDMonsters
 			InjuredFX = DoDAssets.LoadAsset<GameObject>("VFX_Injured_DoD");
 			FrostbittenFX = DoDAssets.LoadAsset<GameObject>("VFX_Frostbite_DoD");
 			PoisonedFX = DoDAssets.LoadAsset<GameObject>("VFX_Poisoned_DoD");
+			//Debug.Log("DoDMonsters: 14");
 			// Sword Assets
 			Firesoul = DoDAssets.LoadAsset<GameObject>("SwordFlametal1_DoD");
 			Solarflare = DoDAssets.LoadAsset<GameObject>("SwordFlametal2_DoD");
@@ -684,6 +767,7 @@ namespace DoDMonsters
 			Coldflame = DoDAssets.LoadAsset<GameObject>("SwordFrometal1_DoD");
 			Frostflame = DoDAssets.LoadAsset<GameObject>("SwordFrometal3_DoD");
 			Nethersbane = DoDAssets.LoadAsset<GameObject>("SwordSpirit_DoD");
+			//Debug.Log("DoDMonsters: 15");
 			// Class Weapon Assets
 			WandLightning = DoDAssets.LoadAsset<GameObject>("ShamanWand_DoD");
 			WandFire = DoDAssets.LoadAsset<GameObject>("MageWand_DoD");
@@ -697,6 +781,7 @@ namespace DoDMonsters
 			MaceShock = DoDAssets.LoadAsset<GameObject>("MonkMace_DoD");
 			SpearAcid = DoDAssets.LoadAsset<GameObject>("DruidSpear_DoD");
 			SpearAoE = DoDAssets.LoadAsset<GameObject>("AoE_AuraHealing_DoD");
+			//Debug.Log("DoDMonsters: 16");
 			// Buildable Assets
 			RugDeer = DoDAssets.LoadAsset<GameObject>("Rug_BlackDeer_DoD");
 			RugDire = DoDAssets.LoadAsset<GameObject>("Rug_DireWolf_DoD");
@@ -704,6 +789,7 @@ namespace DoDMonsters
 			AnvilsFel = DoDAssets.LoadAsset<GameObject>("FelmetalAnvils_DoD");
 			AnvilsFro = DoDAssets.LoadAsset<GameObject>("FrometalAnvils_DoD");
 			AnvilsFlam = DoDAssets.LoadAsset<GameObject>("FlametalAnvils_DoD");
+			//Debug.Log("DoDMonsters: 17");
 			// Armor Kit Assets
 			T1ArmorKit = DoDAssets.LoadAsset<GameObject>("CrudeArmorKit_DoD");
 			T2ArmorKit = DoDAssets.LoadAsset<GameObject>("BasicArmorKit_DoD");
@@ -713,6 +799,7 @@ namespace DoDMonsters
 			T6ArmorKit = DoDAssets.LoadAsset<GameObject>("ExcellentArmorKit_DoD");
 			T7ArmorKit = DoDAssets.LoadAsset<GameObject>("ExceptionalArmorKit_DoD");
 			T8ArmorKit = DoDAssets.LoadAsset<GameObject>("ExtraordinaryArmorKit_DoD");
+			//Debug.Log("DoDMonsters: 18");
 			// Weapon Kit Assets
 			T1WeaponKit = DoDAssets.LoadAsset<GameObject>("CrudeWeaponKit_DoD");
 			T2WeaponKit = DoDAssets.LoadAsset<GameObject>("BasicWeaponKit_DoD");
@@ -722,6 +809,7 @@ namespace DoDMonsters
 			T6WeaponKit = DoDAssets.LoadAsset<GameObject>("ExcellentWeaponKit_DoD");
 			T7WeaponKit = DoDAssets.LoadAsset<GameObject>("ExceptionalWeaponKit_DoD");
 			T8WeaponKit = DoDAssets.LoadAsset<GameObject>("ExtraordinaryWeaponKit_DoD");
+			//Debug.Log("DoDMonsters: 19");
 			// Trophy Assets
 			TrophyCharredRemains = DoDAssets.LoadAsset<GameObject>("TrophyCharredRemains_DoD");
 			TrophyFrozenBones = DoDAssets.LoadAsset<GameObject>("TrophyFrozenBones_DoD");
@@ -747,11 +835,13 @@ namespace DoDMonsters
 			TrophyGoldDrake = DoDAssets.LoadAsset<GameObject>("TrophyGoldDrake_DoD");
 			TrophyPoisonDrake = DoDAssets.LoadAsset<GameObject>("TrophyPoisonDrake_DoD");
 			TrophyDarkDrake = DoDAssets.LoadAsset<GameObject>("TrophyDarkDrake_DoD");
+			//Debug.Log("DoDMonsters: 20");
 			// Material Assets
 			Walnuts = DoDAssets.LoadAsset<GameObject>("Walnuts_DoD");
 			Apple = DoDAssets.LoadAsset<GameObject>("Apple_DoD");
 			Cherry = DoDAssets.LoadAsset<GameObject>("Cherries_DoD");
 			Banana = DoDAssets.LoadAsset<GameObject>("Banana_DoD");
+			CaveMushroom = DoDAssets.LoadAsset<GameObject>("CaveMushroom_DoD");
 			InfusedGemstone = DoDAssets.LoadAsset<GameObject>("InfusedGemstone_DoD");
 			DeathKnightItem = DoDAssets.LoadAsset<GameObject>("DeathKnightItem_DoD");
 			ArcherItem = DoDAssets.LoadAsset<GameObject>("ArcherItem_DoD");
@@ -781,6 +871,7 @@ namespace DoDMonsters
 			SpiderChitin = DoDAssets.LoadAsset<GameObject>("SpiderChitin_DoD");
 			BlackDeerHide = DoDAssets.LoadAsset<GameObject>("BlackDeerHide_DoD");
 			OakWood = DoDAssets.LoadAsset<GameObject>("OakWood_DoD");
+			//Debug.Log("DoDMonsters: 21");
 			// Monster Assets
 			//Bosses
 			//Rylan = DoDAssets.LoadAsset<GameObject>("LaughingRylan_DoD");
@@ -789,6 +880,7 @@ namespace DoDMonsters
 			Bhygshan = DoDAssets.LoadAsset<GameObject>("Bhygshan_DoD");
 			Bitterstump = DoDAssets.LoadAsset<GameObject>("Bitterstump_DoD");
 			Rambore = DoDAssets.LoadAsset<GameObject>("Rambore_DoD");
+			//Debug.Log("DoDMonsters: 22");
 			// Monsters
 			GreaterSurtling = DoDAssets.LoadAsset<GameObject>("GreaterSurtling_DoD");
 			CharredRemains = DoDAssets.LoadAsset<GameObject>("CharredRemains_DoD");
@@ -827,6 +919,7 @@ namespace DoDMonsters
 			BrownRabbit = DoDAssets.LoadAsset<GameObject>("BrownRabbit_DoD");
 			GiantSnail = DoDAssets.LoadAsset<GameObject>("GiantSnail_DoD");
 
+			//Debug.Log("DoDMonsters: 23");
 			GameObject AoESpray = DoDAssets.LoadAsset<GameObject>("AoE_Spray_DoD");
 			GameObject BitterRoots = DoDAssets.LoadAsset<GameObject>("Bitter_RootSpawn_DoD");
 			GameObject AoESkirNova = DoDAssets.LoadAsset<GameObject>("AoE_Skir_Nova_DoD");
@@ -884,6 +977,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(AoEAuraFire);
 			PrefabManager.Instance.AddPrefab(AoEAuraStorm);
 
+			//Debug.Log("DoDMonsters: 24");
 			GameObject VilefangRD = DoDAssets.LoadAsset<GameObject>("Vilefang_Ragdoll_DoD");
 			GameObject BlackDeerRD = DoDAssets.LoadAsset<GameObject>("BlackDeer_Ragdoll_DoD");
 			GameObject ForestWolfRD = DoDAssets.LoadAsset<GameObject>("ForestWolf_Ragdoll_DoD");
@@ -945,6 +1039,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(GreenLizardRD);
 			PrefabManager.Instance.AddPrefab(SpottedLizardRD);
 
+			//Debug.Log("DoDMonsters: 25");
 			GameObject BhygshanFireballProjectile = DoDAssets.LoadAsset<GameObject>("Bhygshan_Fireball_Projectile_DoD");
 			GameObject SkirVoidboltProjectile = DoDAssets.LoadAsset<GameObject>("Skir_Voidbolt_Projectile_DoD");
 			GameObject SkirSandburstVoidThrowProjectile = DoDAssets.LoadAsset<GameObject>("SkirSandburst_VoidThrow_Projectile_DoD");
@@ -978,6 +1073,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(ShadowProjectileS);
 			PrefabManager.Instance.AddPrefab(ShadowProjectileL);
 
+			//Debug.Log("DoDMonsters: 26");
 			GameObject TCMistlands = DoDAssets.LoadAsset<GameObject>("TreasureChest_Mistlands_DoD");
 			GameObject TCDeepNorth = DoDAssets.LoadAsset<GameObject>("TreasureChest_DeepNorth_DoD");
 			GameObject TCAshLands = DoDAssets.LoadAsset<GameObject>("TreasureChest_AshLands_DoD");
@@ -1003,6 +1099,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(BhygshanSummon);
 			PrefabManager.Instance.AddPrefab(AltarFarkasAlt);
 
+			//Debug.Log("DoDMonsters: 27");
 			GameObject MassiveCave = DoDAssets.LoadAsset<GameObject>("MassiveCave_DoD");
 			GameObject TopCave = DoDAssets.LoadAsset<GameObject>("TopCave_DoD");
 			GameObject MiddleCave = DoDAssets.LoadAsset<GameObject>("MiddleCave_DoD");
@@ -1025,7 +1122,7 @@ namespace DoDMonsters
 			GameObject LootSpawner2 = DoDAssets.LoadAsset<GameObject>("LootSpawner_Award_Mist_DoD");
 			GameObject LootSpawner3 = DoDAssets.LoadAsset<GameObject>("LootSpawner_Award_Plains_DoD");
 			GameObject SmallCave = DoDAssets.LoadAsset<GameObject>("MiniCave_DoD");
-			GameObject Runestone = DoDAssets.LoadAsset<GameObject>("Runestone_DoD");
+			GameObject Runestone = DoDAssets.LoadAsset<GameObject>("RunestoneRam_DoD");
 			GameObject VisirBitter = DoDAssets.LoadAsset<GameObject>("Vegvisir_Bitterstump_DoD");
 			GameObject VisirRambone = DoDAssets.LoadAsset<GameObject>("Vegvisir_Rambore_DoD");
 			GameObject CaveDeep = DoDAssets.LoadAsset<GameObject>("CaveDeep_DoD");
@@ -1062,6 +1159,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(CaveEnter);
 			PrefabManager.Instance.AddPrefab(BeechGround);
 
+			//Debug.Log("DoDMonsters: 28");
 			GameObject FXSkirProtect = DoDAssets.LoadAsset<GameObject>("FX_Skir_Protect_DoD");
 			GameObject FXSkirNova = DoDAssets.LoadAsset<GameObject>("FX_Skir_Nova_DoD");
 			GameObject FXBitterRoot = DoDAssets.LoadAsset<GameObject>("FX_Bitter_RootSpawn_DoD");
@@ -1077,6 +1175,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(FXMageCast);
 			PrefabManager.Instance.AddPrefab(FXBhygshanFireballExpl);
 
+			//Debug.Log("DoDMonsters: 29");
 			GameObject SFXLivingLavaDeath = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Death_DoD");
 			GameObject SFXLivingLavaHit = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Hit_DoD");
 			GameObject SFXLivingLavaJump = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Jump_DoD");
@@ -1158,6 +1257,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(SFXRabbitD);
 			PrefabManager.Instance.AddPrefab(SFXSnailD);
 
+			//Debug.Log("DoDMonsters: 30");
 			GameObject VFXBhygshanSpray = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Spray_DoD");
 			GameObject VFXBhygshanBreath = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Breath_DoD");
 			GameObject VFXSkirThrow = DoDAssets.LoadAsset<GameObject>("VFX_Skir_Throw_DoD");
@@ -1229,6 +1329,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(VFXMineHit);
 			PrefabManager.Instance.AddPrefab(VFXPickable);
 
+			//Debug.Log("DoDMonsters: 31");
 			// mistlands veg
 			MineRock_FelOre_DoD = DoDAssets.LoadAsset<GameObject>("MineRock_FelOre_DoD");
 			PrefabManager.Instance.AddPrefab(MineRock_FelOre_DoD);
@@ -1287,7 +1388,7 @@ namespace DoDMonsters
 			Tree_Walnut_Pickable_DoD = DoDAssets.LoadAsset<GameObject>("Tree_Walnut_Pickable_DoD");
 			PrefabManager.Instance.AddPrefab(Tree_Walnut_Pickable_DoD);
 
-
+			//Debug.Log("DoDMonsters: 32");
 			// deep north
 			MineRock_FroOre_DoD = DoDAssets.LoadAsset<GameObject>("MineRock_FroOre_DoD");
 			PrefabManager.Instance.AddPrefab(MineRock_FroOre_DoD);
@@ -1332,6 +1433,7 @@ namespace DoDMonsters
 			WinterPine1_DoD = DoDAssets.LoadAsset<GameObject>("WinterPine1_DoD");
 			PrefabManager.Instance.AddPrefab(WinterPine1_DoD);
 
+			//Debug.Log("DoDMonsters: 33");
 			// ashlands
 			Mineable_SandRock16_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock16_DoD");
 			PrefabManager.Instance.AddPrefab(Mineable_SandRock16_DoD);
@@ -1358,18 +1460,30 @@ namespace DoDMonsters
 			Mineable_SandRock3_DoD = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock3_DoD");
 			PrefabManager.Instance.AddPrefab(Mineable_SandRock3_DoD);
 
+			//Debug.Log("DoDMonsters: 34");
 			// fruit trees
 			Tree_Banana_Pickable_DoD = DoDAssets.LoadAsset<GameObject>("Tree_Banana_Pickable_DoD");
 			PrefabManager.Instance.AddPrefab(Tree_Banana_Pickable_DoD);
 			Tree_Apple_Pickable_DoD = DoDAssets.LoadAsset<GameObject>("Tree_Apple_Pickable_DoD");
 			PrefabManager.Instance.AddPrefab(Tree_Apple_Pickable_DoD);
-
-
+			Mushroom_Cave_Pickable_DoD = DoDAssets.LoadAsset<GameObject>("Mushroom_Cave_Pickable_DoD");
+			PrefabManager.Instance.AddPrefab(Mushroom_Cave_Pickable_DoD);
 		}
-
 		public void CreateConfigurationValues()
 		{
-			DoDShowUnderworld = base.Config.Bind("Underworld", "Enable", defaultValue: true, new ConfigDescription("Adds a Location Rune for the Underworld to the Trophy Ring", null, new ConfigurationManagerAttributes
+			/*DoDShowUnderworld = base.Config.Bind("Underworld", "Enable", defaultValue: true, new ConfigDescription("Adds a Location Rune for the Underworld to the Trophy Ring", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));*/
+			/*RamboreEnable = base.Config.Bind("RamBores Cave", "Enable", defaultValue: true, new ConfigDescription("Enables RamBore Location.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));*/
+			DeepNorthLocations = base.Config.Bind("Deep North Locations", "Enable", defaultValue: true, new ConfigDescription("Adds Locatio'sn to Deep North", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			AshLandsLocations = base.Config.Bind("Ash Lands Locations", "Enable", defaultValue: true, new ConfigDescription("Adds Location's to Ash Lands", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
 			}));
@@ -1433,22 +1547,31 @@ namespace DoDMonsters
 			{
 				IsAdminOnly = true
 			}));
-			/*RamboreEnable = base.Config.Bind("RamBores Cave", "Enable", defaultValue: true, new ConfigDescription("Enables RamBore Location.", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));*/
 		}
+		private void ModWorldObjects()
+		{
+			TreeBase prefab1 = PrefabManager.Cache.GetPrefab<TreeBase>("Oak1");
+			prefab1.m_minToolTier = 4;
+			ItemManager.OnItemsRegistered -= ModWorldObjects;
+		}
+		/*private void ModPlayer()
+		{
+			var prefab2 = ObjectDB.instance.GetItemPrefab("MyItem");
+			Player prefab1 = PrefabManager.Cache.GetPrefab<Player>("Player");
+			prefab1.m_defaultItems.AddItem<GameObject>(prefab2);
+			ItemManager.OnItemsRegistered -= ModPlayer;
+		}*/
 		private void EditStartTemple()
 		{
 			try
 			{
-				if (DoDShowUnderworld.Value == true)
+				/*if (DoDShowUnderworld.Value == true)
 				{
 					var startLocation = ZoneManager.Instance.GetZoneLocation("StartTemple");
 					var underworld = PrefabManager.Instance.GetPrefab("Vegvisir_Underworld_DoD");
 					var underVis = Instantiate(underworld, startLocation.m_prefab.transform);
 					underVis.transform.localPosition = new Vector3(-2.01f, 0f, -11.82f);
-				}
+				}*/
 				if (DoDMessageEnable.Value == true)
 				{
 					var startLocation = ZoneManager.Instance.GetZoneLocation("StartTemple");
@@ -1456,14 +1579,14 @@ namespace DoDMonsters
 					var startMessage = Instantiate(dodMessage, startLocation.m_prefab.transform);
 					startMessage.transform.localPosition = new Vector3(-8.79f, -0.05f, -3.35f);
 				}
-				if (DoDAltarMO.Value == true)
+				/*if (DoDAltarMO.Value == true)
 				{
 					var startLocation = ZoneManager.Instance.GetZoneLocation("StartTemple");
 					var dodaltarmo = PrefabManager.Instance.GetPrefab("AltarPrefab");
 					var altarMO = Instantiate(dodaltarmo, startLocation.m_prefab.transform);
 					altarMO.transform.localPosition = new Vector3(0f, -0.05f, 0f);
 					altarMO.transform.localScale = new Vector3(0.5f, 0.25f, 0.5f);
-				}
+				}*/
 			}
 			finally
 			{
@@ -1472,10 +1595,56 @@ namespace DoDMonsters
 		}
 		private void AddLocations()
 		{
-			//DoDFixer = AssetUtils.LoadAssetBundleFromResources("fixer", Assembly.GetExecutingAssembly());
 			DoDAssets = AssetUtils.LoadAssetBundleFromResources("doordieassets", Assembly.GetExecutingAssembly());
 			try
 			{
+				if (AshLandsLocations.Value == true)
+				{
+					var HellPlatformA = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_HellPlatformA_DoD"), false);
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(HellPlatformA, new LocationConfig
+					{
+						Biome = Heightmap.Biome.AshLands,
+						Quantity = 75,
+						Priotized = true,
+						ExteriorRadius = 5f,
+						MinAltitude = 5f,
+						ClearArea = true,
+					}));
+					var HellPlatformB = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_HellPlatformB_DoD"), false);
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(HellPlatformB, new LocationConfig
+					{
+						Biome = Heightmap.Biome.AshLands,
+						Quantity = 75,
+						Priotized = true,
+						ExteriorRadius = 5f,
+						MinAltitude = 5f,
+						ClearArea = true,
+					}));
+					var AshTower = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_AshTower_DoD"), false);
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AshTower, new LocationConfig
+					{
+						Biome = Heightmap.Biome.AshLands,
+						Quantity = 75,
+						Priotized = true,
+						ExteriorRadius = 5f,
+						MinAltitude = 5f,
+						ClearArea = true,
+					}));
+				}
+				if (DeepNorthLocations.Value == true)
+				{
+					var FroOreMine = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_FroOreMine_DoD"), false);
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(FroOreMine, new LocationConfig
+					{
+						Biome = Heightmap.Biome.DeepNorth,
+						Quantity = 200,
+						Priotized = true,
+						ExteriorRadius = 3f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						SlopeRotation = true,
+					}));
+				}
 				if (BossesEnable.Value == true)
 				{
 					var Rambore = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Boss_Rambore_DoD"), false);
@@ -1484,9 +1653,10 @@ namespace DoDMonsters
 						Biome = Heightmap.Biome.Meadows,
 						Quantity = 4,
 						Priotized = true,
-						ExteriorRadius = 8f,
+						ExteriorRadius = 3f,
 						MinAltitude = 5f,
 						ClearArea = true,
+						SlopeRotation = true,
 					}));
 					var Bitterstump = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Boss_Bitterstump_DoD"), false);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(Bitterstump, new LocationConfig
@@ -1494,9 +1664,10 @@ namespace DoDMonsters
 						Biome = Heightmap.Biome.BlackForest,
 						Quantity = 4,
 						Priotized = true,
-						ExteriorRadius = 8f,
+						ExteriorRadius = 3f,
 						MinAltitude = 5f,
 						ClearArea = true,
+						SlopeRotation = true,
 					}));
 				}
 				if (MistlandsVegEnable.Value == true)
@@ -1507,9 +1678,10 @@ namespace DoDMonsters
 						Biome = Heightmap.Biome.Mistlands,
 						Quantity = 200,
 						Priotized = true,
-						ExteriorRadius = 12f,
+						ExteriorRadius = 3f,
 						MinAltitude = 5f,
 						ClearArea = true,
+						SlopeRotation = true,
 					}));
 					var MistCave1 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_MistlandsCave_DoD"), false);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(MistCave1, new LocationConfig
@@ -1517,9 +1689,10 @@ namespace DoDMonsters
 						Biome = Heightmap.Biome.Mistlands,
 						Quantity = 100,
 						Priotized = true,
-						ExteriorRadius = 16f,
+						ExteriorRadius = 3f,
 						MinAltitude = 5f,
 						ClearArea = true,
+						SlopeRotation = true,
 					}));
 					var MistLoc3 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_MistlandsTower_DoD"), false);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(MistLoc3, new LocationConfig
@@ -1527,7 +1700,7 @@ namespace DoDMonsters
 						Biome = Heightmap.Biome.Mistlands,
 						Quantity = 200,
 						Priotized = true,
-						ExteriorRadius = 18f,
+						ExteriorRadius = 5f,
 						MinAltitude = 5f,
 						ClearArea = true,
 					}));
@@ -1537,54 +1710,60 @@ namespace DoDMonsters
 					var AnyLoc1 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_CastleArena_DoD"), false);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc1, new LocationConfig
 					{
-						Biome = ZoneManager.AnyBiomeOf(Heightmap.Biome.Meadows, Heightmap.Biome.Plains, Heightmap.Biome.Mistlands),
+						Biome = Heightmap.Biome.Meadows,
 						Quantity = 10,
 						Priotized = true,
-						ExteriorRadius = 20f,
+						ExteriorRadius = 15f,
 						MinAltitude = 10f,
 						ClearArea = true,
 					}));
-					/*var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Camp_DoD"), false);
+					var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Camp_DoD"), false);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc2, new LocationConfig
 					{
 						Biome = ZoneManager.AnyBiomeOf(Heightmap.Biome.Meadows, Heightmap.Biome.BlackForest, Heightmap.Biome.Swamp, Heightmap.Biome.Mountain, Heightmap.Biome.Plains, Heightmap.Biome.Mistlands),
 						Quantity = 300,
 						Priotized = true,
-						ExteriorRadius = 6f,
+						ExteriorRadius = 1f,
 						MinAltitude = 2f,
 						ClearArea = true,
-					}));*/
+					}));
 					var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Event_StoneRing_Mistlands_DoD"), false);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc3, new LocationConfig
 					{
 						Biome = Heightmap.Biome.Mistlands,
-						Quantity = 50,
+						Quantity = 10,
 						Priotized = true,
-						ExteriorRadius = 20f,
+						ExteriorRadius = 15f,
 						MinAltitude = 10f,
 						ClearArea = true,						
 					}));
-					var AnyLoc4 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Underworld_DoD"), false);
+					/*var AnyLoc4 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Underworld_DoD"), false);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc4, new LocationConfig
 					{
 						Biome = Heightmap.Biome.Meadows,
 						Quantity = 1,
 						Priotized = true,
-						ExteriorRadius = 5f,
+						ExteriorRadius = 15f,
 						ClearArea = true,
 						SlopeRotation = true,
 						MinDistance = 75,
-						MaxDistance = 100,
-						//MinAltitude = 30f,
+						MaxDistance = 150,
+						MinAltitude = 4f,
 						//MaxAltitude = 660f,
-					}));
+					}));*/
 				}
+				DoDFixer = AssetUtils.LoadAssetBundleFromResources("fixer", Assembly.GetExecutingAssembly());
+				Material FixSnow = DoDFixer.LoadAsset<Material>("winddust");
+				Material FixDust = DoDFixer.LoadAsset<Material>("snow_flake");
+				Material FixIntEnv = DoDFixer.LoadAsset<Material>("fog");
+				Material PixelLit = DoDFixer.LoadAsset<Material>("pixel_lit");
 			}
 			finally
 			{
 				ZoneManager.OnVanillaLocationsAvailable -= AddLocations;
+				DoDAssets.Unload(false);
+				DoDFixer.Unload(false);
 			}
-			DoDAssets.Unload(false);
 		}
 		private void AddCustomFruitTrees()
         {
@@ -2206,8 +2385,6 @@ namespace DoDMonsters
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation1);
-
-
 		}
 		private void AddAshLandsVegetation()
 		{
@@ -2583,9 +2760,9 @@ namespace DoDMonsters
 		}
 		private void AddBosses()
 		{
-			//GameObject gameObject6 = Rylan;
-			//CustomPrefab customPrefab6 = new CustomPrefab(gameObject6, true);
-			//PrefabManager.Instance.AddPrefab(customPrefab6);
+			GameObject gameObject6 = BhygshanAlt;
+			CustomPrefab customPrefab6 = new CustomPrefab(gameObject6, true);
+			PrefabManager.Instance.AddPrefab(customPrefab6);
 
 			GameObject gameObject5 = SkirSandburst;
 			CustomPrefab customPrefab5 = new CustomPrefab(gameObject5, true);
@@ -4284,7 +4461,7 @@ namespace DoDMonsters
 				Name = "Carnivor Bait",
 				Amount = 5,
 				CraftingStation = "piece_artisanstation",
-				MinStationLevel = 5,
+				MinStationLevel = 1,
 				Requirements = new RequirementConfig[1]
 				{
 					new RequirementConfig
@@ -4295,6 +4472,10 @@ namespace DoDMonsters
 				}
 			});
 			ItemManager.Instance.AddItem(customFood4);
+
+			GameObject food5 = CaveMushroom;
+			CustomItem customFood5 = new CustomItem(food5, fixReference: true);
+			ItemManager.Instance.AddItem(customFood5);
 
 			GameObject food3 = Apple;
 			CustomItem customFood3 = new CustomItem(food3, fixReference: true);
@@ -5492,19 +5673,33 @@ namespace DoDMonsters
 		{
 			DoDAssets?.Unload(unloadAllLoadedObjects: false);
 		}
+
 		[HarmonyPostfix]
 		[HarmonyPatch(typeof(Piece), "Awake")]
 		private static void DungeonPiece_Patch(Piece __instance)
 		{
 			__instance.m_allowedInDungeons = true;
 		}
-		private void OnDestroy()
+
+		/*[HarmonyPatch(typeof(OfferingBowl), "Awake")]
+		public static class AlterOfferBowlAwake
 		{
-			Harmony harmony = _harmony;
-			if (harmony != null)
+			public static void Prefix(OfferingBowl __instance)
 			{
-				harmony.UnpatchSelf();
+				if (__instance == null) return;
+				if (ZNetScene.instance.GetPrefab("AltarLaughingRylan_DoD"))
+				{
+					GameObject prefab = PrefabManager.Cache.GetPrefab<GameObject>("AltarLaughingRylan_DoD");
+					OfferingBowl componentInChildren = prefab.GetComponentInChildren<OfferingBowl>();
+					componentInChildren.m_bossPrefab = ZNetScene.instance.GetPrefab("RRRN_LaughingRylan_DoD").gameObject;
+
+					Jotunn.Logger.LogInfo("Updated Altars");
+				}
+				else
+				{
+					Debug.LogError("Error offering bowl didn't contain offer");
+				}
 			}
-		}
+		}*/
 	}
 }

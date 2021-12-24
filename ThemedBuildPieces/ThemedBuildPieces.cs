@@ -34,7 +34,7 @@ namespace ThemedBuildPieces
 			string text = executingAssembly.GetManifestResourceNames().Single((string str) => str.EndsWith(fileName));
 			using Stream stream = executingAssembly.GetManifestResourceStream(text);
 			return AssetBundle.LoadFromStream(stream);
-			}
+		}
 		private void Awake()
 		{
 			Debug.Log("Themed Build Pieces: Loading and Creating Assets");
