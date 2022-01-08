@@ -39,17 +39,26 @@ namespace InstancedVillages
         {
             Debug.Log("Instanced Villages: Loading and Creating Assets");
             LoadBundle();
-            LoadDoDAssets();
+            LoadIVAssets();
             ZoneManager.OnVanillaLocationsAvailable += AddLocations;
         }
         public void LoadBundle()
         {
             IVAssets = AssetUtils.LoadAssetBundleFromResources("concept", Assembly.GetExecutingAssembly());
         }
-        private void LoadDoDAssets()
+        private void LoadIVAssets()
         {
+            GameObject spawn1 = IVAssets.LoadAsset<GameObject>("Spawner_Generic");
+            CustomPrefab spawner1 = new CustomPrefab(spawn1, true);
+            PrefabManager.Instance.AddPrefab(spawner1);
+            GameObject loc3 = IVAssets.LoadAsset<GameObject>("Loc_Instanced_Hut");
+            CustomPrefab village3 = new CustomPrefab(loc3, true);
+            PrefabManager.Instance.AddPrefab(village3);
+            GameObject loc2 = IVAssets.LoadAsset<GameObject>("Loc_Instanced_VillageMed");
+            CustomPrefab village2 = new CustomPrefab(loc2, true);
+            PrefabManager.Instance.AddPrefab(village2);
             GameObject loc1 = IVAssets.LoadAsset<GameObject>("Loc_Instanced_Village");
-            CustomPrefab village1 = new CustomPrefab(loc1, false);
+            CustomPrefab village1 = new CustomPrefab(loc1, true);
             PrefabManager.Instance.AddPrefab(village1);
             IVAssets.Unload(false);
         }
@@ -58,18 +67,45 @@ namespace InstancedVillages
             IVAssets = AssetUtils.LoadAssetBundleFromResources("concept", Assembly.GetExecutingAssembly());
             try
             {
-                var AnyLoc4 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Village"), false);
-                ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc4, new LocationConfig
+                var AnyLoc1 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Village"), false);
+                ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc1, new LocationConfig
                 {
                     Biome = Heightmap.Biome.Meadows,
-                    Quantity = 1,
+                    Quantity = 5,
                     Priotized = true,
-                    ExteriorRadius = 33f,
+                    ExteriorRadius = 32f,
                     ClearArea = true,
-                    MinDistance = 100,
-                    MaxDistance = 150,
+                    MinDistance = 150,
+                    MaxDistance = 1000,
                     MinAltitude = 4f,
-                    //MaxAltitude = 660f,
+                    MaxAltitude = 400f,
+                    InForest = false,
+                }));
+                var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_VillageMed"), false);
+                ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc2, new LocationConfig
+                {
+                    Biome = Heightmap.Biome.Meadows,
+                    Quantity = 5,
+                    Priotized = true,
+                    ExteriorRadius = 32f,
+                    ClearArea = true,
+                    MinDistance = 1000,
+                    MaxDistance = 2000,
+                    MinAltitude = 4f,
+                    MaxAltitude = 400f,
+                    InForest = false,
+                }));
+                var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Hut"), false);
+                ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc3, new LocationConfig
+                {
+                    Biome = Heightmap.Biome.Meadows,
+                    Quantity = 25,
+                    Priotized = true,
+                    ExteriorRadius = 10f,
+                    ClearArea = true,
+                    MinAltitude = 4f,
+                    MaxAltitude = 400f,
+                    InForest = false,
                 }));
             }
             finally

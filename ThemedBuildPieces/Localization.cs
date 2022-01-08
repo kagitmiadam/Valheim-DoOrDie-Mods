@@ -7,7 +7,7 @@ using System;
 namespace ThemedBuildPieces
 {
 	[HarmonyPatch]
-	public class Local
+	public class TBPLocal
 	{
 		private static Localization lcl;
 		public static Dictionary<string, string> t;
@@ -127,7 +127,7 @@ namespace ThemedBuildPieces
 		}
 
 		[HarmonyPatch(typeof(Localization), "SetupLanguage")]
-		public static class MyLocalizationPatch
+		public static class TBPLocalizationPatch
 		{
 			public static void Postfix(Localization __instance, string language)
 			{

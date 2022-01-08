@@ -35,7 +35,6 @@
     <Compile Include="DoDBundle.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="UpdateAbilities.cs" />
-    <Compile Include="UpdateAoE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,278 @@
+0.4.3
+
+- Added new Rocks (10), Bushes (3) and Winter Trees(7) to Deep North.
+- Added new Rocks (13) to Ash Lands.
+- Added Ram'Bore Location.
+- Fixed camp spawning oddly.
+- Fixed Arena groundleveling.
+- Fixed Animation error in Mistlands and Deep North.
+- Fixed Free loot spawning at the center ring.
+- Added Russian Localization by VitByr
+- Included DropThat configs for all new Trees, Bushes, Rocks, Chests and Pickables.
+- Included example SpawnThat World Spawner configs for monsters added by DoD in: Mistlands, Deep North and Ash Lands.
+
+0.4.2
+
+- Added Enable/Disable config values for Weapons, Kits, Bosses and Monsters.
+- Added Castle Arena location. (Red and Green Eye Skeletons and White\Teal Ghosts are default mobs (5). 1 Vilefang, outside.)
+- Moved Event Ring to Multiple Biomes. (Voidling are default mobs(6))
+- Re-enabled camp. (Red Eye Skeleton are default mobs (2))
+- Moved Felmetal Ore deposits into Custom Resources config not Mistlands Vegetation.
+- Valheim's 205.5 Patch.
+- Fixed some dropables not having an attach point.
+- Fixed Mistlands Vegetation and Trees.
+- Added 2 maces, Mistlands and Deep North.
+- Added 1 wand, Mountains.
+
+0.4.1
+
+- Added config values for Custom Locations and Vegetation.
+
+0.4.0
+
+- 10 New Shields, 1 for each boss, Vanilla and DoD, first 5 biomes.
+- 6 New craftable Bows. If they shoot backwards, April Fools!? :)
+- 6 New craftable Swords. 
+- Fixed some Icons having wrong sizes.
+- Coverted rest of assets over to JvL. (Monster abilities and Items)
+- Added custom Mistlands Vegetation and Locations via JvL's Zone Manager. (No longer need Forgotten Biomes for Mistlands)
+- 4 New Locations, Mistlands Cave, Stone Ring Event Zone, Ore Deposit and Camp. (Spawn in Mistlands by default)
+- 6 New Pickables, Banana Tree (Swamp, Plains), Apple Tree (Black Forest), Cherry Tree and Walnut Tree and 2 Mushrooms. (Mistlands)
+- 4 New Fruits to go along with the new trees.
+- 1 New Bush and 4 New Trees (Poplar, Willow, Old Oak and Mistland Oak) in 2 variants spawn in Mistlands and all drop hardwood.
+- Updated Class Weapon icons.
+- Added Carnivor Bait can be made at the Artisan Station.
+- DoD Wolves require Carnivor Bait to be tamed.
+
+0.3.13
+
+- Fixed New drakes having wrong trophies.
+- Fixed drake trophies not having Localization.
+- Moved Fire Wand back to been a Club (Skillwise, seems the vanilla Fire Magic Skill breaks stuff)
+
+0.3.12
+
+- Added used vanilla Shaders and Materials to the JvL mock list. (Should fix the snow issue)
+
+0.3.11
+
+- Moved all dropable items over to JvL.
+- Made Oak tree's require Blackmetal Axe to chop.
+- DoD Anvils and later tier Weapon Kits now require Hardwood.
+- Fixed explosion from the Fire Wand.
+- Converted all vanilla used Prefabs over to JVLMock's.
+- Fixed Collider on Armor and Weapon Kits. (Mesh Collider no good, had to use Box)
+- Tweaked Darkness Aura.
+- Class Weapons now require Weapon Kits to craft.
+- Fixed Void Wand explosion.
+- Fixed Class Katana equip position.
+
+0.3.10
+
+- Fixed typo stopping some recipies from loading.
+- Fixed broken fx with Darkness Aura.
+- Added Weapon Kits, Consolidates mundane mats like Metals, Woods, Hides,Pelts, and Threads into 1 material crate to open up the other 3 slots for more interesting materials in armor recipes.
+- Updated Prefab IDs in the readme.
+
+0.3.9
+
+- Oops. No new dll in upload.
+
+0.3.8
+
+- Added Armor Kits, Consolidates mundane mats like Metals, Hides, Pelts, Resins and Threads into 1 material crate to open up the other 3 slots for more interesting materials in armor recipes.
+
+0.3.7
+
+- Moved alot more of the mod over to JvL.
+- Added 6 Hatchling reskins, Arcane Drake, Gold Drake, Black Drake, Poison Drake, Ice Drake and Flame Drake.
+
+0.3.6
+
+- Non Entity/Thunderstore glitch.
+
+0.3.5
+
+- Added 3 Anvils for the Forge.
+- Enabled 3 Rugs.
+- Moved Class Weapons to Forge.
+- Changed Paladin Item to White.
+
+0.3.4
+
+- Added NPC Storm, Shadow, Fire, Frost Aura's.
+- Tweaked Druid spear secondary attack.
+- Added a spot light to all new boss altars and made them a bit bigger.
+- Tweaked all class weapons, see description (readme.md).
+- Fixed value's been set on wrong items.
+
+0.3.3
+
+- Removed Class items from upgrade cost but increased craft cost.
+- Tweaked 2H Class weapons block value.
+- Fixed Class weapon upgrade levels.
+
+0.3.2
+
+- New Material: Infused Gemstone, drops on the DoD Bosses.
+- Infused Gemstone required for all class based weapons.
+- Classed based weapons can be crafted anywhere.
+- New Weapon: 2h Katana, 1 variant
+- Custom Battleaxe, 1 variant.
+- Custom Spear, 1 variant
+- Custom 2H Club, 1 variant.
+- Changed 1h Battleaxe VFX.
+- Change Wand's short attack animation.
+- Added Custom SFX to all new weapons, swing motion.
+
+0.3.1
+
+- Fixed broken wolf animator.
+- New Weapon: Short Sword, 1 variant
+- New Weapon: 1h Battleaxe, 1 variant
+- Added Magic Overhaul class item drops to the 5 DoD bosses.
+
+0.3.0
+
+- New Weapon: Wand, comes in 3 variants, Fire, Lightning and Shadow.
+- Custom one handed mace added, with AoE secondary attack.
+- Added Death Knight class item.
+- Fixed pathing with Farkas.
+
+0.2.12
+
+- Fixed missing mono script warnings.
+- Fixed Grey Pearl's collider.
+
+0.2.11
+
+- Fixed Broken Altars.
+- Fixed duplicate items dropping that wont stack with other items of the same name.
+- Added unique Boss summoning items.
+- Added unique items for magic overhaul's classes.
+
+0.2.10
+
+- Fix duplicate files in zip.
+ 
+0.2.9
+
+- Fixed new ores tool level, again.
+- Seperated DoDMonsters and Monster Mash.
+
+0.2.8
+
+- Updated for H&H Patch.
+- Fixed some wonkey shaders.
+- Removed Bear requirement (didnt realise it was required).
+
+0.2.7
+
+- Fixed Direwolf Trophy having wrong description
+- Added 3 Treasure Chest reskins, one for Mistlands, Deep North and Ash Lands.
+- Added Farkas alternate Altar requires 25 Dire Wolf Hides. (Request)
+- Reduced vanilla resource clutter included in the bundle.
+- Reduced the required tool level to mine the new Ore deposits in Mistlands and Deep North.
+
+0.2.6
+
+- Forgot to include dll, good job too since it was broken.
+
+0.2.5
+
+- Fixed Greater Surtling and Frostling trophies (for real)
+- Toned down the Frostling smoke a bit.
+- Fixed New metals not been smeltable in blast furnace.
+
+0.2.4
+
+- Added Rambore Boss and Lair.
+- Added Farkas Boss and Lair.
+- Added Skir Sandburst Boss and Altar.
+- Fixed Boss Factions and Names.
+
+0.2.3
+
+- Optimized my code.
+- Fixed some sword recipies from causing a UI error while crafting due to many material types (over 4).
+- Added code to Add/Change Status Effects on Abilities or Items.
+- Fixed Version number, sorry forgot to do this for the last 2 versions. My bad.
+- Updated Exported JSON's for Monster Mash monsters, this will remove the RRRMonster errors.
+- Added Bitterstump and Bhygshan Bosses with Altars and Abilities. (Requires Spawn That or equivelant to take advantage)
+- Fixed Frostling and Trophies from spacking out about Particles.
+- Added Eyes to Voidling, Stormling, Frostling and Greater Surtling.
+- Added original Localization to Monster Mash monsters and items.
+- Added Werebears from Monster Mash.
+- Added Localization for Trophies, this is to keep compatability with Epic Loot.
+
+0.2.2
+
+ - Forgot to inlcuded Updated DLL. Doh.
+
+0.2.1
+
+- Added missing items to the new Skeletons.
+- Added missing RRR Template JSON's.
+- Included most of the Monsters from Monster Mash by Zarboz. (With permission, the 2 Trolls and Werebear are missing atm)
+
+0.2.0
+
+- Added Texture and updated VFX for Voidling, Frostling and Stormling (And thier Trophy's).
+- Added Greater Surtling.
+- Added Modified Animator Controllers for all mobs.
+- Added 4 Skeleton Reskins.
+
+0.1.9
+
+- Added Black Deer and Stag.
+- Added smoke effect to Vilefang, Ice Golem and Fire Golem.
+
+0.1.8
+
+- Added 15 AoE Projectiles.
+- Added code to load said Projectiles with Status Effects.
+- Added Poisoned Status Effect.
+
+0.1.7
+
+- Added 25 Status Effects.
+- Added Custom SFX for Stormling, Voidling and Frostling OnHit, GetHit, Death and Attack
+- Added Steel bars, can convert iron via Blast Furnace.
+- Added Felmetal and Frometal ore, bars and deposit, can convert via Blast Furnace.
+- Added 9 Silver Swords with custom VFX and recipies that require the above mats.
+- Added some logging messages in the console.
+
+0.1.6
+
+- Fixed Missing Living Lava and Water prefabs.
+
+0.1.5
+
+- Fixed Readme
+
+0.1.4
+
+- Added 3 Wolf and Wolf Cub reskins: Dire Wolf, Forest Wolf and Vilefang.
+- Added 2 Blob reskin: Living Lava and Living Water.
+
+0.1.3
+
+- Updated Voidling and Frostling VFX.
+- Added 3 Reskins of the Stone Golem:- Obsidian, Lava and Ice Golem.
+
+0.1.2
+
+- Added Patchnotes to Readme.
+- Fixed Stormling VFX. (Thanx Hugo and Balrond)
+
+0.1.1
+
+- Fixed Freezegland Shader.
+- Fixed incorrect values for Voidbolt and Icebolt.
+- Fixed missing Destruction and ZNetView scripts on Hit VFX.
+- Included missing Example JSON's.
+- Added 2 variations of Ghost, Teal and White.
+
+0.1.0
+
+- Initial Release.
