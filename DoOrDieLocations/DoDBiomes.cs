@@ -238,25 +238,6 @@ namespace DoOrDieBiomes
 			GameObject loca16 = DoDBiome.LoadAsset<GameObject>("Loc_AshTower_DoD");
 			CustomPrefab loc16 = new CustomPrefab(loca16, true);
 			PrefabManager.Instance.AddPrefab(loc16);
-
-			//Debug.Log("DoDMonsters: 30");
-			GameObject vegvisirUnder = DoDBiome.LoadAsset<GameObject>("Vegvisir_Underworld_DoD");
-			CustomPrefab zone1 = new CustomPrefab(vegvisirUnder, false);
-			PrefabManager.Instance.AddPrefab(zone1);
-			GameObject EventZone2 = DoDBiome.LoadAsset<GameObject>("Eventzone_Rambore_DoD");
-			CustomPrefab zone3 = new CustomPrefab(EventZone2, false);
-			PrefabManager.Instance.AddPrefab(zone3);
-			GameObject EnvZone2 = DoDBiome.LoadAsset<GameObject>("InteriorEnvironmentZone");
-			CustomPrefab zone5 = new CustomPrefab(EnvZone2, false);
-			PrefabManager.Instance.AddPrefab(zone5);
-			HardLog = DoDBiome.LoadAsset<GameObject>("Hardwood_Log_DoD");
-			HardLogHalf = DoDBiome.LoadAsset<GameObject>("Hardwood_LogHalf_DoD");
-			PrefabManager.Instance.AddPrefab(HardLog);
-			PrefabManager.Instance.AddPrefab(HardLogHalf);
-			Walnuts = DoDBiome.LoadAsset<GameObject>("Walnuts_DoD");
-			Apple = DoDBiome.LoadAsset<GameObject>("Apple_DoD");
-			Cherry = DoDBiome.LoadAsset<GameObject>("Cherries_DoD");
-			Banana = DoDBiome.LoadAsset<GameObject>("Banana_DoD");
 			CaveMushroom = DoDBiome.LoadAsset<GameObject>("CaveMushroom_DoD");
 			GameObject MassiveCave = DoDBiome.LoadAsset<GameObject>("MassiveCave_DoD");
 			GameObject TopCave = DoDBiome.LoadAsset<GameObject>("TopCave_DoD");
@@ -292,143 +273,230 @@ namespace DoOrDieBiomes
 			PrefabManager.Instance.AddPrefab(CaveDeep);
 			PrefabManager.Instance.AddPrefab(CaveEnter);
 			PrefabManager.Instance.AddPrefab(BeechGround);
+
+			//Debug.Log("DoDMonsters: 30");
+			GameObject vegvisirUnder = DoDBiome.LoadAsset<GameObject>("Vegvisir_Underworld_DoD");
+			CustomPrefab zone1 = new CustomPrefab(vegvisirUnder, false);
+			PrefabManager.Instance.AddPrefab(zone1);
+			GameObject EventZone2 = DoDBiome.LoadAsset<GameObject>("Eventzone_Rambore_DoD");
+			CustomPrefab zone3 = new CustomPrefab(EventZone2, false);
+			PrefabManager.Instance.AddPrefab(zone3);
+			GameObject EnvZone2 = DoDBiome.LoadAsset<GameObject>("InteriorEnvironmentZone");
+			CustomPrefab zone5 = new CustomPrefab(EnvZone2, false);
+			PrefabManager.Instance.AddPrefab(zone5);
+
+			HardLog = DoDBiome.LoadAsset<GameObject>("Hardwood_Log_DoD");
+			CustomPrefab Log2 = new CustomPrefab(HardLog, true);
+			PrefabManager.Instance.AddPrefab(Log2);
+			HardLogHalf = DoDBiome.LoadAsset<GameObject>("Hardwood_LogHalf_DoD");
+			CustomPrefab Log1 = new CustomPrefab(HardLogHalf, true);
+			PrefabManager.Instance.AddPrefab(Log1);
+
+			Walnuts = DoDBiome.LoadAsset<GameObject>("Walnuts_DoD");
+			Apple = DoDBiome.LoadAsset<GameObject>("Apple_DoD");
+			Cherry = DoDBiome.LoadAsset<GameObject>("Cherries_DoD");
+			Banana = DoDBiome.LoadAsset<GameObject>("Banana_DoD");
 			// mistlands veg
 			//Debug.Log("DoDMonsters: 31");
 			MineRock_FelOre_DoD = DoDBiome.LoadAsset<GameObject>("MineRock_FelOre_DoD");
-			PrefabManager.Instance.AddPrefab(MineRock_FelOre_DoD);
+			CustomPrefab FelOre = new CustomPrefab(MineRock_FelOre_DoD, true);
+			PrefabManager.Instance.AddPrefab(FelOre);
+
 			BlueMushroom_DoD = DoDBiome.LoadAsset<GameObject>("BlueMushroom_DoD");
 			PurpleMushroom_DoD = DoDBiome.LoadAsset<GameObject>("PurpleMushroom_DoD");
+
 			Tree_Willow02_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Willow02_DoD");
-			PrefabManager.Instance.AddPrefab(Tree_Willow02_DoD);
+			CustomPrefab MTree8 = new CustomPrefab(Tree_Willow02_DoD, true);
+			PrefabManager.Instance.AddPrefab(MTree8);
 			Tree_Willow01_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Willow01_DoD");
-			PrefabManager.Instance.AddPrefab(Tree_Willow01_DoD);
+			CustomPrefab MTree7 = new CustomPrefab(Tree_Willow01_DoD, true);
+			PrefabManager.Instance.AddPrefab(MTree7);
 			Tree_Poplar02_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Poplar02_DoD");
-			PrefabManager.Instance.AddPrefab(Tree_Poplar02_DoD);
+			CustomPrefab MTree6 = new CustomPrefab(Tree_Poplar02_DoD, true);
+			PrefabManager.Instance.AddPrefab(MTree6);
 			Tree_Poplar01_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Poplar01_DoD");
-			PrefabManager.Instance.AddPrefab(Tree_Poplar01_DoD);
+			CustomPrefab MTree5 = new CustomPrefab(Tree_Poplar01_DoD, true);
+			PrefabManager.Instance.AddPrefab(MTree5);
 			Bush_RedBerries_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Bush_RedBerries_Pickable_DoD");
-			PrefabManager.Instance.AddPrefab(Bush_RedBerries_Pickable_DoD);
+			CustomPrefab MBush3 = new CustomPrefab(Bush_RedBerries_Pickable_DoD, true);
+			PrefabManager.Instance.AddPrefab(MBush3);
 			Tree_OldOak02_DoD = DoDBiome.LoadAsset<GameObject>("Tree_OldOak02_DoD");
-			PrefabManager.Instance.AddPrefab(Tree_OldOak02_DoD);
+			CustomPrefab MTree4 = new CustomPrefab(Tree_OldOak02_DoD, true);
+			PrefabManager.Instance.AddPrefab(MTree4);
 			Mineable_RockMS_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockMS_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockMS_DoD);
+			CustomPrefab Flora13 = new CustomPrefab(Mineable_RockMS_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora13);
 			Mineable_RockMM_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockMM_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockMM_DoD);
+			CustomPrefab Flora12 = new CustomPrefab(Mineable_RockMM_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora12);
 			Mineable_RockML_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockML_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockML_DoD);
+			CustomPrefab Flora11 = new CustomPrefab(Mineable_RockML_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora11);
 			Mineable_RockMH_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockMH_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockMH_DoD);
+			CustomPrefab Flora10 = new CustomPrefab(Mineable_RockMH_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora10);
 			Tree_OldOak01_DoD = DoDBiome.LoadAsset<GameObject>("Tree_OldOak01_DoD");
-			PrefabManager.Instance.AddPrefab(Tree_OldOak01_DoD);
+			CustomPrefab MTree3 = new CustomPrefab(Tree_OldOak01_DoD, true);
+			PrefabManager.Instance.AddPrefab(MTree3);
 			Tree_Oak02_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Oak02_DoD");
-			PrefabManager.Instance.AddPrefab(Tree_Oak02_DoD);
+			CustomPrefab MTree2 = new CustomPrefab(Tree_Oak02_DoD, true);
+			PrefabManager.Instance.AddPrefab(MTree2);
 			Tree_Oak01_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Oak01_DoD");
-			PrefabManager.Instance.AddPrefab(Tree_Oak01_DoD);
+			CustomPrefab MTree1 = new CustomPrefab(Tree_Oak01_DoD, true);
+			PrefabManager.Instance.AddPrefab(MTree1);
 			Bush_02_DoD = DoDBiome.LoadAsset<GameObject>("Bush_02_DoD");
-			PrefabManager.Instance.AddPrefab(Bush_02_DoD);
+			CustomPrefab MBush2 = new CustomPrefab(Bush_02_DoD, true);
+			PrefabManager.Instance.AddPrefab(MBush2);
 			Bush_01_DoD = DoDBiome.LoadAsset<GameObject>("Bush_01_DoD");
-			PrefabManager.Instance.AddPrefab(Bush_01_DoD);
+			CustomPrefab MBush1 = new CustomPrefab(Bush_01_DoD, true);
+			PrefabManager.Instance.AddPrefab(MBush1);
 			Mineable_RockMRFL_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockMRFL_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockMRFL_DoD);
+			CustomPrefab Flora9 = new CustomPrefab(Mineable_RockMRFL_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora9);
 			Mineable_RockMRFM_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockMRFM_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockMRFM_DoD);
+			CustomPrefab Flora8 = new CustomPrefab(Mineable_RockMRFM_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora8);
 			Flora_LargeBroad_DoD = DoDBiome.LoadAsset<GameObject>("Flora_LargeBroad_DoD");
-			PrefabManager.Instance.AddPrefab(Flora_LargeBroad_DoD);
+			CustomPrefab Flora7 = new CustomPrefab(Flora_LargeBroad_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora7);
 			Flora_SmallMulti_B_DoD = DoDBiome.LoadAsset<GameObject>("Flora_SmallMulti_B_DoD");
-			PrefabManager.Instance.AddPrefab(Flora_SmallMulti_B_DoD);
+			CustomPrefab Flora6 = new CustomPrefab(Flora_SmallMulti_B_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora6);
 			Flora_LargeSingle_DoD = DoDBiome.LoadAsset<GameObject>("Flora_LargeSingle_DoD");
-			PrefabManager.Instance.AddPrefab(Flora_LargeSingle_DoD);
+			CustomPrefab Flora5 = new CustomPrefab(Flora_LargeSingle_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora5);
 			Flora_MediumSingle_DoD = DoDBiome.LoadAsset<GameObject>("Flora_MediumSingle_DoD");
-			PrefabManager.Instance.AddPrefab(Flora_MediumSingle_DoD);
+			CustomPrefab Flora4 = new CustomPrefab(Flora_MediumSingle_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora4);
 			Flora_Large_DoD = DoDBiome.LoadAsset<GameObject>("Flora_Large_DoD");
-			PrefabManager.Instance.AddPrefab(Flora_Large_DoD);
+			CustomPrefab Flora3 = new CustomPrefab(Flora_Large_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora3);
 			Flora_LargeTrio_DoD = DoDBiome.LoadAsset<GameObject>("Flora_LargeTrio_DoD");
-			PrefabManager.Instance.AddPrefab(Flora_LargeTrio_DoD);
+			CustomPrefab Flora2 = new CustomPrefab(Flora_LargeTrio_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora2);
 			Flora_LargeDuo_DoD = DoDBiome.LoadAsset<GameObject>("Flora_LargeDuo_DoD");
-			PrefabManager.Instance.AddPrefab(Flora_LargeDuo_DoD);
+			CustomPrefab Flora1 = new CustomPrefab(Flora_LargeDuo_DoD, true);
+			PrefabManager.Instance.AddPrefab(Flora1);
 			Tree_Walnut_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Walnut_Pickable_DoD");
-			PrefabManager.Instance.AddPrefab(Tree_Walnut_Pickable_DoD);
+			CustomPrefab WalTree = new CustomPrefab(Tree_Walnut_Pickable_DoD, true);
+			PrefabManager.Instance.AddPrefab(WalTree);
 
 			//Debug.Log("DoDMonsters: 32");
 			// deep north
 			MineRock_FroOre_DoD = DoDBiome.LoadAsset<GameObject>("MineRock_FroOre_DoD");
-			PrefabManager.Instance.AddPrefab(MineRock_FroOre_DoD);
+			CustomPrefab FroOre = new CustomPrefab(MineRock_FroOre_DoD, true);
+			PrefabManager.Instance.AddPrefab(FroOre);
 			Bush3_DeepNorth_DoD = DoDBiome.LoadAsset<GameObject>("Bush3_DeepNorth_DoD");
-			PrefabManager.Instance.AddPrefab(Bush3_DeepNorth_DoD);
+			CustomPrefab Bush3 = new CustomPrefab(Bush3_DeepNorth_DoD, true);
+			PrefabManager.Instance.AddPrefab(Bush3);
 			Bush2_DeepNorth_DoD = DoDBiome.LoadAsset<GameObject>("Bush2_DeepNorth_DoD");
-			PrefabManager.Instance.AddPrefab(Bush2_DeepNorth_DoD);
+			CustomPrefab Bush2 = new CustomPrefab(Bush2_DeepNorth_DoD, true);
+			PrefabManager.Instance.AddPrefab(Bush2);
 			Bush1_DeepNorth_DoD = DoDBiome.LoadAsset<GameObject>("Bush1_DeepNorth_DoD");
-			PrefabManager.Instance.AddPrefab(Bush1_DeepNorth_DoD);
+			CustomPrefab Bush1 = new CustomPrefab(Bush1_DeepNorth_DoD, true);
+			PrefabManager.Instance.AddPrefab(Bush1);
 			Mineable_RockDN10_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockDN10_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockDN10_DoD);
+			CustomPrefab Rock10 = new CustomPrefab(Mineable_RockDN10_DoD, true);
+			PrefabManager.Instance.AddPrefab(Rock10);
 			Mineable_RockDN9_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockDN9_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockDN9_DoD);
+			CustomPrefab Rock9 = new CustomPrefab(Mineable_RockDN9_DoD, true);
+			PrefabManager.Instance.AddPrefab(Rock9);
 			Mineable_RockDN8_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockDN8_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockDN8_DoD);
+			CustomPrefab Rock8 = new CustomPrefab(Mineable_RockDN8_DoD, true);
+			PrefabManager.Instance.AddPrefab(Rock8);
 			Mineable_RockDN7_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockDN7_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockDN7_DoD);
+			CustomPrefab Rock7 = new CustomPrefab(Mineable_RockDN7_DoD, true);
+			PrefabManager.Instance.AddPrefab(Rock7);
 			Mineable_RockDN6_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockDN6_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockDN6_DoD);
+			CustomPrefab Rock6 = new CustomPrefab(Mineable_RockDN6_DoD, true);
+			PrefabManager.Instance.AddPrefab(Rock6);
 			Mineable_RockDN5_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockDN5_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockDN5_DoD);
+			CustomPrefab Rock5 = new CustomPrefab(Mineable_RockDN5_DoD, true);
+			PrefabManager.Instance.AddPrefab(Rock5);
 			Mineable_RockDN4_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockDN4_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockDN4_DoD);
+			CustomPrefab Rock4 = new CustomPrefab(Mineable_RockDN4_DoD, true);
+			PrefabManager.Instance.AddPrefab(Rock4);
 			Mineable_RockDN3_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockDN3_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockDN3_DoD);
+			CustomPrefab Rock3 = new CustomPrefab(Mineable_RockDN3_DoD, true);
+			PrefabManager.Instance.AddPrefab(Rock3);
 			Mineable_RockDN2_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockDN2_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockDN2_DoD);
+			CustomPrefab Rock2 = new CustomPrefab(Mineable_RockDN2_DoD, true);
+			PrefabManager.Instance.AddPrefab(Rock2);
 			Mineable_RockDN1_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockDN1_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_RockDN1_DoD);
+			CustomPrefab Rock1 = new CustomPrefab(Mineable_RockDN1_DoD, true);
+			PrefabManager.Instance.AddPrefab(Rock1);
 			WinterPine7_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine7_DoD");
-			PrefabManager.Instance.AddPrefab(WinterPine7_DoD);
+			CustomPrefab Tree7 = new CustomPrefab(WinterPine7_DoD, true);
+			PrefabManager.Instance.AddPrefab(Tree7);
 			WinterPine6_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine6_DoD");
-			PrefabManager.Instance.AddPrefab(WinterPine6_DoD);
+			CustomPrefab Tree6 = new CustomPrefab(WinterPine6_DoD, true);
+			PrefabManager.Instance.AddPrefab(Tree6);
 			WinterPine5_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine5_DoD");
-			PrefabManager.Instance.AddPrefab(WinterPine5_DoD);
+			CustomPrefab Tree5 = new CustomPrefab(WinterPine5_DoD, true);
+			PrefabManager.Instance.AddPrefab(Tree5);
 			WinterPine4_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine4_DoD");
-			PrefabManager.Instance.AddPrefab(WinterPine4_DoD);
+			CustomPrefab Tree4 = new CustomPrefab(WinterPine4_DoD, true);
+			PrefabManager.Instance.AddPrefab(Tree4);
 			WinterPine3_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine3_DoD");
-			PrefabManager.Instance.AddPrefab(WinterPine3_DoD);
+			CustomPrefab Tree3 = new CustomPrefab(WinterPine3_DoD, true);
+			PrefabManager.Instance.AddPrefab(Tree3);
 			WinterPine2_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine2_DoD");
-			PrefabManager.Instance.AddPrefab(WinterPine2_DoD);
+			CustomPrefab Tree2 = new CustomPrefab(WinterPine2_DoD, true);
+			PrefabManager.Instance.AddPrefab(Tree2);
 			WinterPine1_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine1_DoD");
-			PrefabManager.Instance.AddPrefab(WinterPine1_DoD);
+			CustomPrefab Tree1 = new CustomPrefab(WinterPine1_DoD, true);
+			PrefabManager.Instance.AddPrefab(Tree1);
 
 			//Debug.Log("DoDMonsters: 33");
 			// ashlands
 			Mineable_SandRock16_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock16_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock16_DoD);
+			CustomPrefab ARock16 = new CustomPrefab(Mineable_SandRock16_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock16);
 			Mineable_SandRock15_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock15_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock15_DoD);
+			CustomPrefab ARock15 = new CustomPrefab(Mineable_SandRock15_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock15);
 			Mineable_SandRock14_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock14_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock14_DoD);
+			CustomPrefab ARock14 = new CustomPrefab(Mineable_SandRock14_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock14);
 			Mineable_SandRock13_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock13_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock13_DoD);
+			CustomPrefab ARock13 = new CustomPrefab(Mineable_SandRock13_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock13);
 			Mineable_SandRock12_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock12_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock12_DoD);
+			CustomPrefab ARock12 = new CustomPrefab(Mineable_SandRock12_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock12);
 			Mineable_SandRock11_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock11_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock11_DoD);
+			CustomPrefab ARock11 = new CustomPrefab(Mineable_SandRock11_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock11);
 			Mineable_SandRock10_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock10_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock10_DoD);
+			CustomPrefab ARock10 = new CustomPrefab(Mineable_SandRock10_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock10);
 			Mineable_SandRock9_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock9_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock9_DoD);
+			CustomPrefab ARock9 = new CustomPrefab(Mineable_SandRock9_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock9);
 			Mineable_SandRock8_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock8_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock8_DoD);
+			CustomPrefab ARock8 = new CustomPrefab(Mineable_SandRock8_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock8);
 			Mineable_SandRock5_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock5_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock5_DoD);
+			CustomPrefab ARock7 = new CustomPrefab(Mineable_SandRock5_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock7);
 			Mineable_SandRock4_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock4_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock4_DoD);
+			CustomPrefab ARock6 = new CustomPrefab(Mineable_SandRock4_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock6);
 			Mineable_SandRock3_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock3_DoD");
-			PrefabManager.Instance.AddPrefab(Mineable_SandRock3_DoD);
+			CustomPrefab ARock5 = new CustomPrefab(Mineable_SandRock3_DoD, true);
+			PrefabManager.Instance.AddPrefab(ARock5);
 
 			//Debug.Log("DoDMonsters: 34");
 			// fruit trees
 			Tree_Banana_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Banana_Pickable_DoD");
-			PrefabManager.Instance.AddPrefab(Tree_Banana_Pickable_DoD);
+			CustomPrefab Pick3 = new CustomPrefab(Tree_Banana_Pickable_DoD, true);
+			PrefabManager.Instance.AddPrefab(Pick3);
 			Tree_Apple_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Apple_Pickable_DoD");
-			PrefabManager.Instance.AddPrefab(Tree_Apple_Pickable_DoD);
+			CustomPrefab Pick2 = new CustomPrefab(Tree_Apple_Pickable_DoD, true);
+			PrefabManager.Instance.AddPrefab(Pick2);
 			Mushroom_Cave_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Mushroom_Cave_Pickable_DoD");
-			PrefabManager.Instance.AddPrefab(Mushroom_Cave_Pickable_DoD);
+			CustomPrefab Pick1 = new CustomPrefab(Mushroom_Cave_Pickable_DoD, true);
+			PrefabManager.Instance.AddPrefab(Pick1);
 		}
 		private void AddLocations()
 		{
@@ -438,7 +506,7 @@ namespace DoOrDieBiomes
 			{
 				if (AshLandsLocations.Value == true)
 				{
-					var HellPlatformA = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_HellPlatformA_DoD"), false);
+					var HellPlatformA = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_HellPlatformA_DoD"), true);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(HellPlatformA, new LocationConfig
 					{
 						Biome = Heightmap.Biome.AshLands,
@@ -448,7 +516,7 @@ namespace DoOrDieBiomes
 						MinAltitude = 5f,
 						ClearArea = true,
 					}));
-					var HellPlatformB = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_HellPlatformB_DoD"), false);
+					var HellPlatformB = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_HellPlatformB_DoD"), true);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(HellPlatformB, new LocationConfig
 					{
 						Biome = Heightmap.Biome.AshLands,
@@ -458,7 +526,7 @@ namespace DoOrDieBiomes
 						MinAltitude = 5f,
 						ClearArea = true,
 					}));
-					var AshTower = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_AshTower_DoD"), false);
+					var AshTower = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_AshTower_DoD"), true);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AshTower, new LocationConfig
 					{
 						Biome = Heightmap.Biome.AshLands,
@@ -471,7 +539,7 @@ namespace DoOrDieBiomes
 				}
 				if (DeepNorthLocations.Value == true)
 				{
-					var FroOreMine = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_FroOreMine_DoD"), false);
+					var FroOreMine = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_FroOreMine_DoD"), true);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(FroOreMine, new LocationConfig
 					{
 						Biome = Heightmap.Biome.DeepNorth,
@@ -485,7 +553,7 @@ namespace DoOrDieBiomes
 				}
 				if (MistlandsLocEnable.Value == true)
 				{
-					var MistLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_OreMine_DoD"), false);
+					var MistLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_OreMine_DoD"), true);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(MistLoc2, new LocationConfig
 					{
 						Biome = Heightmap.Biome.Mistlands,
@@ -499,7 +567,7 @@ namespace DoOrDieBiomes
 				}
 				if (DoDLocEnable.Value == true)
 				{
-					var Rambore = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Boss_Rambore_DoD"), false);
+					var Rambore = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Boss_Rambore_DoD"), true);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(Rambore, new LocationConfig
 					{
 						Biome = Heightmap.Biome.Meadows,
@@ -510,7 +578,7 @@ namespace DoOrDieBiomes
 						ClearArea = true,
 						SlopeRotation = true,
 					}));
-					var Bitterstump = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Boss_Bitterstump_DoD"), false);
+					var Bitterstump = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Boss_Bitterstump_DoD"), true);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(Bitterstump, new LocationConfig
 					{
 						Biome = Heightmap.Biome.BlackForest,
@@ -521,7 +589,7 @@ namespace DoOrDieBiomes
 						ClearArea = true,
 						SlopeRotation = true,
 					}));
-					var AnyLoc1 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_CastleArena_DoD"), false);
+					var AnyLoc1 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_CastleArena_DoD"), true);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc1, new LocationConfig
 					{
 						Biome = Heightmap.Biome.Meadows,
@@ -531,7 +599,7 @@ namespace DoOrDieBiomes
 						MinAltitude = 10f,
 						ClearArea = true,
 					}));
-					var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Camp_DoD"), false);
+					var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Camp_DoD"), true);
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc2, new LocationConfig
 					{
 						Biome = ZoneManager.AnyBiomeOf(Heightmap.Biome.Meadows, Heightmap.Biome.BlackForest, Heightmap.Biome.Swamp, Heightmap.Biome.Mountain, Heightmap.Biome.Plains, Heightmap.Biome.Mistlands),
@@ -1320,15 +1388,6 @@ namespace DoOrDieBiomes
 		}
 		private void CreateFruit()
 		{
-			//Debug.Log("DoDMonsters: 40");
-			/*GameObject food7 = BlueMushroom_DoD;
-			CustomItem customFood7 = new CustomItem(food7, fixReference: true);
-			ItemManager.Instance.AddItem(customFood7);
-
-			GameObject food6 = PurpleMushroom_DoD;
-			CustomItem customFood6 = new CustomItem(food6, fixReference: true);
-			ItemManager.Instance.AddItem(customFood6);*/
-
 			GameObject food5 = CaveMushroom;
 			CustomItem customFood5 = new CustomItem(food5, fixReference: true);
 			ItemManager.Instance.AddItem(customFood5);

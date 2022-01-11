@@ -13,6 +13,11 @@ namespace DoDMonsters
         public static Dictionary<string, string> t;
         private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+			{"item_arrow_ashlands_dod", "Firery Arrow"},
+			{"item_arrow_deepnorth_dod", "Frosty Arrow"},
+			{"item_arrow_mistlands_dod", "Shocking Arrow"},
+			{"npc_skugga_young_dod", "Youngling"},
+
 			{"animal_sheep_dod", "Sheep"},
 			{"animal_goat_dod", "Goat"},
 			{"animal_goose_dod", "Goose"},
@@ -33,7 +38,7 @@ namespace DoDMonsters
 			{"item_token_skull_description_dod", "Knarr the Trader likes these."},
 
 			{"npc_skugga_dod", "Skugga"},
-            {"npc_einherjar_dod", "Einherjar"},
+			{"npc_einherjar_dod", "Einherjar"},
 
 			{"item_walnut_dod", "Walnuts"},
             {"item_walnuts_description_dod", "Gatherd from a Walnut Tree in the Mistlands."},
@@ -610,11 +615,15 @@ namespace DoDMonsters
             {
                 t = russian;
             }
-            else
-            {
-                t = english;
-            }
-        }
+			else if (lang == "English")
+			{
+				t = english;
+			}
+			else
+			{
+				t = german;
+			}
+		}
         public static void AddWord(object[] element)
         {
             MethodInfo meth = AccessTools.Method(typeof(Localization), "AddWord", null, null);

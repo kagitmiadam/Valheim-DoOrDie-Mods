@@ -215,11 +215,15 @@ namespace DoOrDieBiomes
             {
                 t = russian;
             }
-            else
-            {
-                t = english;
-            }
-        }
+			else if (lang == "English")
+			{
+				t = english;
+			}
+			else
+			{
+				t = german;
+			}
+		}
         public static void AddWord(object[] element)
         {
             MethodInfo meth = AccessTools.Method(typeof(Localization), "AddWord", null, null);

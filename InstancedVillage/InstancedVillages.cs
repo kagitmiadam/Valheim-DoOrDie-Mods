@@ -51,15 +51,12 @@ namespace InstancedVillages
             GameObject spawn1 = IVAssets.LoadAsset<GameObject>("Spawner_Generic");
             CustomPrefab spawner1 = new CustomPrefab(spawn1, true);
             PrefabManager.Instance.AddPrefab(spawner1);
-            GameObject loc3 = IVAssets.LoadAsset<GameObject>("Loc_Instanced_Hut");
-            CustomPrefab village3 = new CustomPrefab(loc3, true);
-            PrefabManager.Instance.AddPrefab(village3);
-            GameObject loc2 = IVAssets.LoadAsset<GameObject>("Loc_Instanced_VillageMed");
-            CustomPrefab village2 = new CustomPrefab(loc2, true);
-            PrefabManager.Instance.AddPrefab(village2);
-            GameObject loc1 = IVAssets.LoadAsset<GameObject>("Loc_Instanced_Village");
-            CustomPrefab village1 = new CustomPrefab(loc1, true);
-            PrefabManager.Instance.AddPrefab(village1);
+            GameObject spawn2 = IVAssets.LoadAsset<GameObject>("Spawner_GenericNorm");
+            CustomPrefab spawner2 = new CustomPrefab(spawn2, true);
+            PrefabManager.Instance.AddPrefab(spawner2);
+            GameObject spawn3 = IVAssets.LoadAsset<GameObject>("Spawner_GenericMed");
+            CustomPrefab spawner3 = new CustomPrefab(spawn3, true);
+            PrefabManager.Instance.AddPrefab(spawner3);
             IVAssets.Unload(false);
         }
         private void AddLocations()
@@ -67,7 +64,7 @@ namespace InstancedVillages
             IVAssets = AssetUtils.LoadAssetBundleFromResources("concept", Assembly.GetExecutingAssembly());
             try
             {
-                var AnyLoc1 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Village"), false);
+                var AnyLoc1 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Village"), true);
                 ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc1, new LocationConfig
                 {
                     Biome = Heightmap.Biome.Meadows,
@@ -79,9 +76,9 @@ namespace InstancedVillages
                     MaxDistance = 1000,
                     MinAltitude = 4f,
                     MaxAltitude = 400f,
-                    InForest = false,
+                    MinDistanceFromSimilar = 100f,
                 }));
-                var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_VillageMed"), false);
+                var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_VillageMed"), true);
                 ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc2, new LocationConfig
                 {
                     Biome = Heightmap.Biome.Meadows,
@@ -93,9 +90,9 @@ namespace InstancedVillages
                     MaxDistance = 2000,
                     MinAltitude = 4f,
                     MaxAltitude = 400f,
-                    InForest = false,
+                    MinDistanceFromSimilar = 100f,
                 }));
-                var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Hut"), false);
+                var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Hut"), true);
                 ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc3, new LocationConfig
                 {
                     Biome = Heightmap.Biome.Meadows,
@@ -105,7 +102,7 @@ namespace InstancedVillages
                     ClearArea = true,
                     MinAltitude = 4f,
                     MaxAltitude = 400f,
-                    InForest = false,
+                    MinDistanceFromSimilar = 100f,
                 }));
             }
             finally

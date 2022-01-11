@@ -388,6 +388,7 @@ namespace DoDMonsters
 			if (ClassWeaponEnable.Value == true) {
 				CreateClassWeapons(); }
 			if (WeaponsEnable.Value == true) {
+				CreateArrows();
 				CreateMaces();
 				CreateWands();
 				CreateMagicSwords();
@@ -972,6 +973,24 @@ namespace DoDMonsters
 			GameObject SFXSalamanderD = DoDAssets.LoadAsset<GameObject>("SFX_Salamander_Death_DoD");
 			GameObject SFXRatD = DoDAssets.LoadAsset<GameObject>("SFX_Rat_Death_DoD");
 			GameObject SFXLizardD = DoDAssets.LoadAsset<GameObject>("SFX_Lizard_Death_DoD");
+			GameObject SFXNPC1 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Alert_DoD");
+			CustomPrefab customsfxNPC1 = new CustomPrefab(SFXNPC1, true);
+			GameObject SFXNPC2 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Birth_DoD");
+			CustomPrefab customsfxNPC2 = new CustomPrefab(SFXNPC2, true);
+			GameObject SFXNPC3 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Breath_DoD");
+			CustomPrefab customsfxNPC3 = new CustomPrefab(SFXNPC3, true);
+			GameObject SFXNPC4 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Cough_DoD");
+			CustomPrefab customsfxNPC4 = new CustomPrefab(SFXNPC4, true);
+			GameObject SFXNPC5 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Laugh_DoD");
+			CustomPrefab customsfxNPC5 = new CustomPrefab(SFXNPC5, true);
+			GameObject SFXNPC6 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Sigh_DoD");
+			CustomPrefab customsfxNPC6 = new CustomPrefab(SFXNPC6, true);
+			PrefabManager.Instance.AddPrefab(customsfxNPC1);
+			PrefabManager.Instance.AddPrefab(customsfxNPC2);
+			PrefabManager.Instance.AddPrefab(customsfxNPC3);
+			PrefabManager.Instance.AddPrefab(customsfxNPC4);
+			PrefabManager.Instance.AddPrefab(customsfxNPC5);
+			PrefabManager.Instance.AddPrefab(customsfxNPC6);
 			PrefabManager.Instance.AddPrefab(SFXLizardD);
 			PrefabManager.Instance.AddPrefab(SFXRatD);
 			PrefabManager.Instance.AddPrefab(SFXSalamanderD);
@@ -3020,6 +3039,60 @@ namespace DoDMonsters
 			});
 			ItemManager.Instance.AddItem(customItem9);
 			//Jotunn.Logger.LogMessage("Created Recipie: Nethersbane");
+		}
+		private void CreateArrows()
+		{
+			GameObject arrow3 = DoDAssets.LoadAsset<GameObject>("ArrowMistlands_DoD");
+			CustomItem customItem3 = new CustomItem(arrow3, fixReference: true, new ItemConfig
+			{
+				Name = "Shocking Arrow",
+				Amount = 100,
+				CraftingStation = "piece_workbench",
+				MinStationLevel = 1,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "ExcellentWeaponKit_DoD",
+					Amount = 1
+				}
+				}
+			});
+			ItemManager.Instance.AddItem(customItem3);
+			GameObject arrow2 = DoDAssets.LoadAsset<GameObject>("ArrowDeepNorth_DoD");
+			CustomItem customItem2 = new CustomItem(arrow2, fixReference: true, new ItemConfig
+			{
+				Name = "Frosty Arrow",
+				Amount = 100,
+				CraftingStation = "piece_workbench",
+				MinStationLevel = 1,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "ExceptionalWeaponKit_DoD",
+					Amount = 1
+				}
+				}
+			});
+			ItemManager.Instance.AddItem(customItem2);
+			GameObject arrow1 = DoDAssets.LoadAsset<GameObject>("ArrowAshLands_DoD");
+			CustomItem customItem1 = new CustomItem(arrow1, fixReference: true, new ItemConfig
+			{
+				Name = "Fiery Arrow",
+				Amount = 100,
+				CraftingStation = "piece_workbench",
+				MinStationLevel = 1,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "ExtraordinaryWeaponKit_DoD",
+					Amount = 1
+				}
+				}
+			});
+			ItemManager.Instance.AddItem(customItem1);
 		}
 		private void CreateDropables()
 		{
