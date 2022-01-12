@@ -11,21 +11,37 @@
 
 **I have included a config for the Dual Wield mod for balance reasons, the use of this mod is down to each user and not included with this pack. If you use this mod NPC's will take full advantage.**
 
+
+## Brief Overview
+
+	Allows upto 13 Star Mobs and Bosses to spawn depending on world and sector level. 
+	5 New Bosses. (See Below)
+	3 New Boss Invasions. (see below) 
+	5 Star and over start spawning at world level 1. (Adjust as you see fit in the CLLC config) 
+	Populates Mistlands with four different NPCs, Corrupted Elderling, Vilefang, Void Spider, Jumping Spider and Black Spiders. 
+	Poulates Deep North with Gray Wolf (NPC), Dire Wolf, Ice Drake, Ice Troll, Ice Ogre, Ice Spider, Awakened and Greater Fenring. 
+	Populates Ashlands with Fire Golem, Obsidian Golem, Greater Surtling, Flame Spider and Flame Drakes. 
+	Adds Frost Spider, Ghost Warrior and Skeleton Warrior to Mountains. 
+	Adds Elderling and Forest Spider to Black Forest. (Elder death trigger) 
+	Adds Forest Wolf to Meadows and Black Forest. (Moder death trigger) 
+	Each Biome has 2 NPC Mini Bosses, one in the day and one in the night. (see below) 
+	
+	
 ## Installation
 
-	**Manual Only** (Just this mod, DoD SE, you can use a Mod Manger for all the Dependencies) this is due to Mod Managers not installing DoD's changes to Epic Loot, Forgotten Biomes or Hugins Quest correctly. They put them in a subfolder instead of overwriting. 
+**Auto**
 
-	This is due to a limitation with Epic Loot, Forgotten Biomes and Hugins Quests and where they store their configuration data (In the Plugins folder). 
-  
-  If you want to help fast track this issue for Epic Loot you can give a thumbs up in this thread:- https://github.com/RandyKnapp/ValheimMods/issues/314 
+	Use a mod manager of your choice.
+
+
+**Manual** 
+
+	Download the Zip. Open it up and Drag the contents into your profiles(Mod Managers) or main installs (Manual), BepInEx folder and overwrite when asked. 
 	
-  Folder names have been changed to match Thunderstore folder names. 
-
 	Thunderstore Mod Manager Profile Location:- C:\Users\USER_NAME\AppData\Roaming\Thunderstore Mod Manager\DataFolder\Valheim\profiles\PROFILE_NAME\BepInEx. 
 	
 	R2MM Profile Location:- C:/Users/USER_NAME/AppData/Roaming/r2modmanPlus-local/Valheim/profiles/PROFILE_NAME/BepInEx. 
 
-	Download the Zip. Open it up and Drag the contents into your profiles(Mod Managers) or main installs (Manual), BepInEx folder and overwrite when asked. 
 
 For further assistance you can find me on my offical Discord:- https://discord.gg/7BcEZXhRbV
 
@@ -54,10 +70,19 @@ In com.alexanderstrada.rrrbetterraids.cfg, I have the option: UpdateEventMobMini
 **Loot**
 
 Random Legendaries showing up instead of Set Items. Under investigation.
+Free loot at 0,0,0. Under investigation. (DoD Kit drops disabled as a result)
 
 **Questing**
 
-Random Quests can be odd. Issue with custom mobs not regestring for kill quests. Been looked at.
+Random Quests can be odd. Issue with custom mobs not registering for kill quests. Been looked at.
+
+**Epic Loot**
+
+Mildly effects performance. (10-15 fps loss)
+
+**RRR Mods**
+
+Greatly effects performance. (25-45fps loss, these mods are been phased out gradually)
 
 
 ## Incompatible Mods
@@ -70,13 +95,26 @@ Random Quests can be odd. Issue with custom mobs not regestring for kill quests.
 
 ## Mods that can cause Issues
 
-- Digital Roots Bounties, its a case of his or mine. Up to user.
 - Simply Recycling can break Epic Loot/Tombstone depending on mods used.
+
+
+## Crossover Mods
+
+- Digital Roots Bounties, its a case of his or mine. Up to user. (Until I find the time to look over this mod and mine and see if its possible to have both)
+
+
+## Difficulty
+
+Mobs have 40% more health and 35% more damage and an additional 20% health and 17.5% damager per player.
+Scaling difficulty for all Monsters, 5% per World Level.
+Vanilla bosses get a Buff per world level after killing them the first time. (The buff increases their Tier by 1 per world level)
+Monsters gain 25% Health and Damage after you kill the Vanilla boss in that Biome.
 
 
 ## Servers
 
 Required on both server and client due to dependencies.
+May require balancing for more than 2-3 players at a time. Can be done by tweaking the DoD CLLC yaml's located in the Configs folder.
 
 
 ## Acknowledgements
@@ -87,23 +125,9 @@ Required on both server and client due to dependencies.
 	Cepera for help with fixes and updates.
   
   If you like and use this ModPack, show you support by leaving a like for each mod included. Cheers and happy hunting!
+	If you wish to donate please donate to any of the modpacks dependancies, as I do not accept donations myself.
   
   
-## Brief Overview
-
-	Allows upto 13 Star Mobs and Bosses to spawn depending on world and sector level. 
-	5 New Bosses. (See Below)
-	3 New Boss Invasions. (see below) 
-	5 Star and over start spawning at world level 1. (Adjust as you see fit in the CLLC config) 
-	Populates Mistlands with four different NPCs, Corrupted Elderling, Vilefang, Void Spider, Jumping Spider and Black Spiders. 
-	Poulates Deep North with Gray Wolf (NPC), Dire Wolf, Ice Drake, Ice Troll, Ice Ogre, Ice Spider, Awakened and Greater Fenring. 
-	Populates Ashlands with Fire Golem, Obsidian Golem, Greater Surtling, Flame Spider and Flame Drakes. 
-	Adds Frost Spider, Ghost Warrior and Skeleton Warrior to Mountains. 
-	Adds Elderling and Forest Spider to Black Forest. (Elder death trigger) 
-	Adds Forest Wolf to Meadows and Black Forest. (Moder death trigger) 
-	Each Biome has 2 NPC Mini Bosses, one in the day and one in the night. (see below) 
-
-
 ## Epic Loot Magic Effect Changes
 
 	Resistance Percents range from 1-40% and are limited to the following items:
@@ -137,7 +161,7 @@ Required on both server and client due to dependencies.
 	Creature and Boss Special Effects - On (As per Default CLLC) 
 	Sectors - On (World Level 1) 
 	Sector Level Up Kill Count - 10, 25, 50 
-	World Level Up - Ingame Days: 30, 60, 120, 180, 240 
+	World Level Up - Ingame Days: 15, 25, 50, 100, 200 
 	Scaling Difficulty By World Level - 5% Health, 10% Damage, 5% Attack Speed, 5% Resistance per world Level. 
 	
 World Level Star Chances (0-10 Creatures and Bosses) 
@@ -542,6 +566,23 @@ Note: Boss and Mini Boss Item Sets currently in planning.
 	
 	
 ## Patch Notes
+
+**1.2.7**
+
+Removed some broken drops. (sorry for the double update)
+
+**1.2.6**
+
+	Removed Hugos Armory.
+	Reduced Refect Damage from item sets.
+	Added Digitalroots Slope Combat Fix as a requirement. (To prevent users from using the broken SCF mod)
+	
+**1.2.5**
+
+	Stopped Ram'Bore Altar spawning on its own :)
+	Fixed Typo in Forgotten Biomes cfg.
+	Added This Goes Here as a requirement.
+	Fixed Bugged Chests.
 
 **1.2.4**
 

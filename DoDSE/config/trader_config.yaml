@@ -1,3 +1,356 @@
-Wood:
+## Hugos Armory
+DeerFistsHTD:
+    cost: 5
+    stack: 1
+BronzeFistsHTD:
+    cost: 10
+    stack: 1
+IronFistsHTD:
+    cost: 15
+    stack: 1
+IronGreatSwordHTD:
+    cost: 15
+    stack: 1
+IronHeavyGreatSwordHTD:
+    cost: 15
+    stack: 1
+BlackMetalGreatSwordAltHTD:
+    cost: 15
+    stack: 1
+CoreGreatMaceGreenHTD:
+    cost: 15
+    stack: 1
+SilverGreatSwordHTD:
+    cost: 20
+    stack: 1
+SilverBattleaxeHTD:
+    cost: 20
+    stack: 1
+SilverGreatMaceHTD:
+    cost: 20
+    stack: 1
+ObsidianGreatSwordHTD:
+    cost: 20
+    stack: 1
+BlackMetalGreatSwordHTD:
+    cost: 25
+    stack: 1
+BlackMetalBattleaxeHTD:
+    cost: 25
+    stack: 1
+BoneGreatMaceHTD:
+    cost: 30
+    stack: 1
+CoreGreatMaceBlueHTD:
+    cost: 30
+    stack: 1
+DragonSlayerSwordHTD:
+    cost: 35
+    stack: 1
+CoreGreatMaceHTD:
+    cost: 40
+    stack: 1
+FlametalGreatSwordHTD:
+    cost: 40
+    stack: 1
+## Judes Equipment
+ArmorBarbarianHelmet:
+    cost: 15
+    stack: 1
+ArmorBarbarianChest:
+    cost: 15
+    stack: 1
+ArmorBarbarianLegs:
+    cost: 15
+    stack: 1
+ArmorBarbarianCape:
+    cost: 15
+    stack: 1
+ArmorWandererHelmet:
+    cost: 20
+    stack: 1
+ArmorWandererChest:
+    cost: 20
+    stack: 1
+ArmorWandererLegs:
+    cost: 20
+    stack: 1
+ArmorPlateHelmet:
+    cost: 25
+    stack: 1
+ArmorPlateChest:
+    cost: 25
+    stack: 1
+ArmorPlateLegs:
+    cost: 25
+    stack: 1
+ArmorNomadHelmet:
+    cost: 30
+    stack: 1
+ArmorNomadChest:
+    cost: 30
+    stack: 1
+ArmorNomadLegs:
+    cost: 30
+    stack: 1
+ArmorDragonslayerHelmet:
+    cost: 35
+    stack: 1
+ArmorDragonslayerChest:
+    cost: 35
+    stack: 1
+ArmorDragonslayerLegs:
+    cost: 35
+    stack: 1
+ArmorMercenaryHelmet:
+    cost: 40
+    stack: 1
+ArmorMercenaryChest:
+    cost: 40
+    stack: 1
+ArmorMercenaryLegs:
+    cost: 40
+    stack: 1
+## Do or Die Weapons
+Sword_Meadows_DoD:
+    cost: 5
+    stack: 1
+Bow_Swamp_DoD:
+    cost: 15
+    stack: 1
+Sword_Swamp_DoD:
+    cost: 15
+    stack: 1
+Wand_Mountain_DoD:
+    cost: 20
+    stack: 1
+Bow_Mountain_DoD:
+    cost: 20
+    stack: 1
+Bow_Plains_DoD:
+    cost: 25
+    stack: 1
+Sword_Plains_DoD:
+    cost: 25
+    stack: 1
+Mace_Mistlands_DoD:
+    cost: 30
+    stack: 1
+Bow_Mistlands_DoD:
+    cost: 30
+    stack: 1
+Sword_Mistlands_DoD:
+    cost: 30
+    stack: 1
+Sword_DeepNorth_DoD:
+    cost: 35
+    stack: 1
+Mace_DeepNorth_DoD:
+    cost: 35
+    stack: 1
+Sword_AshLands_DoD:
+    cost: 40
+    stack: 1
+## Do or Die Class Weapons
+ShamanWand_DoD:
+    cost: 12
+    stack: 1
+MageWand_DoD:
+    cost: 12
+    stack: 1
+WarlockWand_DoD:
+    cost: 12
+    stack: 1
+PaladinMace_DoD:
+    cost: 12
+    stack: 1
+RogueSword_DoD:
+    cost: 12
+    stack: 1
+DeathknightAxe_DoD:
+    cost: 12
+    stack: 1
+NinjaSword_DoD:
+    cost: 12
+    stack: 1
+DruidSpear_DoD:
+    cost: 12
+    stack: 1
+BerserkerAxe_DoD:
+    cost: 12
+    stack: 1
+MonkMace_DoD:
+    cost: 12
+    stack: 1
+DruidSpear_DoD:
+    cost: 12
+    stack: 1
+## Do or Die Class Items
+DeathKnightItem_DoD:
+    cost: 3
+    stack: 1
+ArcherItem_DoD:
+    cost: 3
+    stack: 1
+BerserkerItem_DoD:
+    cost: 3
+    stack: 1
+DruidItem_DoD:
+    cost: 3
+    stack: 1
+MageItem_DoD:
+    cost: 3
+    stack: 1
+MonkItem_DoD:
+    cost: 3
+    stack: 1
+NinjaItem_DoD:
+    cost: 3
+    stack: 1
+PaladinItem_DoD:
+    cost: 3
+    stack: 1
+RogueItem_DoD:
+    cost: 3
+    stack: 1
+ShamanItem_DoD:
+    cost: 3
+    stack: 1
+WarlockItem_DoD:
+    cost: 3
+    stack: 1
+## Do or Die Summon Items
+BoarTusk_DoD:
+    cost: 3
+    stack: 1
+LargeFang_DoD:
+    cost: 3
+    stack: 1
+ShamansVessel_DoD:
+    cost: 3
+    stack: 1
+GreydwarfHeart_DoD:
+    cost: 3
+    stack: 1
+SkeletonBones_DoD:
+    cost: 3
+    stack: 1
+GreyPearl_DoD:
+    cost: 3
+    stack: 1
+## Do or Die Materials
+CrudeArmorKit_DoD:
+    cost: 3
+    stack: 1
+BasicArmorKit_DoD:
+    cost: 3
+    stack: 1
+GoodArmorKit_DoD:
+    cost: 3
+    stack: 1
+GreatArmorKit_DoD:
+    cost: 3
+    stack: 1
+SuperiorArmorKit_DoD:
+    cost: 3
+    stack: 1
+ExcellentArmorKit_DoD:
+    cost: 3
+    stack: 1
+ExceptionalArmorKit_DoD:
+    cost: 3
+    stack: 1
+ExtraordinaryArmorKit_DoD:
+    cost: 3
+    stack: 1
+CrudeWeaponKit_DoD:
+    cost: 3
+    stack: 1
+BasicWeaponKit_DoD:
+    cost: 3
+    stack: 1
+GoodWeaponKit_DoD:
+    cost: 3
+    stack: 1
+GreatWeaponKit_DoD:
+    cost: 3
+    stack: 1
+SuperiorWeaponKit_DoD:
+    cost: 3
+    stack: 1
+ExcellentWeaponKit_DoD:
+    cost: 3
+    stack: 1
+ExceptionalWeaponKit_DoD:
+    cost: 3
+    stack: 1
+ExtraordinaryWeaponKit_DoD:
+    cost: 3
+    stack: 1
+InfusedGemstone_DoD:
+    cost: 3
+    stack: 1
+FrozenBone_DoD:
     cost: 1
-    stack: 10
+    stack: 5
+CharredBone_DoD:
+    cost: 1
+    stack: 5
+FrostlingCore_DoD:
+    cost: 1
+    stack: 2
+StormlingCore_DoD:
+    cost: 1
+    stack: 2
+VoidlingCore_DoD:
+    cost: 1
+    stack: 2
+ForestWolfPelt_DoD:
+    cost: 1
+    stack: 2
+DireWolfPelt_DoD:
+    cost: 1
+    stack: 2
+WaterGlobe_DoD:
+    cost: 1
+    stack: 5
+SpiderChitin_DoD:
+    cost: 1
+    stack: 5
+BlackDeerHide_DoD:
+    cost: 1
+    stack: 5
+OakWood_DoD:
+    cost: 1
+    stack: 5
+SteelBar_DoD:
+    cost: 1
+    stack: 2
+FrometalOre_DoD:
+    cost: 1
+    stack: 4
+FrometalBar_DoD:
+    cost: 1
+    stack: 2
+FelmetalOre_DoD:
+    cost: 1
+    stack: 4
+FelmetalBar_DoD:
+    cost: 1
+    stack: 2
+## Do or Die Food
+CarnivorBait_DoD:
+    cost: 1
+    stack: 5
+Walnuts_DoD:
+    cost: 1
+    stack: 5
+Apple_DoD:
+    cost: 1
+    stack: 5
+Cherries_DoD:
+    cost: 1
+    stack: 5
+Banana_DoD:
+    cost: 1
+    stack: 5

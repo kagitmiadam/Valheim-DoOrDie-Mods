@@ -1,10 +1,22 @@
 ﻿Patch Notes
 
+1.2.7
+
+Removed some broken drops.
+
+1.2.6
+
+	Removed Hugos Armory.
+	Reduced Refect Damage from item sets.
+	Added Digitalroots Slope Combat Fix as a requirement. (To prevent users from using the broken SCF mod)
+		
 1.2.5
 
 	Stopped Ram'Bore Altar spawning on its own :)
 	Fixed Typo in Forgotten Biomes cfg.
-
+	Added This Goes Here as a requirement.
+	Fixed Bugged Chests.
+	
 1.2.4
 
 	Updated for DoD Monster 0.4.3.

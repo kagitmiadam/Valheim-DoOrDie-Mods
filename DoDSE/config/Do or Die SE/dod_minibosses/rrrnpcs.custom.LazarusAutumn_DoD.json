@@ -50,7 +50,7 @@
          "HelmetPadded",
          "ArmorPaddedCuirass",
          "CapeLinen",
-         "IronHeavyGreatSwordHTD",
+         "Sword_Swamp_DoD",
          "@1",
          "@2",
 		 "Eikthyr_charge@sword_secondary@@40"
@@ -69,7 +69,7 @@
       ],
       "aAdvancedCustomAttacks" : [
          {
-            "sOriginalPrefabName" : "IronHeavyGreatSwordHTD",
+            "sOriginalPrefabName" : "Sword_Swamp_DoD",
             "sTargetAnim" : "atgeir_secondary",
             "fAIAttackInterval" : 30,
             "bAIPrioritized" : true,
@@ -93,7 +93,7 @@
             "aTriggerEffects" : null
          },
          {
-            "sOriginalPrefabName" : "IronHeavyGreatSwordHTD",
+            "sOriginalPrefabName" : "Sword_Swamp_DoD",
 						"sAITargetType" : "Enemy",
             "sTargetAnim" : "knife_secondary",
             "fAIAttackInterval" : 50,

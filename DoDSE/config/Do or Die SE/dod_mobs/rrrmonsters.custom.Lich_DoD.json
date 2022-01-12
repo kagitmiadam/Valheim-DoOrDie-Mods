@@ -82,7 +82,7 @@
                  "fChop" : 0,
                  "fPickaxe" : 0,
                  "fFire" : 0,
-                 "fFrost" : 60,
+                 "fFrost" : 6,
                  "fLightning" : 0,
                  "fPoison" : 0,
                  "fSpirit" : 0
@@ -107,8 +107,8 @@
                  "fPickaxe" : 0,
                  "fFire" : 0,
                  "fFrost" : 35,
-                 "fLightning" : 30,
-                 "fPoison" : 0,
+                 "fLightning" : 0,
+                 "fPoison" : 30,
                  "fSpirit" : 0
             },
             "fAttackDamageTotalOverride" : null,

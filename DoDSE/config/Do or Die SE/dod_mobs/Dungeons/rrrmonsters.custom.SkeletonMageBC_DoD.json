@@ -64,7 +64,7 @@
          {
             "sOriginalPrefabName" : "Mage_FireStrike_Attack_DoD",
             "sTargetAnim" : "cast1",
-            "fAIAttackInterval" : 10,
+            "fAIAttackInterval" : 20,
             "bAIPrioritized" : true,
             "dtAttackDamageOverride" : {
                "fDamage":0,

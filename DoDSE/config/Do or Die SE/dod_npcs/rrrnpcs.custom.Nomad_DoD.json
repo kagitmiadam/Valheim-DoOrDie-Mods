@@ -42,10 +42,10 @@
       "fAttackDamageTotalOverride" : 7,
       "sAttackProjectileOverride" : null,
       "aDefaultItems" : [
-         "NPC_NomadAoE_Attack_DoD",
-         "ArmorBlackmetalgarbChest",
-         "ArmorBlackmetalgarbHelmet",
-         "ArmorBlackmetalgarbLegs"
+         "NPC_NomadAoE_Attack_DoD"
+         //"JE_ArmorNomadLegs",
+         //"JE_ArmorNomadHelmet",
+         //"JE_ArmorNomadChest"   
       ],
       "aRandomWeapon" : [
          "DeathknightAxe_DoD",

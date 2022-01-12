@@ -1,0 +1,14 @@
+﻿PrintComment: Epic Loot updated for Do or Die.
+CopyFile:
+- From: config/Do or Die SE/Epic Loot Configs/adventuredata.json
+  To: plugins/RandyKnapp-EpicLoot/adventuredata.json
+- From: config/Do or Die SE/Epic Loot Configs/enchantcosts.json
+  To: plugins/RandyKnapp-EpicLoot/enchantcosts.json
+- From: config/Do or Die SE/Epic Loot Configs/legendaries.json
+  To: plugins/RandyKnapp-EpicLoot/legendaries.json
+- From: config/Do or Die SE/Epic Loot Configs/loottables.json
+  To: plugins/RandyKnapp-EpicLoot/loottables.json
+- From: config/Do or Die SE/Epic Loot Configs/magiceffects.json
+  To: plugins/RandyKnapp-EpicLoot/magiceffects.json
+- From: config/Do or Die SE/Epic Loot Configs/recipes.json
+  To: plugins/RandyKnapp-EpicLoot/recipes.json
