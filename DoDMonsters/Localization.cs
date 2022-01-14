@@ -213,7 +213,7 @@ namespace DoDMonsters
             {"item_trophy_gsurtling_description", "A Trophy, hang it up on your wall"}
         };
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
-			{ "spawner_firedraketower_dod", "Drake Tower" },
+			{ "spawner_firedraketower_dod", "Башня Дрейка" },
 			{ "spawner_arena_dod", "Arena Spawner" },
 			{ "piece_bitterstumpaltar_dod", "Bitterstump Altar" },
 			{ "object_glowmetal_dod", "Glowing Metal" },
