@@ -79,7 +79,7 @@ namespace DoOrDieBiomes
 
 			{"piece_lorestone_dod", "Lorestone"},
 
-			{"item_walnut_dod", "Walnuts"},
+			{"item_walnuts_dod", "Walnuts"},
             {"item_walnuts_description_dod", "Gatherd from a Walnut Tree in the Mistlands."},
             {"item_apple_dod", "Apples"},
             {"item_apple_description_dod", "Gatherd from an Apple Tree in the Mistlands."},
@@ -87,6 +87,8 @@ namespace DoOrDieBiomes
             {"item_redberries_description_dod", "Gatherd from a Cherry Tree in the Mistlands."},
         };
         private static Dictionary<string, string> russian = new Dictionary<string, string>() {
+			{ "item_pickaxe_steel_dod", "Стальная кирка" },
+			{ "item_pickaxe_steel_description_dod", "Требуется для добычи фельметаллической руды и фрометаллической руды" },
 
 			{"spawner_firedraketower_dod", "Башня Дрейка"},
 			{"spawner_arena_dod", "Arena Spawner"},
@@ -98,7 +100,6 @@ namespace DoOrDieBiomes
 			{"prop_cavemushroom_dod", "Пещерный гриб"},
 			{"item_cavemushroom_dod", "Пещерный гриб"},
 			{"item_cavemushroom_description_dod", "Они пришли из подземного мира."},
-
 			{"lore_underworld_dod", "Подземный мир - это огромное подземное царство, населенное странными и зловещими существами. Это место, куда немногие люди уходят и откуда еще меньше возвращается ...."},
 			{"enemy_pin_underworld_dod", "Подземный мир"},
 			{"location_mysterycaveb_dod", "Ледяная пещера"},
@@ -108,6 +109,7 @@ namespace DoOrDieBiomes
 			{"piece_startstone_dod", "Добро пожаловать в Do or Die"},
 			{"lore_start_label_dod", "Сложность в Do or Die"},
 			{"lore_start_dod", "Сложность масштабирования всегда активна. Чем дольше вы находитесь в мире и чем больше боссов вы убиваете, тем сложнее станет мир. Боссы будут повышаться на один уровень за каждый уровень мира после того, как вы убьете их в первый раз. Существа биома повышаются на один уровень после того, как вы убиваете босса Ванили в этом биоме. Все существа получают 5% урона и здоровья на каждом из пяти мировых уровней. Максимальное количество звезд увеличивается до 10 плюс 3 при повышении уровня сектора »."},
+
 			{"piece_vegvisir_dod", "Рунический камень"},
 			{"prop_altar_bitterstump_dod", "Алтарь Горького Пня"},
 			{"item_token_skull_dod", "Знак черепа"},
@@ -117,6 +119,7 @@ namespace DoOrDieBiomes
 			{"enemy_pin_bitterstump_dod", "Пещера Горького Пня"},
 			{"location_bitterstump_dod", "Пещера Горького Пня"},
 			{"lore_bitterstump_dod", "Горький Пень - Неизвестно"},
+			
 			{"prop_bluemushroom_dod","Блюит"},
 			{"prop_bluemushroom_description_dod", "Найдено в Туманных Землях"},
 			{"prop_purpmushroom_dod", "Кронштейн для покраски"},
@@ -124,26 +127,33 @@ namespace DoOrDieBiomes
 			{"prop_walnuttree_dod",	"Грецкий орех"},
 			{"prop_appletree_dod",	"Яблоко"},
 			{"prop_redcherries_dod", "Вишня"},
-			{"prop_banana_dod", "Банан"},
+			{"item_banana_dod", "Банан"},
+			
+			{"item_banana_description_dod", "Найдено на Равнинах"},
 			{"prop_bananatree_dod","Банановое дерево"},
+			
 			{"prop_mistlandsoak_dod","Дуб Туманных земель"},
 			{"prop_mistlandsbush_dod","Куст"},
 			{"prop_oldoak_dod","Старый дуб"},
 			{"prop_poplar_dod","Тополь"},
 			{"prop_willow_dod","Ива"},
 			{"prop_northernpine_dod", "Северная сосна"},
+			
 			{"location_mistlandscave_dod","Туманная пещера"},
 			{"location_mistlandstower_dod","Башня теней"},
 			{"location_secretentrance_mistland_dod","Строится"},
 			{"location_castlearenain_dod","Арена"},
 			{"location_castlearenaout_dod","Вы покинули Арену"},
 			{"location_castlearena_dod","Замковая арена"},
+			
 			{"location_ramborecave_dod", "Алтарь Рам'Бора"},
 			{"location_ramborecave_text_dod", "Требуется 5 бивней кабана"},
 			{"enemy_pin_rambore_dod", "Пещера Рам'Бора"},
 			{"location_rambore_dod", "Пещера Рам'Бора"},
 			{"lore_rambore_dod", "Рам'Бор - Неизвестно"},
+			
 			{"piece_lorestone_dod", "Камень знаний"},
+			
 			{"item_walnuts_dod","Грецкие орехи"},
 			{"item_walnuts_description_dod", "Собраны с Ореха в Туманных Землях."},
 			{"item_apple_dod", "Яблоки"},
