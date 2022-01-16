@@ -12,6 +12,8 @@ namespace DoOrDieBiomes
         private static Localization lcl;
         public static Dictionary<string, string> t;
         private static Dictionary<string, string> english = new Dictionary<string, string>() {
+			{ "item_pickaxe_steel_dod", "Steel Pickaxe" },
+			{ "item_pickaxe_steel_description_dod", "Required to mine Felmetal Ore and Frometal Ore" },
 
 			{ "spawner_firedraketower_dod", "Drake Tower" },
 			{ "spawner_arena_dod", "Arena Spawner" },
@@ -42,15 +44,17 @@ namespace DoOrDieBiomes
 			{"enemy_pin_bitterstump_dod", "Bitterstump's Cave"},
 			{"location_bitterstump_dod", "Bitterstump's Cave"},
 			{"lore_bitterstump_dod", "Bitterstump - Unknown"},
-
-            {"prop_bluemushroom_dod", "Blewit"},
+			
+			{"prop_bluemushroom_dod", "Blewit"},
             {"prop_bluemushroom_description_dod", "Found in Mistlands"},
             {"prop_purpmushroom_dod", "Blushing Bracket"},
             {"prop_purpmushroom_description_dod", "Found in Mistlands"},
             {"prop_walnuttree_dod", "Walnut"},
             {"prop_appletree_dod", "Apple"},
             {"prop_redcherries_dod", "Cherry"},
-            {"prop_banana_dod", "Banana"},
+			{"item_banana_dod", "Banana"},
+			{"item_banana_dod", "Banana"},
+			{"item_banana_description_dod", "Found in the Plains"},
             {"prop_bananatree_dod", "Banana Tree"},
 
             {"prop_mistlandsoak_dod", "Mistlands Oak"},

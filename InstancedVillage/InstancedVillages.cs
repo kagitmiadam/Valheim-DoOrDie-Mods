@@ -64,8 +64,8 @@ namespace InstancedVillages
             IVAssets = AssetUtils.LoadAssetBundleFromResources("concept", Assembly.GetExecutingAssembly());
             try
             {
-                var AnyLoc1 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Village"), true);
-                ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc1, new LocationConfig
+                var AnyLoc1 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Village"));
+                ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc1, true, new LocationConfig
                 {
                     Biome = Heightmap.Biome.Meadows,
                     Quantity = 5,
@@ -78,8 +78,8 @@ namespace InstancedVillages
                     MaxAltitude = 400f,
                     MinDistanceFromSimilar = 100f,
                 }));
-                var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_VillageMed"), true);
-                ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc2, new LocationConfig
+                var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_VillageMed"));
+                ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc2, true, new LocationConfig
                 {
                     Biome = Heightmap.Biome.Meadows,
                     Quantity = 5,
@@ -92,8 +92,8 @@ namespace InstancedVillages
                     MaxAltitude = 400f,
                     MinDistanceFromSimilar = 100f,
                 }));
-                var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Hut"), true);
-                ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc3, new LocationConfig
+                var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Hut"));
+                ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc3, true, new LocationConfig
                 {
                     Biome = Heightmap.Biome.Meadows,
                     Quantity = 25,

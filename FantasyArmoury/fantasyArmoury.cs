@@ -47,6 +47,7 @@ namespace FantasyArmoury
         }
         private void LoadFAAssets()
         {
+            Debug.Log("FantasyArmoury: 2H Axe");
             GameObject weapon1 = FAAssets.LoadAsset<GameObject>("Axe2H_01_FA");
             CustomItem axe1 = new CustomItem(weapon1, true);
             ItemManager.Instance.AddItem(axe1);
@@ -65,6 +66,7 @@ namespace FantasyArmoury
             GameObject weapon6 = FAAssets.LoadAsset<GameObject>("Axe2H_06_FA");
             CustomItem axe6 = new CustomItem(weapon6, true);
             ItemManager.Instance.AddItem(axe6);
+            Debug.Log("FantasyArmoury: 2H Hammer");
             GameObject weapon7 = FAAssets.LoadAsset<GameObject>("Hammer_2H_01_FA");
             CustomItem hammer1 = new CustomItem(weapon7, true);
             ItemManager.Instance.AddItem(hammer1);
@@ -74,6 +76,7 @@ namespace FantasyArmoury
             GameObject weapon9 = FAAssets.LoadAsset<GameObject>("Hammer_2H_03_FA");
             CustomItem hammer3 = new CustomItem(weapon9, true);
             ItemManager.Instance.AddItem(hammer3);
+            Debug.Log("FantasyArmoury: 2H Sword");
             GameObject weapon10 = FAAssets.LoadAsset<GameObject>("Sword_2H_01_FA");
             CustomItem sword1 = new CustomItem(weapon10, true);
             ItemManager.Instance.AddItem(sword1);
@@ -92,9 +95,11 @@ namespace FantasyArmoury
             GameObject weapon15 = FAAssets.LoadAsset<GameObject>("Sword_2H_06_FA");
             CustomItem sword6 = new CustomItem(weapon15, true);
             ItemManager.Instance.AddItem(sword6);
+            Debug.Log("FantasyArmoury: 2H Scythe");
             GameObject weapon16 = FAAssets.LoadAsset<GameObject>("Scythe2H_01_FA");
             CustomItem scythe1 = new CustomItem(weapon16, true);
             ItemManager.Instance.AddItem(scythe1);
+            Debug.Log("FantasyArmoury: 2H Staff");
             GameObject weapon17 = FAAssets.LoadAsset<GameObject>("Staff_2H_01_FA");
             CustomItem staff1 = new CustomItem(weapon17, true);
             ItemManager.Instance.AddItem(staff1);
@@ -110,6 +115,7 @@ namespace FantasyArmoury
             GameObject weapon21 = FAAssets.LoadAsset<GameObject>("Staff_2H_05_FA");
             CustomItem staff5 = new CustomItem(weapon21, true);
             ItemManager.Instance.AddItem(staff5);
+            Debug.Log("FantasyArmoury: 1H Axe");
             GameObject weapon22 = FAAssets.LoadAsset<GameObject>("Axe_1H_01_FA");
             CustomItem axe7 = new CustomItem(weapon22, true);
             ItemManager.Instance.AddItem(axe7);
@@ -128,6 +134,7 @@ namespace FantasyArmoury
             GameObject weapon27 = FAAssets.LoadAsset<GameObject>("Axe_1H_06_FA");
             CustomItem axe12 = new CustomItem(weapon27, true);
             ItemManager.Instance.AddItem(axe12);
+            Debug.Log("FantasyArmoury: 1H Sword");
             GameObject weapon28 = FAAssets.LoadAsset<GameObject>("Sword_1H_01_FA");
             CustomItem sword7 = new CustomItem(weapon28, true);
             ItemManager.Instance.AddItem(sword7);
@@ -143,9 +150,6 @@ namespace FantasyArmoury
             GameObject weapon32 = FAAssets.LoadAsset<GameObject>("Sword_1H_05_FA");
             CustomItem sword11 = new CustomItem(weapon32, true);
             ItemManager.Instance.AddItem(sword11);
-            GameObject weapon33 = FAAssets.LoadAsset<GameObject>("Sword_1H_06_FA");
-            CustomItem sword12 = new CustomItem(weapon33, true);
-            ItemManager.Instance.AddItem(sword12);
             FAAssets.Unload(false);
         }
     }

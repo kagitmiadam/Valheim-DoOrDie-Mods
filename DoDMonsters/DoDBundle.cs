@@ -20,13 +20,14 @@ namespace DoDMonsters
 	[BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
 	[BepInDependency("com.jotunn.jotunn", BepInDependency.DependencyFlags.HardDependency)]
+	[BepInDependency("horemvore.DoDBiomes", BepInDependency.DependencyFlags.HardDependency)]
 	internal class DoDBundle : BaseUnityPlugin
 	{
 		public const string PluginGUID = "horemvore.DoDMonsters";
 
 		public const string PluginName = "DoOrDieMonsters";
 
-		public const string PluginVersion = "0.4.5";
+		public const string PluginVersion = "0.4.6";
 
 		private Harmony _harmony;
 		public static readonly ManualLogSource DoDLogger = BepInEx.Logging.Logger.CreateLogSource(PluginName);
@@ -360,6 +361,27 @@ namespace DoDMonsters
 		public static CustomStatusEffect SE_Frostbitten_DoD;
 		public static CustomStatusEffect SE_Slow_DoD;
 
+
+		public static GameObject BeholderA1;
+		public static GameObject BeholderA2;
+		public static GameObject EntA1;
+		public static GameObject EntA2;
+		public static GameObject EntA3;
+		public static GameObject EntA4;
+		public static GameObject EntA5;
+		public static GameObject DemonLordA1;
+		public static GameObject DemonLordA2;
+		public static GameObject DemonLordA3;
+		public static GameObject DemonLordA4;
+		public static GameObject DemonLordA5;
+
+		public static GameObject TreeEnt;
+		public static GameObject Beholder;
+		public static GameObject DemonLord;
+		//public static GameObject IceElemental;
+		//public static GameObject FireElemental;
+		//public static GameObject Elemental;
+
 		public AssetBundle DoDAssets;
 
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
@@ -375,12 +397,11 @@ namespace DoDMonsters
 			Debug.Log("DoDMonsters: Loading and Creating Assets");
 			LoadBundle();
 			LoadDoDAssets();
-			CreateDropables(); 
-			UpdateBlastFurnace(); 
+			CreateDropables();
 			if (MonstersEnable.Value == true) {
 				CreateMonsterAbilities();
 				CreateMonsterItems();
-				AddMonsterReskins();  }
+				AddMonsterReskins(); }
 			if (ArmorCrateEnable.Value == true) {
 				CreateArmorCrates(); }
 			if (WeaponCrateEnable.Value == true) {
@@ -393,15 +414,16 @@ namespace DoDMonsters
 				CreateWands();
 				CreateMagicSwords();
 				CreateBows();
-				CreateSwords();	}
+				CreateSwords(); }
 			if (BuildablesEnable.Value == true) {
 				CreateAnvils();
 				CreateRugs(); }
-			if (BossesEnable.Value == true)	{
+			if (BossesEnable.Value == true) {
 				CreateTierItems();
 				CreateShields();
 				AddBosses(); }
-			//AddNewAnimals();
+			AddNewAnimals();
+			AddNewMonsters();
 			ItemManager.OnItemsRegistered += ModWorldObjects;
 			AddStatusEffects();
 			ItemManager.OnItemsRegistered += UpdateWeaponsSE;
@@ -411,11 +433,15 @@ namespace DoDMonsters
 			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoDMonsters");
 		}
 		public void LoadBundle()
-        {
+		{
 			DoDAssets = AssetUtils.LoadAssetBundleFromResources("doordieassets", Assembly.GetExecutingAssembly());
 		}
 		private void LoadDoDAssets()
 		{
+			//Debug.Log("DoDMonsters: 0");
+			TreeEnt = DoDAssets.LoadAsset<GameObject>("TreeEnt_DoD");
+			Beholder = DoDAssets.LoadAsset<GameObject>("Beholder_DoD");
+			DemonLord = DoDAssets.LoadAsset<GameObject>("DemonLord_DoD");
 			//Debug.Log("DoDMonsters: 1");
 			SwordMoonlight = DoDAssets.LoadAsset<GameObject>("MoonSword_DoD");
 			//Debug.Log("DoDMonsters: 2");
@@ -430,6 +456,12 @@ namespace DoDMonsters
 			BrownLizard = DoDAssets.LoadAsset<GameObject>("BrownLizard_DoD");
 			GreenLizard = DoDAssets.LoadAsset<GameObject>("GreenLizard_DoD");
 			SpottedLizard = DoDAssets.LoadAsset<GameObject>("SpottedLizard_DoD");
+			GreenFrog = DoDAssets.LoadAsset<GameObject>("GreenFrog_DoD");
+			BlackFrog = DoDAssets.LoadAsset<GameObject>("BlackFrog_DoD");
+			SpottedFrog = DoDAssets.LoadAsset<GameObject>("SpottedFrog_DoD");
+			GreyRabbit = DoDAssets.LoadAsset<GameObject>("GreyRabbit_DoD");
+			BrownRabbit = DoDAssets.LoadAsset<GameObject>("BrownRabbit_DoD");
+			GiantSnail = DoDAssets.LoadAsset<GameObject>("GiantSnail_DoD");
 
 			//Debug.Log("DoDMonsters: 3");
 			DrakespitFire = DoDAssets.LoadAsset<GameObject>("drake_firespit_attack_dod");
@@ -505,6 +537,18 @@ namespace DoDMonsters
 			imp_icebolt_attack = DoDAssets.LoadAsset<GameObject>("imp_icebolt_attack_dod");
 			imp_stormbolt_attack = DoDAssets.LoadAsset<GameObject>("imp_stormbolt_attack_dod");
 			imp_voidbolt_attack = DoDAssets.LoadAsset<GameObject>("imp_voidbolt_attack_dod");
+			BeholderA1 = DoDAssets.LoadAsset<GameObject>("Beholder_Attack1_DoD");
+			BeholderA2 = DoDAssets.LoadAsset<GameObject>("Beholder_Attack2_DoD");
+			EntA1 = DoDAssets.LoadAsset<GameObject>("Ent_Attack1_DoD");
+			EntA2 = DoDAssets.LoadAsset<GameObject>("Ent_Attack2_DoD");
+			EntA3 = DoDAssets.LoadAsset<GameObject>("Ent_Attack3_DoD");
+			EntA4 = DoDAssets.LoadAsset<GameObject>("Ent_Attack2Combo_DoD");
+			EntA5 = DoDAssets.LoadAsset<GameObject>("Ent_Attack3Combo_DoD");
+			DemonLordA1 = DoDAssets.LoadAsset<GameObject>("DemonLord_Attack1_DoD");
+			DemonLordA2 = DoDAssets.LoadAsset<GameObject>("DemonLord_Attack2_DoD");
+			DemonLordA3 = DoDAssets.LoadAsset<GameObject>("DemonLord_AttackWhip_DoD");
+			DemonLordA4 = DoDAssets.LoadAsset<GameObject>("DemonLord_AttackCombo2_DoD");
+			DemonLordA5 = DoDAssets.LoadAsset<GameObject>("DemonLord_AttackCombo3_DoD");
 
 			//Debug.Log("DoDMonsters: 9");
 			// Monster Items
@@ -528,6 +572,7 @@ namespace DoDMonsters
 			BowSkelG = DoDAssets.LoadAsset<GameObject>("Bow_SkelG_DoD");
 			ShieldCharred = DoDAssets.LoadAsset<GameObject>("Shield_Charred_DoD");
 			SwordCharred = DoDAssets.LoadAsset<GameObject>("Sword_Charred_DoD");
+			BowCharred = DoDAssets.LoadAsset<GameObject>("Bow_Charred_DoD");
 			BowCharred = DoDAssets.LoadAsset<GameObject>("Bow_Charred_DoD");
 			//Debug.Log("DoDMonsters: 10");
 			// Broken Shields
@@ -727,12 +772,6 @@ namespace DoDMonsters
 			DarkDrake = DoDAssets.LoadAsset<GameObject>("DarknessDrake_DoD");
 			PoisonDrake = DoDAssets.LoadAsset<GameObject>("PoisonDrake_DoD");
 			BlackDrake = DoDAssets.LoadAsset<GameObject>("DarkDrake_DoD");
-			GreenFrog = DoDAssets.LoadAsset<GameObject>("GreenFrog_DoD");
-			BlackFrog = DoDAssets.LoadAsset<GameObject>("BlackFrog_DoD");
-			SpottedFrog = DoDAssets.LoadAsset<GameObject>("SpottedFrog_DoD");
-			GreyRabbit = DoDAssets.LoadAsset<GameObject>("GreyRabbit_DoD");
-			BrownRabbit = DoDAssets.LoadAsset<GameObject>("BrownRabbit_DoD");
-			GiantSnail = DoDAssets.LoadAsset<GameObject>("GiantSnail_DoD");
 
 			//Debug.Log("DoDMonsters: 23");
 			GameObject AoESpray = DoDAssets.LoadAsset<GameObject>("AoE_Spray_DoD");
@@ -765,7 +804,7 @@ namespace DoDMonsters
 			GameObject AoEAuraStorm = DoDAssets.LoadAsset<GameObject>("AoE_AuraStorm_DoD");
 			PrefabManager.Instance.AddPrefab(AoESpray);
 			PrefabManager.Instance.AddPrefab(BitterRoots);
-			PrefabManager.Instance.AddPrefab(AoESkirNova); 
+			PrefabManager.Instance.AddPrefab(AoESkirNova);
 			PrefabManager.Instance.AddPrefab(AoEBitterstumpHeal);
 			PrefabManager.Instance.AddPrefab(AoEInfected);
 			PrefabManager.Instance.AddPrefab(AoEDiseased);
@@ -1206,6 +1245,42 @@ namespace DoDMonsters
 			GameObject monsteritem21 = BowCharred;
 			CustomItem customItem21 = new CustomItem(monsteritem21, fixReference: true);
 			ItemManager.Instance.AddItem(customItem21);
+			GameObject monsteritem22 = BeholderA1;
+			CustomItem customItem22 = new CustomItem(monsteritem22, fixReference: true);
+			ItemManager.Instance.AddItem(customItem22);
+			GameObject monsteritem23 = BeholderA2;
+			CustomItem customItem23 = new CustomItem(monsteritem23, fixReference: true);
+			ItemManager.Instance.AddItem(customItem23);
+			GameObject monsteritem24 = EntA1;
+			CustomItem customItem24 = new CustomItem(monsteritem24, fixReference: true);
+			ItemManager.Instance.AddItem(customItem24);
+			GameObject monsteritem25 = EntA2;
+			CustomItem customItem25 = new CustomItem(monsteritem25, fixReference: true);
+			ItemManager.Instance.AddItem(customItem25);
+			GameObject monsteritem26 = EntA3;
+			CustomItem customItem26 = new CustomItem(monsteritem26, fixReference: true);
+			ItemManager.Instance.AddItem(customItem26);
+			GameObject monsteritem27 = EntA4;
+			CustomItem customItem27 = new CustomItem(monsteritem27, fixReference: true);
+			ItemManager.Instance.AddItem(customItem27);
+			GameObject monsteritem28 = EntA5;
+			CustomItem customItem28 = new CustomItem(monsteritem28, fixReference: true);
+			ItemManager.Instance.AddItem(customItem28);
+			GameObject monsteritem29 = DemonLordA1;
+			CustomItem customItem29 = new CustomItem(monsteritem29, fixReference: true);
+			ItemManager.Instance.AddItem(customItem29);
+			GameObject monsteritem30 = DemonLordA2;
+			CustomItem customItem30 = new CustomItem(monsteritem30, fixReference: true);
+			ItemManager.Instance.AddItem(customItem30);
+			GameObject monsteritem31 = DemonLordA3;
+			CustomItem customItem31 = new CustomItem(monsteritem31, fixReference: true);
+			ItemManager.Instance.AddItem(customItem31);
+			GameObject monsteritem32 = DemonLordA4;
+			CustomItem customItem32 = new CustomItem(monsteritem32, fixReference: true);
+			ItemManager.Instance.AddItem(customItem32);
+			GameObject monsteritem33 = DemonLordA5;
+			CustomItem customItem33 = new CustomItem(monsteritem33, fixReference: true);
+			ItemManager.Instance.AddItem(customItem33);
 		}
 		private void CreateMonsterAbilities()
 		{
@@ -1524,7 +1599,7 @@ namespace DoDMonsters
 		private void AddNewAnimals()
 		{
 			//Debug.Log("DoDMonsters: Loading and Creating Critters");
-			GameObject animal16 = SpottedLizard;
+			/*GameObject animal16 = SpottedLizard;
 			CustomPrefab critter16 = new CustomPrefab(animal16, true);
 			PrefabManager.Instance.AddPrefab(critter16);
 			GameObject animal15 = GreenLizard;
@@ -1565,55 +1640,25 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(critter4);
 			GameObject animal3 = SpottedFrog;
 			CustomPrefab critter3 = new CustomPrefab(animal3, true);
-			PrefabManager.Instance.AddPrefab(critter3);
+			PrefabManager.Instance.AddPrefab(critter3);*/
 			GameObject animal2 = BlackFrog;
 			CustomPrefab critter2 = new CustomPrefab(animal2, true);
 			PrefabManager.Instance.AddPrefab(critter2);
-			GameObject animal1 = GreenFrog;
+			/*GameObject animal1 = GreenFrog;
 			CustomPrefab critter1 = new CustomPrefab(animal1, true);
-			PrefabManager.Instance.AddPrefab(critter1);
+			PrefabManager.Instance.AddPrefab(critter1);*/
 		}
-		private void UpdateBlastFurnace()
+		private void AddNewMonsters()
 		{
-			GameObject itemPrefab = DoDAssets.LoadAsset<GameObject>("SteelBar_DoD");
-			CustomItem customItem = new CustomItem(itemPrefab, fixReference: false);
-			ItemManager.Instance.AddItem(customItem);
-
-			CustomItemConversion itemConversion = new CustomItemConversion(new SmelterConversionConfig
-			{
-				Station = "blastfurnace",
-				FromItem = "Iron",
-				ToItem = "SteelBar_DoD"
-			});
-			ItemManager.Instance.AddItemConversion(itemConversion);
-			GameObject itemPrefab2 = DoDAssets.LoadAsset<GameObject>("FrometalOre_DoD");
-			GameObject itemPrefab3 = DoDAssets.LoadAsset<GameObject>("FrometalBar_DoD");
-			CustomItem customItem2 = new CustomItem(itemPrefab2, fixReference: false);
-			CustomItem customItem3 = new CustomItem(itemPrefab3, fixReference: false);
-			ItemManager.Instance.AddItem(customItem2);
-			ItemManager.Instance.AddItem(customItem3);
-
-			CustomItemConversion itemConversion2 = new CustomItemConversion(new SmelterConversionConfig
-			{
-				Station = "blastfurnace",
-				FromItem = "FrometalOre_DoD",
-				ToItem = "FrometalBar_DoD"
-			});
-			ItemManager.Instance.AddItemConversion(itemConversion2);
-			GameObject itemPrefab4 = DoDAssets.LoadAsset<GameObject>("FelmetalOre_DoD");
-			GameObject itemPrefab5 = DoDAssets.LoadAsset<GameObject>("FelmetalBar_DoD");
-			CustomItem customItem4 = new CustomItem(itemPrefab4, fixReference: false);
-			CustomItem customItem5 = new CustomItem(itemPrefab5, fixReference: false);
-			ItemManager.Instance.AddItem(customItem4);
-			ItemManager.Instance.AddItem(customItem5);
-
-			CustomItemConversion itemConversion3 = new CustomItemConversion(new SmelterConversionConfig
-			{
-				Station = "blastfurnace",
-				FromItem = "FelmetalOre_DoD",
-				ToItem = "FelmetalBar_DoD"
-			});
-			ItemManager.Instance.AddItemConversion(itemConversion3);
+			GameObject monster1 = TreeEnt;
+			CustomPrefab creature1 = new CustomPrefab(monster1, true);
+			PrefabManager.Instance.AddPrefab(creature1);
+			GameObject monster2 = Beholder;
+			CustomPrefab creature2 = new CustomPrefab(monster2, true);
+			PrefabManager.Instance.AddPrefab(creature2);
+			GameObject monster3 = DemonLord;
+			CustomPrefab creature3 = new CustomPrefab(monster3, true);
+			PrefabManager.Instance.AddPrefab(creature3);
 		}
 		private void CreateAnvils()
 		{
