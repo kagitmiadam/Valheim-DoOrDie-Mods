@@ -189,15 +189,15 @@ armor stats:
     damage modifiers:
       Fire: Weak
   JE_ArmorBarbarianHelmet:
-    armor: 4
-    armor per level: 2
-    weight: 5
+    armor: 21
+    armor per level: 3
+    weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 8
     equip time: 1
     speed: 0
     enable durability: true
-    durability: 1000
+    durability: 600
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -208,15 +208,15 @@ armor stats:
       size: 3
     damage modifiers: 
   JE_ArmorBarbarianChest:
-    armor: 4
-    armor per level: 2
+    armor: 21
+    armor per level: 3
     weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 8
     equip time: 1
     speed: -5
     enable durability: true
-    durability: 1000
+    durability: 600
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -227,15 +227,15 @@ armor stats:
       size: 3
     damage modifiers: 
   JE_ArmorBarbarianLegs:
-    armor: 4
-    armor per level: 2
+    armor: 21
+    armor per level: 3
     weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 8
     equip time: 1
     speed: -5
     enable durability: true
-    durability: 1000
+    durability: 600
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -246,15 +246,15 @@ armor stats:
       size: 3
     damage modifiers: 
   JE_ArmorBarbarianCape:
-    armor: 2
+    armor: 10
     armor per level: 2
     weight: 5
     teleportable: true
-    max upgrade: 4
+    max upgrade: 8
     equip time: 1
-    speed: -2.5
+    speed: -5
     enable durability: true
-    durability: 1000
+    durability: 600
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -265,11 +265,11 @@ armor stats:
       size: 0
     damage modifiers: 
   JE_ArmorPlateHelmet:
-    armor: 18
+    armor: 32
     armor per level: 2
-    weight: 8
+    weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 6
     equip time: 1
     speed: 0
     enable durability: true
@@ -284,13 +284,13 @@ armor stats:
       size: 3
     damage modifiers: 
   JE_ArmorPlateChest:
-    armor: 18
+    armor: 32
     armor per level: 2
-    weight: 20
+    weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 6
     equip time: 1
-    speed: -7.5
+    speed: -5
     enable durability: true
     durability: 1000
     durability per level: 200
@@ -303,13 +303,13 @@ armor stats:
       size: 3
     damage modifiers: 
   JE_ArmorPlateLegs:
-    armor: 18
+    armor: 32
     armor per level: 2
-    weight: 20
+    weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 6
     equip time: 1
-    speed: -7.5
+    speed: -5
     enable durability: true
     durability: 1000
     durability per level: 200
@@ -322,15 +322,15 @@ armor stats:
       size: 3
     damage modifiers: 
   JE_ArmorDragonslayerHelmet:
-    armor: 18
+    armor: 36
     armor per level: 2
-    weight: 5
+    weight: 15
     teleportable: true
     max upgrade: 4
     equip time: 1
     speed: 0
     enable durability: true
-    durability: 1000
+    durability: 1400
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -340,8 +340,9 @@ armor stats:
       status effect: JE_ArmorDragonslayer_SE
       size: 3
     damage modifiers: 
+      Frost: Resistant
   JE_ArmorDragonslayerChest:
-    armor: 18
+    armor: 36
     armor per level: 2
     weight: 15
     teleportable: true
@@ -349,7 +350,7 @@ armor stats:
     equip time: 1
     speed: -5
     enable durability: true
-    durability: 1000
+    durability: 1400
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -358,9 +359,10 @@ armor stats:
       name: JE_ArmorDragonslayer_SE_SET
       status effect: JE_ArmorDragonslayer_SE
       size: 3
-    damage modifiers: 
+    damage modifiers:
+      Frost: Resistant   
   JE_ArmorDragonslayerLegs:
-    armor: 18
+    armor: 36
     armor per level: 2
     weight: 15
     teleportable: true
@@ -368,7 +370,7 @@ armor stats:
     equip time: 1
     speed: -5
     enable durability: true
-    durability: 1000
+    durability: 1400
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -377,17 +379,18 @@ armor stats:
       name: JE_ArmorDragonslayer_SE_SET
       status effect: JE_ArmorDragonslayer_SE
       size: 3
-    damage modifiers: 
+    damage modifiers:
+      Frost: Resistant
   JE_ArmorWandererHelmet:
     armor: 24
-    armor per level: 2
-    weight: 5
+    armor per level: 3
+    weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 7
     equip time: 1
     speed: 0
     enable durability: true
-    durability: 1000
+    durability: 800
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -399,14 +402,14 @@ armor stats:
     damage modifiers: 
   JE_ArmorWandererChest:
     armor: 24
-    armor per level: 2
+    armor per level: 3
     weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 7
     equip time: 1
     speed: -5
     enable durability: true
-    durability: 1000
+    durability: 800
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -418,14 +421,14 @@ armor stats:
     damage modifiers: 
   JE_ArmorWandererLegs:
     armor: 24
-    armor per level: 2
+    armor per level: 3
     weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 7
     equip time: 1
     speed: -5
     enable durability: true
-    durability: 1000
+    durability: 800
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -436,7 +439,7 @@ armor stats:
       size: 3
     damage modifiers: 
   JE_ArmorWandererCape:
-    armor: 1
+    armor: 10
     armor per level: 2
     weight: 5
     teleportable: true
@@ -444,7 +447,7 @@ armor stats:
     equip time: 1
     speed: 0
     enable durability: true
-    durability: 1000
+    durability: 1400
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -457,15 +460,15 @@ armor stats:
       Fire: Weak
       Frost: Resistant
   JE_ArmorNomadHelmet:
-    armor: 26
+    armor: 34
     armor per level: 2
-    weight: 5
+    weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 5
     equip time: 1
     speed: 0
     enable durability: true
-    durability: 1000
+    durability: 1200
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -476,15 +479,15 @@ armor stats:
       size: 3
     damage modifiers: 
   JE_ArmorNomadChest:
-    armor: 26
+    armor: 34
     armor per level: 2
     weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 5
     equip time: 1
     speed: -5
     enable durability: true
-    durability: 1000
+    durability: 1200
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -495,15 +498,15 @@ armor stats:
       size: 3
     damage modifiers: 
   JE_ArmorNomadLegs:
-    armor: 26
+    armor: 34
     armor per level: 2
     weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 5
     equip time: 1
     speed: -5
     enable durability: true
-    durability: 1000
+    durability: 1200
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -514,15 +517,15 @@ armor stats:
       size: 3
     damage modifiers: 
   JE_ArmorAshlandsHelmet:
-    armor: 32
+    armor: 38
     armor per level: 2
-    weight: 5
+    weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 3
     equip time: 1
     speed: 0
     enable durability: true
-    durability: 1000
+    durability: 1600
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -532,17 +535,17 @@ armor stats:
       status effect: JE_ArmorAshlands_SE
       size: 3
     damage modifiers:
-      Frost: Resistant
+      Fire: Resistant
   JE_ArmorAshlandsChest:
-    armor: 32
+    armor: 38
     armor per level: 2
     weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 3
     equip time: 1
     speed: -5
     enable durability: true
-    durability: 1000
+    durability: 1600
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -552,17 +555,17 @@ armor stats:
       status effect: JE_ArmorAshlands_SE
       size: 3
     damage modifiers:
-      Frost: Resistant
+      Fire: Resistant
   JE_ArmorAshlandsLegs:
-    armor: 32
+    armor: 38
     armor per level: 2
     weight: 15
     teleportable: true
-    max upgrade: 4
+    max upgrade: 3
     equip time: 1
     speed: -5
     enable durability: true
-    durability: 1000
+    durability: 1600
     durability per level: 200
     repairable: true
     destroy broken: false
@@ -572,7 +575,7 @@ armor stats:
       status effect: JE_ArmorAshlands_SE
       size: 3
     damage modifiers:
-      Frost: Resistant
+      Fire: Resistant
 status effects:
   JE_BackpackSimple_SE:
     icon source: JE_BackpackSimple
@@ -702,12 +705,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Bronze:
-        amount: 5
-        amount per level: 3
-      DeerHide:
-        amount: 3
-        amount per level: 0
+      GoodArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorBarbarianChest_recipe:
     enabled: true
     prefab: JE_ArmorBarbarianChest
@@ -715,12 +715,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Bronze:
-        amount: 5
-        amount per level: 3
-      DeerHide:
-        amount: 3
-        amount per level: 0
+      GoodArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorBarbarianLegs_recipe:
     enabled: true
     prefab: JE_ArmorBarbarianLegs
@@ -728,12 +725,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Bronze:
-        amount: 5
-        amount per level: 3
-      DeerHide:
-        amount: 3
-        amount per level: 0
+      GoodArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorBarbarianCape_recipe:
     enabled: true
     prefab: JE_ArmorBarbarianCape
@@ -741,13 +735,7 @@ recipes:
     station: piece_workbench
     station level: 1
     requirements:
-      DeerHide:
-        amount: 5
-        amount per level: 5
-      BoneFragments:
-        amount: 5
-        amount per level: 5
-      Bronze:
+      GoodArmorKit_DoD:
         amount: 1
         amount per level: 1
   JE_ArmorPlateHelmet_recipe:
@@ -757,10 +745,7 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Iron:
-        amount: 20
-        amount per level: 5
-      DeerHide:
+      SuperiorArmorKit_DoD:
         amount: 2
         amount per level: 1
   JE_ArmorPlateChest_recipe:
@@ -770,10 +755,7 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Iron:
-        amount: 20
-        amount per level: 5
-      DeerHide:
+      SuperiorArmorKit_DoD:
         amount: 2
         amount per level: 1
   JE_ArmorPlateLegs_recipe:
@@ -783,10 +765,7 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Iron:
-        amount: 20
-        amount per level: 5
-      DeerHide:
+      SuperiorArmorKit_DoD:
         amount: 2
         amount per level: 1
   JE_ArmorDragonslayerHelmet_recipe:
@@ -796,15 +775,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Obsidian:
-        amount: 20
-        amount per level: 10
-      Silver:
-        amount: 10
-        amount per level: 5
-      WolfPelt:
-        amount: 5
-        amount per level: 3
+      ExceptionalArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorDragonslayerChest_recipe:
     enabled: true
     prefab: JE_ArmorDragonslayerChest
@@ -812,15 +785,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Obsidian:
-        amount: 20
-        amount per level: 10
-      Silver:
-        amount: 10
-        amount per level: 5
-      WolfPelt:
-        amount: 5
-        amount per level: 3
+      ExceptionalArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorDragonslayerLegs_recipe:
     enabled: true
     prefab: JE_ArmorDragonslayerLegs
@@ -828,15 +795,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Obsidian:
-        amount: 20
-        amount per level: 10
-      Silver:
-        amount: 10
-        amount per level: 5
-      WolfPelt:
-        amount: 5
-        amount per level: 3
+      ExceptionalArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorWandererHelmet_recipe:
     enabled: true
     prefab: JE_ArmorWandererHelmet
@@ -844,15 +805,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Iron:
-        amount: 15
-        amount per level: 7
-      LoxPelt:
-        amount: 7
-        amount per level: 2
-      LinenThread:
-        amount: 10
-        amount per level: 5
+      GreatArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorWandererChest_recipe:
     enabled: true
     prefab: JE_ArmorWandererChest
@@ -860,15 +815,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Iron:
-        amount: 15
-        amount per level: 7
-      LoxPelt:
-        amount: 7
-        amount per level: 2
-      LinenThread:
-        amount: 10
-        amount per level: 5
+      GreatArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorWandererLegs_recipe:
     enabled: true
     prefab: JE_ArmorWandererLegs
@@ -876,15 +825,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Iron:
-        amount: 15
-        amount per level: 7
-      LoxPelt:
-        amount: 7
-        amount per level: 2
-      LinenThread:
-        amount: 10
-        amount per level: 5
+      GreatArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorWandererCape_recipe:
     enabled: true
     prefab: JE_ArmorWandererCape
@@ -892,9 +835,9 @@ recipes:
     station: piece_workbench
     station level: 1
     requirements:
-      Flax:
-        amount: 15
-        amount per level: 5
+      GreatArmorKit_DoD:
+        amount: 1
+        amount per level: 1
   JE_ArmorNomadHelmet_recipe:
     enabled: true
     prefab: JE_ArmorNomadHelmet
@@ -902,15 +845,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      BlackMetal:
-        amount: 15
-        amount per level: 7
-      LoxPelt:
-        amount: 5
-        amount per level: 3
-      LinenThread:
-        amount: 5
-        amount per level: 3
+      ExcellentArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorNomadChest_recipe:
     enabled: true
     prefab: JE_ArmorNomadChest
@@ -918,15 +855,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      BlackMetal:
-        amount: 15
-        amount per level: 7
-      LoxPelt:
-        amount: 5
-        amount per level: 3
-      LinenThread:
-        amount: 5
-        amount per level: 3
+      ExcellentArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorNomadLegs_recipe:
     enabled: true
     prefab: JE_ArmorNomadLegs
@@ -934,15 +865,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      BlackMetal:
-        amount: 15
-        amount per level: 7
-      LoxPelt:
-        amount: 5
-        amount per level: 3
-      LinenThread:
-        amount: 5
-        amount per level: 3
+      ExcellentArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorAshlandsHelmet_recipe:
     enabled: true
     prefab: JE_ArmorAshlandsHelmet
@@ -950,15 +875,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Flametal:
-        amount: 20
-        amount per level: 10
-      LoxPelt:
-        amount: 5
-        amount per level: 5
-      LinenThread:
-        amount: 5
-        amount per level: 5
+      ExtraordinaryArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorAshlandsChest_recipe:
     enabled: true
     prefab: JE_ArmorAshlandsChest
@@ -966,15 +885,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Flametal:
-        amount: 20
-        amount per level: 10
-      LoxPelt:
-        amount: 5
-        amount per level: 5
-      LinenThread:
-        amount: 5
-        amount per level: 5
+      ExtraordinaryArmorKit_DoD:
+        amount: 2
+        amount per level: 1
   JE_ArmorAshlandsLegs_recipe:
     enabled: true
     prefab: JE_ArmorAshlandsLegs
@@ -982,15 +895,9 @@ recipes:
     station: forge
     station level: 1
     requirements:
-      Flametal:
-        amount: 20
-        amount per level: 10
-      LoxPelt:
-        amount: 5
-        amount per level: 5
-      LinenThread:
-        amount: 5
-        amount per level: 5
+      ExtraordinaryArmorKit_DoD:
+        amount: 2
+        amount per level: 1
 localization:
   English:
     JE_BackpackSimple: Simple backpack
