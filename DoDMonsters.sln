@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrynServer", "BrynServer\Br
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyArmoury", "FantasyArmoury\FantasyArmoury.csproj", "{D9BA7800-3EE9-47F8-BF54-D186F07DC8B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wildlife", "Wildlife\Wildlife.csproj", "{F247181F-9DA0-443A-8CD2-7B38A43A08C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{D9BA7800-3EE9-47F8-BF54-D186F07DC8B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9BA7800-3EE9-47F8-BF54-D186F07DC8B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9BA7800-3EE9-47F8-BF54-D186F07DC8B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F247181F-9DA0-443A-8CD2-7B38A43A08C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F247181F-9DA0-443A-8CD2-7B38A43A08C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F247181F-9DA0-443A-8CD2-7B38A43A08C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F247181F-9DA0-443A-8CD2-7B38A43A08C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
