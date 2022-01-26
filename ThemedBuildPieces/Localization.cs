@@ -16,6 +16,8 @@ namespace ThemedBuildPieces
 								{ "item_tbphammer_tp", "Themed Hammer" },
 								{ "item_tbphammer_description_tp", "Required for the construction of themed building pieces" },
 
+								{ "piece_thickstonewall8_tp", "Thick Stone Wall 2x8m" },
+								{ "piece_thinstonewall4_tp", "Thin Stone Wall 4x4m" },
 								{ "piece_thatchwall2_tp", "Thatch Wall 4m" },
 								{ "piece_thatchwall1_tp", "Thatch Wall 2m" },
 								{ "piece_thatchwindow2x1_tp", "Thatch Window 2m" },

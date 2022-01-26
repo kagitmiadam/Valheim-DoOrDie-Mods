@@ -27,7 +27,7 @@ namespace DoDMonsters
 
 		public const string PluginName = "DoOrDieMonsters";
 
-		public const string PluginVersion = "0.4.6";
+		public const string PluginVersion = "0.4.7";
 
 		private Harmony _harmony;
 		public static readonly ManualLogSource DoDLogger = BepInEx.Logging.Logger.CreateLogSource(PluginName);
@@ -90,6 +90,7 @@ namespace DoDMonsters
 		//public static GameObject Rylan;
 		public static GameObject SkirSandburst;
 		public static GameObject Farkas;
+		public static GameObject FarkasAlt;
 		public static GameObject Bhygshan;
 		public static GameObject Bitterstump;
 		public static GameObject Rambore;
@@ -292,12 +293,6 @@ namespace DoDMonsters
 
 		public static GameObject CBait;
 
-		public static GameObject Skugga;
-		public static GameObject Einherjar;
-		public static GameObject TestingA1;
-		public static GameObject TestingA2;
-		public static GameObject TestingA3;
-
 		public ConfigEntry<bool> ArmorCrateEnable;
 		public ConfigEntry<bool> WeaponCrateEnable;
 		public ConfigEntry<bool> ClassWeaponEnable;
@@ -320,32 +315,6 @@ namespace DoDMonsters
 
 		public static GameObject SwordMoonlight;
 
-		public static CustomStatusEffect NinjaSwordStatusEffect;
-		public static CustomStatusEffect MoonSwordStatusEffect;
-		public static CustomStatusEffect DruidSpearStatusEffect;
-		public static CustomStatusEffect RogueSwordStatusEffect;
-
-		public static CustomStatusEffect SE_Blistered_DoD;
-		public static CustomStatusEffect SE_Weak_DoD;
-		public static CustomStatusEffect SE_Diseased_DoD;
-		public static CustomStatusEffect SE_Infected_DoD;
-		public static CustomStatusEffect SE_GreaterBleeding_DoD;
-		public static CustomStatusEffect SE_Bleeding_DoD;
-		public static CustomStatusEffect SE_LesserBleeding_DoD;
-		public static CustomStatusEffect SE_GreaterShield_DoD;
-		public static CustomStatusEffect SE_Shield_DoD;
-		public static CustomStatusEffect SE_LesserShield_DoD;
-		public static CustomStatusEffect SE_GreaterRegen_DoD;
-		public static CustomStatusEffect SE_Regen_DoD;
-		public static CustomStatusEffect SE_LesserRegen_DoD;
-		public static CustomStatusEffect SE_GreaterHoT_DoD;
-		public static CustomStatusEffect SE_HoT_DoD;
-		public static CustomStatusEffect SE_LesserHoT_DoD;
-		public static CustomStatusEffect SE_Frostbite_DoD;
-		public static CustomStatusEffect SE_Frostbitten_DoD;
-		public static CustomStatusEffect SE_Slow_DoD;
-
-
 		public static GameObject BeholderA1;
 		public static GameObject BeholderA2;
 		public static GameObject EntA1;
@@ -358,13 +327,67 @@ namespace DoDMonsters
 		public static GameObject DemonLordA3;
 		public static GameObject DemonLordA4;
 		public static GameObject DemonLordA5;
+		public static GameObject ElementalA1;
+		public static GameObject ElementalA2;
+		public static GameObject ElementalA3;
+		public static GameObject ElementalA4;
+		public static GameObject ElementalA5;
+		public static GameObject ElementalA6;
+		public static GameObject ElementalA7;
+		public static GameObject ElementalA8;
+		public static GameObject IceElementalA1;
+		public static GameObject IceElementalA2;
+		public static GameObject IceElementalA3;
+		public static GameObject IceElementalA4;
+		public static GameObject IceElementalA5;
+		public static GameObject IceElementalA6;
+		public static GameObject IceElementalA7;
+		public static GameObject IceElementalA8;
+		public static GameObject FireElementalA1;
+		public static GameObject FireElementalA2;
+		public static GameObject FireElementalA3;
+		public static GameObject FireElementalA4;
+		public static GameObject FireElementalA5;
+		public static GameObject FireElementalA6;
+		public static GameObject FireElementalA7;
+		public static GameObject FireElementalA8;
+		public static GameObject KoboldA1;
+		public static GameObject KoboldA2;
+		public static GameObject KoboldA3;
+		public static GameObject KoboldA4;
+		public static GameObject KoboldA5;
+		public static GameObject KoboldA6;
+		public static GameObject KoboldA7;
+		public static GameObject KoboldA8;
+		public static GameObject HydraA1;
+		public static GameObject HydraA2;
+		public static GameObject HydraA3;
+		public static GameObject HydraA4;
+		public static GameObject DragonA1;
+		public static GameObject DragonA2;
+		public static GameObject DragonA3;
+		public static GameObject DragonA4;
+		public static GameObject DragonA5;
+		public static GameObject DragonA6;
+		public static GameObject DragonA7;
 
 		public static GameObject TreeEnt;
-		public static GameObject Beholder;
+		//public static GameObject Beholder;
 		public static GameObject DemonLord;
-		//public static GameObject IceElemental;
-		//public static GameObject FireElemental;
-		//public static GameObject Elemental;
+		public static GameObject IceElemental;
+		public static GameObject FireElemental;
+		public static GameObject Elemental;
+		public static GameObject Kobold;
+		public static GameObject Hydra;
+		public static GameObject Dragon;
+		public static GameObject Hobgoblin;
+		public static GameObject Ogre;
+		public static GameObject Cyclops;
+
+		public static GameObject Skugga;
+		public static GameObject Einherjar;
+		public static GameObject GrayWolf;
+		public static GameObject Nomad;
 
 		public AssetBundle DoDAssets;
 
@@ -378,7 +401,7 @@ namespace DoDMonsters
 		private void Awake()
 		{
 			CreateConfigurationValues();
-			Debug.Log("DoDMonsters: Loading and Creating Assets");
+			//Debug.Log("DoDMonsters: Loading and Creating Assets");
 			LoadBundle();
 			LoadDoDAssets();
 			CreateDropables();
@@ -408,8 +431,6 @@ namespace DoDMonsters
 				AddBosses(); }			
 			AddNewMonsters();
 			ItemManager.OnItemsRegistered += ModWorldObjects;
-			AddStatusEffects();
-			ItemManager.OnItemsRegistered += UpdateWeaponsSE;
 			ItemManager.OnItemsRegistered += ModMonsterAttackSE;
 
 			UnloadBundle();
@@ -421,16 +442,25 @@ namespace DoDMonsters
 		}
 		private void LoadDoDAssets()
 		{
-			Debug.Log("DoDMonsters: 0");
+			//Debug.Log("DoDMonsters: 0");
+			Cyclops = DoDAssets.LoadAsset<GameObject>("Cyclops_DoD");
+			Ogre = DoDAssets.LoadAsset<GameObject>("Ogre_DoD");
+			Hobgoblin = DoDAssets.LoadAsset<GameObject>("Hobgoblin_DoD");
+			Dragon = DoDAssets.LoadAsset<GameObject>("Dragon_DoD");
+			Hydra = DoDAssets.LoadAsset<GameObject>("Hydra_DoD");
+			Kobold = DoDAssets.LoadAsset<GameObject>("Kobold_DoD");
+			IceElemental = DoDAssets.LoadAsset<GameObject>("IceElemental_DoD");
+			FireElemental = DoDAssets.LoadAsset<GameObject>("FireElemental_DoD");
+			Elemental = DoDAssets.LoadAsset<GameObject>("EarthElemental_DoD");
 			TreeEnt = DoDAssets.LoadAsset<GameObject>("TreeEnt_DoD");
-			Beholder = DoDAssets.LoadAsset<GameObject>("Beholder_DoD");
+			//Beholder = DoDAssets.LoadAsset<GameObject>("Beholder_DoD");
 			DemonLord = DoDAssets.LoadAsset<GameObject>("DemonLord_DoD");
-			Debug.Log("DoDMonsters: 1");
+			//Debug.Log("DoDMonsters: 1");
 			SwordMoonlight = DoDAssets.LoadAsset<GameObject>("MoonSword_DoD");
-			Debug.Log("DoDMonsters: 2");
+			//Debug.Log("DoDMonsters: 2");
 			BhygshanAlt = DoDAssets.LoadAsset<GameObject>("BhygshanAlt_DoD");
 
-			Debug.Log("DoDMonsters: 3");
+			//Debug.Log("DoDMonsters: 3");
 			DrakespitFire = DoDAssets.LoadAsset<GameObject>("drake_firespit_attack_dod");
 			DrakespitArcane = DoDAssets.LoadAsset<GameObject>("drake_arcanespit_attack_dod");
 			DrakespitFrost = DoDAssets.LoadAsset<GameObject>("drake_frostspit_attack_dod");
@@ -438,19 +468,18 @@ namespace DoDMonsters
 			DrakespitPoison2 = DoDAssets.LoadAsset<GameObject>("drake_poisonspit_attack_dod");
 			DrakespitVoid = DoDAssets.LoadAsset<GameObject>("drake_voidspit_attack_dod");
 
-			Debug.Log("DoDMonsters: 4");
+			//Debug.Log("DoDMonsters: 4");
 			WandMountains = DoDAssets.LoadAsset<GameObject>("Wand_Mountain_DoD");
 			MaceMistlands = DoDAssets.LoadAsset<GameObject>("Mace_Mistlands_DoD");
 			MaceDeepNorth = DoDAssets.LoadAsset<GameObject>("Mace_DeepNorth_DoD");
-			TestingA1 = DoDAssets.LoadAsset<GameObject>("Test_Dragon_Attack_DoD");
-			TestingA2 = DoDAssets.LoadAsset<GameObject>("Test_Dragon_ClawAttack_DoD");
-			TestingA3 = DoDAssets.LoadAsset<GameObject>("Test_HornDragon_Attack_DoD");
 
-			Debug.Log("DoDMonsters: 5");
+			//Debug.Log("DoDMonsters: 5");
+			GrayWolf = DoDAssets.LoadAsset<GameObject>("GrayWolf_DoD");
+			Nomad = DoDAssets.LoadAsset<GameObject>("Nomad_DoD");
 			Skugga = DoDAssets.LoadAsset<GameObject>("Skugga_DoD");
 			Einherjar = DoDAssets.LoadAsset<GameObject>("Einherjar_DoD");
 
-			Debug.Log("DoDMonsters: 6");
+			//Debug.Log("DoDMonsters: 6");
 			TexFlaAnvil = DoDAssets.LoadAsset<Sprite>("FlaAnvil_Icon_DoD");
 			TexFroAnvil = DoDAssets.LoadAsset<Sprite>("FroAnvil_Icon_DoD");
 			TexFelAnvil = DoDAssets.LoadAsset<Sprite>("FelAnvil_Icon_DoD");
@@ -458,10 +487,10 @@ namespace DoDMonsters
 			RugDWolf = DoDAssets.LoadAsset<Sprite>("RugDW_Icon_DoD");
 			RugFWolf = DoDAssets.LoadAsset<Sprite>("RugFW_Icon_DoD");
 
-			Debug.Log("DoDMonsters: 7");
+			//Debug.Log("DoDMonsters: 7");
 			CBait = DoDAssets.LoadAsset<GameObject>("CarnivorBait_DoD");
 
-			Debug.Log("DoDMonsters: 8");
+			//Debug.Log("DoDMonsters: 8");
 			NPC_NomadAoE_Attack = DoDAssets.LoadAsset<GameObject>("NPC_NomadAoE_Attack_DoD");
 			Farkas_FrostBite = DoDAssets.LoadAsset<GameObject>("Farkas_FrostBite_DoD");
 			Farkas_Hamper_Attack = DoDAssets.LoadAsset<GameObject>("Farkas_Hamper_Attack_DoD");
@@ -516,8 +545,51 @@ namespace DoDMonsters
 			DemonLordA3 = DoDAssets.LoadAsset<GameObject>("DemonLord_AttackWhip_DoD");
 			DemonLordA4 = DoDAssets.LoadAsset<GameObject>("DemonLord_AttackCombo2_DoD");
 			DemonLordA5 = DoDAssets.LoadAsset<GameObject>("DemonLord_AttackCombo3_DoD");
+			ElementalA1 = DoDAssets.LoadAsset<GameObject>("Element_Attack1_DoD");
+			ElementalA2 = DoDAssets.LoadAsset<GameObject>("Element_Attack2_DoD");
+			ElementalA3 = DoDAssets.LoadAsset<GameObject>("Element_AttackGrab_DoD");
+			ElementalA4 = DoDAssets.LoadAsset<GameObject>("Element_AttackSmash_DoD");
+			ElementalA5 = DoDAssets.LoadAsset<GameObject>("Element_AttackSwipe_DoD");
+			ElementalA6 = DoDAssets.LoadAsset<GameObject>("Element_AttackCombo1_DoD");
+			ElementalA7 = DoDAssets.LoadAsset<GameObject>("Element_AttackCombo2_DoD");
+			ElementalA8 = DoDAssets.LoadAsset<GameObject>("Element_AttackCombo3_DoD");
+			IceElementalA1 = DoDAssets.LoadAsset<GameObject>("IceElement_Attack1_DoD");
+			IceElementalA2 = DoDAssets.LoadAsset<GameObject>("IceElement_Attack2_DoD");
+			IceElementalA3 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackGrab_DoD");
+			IceElementalA4 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackSmash_DoD");
+			IceElementalA5 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackSwipe_DoD");
+			IceElementalA6 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackCombo1_DoD");
+			IceElementalA7 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackCombo2_DoD");
+			IceElementalA8 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackCombo3_DoD");
+			FireElementalA1 = DoDAssets.LoadAsset<GameObject>("FireElement_Attack1_DoD");
+			FireElementalA2 = DoDAssets.LoadAsset<GameObject>("FireElement_Attack2_DoD");
+			FireElementalA3 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackGrab_DoD");
+			FireElementalA4 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackSmash_DoD");
+			FireElementalA5 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackSwipe_DoD");
+			FireElementalA6 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackCombo1_DoD");
+			FireElementalA7 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackCombo2_DoD");
+			FireElementalA8 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackCombo3_DoD");
+			KoboldA1 = DoDAssets.LoadAsset<GameObject>("Kobold_Attack1_DoD");
+			KoboldA2 = DoDAssets.LoadAsset<GameObject>("Kobold_Attack2_DoD");
+			KoboldA3 = DoDAssets.LoadAsset<GameObject>("Kobold_Attack3_DoD");
+			KoboldA4 = DoDAssets.LoadAsset<GameObject>("Kobold_Attack4_DoD");
+			KoboldA5 = DoDAssets.LoadAsset<GameObject>("Kobold_AttackCombo1_DoD");
+			KoboldA6 = DoDAssets.LoadAsset<GameObject>("Kobold_AttackCombo2_DoD");
+			KoboldA7 = DoDAssets.LoadAsset<GameObject>("Kobold_AttackCombo3_DoD");
+			KoboldA8 = DoDAssets.LoadAsset<GameObject>("Kobold_AttackCombo4_DoD");
+			HydraA1 = DoDAssets.LoadAsset<GameObject>("Hydra_Attack1_DoD");
+			HydraA2 = DoDAssets.LoadAsset<GameObject>("Hydra_Attack2_DoD");
+			HydraA3 = DoDAssets.LoadAsset<GameObject>("Hydra_AttackBreath_DoD");
+			HydraA4 = DoDAssets.LoadAsset<GameObject>("Hydra_AttackSpit_DoD");
+			DragonA1 = DoDAssets.LoadAsset<GameObject>("Dragon_Attack1_DoD");
+			DragonA2 = DoDAssets.LoadAsset<GameObject>("Dragon_Attack2_DoD");
+			DragonA3 = DoDAssets.LoadAsset<GameObject>("Dragon_AttackBreath_DoD");
+			DragonA4 = DoDAssets.LoadAsset<GameObject>("Dragon_AttackSpit_DoD");
+			DragonA5 = DoDAssets.LoadAsset<GameObject>("Dragon_AttackCombo1_DoD");
+			DragonA6 = DoDAssets.LoadAsset<GameObject>("Dragon_AttackBreathFly_DoD");
+			DragonA7 = DoDAssets.LoadAsset<GameObject>("Dragon_AttackSpitFly_DoD");
 
-			Debug.Log("DoDMonsters: 9");
+			//Debug.Log("DoDMonsters: 9");
 			// Monster Items
 			ObsidianGolemClubs = DoDAssets.LoadAsset<GameObject>("ObsidianGolem_Clubs_DoD");
 			HelmetBhygshan = DoDAssets.LoadAsset<GameObject>("HelmetBhygshan_DoD");
@@ -541,7 +613,7 @@ namespace DoDMonsters
 			SwordCharred = DoDAssets.LoadAsset<GameObject>("Sword_Charred_DoD");
 			BowCharred = DoDAssets.LoadAsset<GameObject>("Bow_Charred_DoD");
 			BowCharred = DoDAssets.LoadAsset<GameObject>("Bow_Charred_DoD");
-			Debug.Log("DoDMonsters: 10");
+			//Debug.Log("DoDMonsters: 10");
 			// Broken Shields
 			ShieldBGSkull = DoDAssets.LoadAsset<GameObject>("BrokenShieldBhygshan_DoD");
 			ShieldBEikthyr = DoDAssets.LoadAsset<GameObject>("BrokenShieldEikthyr_DoD");
@@ -553,7 +625,7 @@ namespace DoDMonsters
 			ShieldBFarkas = DoDAssets.LoadAsset<GameObject>("BrokenShieldFarkas_DoD");
 			ShieldBSkir = DoDAssets.LoadAsset<GameObject>("BrokenShieldSkir_DoD");
 			ShieldBYagluth = DoDAssets.LoadAsset<GameObject>("BrokenShieldYagluth_DoD");
-			Debug.Log("DoDMonsters: 11");
+			//Debug.Log("DoDMonsters: 11");
 			// Shields
 			ShieldGSkull = DoDAssets.LoadAsset<GameObject>("ShieldSkullGreen_DoD");
 			ShieldEikthyr = DoDAssets.LoadAsset<GameObject>("ShieldEikthyr_DoD");
@@ -565,7 +637,7 @@ namespace DoDMonsters
 			ShieldFarkas = DoDAssets.LoadAsset<GameObject>("ShieldFarkas_DoD");
 			ShieldSkir = DoDAssets.LoadAsset<GameObject>("ShieldSkir_DoD");
 			ShieldYagluth = DoDAssets.LoadAsset<GameObject>("ShieldYagluth_DoD");
-			Debug.Log("DoDMonsters: 12");
+			//Debug.Log("DoDMonsters: 12");
 			// Weapons
 			BhygshanMace = DoDAssets.LoadAsset<GameObject>("BhygshanMace_DoD");
 			BowBlackForest = DoDAssets.LoadAsset<GameObject>("Bow_BlackForest_DoD");
@@ -580,7 +652,7 @@ namespace DoDMonsters
 			SwordMistlands = DoDAssets.LoadAsset<GameObject>("Sword_Mistlands_DoD");
 			SwordDeepNorth = DoDAssets.LoadAsset<GameObject>("Sword_DeepNorth_DoD");
 			SwordAshLands = DoDAssets.LoadAsset<GameObject>("Sword_AshLands_DoD");
-			Debug.Log("DoDMonsters: 13");
+			//Debug.Log("DoDMonsters: 13");
 			// Status Effect Assets
 			InfectedFX = DoDAssets.LoadAsset<GameObject>("VFX_Infected_DoD");
 			SlowFX = DoDAssets.LoadAsset<GameObject>("VFX_Slow_DoD");
@@ -588,7 +660,7 @@ namespace DoDMonsters
 			InjuredFX = DoDAssets.LoadAsset<GameObject>("VFX_Injured_DoD");
 			FrostbittenFX = DoDAssets.LoadAsset<GameObject>("VFX_Frostbite_DoD");
 			PoisonedFX = DoDAssets.LoadAsset<GameObject>("VFX_Poisoned_DoD");
-			Debug.Log("DoDMonsters: 14");
+			//Debug.Log("DoDMonsters: 14");
 			// Sword Assets
 			Firesoul = DoDAssets.LoadAsset<GameObject>("SwordFlametal1_DoD");
 			Solarflare = DoDAssets.LoadAsset<GameObject>("SwordFlametal2_DoD");
@@ -599,7 +671,7 @@ namespace DoDMonsters
 			Coldflame = DoDAssets.LoadAsset<GameObject>("SwordFrometal1_DoD");
 			Frostflame = DoDAssets.LoadAsset<GameObject>("SwordFrometal3_DoD");
 			Nethersbane = DoDAssets.LoadAsset<GameObject>("SwordSpirit_DoD");
-			Debug.Log("DoDMonsters: 15");
+			//Debug.Log("DoDMonsters: 15");
 			// Class Weapon Assets
 			WandLightning = DoDAssets.LoadAsset<GameObject>("ShamanWand_DoD");
 			WandFire = DoDAssets.LoadAsset<GameObject>("MageWand_DoD");
@@ -613,7 +685,7 @@ namespace DoDMonsters
 			MaceShock = DoDAssets.LoadAsset<GameObject>("MonkMace_DoD");
 			SpearAcid = DoDAssets.LoadAsset<GameObject>("DruidSpear_DoD");
 			SpearAoE = DoDAssets.LoadAsset<GameObject>("AoE_AuraHealing_DoD");
-			Debug.Log("DoDMonsters: 16");
+			//Debug.Log("DoDMonsters: 16");
 			// Buildable Assets
 			RugDeer = DoDAssets.LoadAsset<GameObject>("Rug_BlackDeer_DoD");
 			RugDire = DoDAssets.LoadAsset<GameObject>("Rug_DireWolf_DoD");
@@ -621,7 +693,7 @@ namespace DoDMonsters
 			AnvilsFel = DoDAssets.LoadAsset<GameObject>("FelmetalAnvils_DoD");
 			AnvilsFro = DoDAssets.LoadAsset<GameObject>("FrometalAnvils_DoD");
 			AnvilsFlam = DoDAssets.LoadAsset<GameObject>("FlametalAnvils_DoD");
-			Debug.Log("DoDMonsters: 17");
+			//Debug.Log("DoDMonsters: 17");
 			// Armor Kit Assets
 			T1ArmorKit = DoDAssets.LoadAsset<GameObject>("CrudeArmorKit_DoD");
 			T2ArmorKit = DoDAssets.LoadAsset<GameObject>("BasicArmorKit_DoD");
@@ -631,7 +703,7 @@ namespace DoDMonsters
 			T6ArmorKit = DoDAssets.LoadAsset<GameObject>("ExcellentArmorKit_DoD");
 			T7ArmorKit = DoDAssets.LoadAsset<GameObject>("ExceptionalArmorKit_DoD");
 			T8ArmorKit = DoDAssets.LoadAsset<GameObject>("ExtraordinaryArmorKit_DoD");
-			Debug.Log("DoDMonsters: 18");
+			//Debug.Log("DoDMonsters: 18");
 			// Weapon Kit Assets
 			T1WeaponKit = DoDAssets.LoadAsset<GameObject>("CrudeWeaponKit_DoD");
 			T2WeaponKit = DoDAssets.LoadAsset<GameObject>("BasicWeaponKit_DoD");
@@ -641,7 +713,7 @@ namespace DoDMonsters
 			T6WeaponKit = DoDAssets.LoadAsset<GameObject>("ExcellentWeaponKit_DoD");
 			T7WeaponKit = DoDAssets.LoadAsset<GameObject>("ExceptionalWeaponKit_DoD");
 			T8WeaponKit = DoDAssets.LoadAsset<GameObject>("ExtraordinaryWeaponKit_DoD");
-			Debug.Log("DoDMonsters: 19");
+			//Debug.Log("DoDMonsters: 19");
 			// Trophy Assets
 			TrophyCharredRemains = DoDAssets.LoadAsset<GameObject>("TrophyCharredRemains_DoD");
 			TrophyFrozenBones = DoDAssets.LoadAsset<GameObject>("TrophyFrozenBones_DoD");
@@ -667,7 +739,7 @@ namespace DoDMonsters
 			TrophyGoldDrake = DoDAssets.LoadAsset<GameObject>("TrophyGoldDrake_DoD");
 			TrophyPoisonDrake = DoDAssets.LoadAsset<GameObject>("TrophyPoisonDrake_DoD");
 			TrophyDarkDrake = DoDAssets.LoadAsset<GameObject>("TrophyDarkDrake_DoD");
-			Debug.Log("DoDMonsters: 20");
+			//Debug.Log("DoDMonsters: 20");
 			// Material Assets
 			InfusedGemstone = DoDAssets.LoadAsset<GameObject>("InfusedGemstone_DoD");
 			DeathKnightItem = DoDAssets.LoadAsset<GameObject>("DeathKnightItem_DoD");
@@ -698,16 +770,17 @@ namespace DoDMonsters
 			SpiderChitin = DoDAssets.LoadAsset<GameObject>("SpiderChitin_DoD");
 			BlackDeerHide = DoDAssets.LoadAsset<GameObject>("BlackDeerHide_DoD");
 			OakWood = DoDAssets.LoadAsset<GameObject>("OakWood_DoD");
-			Debug.Log("DoDMonsters: 21");
+			//Debug.Log("DoDMonsters: 21");
 			// Monster Assets
 			//Bosses
 			//Rylan = DoDAssets.LoadAsset<GameObject>("LaughingRylan_DoD");
 			SkirSandburst = DoDAssets.LoadAsset<GameObject>("SkirSandburst_DoD");
 			Farkas = DoDAssets.LoadAsset<GameObject>("Farkas_DoD");
+			FarkasAlt = DoDAssets.LoadAsset<GameObject>("Farkas_Alt_DoD");
 			Bhygshan = DoDAssets.LoadAsset<GameObject>("Bhygshan_DoD");
 			Bitterstump = DoDAssets.LoadAsset<GameObject>("Bitterstump_DoD");
 			Rambore = DoDAssets.LoadAsset<GameObject>("Rambore_DoD");
-			Debug.Log("DoDMonsters: 22");
+			//Debug.Log("DoDMonsters: 22");
 			// Monsters
 			GreaterSurtling = DoDAssets.LoadAsset<GameObject>("GreaterSurtling_DoD");
 			CharredRemains = DoDAssets.LoadAsset<GameObject>("CharredRemains_DoD");
@@ -740,7 +813,7 @@ namespace DoDMonsters
 			PoisonDrake = DoDAssets.LoadAsset<GameObject>("PoisonDrake_DoD");
 			BlackDrake = DoDAssets.LoadAsset<GameObject>("DarkDrake_DoD");
 
-			Debug.Log("DoDMonsters: 23");
+			//Debug.Log("DoDMonsters: 23");
 			GameObject AoESpray = DoDAssets.LoadAsset<GameObject>("AoE_Spray_DoD");
 			GameObject BitterRoots = DoDAssets.LoadAsset<GameObject>("Bitter_RootSpawn_DoD");
 			GameObject AoESkirNova = DoDAssets.LoadAsset<GameObject>("AoE_Skir_Nova_DoD");
@@ -798,7 +871,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(AoEAuraFire);
 			PrefabManager.Instance.AddPrefab(AoEAuraStorm);
 
-			Debug.Log("DoDMonsters: 24");
+			//Debug.Log("DoDMonsters: 24");
 			GameObject VilefangRD = DoDAssets.LoadAsset<GameObject>("Vilefang_Ragdoll_DoD");
 			GameObject BlackDeerRD = DoDAssets.LoadAsset<GameObject>("BlackDeer_Ragdoll_DoD");
 			GameObject ForestWolfRD = DoDAssets.LoadAsset<GameObject>("ForestWolf_Ragdoll_DoD");
@@ -815,6 +888,8 @@ namespace DoDMonsters
 			GameObject FarkasRD = DoDAssets.LoadAsset<GameObject>("Farkas_RD_DoD");
 			GameObject EntRD = DoDAssets.LoadAsset<GameObject>("TreeEnt_RD_DoD");
 			GameObject DemonLordRD = DoDAssets.LoadAsset<GameObject>("DemonLord_RD_DoD");
+			GameObject FarkasAltRD = DoDAssets.LoadAsset<GameObject>("Farkas_Alt_RD_DoD");
+			PrefabManager.Instance.AddPrefab(FarkasAltRD);
 			PrefabManager.Instance.AddPrefab(EntRD);
 			PrefabManager.Instance.AddPrefab(DemonLordRD);
 			PrefabManager.Instance.AddPrefab(FarkasRD);
@@ -832,7 +907,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(GoldDrakeRD);
 			PrefabManager.Instance.AddPrefab(GreenDrakeRD);
 
-			Debug.Log("DoDMonsters: 25");
+			//Debug.Log("DoDMonsters: 25");
 			GameObject BhygshanFireballProjectile = DoDAssets.LoadAsset<GameObject>("Bhygshan_Fireball_Projectile_DoD");
 			GameObject SkirVoidboltProjectile = DoDAssets.LoadAsset<GameObject>("Skir_Voidbolt_Projectile_DoD");
 			GameObject SkirSandburstVoidThrowProjectile = DoDAssets.LoadAsset<GameObject>("SkirSandburst_VoidThrow_Projectile_DoD");
@@ -866,7 +941,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(ShadowProjectileS);
 			PrefabManager.Instance.AddPrefab(ShadowProjectileL);
 
-			Debug.Log("DoDMonsters: 26");
+			//Debug.Log("DoDMonsters: 26");
 			GameObject TCMistlands = DoDAssets.LoadAsset<GameObject>("TreasureChest_Mistlands_DoD");
 			GameObject TCDeepNorth = DoDAssets.LoadAsset<GameObject>("TreasureChest_DeepNorth_DoD");
 			GameObject TCAshLands = DoDAssets.LoadAsset<GameObject>("TreasureChest_AshLands_DoD");
@@ -892,9 +967,9 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(BhygshanSummon);
 			PrefabManager.Instance.AddPrefab(AltarFarkasAlt);
 
-			Debug.Log("DoDMonsters: 27");
+			//Debug.Log("DoDMonsters: 27");
 
-			Debug.Log("DoDMonsters: 28");
+			//Debug.Log("DoDMonsters: 28");
 			GameObject FXSkirProtect = DoDAssets.LoadAsset<GameObject>("FX_Skir_Protect_DoD");
 			GameObject FXSkirNova = DoDAssets.LoadAsset<GameObject>("FX_Skir_Nova_DoD");
 			GameObject FXBitterRoot = DoDAssets.LoadAsset<GameObject>("FX_Bitter_RootSpawn_DoD");
@@ -910,7 +985,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(FXMageCast);
 			PrefabManager.Instance.AddPrefab(FXBhygshanFireballExpl);
 
-			Debug.Log("DoDMonsters: 29");
+			//Debug.Log("DoDMonsters: 29");
 			GameObject SFXLivingLavaDeath = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Death_DoD");
 			GameObject SFXLivingLavaHit = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Hit_DoD");
 			GameObject SFXLivingLavaJump = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Jump_DoD");
@@ -925,16 +1000,6 @@ namespace DoDMonsters
 			GameObject SFXVoidlingAttack = DoDAssets.LoadAsset<GameObject>("SFX_Voidling_Attack_DoD");
 			GameObject SFXGenericHit = DoDAssets.LoadAsset<GameObject>("SFX_GenericHit_DoD");
 			GameObject SFXWandHit = DoDAssets.LoadAsset<GameObject>("SFX_DaggerHit_DoD");
-			GameObject SFXWoodChop = DoDAssets.LoadAsset<GameObject>("SFX_Wood_Chop_DoD");
-			GameObject SFXTreeFall = DoDAssets.LoadAsset<GameObject>("SFX_Tree_Falling_DoD");
-			GameObject SFXTreeFallS = DoDAssets.LoadAsset<GameObject>("SFX_SmallTree_Falling_DoD");
-			GameObject SFXBushChop = DoDAssets.LoadAsset<GameObject>("SFX_Bush_Chop_DoD");
-			GameObject SFXRockHit = DoDAssets.LoadAsset<GameObject>("loc_sfx_rock_hit_dod");
-			GameObject SFXRockDest = DoDAssets.LoadAsset<GameObject>("loc_sfx_rock_destroyed_dod");
-			GameObject SFXPickable = DoDAssets.LoadAsset<GameObject>("SFX_Pickable_Pick_DoD");
-			GameObject SFXOfferingBones = DoDAssets.LoadAsset<GameObject>("SFX_OfferingBones_DoD");
-			GameObject SFXBossSpawn = DoDAssets.LoadAsset<GameObject>("SFX_BossSpawn_DoD");
-			GameObject SFXSummoning = DoDAssets.LoadAsset<GameObject>("SFX_BossSummon_DoD");
 			GameObject SFXNPC1 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Alert_DoD");
 			CustomPrefab customsfxNPC1 = new CustomPrefab(SFXNPC1, true);
 			GameObject SFXNPC2 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Birth_DoD");
@@ -956,6 +1021,10 @@ namespace DoDMonsters
 			GameObject SFXDLAlert = DoDAssets.LoadAsset<GameObject>("SFX_DLAlert_DoD");
 			GameObject SFXDLIdle = DoDAssets.LoadAsset<GameObject>("SFX_DLIdle_DoD");
 			GameObject SFXDLDeath = DoDAssets.LoadAsset<GameObject>("SFX_DLDeath_DoD");
+			GameObject SFXWolfIdle = DoDAssets.LoadAsset<GameObject>("SFX_Wolf_Idle_DoD");
+			GameObject SFXWolfGetHit = DoDAssets.LoadAsset<GameObject>("SFX_Wolf_GetHit_DoD");
+			PrefabManager.Instance.AddPrefab(SFXWolfGetHit);
+			PrefabManager.Instance.AddPrefab(SFXWolfIdle);
 			PrefabManager.Instance.AddPrefab(SFXDLGetHit);
 			PrefabManager.Instance.AddPrefab(SFXDLAlert);
 			PrefabManager.Instance.AddPrefab(SFXDLIdle);
@@ -985,33 +1054,16 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(SFXVoidlingAttack);
 			PrefabManager.Instance.AddPrefab(SFXGenericHit);
 			PrefabManager.Instance.AddPrefab(SFXWandHit);
-			PrefabManager.Instance.AddPrefab(SFXWoodChop);
-			PrefabManager.Instance.AddPrefab(SFXTreeFall);
-			PrefabManager.Instance.AddPrefab(SFXTreeFallS);
-			PrefabManager.Instance.AddPrefab(SFXBushChop);
-			PrefabManager.Instance.AddPrefab(SFXRockHit);
-			PrefabManager.Instance.AddPrefab(SFXRockDest);
-			PrefabManager.Instance.AddPrefab(SFXPickable);
-			PrefabManager.Instance.AddPrefab(SFXOfferingBones);
-			PrefabManager.Instance.AddPrefab(SFXBossSpawn);
-			PrefabManager.Instance.AddPrefab(SFXSummoning);
 
-			Debug.Log("DoDMonsters: 30");
+			//Debug.Log("DoDMonsters: 30");
 			GameObject VFXBhygshanSpray = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Spray_DoD");
 			GameObject VFXBhygshanBreath = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Breath_DoD");
 			GameObject VFXSkirThrow = DoDAssets.LoadAsset<GameObject>("VFX_Skir_Throw_DoD");
 			GameObject VFXBhygshanAttack = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Attack_DoD");
-			GameObject VFXSummonSpawn = DoDAssets.LoadAsset<GameObject>("VFX_SummonSpawn_DoD");
 			GameObject VFXSkeletonHit = DoDAssets.LoadAsset<GameObject>("VFX_Skeleton_Hit_DoD");
-			GameObject VFXOfferingBowl = DoDAssets.LoadAsset<GameObject>("VFX_OfferingBowl_DoD");
-			GameObject VFXHit = DoDAssets.LoadAsset<GameObject>("VFX_Hit_DoD");
-			GameObject VFXBloodHit = DoDAssets.LoadAsset<GameObject>("VFX_Blood_Hit_DoD");
-			GameObject VFXDustPiece = DoDAssets.LoadAsset<GameObject>("VFX_Dust_Piece_DoD");
-			GameObject VFXChestPlace = DoDAssets.LoadAsset<GameObject>("VFX_Chest_Place_DoD");
-			GameObject VFXSummon = DoDAssets.LoadAsset<GameObject>("VFX_Summon_DoD");
+			//GameObject VFXHit = DoDAssets.LoadAsset<GameObject>("VFX_Hit_DoD");
+			//GameObject VFXBloodHit = DoDAssets.LoadAsset<GameObject>("VFX_Blood_Hit_DoD");
 			GameObject VFXFireBoltHit = DoDAssets.LoadAsset<GameObject>("VFX_FireBolt_SurtlingHit_DoD");
-			GameObject VFXBiiterSpawn = DoDAssets.LoadAsset<GameObject>("VFX_BiiterSpawn_DoD");
-			GameObject VFXBitterSpawnIn = DoDAssets.LoadAsset<GameObject>("VFX_BitterSpawnIn_DoD");
 			GameObject VFXMageFS = DoDAssets.LoadAsset<GameObject>("VFX_Mage_FireStrike_DoD");
 			GameObject VFXBlocked = DoDAssets.LoadAsset<GameObject>("VFX_Blocked_DoD");
 			GameObject VFXHitSparks = DoDAssets.LoadAsset<GameObject>("VFX_HitSparks_DoD");
@@ -1029,24 +1081,15 @@ namespace DoDMonsters
 			GameObject VFXIceImpHit = DoDAssets.LoadAsset<GameObject>("VFX_IceImpHit_DoD");
 			GameObject VFXStormImpHit = DoDAssets.LoadAsset<GameObject>("VFX_StormImpHit_DoD");
 			GameObject VFXVoidImpHit = DoDAssets.LoadAsset<GameObject>("VFX_VoidImpHit_DoD");
-			GameObject VFXFelOreDestroy = DoDAssets.LoadAsset<GameObject>("VFX_Felore_Destroy_DoD");
-			GameObject VFXMineHit = DoDAssets.LoadAsset<GameObject>("VFX_Mine_Hit_DoD");
-			GameObject VFXPickable = DoDAssets.LoadAsset<GameObject>("VFX_Pickable_Pick_DoD");
+
 			PrefabManager.Instance.AddPrefab(VFXBhygshanSpray);
 			PrefabManager.Instance.AddPrefab(VFXBhygshanBreath);
 			PrefabManager.Instance.AddPrefab(VFXSkirThrow);
 			PrefabManager.Instance.AddPrefab(VFXBhygshanAttack);
-			PrefabManager.Instance.AddPrefab(VFXSummonSpawn);
 			PrefabManager.Instance.AddPrefab(VFXSkeletonHit);
-			PrefabManager.Instance.AddPrefab(VFXOfferingBowl);
-			PrefabManager.Instance.AddPrefab(VFXHit);
-			PrefabManager.Instance.AddPrefab(VFXBloodHit);
-			PrefabManager.Instance.AddPrefab(VFXDustPiece);
-			PrefabManager.Instance.AddPrefab(VFXChestPlace);
-			PrefabManager.Instance.AddPrefab(VFXSummon);
+			//PrefabManager.Instance.AddPrefab(VFXHit);
+			//PrefabManager.Instance.AddPrefab(VFXBloodHit);
 			PrefabManager.Instance.AddPrefab(VFXFireBoltHit);
-			PrefabManager.Instance.AddPrefab(VFXBiiterSpawn);
-			PrefabManager.Instance.AddPrefab(VFXBitterSpawnIn);
 			PrefabManager.Instance.AddPrefab(VFXMageFS);
 			PrefabManager.Instance.AddPrefab(VFXBlocked);
 			PrefabManager.Instance.AddPrefab(VFXHitSparks);
@@ -1064,9 +1107,6 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(VFXIceImpHit);
 			PrefabManager.Instance.AddPrefab(VFXStormImpHit);
 			PrefabManager.Instance.AddPrefab(VFXVoidImpHit);
-			PrefabManager.Instance.AddPrefab(VFXFelOreDestroy);
-			PrefabManager.Instance.AddPrefab(VFXMineHit);
-			PrefabManager.Instance.AddPrefab(VFXPickable);
 		}
 		public void CreateConfigurationValues()
 		{
@@ -1206,19 +1246,140 @@ namespace DoDMonsters
 			GameObject monsteritem33 = DemonLordA5;
 			CustomItem customItem33 = new CustomItem(monsteritem33, fixReference: true);
 			ItemManager.Instance.AddItem(customItem33);
+
+			GameObject monsteritem34 = ElementalA1;
+			CustomItem customItem34 = new CustomItem(monsteritem34, fixReference: true);
+			ItemManager.Instance.AddItem(customItem34);
+			GameObject monsteritem35 = ElementalA2;
+			CustomItem customItem35 = new CustomItem(monsteritem35, fixReference: true);
+			ItemManager.Instance.AddItem(customItem35);
+			GameObject monsteritem36 = ElementalA3;
+			CustomItem customItem36 = new CustomItem(monsteritem36, fixReference: true);
+			ItemManager.Instance.AddItem(customItem36);
+			GameObject monsteritem37 = ElementalA4;
+			CustomItem customItem37 = new CustomItem(monsteritem37, fixReference: true);
+			ItemManager.Instance.AddItem(customItem37);
+			GameObject monsteritem38 = ElementalA5;
+			CustomItem customItem38 = new CustomItem(monsteritem38, fixReference: true);
+			ItemManager.Instance.AddItem(customItem38);
+			GameObject monsteritem39 = ElementalA6;
+			CustomItem customItem39 = new CustomItem(monsteritem39, fixReference: true);
+			ItemManager.Instance.AddItem(customItem39);
+			GameObject monsteritem40 = ElementalA7;
+			CustomItem customItem40 = new CustomItem(monsteritem40, fixReference: true);
+			ItemManager.Instance.AddItem(customItem40);
+			GameObject monsteritem41 = ElementalA8;
+			CustomItem customItem41 = new CustomItem(monsteritem41, fixReference: true);
+			ItemManager.Instance.AddItem(customItem41);
+
+			GameObject monsteritem42 = IceElementalA1;
+			CustomItem customItem42 = new CustomItem(monsteritem42, fixReference: true);
+			ItemManager.Instance.AddItem(customItem42);
+			GameObject monsteritem43 = IceElementalA2;
+			CustomItem customItem43 = new CustomItem(monsteritem43, fixReference: true);
+			ItemManager.Instance.AddItem(customItem43);
+			GameObject monsteritem44 = IceElementalA3;
+			CustomItem customItem44 = new CustomItem(monsteritem44, fixReference: true);
+			ItemManager.Instance.AddItem(customItem44);
+			GameObject monsteritem45 = IceElementalA4;
+			CustomItem customItem45 = new CustomItem(monsteritem45, fixReference: true);
+			ItemManager.Instance.AddItem(customItem45);
+			GameObject monsteritem46 = IceElementalA5;
+			CustomItem customItem46 = new CustomItem(monsteritem46, fixReference: true);
+			ItemManager.Instance.AddItem(customItem46);
+			GameObject monsteritem47 = IceElementalA6;
+			CustomItem customItem47 = new CustomItem(monsteritem47, fixReference: true);
+			ItemManager.Instance.AddItem(customItem47);
+			GameObject monsteritem48 = IceElementalA7;
+			CustomItem customItem48 = new CustomItem(monsteritem48, fixReference: true);
+			ItemManager.Instance.AddItem(customItem48);
+			GameObject monsteritem49 = IceElementalA8;
+			CustomItem customItem49 = new CustomItem(monsteritem49, fixReference: true);
+			ItemManager.Instance.AddItem(customItem49);
+			GameObject monsteritem50 = FireElementalA1;
+			CustomItem customItem50 = new CustomItem(monsteritem50, fixReference: true);
+			ItemManager.Instance.AddItem(customItem50);
+			GameObject monsteritem51 = FireElementalA2;
+			CustomItem customItem51 = new CustomItem(monsteritem51, fixReference: true);
+			ItemManager.Instance.AddItem(customItem51);
+			GameObject monsteritem52 = FireElementalA3;
+			CustomItem customItem52 = new CustomItem(monsteritem52, fixReference: true);
+			ItemManager.Instance.AddItem(customItem52);
+			GameObject monsteritem53 = FireElementalA4;
+			CustomItem customItem53 = new CustomItem(monsteritem53, fixReference: true);
+			ItemManager.Instance.AddItem(customItem53);
+			GameObject monsteritem54 = FireElementalA5;
+			CustomItem customItem54 = new CustomItem(monsteritem54, fixReference: true);
+			ItemManager.Instance.AddItem(customItem54);
+			GameObject monsteritem55 = FireElementalA6;
+			CustomItem customItem55 = new CustomItem(monsteritem55, fixReference: true);
+			ItemManager.Instance.AddItem(customItem55);
+			GameObject monsteritem56 = FireElementalA7;
+			CustomItem customItem56 = new CustomItem(monsteritem56, fixReference: true);
+			ItemManager.Instance.AddItem(customItem56);
+			GameObject monsteritem57 = FireElementalA8;
+			CustomItem customItem57 = new CustomItem(monsteritem57, fixReference: true);
+			ItemManager.Instance.AddItem(customItem57);
+			GameObject monsteritem58 = KoboldA1;
+			CustomItem customItem58 = new CustomItem(monsteritem58, fixReference: true);
+			ItemManager.Instance.AddItem(customItem58);
+			GameObject monsteritem59 = KoboldA2;
+			CustomItem customItem59 = new CustomItem(monsteritem59, fixReference: true);
+			ItemManager.Instance.AddItem(customItem59);
+			GameObject monsteritem60 = KoboldA3;
+			CustomItem customItem60 = new CustomItem(monsteritem60, fixReference: true);
+			ItemManager.Instance.AddItem(customItem60);
+			GameObject monsteritem61 = KoboldA4;
+			CustomItem customItem61 = new CustomItem(monsteritem61, fixReference: true);
+			ItemManager.Instance.AddItem(customItem61);
+			GameObject monsteritem62 = KoboldA5;
+			CustomItem customItem62 = new CustomItem(monsteritem62, fixReference: true);
+			ItemManager.Instance.AddItem(customItem62);
+			GameObject monsteritem63 = KoboldA6;
+			CustomItem customItem63 = new CustomItem(monsteritem63, fixReference: true);
+			ItemManager.Instance.AddItem(customItem63);
+			GameObject monsteritem64 = KoboldA7;
+			CustomItem customItem64 = new CustomItem(monsteritem64, fixReference: true);
+			ItemManager.Instance.AddItem(customItem64);
+			GameObject monsteritem65 = KoboldA8;
+			CustomItem customItem65 = new CustomItem(monsteritem65, fixReference: true);
+			ItemManager.Instance.AddItem(customItem65);
+			GameObject monsteritem66 = HydraA1;
+			CustomItem customItem66 = new CustomItem(monsteritem66, fixReference: true);
+			ItemManager.Instance.AddItem(customItem66);
+			GameObject monsteritem67 = HydraA2;
+			CustomItem customItem67 = new CustomItem(monsteritem67, fixReference: true);
+			ItemManager.Instance.AddItem(customItem67);
+			GameObject monsteritem68 = HydraA3;
+			CustomItem customItem68 = new CustomItem(monsteritem68, fixReference: true);
+			ItemManager.Instance.AddItem(customItem68);
+			GameObject monsteritem69 = HydraA4;
+			CustomItem customItem69 = new CustomItem(monsteritem69, fixReference: true);
+			ItemManager.Instance.AddItem(customItem69);
+			GameObject monsteritem70 = DragonA1;
+			CustomItem customItem70 = new CustomItem(monsteritem70, fixReference: true);
+			ItemManager.Instance.AddItem(customItem70);
+			GameObject monsteritem71 = DragonA2;
+			CustomItem customItem71 = new CustomItem(monsteritem71, fixReference: true);
+			ItemManager.Instance.AddItem(customItem71);
+			GameObject monsteritem72 = DragonA3;
+			CustomItem customItem72 = new CustomItem(monsteritem72, fixReference: true);
+			ItemManager.Instance.AddItem(customItem72);
+			GameObject monsteritem73 = DragonA4;
+			CustomItem customItem73 = new CustomItem(monsteritem73, fixReference: true);
+			ItemManager.Instance.AddItem(customItem73);
+			GameObject monsteritem74 = DragonA5;
+			CustomItem customItem74 = new CustomItem(monsteritem74, fixReference: true);
+			ItemManager.Instance.AddItem(customItem74);
+			GameObject monsteritem75 = DragonA6;
+			CustomItem customItem75 = new CustomItem(monsteritem75, fixReference: true);
+			ItemManager.Instance.AddItem(customItem75);
+			GameObject monsteritem76 = DragonA7;
+			CustomItem customItem76 = new CustomItem(monsteritem76, fixReference: true);
+			ItemManager.Instance.AddItem(customItem76);
 		}
 		private void CreateMonsterAbilities()
 		{
-			GameObject testability1 = TestingA1;
-			CustomItem customAbility1 = new CustomItem(testability1, fixReference: true);
-			ItemManager.Instance.AddItem(customAbility1);
-			GameObject testability2 = TestingA2;
-			CustomItem customAbility2 = new CustomItem(testability2, fixReference: true);
-			ItemManager.Instance.AddItem(customAbility2);
-			GameObject testability3 = TestingA3;
-			CustomItem customAbility3 = new CustomItem(testability3, fixReference: true);
-			ItemManager.Instance.AddItem(customAbility3);
-
 			GameObject monsterability1 = NPC_NomadAoE_Attack;
 			CustomItem customItem1 = new CustomItem(monsterability1, fixReference: true);
 			ItemManager.Instance.AddItem(customItem1);
@@ -1393,6 +1554,14 @@ namespace DoDMonsters
 		}
 		private void AddMonsterReskins()
 		{
+			GameObject npc4 = GrayWolf;
+			CustomPrefab customNPC4 = new CustomPrefab(npc4, true);
+			PrefabManager.Instance.AddPrefab(customNPC4);
+
+			GameObject npc3 = Nomad;
+			CustomPrefab customNPC3 = new CustomPrefab(npc3, true);
+			PrefabManager.Instance.AddPrefab(customNPC3);
+
 			GameObject npc2 = Einherjar;
 			CustomPrefab customNPC2 = new CustomPrefab(npc2, true);
 			PrefabManager.Instance.AddPrefab(customNPC2);
@@ -1526,12 +1695,42 @@ namespace DoDMonsters
 			GameObject monster1 = TreeEnt;
 			CustomPrefab creature1 = new CustomPrefab(monster1, true);
 			PrefabManager.Instance.AddPrefab(creature1);
-			GameObject monster2 = Beholder;
+			/*GameObject monster2 = Beholder;
 			CustomPrefab creature2 = new CustomPrefab(monster2, true);
-			PrefabManager.Instance.AddPrefab(creature2);
+			PrefabManager.Instance.AddPrefab(creature2);*/
 			GameObject monster3 = DemonLord;
 			CustomPrefab creature3 = new CustomPrefab(monster3, true);
 			PrefabManager.Instance.AddPrefab(creature3);
+			GameObject monster4 = FarkasAlt;
+			CustomPrefab creature4 = new CustomPrefab(monster4, true);
+			PrefabManager.Instance.AddPrefab(creature4);
+			GameObject monster5 = Elemental;
+			CustomPrefab creature5 = new CustomPrefab(monster5, true);
+			PrefabManager.Instance.AddPrefab(creature5);
+			GameObject monster6 = IceElemental;
+			CustomPrefab creature6 = new CustomPrefab(monster6, true);
+			PrefabManager.Instance.AddPrefab(creature6);
+			GameObject monster7 = FireElemental;
+			CustomPrefab creature7 = new CustomPrefab(monster7, true);
+			PrefabManager.Instance.AddPrefab(creature7);
+			GameObject monster8 = Kobold;
+			CustomPrefab creature8 = new CustomPrefab(monster8, true);
+			PrefabManager.Instance.AddPrefab(creature8);
+			GameObject monster9 = Hydra;
+			CustomPrefab creature9 = new CustomPrefab(monster9, true);
+			PrefabManager.Instance.AddPrefab(creature9);
+			GameObject monster10 = Dragon;
+			CustomPrefab creature10 = new CustomPrefab(monster10, true);
+			PrefabManager.Instance.AddPrefab(creature10);
+			GameObject monster11 = Hobgoblin;
+			CustomPrefab creature11 = new CustomPrefab(monster11, true);
+			PrefabManager.Instance.AddPrefab(creature11);
+			GameObject monster12 = Ogre;
+			CustomPrefab creature12 = new CustomPrefab(monster12, true);
+			PrefabManager.Instance.AddPrefab(creature12);
+			GameObject monster13 = Cyclops;
+			CustomPrefab creature13 = new CustomPrefab(monster13, true);
+			PrefabManager.Instance.AddPrefab(creature13);
 		}
 		private void CreateAnvils()
 		{
@@ -4254,389 +4453,35 @@ namespace DoDMonsters
 		{
 			DoDAssets?.Unload(unloadAllLoadedObjects: false);
 		}
-		private void AddStatusEffects()
-		{
-			// Item Status Effects
-			// Ninja Sword
-			SE_Frost ninjaeffect = ScriptableObject.CreateInstance<SE_Frost>();
-			ninjaeffect.name = "NinjaSwordStatusEffect";
-			ninjaeffect.m_name = "$se_ninjasword_name_dod";
-			ninjaeffect.m_ttl = 10f;
-			ninjaeffect.m_cooldown = 10f;
-			ninjaeffect.m_activationAnimation = "gpower";
-			ninjaeffect.m_freezeTimeEnemy = 10f;
-			ninjaeffect.m_freezeTimePlayer = 10f;
-			ninjaeffect.m_minSpeedFactor = 0;
-			NinjaSwordStatusEffect = new CustomStatusEffect(ninjaeffect, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(NinjaSwordStatusEffect);
-			// Moonlight
-			SE_Frost mooneffect = ScriptableObject.CreateInstance<SE_Frost>();
-			mooneffect.name = "MoonSwordStatusEffect";
-			mooneffect.m_name = "$se_moonsword_name_dod";
-			mooneffect.m_ttl = 10f;
-			mooneffect.m_cooldown = 10f;
-			mooneffect.m_activationAnimation = "gpower";
-			mooneffect.m_minSpeedFactor = 0.5f;
-			MoonSwordStatusEffect = new CustomStatusEffect(mooneffect, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(MoonSwordStatusEffect);
-			// Rogue Sword
-			SE_Frost rogueeffect = ScriptableObject.CreateInstance<SE_Frost>();
-			rogueeffect.name = "RogueSwordStatusEffect";
-			rogueeffect.m_name = "$se_roguesword_name_dod";
-			rogueeffect.m_ttl = 10f;
-			rogueeffect.m_cooldown = 10f;
-			rogueeffect.m_activationAnimation = "gpower";
-			rogueeffect.m_minSpeedFactor = 0.25f;
-			RogueSwordStatusEffect = new CustomStatusEffect(rogueeffect, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(RogueSwordStatusEffect);
-			// Druid Spear
-			SE_Stats druideffect = ScriptableObject.CreateInstance<SE_Stats>();
-			druideffect.name = "DruidSpearStatusEffect";
-			druideffect.m_name = "$se_druidspear_name_dod";
-			druideffect.m_icon = DoDAssets.LoadAsset<Sprite>("HoT_Icon_DoD");
-			druideffect.m_ttl = 10f;
-			druideffect.m_cooldown = 20f;
-			druideffect.m_activationAnimation = "gpower";
-			druideffect.m_healthOverTime = 130f;
-			druideffect.m_healthOverTimeInterval = 2f;
-			DruidSpearStatusEffect = new CustomStatusEffect(druideffect, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(DruidSpearStatusEffect);
-			// Monster Status Effects
-			// Lesser HoT
-			SE_Stats lesserHoT = ScriptableObject.CreateInstance<SE_Stats>();
-			lesserHoT.name = "MonsterHoTLesser";
-			lesserHoT.m_name = "$se_monsterheal_name_dod";
-			lesserHoT.m_icon = DoDAssets.LoadAsset<Sprite>("HoT_Icon_DoD");
-			lesserHoT.m_ttl = 10f;
-			lesserHoT.m_cooldown = 20f;
-			lesserHoT.m_activationAnimation = "gpower";
-			lesserHoT.m_healthOverTime = 50f;
-			lesserHoT.m_healthOverTimeInterval = 2f;
-			SE_LesserHoT_DoD = new CustomStatusEffect(lesserHoT, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_LesserHoT_DoD);
-			// HoT
-			SE_Stats HoT = ScriptableObject.CreateInstance<SE_Stats>();
-			HoT.name = "MonsterHoT";
-			HoT.m_name = "$se_monsterheal_name_dod";
-			HoT.m_icon = DoDAssets.LoadAsset<Sprite>("HoT_Icon_DoD");
-			HoT.m_ttl = 10f;
-			HoT.m_cooldown = 20f;
-			HoT.m_activationAnimation = "gpower";
-			HoT.m_healthOverTime = 100f;
-			HoT.m_healthOverTimeInterval = 2f;
-			SE_HoT_DoD = new CustomStatusEffect(HoT, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_HoT_DoD);
-			// Greater HoT
-			SE_Stats GreaterHoT = ScriptableObject.CreateInstance<SE_Stats>();
-			GreaterHoT.name = "MonsterHoTGreater";
-			GreaterHoT.m_name = "$se_monsterheal_name_dod";
-			GreaterHoT.m_icon = DoDAssets.LoadAsset<Sprite>("HoT_Icon_DoD");
-			GreaterHoT.m_ttl = 10f;
-			GreaterHoT.m_cooldown = 20f;
-			GreaterHoT.m_activationAnimation = "gpower";
-			GreaterHoT.m_healthOverTime = 200f;
-			GreaterHoT.m_healthOverTimeInterval = 2f;
-			SE_GreaterHoT_DoD = new CustomStatusEffect(GreaterHoT, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_GreaterHoT_DoD);
-			// Lesser Regeneration
-			SE_Stats LesserRegen = ScriptableObject.CreateInstance<SE_Stats>();
-			LesserRegen.name = "MonsterRegenLesser";
-			LesserRegen.m_name = "$se_monsterheal_name_dod";
-			LesserRegen.m_icon = DoDAssets.LoadAsset<Sprite>("Regeneration_Icon_DoD");
-			LesserRegen.m_ttl = 20f;
-			LesserRegen.m_cooldown = 30f;
-			LesserRegen.m_activationAnimation = "gpower";
-			LesserRegen.m_healthOverTime = 80f;
-			LesserRegen.m_healthOverTimeInterval = 2f;
-			SE_LesserRegen_DoD = new CustomStatusEffect(LesserRegen, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_LesserRegen_DoD);
-			// Regeneration
-			SE_Stats Regen = ScriptableObject.CreateInstance<SE_Stats>();
-			Regen.name = "MonsterRegen";
-			Regen.m_name = "$se_monsterheal_name_dod";
-			Regen.m_icon = DoDAssets.LoadAsset<Sprite>("Regeneration_Icon_DoD");
-			Regen.m_ttl = 20f;
-			Regen.m_cooldown = 30f;
-			Regen.m_activationAnimation = "gpower";
-			Regen.m_healthOverTime = 160f;
-			Regen.m_healthOverTimeInterval = 2f;
-			SE_Regen_DoD = new CustomStatusEffect(Regen, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_Regen_DoD);
-			// Greater Regeneration
-			SE_Stats GreaterRegen = ScriptableObject.CreateInstance<SE_Stats>();
-			GreaterRegen.name = "MonsterRegenGreater";
-			GreaterRegen.m_name = "$se_monsterheal_name_dod";
-			GreaterRegen.m_icon = DoDAssets.LoadAsset<Sprite>("Regeneration_Icon_DoD");
-			GreaterRegen.m_ttl = 20f;
-			GreaterRegen.m_cooldown = 30f;
-			GreaterRegen.m_activationAnimation = "gpower";
-			GreaterRegen.m_healthOverTime = 320f;
-			GreaterRegen.m_healthOverTimeInterval = 2f;
-			SE_GreaterRegen_DoD = new CustomStatusEffect(GreaterRegen, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_GreaterRegen_DoD);
-			// Lesser Shield
-			SE_Shield LesserShield = ScriptableObject.CreateInstance<SE_Shield>();
-			LesserShield.name = "MonsterShieldLesser";
-			LesserShield.m_name = "$se_monstershield_name_dod";
-			LesserShield.m_icon = DoDAssets.LoadAsset<Sprite>("MagicShield_Icon_DoD");
-			LesserShield.m_ttl = 40f;
-			LesserShield.m_cooldown = 60f;
-			LesserShield.m_activationAnimation = "gpower";
-			LesserShield.m_absorbDamage = 250f;
-			SE_LesserShield_DoD = new CustomStatusEffect(LesserShield, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_LesserShield_DoD);
-			// Shield
-			SE_Shield Shield = ScriptableObject.CreateInstance<SE_Shield>();
-			Shield.name = "MonsterShield";
-			Shield.m_name = "$se_monstershield_name_dod";
-			Shield.m_icon = DoDAssets.LoadAsset<Sprite>("MagicShield_Icon_DoD");
-			Shield.m_ttl = 40f;
-			Shield.m_cooldown = 40f;
-			Shield.m_activationAnimation = "gpower";
-			Shield.m_absorbDamage = 500f;
-			SE_Shield_DoD = new CustomStatusEffect(Shield, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_Shield_DoD);
-			// Greater Shield
-			SE_Shield GreaterShield = ScriptableObject.CreateInstance<SE_Shield>();
-			GreaterShield.name = "MonsterShieldGreater";
-			GreaterShield.m_name = "$se_monstershield_name_dod";
-			GreaterShield.m_icon = DoDAssets.LoadAsset<Sprite>("MagicShield_Icon_DoD");
-			GreaterShield.m_ttl = 40f;
-			GreaterShield.m_cooldown = 40f;
-			GreaterShield.m_activationAnimation = "gpower";
-			GreaterShield.m_absorbDamage = 1000f;
-			SE_GreaterShield_DoD = new CustomStatusEffect(GreaterShield, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_GreaterShield_DoD);
-			// Lesser Bleeding
-			SE_Smoke LesserBleed = ScriptableObject.CreateInstance<SE_Smoke>();
-			LesserBleed.name = "MonsterBleedingLesser";
-			LesserBleed.m_name = "$se_lesserbleeding_name_dod";
-			LesserBleed.m_icon = DoDAssets.LoadAsset<Sprite>("MinorInjury_Icon_DoD");
-			LesserBleed.m_ttl = 60f;
-			LesserBleed.m_cooldown = 90f;
-			LesserBleed.m_activationAnimation = "gpower";
-			LesserBleed.m_damage.m_damage = 1f;
-			LesserBleed.m_damageInterval = 1f;
-			SE_LesserBleeding_DoD = new CustomStatusEffect(LesserBleed, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_LesserBleeding_DoD);
-			// Bleeding
-			SE_Smoke Bleed = ScriptableObject.CreateInstance<SE_Smoke>();
-			Bleed.name = "MonsterBleeding";
-			Bleed.m_name = "$se_bleeding_name_dod";
-			Bleed.m_icon = DoDAssets.LoadAsset<Sprite>("Injured_Icon_DoD");
-			Bleed.m_ttl = 60f;
-			Bleed.m_cooldown = 90f;
-			Bleed.m_activationAnimation = "gpower";
-			Bleed.m_damage.m_damage = 2f;
-			Bleed.m_damageInterval = 1f;
-			SE_Bleeding_DoD = new CustomStatusEffect(Bleed, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_Bleeding_DoD);
-			// Greater Bleeding
-			SE_Smoke GreaterBleed = ScriptableObject.CreateInstance<SE_Smoke>();
-			GreaterBleed.name = "MonsterBleedingGreater";
-			GreaterBleed.m_name = "$se_greaterbleeding_name_dod";
-			GreaterBleed.m_icon = DoDAssets.LoadAsset<Sprite>("MajorInjury_Icon_DoD");
-			GreaterBleed.m_ttl = 60f;
-			GreaterBleed.m_cooldown = 90f;
-			GreaterBleed.m_activationAnimation = "gpower";
-			GreaterBleed.m_damage.m_damage = 4f;
-			GreaterBleed.m_damageInterval = 1f;
-			SE_GreaterBleeding_DoD = new CustomStatusEffect(GreaterBleed, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_GreaterBleeding_DoD);
-			// Blistered
-			SE_Stats Blistered = ScriptableObject.CreateInstance<SE_Stats>();
-			Blistered.name = "MonsterBlistered";
-			Blistered.m_name = "$se_monsterblistered_name_dod";
-			Blistered.m_icon = DoDAssets.LoadAsset<Sprite>("Blistered_Icon_DoD");
-			Blistered.m_ttl = 90f;
-			Blistered.m_cooldown = 120f;
-			Blistered.m_activationAnimation = "gpower";
-			Blistered.m_healthRegenMultiplier = 0.75f;
-			Blistered.m_staminaRegenMultiplier = 0.75f;
-			Blistered.m_speedModifier = -0.1f;
-			SE_Blistered_DoD = new CustomStatusEffect(Blistered, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_Blistered_DoD);
-			// Weak
-			SE_Stats Weak = ScriptableObject.CreateInstance<SE_Stats>();
-			Weak.name = "MonsterWeak";
-			Weak.m_name = "$se_monsterweak_name_dod";
-			Weak.m_icon = DoDAssets.LoadAsset<Sprite>("Weak_Icon_DoD");
-			Weak.m_ttl = 90f;
-			Weak.m_cooldown = 120f;
-			Weak.m_activationAnimation = "gpower";
-			Weak.m_addMaxCarryWeight = -150f;
-			Weak.m_speedModifier = -0.15f;
-			SE_Weak_DoD = new CustomStatusEffect(Weak, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_Weak_DoD);
-			// Infected
-			SE_Stats Infected = ScriptableObject.CreateInstance<SE_Stats>();
-			Infected.name = "MonsterInfected";
-			Infected.m_name = "$se_monsterinfected_name_dod";
-			Infected.m_icon = DoDAssets.LoadAsset<Sprite>("Infected_Icon_DoD");
-			Infected.m_ttl = 90f;
-			Infected.m_cooldown = 120f;
-			Infected.m_activationAnimation = "gpower";
-			Infected.m_runStaminaDrainModifier = 1.25f;
-			Infected.m_jumpStaminaUseModifier = 1.25f;
-			Infected.m_healthRegenMultiplier = 0.75f;
-			Infected.m_staminaRegenMultiplier = 0.75f;
-			Infected.m_speedModifier = -0.05f;
-			SE_Infected_DoD = new CustomStatusEffect(Infected, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_Infected_DoD);
-			// Diseased
-			SE_Stats Diseased = ScriptableObject.CreateInstance<SE_Stats>();
-			Diseased.name = "MonsterDiseased";
-			Diseased.m_name = "$se_monsterdiseased_name_dod";
-			Diseased.m_icon = DoDAssets.LoadAsset<Sprite>("Diseased_Icon_DoD");
-			Diseased.m_ttl = 90f;
-			Diseased.m_cooldown = 120f;
-			Diseased.m_activationAnimation = "gpower";
-			Diseased.m_runStaminaDrainModifier = 1.5f;
-			Diseased.m_jumpStaminaUseModifier = 1.5f;
-			Diseased.m_healthRegenMultiplier = 0.5f;
-			Diseased.m_staminaRegenMultiplier = 0.5f;
-			Diseased.m_speedModifier = -0.1f;
-			SE_Diseased_DoD = new CustomStatusEffect(Diseased, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_Diseased_DoD);
-			// Frostbite
-			SE_Smoke Frostbite = ScriptableObject.CreateInstance<SE_Smoke>();
-			Frostbite.name = "MonsterFrostbite";
-			Frostbite.m_name = "$se_frostbite_name_dod";
-			Frostbite.m_icon = DoDAssets.LoadAsset<Sprite>("Frostbite_Icon_DoD");
-			Frostbite.m_ttl = 20f;
-			Frostbite.m_cooldown = 40f;
-			Frostbite.m_activationAnimation = "gpower";
-			Frostbite.m_damage.m_frost = 6f;
-			Frostbite.m_damageInterval = 1f;
-			SE_Frostbite_DoD = new CustomStatusEffect(Frostbite, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_Frostbite_DoD);
-			// Frostbitten
-			SE_Smoke Frostbitten = ScriptableObject.CreateInstance<SE_Smoke>();
-			Frostbitten.name = "MonsterFrostbitten";
-			Frostbitten.m_name = "$se_frostbitten_name_dod";
-			Frostbitten.m_icon = DoDAssets.LoadAsset<Sprite>("Frostbite_Icon_DoD");
-			Frostbitten.m_ttl = 20f;
-			Frostbitten.m_cooldown = 40f;
-			Frostbitten.m_activationAnimation = "gpower";
-			Frostbitten.m_damage.m_frost = 12f;
-			Frostbitten.m_damageInterval = 1f;
-			SE_Frostbitten_DoD = new CustomStatusEffect(Frostbitten, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_Frostbitten_DoD);
-			// Slow
-			SE_Frost Slow = ScriptableObject.CreateInstance<SE_Frost>();
-			Slow.name = "MonsterSlow";
-			Slow.m_name = "$se_slow_name_dod";
-			Slow.m_ttl = 10f;
-			Slow.m_cooldown = 10f;
-			Slow.m_activationAnimation = "gpower";
-			Slow.m_minSpeedFactor = 0.75f;
-			SE_Slow_DoD = new CustomStatusEffect(Slow, fixReference: false);
-			ItemManager.Instance.AddStatusEffect(SE_Slow_DoD);
-		}
-		private void UpdateWeaponsSE()
-        {
-			Aoe prefab1 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_NinjaSword_DoD");
-			prefab1.m_statusEffect = "NinjaSwordStatusEffect";
-			Aoe prefab2 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_MoonSword_DoD");
-			prefab2.m_statusEffect = "MoonSwordStatusEffect";
-			Aoe prefab3 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_AuraHealing_DoD");
-			prefab3.m_statusEffect = "DruidSpearStatusEffect";
-			Aoe prefab4 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_RogueSword_DoD");
-			prefab4.m_statusEffect = "RogueSwordStatusEffect";
-
-			ItemManager.OnItemsRegistered -= UpdateWeaponsSE;
-		}
 		private static void ModMonsterAttackSE()
 		{
-			Aoe prefab1 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_HoT50_DoD");
-			Aoe prefab2 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_HoT100_DoD");
-			Aoe prefab3 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_HoT200_DoD");
-			Aoe prefab4 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Regen50_DoD");
-			Aoe prefab5 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Regen100_DoD");
-			Aoe prefab6 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Regen200_DoD");
-			Aoe prefab7 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Protection250_DoD");
-			Aoe prefab8 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Protection500_DoD");
-			Aoe prefab9 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Protection1000_DoD");
-			Aoe prefab10 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Bleed25_DoD");
-			Aoe prefab11 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Bleed50_DoD");
-			Aoe prefab12 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Bleed100_DoD");
-			Aoe prefab13 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Infected_DoD");
-			Aoe prefab14 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Diseased_DoD");
-			Aoe prefab15 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Weak_DoD");
-			Aoe prefab16 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Bitterstump_Heal_DoD");
-			Aoe prefab17 = PrefabManager.Cache.GetPrefab<Aoe>("AoE_Skir_Nova_DoD");
-			ItemDrop prefab18 = PrefabManager.Cache.GetPrefab<ItemDrop>("SkirSandburst_Shield_DoD");
-			ItemDrop prefab19 = PrefabManager.Cache.GetPrefab<ItemDrop>("SkirSandburst_Heal_DoD");
-			ItemDrop prefab20 = PrefabManager.Cache.GetPrefab<ItemDrop>("Bitterstump_Heal_DoD");
-			ItemDrop prefab21 = PrefabManager.Cache.GetPrefab<ItemDrop>("Rambore_Gore_DoD");
-			ItemDrop prefab22 = PrefabManager.Cache.GetPrefab<ItemDrop>("Farkas_Bleed_DoD");
-			Projectile prefab23 = PrefabManager.Cache.GetPrefab<Projectile>("Bhygshan_Fireball_Projectile_DoD");
-			ItemDrop prefab24 = PrefabManager.Cache.GetPrefab<ItemDrop>("Farkas_FrostBite_DoD");
-			ItemDrop prefab25 = PrefabManager.Cache.GetPrefab<ItemDrop>("Farkas_Hamper_Attack_DoD");
-			ItemDrop prefab26 = PrefabManager.Cache.GetPrefab<ItemDrop>("Bhygshan_SprayFrost_DoD");
-			ItemDrop prefab27 = PrefabManager.Cache.GetPrefab<ItemDrop>("Bitterstump_SprayFrost_DoD");
-			ItemDrop prefab28 = PrefabManager.Cache.GetPrefab<ItemDrop>("Eikthyr_stomp");
-			Projectile prefab29 = PrefabManager.Cache.GetPrefab<Projectile>("gdking_root_projectile");
 			Aoe prefab30 = PrefabManager.Cache.GetPrefab<Aoe>("bonemass_aoe");
-			ItemDrop prefab31 = PrefabManager.Cache.GetPrefab<ItemDrop>("dragon_coldbreath");
-			ItemDrop prefab32 = PrefabManager.Cache.GetPrefab<ItemDrop>("GoblinKing_Nova");
-			Projectile prefab33 = PrefabManager.Cache.GetPrefab<Projectile>("troll_throw_projectile");
 			Aoe prefab34 = PrefabManager.Cache.GetPrefab<Aoe>("shaman_attack_aoe");
 			Aoe prefab35 = PrefabManager.Cache.GetPrefab<Aoe>("blob_aoe");
 			Aoe prefab36 = PrefabManager.Cache.GetPrefab<Aoe>("bee_aoe");
-			ItemDrop prefab37 = PrefabManager.Cache.GetPrefab<ItemDrop>("stonegolem_attack_doublesmash");
 			Projectile prefab38 = PrefabManager.Cache.GetPrefab<Projectile>("GoblinShaman_projectile_fireball");
-
-			var SE_LesserShield_DoD = ObjectDB.instance.GetStatusEffect("SE_LesserShield_DoD");
-			var SE_LesserHoT_DoD = ObjectDB.instance.GetStatusEffect("SE_LesserHoT_DoD");
-			var SE_HoT_DoD = ObjectDB.instance.GetStatusEffect("SE_HoT_DoD");
-			var SE_LesserBleeding_DoD = ObjectDB.instance.GetStatusEffect("SE_LesserBleeding_DoD");
-			var SE_Bleeding_DoD = ObjectDB.instance.GetStatusEffect("SE_Bleeding_DoD");
-			var SE_Blistered_DoD = ObjectDB.instance.GetStatusEffect("SE_Blistered_DoD");
-			var SE_Slow_DoD = ObjectDB.instance.GetStatusEffect("SE_Slow_DoD");
-			var SE_Frostbitten_DoD = ObjectDB.instance.GetStatusEffect("SE_Frostbitten_DoD");
-			var SE_Frostbite_DoD = ObjectDB.instance.GetStatusEffect("SE_Frostbite_DoD");
-			var SE_Weak_DoD = ObjectDB.instance.GetStatusEffect("SE_Weak_DoD");
-			var SE_Infected_DoD = ObjectDB.instance.GetStatusEffect("SE_Infected_DoD");
-
-			prefab1.m_statusEffect = "SE_LesserHoT_DoD";
-			prefab2.m_statusEffect = "SE_HoT_DoD";
-			prefab3.m_statusEffect = "SE_GreaterHoT_DoD";
-			prefab4.m_statusEffect = "SE_LesserRegen_DoD";
-			prefab5.m_statusEffect = "SE_Regen_DoD";
-			prefab6.m_statusEffect = "SE_GreaterRegen_DoD";
-			prefab7.m_statusEffect = "SE_LesserShield_DoD";
-			prefab8.m_statusEffect = "SE_Shield_DoD";
-			prefab9.m_statusEffect = "SE_GreaterShield_DoD";
-			prefab10.m_statusEffect = "SE_LesserBleeding_DoD";
-			prefab11.m_statusEffect = "SE_Bleeding_DoD";
-			prefab12.m_statusEffect = "SE_GreaterBleeding_DoD";
-			prefab13.m_statusEffect = "SE_Infected_DoD";
-			prefab14.m_statusEffect = "SE_Diseased_DoD";
-			prefab15.m_statusEffect = "SE_Weak_DoD";
-			prefab16.m_statusEffect = "SE_HoT_DoD";
-			prefab17.m_statusEffect = "SE_Blistered_DoD";
-			prefab18.m_itemData.m_shared.m_attackStatusEffect = SE_LesserShield_DoD;
-			prefab19.m_itemData.m_shared.m_attackStatusEffect = SE_HoT_DoD;
-			prefab20.m_itemData.m_shared.m_attackStatusEffect = SE_HoT_DoD;
-			prefab21.m_itemData.m_shared.m_attackStatusEffect = SE_LesserBleeding_DoD;
-			prefab22.m_itemData.m_shared.m_attackStatusEffect = SE_Bleeding_DoD;
-			prefab23.m_statusEffect = "SE_Blistered_DoD";
-			prefab24.m_itemData.m_shared.m_attackStatusEffect = SE_Frostbitten_DoD;
-			prefab25.m_itemData.m_shared.m_attackStatusEffect = SE_Slow_DoD;
-			prefab26.m_itemData.m_shared.m_attackStatusEffect = SE_Frostbite_DoD;
-			prefab27.m_itemData.m_shared.m_attackStatusEffect = SE_Frostbitten_DoD;
-			prefab28.m_itemData.m_shared.m_attackStatusEffect = SE_Blistered_DoD;
+			Projectile prefab29 = PrefabManager.Cache.GetPrefab<Projectile>("gdking_root_projectile");
+			Projectile prefab33 = PrefabManager.Cache.GetPrefab<Projectile>("troll_throw_projectile");
 			prefab29.m_statusEffect = "SE_Weak_DoD";
 			prefab30.m_statusEffect = "SE_Infected_DoD";
-			prefab31.m_itemData.m_shared.m_attackStatusEffect = SE_Frostbitten_DoD;
-			prefab32.m_itemData.m_shared.m_attackStatusEffect = SE_Blistered_DoD;
 			prefab33.m_statusEffect = "SE_Slow_DoD";
 			prefab34.m_statusEffect = "SE_Infected_DoD";
 			prefab35.m_statusEffect = "SE_Diseased_DoD";
 			prefab36.m_statusEffect = "SE_Infected_DoD";
-			prefab37.m_itemData.m_shared.m_attackStatusEffect = SE_Weak_DoD;
 			prefab38.m_statusEffect = "SE_Blistered_DoD";
+
+			/*ItemDrop prefab28 = PrefabManager.Cache.GetPrefab<ItemDrop>("Eikthyr_stomp");
+			ItemDrop prefab31 = PrefabManager.Cache.GetPrefab<ItemDrop>("dragon_coldbreath");
+			ItemDrop prefab32 = PrefabManager.Cache.GetPrefab<ItemDrop>("GoblinKing_Nova");
+			ItemDrop prefab37 = PrefabManager.Cache.GetPrefab<ItemDrop>("stonegolem_attack_doublesmash");
+			var SE_Blistered_DoD = ObjectDB.instance.GetStatusEffect("SE_Blistered_DoD");
+			var SE_Frostbitten_DoD = ObjectDB.instance.GetStatusEffect("SE_Frostbitten_DoD");
+			var SE_Frostbite_DoD = ObjectDB.instance.GetStatusEffect("SE_Frostbite_DoD");
+			var SE_Weak_DoD = ObjectDB.instance.GetStatusEffect("SE_Weak_DoD");
+			prefab28.m_itemData.m_shared.m_attackStatusEffect = SE_Blistered_DoD;
+			prefab31.m_itemData.m_shared.m_attackStatusEffect = SE_Frostbitten_DoD;
+			prefab32.m_itemData.m_shared.m_attackStatusEffect = SE_Blistered_DoD;
+			prefab37.m_itemData.m_shared.m_attackStatusEffect = SE_Weak_DoD;*/
 
 			ItemManager.OnItemsRegistered -= ModMonsterAttackSE;
 		}
@@ -4664,7 +4509,7 @@ namespace DoDMonsters
 				}
 				else
 				{
-					Debug.LogError("Error offering bowl didn't contain offer");
+					//Debug.LogError("Error offering bowl didn't contain offer");
 				}
 			}
 		}*/

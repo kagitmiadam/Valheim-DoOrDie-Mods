@@ -26,7 +26,7 @@ namespace DoOrDieBiomes
 
 		public const string PluginName = "DoOrDieBiomes";
 
-		public const string PluginVersion = "0.0.4";
+		public const string PluginVersion = "0.0.7";
 
 		public static GameObject SteelPick;
 		// Fruit
@@ -98,6 +98,17 @@ namespace DoOrDieBiomes
 		public static GameObject Mineable_SandRock5_DoD;
 		public static GameObject Mineable_SandRock4_DoD;
 		public static GameObject Mineable_SandRock3_DoD;
+		public static GameObject LavaRock1;
+		public static GameObject LavaRock2;
+		public static GameObject LavaRock3;
+		public static GameObject LavaRock4;
+		public static GameObject LavaRock5;
+		public static GameObject LavaRock6;
+		public static GameObject LavaRock7;
+		public static GameObject LavaRock8;
+		public static GameObject LavaRock9;
+		public static GameObject LavaRock10;
+		public static GameObject LavaRock11;
 		// fruit trees
 		public static GameObject Tree_Banana_Pickable_DoD;
 		public static GameObject Tree_Apple_Pickable_DoD;
@@ -117,6 +128,7 @@ namespace DoOrDieBiomes
 
 		// Bundle
 		public AssetBundle DoDBiome;
+		private Harmony _harmony;
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
 			Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -185,6 +197,7 @@ namespace DoOrDieBiomes
 			CreatePickAxe();
 			ZoneManager.OnVanillaLocationsAvailable += AddLocations;
 			UnloadBundle();
+			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoDBiomes");
 		}
 		public void LoadBundle()
 		{
@@ -287,6 +300,55 @@ namespace DoOrDieBiomes
 			GameObject EnvZone2 = DoDBiome.LoadAsset<GameObject>("InteriorEnvironmentZone");
 			CustomPrefab zone5 = new CustomPrefab(EnvZone2, false);
 			PrefabManager.Instance.AddPrefab(zone5);*/
+			GameObject SFXRockHit = DoDBiome.LoadAsset<GameObject>("loc_sfx_rock_hit_dod");
+			GameObject SFXRockDest = DoDBiome.LoadAsset<GameObject>("loc_sfx_rock_destroyed_dod");
+			GameObject SFXBossSpawn = DoDBiome.LoadAsset<GameObject>("SFX_BossSpawn_DoD");
+			GameObject SFXSummoning = DoDBiome.LoadAsset<GameObject>("SFX_BossSummon_DoD");
+			GameObject SFXBushChop = DoDBiome.LoadAsset<GameObject>("SFX_Bush_Chop_DoD");
+			GameObject SFXOfferingBones = DoDBiome.LoadAsset<GameObject>("SFX_OfferingBones_DoD");
+			GameObject SFXPickable = DoDBiome.LoadAsset<GameObject>("SFX_Pickable_Pick_DoD");
+			GameObject SFXLoc1 = DoDBiome.LoadAsset<GameObject>("SFX_Rock_Destroyed_DoD");
+			GameObject SFXLoc2 = DoDBiome.LoadAsset<GameObject>("SFX_Rock_Hit_DoD");
+			GameObject SFXTreeFallS = DoDBiome.LoadAsset<GameObject>("SFX_SmallTree_Falling_DoD");
+			GameObject SFXTreeFall = DoDBiome.LoadAsset<GameObject>("SFX_Tree_Falling_DoD");
+			GameObject SFXWoodChop = DoDBiome.LoadAsset<GameObject>("SFX_Wood_Chop_DoD");
+			GameObject SFXWoodDestroy = DoDBiome.LoadAsset<GameObject>("SFX_Wood_Destroyed_DoD");
+			PrefabManager.Instance.AddPrefab(SFXLoc1);
+			PrefabManager.Instance.AddPrefab(SFXLoc2);
+			PrefabManager.Instance.AddPrefab(SFXWoodDestroy);
+			PrefabManager.Instance.AddPrefab(SFXWoodChop);
+			PrefabManager.Instance.AddPrefab(SFXTreeFall);
+			PrefabManager.Instance.AddPrefab(SFXTreeFallS);
+			PrefabManager.Instance.AddPrefab(SFXBushChop);
+			PrefabManager.Instance.AddPrefab(SFXRockHit);
+			PrefabManager.Instance.AddPrefab(SFXRockDest);
+			PrefabManager.Instance.AddPrefab(SFXPickable);
+			PrefabManager.Instance.AddPrefab(SFXOfferingBones);
+			PrefabManager.Instance.AddPrefab(SFXBossSpawn);
+			PrefabManager.Instance.AddPrefab(SFXSummoning);
+
+			GameObject VFXBiiterSpawn = DoDBiome.LoadAsset<GameObject>("VFX_BiiterSpawn_DoD");
+			GameObject VFXBitterSpawnIn = DoDBiome.LoadAsset<GameObject>("VFX_BitterSpawnIn_DoD");
+			GameObject VFXDustPiece = DoDBiome.LoadAsset<GameObject>("VFX_Dust_Piece_DoD");
+			GameObject VFXFelOreDestroy = DoDBiome.LoadAsset<GameObject>("VFX_Felore_Destroy_DoD");
+			GameObject VFXMineHit = DoDBiome.LoadAsset<GameObject>("VFX_Mine_Hit_DoD");
+			GameObject VFXOfferingBowl = DoDBiome.LoadAsset<GameObject>("VFX_OfferingBowl_DoD");
+			GameObject VFXPickable = DoDBiome.LoadAsset<GameObject>("VFX_Pickable_Pick_DoD");
+			GameObject VFXRockDestroyed = DoDBiome.LoadAsset<GameObject>("VFX_RockDestroyed_DoD");
+			GameObject VFXRockHit = DoDBiome.LoadAsset<GameObject>("VFX_RockHit_DoD");
+			GameObject VFXDestroyed = DoDBiome.LoadAsset<GameObject>("VFX_Destroyed_DoD");
+			GameObject VFXHit = DoDBiome.LoadAsset<GameObject>("VFX_Hit_DoD");
+			PrefabManager.Instance.AddPrefab(VFXMineHit);
+			PrefabManager.Instance.AddPrefab(VFXBiiterSpawn);
+			PrefabManager.Instance.AddPrefab(VFXBitterSpawnIn);
+			PrefabManager.Instance.AddPrefab(VFXFelOreDestroy);
+			PrefabManager.Instance.AddPrefab(VFXPickable);
+			PrefabManager.Instance.AddPrefab(VFXDustPiece);
+			PrefabManager.Instance.AddPrefab(VFXRockDestroyed);
+			PrefabManager.Instance.AddPrefab(VFXDestroyed);
+			PrefabManager.Instance.AddPrefab(VFXOfferingBowl);
+			PrefabManager.Instance.AddPrefab(VFXHit);
+			PrefabManager.Instance.AddPrefab(VFXRockHit);
 
 			SteelPick = DoDBiome.LoadAsset<GameObject>("SteelPickaxe_DoD");
 			Walnuts = DoDBiome.LoadAsset<GameObject>("Walnuts_DoD");
@@ -385,7 +447,18 @@ namespace DoOrDieBiomes
 			Mineable_SandRock5_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock5_DoD");
 			Mineable_SandRock4_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock4_DoD");
 			Mineable_SandRock3_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock3_DoD");
-					}
+			LavaRock1 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaRock1_DoD");
+			LavaRock2 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaRock2_DoD");
+			LavaRock3 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaRock3_DoD");
+			LavaRock4 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaRock4_DoD");
+			LavaRock5 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaRock5_DoD");
+			LavaRock6 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaRock6_DoD");
+			LavaRock7 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaRock7_DoD");
+			LavaRock8 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaRock8_DoD");
+			LavaRock9 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaRock9_DoD");
+			LavaRock10 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaGroup1_DoD");
+			LavaRock11 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaGroup2_DoD");
+		}
 		private void AddLocations()
 		{
 			//Debug.Log("DoDMonsters: 35");
@@ -394,6 +467,17 @@ namespace DoOrDieBiomes
 			{
 				if (AshLandsLocations.Value == true)
 				{
+					var BossPlatformAL = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_BossPlatform_AL_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformAL, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.AshLands,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
 					var HellPlatformA = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_HellPlatformA_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(HellPlatformA, true, new LocationConfig
 					{
@@ -403,6 +487,7 @@ namespace DoOrDieBiomes
 						ExteriorRadius = 8f,
 						MinAltitude = 5f,
 						ClearArea = true,
+						MinDistanceFromSimilar = 500f,
 					}));
 					var HellPlatformB = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_HellPlatformB_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(HellPlatformB, true, new LocationConfig
@@ -413,6 +498,7 @@ namespace DoOrDieBiomes
 						ExteriorRadius = 8f,
 						MinAltitude = 5f,
 						ClearArea = true,
+						MinDistanceFromSimilar = 500f,
 					}));
 					var AshTower = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_AshTower_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AshTower, true, new LocationConfig
@@ -423,6 +509,7 @@ namespace DoOrDieBiomes
 						ExteriorRadius = 5f,
 						MinAltitude = 5f,
 						ClearArea = true,
+						MinDistanceFromSimilar = 500f,
 					}));
 				}
 				if (DeepNorthLocations.Value == true)
@@ -437,10 +524,34 @@ namespace DoOrDieBiomes
 						MinAltitude = 5f,
 						ClearArea = true,
 						SlopeRotation = true,
+						MinDistanceFromSimilar = 300f,
+					}));
+					var BossPlatformDN = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_BossPlatform_DN_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformDN, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.DeepNorth,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
 					}));
 				}
 				if (MistlandsLocEnable.Value == true)
 				{
+					var MistLoc1 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_MistlandsCave_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(MistLoc1, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Mistlands,
+						Quantity = 150,
+						Priotized = true,
+						ExteriorRadius = 10f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						SlopeRotation = true,
+						MinDistanceFromSimilar = 300f,
+					}));
 					var MistLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_OreMine_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(MistLoc2, true, new LocationConfig
 					{
@@ -451,10 +562,99 @@ namespace DoOrDieBiomes
 						MinAltitude = 5f,
 						ClearArea = true,
 						SlopeRotation = true,
+						MinDistanceFromSimilar = 300f,
+					}));
+					var BossPlatformMist = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_BossPlatform_Mist_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformMist, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Mistlands,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
 					}));
 				}
 				if (DoDLocEnable.Value == true)
 				{
+					var BossFarkas = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Boss_Farkas_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossFarkas, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Mountain,
+						Quantity = 4,
+						Priotized = true,
+						ExteriorRadius = 9f,
+						MinAltitude = 200f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 1000f,
+					}));
+					var BossBhygshan = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Boss_Bhygshan_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossBhygshan, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Swamp,
+						Quantity = 4,
+						Priotized = true,
+						ExteriorRadius = 12f,
+						MinAltitude = 0.5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 1000f,
+					}));
+					var BossPlatformPlains = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_BossPlatform_Plains_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformPlains, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Plains,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var BossPlatformMount = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_BossPlatform_Mount_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformMount, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Mountain,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var BossPlatformSwamp = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_BossPlatform_Swamp_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformSwamp, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Swamp,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 0.5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var BossPlatformBF = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_BossPlatform_BF_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformBF, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.BlackForest,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var BossPlatformMead = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_BossPlatform_Meadows_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformMead, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Meadows,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
 					var Rambore = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Boss_Rambore_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(Rambore, true, new LocationConfig
 					{
@@ -465,6 +665,7 @@ namespace DoOrDieBiomes
 						MinAltitude = 5f,
 						ClearArea = true,
 						SlopeRotation = true,
+						MinDistanceFromSimilar = 1000f,
 					}));
 					var Bitterstump = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Boss_Bitterstump_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(Bitterstump, true, new LocationConfig
@@ -476,6 +677,7 @@ namespace DoOrDieBiomes
 						MinAltitude = 5f,
 						ClearArea = true,
 						SlopeRotation = true,
+						MinDistanceFromSimilar = 1000f,
 					}));
 					var AnyLoc1 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_CastleArena_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc1, true, new LocationConfig
@@ -486,6 +688,7 @@ namespace DoOrDieBiomes
 						ExteriorRadius = 15f,
 						MinAltitude = 10f,
 						ClearArea = true,
+						MinDistance = 1000,
 					}));
 					var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Camp_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc2, true, new LocationConfig
@@ -496,6 +699,7 @@ namespace DoOrDieBiomes
 						ExteriorRadius = 1f,
 						MinAltitude = 2f,
 						ClearArea = true,
+						MinDistanceFromSimilar = 500f,
 					}));
 					var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Underworld_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc3, true, new LocationConfig
@@ -504,12 +708,9 @@ namespace DoOrDieBiomes
 						Quantity = 1,
 						Priotized = true,
 						ExteriorRadius = 15f,
-						MinAltitude = 10f,
+						MinAltitude = 5f,
 						ClearArea = true,
-						MinDistance = 150,
-						MaxDistance = 300,
-						InteriorEnvironment = "Interior",
-						InteriorRadius = 155,
+						MinDistance = 1000f,
 					}));
 				}
 			}
@@ -522,7 +723,7 @@ namespace DoOrDieBiomes
 		private void AddCustomFruitTrees()
 		{
 			//Debug.Log("DoDMonsters: 36");
-			CustomVegetation customBananaTree = new CustomVegetation(Tree_Banana_Pickable_DoD, new VegetationConfig
+			CustomVegetation customBananaTree = new CustomVegetation(Tree_Banana_Pickable_DoD, true, new VegetationConfig
 			{
 				Max = 1f,
 				GroupSizeMin = 1,
@@ -535,8 +736,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customBananaTree);
-
-			CustomVegetation customAppleTree = new CustomVegetation(Tree_Apple_Pickable_DoD, new VegetationConfig
+			CustomVegetation customAppleTree = new CustomVegetation(Tree_Apple_Pickable_DoD, true, new VegetationConfig
 			{
 				Max = 1f,
 				GroupSizeMin = 1,
@@ -549,37 +749,37 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customAppleTree);
-			CustomVegetation customVegetation21 = new CustomVegetation(MineRock_FroOre_DoD, new VegetationConfig
+			CustomVegetation customFroOre = new CustomVegetation(MineRock_FroOre_DoD, true, new VegetationConfig
 			{
-				Max = 2f,
+				Max = 1f,
 				GroupSizeMin = 1,
 				GroupSizeMax = 2,
 				GroupRadius = 64f,
 				BlockCheck = true,
 				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
+				MinAltitude = 1f,
 				MaxTilt = 30f
 			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation21);
-			CustomVegetation customVegetation22 = new CustomVegetation(MineRock_FelOre_DoD, new VegetationConfig
+			ZoneManager.Instance.AddCustomVegetation(customFroOre);
+			CustomVegetation customFelOre = new CustomVegetation(MineRock_FelOre_DoD, true, new VegetationConfig
 			{
 				Max = 1f,
 				GroupSizeMin = 1,
 				GroupSizeMax = 2,
-				GroupRadius = 10f,
+				GroupRadius = 64f,
 				BlockCheck = true,
 				Biome = Heightmap.Biome.Mistlands,
 				MinAltitude = 15f,
-				MaxTilt = 20f
+				MaxTilt = 30f
 			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation22);
+			ZoneManager.Instance.AddCustomVegetation(customFelOre);
 		}
 		private void AddMistlandVegetation()
 		{
 			//Debug.Log("DoDMonsters: 37");
 			var mistlandsVeg = new List<CustomVegetation>
 			{
-				new CustomVegetation(BlueMushroom_DoD, new VegetationConfig
+				new CustomVegetation(BlueMushroom_DoD, true, new VegetationConfig
 				{
 					Max = 2f,
 					GroupSizeMin = 2,
@@ -590,7 +790,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 100f,
 					MaxTilt = 45f
 				}),
-				new CustomVegetation(PurpleMushroom_DoD, new VegetationConfig
+				new CustomVegetation(PurpleMushroom_DoD, true, new VegetationConfig
 				{
 					Max = 2f,
 					GroupSizeMin = 2,
@@ -601,7 +801,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 100f,
 					MaxTilt = 45f
 				}),
-				new CustomVegetation(Tree_Willow02_DoD, new VegetationConfig
+				new CustomVegetation(Tree_Willow02_DoD, true, new VegetationConfig
 				{
 					Max = 5f,
 					GroupSizeMin = 3,
@@ -613,7 +813,7 @@ namespace DoOrDieBiomes
 					MaxAltitude = 750f,
 					MaxTilt = 30f
 				}),
-				new CustomVegetation(Tree_Willow01_DoD, new VegetationConfig
+				new CustomVegetation(Tree_Willow01_DoD, true, new VegetationConfig
 				{
 					Max = 5f,
 					GroupSizeMin = 3,
@@ -625,7 +825,7 @@ namespace DoOrDieBiomes
 					MaxAltitude = 1500f,
 					MaxTilt = 30f
 				}),
-				new CustomVegetation(Tree_Poplar02_DoD, new VegetationConfig
+				new CustomVegetation(Tree_Poplar02_DoD, true, new VegetationConfig
 				{
 					Max = 5f,
 					GroupSizeMin = 3,
@@ -637,7 +837,7 @@ namespace DoOrDieBiomes
 					MaxAltitude = 750f,
 					MaxTilt = 40f
 				}),
-				new CustomVegetation(Tree_Poplar01_DoD, new VegetationConfig
+				new CustomVegetation(Tree_Poplar01_DoD, true, new VegetationConfig
 				{
 					Max = 5f,
 					GroupSizeMin = 3,
@@ -649,7 +849,7 @@ namespace DoOrDieBiomes
 					MaxAltitude = 1500f,
 					MaxTilt = 40f
 				}),
-				new CustomVegetation(Bush_RedBerries_Pickable_DoD, new VegetationConfig
+				new CustomVegetation(Bush_RedBerries_Pickable_DoD, true, new VegetationConfig
 				{
 					Max = 1f,
 					GroupSizeMin = 3,
@@ -661,7 +861,7 @@ namespace DoOrDieBiomes
 					MaxAltitude = 50f,
 					MaxTilt = 20f
 				}),
-				new CustomVegetation(Tree_OldOak02_DoD, new VegetationConfig
+				new CustomVegetation(Tree_OldOak02_DoD, true, new VegetationConfig
 				{
 					Max = 6f,
 					GroupSizeMin = 1,
@@ -672,7 +872,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 10f,
 					MaxTilt = 30f
 				}),
-				new CustomVegetation(Mineable_RockMS_DoD, new VegetationConfig
+				new CustomVegetation(Mineable_RockMS_DoD, true, new VegetationConfig
 				{
 					Max = 12f,
 					GroupSizeMin = 1,
@@ -683,7 +883,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 0f,
 					MaxTilt = 30f
 				}),
-				new CustomVegetation(Mineable_RockMM_DoD, new VegetationConfig
+				new CustomVegetation(Mineable_RockMM_DoD, true, new VegetationConfig
 				{
 					Max = 10f,
 					GroupSizeMin = 1,
@@ -694,7 +894,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 0f,
 					MaxTilt = 30f
 				}),
-				new CustomVegetation(Mineable_RockML_DoD, new VegetationConfig
+				new CustomVegetation(Mineable_RockML_DoD, true, new VegetationConfig
 				{
 					Max = 8f,
 					GroupSizeMin = 1,
@@ -705,7 +905,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 0f,
 					MaxTilt = 30f
 				}),
-				new CustomVegetation(Mineable_RockMH_DoD, new VegetationConfig
+				new CustomVegetation(Mineable_RockMH_DoD, true, new VegetationConfig
 				{
 					Max = 6f,
 					GroupSizeMin = 1,
@@ -716,7 +916,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 1f,
 					MaxTilt = 30f
 				}),
-				new CustomVegetation(Tree_OldOak01_DoD, new VegetationConfig
+				new CustomVegetation(Tree_OldOak01_DoD, true, new VegetationConfig
 				{
 					Max = 2f,
 					GroupSizeMin = 1,
@@ -727,7 +927,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 10f,
 					MaxTilt = 30f
 				}),
-				new CustomVegetation(Tree_Oak02_DoD, new VegetationConfig
+				new CustomVegetation(Tree_Oak02_DoD, true, new VegetationConfig
 				{
 					Max = 2f,
 					GroupSizeMin = 1,
@@ -738,7 +938,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 10f,
 					MaxTilt = 30f
 				}),
-				new CustomVegetation(Tree_Oak01_DoD, new VegetationConfig
+				new CustomVegetation(Tree_Oak01_DoD, true, new VegetationConfig
 				{
 					Max = 2f,
 					GroupSizeMin = 1,
@@ -749,7 +949,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 5f,
 					MaxTilt = 30f
 				}),
-				new CustomVegetation(Bush_02_DoD, new VegetationConfig
+				new CustomVegetation(Bush_02_DoD, true, new VegetationConfig
 				{
 					Max = 2f,
 					GroupSizeMin = 4,
@@ -760,7 +960,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 5f,
 					MaxTilt = 45f
 				}),
-				new CustomVegetation(Bush_01_DoD, new VegetationConfig
+				new CustomVegetation(Bush_01_DoD, true, new VegetationConfig
 				{
 					Max = 2f,
 					GroupSizeMin = 4,
@@ -771,7 +971,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 1f,
 					MaxTilt = 45f
 				}),
-				new CustomVegetation(Mineable_RockMRFL_DoD, new VegetationConfig
+				new CustomVegetation(Mineable_RockMRFL_DoD, true, new VegetationConfig
 				{
 					Max = 2f,
 					GroupSizeMin = 4,
@@ -782,7 +982,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 1f,
 					MaxTilt = 45f
 				}),
-				new CustomVegetation(Mineable_RockMRFM_DoD, new VegetationConfig
+				new CustomVegetation(Mineable_RockMRFM_DoD, true, new VegetationConfig
 				{
 					Max = 2f,
 					GroupSizeMin = 4,
@@ -793,7 +993,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 1f,
 					MaxTilt = 45f
 				}),
-				new CustomVegetation(Flora_LargeBroad_DoD, new VegetationConfig
+				new CustomVegetation(Flora_LargeBroad_DoD, true, new VegetationConfig
 				{
 					Max = 10f,
 					GroupSizeMin = 4,
@@ -804,7 +1004,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 0f,
 					MaxAltitude = 300f
 				}),
-				new CustomVegetation(Flora_SmallMulti_B_DoD, new VegetationConfig
+				new CustomVegetation(Flora_SmallMulti_B_DoD, true, new VegetationConfig
 				{
 					Max = 10f,
 					GroupSizeMin = 4,
@@ -815,7 +1015,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 0f,
 					MaxAltitude = 300f
 				}),
-				new CustomVegetation(Flora_LargeSingle_DoD, new VegetationConfig
+				new CustomVegetation(Flora_LargeSingle_DoD, true, new VegetationConfig
 				{
 					Max = 10f,
 					GroupSizeMin = 4,
@@ -826,7 +1026,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 0f,
 					MaxAltitude = 300f
 				}),
-				new CustomVegetation(Flora_MediumSingle_DoD, new VegetationConfig
+				new CustomVegetation(Flora_MediumSingle_DoD, true, new VegetationConfig
 				{
 					Max = 10f,
 					GroupSizeMin = 4,
@@ -837,7 +1037,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 0f,
 					MaxAltitude = 300f
 				}),
-				new CustomVegetation(Flora_Large_DoD, new VegetationConfig
+				new CustomVegetation(Flora_Large_DoD, true, new VegetationConfig
 				{
 					Max = 10f,
 					GroupSizeMin = 4,
@@ -848,7 +1048,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 0f,
 					MaxAltitude = 300f
 				}),
-				new CustomVegetation(Flora_LargeTrio_DoD, new VegetationConfig
+				new CustomVegetation(Flora_LargeTrio_DoD, true, new VegetationConfig
 				{
 					Max = 10f,
 					GroupSizeMin = 4,
@@ -859,7 +1059,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 0f,
 					MaxAltitude = 300f
 				}),
-				new CustomVegetation(Flora_LargeDuo_DoD, new VegetationConfig
+				new CustomVegetation(Flora_LargeDuo_DoD, true, new VegetationConfig
 				{
 					Max = 10f,
 					GroupSizeMin = 4,
@@ -870,7 +1070,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 0f,
 					MaxAltitude = 300f
 				}),
-				new CustomVegetation(Tree_Walnut_Pickable_DoD, new VegetationConfig
+				new CustomVegetation(Tree_Walnut_Pickable_DoD, true, new VegetationConfig
 				{
 					Max = 1f,
 					GroupSizeMin = 3,
@@ -893,7 +1093,7 @@ namespace DoOrDieBiomes
 		private void AddDeepNorthVegetation()
 		{
 			//Debug.Log("DoDMonsters: 38");
-			CustomVegetation customVegetation20 = new CustomVegetation(Bush3_DeepNorth_DoD, new VegetationConfig
+			CustomVegetation customVegetation20 = new CustomVegetation(Bush3_DeepNorth_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -905,7 +1105,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation20);
-			CustomVegetation customVegetation19 = new CustomVegetation(Bush2_DeepNorth_DoD, new VegetationConfig
+			CustomVegetation customVegetation19 = new CustomVegetation(Bush2_DeepNorth_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -917,7 +1117,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation19);
-			CustomVegetation customVegetation18 = new CustomVegetation(Bush1_DeepNorth_DoD, new VegetationConfig
+			CustomVegetation customVegetation18 = new CustomVegetation(Bush1_DeepNorth_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -929,7 +1129,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation18);
-			CustomVegetation customVegetation17 = new CustomVegetation(WinterPine7_DoD, new VegetationConfig
+			CustomVegetation customVegetation17 = new CustomVegetation(WinterPine7_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -941,7 +1141,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation17);
-			CustomVegetation customVegetation16 = new CustomVegetation(Mineable_RockDN10_DoD, new VegetationConfig
+			CustomVegetation customVegetation16 = new CustomVegetation(Mineable_RockDN10_DoD, true, new VegetationConfig
 			{
 				Max = 4f,
 				GroupSizeMin = 1,
@@ -953,7 +1153,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation16);
-			CustomVegetation customVegetation15 = new CustomVegetation(Mineable_RockDN9_DoD, new VegetationConfig
+			CustomVegetation customVegetation15 = new CustomVegetation(Mineable_RockDN9_DoD, true, new VegetationConfig
 			{
 				Max = 4f,
 				GroupSizeMin = 1,
@@ -965,7 +1165,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation15);
-			CustomVegetation customVegetation14 = new CustomVegetation(Mineable_RockDN8_DoD, new VegetationConfig
+			CustomVegetation customVegetation14 = new CustomVegetation(Mineable_RockDN8_DoD, true, new VegetationConfig
 			{
 				Max = 5f,
 				GroupSizeMin = 1,
@@ -977,7 +1177,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation14);
-			CustomVegetation customVegetation13 = new CustomVegetation(Mineable_RockDN7_DoD, new VegetationConfig
+			CustomVegetation customVegetation13 = new CustomVegetation(Mineable_RockDN7_DoD, true, new VegetationConfig
 			{
 				Max = 1f,
 				GroupSizeMin = 1,
@@ -989,7 +1189,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation13);
-			CustomVegetation customVegetation12 = new CustomVegetation(Mineable_RockDN6_DoD, new VegetationConfig
+			CustomVegetation customVegetation12 = new CustomVegetation(Mineable_RockDN6_DoD, true, new VegetationConfig
 			{
 				Max = 5f,
 				GroupSizeMin = 1,
@@ -1001,7 +1201,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation12);
-			CustomVegetation customVegetation11 = new CustomVegetation(Mineable_RockDN5_DoD, new VegetationConfig
+			CustomVegetation customVegetation11 = new CustomVegetation(Mineable_RockDN5_DoD, true, new VegetationConfig
 			{
 				Max = 1f,
 				GroupSizeMin = 1,
@@ -1013,7 +1213,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation11);
-			CustomVegetation customVegetation10 = new CustomVegetation(Mineable_RockDN4_DoD, new VegetationConfig
+			CustomVegetation customVegetation10 = new CustomVegetation(Mineable_RockDN4_DoD, true, new VegetationConfig
 			{
 				Max = 5f,
 				GroupSizeMin = 1,
@@ -1025,7 +1225,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation10);
-			CustomVegetation customVegetation9 = new CustomVegetation(Mineable_RockDN3_DoD, new VegetationConfig
+			CustomVegetation customVegetation9 = new CustomVegetation(Mineable_RockDN3_DoD, true, new VegetationConfig
 			{
 				Max = 1f,
 				GroupSizeMin = 1,
@@ -1037,7 +1237,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation9);
-			CustomVegetation customVegetation8 = new CustomVegetation(Mineable_RockDN2_DoD, new VegetationConfig
+			CustomVegetation customVegetation8 = new CustomVegetation(Mineable_RockDN2_DoD, true, new VegetationConfig
 			{
 				Max = 12f,
 				GroupSizeMin = 1,
@@ -1049,7 +1249,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation8);
-			CustomVegetation customVegetation7 = new CustomVegetation(Mineable_RockDN1_DoD, new VegetationConfig
+			CustomVegetation customVegetation7 = new CustomVegetation(Mineable_RockDN1_DoD, true, new VegetationConfig
 			{
 				Max = 12f,
 				GroupSizeMin = 1,
@@ -1061,7 +1261,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation7);
-			CustomVegetation customVegetation6 = new CustomVegetation(WinterPine6_DoD, new VegetationConfig
+			CustomVegetation customVegetation6 = new CustomVegetation(WinterPine6_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1074,7 +1274,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation6);
-			CustomVegetation customVegetation5 = new CustomVegetation(WinterPine5_DoD, new VegetationConfig
+			CustomVegetation customVegetation5 = new CustomVegetation(WinterPine5_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1087,7 +1287,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation5);
-			CustomVegetation customVegetation4 = new CustomVegetation(WinterPine4_DoD, new VegetationConfig
+			CustomVegetation customVegetation4 = new CustomVegetation(WinterPine4_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1100,7 +1300,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation4);
-			CustomVegetation customVegetation3 = new CustomVegetation(WinterPine3_DoD, new VegetationConfig
+			CustomVegetation customVegetation3 = new CustomVegetation(WinterPine3_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1113,7 +1313,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation3);
-			CustomVegetation customVegetation2 = new CustomVegetation(WinterPine2_DoD, new VegetationConfig
+			CustomVegetation customVegetation2 = new CustomVegetation(WinterPine2_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 3,
@@ -1126,7 +1326,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation2);
-			CustomVegetation customVegetation1 = new CustomVegetation(WinterPine1_DoD, new VegetationConfig
+			CustomVegetation customVegetation1 = new CustomVegetation(WinterPine1_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 3,
@@ -1142,8 +1342,140 @@ namespace DoOrDieBiomes
 		}
 		private void AddAshLandsVegetation()
 		{
+			CustomVegetation customVegetation25 = new CustomVegetation(LavaRock11, true, new VegetationConfig
+			{
+				Max = 1f,
+				GroupSizeMin = 1,
+				GroupSizeMax = 2,
+				GroupRadius = 64f,
+				BlockCheck = true,
+				Biome = Heightmap.Biome.AshLands,
+				MinAltitude = 0f,
+				MaxTilt = 30f
+			});
+			ZoneManager.Instance.AddCustomVegetation(customVegetation25);
+			CustomVegetation customVegetation24 = new CustomVegetation(LavaRock10, true, new VegetationConfig
+			{
+				Max = 1f,
+				GroupSizeMin = 1,
+				GroupSizeMax = 2,
+				GroupRadius = 64f,
+				BlockCheck = true,
+				Biome = Heightmap.Biome.AshLands,
+				MinAltitude = 0f,
+				MaxTilt = 30f
+			});
+			ZoneManager.Instance.AddCustomVegetation(customVegetation24);
+			CustomVegetation customVegetation23 = new CustomVegetation(LavaRock9, true, new VegetationConfig
+			{
+				Max = 2f,
+				GroupSizeMin = 1,
+				GroupSizeMax = 3,
+				GroupRadius = 64f,
+				BlockCheck = true,
+				Biome = Heightmap.Biome.AshLands,
+				MinAltitude = 0f,
+				MaxTilt = 30f
+			});
+			ZoneManager.Instance.AddCustomVegetation(customVegetation23);
+			CustomVegetation customVegetation22 = new CustomVegetation(LavaRock8, true, new VegetationConfig
+			{
+				Max = 2f,
+				GroupSizeMin = 1,
+				GroupSizeMax = 3,
+				GroupRadius = 64f,
+				BlockCheck = true,
+				Biome = Heightmap.Biome.AshLands,
+				MinAltitude = 0f,
+				MaxTilt = 30f
+			});
+			ZoneManager.Instance.AddCustomVegetation(customVegetation22);
+			CustomVegetation customVegetation21 = new CustomVegetation(LavaRock7, true, new VegetationConfig
+			{
+				Max = 2f,
+				GroupSizeMin = 1,
+				GroupSizeMax = 3,
+				GroupRadius = 64f,
+				BlockCheck = true,
+				Biome = Heightmap.Biome.AshLands,
+				MinAltitude = 0f,
+				MaxTilt = 30f
+			});
+			ZoneManager.Instance.AddCustomVegetation(customVegetation21);
+			CustomVegetation customVegetation20 = new CustomVegetation(LavaRock6, true, new VegetationConfig
+			{
+				Max = 2f,
+				GroupSizeMin = 1,
+				GroupSizeMax = 3,
+				GroupRadius = 64f,
+				BlockCheck = true,
+				Biome = Heightmap.Biome.AshLands,
+				MinAltitude = 0f,
+				MaxTilt = 30f
+			});
+			ZoneManager.Instance.AddCustomVegetation(customVegetation20);
+			CustomVegetation customVegetation19 = new CustomVegetation(LavaRock5, true, new VegetationConfig
+			{
+				Max = 2f,
+				GroupSizeMin = 1,
+				GroupSizeMax = 3,
+				GroupRadius = 64f,
+				BlockCheck = true,
+				Biome = Heightmap.Biome.AshLands,
+				MinAltitude = 0f,
+				MaxTilt = 30f
+			});
+			ZoneManager.Instance.AddCustomVegetation(customVegetation19);
+			CustomVegetation customVegetation18 = new CustomVegetation(LavaRock4, true, new VegetationConfig
+			{
+				Max = 2f,
+				GroupSizeMin = 1,
+				GroupSizeMax = 3,
+				GroupRadius = 64f,
+				BlockCheck = true,
+				Biome = Heightmap.Biome.AshLands,
+				MinAltitude = 0f,
+				MaxTilt = 30f
+			});
+			ZoneManager.Instance.AddCustomVegetation(customVegetation18);
+			CustomVegetation customVegetation17 = new CustomVegetation(LavaRock3, true, new VegetationConfig
+			{
+				Max = 2f,
+				GroupSizeMin = 1,
+				GroupSizeMax = 3,
+				GroupRadius = 64f,
+				BlockCheck = true,
+				Biome = Heightmap.Biome.AshLands,
+				MinAltitude = 0f,
+				MaxTilt = 30f
+			});
+			ZoneManager.Instance.AddCustomVegetation(customVegetation17);
+			CustomVegetation customVegetation16 = new CustomVegetation(LavaRock2, true, new VegetationConfig
+			{
+				Max = 2f,
+				GroupSizeMin = 1,
+				GroupSizeMax = 3,
+				GroupRadius = 64f,
+				BlockCheck = true,
+				Biome = Heightmap.Biome.AshLands,
+				MinAltitude = 0f,
+				MaxTilt = 30f
+			});
+			ZoneManager.Instance.AddCustomVegetation(customVegetation16);
+			CustomVegetation customVegetation15 = new CustomVegetation(LavaRock1, true, new VegetationConfig
+			{
+				Max = 2f,
+				GroupSizeMin = 1,
+				GroupSizeMax = 3,
+				GroupRadius = 64f,
+				BlockCheck = true,
+				Biome = Heightmap.Biome.AshLands,
+				MinAltitude = 0f,
+				MaxTilt = 30f
+			});
+			ZoneManager.Instance.AddCustomVegetation(customVegetation15);
 			//Debug.Log("DoDMonsters: 39");
-			CustomVegetation customVegetation14 = new CustomVegetation(Mineable_SandRock16_DoD, new VegetationConfig
+			CustomVegetation customVegetation14 = new CustomVegetation(Mineable_SandRock16_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1155,7 +1487,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation14);
-			CustomVegetation customVegetation13 = new CustomVegetation(Mineable_SandRock15_DoD, new VegetationConfig
+			CustomVegetation customVegetation13 = new CustomVegetation(Mineable_SandRock15_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1167,7 +1499,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation13);
-			CustomVegetation customVegetation12 = new CustomVegetation(Mineable_SandRock14_DoD, new VegetationConfig
+			CustomVegetation customVegetation12 = new CustomVegetation(Mineable_SandRock14_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1179,7 +1511,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation12);
-			CustomVegetation customVegetation11 = new CustomVegetation(Mineable_SandRock13_DoD, new VegetationConfig
+			CustomVegetation customVegetation11 = new CustomVegetation(Mineable_SandRock13_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1191,7 +1523,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation11);
-			CustomVegetation customVegetation10 = new CustomVegetation(Mineable_SandRock12_DoD, new VegetationConfig
+			CustomVegetation customVegetation10 = new CustomVegetation(Mineable_SandRock12_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1203,7 +1535,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation10);
-			CustomVegetation customVegetation9 = new CustomVegetation(Mineable_SandRock11_DoD, new VegetationConfig
+			CustomVegetation customVegetation9 = new CustomVegetation(Mineable_SandRock11_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1215,7 +1547,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation9);
-			CustomVegetation customVegetation8 = new CustomVegetation(Mineable_SandRock10_DoD, new VegetationConfig
+			CustomVegetation customVegetation8 = new CustomVegetation(Mineable_SandRock10_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1227,7 +1559,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation8);
-			CustomVegetation customVegetation7 = new CustomVegetation(Mineable_SandRock9_DoD, new VegetationConfig
+			CustomVegetation customVegetation7 = new CustomVegetation(Mineable_SandRock9_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1239,7 +1571,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation7);
-			CustomVegetation customVegetation6 = new CustomVegetation(Mineable_SandRock8_DoD, new VegetationConfig
+			CustomVegetation customVegetation6 = new CustomVegetation(Mineable_SandRock8_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1252,7 +1584,7 @@ namespace DoOrDieBiomes
 			});
 			//5
 			//4
-			CustomVegetation customVegetation3 = new CustomVegetation(Mineable_SandRock5_DoD, new VegetationConfig
+			CustomVegetation customVegetation3 = new CustomVegetation(Mineable_SandRock5_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1264,7 +1596,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation3);
-			CustomVegetation customVegetation2 = new CustomVegetation(Mineable_SandRock4_DoD, new VegetationConfig
+			CustomVegetation customVegetation2 = new CustomVegetation(Mineable_SandRock4_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,
@@ -1276,7 +1608,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation2);
-			CustomVegetation customVegetation1 = new CustomVegetation(Mineable_SandRock3_DoD, new VegetationConfig
+			CustomVegetation customVegetation1 = new CustomVegetation(Mineable_SandRock3_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
 				GroupSizeMin = 1,

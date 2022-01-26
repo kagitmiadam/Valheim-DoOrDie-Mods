@@ -268,5 +268,8 @@
   <ItemGroup>
     <EmbeddedResource Include="doordiesolo" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="jvldragon" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

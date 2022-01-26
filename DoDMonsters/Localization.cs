@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using HarmonyLib;
 using System.Reflection;
+using HarmonyLib;
+using UnityEngine;
 using System;
 
 namespace DoDMonsters
@@ -13,37 +13,28 @@ namespace DoDMonsters
         public static Dictionary<string, string> t;
         private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+			{"enemy_iceelemental_dod", "Ice Elemental"},
+			{"enemy_fireelemental_dod", "Fire Elemental"},
+			{"enemy_elemental_dod", "Elemental"},
+			{"enemy_hydra_dod", "Hydra"},
+			{"enemy_dragon_dod", "Dragon"},
 			{"creature_lizard_dod", "Lizardman"},
 			{"creature_treeent_dod", "Elderling"},
 			{"creature_beholder_dod", "Beholder"},
 			{"creature_demonlord_dod", "Demon Lord"},
-
+			
 			{"item_arrow_ashlands_dod", "Firery Arrow"},
 			{"item_arrow_deepnorth_dod", "Frosty Arrow"},
 			{"item_arrow_mistlands_dod", "Shocking Arrow"},
 			{"npc_skugga_young_dod", "Youngling"},
 
-			{"animal_sheep_dod", "Sheep"},
-			{"animal_goat_dod", "Goat"},
-			{"animal_goose_dod", "Goose"},
-			{"animal_penguin_dod", "Penguin"},
-			{"animal_salamander_dod", "Fire Salamander"},
-			{"animal_turtle_dod", "Box Turtle"},
-			{"animal_rat_dod", "Rat"},
-			{"animal_greenlizard_dod", "Green Lizard"},
-			{"animal_brownlizard_dod", "Brown Lizard"},
-			{"animal_spottedlizard_dod", "Spotted Lizard"},
-			{"animal_greenfrog_dod", "Green Frog"},
-			{"animal_blackfrog_dod", "Black Frog"},
-			{"animal_spottedfrog_dod", "Spotted Frog"},
-			{"animal_greyrabbit_dod", "Grey Rabbit"},
-			{"animal_brownrabbit_dod", "Brown Rabbit"},
-			{"animal_giantsnail_dod", "Giant Snail"},
 			{"item_token_skull_dod", "Skull Token"},
 			{"item_token_skull_description_dod", "Knarr the Trader likes these."},
 
 			{"npc_skugga_dod", "Skugga"},
 			{"npc_einherjar_dod", "Einherjar"},
+			{"npc_graywolf_dod", "Gray Wolf"},
+			{"npc_nomad_dod", "Nomad"},
 
 			{"item_walnut_dod", "Walnuts"},
             {"item_walnuts_description_dod", "Gatherd from a Walnut Tree in the Mistlands."},
@@ -229,23 +220,6 @@ namespace DoDMonsters
 			{ "item_cavemushroom_dod", "Cave Mushroom" },
 			{ "item_cavemushroom_description_dod", "These come from the underworld." },
 
-			{"animal_sheep_dod", "Овца"},
-			{"animal_goat_dod", "Козел"},
-			{"animal_goose_dod", "Гусь"},
-			{"animal_penguin_dod", "Пингвин"},
-			{"animal_salamander_dod", "Огненная саламандра"},
-			{"animal_turtle_dod", "Коробчатая черепаха"},
-			{"animal_rat_dod", "Крыса"},
-			{"animal_greenlizard_dod", "Зеленая ящерица"},
-			{"animal_brownlizard_dod", "Коричневая ящерица"},
-			{"animal_spottedlizard_dod", "Пятнистая ящерица"},
-			{"animal_greenfrog_dod", "Зеленая лягушка"},
-			{"animal_blackfrog_dod", "Черная лягушка"},
-			{"animal_spottedfrog_dod", "Пятнистая лягушка"},
-			{"animal_greyrabbit_dod", "Серый кролик"},
-			{"animal_brownrabbit_dod", "Коричневый кролик"},
-			{"animal_giantsnail_dod", "Гигантская улитка"},
-
 			{"item_walnuts_dod", "Грецкие орехи"},
 			{"item_walnuts_description_dod", "Собранный с орехового дерева в Туманных Землях."},
 			{"item_apple_dod", "Яблоки"},
@@ -419,23 +393,6 @@ namespace DoDMonsters
 			{"item_trophy_gsurtling_description", "Трофей, повесь его у себя на стене."}
 			};
 		private static Dictionary<string, string> german = new Dictionary<string, string>() {
-
-			{"animal_sheep_dod", "Schaf"},
-			{"animal_goat_dod", "Ziege"},
-			{"animal_goose_dod", "Gans"},
-			{"animal_penguin_dod", "Pinguin"},
-			{"animal_salamander_dod", "Feuersalamander"},
-			{"animal_turtle_dod", "Dosenschildkröte"},
-			{"animal_rat_dod", "Ratte"},
-			{"animal_greenlizard_dod", "Grüne Eidechse"},
-			{"animal_brownlizard_dod", "Braune Eidechse"},
-			{"animal_spottedlizard_dod", "Gefleckte Eidechse"},
-			{"animal_greenfrog_dod", "Grüner Frosch"},
-			{"animal_blackfrog_dod", "Schwarzer Frosch"},
-			{"animal_spottedfrog_dod", "Gefleckter Frosch"},
-			{"animal_greyrabbit_dod", "Graues Kaninchen"},
-			{"animal_brownrabbit_dod", "Braunes Kaninchen"},
-			{"animal_giantsnail_dod", "Riesenschnecke"},
 
 			{"npc_skugga_dod", "Skugga"},
 			{"npc_einherjar_dod", "Einherjar"},

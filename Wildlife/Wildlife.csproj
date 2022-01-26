@@ -268,5 +268,8 @@
   <ItemGroup>
     <EmbeddedResource Include="wildlife" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="africa" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,476 @@
+## Hugos Armory
+DeerFistsHTD:
+    cost: 5
+    stack: 1
+    inventory count: -1
+BronzeFistsHTD:
+    cost: 10
+    stack: 1
+    inventory count: -1
+IronFistsHTD:
+    cost: 15
+    stack: 1
+    inventory count: -1
+IronGreatSwordHTD:
+    cost: 15
+    stack: 1
+    inventory count: -1
+IronHeavyGreatSwordHTD:
+    cost: 15
+    stack: 1
+    inventory count: -1
+BlackMetalGreatSwordAltHTD:
+    cost: 15
+    stack: 1
+    inventory count: -1
+CoreGreatMaceGreenHTD:
+    cost: 15
+    stack: 1
+    inventory count: -1
+SilverGreatSwordHTD:
+    cost: 20
+    stack: 1
+    inventory count: -1
+SilverBattleaxeHTD:
+    cost: 20
+    stack: 1
+    inventory count: -1
+SilverGreatMaceHTD:
+    cost: 20
+    stack: 1
+    inventory count: -1
+ObsidianGreatSwordHTD:
+    cost: 20
+    stack: 1
+    inventory count: -1
+BlackMetalGreatSwordHTD:
+    cost: 25
+    stack: 1
+    inventory count: -1
+BlackMetalBattleaxeHTD:
+    cost: 25
+    stack: 1
+    inventory count: -1
+BoneGreatMaceHTD:
+    cost: 30
+    stack: 1
+    inventory count: -1
+CoreGreatMaceBlueHTD:
+    cost: 30
+    stack: 1
+    inventory count: -1
+DragonSlayerSwordHTD:
+    cost: 35
+    stack: 1
+    inventory count: -1
+CoreGreatMaceHTD:
+    cost: 40
+    stack: 1
+    inventory count: -1
+FlametalGreatSwordHTD:
+    cost: 40
+    stack: 1
+    inventory count: -1
+## Judes Equipment
+ArmorBarbarianBronzeHelmetJD:
+    cost: 15
+    stack: 1
+    inventory count: -1
+ArmorBarbarianBronzeChestJD:
+    cost: 15
+    stack: 1
+    inventory count: -1
+ArmorBarbarianBronzeLegsJD:
+    cost: 15
+    stack: 1
+    inventory count: -1
+ArmorBarbarianCapeJD:
+    cost: 15
+    stack: 1
+    inventory count: -1
+ArmorPlateIronHelmetJD:
+    cost: 25
+    stack: 1
+    inventory count: -1
+ArmorPlateIronChestJD:
+    cost: 25
+    stack: 1
+    inventory count: -1
+ArmorPlateIronLegsJD:
+    cost: 25
+    stack: 1
+    inventory count: -1
+ArmorWandererHelmet:
+    cost: 20
+    stack: 1
+    inventory count: -1
+ArmorWandererChest:
+    cost: 20
+    stack: 1
+    inventory count: -1
+ArmorWandererLegs:
+    cost: 20
+    stack: 1
+    inventory count: -1
+ArmorWandererCape:
+    cost: 20
+    stack: 1
+    inventory count: -1
+ArmorBlackmetalgarbHelmet:
+    cost: 30
+    stack: 1
+    inventory count: -1
+ArmorBlackmetalgarbChest:
+    cost: 30
+    stack: 1
+    inventory count: -1
+ArmorBlackmetalgarbLegs:
+    cost: 30
+    stack: 1
+    inventory count: -1
+ArmorDragonslayerHelmet:
+    cost: 35
+    stack: 1
+    inventory count: -1
+ArmorDragonslayerChest:
+    cost: 35
+    stack: 1
+    inventory count: -1
+ArmorDragonslayerLegs:
+    cost: 35
+    stack: 1
+    inventory count: -1
+ArmorMistlandsHelmet:
+    cost: 40
+    stack: 1
+    inventory count: -1
+ArmorMistlandsChest:
+    cost: 40
+    stack: 1
+    inventory count: -1
+ArmorMistlandsLegs:
+    cost: 40
+    stack: 1
+    inventory count: -1
+## Do or Die Weapons
+Sword_Meadows_DoD:
+    cost: 5
+    stack: 1
+    inventory count: -1
+Bow_Swamp_DoD:
+    cost: 15
+    stack: 1
+    inventory count: -1
+Sword_Swamp_DoD:
+    cost: 15
+    stack: 1
+    inventory count: -1
+Wand_Mountain_DoD:
+    cost: 20
+    stack: 1
+    inventory count: -1
+Bow_Mountain_DoD:
+    cost: 20
+    stack: 1
+    inventory count: -1
+Bow_Plains_DoD:
+    cost: 25
+    stack: 1
+    inventory count: -1
+Sword_Plains_DoD:
+    cost: 25
+    stack: 1
+    inventory count: -1
+Mace_Mistlands_DoD:
+    cost: 30
+    stack: 1
+    inventory count: -1
+Bow_Mistlands_DoD:
+    cost: 30
+    stack: 1
+    inventory count: -1
+Sword_Mistlands_DoD:
+    cost: 30
+    stack: 1
+    inventory count: -1
+Sword_DeepNorth_DoD:
+    cost: 35
+    stack: 1
+    inventory count: -1
+Mace_DeepNorth_DoD:
+    cost: 35
+    stack: 1
+    inventory count: -1
+Sword_AshLands_DoD:
+    cost: 40
+    stack: 1
+    inventory count: -1
+## Do or Die Class Weapons
+ShamanWand_DoD:
+    cost: 12
+    stack: 1
+    inventory count: -1
+MageWand_DoD:
+    cost: 12
+    stack: 1
+    inventory count: -1
+WarlockWand_DoD:
+    cost: 12
+    stack: 1
+    inventory count: -1
+PaladinMace_DoD:
+    cost: 12
+    stack: 1
+    inventory count: -1
+RogueSword_DoD:
+    cost: 12
+    stack: 1
+    inventory count: -1
+DeathknightAxe_DoD:
+    cost: 12
+    stack: 1
+    inventory count: -1
+NinjaSword_DoD:
+    cost: 12
+    stack: 1
+    inventory count: -1
+DruidSpear_DoD:
+    cost: 12
+    stack: 1
+    inventory count: -1
+BerserkerAxe_DoD:
+    cost: 12
+    stack: 1
+    inventory count: -1
+MonkMace_DoD:
+    cost: 12
+    stack: 1
+    inventory count: -1
+DruidSpear_DoD:
+    cost: 12
+    stack: 1
+    inventory count: -1
+## Do or Die Class Items
+DeathKnightItem_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+ArcherItem_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+BerserkerItem_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+DruidItem_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+MageItem_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+MonkItem_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+NinjaItem_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+PaladinItem_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+RogueItem_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+ShamanItem_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+WarlockItem_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+## Do or Die Summon Items
+BoarTusk_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+LargeFang_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+ShamansVessel_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+GreydwarfHeart_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+SkeletonBones_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+GreyPearl_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+## Do or Die Materials
+CrudeArmorKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+BasicArmorKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+GoodArmorKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+GreatArmorKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+SuperiorArmorKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+ExcellentArmorKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+ExceptionalArmorKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+ExtraordinaryArmorKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+CrudeWeaponKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+BasicWeaponKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+GoodWeaponKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+GreatWeaponKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+SuperiorWeaponKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+ExcellentWeaponKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+ExceptionalWeaponKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+ExtraordinaryWeaponKit_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+InfusedGemstone_DoD:
+    cost: 3
+    stack: 1
+    inventory count: -1
+FrozenBone_DoD:
+    cost: 1
+    stack: 5
+    inventory count: -1
+CharredBone_DoD:
+    cost: 1
+    stack: 5
+    inventory count: -1
+FrostlingCore_DoD:
+    cost: 1
+    stack: 2
+    inventory count: -1
+StormlingCore_DoD:
+    cost: 1
+    stack: 2
+    inventory count: -1
+VoidlingCore_DoD:
+    cost: 1
+    stack: 2
+    inventory count: -1
+ForestWolfPelt_DoD:
+    cost: 1
+    stack: 2
+    inventory count: -1
+DireWolfPelt_DoD:
+    cost: 1
+    stack: 2
+    inventory count: -1
+WaterGlobe_DoD:
+    cost: 1
+    stack: 5
+    inventory count: -1
+SpiderChitin_DoD:
+    cost: 1
+    stack: 5
+    inventory count: -1
+BlackDeerHide_DoD:
+    cost: 1
+    stack: 5
+    inventory count: -1
+OakWood_DoD:
+    cost: 1
+    stack: 5
+    inventory count: -1
+SteelBar_DoD:
+    cost: 1
+    stack: 2
+    inventory count: -1
+FrometalOre_DoD:
+    cost: 1
+    stack: 4
+    inventory count: -1
+FrometalBar_DoD:
+    cost: 1
+    stack: 2
+    inventory count: -1
+FelmetalOre_DoD:
+    cost: 1
+    stack: 4
+    inventory count: -1
+FelmetalBar_DoD:
+    cost: 1
+    stack: 2
+    inventory count: -1
+## Do or Die Food
+CarnivorBait_DoD:
+    cost: 1
+    stack: 5
+    inventory count: -1
+Walnuts_DoD:
+    cost: 1
+    stack: 5
+    inventory count: -1
+Apple_DoD:
+    cost: 1
+    stack: 5
+    inventory count: -1
+Cherries_DoD:
+    cost: 1
+    stack: 5
+    inventory count: -1
+Banana_DoD:
+    cost: 1
+    stack: 5
+    inventory count: -1

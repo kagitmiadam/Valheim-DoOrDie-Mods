@@ -15,7 +15,7 @@ using Jotunn.Managers;
 using Jotunn.Utils;
 using UnityEngine;
 
-namespace WildlifeMobs
+namespace Wildlife
 {
 	[BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
@@ -44,7 +44,14 @@ namespace WildlifeMobs
 		public static GameObject GreenLizard;
 		public static GameObject SpottedLizard;
 
+		public static GameObject SnappingTurtle;
+		public static GameObject Zebra;
+		public static GameObject ComodoDragon;
+		public static GameObject Camel;
+
 		public AssetBundle WildlifeBundle;
+		public AssetBundle ExoticBundle;
+		private Harmony _harmony;
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
 			Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -58,29 +65,48 @@ namespace WildlifeMobs
 			LoadAssets();
 			AddNewAnimals();
 			UnloadBundle();
+			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.Wildlife");
 		}
 		public void LoadBundle()
 		{
 			WildlifeBundle = AssetUtils.LoadAssetBundleFromResources("wildlife", Assembly.GetExecutingAssembly());
+			ExoticBundle = AssetUtils.LoadAssetBundleFromResources("africa", Assembly.GetExecutingAssembly());
 		}
 		private void LoadAssets()
 		{
 			//Debug.Log("Wildlife: 0");
-			Sheep = WildlifeBundle.LoadAsset<GameObject>("Sheep_DoD");
-			Goat = WildlifeBundle.LoadAsset<GameObject>("Goat_DoD");
-			Goose = WildlifeBundle.LoadAsset<GameObject>("Goose_DoD");
-			Turtle = WildlifeBundle.LoadAsset<GameObject>("Turtle_DoD");
-			Salamander = WildlifeBundle.LoadAsset<GameObject>("Salamander_DoD");
-			Penguin = WildlifeBundle.LoadAsset<GameObject>("Penguin_DoD");
-			Rat = WildlifeBundle.LoadAsset<GameObject>("Rat_DoD");
-			BrownLizard = WildlifeBundle.LoadAsset<GameObject>("BrownLizard_DoD");
-			GreenLizard = WildlifeBundle.LoadAsset<GameObject>("GreenLizard_DoD");
-			SpottedLizard = WildlifeBundle.LoadAsset<GameObject>("SpottedLizard_DoD");
-			GreenFrog = WildlifeBundle.LoadAsset<GameObject>("GreenFrog_DoD");
-			BlackFrog = WildlifeBundle.LoadAsset<GameObject>("BlackFrog_DoD");
-			SpottedFrog = WildlifeBundle.LoadAsset<GameObject>("SpottedFrog_DoD");
-			GreyRabbit = WildlifeBundle.LoadAsset<GameObject>("GreyRabbit_DoD");
-			BrownRabbit = WildlifeBundle.LoadAsset<GameObject>("BrownRabbit_DoD");
+			SnappingTurtle = ExoticBundle.LoadAsset<GameObject>("Animal_SnappingTurtle");
+			Zebra = ExoticBundle.LoadAsset<GameObject>("Animal_Zebra");
+			ComodoDragon = ExoticBundle.LoadAsset<GameObject>("Animal_ComodoDragon");
+			Camel = ExoticBundle.LoadAsset<GameObject>("Animal_Camel");
+			Sheep = WildlifeBundle.LoadAsset<GameObject>("Sheep_WL");
+			Goat = WildlifeBundle.LoadAsset<GameObject>("Goat_WL");
+			Goose = WildlifeBundle.LoadAsset<GameObject>("Goose_WL");
+			Turtle = WildlifeBundle.LoadAsset<GameObject>("Turtle_WL");
+			Salamander = WildlifeBundle.LoadAsset<GameObject>("Salamander_WL");
+			Penguin = WildlifeBundle.LoadAsset<GameObject>("Penguin_WL");
+			Rat = WildlifeBundle.LoadAsset<GameObject>("Rat_WL");
+			BrownLizard = WildlifeBundle.LoadAsset<GameObject>("BrownLizard_WL");
+			GreenLizard = WildlifeBundle.LoadAsset<GameObject>("GreenLizard_WL");
+			SpottedLizard = WildlifeBundle.LoadAsset<GameObject>("SpottedLizard_WL");
+			GreenFrog = WildlifeBundle.LoadAsset<GameObject>("GreenFrog_WL");
+			BlackFrog = WildlifeBundle.LoadAsset<GameObject>("BlackFrog_WL");
+			SpottedFrog = WildlifeBundle.LoadAsset<GameObject>("SpottedFrog_WL");
+			GreyRabbit = WildlifeBundle.LoadAsset<GameObject>("GreyRabbit_WL");
+			BrownRabbit = WildlifeBundle.LoadAsset<GameObject>("BrownRabbit_WL");
+			//Debug.Log("Wildlife: 0");
+			GameObject Mock1 = WildlifeBundle.LoadAsset<GameObject>("JVLmock_fx_creature_tamed");
+			PrefabManager.Instance.AddPrefab(Mock1);
+			GameObject Mock2 = WildlifeBundle.LoadAsset<GameObject>("JVLmock_vfx_creature_soothed");
+			PrefabManager.Instance.AddPrefab(Mock2);
+			GameObject Mock3 = WildlifeBundle.LoadAsset<GameObject>("JVLmock_vfx_water_surface");
+			PrefabManager.Instance.AddPrefab(Mock3);
+			GameObject Mock4 = WildlifeBundle.LoadAsset<GameObject>("JVLmock_fx_footstep_water");
+			PrefabManager.Instance.AddPrefab(Mock4);
+			GameObject Mock5 = WildlifeBundle.LoadAsset<GameObject>("JVLmock_sfx_footstep_swim");
+			PrefabManager.Instance.AddPrefab(Mock5);
+			GameObject Mock6 = WildlifeBundle.LoadAsset<GameObject>("JVLmock_fx_boar_footstep_walk");
+			PrefabManager.Instance.AddPrefab(Mock6);
 			//Debug.Log("Wildlife: 0");
 			GameObject SFXFrog1 = WildlifeBundle.LoadAsset<GameObject>("SFX_Frog1_Idle_DoD");
 			GameObject SFXFrog2 = WildlifeBundle.LoadAsset<GameObject>("SFX_Frog2_Idle_DoD");
@@ -120,54 +146,66 @@ namespace WildlifeMobs
 			PrefabManager.Instance.AddPrefab(VFXDeath);
 			PrefabManager.Instance.AddPrefab(VFXPoof);
 			//Debug.Log("Wildlife: 0");
-			GameObject GreenFrogRD = WildlifeBundle.LoadAsset<GameObject>("GreenFrog_RD_DoD");
+			GameObject GreenFrogRD = WildlifeBundle.LoadAsset<GameObject>("GreenFrog_RD_WL");
 			CustomPrefab customRD1 = new CustomPrefab(GreenFrogRD, true);
 			PrefabManager.Instance.AddPrefab(customRD1);
-			GameObject BlackFrogRD = WildlifeBundle.LoadAsset<GameObject>("BlackFrog_RD_DoD");
+			GameObject BlackFrogRD = WildlifeBundle.LoadAsset<GameObject>("BlackFrog_RD_WL");
 			CustomPrefab customRD2 = new CustomPrefab(BlackFrogRD, true);
 			PrefabManager.Instance.AddPrefab(customRD2);
-			GameObject SpottedFrogRD = WildlifeBundle.LoadAsset<GameObject>("SpottedFrog_RD_DoD");
+			GameObject SpottedFrogRD = WildlifeBundle.LoadAsset<GameObject>("SpottedFrog_RD_WL");
 			CustomPrefab customRD3 = new CustomPrefab(SpottedFrogRD, true);
 			PrefabManager.Instance.AddPrefab(customRD3);
-			GameObject GreyRabbitRD = WildlifeBundle.LoadAsset<GameObject>("GreyRabbit_RD_DoD");
+			GameObject GreyRabbitRD = WildlifeBundle.LoadAsset<GameObject>("GreyRabbit_RD_WL");
 			CustomPrefab customRD4 = new CustomPrefab(GreyRabbitRD, true);
 			PrefabManager.Instance.AddPrefab(customRD4);
-			GameObject BrownRabbitRD = WildlifeBundle.LoadAsset<GameObject>("BrownRabbit_RD_DoD");
+			GameObject BrownRabbitRD = WildlifeBundle.LoadAsset<GameObject>("BrownRabbit_RD_WL");
 			CustomPrefab customRD5 = new CustomPrefab(BrownRabbitRD, true);
 			PrefabManager.Instance.AddPrefab(customRD5);
-			GameObject SheepRD = WildlifeBundle.LoadAsset<GameObject>("Sheep_RD_DoD");
+			GameObject SheepRD = WildlifeBundle.LoadAsset<GameObject>("Sheep_RD_WL");
 			CustomPrefab customRD6 = new CustomPrefab(SheepRD, true);
 			PrefabManager.Instance.AddPrefab(customRD6);
-			GameObject GoatRD = WildlifeBundle.LoadAsset<GameObject>("Goat_RD_DoD");
+			GameObject GoatRD = WildlifeBundle.LoadAsset<GameObject>("Goat_RD_WL");
 			CustomPrefab customRD7 = new CustomPrefab(GoatRD, true);
 			PrefabManager.Instance.AddPrefab(customRD7);
-			GameObject GooseRD = WildlifeBundle.LoadAsset<GameObject>("Goose_RD_DoD");
+			GameObject GooseRD = WildlifeBundle.LoadAsset<GameObject>("Goose_RD_WL");
 			CustomPrefab customRD8 = new CustomPrefab(GooseRD, true);
 			PrefabManager.Instance.AddPrefab(customRD8);
-			GameObject PenguinRD = WildlifeBundle.LoadAsset<GameObject>("Penguin_RD_DoD");
+			GameObject PenguinRD = WildlifeBundle.LoadAsset<GameObject>("Penguin_RD_WL");
 			CustomPrefab customRD9 = new CustomPrefab(PenguinRD, true);
 			PrefabManager.Instance.AddPrefab(customRD9);
-			GameObject RatRD = WildlifeBundle.LoadAsset<GameObject>("Rat_RD_DoD");
+			GameObject RatRD = WildlifeBundle.LoadAsset<GameObject>("Rat_RD_WL");
 			CustomPrefab customRD10 = new CustomPrefab(RatRD, true);
 			PrefabManager.Instance.AddPrefab(customRD10);
-			GameObject SalamanderRD = WildlifeBundle.LoadAsset<GameObject>("FireSalamander_RD_DoD");
+			GameObject SalamanderRD = WildlifeBundle.LoadAsset<GameObject>("FireSalamander_RD_WL");
 			CustomPrefab customRD11 = new CustomPrefab(SalamanderRD, true);
 			PrefabManager.Instance.AddPrefab(customRD11);
-			GameObject TurtleRD = WildlifeBundle.LoadAsset<GameObject>("BoxTurtle_RD_DoD");
+			GameObject TurtleRD = WildlifeBundle.LoadAsset<GameObject>("BoxTurtle_RD_WL");
 			CustomPrefab customRD12 = new CustomPrefab(TurtleRD, true);
 			PrefabManager.Instance.AddPrefab(customRD12);
-			GameObject BrownLizardRD = WildlifeBundle.LoadAsset<GameObject>("BrownLizard_RD_DoD");
+			GameObject BrownLizardRD = WildlifeBundle.LoadAsset<GameObject>("BrownLizard_RD_WL");
 			CustomPrefab customRD13 = new CustomPrefab(BrownLizardRD, true);
 			PrefabManager.Instance.AddPrefab(customRD13);
-			GameObject GreenLizardRD = WildlifeBundle.LoadAsset<GameObject>("GreenLizard_RD_DoD");
+			GameObject GreenLizardRD = WildlifeBundle.LoadAsset<GameObject>("GreenLizard_RD_WL");
 			CustomPrefab customRD14 = new CustomPrefab(GreenLizardRD, true);
 			PrefabManager.Instance.AddPrefab(customRD14);
-			GameObject SpottedLizardRD = WildlifeBundle.LoadAsset<GameObject>("SpottedLizard_RD_DoD");
+			GameObject SpottedLizardRD = WildlifeBundle.LoadAsset<GameObject>("SpottedLizard_RD_WL");
 			CustomPrefab customRD15 = new CustomPrefab(SpottedLizardRD, true);
 			PrefabManager.Instance.AddPrefab(customRD15);
 		}
 		private void AddNewAnimals()
 		{
+			GameObject animal20 = Camel;
+			CustomPrefab critter20 = new CustomPrefab(animal20, true);
+			PrefabManager.Instance.AddPrefab(critter20);
+			GameObject animal19 = ComodoDragon;
+			CustomPrefab critter19 = new CustomPrefab(animal19, true);
+			PrefabManager.Instance.AddPrefab(critter19);
+			GameObject animal18 = Zebra;
+			CustomPrefab critter18 = new CustomPrefab(animal18, true);
+			PrefabManager.Instance.AddPrefab(critter18);
+			GameObject animal17 = SnappingTurtle;
+			CustomPrefab critter17 = new CustomPrefab(animal17, true);
+			PrefabManager.Instance.AddPrefab(critter17);
 			//Debug.Log("DoDMonsters: Loading and Creating Critters");
 			GameObject animal16 = SpottedLizard;
 			CustomPrefab critter16 = new CustomPrefab(animal16, true);
@@ -221,6 +259,7 @@ namespace WildlifeMobs
 		private void UnloadBundle()
 		{
 			WildlifeBundle?.Unload(unloadAllLoadedObjects: false);
+			ExoticBundle?.Unload(unloadAllLoadedObjects: false);
 		}
 	}
 }
