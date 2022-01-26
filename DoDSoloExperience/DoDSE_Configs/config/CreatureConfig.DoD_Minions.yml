@@ -1,0 +1,65 @@
+Skugga:
+    ## Base Health: 10
+    ## Base Attack: 14-17
+    size: 0
+    health per star: 0.25
+    damage per star: 0.1
+    attack speed per star: 0.05
+    movement speed: 1.1
+    Meadows:
+        Health: 1.0
+        Damage: 1.0
+    BlackForest:
+        Health: 2.5
+        Damage: 2.0
+    Swamp:
+        Health: 5.0
+        Damage: 4.0
+    Mountain:
+        Health: 10.0
+        Damage: 6.0
+    Plains:
+        Health: 15.0
+        Damage: 8.0
+    Mistlands:
+        Health: 20.0
+        Damage: 10.0
+    Deep North:
+        Health: 25.0
+        Damage: 12.0
+    AshLands:
+        Health: 30.0
+        Damage: 14.0
+## Nomad Hunters		      
+Nomad:
+    ## Base Health: 10
+    ## Base Attack: 14-17
+    size: 0
+    health per star: 0.33
+    damage per star: 0.15
+    attack speed per star: 0.075
+    movement speed: 1.15
+    Meadows:
+        Health: 1.25
+        Damage: 1.25
+    BlackForest:
+        Health: 2.75
+        Damage: 2.25
+    Swamp:
+        Health: 5.33
+        Damage: 4.33
+    Mountain:
+        Health: 10.33
+        Damage: 6.33
+    Plains:
+        Health: 15.50
+        Damage: 8.50
+    Mistlands:
+        Health: 20.50
+        Damage: 10.50
+    Deep North:
+        Health: 25.66
+        Damage: 12.66
+    AshLands:
+        Health: 30.75
+        Damage: 14.75

@@ -5,6 +5,7 @@ using System.Reflection;
 using System;
 using BepInEx;
 using BepInEx.Configuration;
+using BepInEx.Logging;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Jotunn;
@@ -19,34 +20,17 @@ namespace DoDMonsters
 	[BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
 	[BepInDependency("com.jotunn.jotunn", BepInDependency.DependencyFlags.HardDependency)]
+	[BepInDependency("horemvore.DoDBiomes", BepInDependency.DependencyFlags.HardDependency)]
 	internal class DoDBundle : BaseUnityPlugin
 	{
 		public const string PluginGUID = "horemvore.DoDMonsters";
 
 		public const string PluginName = "DoOrDieMonsters";
 
-		public const string PluginVersion = "0.4.4";
+		public const string PluginVersion = "0.4.7";
 
 		private Harmony _harmony;
-
-		private static Sprite HoT;
-		private static Sprite Regen;
-		private static Sprite MagicShield;
-		private static Sprite Horror;
-		private static Sprite Haunted;
-		private static Sprite Hexed;
-		private static Sprite Infected;
-		private static Sprite Diseased;
-		private static Sprite MajorInjury;
-		private static Sprite Injury;
-		private static Sprite MinorInjury;
-		private static Sprite Frostbite;
-		private static Sprite Slow;
-		private static Sprite Paralyze;
-		private static Sprite Weak;
-		private static Sprite FlashBurn;
-		private static Sprite Blistered;
-		private static Sprite Poisoned;
+		public static readonly ManualLogSource DoDLogger = BepInEx.Logging.Logger.CreateLogSource(PluginName);
 
 		public static GameObject PoisonedFX;
 		public static GameObject InfectedFX;
@@ -106,6 +90,7 @@ namespace DoDMonsters
 		//public static GameObject Rylan;
 		public static GameObject SkirSandburst;
 		public static GameObject Farkas;
+		public static GameObject FarkasAlt;
 		public static GameObject Bhygshan;
 		public static GameObject Bitterstump;
 		public static GameObject Rambore;
@@ -306,22 +291,8 @@ namespace DoDMonsters
 		public static Sprite RugDWolf;
 		public static Sprite RugFWolf;
 
-		public static GameObject Walnuts;
-		public static GameObject Cherry;
-		public static GameObject Apple;
-		public static GameObject Banana;
 		public static GameObject CBait;
 
-		public static GameObject Skugga;
-		public static GameObject Einherjar;
-		public static GameObject Testing;
-		public static GameObject TestingA1;
-		public static GameObject TestingA2;
-		public static GameObject TestingA3;
-
-		public ConfigEntry<bool> MistlandsLocEnable;
-		public ConfigEntry<bool> MistlandsVegEnable;
-		public ConfigEntry<bool> FruitEnable;
 		public ConfigEntry<bool> ArmorCrateEnable;
 		public ConfigEntry<bool> WeaponCrateEnable;
 		public ConfigEntry<bool> ClassWeaponEnable;
@@ -329,13 +300,6 @@ namespace DoDMonsters
 		public ConfigEntry<bool> BuildablesEnable;
 		public ConfigEntry<bool> BossesEnable;
 		public ConfigEntry<bool> MonstersEnable;
-		public ConfigEntry<bool> CastleArenaEnable;
-		public ConfigEntry<bool> DeepNorthVegEnable;
-		public ConfigEntry<bool> AshLandsVegEnable;
-		//public ConfigEntry<bool> RamboreEnable;
-
-		public static GameObject HardLog;
-		public static GameObject HardLogHalf;
 
 		public static GameObject WandMountains;
 		public static GameObject MaceMistlands;
@@ -347,25 +311,86 @@ namespace DoDMonsters
 		public static GameObject DrakespitPoison2;
 		public static GameObject DrakespitVoid;
 
-		public static GameObject GreenFrog;
-		public static GameObject BlackFrog;
-		public static GameObject SpottedFrog;
-		public static GameObject GreyRabbit;
-		public static GameObject BrownRabbit;
-		public static GameObject GiantSnail;
-		public static GameObject Sheep;
-		public static GameObject Goat;
-		public static GameObject Goose;
-		public static GameObject Turtle;
-		public static GameObject Salamander;
-		public static GameObject Penguin;
-		public static GameObject Rat;
-		public static GameObject BrownLizard;
-		public static GameObject GreenLizard;
-		public static GameObject SpottedLizard;
+		public static GameObject BhygshanAlt;
+
+		public static GameObject SwordMoonlight;
+
+		public static GameObject BeholderA1;
+		public static GameObject BeholderA2;
+		public static GameObject EntA1;
+		public static GameObject EntA2;
+		public static GameObject EntA3;
+		public static GameObject EntA4;
+		public static GameObject EntA5;
+		public static GameObject DemonLordA1;
+		public static GameObject DemonLordA2;
+		public static GameObject DemonLordA3;
+		public static GameObject DemonLordA4;
+		public static GameObject DemonLordA5;
+		public static GameObject ElementalA1;
+		public static GameObject ElementalA2;
+		public static GameObject ElementalA3;
+		public static GameObject ElementalA4;
+		public static GameObject ElementalA5;
+		public static GameObject ElementalA6;
+		public static GameObject ElementalA7;
+		public static GameObject ElementalA8;
+		public static GameObject IceElementalA1;
+		public static GameObject IceElementalA2;
+		public static GameObject IceElementalA3;
+		public static GameObject IceElementalA4;
+		public static GameObject IceElementalA5;
+		public static GameObject IceElementalA6;
+		public static GameObject IceElementalA7;
+		public static GameObject IceElementalA8;
+		public static GameObject FireElementalA1;
+		public static GameObject FireElementalA2;
+		public static GameObject FireElementalA3;
+		public static GameObject FireElementalA4;
+		public static GameObject FireElementalA5;
+		public static GameObject FireElementalA6;
+		public static GameObject FireElementalA7;
+		public static GameObject FireElementalA8;
+		public static GameObject KoboldA1;
+		public static GameObject KoboldA2;
+		public static GameObject KoboldA3;
+		public static GameObject KoboldA4;
+		public static GameObject KoboldA5;
+		public static GameObject KoboldA6;
+		public static GameObject KoboldA7;
+		public static GameObject KoboldA8;
+		public static GameObject HydraA1;
+		public static GameObject HydraA2;
+		public static GameObject HydraA3;
+		public static GameObject HydraA4;
+		public static GameObject DragonA1;
+		public static GameObject DragonA2;
+		public static GameObject DragonA3;
+		public static GameObject DragonA4;
+		public static GameObject DragonA5;
+		public static GameObject DragonA6;
+		public static GameObject DragonA7;
+
+		public static GameObject TreeEnt;
+		//public static GameObject Beholder;
+		public static GameObject DemonLord;
+		public static GameObject IceElemental;
+		public static GameObject FireElemental;
+		public static GameObject Elemental;
+		public static GameObject Kobold;
+		public static GameObject Hydra;
+		public static GameObject Dragon;
+		public static GameObject Hobgoblin;
+		public static GameObject Ogre;
+		public static GameObject Cyclops;
+
+		public static GameObject Skugga;
+		public static GameObject Einherjar;
+		public static GameObject GrayWolf;
+		public static GameObject Nomad;
 
 		public AssetBundle DoDAssets;
-		public AssetBundle DoDFixer;
+
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
 			Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -376,15 +401,14 @@ namespace DoDMonsters
 		private void Awake()
 		{
 			CreateConfigurationValues();
-			Debug.Log("DoDMonsters: Loading and Creating Assets");
+			//Debug.Log("DoDMonsters: Loading and Creating Assets");
 			LoadBundle();
 			LoadDoDAssets();
-			CreateDropables(); 
-			UpdateBlastFurnace(); 
+			CreateDropables();
 			if (MonstersEnable.Value == true) {
 				CreateMonsterAbilities();
 				CreateMonsterItems();
-				AddMonsterReskins();  }
+				AddMonsterReskins(); }
 			if (ArmorCrateEnable.Value == true) {
 				CreateArmorCrates(); }
 			if (WeaponCrateEnable.Value == true) {
@@ -392,65 +416,70 @@ namespace DoDMonsters
 			if (ClassWeaponEnable.Value == true) {
 				CreateClassWeapons(); }
 			if (WeaponsEnable.Value == true) {
+				CreateArrows();
 				CreateMaces();
 				CreateWands();
 				CreateMagicSwords();
 				CreateBows();
-				CreateSwords();	}
+				CreateSwords(); }
 			if (BuildablesEnable.Value == true) {
 				CreateAnvils();
 				CreateRugs(); }
-			if (BossesEnable.Value == true)	{
+			if (BossesEnable.Value == true) {
 				CreateTierItems();
 				CreateShields();
-				AddBosses(); }
-			if (MistlandsVegEnable.Value == true) {
-				AddMistlandVegetation(); }
-			if (FruitEnable.Value == true)	{
-				AddCustomFruitTrees(); }
-			if (DeepNorthVegEnable.Value == true) {
-				AddDeepNorthVegetation(); }
-			if (AshLandsVegEnable.Value == true) {
-				AddAshLandsVegetation(); }
-			AddNewAnimals();
-			ZoneManager.OnVanillaLocationsAvailable += AddLocations;
+				AddBosses(); }			
+			AddNewMonsters();
+			ItemManager.OnItemsRegistered += ModWorldObjects;
+			ItemManager.OnItemsRegistered += ModMonsterAttackSE;
+
 			UnloadBundle();
 			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoDMonsters");
 		}
 		public void LoadBundle()
-        {
+		{
 			DoDAssets = AssetUtils.LoadAssetBundleFromResources("doordieassets", Assembly.GetExecutingAssembly());
 		}
 		private void LoadDoDAssets()
 		{
-			Sheep = DoDAssets.LoadAsset<GameObject>("Sheep_DoD");
-			Goat = DoDAssets.LoadAsset<GameObject>("Goat_DoD");
-			Goose = DoDAssets.LoadAsset<GameObject>("Goose_DoD");
-			Turtle = DoDAssets.LoadAsset<GameObject>("Turtle_DoD");
-			Salamander = DoDAssets.LoadAsset<GameObject>("Salamander_DoD");
-			Penguin = DoDAssets.LoadAsset<GameObject>("Penguin_DoD");
-			Rat = DoDAssets.LoadAsset<GameObject>("Rat_DoD");
-			BrownLizard = DoDAssets.LoadAsset<GameObject>("BrownLizard_DoD");
-			GreenLizard = DoDAssets.LoadAsset<GameObject>("GreenLizard_DoD");
-			SpottedLizard = DoDAssets.LoadAsset<GameObject>("SpottedLizard_DoD");
+			//Debug.Log("DoDMonsters: 0");
+			Cyclops = DoDAssets.LoadAsset<GameObject>("Cyclops_DoD");
+			Ogre = DoDAssets.LoadAsset<GameObject>("Ogre_DoD");
+			Hobgoblin = DoDAssets.LoadAsset<GameObject>("Hobgoblin_DoD");
+			Dragon = DoDAssets.LoadAsset<GameObject>("Dragon_DoD");
+			Hydra = DoDAssets.LoadAsset<GameObject>("Hydra_DoD");
+			Kobold = DoDAssets.LoadAsset<GameObject>("Kobold_DoD");
+			IceElemental = DoDAssets.LoadAsset<GameObject>("IceElemental_DoD");
+			FireElemental = DoDAssets.LoadAsset<GameObject>("FireElemental_DoD");
+			Elemental = DoDAssets.LoadAsset<GameObject>("EarthElemental_DoD");
+			TreeEnt = DoDAssets.LoadAsset<GameObject>("TreeEnt_DoD");
+			//Beholder = DoDAssets.LoadAsset<GameObject>("Beholder_DoD");
+			DemonLord = DoDAssets.LoadAsset<GameObject>("DemonLord_DoD");
+			//Debug.Log("DoDMonsters: 1");
+			SwordMoonlight = DoDAssets.LoadAsset<GameObject>("MoonSword_DoD");
+			//Debug.Log("DoDMonsters: 2");
+			BhygshanAlt = DoDAssets.LoadAsset<GameObject>("BhygshanAlt_DoD");
 
+			//Debug.Log("DoDMonsters: 3");
 			DrakespitFire = DoDAssets.LoadAsset<GameObject>("drake_firespit_attack_dod");
 			DrakespitArcane = DoDAssets.LoadAsset<GameObject>("drake_arcanespit_attack_dod");
 			DrakespitFrost = DoDAssets.LoadAsset<GameObject>("drake_frostspit_attack_dod");
 			DrakespitPoison1 = DoDAssets.LoadAsset<GameObject>("drake_poison_attack_dod");
 			DrakespitPoison2 = DoDAssets.LoadAsset<GameObject>("drake_poisonspit_attack_dod");
 			DrakespitVoid = DoDAssets.LoadAsset<GameObject>("drake_voidspit_attack_dod");
+
+			//Debug.Log("DoDMonsters: 4");
 			WandMountains = DoDAssets.LoadAsset<GameObject>("Wand_Mountain_DoD");
 			MaceMistlands = DoDAssets.LoadAsset<GameObject>("Mace_Mistlands_DoD");
 			MaceDeepNorth = DoDAssets.LoadAsset<GameObject>("Mace_DeepNorth_DoD");
-			TestingA1 = DoDAssets.LoadAsset<GameObject>("Test_Dragon_Attack_DoD");
-			TestingA2 = DoDAssets.LoadAsset<GameObject>("Test_Dragon_ClawAttack_DoD");
-			TestingA3 = DoDAssets.LoadAsset<GameObject>("Test_HornDragon_Attack_DoD");
-			Testing = DoDAssets.LoadAsset<GameObject>("TestingMob_DoD");
 
+			//Debug.Log("DoDMonsters: 5");
+			GrayWolf = DoDAssets.LoadAsset<GameObject>("GrayWolf_DoD");
+			Nomad = DoDAssets.LoadAsset<GameObject>("Nomad_DoD");
 			Skugga = DoDAssets.LoadAsset<GameObject>("Skugga_DoD");
 			Einherjar = DoDAssets.LoadAsset<GameObject>("Einherjar_DoD");
 
+			//Debug.Log("DoDMonsters: 6");
 			TexFlaAnvil = DoDAssets.LoadAsset<Sprite>("FlaAnvil_Icon_DoD");
 			TexFroAnvil = DoDAssets.LoadAsset<Sprite>("FroAnvil_Icon_DoD");
 			TexFelAnvil = DoDAssets.LoadAsset<Sprite>("FelAnvil_Icon_DoD");
@@ -458,12 +487,10 @@ namespace DoDMonsters
 			RugDWolf = DoDAssets.LoadAsset<Sprite>("RugDW_Icon_DoD");
 			RugFWolf = DoDAssets.LoadAsset<Sprite>("RugFW_Icon_DoD");
 
+			//Debug.Log("DoDMonsters: 7");
 			CBait = DoDAssets.LoadAsset<GameObject>("CarnivorBait_DoD");
-			HardLog = DoDAssets.LoadAsset<GameObject>("Hardwood_Log_DoD");
-			HardLogHalf = DoDAssets.LoadAsset<GameObject>("Hardwood_LogHalf_DoD");
-			PrefabManager.Instance.AddPrefab(HardLog);
-			PrefabManager.Instance.AddPrefab(HardLogHalf);
 
+			//Debug.Log("DoDMonsters: 8");
 			NPC_NomadAoE_Attack = DoDAssets.LoadAsset<GameObject>("NPC_NomadAoE_Attack_DoD");
 			Farkas_FrostBite = DoDAssets.LoadAsset<GameObject>("Farkas_FrostBite_DoD");
 			Farkas_Hamper_Attack = DoDAssets.LoadAsset<GameObject>("Farkas_Hamper_Attack_DoD");
@@ -506,6 +533,63 @@ namespace DoDMonsters
 			imp_icebolt_attack = DoDAssets.LoadAsset<GameObject>("imp_icebolt_attack_dod");
 			imp_stormbolt_attack = DoDAssets.LoadAsset<GameObject>("imp_stormbolt_attack_dod");
 			imp_voidbolt_attack = DoDAssets.LoadAsset<GameObject>("imp_voidbolt_attack_dod");
+			BeholderA1 = DoDAssets.LoadAsset<GameObject>("Beholder_Attack1_DoD");
+			BeholderA2 = DoDAssets.LoadAsset<GameObject>("Beholder_Attack2_DoD");
+			EntA1 = DoDAssets.LoadAsset<GameObject>("Ent_Attack1_DoD");
+			EntA2 = DoDAssets.LoadAsset<GameObject>("Ent_Attack2_DoD");
+			EntA3 = DoDAssets.LoadAsset<GameObject>("Ent_Attack3_DoD");
+			EntA4 = DoDAssets.LoadAsset<GameObject>("Ent_Attack2Combo_DoD");
+			EntA5 = DoDAssets.LoadAsset<GameObject>("Ent_Attack3Combo_DoD");
+			DemonLordA1 = DoDAssets.LoadAsset<GameObject>("DemonLord_Attack1_DoD");
+			DemonLordA2 = DoDAssets.LoadAsset<GameObject>("DemonLord_Attack2_DoD");
+			DemonLordA3 = DoDAssets.LoadAsset<GameObject>("DemonLord_AttackWhip_DoD");
+			DemonLordA4 = DoDAssets.LoadAsset<GameObject>("DemonLord_AttackCombo2_DoD");
+			DemonLordA5 = DoDAssets.LoadAsset<GameObject>("DemonLord_AttackCombo3_DoD");
+			ElementalA1 = DoDAssets.LoadAsset<GameObject>("Element_Attack1_DoD");
+			ElementalA2 = DoDAssets.LoadAsset<GameObject>("Element_Attack2_DoD");
+			ElementalA3 = DoDAssets.LoadAsset<GameObject>("Element_AttackGrab_DoD");
+			ElementalA4 = DoDAssets.LoadAsset<GameObject>("Element_AttackSmash_DoD");
+			ElementalA5 = DoDAssets.LoadAsset<GameObject>("Element_AttackSwipe_DoD");
+			ElementalA6 = DoDAssets.LoadAsset<GameObject>("Element_AttackCombo1_DoD");
+			ElementalA7 = DoDAssets.LoadAsset<GameObject>("Element_AttackCombo2_DoD");
+			ElementalA8 = DoDAssets.LoadAsset<GameObject>("Element_AttackCombo3_DoD");
+			IceElementalA1 = DoDAssets.LoadAsset<GameObject>("IceElement_Attack1_DoD");
+			IceElementalA2 = DoDAssets.LoadAsset<GameObject>("IceElement_Attack2_DoD");
+			IceElementalA3 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackGrab_DoD");
+			IceElementalA4 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackSmash_DoD");
+			IceElementalA5 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackSwipe_DoD");
+			IceElementalA6 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackCombo1_DoD");
+			IceElementalA7 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackCombo2_DoD");
+			IceElementalA8 = DoDAssets.LoadAsset<GameObject>("IceElement_AttackCombo3_DoD");
+			FireElementalA1 = DoDAssets.LoadAsset<GameObject>("FireElement_Attack1_DoD");
+			FireElementalA2 = DoDAssets.LoadAsset<GameObject>("FireElement_Attack2_DoD");
+			FireElementalA3 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackGrab_DoD");
+			FireElementalA4 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackSmash_DoD");
+			FireElementalA5 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackSwipe_DoD");
+			FireElementalA6 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackCombo1_DoD");
+			FireElementalA7 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackCombo2_DoD");
+			FireElementalA8 = DoDAssets.LoadAsset<GameObject>("FireElement_AttackCombo3_DoD");
+			KoboldA1 = DoDAssets.LoadAsset<GameObject>("Kobold_Attack1_DoD");
+			KoboldA2 = DoDAssets.LoadAsset<GameObject>("Kobold_Attack2_DoD");
+			KoboldA3 = DoDAssets.LoadAsset<GameObject>("Kobold_Attack3_DoD");
+			KoboldA4 = DoDAssets.LoadAsset<GameObject>("Kobold_Attack4_DoD");
+			KoboldA5 = DoDAssets.LoadAsset<GameObject>("Kobold_AttackCombo1_DoD");
+			KoboldA6 = DoDAssets.LoadAsset<GameObject>("Kobold_AttackCombo2_DoD");
+			KoboldA7 = DoDAssets.LoadAsset<GameObject>("Kobold_AttackCombo3_DoD");
+			KoboldA8 = DoDAssets.LoadAsset<GameObject>("Kobold_AttackCombo4_DoD");
+			HydraA1 = DoDAssets.LoadAsset<GameObject>("Hydra_Attack1_DoD");
+			HydraA2 = DoDAssets.LoadAsset<GameObject>("Hydra_Attack2_DoD");
+			HydraA3 = DoDAssets.LoadAsset<GameObject>("Hydra_AttackBreath_DoD");
+			HydraA4 = DoDAssets.LoadAsset<GameObject>("Hydra_AttackSpit_DoD");
+			DragonA1 = DoDAssets.LoadAsset<GameObject>("Dragon_Attack1_DoD");
+			DragonA2 = DoDAssets.LoadAsset<GameObject>("Dragon_Attack2_DoD");
+			DragonA3 = DoDAssets.LoadAsset<GameObject>("Dragon_AttackBreath_DoD");
+			DragonA4 = DoDAssets.LoadAsset<GameObject>("Dragon_AttackSpit_DoD");
+			DragonA5 = DoDAssets.LoadAsset<GameObject>("Dragon_AttackCombo1_DoD");
+			DragonA6 = DoDAssets.LoadAsset<GameObject>("Dragon_AttackBreathFly_DoD");
+			DragonA7 = DoDAssets.LoadAsset<GameObject>("Dragon_AttackSpitFly_DoD");
+
+			//Debug.Log("DoDMonsters: 9");
 			// Monster Items
 			ObsidianGolemClubs = DoDAssets.LoadAsset<GameObject>("ObsidianGolem_Clubs_DoD");
 			HelmetBhygshan = DoDAssets.LoadAsset<GameObject>("HelmetBhygshan_DoD");
@@ -528,6 +612,8 @@ namespace DoDMonsters
 			ShieldCharred = DoDAssets.LoadAsset<GameObject>("Shield_Charred_DoD");
 			SwordCharred = DoDAssets.LoadAsset<GameObject>("Sword_Charred_DoD");
 			BowCharred = DoDAssets.LoadAsset<GameObject>("Bow_Charred_DoD");
+			BowCharred = DoDAssets.LoadAsset<GameObject>("Bow_Charred_DoD");
+			//Debug.Log("DoDMonsters: 10");
 			// Broken Shields
 			ShieldBGSkull = DoDAssets.LoadAsset<GameObject>("BrokenShieldBhygshan_DoD");
 			ShieldBEikthyr = DoDAssets.LoadAsset<GameObject>("BrokenShieldEikthyr_DoD");
@@ -539,6 +625,7 @@ namespace DoDMonsters
 			ShieldBFarkas = DoDAssets.LoadAsset<GameObject>("BrokenShieldFarkas_DoD");
 			ShieldBSkir = DoDAssets.LoadAsset<GameObject>("BrokenShieldSkir_DoD");
 			ShieldBYagluth = DoDAssets.LoadAsset<GameObject>("BrokenShieldYagluth_DoD");
+			//Debug.Log("DoDMonsters: 11");
 			// Shields
 			ShieldGSkull = DoDAssets.LoadAsset<GameObject>("ShieldSkullGreen_DoD");
 			ShieldEikthyr = DoDAssets.LoadAsset<GameObject>("ShieldEikthyr_DoD");
@@ -550,6 +637,7 @@ namespace DoDMonsters
 			ShieldFarkas = DoDAssets.LoadAsset<GameObject>("ShieldFarkas_DoD");
 			ShieldSkir = DoDAssets.LoadAsset<GameObject>("ShieldSkir_DoD");
 			ShieldYagluth = DoDAssets.LoadAsset<GameObject>("ShieldYagluth_DoD");
+			//Debug.Log("DoDMonsters: 12");
 			// Weapons
 			BhygshanMace = DoDAssets.LoadAsset<GameObject>("BhygshanMace_DoD");
 			BowBlackForest = DoDAssets.LoadAsset<GameObject>("Bow_BlackForest_DoD");
@@ -564,31 +652,15 @@ namespace DoDMonsters
 			SwordMistlands = DoDAssets.LoadAsset<GameObject>("Sword_Mistlands_DoD");
 			SwordDeepNorth = DoDAssets.LoadAsset<GameObject>("Sword_DeepNorth_DoD");
 			SwordAshLands = DoDAssets.LoadAsset<GameObject>("Sword_AshLands_DoD");
+			//Debug.Log("DoDMonsters: 13");
 			// Status Effect Assets
-			HoT = DoDAssets.LoadAsset<Sprite>("HoT_Icon_DoD.png");
-			Regen = DoDAssets.LoadAsset<Sprite>("Regeneration_Icon_DoD.png");
-			MagicShield = DoDAssets.LoadAsset<Sprite>("MagicShield_Icon_DoD.png");
-			Horror = DoDAssets.LoadAsset<Sprite>("Horrors_Icon_DoD.png");
-			Haunted = DoDAssets.LoadAsset<Sprite>("Haunted_Icon_DoD.png");
-			Hexed = DoDAssets.LoadAsset<Sprite>("Hexed_Icon_DoD.png");
-			Infected = DoDAssets.LoadAsset<Sprite>("Infected_Icon_DoD.png");
-			Diseased = DoDAssets.LoadAsset<Sprite>("Diseased_Icon_DoD.png");
-			Weak = DoDAssets.LoadAsset<Sprite>("Weak_Icon_DoD.png");
-			FlashBurn = DoDAssets.LoadAsset<Sprite>("FlashBurn_Icon_DoD.png");
-			Blistered = DoDAssets.LoadAsset<Sprite>("Blistered_Icon_DoD.png");
-			Paralyze = DoDAssets.LoadAsset<Sprite>("Paralyze_Icon_DoD.png");
-			Slow = DoDAssets.LoadAsset<Sprite>("Slow_Icon_DoD.png");
-			MinorInjury = DoDAssets.LoadAsset<Sprite>("MinorInjury_Icon_DoD.png");
-			Injury = DoDAssets.LoadAsset<Sprite>("Injured_Icon_DoD.png");
-			MajorInjury = DoDAssets.LoadAsset<Sprite>("MajorInjury_Icon_DoD.png");
-			Frostbite = DoDAssets.LoadAsset<Sprite>("MinorInjury_Icon_DoD.png");
-			Poisoned = DoDAssets.LoadAsset<Sprite>("Poisoned_Icon_DoD.png");
 			InfectedFX = DoDAssets.LoadAsset<GameObject>("VFX_Infected_DoD");
 			SlowFX = DoDAssets.LoadAsset<GameObject>("VFX_Slow_DoD");
 			ParalyzeFX = DoDAssets.LoadAsset<GameObject>("VFX_Paralyze_DoD");
 			InjuredFX = DoDAssets.LoadAsset<GameObject>("VFX_Injured_DoD");
 			FrostbittenFX = DoDAssets.LoadAsset<GameObject>("VFX_Frostbite_DoD");
 			PoisonedFX = DoDAssets.LoadAsset<GameObject>("VFX_Poisoned_DoD");
+			//Debug.Log("DoDMonsters: 14");
 			// Sword Assets
 			Firesoul = DoDAssets.LoadAsset<GameObject>("SwordFlametal1_DoD");
 			Solarflare = DoDAssets.LoadAsset<GameObject>("SwordFlametal2_DoD");
@@ -599,6 +671,7 @@ namespace DoDMonsters
 			Coldflame = DoDAssets.LoadAsset<GameObject>("SwordFrometal1_DoD");
 			Frostflame = DoDAssets.LoadAsset<GameObject>("SwordFrometal3_DoD");
 			Nethersbane = DoDAssets.LoadAsset<GameObject>("SwordSpirit_DoD");
+			//Debug.Log("DoDMonsters: 15");
 			// Class Weapon Assets
 			WandLightning = DoDAssets.LoadAsset<GameObject>("ShamanWand_DoD");
 			WandFire = DoDAssets.LoadAsset<GameObject>("MageWand_DoD");
@@ -612,6 +685,7 @@ namespace DoDMonsters
 			MaceShock = DoDAssets.LoadAsset<GameObject>("MonkMace_DoD");
 			SpearAcid = DoDAssets.LoadAsset<GameObject>("DruidSpear_DoD");
 			SpearAoE = DoDAssets.LoadAsset<GameObject>("AoE_AuraHealing_DoD");
+			//Debug.Log("DoDMonsters: 16");
 			// Buildable Assets
 			RugDeer = DoDAssets.LoadAsset<GameObject>("Rug_BlackDeer_DoD");
 			RugDire = DoDAssets.LoadAsset<GameObject>("Rug_DireWolf_DoD");
@@ -619,6 +693,7 @@ namespace DoDMonsters
 			AnvilsFel = DoDAssets.LoadAsset<GameObject>("FelmetalAnvils_DoD");
 			AnvilsFro = DoDAssets.LoadAsset<GameObject>("FrometalAnvils_DoD");
 			AnvilsFlam = DoDAssets.LoadAsset<GameObject>("FlametalAnvils_DoD");
+			//Debug.Log("DoDMonsters: 17");
 			// Armor Kit Assets
 			T1ArmorKit = DoDAssets.LoadAsset<GameObject>("CrudeArmorKit_DoD");
 			T2ArmorKit = DoDAssets.LoadAsset<GameObject>("BasicArmorKit_DoD");
@@ -628,6 +703,7 @@ namespace DoDMonsters
 			T6ArmorKit = DoDAssets.LoadAsset<GameObject>("ExcellentArmorKit_DoD");
 			T7ArmorKit = DoDAssets.LoadAsset<GameObject>("ExceptionalArmorKit_DoD");
 			T8ArmorKit = DoDAssets.LoadAsset<GameObject>("ExtraordinaryArmorKit_DoD");
+			//Debug.Log("DoDMonsters: 18");
 			// Weapon Kit Assets
 			T1WeaponKit = DoDAssets.LoadAsset<GameObject>("CrudeWeaponKit_DoD");
 			T2WeaponKit = DoDAssets.LoadAsset<GameObject>("BasicWeaponKit_DoD");
@@ -637,6 +713,7 @@ namespace DoDMonsters
 			T6WeaponKit = DoDAssets.LoadAsset<GameObject>("ExcellentWeaponKit_DoD");
 			T7WeaponKit = DoDAssets.LoadAsset<GameObject>("ExceptionalWeaponKit_DoD");
 			T8WeaponKit = DoDAssets.LoadAsset<GameObject>("ExtraordinaryWeaponKit_DoD");
+			//Debug.Log("DoDMonsters: 19");
 			// Trophy Assets
 			TrophyCharredRemains = DoDAssets.LoadAsset<GameObject>("TrophyCharredRemains_DoD");
 			TrophyFrozenBones = DoDAssets.LoadAsset<GameObject>("TrophyFrozenBones_DoD");
@@ -662,11 +739,8 @@ namespace DoDMonsters
 			TrophyGoldDrake = DoDAssets.LoadAsset<GameObject>("TrophyGoldDrake_DoD");
 			TrophyPoisonDrake = DoDAssets.LoadAsset<GameObject>("TrophyPoisonDrake_DoD");
 			TrophyDarkDrake = DoDAssets.LoadAsset<GameObject>("TrophyDarkDrake_DoD");
+			//Debug.Log("DoDMonsters: 20");
 			// Material Assets
-			Walnuts = DoDAssets.LoadAsset<GameObject>("Walnuts_DoD");
-			Apple = DoDAssets.LoadAsset<GameObject>("Apple_DoD");
-			Cherry = DoDAssets.LoadAsset<GameObject>("Cherries_DoD");
-			Banana = DoDAssets.LoadAsset<GameObject>("Banana_DoD");
 			InfusedGemstone = DoDAssets.LoadAsset<GameObject>("InfusedGemstone_DoD");
 			DeathKnightItem = DoDAssets.LoadAsset<GameObject>("DeathKnightItem_DoD");
 			ArcherItem = DoDAssets.LoadAsset<GameObject>("ArcherItem_DoD");
@@ -696,14 +770,17 @@ namespace DoDMonsters
 			SpiderChitin = DoDAssets.LoadAsset<GameObject>("SpiderChitin_DoD");
 			BlackDeerHide = DoDAssets.LoadAsset<GameObject>("BlackDeerHide_DoD");
 			OakWood = DoDAssets.LoadAsset<GameObject>("OakWood_DoD");
+			//Debug.Log("DoDMonsters: 21");
 			// Monster Assets
 			//Bosses
 			//Rylan = DoDAssets.LoadAsset<GameObject>("LaughingRylan_DoD");
 			SkirSandburst = DoDAssets.LoadAsset<GameObject>("SkirSandburst_DoD");
 			Farkas = DoDAssets.LoadAsset<GameObject>("Farkas_DoD");
+			FarkasAlt = DoDAssets.LoadAsset<GameObject>("Farkas_Alt_DoD");
 			Bhygshan = DoDAssets.LoadAsset<GameObject>("Bhygshan_DoD");
 			Bitterstump = DoDAssets.LoadAsset<GameObject>("Bitterstump_DoD");
 			Rambore = DoDAssets.LoadAsset<GameObject>("Rambore_DoD");
+			//Debug.Log("DoDMonsters: 22");
 			// Monsters
 			GreaterSurtling = DoDAssets.LoadAsset<GameObject>("GreaterSurtling_DoD");
 			CharredRemains = DoDAssets.LoadAsset<GameObject>("CharredRemains_DoD");
@@ -735,13 +812,8 @@ namespace DoDMonsters
 			DarkDrake = DoDAssets.LoadAsset<GameObject>("DarknessDrake_DoD");
 			PoisonDrake = DoDAssets.LoadAsset<GameObject>("PoisonDrake_DoD");
 			BlackDrake = DoDAssets.LoadAsset<GameObject>("DarkDrake_DoD");
-			GreenFrog = DoDAssets.LoadAsset<GameObject>("GreenFrog_DoD");
-			BlackFrog = DoDAssets.LoadAsset<GameObject>("BlackFrog_DoD");
-			SpottedFrog = DoDAssets.LoadAsset<GameObject>("SpottedFrog_DoD");
-			GreyRabbit = DoDAssets.LoadAsset<GameObject>("GreyRabbit_DoD");
-			BrownRabbit = DoDAssets.LoadAsset<GameObject>("BrownRabbit_DoD");
-			GiantSnail = DoDAssets.LoadAsset<GameObject>("GiantSnail_DoD");
 
+			//Debug.Log("DoDMonsters: 23");
 			GameObject AoESpray = DoDAssets.LoadAsset<GameObject>("AoE_Spray_DoD");
 			GameObject BitterRoots = DoDAssets.LoadAsset<GameObject>("Bitter_RootSpawn_DoD");
 			GameObject AoESkirNova = DoDAssets.LoadAsset<GameObject>("AoE_Skir_Nova_DoD");
@@ -772,7 +844,7 @@ namespace DoDMonsters
 			GameObject AoEAuraStorm = DoDAssets.LoadAsset<GameObject>("AoE_AuraStorm_DoD");
 			PrefabManager.Instance.AddPrefab(AoESpray);
 			PrefabManager.Instance.AddPrefab(BitterRoots);
-			PrefabManager.Instance.AddPrefab(AoESkirNova); 
+			PrefabManager.Instance.AddPrefab(AoESkirNova);
 			PrefabManager.Instance.AddPrefab(AoEBitterstumpHeal);
 			PrefabManager.Instance.AddPrefab(AoEInfected);
 			PrefabManager.Instance.AddPrefab(AoEDiseased);
@@ -799,6 +871,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(AoEAuraFire);
 			PrefabManager.Instance.AddPrefab(AoEAuraStorm);
 
+			//Debug.Log("DoDMonsters: 24");
 			GameObject VilefangRD = DoDAssets.LoadAsset<GameObject>("Vilefang_Ragdoll_DoD");
 			GameObject BlackDeerRD = DoDAssets.LoadAsset<GameObject>("BlackDeer_Ragdoll_DoD");
 			GameObject ForestWolfRD = DoDAssets.LoadAsset<GameObject>("ForestWolf_Ragdoll_DoD");
@@ -812,23 +885,13 @@ namespace DoDMonsters
 			GameObject DarkDrakeRD = DoDAssets.LoadAsset<GameObject>("DarknessDrake_Ragdoll_DoD");
 			GameObject GoldDrakeRD = DoDAssets.LoadAsset<GameObject>("GoldDrake_Ragdoll_DoD");
 			GameObject GreenDrakeRD = DoDAssets.LoadAsset<GameObject>("PoisonDrake_Ragdoll_DoD");
-			GameObject GreenFrogRD = DoDAssets.LoadAsset<GameObject>("GreenFrog_RD_DoD");
-			GameObject BlackFrogRD = DoDAssets.LoadAsset<GameObject>("BlackFrog_RD_DoD");
-			GameObject SpottedFrogRD = DoDAssets.LoadAsset<GameObject>("SpottedFrog_RD_DoD");
-			GameObject GreyRabbitRD = DoDAssets.LoadAsset<GameObject>("GreyRabbit_RD_DoD");
-			GameObject BrownRabbitRD = DoDAssets.LoadAsset<GameObject>("BrownRabbit_RD_DoD");
-			GameObject GiantSnailRD = DoDAssets.LoadAsset<GameObject>("Snail_RD_DoD");
-			GameObject SheepRD = DoDAssets.LoadAsset<GameObject>("Sheep_RD_DoD");
-			GameObject GoatRD = DoDAssets.LoadAsset<GameObject>("Goat_RD_DoD");
-			GameObject GooseRD = DoDAssets.LoadAsset<GameObject>("Goose_RD_DoD");
-			GameObject PenguinRD = DoDAssets.LoadAsset<GameObject>("Penguin_RD_DoD");
-			GameObject RatRD = DoDAssets.LoadAsset<GameObject>("Rat_RD_DoD");
-			GameObject SalamanderRD = DoDAssets.LoadAsset<GameObject>("FireSalamander_RD_DoD");
-			GameObject TurtleRD = DoDAssets.LoadAsset<GameObject>("BoxTurtle_RD_DoD");
-			GameObject BrownLizardRD = DoDAssets.LoadAsset<GameObject>("BrownLizard_RD_DoD");
-			GameObject GreenLizardRD = DoDAssets.LoadAsset<GameObject>("GreenLizard_RD_DoD");
-			GameObject SpottedLizardRD = DoDAssets.LoadAsset<GameObject>("SpottedLizard_RD_DoD");
 			GameObject FarkasRD = DoDAssets.LoadAsset<GameObject>("Farkas_RD_DoD");
+			GameObject EntRD = DoDAssets.LoadAsset<GameObject>("TreeEnt_RD_DoD");
+			GameObject DemonLordRD = DoDAssets.LoadAsset<GameObject>("DemonLord_RD_DoD");
+			GameObject FarkasAltRD = DoDAssets.LoadAsset<GameObject>("Farkas_Alt_RD_DoD");
+			PrefabManager.Instance.AddPrefab(FarkasAltRD);
+			PrefabManager.Instance.AddPrefab(EntRD);
+			PrefabManager.Instance.AddPrefab(DemonLordRD);
 			PrefabManager.Instance.AddPrefab(FarkasRD);
 			PrefabManager.Instance.AddPrefab(VilefangRD);
 			PrefabManager.Instance.AddPrefab(BlackDeerRD);
@@ -843,23 +906,8 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(DarkDrakeRD);
 			PrefabManager.Instance.AddPrefab(GoldDrakeRD);
 			PrefabManager.Instance.AddPrefab(GreenDrakeRD);
-			PrefabManager.Instance.AddPrefab(GreenFrogRD);
-			PrefabManager.Instance.AddPrefab(BlackFrogRD);
-			PrefabManager.Instance.AddPrefab(SpottedFrogRD);
-			PrefabManager.Instance.AddPrefab(GreyRabbitRD);
-			PrefabManager.Instance.AddPrefab(BrownRabbitRD);
-			PrefabManager.Instance.AddPrefab(GiantSnailRD);
-			PrefabManager.Instance.AddPrefab(SheepRD);
-			PrefabManager.Instance.AddPrefab(GoatRD);
-			PrefabManager.Instance.AddPrefab(GooseRD);
-			PrefabManager.Instance.AddPrefab(PenguinRD);
-			PrefabManager.Instance.AddPrefab(RatRD);
-			PrefabManager.Instance.AddPrefab(SalamanderRD);
-			PrefabManager.Instance.AddPrefab(TurtleRD);
-			PrefabManager.Instance.AddPrefab(BrownLizardRD);
-			PrefabManager.Instance.AddPrefab(GreenLizardRD);
-			PrefabManager.Instance.AddPrefab(SpottedLizardRD);
 
+			//Debug.Log("DoDMonsters: 25");
 			GameObject BhygshanFireballProjectile = DoDAssets.LoadAsset<GameObject>("Bhygshan_Fireball_Projectile_DoD");
 			GameObject SkirVoidboltProjectile = DoDAssets.LoadAsset<GameObject>("Skir_Voidbolt_Projectile_DoD");
 			GameObject SkirSandburstVoidThrowProjectile = DoDAssets.LoadAsset<GameObject>("SkirSandburst_VoidThrow_Projectile_DoD");
@@ -893,6 +941,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(ShadowProjectileS);
 			PrefabManager.Instance.AddPrefab(ShadowProjectileL);
 
+			//Debug.Log("DoDMonsters: 26");
 			GameObject TCMistlands = DoDAssets.LoadAsset<GameObject>("TreasureChest_Mistlands_DoD");
 			GameObject TCDeepNorth = DoDAssets.LoadAsset<GameObject>("TreasureChest_DeepNorth_DoD");
 			GameObject TCAshLands = DoDAssets.LoadAsset<GameObject>("TreasureChest_AshLands_DoD");
@@ -918,55 +967,9 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(BhygshanSummon);
 			PrefabManager.Instance.AddPrefab(AltarFarkasAlt);
 
-			GameObject CastleGate = DoDAssets.LoadAsset<GameObject>("CastleGate_DoD");
-			GameObject CastleWall = DoDAssets.LoadAsset<GameObject>("CastleWall_DoD");
-			GameObject CastleStairs = DoDAssets.LoadAsset<GameObject>("CastleWallStairs_DoD");
-			GameObject CastleDetailed = DoDAssets.LoadAsset<GameObject>("CastleWall_Detailed_DoD");
-			GameObject ArenaFog = DoDAssets.LoadAsset<GameObject>("VFX_ArenaFog_DoD");
-			GameObject ArenaSpawner = DoDAssets.LoadAsset<GameObject>("Arena_Spawner_DoD");
-			GameObject Leveler = DoDAssets.LoadAsset<GameObject>("LevelGround_DoD");
-			GameObject Camp = DoDAssets.LoadAsset<GameObject>("Camp_DoD");
-			GameObject CampSpawner = DoDAssets.LoadAsset<GameObject>("Camp_Spawner_DoD");
-			GameObject EventSpawner = DoDAssets.LoadAsset<GameObject>("Event_Spawner_DoD");
-			GameObject LocationSpawner = DoDAssets.LoadAsset<GameObject>("Location_Spawner_DoD");
-			GameObject EventSpawner1 = DoDAssets.LoadAsset<GameObject>("Event_AreaSpawner_DN_DoD");
-			GameObject EventSpawner2 = DoDAssets.LoadAsset<GameObject>("Event_AreaSpawner_Mist_DoD");
-			GameObject EventSpawner3 = DoDAssets.LoadAsset<GameObject>("Event_AreaSpawner_Plains_DoD");
-			GameObject LootSpawner1 = DoDAssets.LoadAsset<GameObject>("LootSpawner_Award_DN_DoD");
-			GameObject LootSpawner2 = DoDAssets.LoadAsset<GameObject>("LootSpawner_Award_Mist_DoD");
-			GameObject LootSpawner3 = DoDAssets.LoadAsset<GameObject>("LootSpawner_Award_Plains_DoD");
-			GameObject SmallCave = DoDAssets.LoadAsset<GameObject>("MiniCave_DoD");
-			GameObject Runestone = DoDAssets.LoadAsset<GameObject>("Runestone_DoD");
-			GameObject VisirBitter = DoDAssets.LoadAsset<GameObject>("Vegvisir_Bitterstump_DoD");
-			GameObject VisirRambone = DoDAssets.LoadAsset<GameObject>("Vegvisir_Rambore_DoD");
-			GameObject CaveDeep = DoDAssets.LoadAsset<GameObject>("CaveDeep_DoD");
-			GameObject CaveEnter = DoDAssets.LoadAsset<GameObject>("CaveEntrance_DoD");
-			GameObject BeechGround = DoDAssets.LoadAsset<GameObject>("BeechGroundCover_DoD");
-			PrefabManager.Instance.AddPrefab(CastleGate);
-			PrefabManager.Instance.AddPrefab(CastleWall);
-			PrefabManager.Instance.AddPrefab(CastleStairs);
-			PrefabManager.Instance.AddPrefab(CastleDetailed);
-			PrefabManager.Instance.AddPrefab(ArenaFog);
-			PrefabManager.Instance.AddPrefab(ArenaSpawner);
-			PrefabManager.Instance.AddPrefab(Leveler);
-			PrefabManager.Instance.AddPrefab(Camp);
-			PrefabManager.Instance.AddPrefab(CampSpawner);
-			PrefabManager.Instance.AddPrefab(EventSpawner);
-			PrefabManager.Instance.AddPrefab(LocationSpawner);
-			PrefabManager.Instance.AddPrefab(EventSpawner1);
-			PrefabManager.Instance.AddPrefab(EventSpawner2);
-			PrefabManager.Instance.AddPrefab(EventSpawner3);
-			PrefabManager.Instance.AddPrefab(LootSpawner1);
-			PrefabManager.Instance.AddPrefab(LootSpawner2);
-			PrefabManager.Instance.AddPrefab(LootSpawner3);
-			PrefabManager.Instance.AddPrefab(SmallCave);
-			PrefabManager.Instance.AddPrefab(Runestone);
-			PrefabManager.Instance.AddPrefab(VisirBitter);
-			PrefabManager.Instance.AddPrefab(VisirRambone);
-			PrefabManager.Instance.AddPrefab(CaveDeep);
-			PrefabManager.Instance.AddPrefab(CaveEnter);
-			PrefabManager.Instance.AddPrefab(BeechGround);
+			//Debug.Log("DoDMonsters: 27");
 
+			//Debug.Log("DoDMonsters: 28");
 			GameObject FXSkirProtect = DoDAssets.LoadAsset<GameObject>("FX_Skir_Protect_DoD");
 			GameObject FXSkirNova = DoDAssets.LoadAsset<GameObject>("FX_Skir_Nova_DoD");
 			GameObject FXBitterRoot = DoDAssets.LoadAsset<GameObject>("FX_Bitter_RootSpawn_DoD");
@@ -982,6 +985,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(FXMageCast);
 			PrefabManager.Instance.AddPrefab(FXBhygshanFireballExpl);
 
+			//Debug.Log("DoDMonsters: 29");
 			GameObject SFXLivingLavaDeath = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Death_DoD");
 			GameObject SFXLivingLavaHit = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Hit_DoD");
 			GameObject SFXLivingLavaJump = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Jump_DoD");
@@ -996,43 +1000,46 @@ namespace DoDMonsters
 			GameObject SFXVoidlingAttack = DoDAssets.LoadAsset<GameObject>("SFX_Voidling_Attack_DoD");
 			GameObject SFXGenericHit = DoDAssets.LoadAsset<GameObject>("SFX_GenericHit_DoD");
 			GameObject SFXWandHit = DoDAssets.LoadAsset<GameObject>("SFX_DaggerHit_DoD");
-			GameObject SFXWoodChop = DoDAssets.LoadAsset<GameObject>("SFX_Wood_Chop_DoD");
-			GameObject SFXTreeFall = DoDAssets.LoadAsset<GameObject>("SFX_Tree_Falling_DoD");
-			GameObject SFXTreeFallS = DoDAssets.LoadAsset<GameObject>("SFX_SmallTree_Falling_DoD");
-			GameObject SFXBushChop = DoDAssets.LoadAsset<GameObject>("SFX_Bush_Chop_DoD");
-			GameObject SFXRockHit = DoDAssets.LoadAsset<GameObject>("loc_sfx_rock_hit_dod");
-			GameObject SFXRockDest = DoDAssets.LoadAsset<GameObject>("loc_sfx_rock_destroyed_dod");
-			GameObject SFXPickable = DoDAssets.LoadAsset<GameObject>("SFX_Pickable_Pick_DoD");
-			GameObject SFXOfferingBones = DoDAssets.LoadAsset<GameObject>("SFX_OfferingBones_DoD");
-			GameObject SFXBossSpawn = DoDAssets.LoadAsset<GameObject>("SFX_BossSpawn_DoD");
-			GameObject SFXSummoning = DoDAssets.LoadAsset<GameObject>("SFX_BossSummon_DoD");
-			GameObject SFXFrog1 = DoDAssets.LoadAsset<GameObject>("SFX_Frog1_Idle_DoD");
-			GameObject SFXFrog2 = DoDAssets.LoadAsset<GameObject>("SFX_Frog2_Idle_DoD");
-			GameObject SFXFrogD = DoDAssets.LoadAsset<GameObject>("SFX_Frog_Death_DoD");
-			GameObject SFXRabbitD = DoDAssets.LoadAsset<GameObject>("SFX_Rabbit_Death_DoD");
-			GameObject SFXSnailD = DoDAssets.LoadAsset<GameObject>("SFX_Snail_Death_DoD");
-			GameObject SFXGooseD = DoDAssets.LoadAsset<GameObject>("SFX_Goose_Death_DoD");
-			GameObject SFXGooseI = DoDAssets.LoadAsset<GameObject>("SFX_Goose_Idle_DoD");
-			GameObject SFXSheepD = DoDAssets.LoadAsset<GameObject>("SFX_Sheep_Death_DoD");
-			GameObject SFXSheepI = DoDAssets.LoadAsset<GameObject>("SFX_Sheep_Idle_DoD");
-			GameObject SFXSheepF = DoDAssets.LoadAsset<GameObject>("SFX_Sheep_Footstep_DoD");
-			GameObject SFXGoatD = DoDAssets.LoadAsset<GameObject>("SFX_Goat_Death_DoD");
-			GameObject SFXGoatI = DoDAssets.LoadAsset<GameObject>("SFX_Goat_Idle_DoD");
-			GameObject SFXPenguinD = DoDAssets.LoadAsset<GameObject>("SFX_Penguin_Death_DoD");
-			GameObject SFXSalamanderD = DoDAssets.LoadAsset<GameObject>("SFX_Salamander_Death_DoD");
-			GameObject SFXRatD = DoDAssets.LoadAsset<GameObject>("SFX_Rat_Death_DoD");
-			GameObject SFXLizardD = DoDAssets.LoadAsset<GameObject>("SFX_Lizard_Death_DoD");
-			PrefabManager.Instance.AddPrefab(SFXLizardD);
-			PrefabManager.Instance.AddPrefab(SFXRatD);
-			PrefabManager.Instance.AddPrefab(SFXSalamanderD);
-			PrefabManager.Instance.AddPrefab(SFXPenguinD);
-			PrefabManager.Instance.AddPrefab(SFXGoatI);
-			PrefabManager.Instance.AddPrefab(SFXGoatD);
-			PrefabManager.Instance.AddPrefab(SFXSheepF);
-			PrefabManager.Instance.AddPrefab(SFXSheepI);
-			PrefabManager.Instance.AddPrefab(SFXSheepD);
-			PrefabManager.Instance.AddPrefab(SFXGooseI);
-			PrefabManager.Instance.AddPrefab(SFXGooseD);
+			GameObject SFXNPC1 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Alert_DoD");
+			CustomPrefab customsfxNPC1 = new CustomPrefab(SFXNPC1, true);
+			GameObject SFXNPC2 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Birth_DoD");
+			CustomPrefab customsfxNPC2 = new CustomPrefab(SFXNPC2, true);
+			GameObject SFXNPC3 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Breath_DoD");
+			CustomPrefab customsfxNPC3 = new CustomPrefab(SFXNPC3, true);
+			GameObject SFXNPC4 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Cough_DoD");
+			CustomPrefab customsfxNPC4 = new CustomPrefab(SFXNPC4, true);
+			GameObject SFXNPC5 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Laugh_DoD");
+			CustomPrefab customsfxNPC5 = new CustomPrefab(SFXNPC5, true);
+			GameObject SFXNPC6 = DoDAssets.LoadAsset<GameObject>("SFX_NPC_Sigh_DoD");
+			CustomPrefab customsfxNPC6 = new CustomPrefab(SFXNPC6, true);
+			GameObject SFXEntHit = DoDAssets.LoadAsset<GameObject>("SFX_EntHit_DoD");
+			GameObject SFXEntGetHit = DoDAssets.LoadAsset<GameObject>("SFX_EntGetHit_DoD");
+			GameObject SFXEntAlert = DoDAssets.LoadAsset<GameObject>("SFX_EntAlert_DoD");
+			GameObject SFXEntIdle = DoDAssets.LoadAsset<GameObject>("SFX_EntIdle_DoD");
+			GameObject SFXEntDeath = DoDAssets.LoadAsset<GameObject>("SFX_EntDeath_DoD");
+			GameObject SFXDLGetHit = DoDAssets.LoadAsset<GameObject>("SFX_DLGetHit_DoD");
+			GameObject SFXDLAlert = DoDAssets.LoadAsset<GameObject>("SFX_DLAlert_DoD");
+			GameObject SFXDLIdle = DoDAssets.LoadAsset<GameObject>("SFX_DLIdle_DoD");
+			GameObject SFXDLDeath = DoDAssets.LoadAsset<GameObject>("SFX_DLDeath_DoD");
+			GameObject SFXWolfIdle = DoDAssets.LoadAsset<GameObject>("SFX_Wolf_Idle_DoD");
+			GameObject SFXWolfGetHit = DoDAssets.LoadAsset<GameObject>("SFX_Wolf_GetHit_DoD");
+			PrefabManager.Instance.AddPrefab(SFXWolfGetHit);
+			PrefabManager.Instance.AddPrefab(SFXWolfIdle);
+			PrefabManager.Instance.AddPrefab(SFXDLGetHit);
+			PrefabManager.Instance.AddPrefab(SFXDLAlert);
+			PrefabManager.Instance.AddPrefab(SFXDLIdle);
+			PrefabManager.Instance.AddPrefab(SFXDLDeath);
+			PrefabManager.Instance.AddPrefab(SFXEntHit);
+			PrefabManager.Instance.AddPrefab(SFXEntGetHit);
+			PrefabManager.Instance.AddPrefab(SFXEntAlert);
+			PrefabManager.Instance.AddPrefab(SFXEntIdle);
+			PrefabManager.Instance.AddPrefab(SFXEntDeath);
+			PrefabManager.Instance.AddPrefab(customsfxNPC1);
+			PrefabManager.Instance.AddPrefab(customsfxNPC2);
+			PrefabManager.Instance.AddPrefab(customsfxNPC3);
+			PrefabManager.Instance.AddPrefab(customsfxNPC4);
+			PrefabManager.Instance.AddPrefab(customsfxNPC5);
+			PrefabManager.Instance.AddPrefab(customsfxNPC6);
 			PrefabManager.Instance.AddPrefab(SFXLivingLavaDeath);
 			PrefabManager.Instance.AddPrefab(SFXLivingLavaHit);
 			PrefabManager.Instance.AddPrefab(SFXLivingLavaJump);
@@ -1047,37 +1054,16 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(SFXVoidlingAttack);
 			PrefabManager.Instance.AddPrefab(SFXGenericHit);
 			PrefabManager.Instance.AddPrefab(SFXWandHit);
-			PrefabManager.Instance.AddPrefab(SFXWoodChop);
-			PrefabManager.Instance.AddPrefab(SFXTreeFall);
-			PrefabManager.Instance.AddPrefab(SFXTreeFallS);
-			PrefabManager.Instance.AddPrefab(SFXBushChop);
-			PrefabManager.Instance.AddPrefab(SFXRockHit);
-			PrefabManager.Instance.AddPrefab(SFXRockDest);
-			PrefabManager.Instance.AddPrefab(SFXPickable);
-			PrefabManager.Instance.AddPrefab(SFXOfferingBones);
-			PrefabManager.Instance.AddPrefab(SFXBossSpawn);
-			PrefabManager.Instance.AddPrefab(SFXSummoning);
-			PrefabManager.Instance.AddPrefab(SFXFrog1);
-			PrefabManager.Instance.AddPrefab(SFXFrog2);
-			PrefabManager.Instance.AddPrefab(SFXFrogD);
-			PrefabManager.Instance.AddPrefab(SFXRabbitD);
-			PrefabManager.Instance.AddPrefab(SFXSnailD);
 
+			//Debug.Log("DoDMonsters: 30");
 			GameObject VFXBhygshanSpray = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Spray_DoD");
 			GameObject VFXBhygshanBreath = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Breath_DoD");
 			GameObject VFXSkirThrow = DoDAssets.LoadAsset<GameObject>("VFX_Skir_Throw_DoD");
 			GameObject VFXBhygshanAttack = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Attack_DoD");
-			GameObject VFXSummonSpawn = DoDAssets.LoadAsset<GameObject>("VFX_SummonSpawn_DoD");
 			GameObject VFXSkeletonHit = DoDAssets.LoadAsset<GameObject>("VFX_Skeleton_Hit_DoD");
-			GameObject VFXOfferingBowl = DoDAssets.LoadAsset<GameObject>("VFX_OfferingBowl_DoD");
-			GameObject VFXHit = DoDAssets.LoadAsset<GameObject>("VFX_Hit_DoD");
-			GameObject VFXBloodHit = DoDAssets.LoadAsset<GameObject>("VFX_Blood_Hit_DoD");
-			GameObject VFXDustPiece = DoDAssets.LoadAsset<GameObject>("VFX_Dust_Piece_DoD");
-			GameObject VFXChestPlace = DoDAssets.LoadAsset<GameObject>("VFX_Chest_Place_DoD");
-			GameObject VFXSummon = DoDAssets.LoadAsset<GameObject>("VFX_Summon_DoD");
+			//GameObject VFXHit = DoDAssets.LoadAsset<GameObject>("VFX_Hit_DoD");
+			//GameObject VFXBloodHit = DoDAssets.LoadAsset<GameObject>("VFX_Blood_Hit_DoD");
 			GameObject VFXFireBoltHit = DoDAssets.LoadAsset<GameObject>("VFX_FireBolt_SurtlingHit_DoD");
-			GameObject VFXBiiterSpawn = DoDAssets.LoadAsset<GameObject>("VFX_BiiterSpawn_DoD");
-			GameObject VFXBitterSpawnIn = DoDAssets.LoadAsset<GameObject>("VFX_BitterSpawnIn_DoD");
 			GameObject VFXMageFS = DoDAssets.LoadAsset<GameObject>("VFX_Mage_FireStrike_DoD");
 			GameObject VFXBlocked = DoDAssets.LoadAsset<GameObject>("VFX_Blocked_DoD");
 			GameObject VFXHitSparks = DoDAssets.LoadAsset<GameObject>("VFX_HitSparks_DoD");
@@ -1095,24 +1081,15 @@ namespace DoDMonsters
 			GameObject VFXIceImpHit = DoDAssets.LoadAsset<GameObject>("VFX_IceImpHit_DoD");
 			GameObject VFXStormImpHit = DoDAssets.LoadAsset<GameObject>("VFX_StormImpHit_DoD");
 			GameObject VFXVoidImpHit = DoDAssets.LoadAsset<GameObject>("VFX_VoidImpHit_DoD");
-			GameObject VFXFelOreDestroy = DoDAssets.LoadAsset<GameObject>("VFX_Felore_Destroy_DoD");
-			GameObject VFXMineHit = DoDAssets.LoadAsset<GameObject>("VFX_Mine_Hit_DoD");
-			GameObject VFXPickable = DoDAssets.LoadAsset<GameObject>("VFX_Pickable_Pick_DoD");
+
 			PrefabManager.Instance.AddPrefab(VFXBhygshanSpray);
 			PrefabManager.Instance.AddPrefab(VFXBhygshanBreath);
 			PrefabManager.Instance.AddPrefab(VFXSkirThrow);
 			PrefabManager.Instance.AddPrefab(VFXBhygshanAttack);
-			PrefabManager.Instance.AddPrefab(VFXSummonSpawn);
 			PrefabManager.Instance.AddPrefab(VFXSkeletonHit);
-			PrefabManager.Instance.AddPrefab(VFXOfferingBowl);
-			PrefabManager.Instance.AddPrefab(VFXHit);
-			PrefabManager.Instance.AddPrefab(VFXBloodHit);
-			PrefabManager.Instance.AddPrefab(VFXDustPiece);
-			PrefabManager.Instance.AddPrefab(VFXChestPlace);
-			PrefabManager.Instance.AddPrefab(VFXSummon);
+			//PrefabManager.Instance.AddPrefab(VFXHit);
+			//PrefabManager.Instance.AddPrefab(VFXBloodHit);
 			PrefabManager.Instance.AddPrefab(VFXFireBoltHit);
-			PrefabManager.Instance.AddPrefab(VFXBiiterSpawn);
-			PrefabManager.Instance.AddPrefab(VFXBitterSpawnIn);
 			PrefabManager.Instance.AddPrefab(VFXMageFS);
 			PrefabManager.Instance.AddPrefab(VFXBlocked);
 			PrefabManager.Instance.AddPrefab(VFXHitSparks);
@@ -1130,24 +1107,9 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(VFXIceImpHit);
 			PrefabManager.Instance.AddPrefab(VFXStormImpHit);
 			PrefabManager.Instance.AddPrefab(VFXVoidImpHit);
-			PrefabManager.Instance.AddPrefab(VFXFelOreDestroy);
-			PrefabManager.Instance.AddPrefab(VFXMineHit);
-			PrefabManager.Instance.AddPrefab(VFXPickable);
 		}
 		public void CreateConfigurationValues()
 		{
-			MistlandsLocEnable = base.Config.Bind("Mistlands Locations", "Enable", defaultValue: true, new ConfigDescription("Enables Locations in Mistlands", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));
-			MistlandsVegEnable = base.Config.Bind("Mistlands Vegetation", "Enable", defaultValue: true, new ConfigDescription("Enables Trees, Bushes, Pickables and Rocks.", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));
-			FruitEnable = base.Config.Bind("Custom Resources", "Enable", defaultValue: true, new ConfigDescription("Enables Felmetal Ore, Banana Tree and Apple Tree", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));
 			ArmorCrateEnable = base.Config.Bind("Armor Kits", "Enable", defaultValue: true, new ConfigDescription("Enables Armor Crates, if you disable these you will have to disable bosses below", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
@@ -1176,1003 +1138,12 @@ namespace DoDMonsters
 			{
 				IsAdminOnly = true
 			}));
-			CastleArenaEnable = base.Config.Bind("Custom Locations", "Enable", defaultValue: true, new ConfigDescription("Enables Castle Arena, Event Ring and Camp Locations.", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));
-			DeepNorthVegEnable = base.Config.Bind("Deep North Vegetation", "Enable", defaultValue: true, new ConfigDescription("Enables Deep North Trees, Bushes and Rocks.", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));
-			AshLandsVegEnable = base.Config.Bind("Ash Lands Vegetation", "Enable", defaultValue: true, new ConfigDescription("Enables Rocks.", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));
-			/*RamboreEnable = base.Config.Bind("RamBores Cave", "Enable", defaultValue: true, new ConfigDescription("Enables RamBore Location.", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));*/
 		}
-		private void AddLocations()
+		private void ModWorldObjects()
 		{
-			DoDFixer = AssetUtils.LoadAssetBundleFromResources("fixer", Assembly.GetExecutingAssembly());
-			DoDAssets = AssetUtils.LoadAssetBundleFromResources("doordieassets", Assembly.GetExecutingAssembly());
-			try
-			{
-				if (BossesEnable.Value == true)
-				{
-					var Rambore = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Boss_Rambore_DoD"), false);
-					ZoneManager.Instance.AddCustomLocation(new CustomLocation(Rambore, new LocationConfig
-					{
-						Biome = Heightmap.Biome.Meadows,
-						Quantity = 4,
-						Priotized = true,
-						ExteriorRadius = 8f,
-						MinAltitude = 5f,
-						ClearArea = true,
-					}));
-					var Bitterstump = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Boss_Bitterstump_DoD"), false);
-					ZoneManager.Instance.AddCustomLocation(new CustomLocation(Bitterstump, new LocationConfig
-					{
-						Biome = Heightmap.Biome.BlackForest,
-						Quantity = 4,
-						Priotized = true,
-						ExteriorRadius = 8f,
-						MinAltitude = 5f,
-						ClearArea = true,
-					}));
-				}
-				if (MistlandsVegEnable.Value == true)
-                {				
-					var MistLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_OreMine_DoD"), false);
-					ZoneManager.Instance.AddCustomLocation(new CustomLocation(MistLoc2, new LocationConfig
-					{
-						Biome = Heightmap.Biome.Mistlands,
-						Quantity = 200,
-						Priotized = true,
-						ExteriorRadius = 12f,
-						MinAltitude = 5f,
-						ClearArea = true,
-					}));
-					var MistCave1 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_MistlandsCave_DoD"), false);
-					ZoneManager.Instance.AddCustomLocation(new CustomLocation(MistCave1, new LocationConfig
-					{
-						Biome = Heightmap.Biome.Mistlands,
-						Quantity = 100,
-						Priotized = true,
-						ExteriorRadius = 16f,
-						MinAltitude = 5f,
-						ClearArea = true,
-					}));
-					var MistLoc3 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_MistlandsTower_DoD"), false);
-					ZoneManager.Instance.AddCustomLocation(new CustomLocation(MistLoc3, new LocationConfig
-					{
-						Biome = Heightmap.Biome.Mistlands,
-						Quantity = 200,
-						Priotized = true,
-						ExteriorRadius = 18f,
-						MinAltitude = 5f,
-						ClearArea = true,
-					}));
-                }
-				if (CastleArenaEnable.Value == true)
-				{
-					var AnyLoc1 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_CastleArena_DoD"), false);
-					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc1, new LocationConfig
-					{
-						Biome = ZoneManager.AnyBiomeOf(Heightmap.Biome.Meadows, Heightmap.Biome.Plains, Heightmap.Biome.Mistlands),
-						Quantity = 10,
-						Priotized = true,
-						ExteriorRadius = 20f,
-						MinAltitude = 10f,
-						ClearArea = true,
-					}));
-					var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_Camp_DoD"), false);
-					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc2, new LocationConfig
-					{
-						Biome = ZoneManager.AnyBiomeOf(Heightmap.Biome.Meadows, Heightmap.Biome.BlackForest, Heightmap.Biome.Swamp, Heightmap.Biome.Mountain, Heightmap.Biome.Plains, Heightmap.Biome.Mistlands),
-						Quantity = 300,
-						Priotized = true,
-						ExteriorRadius = 6f,
-						MinAltitude = 2f,
-						ClearArea = true,
-					}));
-					var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Event_StoneRing_Mistlands_DoD"), false);
-					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc3, new LocationConfig
-					{
-						Biome = Heightmap.Biome.Mistlands,
-						Quantity = 50,
-						Priotized = true,
-						ExteriorRadius = 20f,
-						MinAltitude = 10f,
-						ClearArea = true,						
-					}));
-				}
-			}
-			finally
-			{
-				ZoneManager.OnVanillaLocationsAvailable -= AddLocations;
-			}
-			DoDAssets.Unload(false);
-		}
-		private void AddCustomFruitTrees()
-        {
-			GameObject banana1 = DoDAssets.LoadAsset<GameObject>("Tree_Banana_Pickable_DoD");
-			CustomVegetation customBananaTree1 = new CustomVegetation(banana1, new VegetationConfig
-			{
-				Max = 1f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 2,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = ZoneManager.AnyBiomeOf(Heightmap.Biome.Swamp, Heightmap.Biome.Plains),
-				MinAltitude = 1f,
-				MaxAltitude = 100f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customBananaTree1);
-
-			GameObject floramist20 = DoDAssets.LoadAsset<GameObject>("Tree_Apple_Pickable_DoD");
-			CustomVegetation customVegetation26 = new CustomVegetation(floramist20, new VegetationConfig
-			{
-				Max = 1f,
-				GroupSizeMin = 3,
-				GroupSizeMax = 3,
-				GroupRadius = 10f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.BlackForest,
-				MinAltitude = 50f,
-				MaxAltitude = 500f,
-				MaxTilt = 20f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation26);
-
-			GameObject floramist15 = DoDAssets.LoadAsset<GameObject>("MineRock_FelOre_DoD");
-			CustomVegetation customVegetation16 = new CustomVegetation(floramist15, new VegetationConfig
-			{
-				Max = 1f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 2,
-				GroupRadius = 10f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 15f,
-				MaxTilt = 20f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation16);
-		}
-		private void AddMistlandVegetation()
-		{
-
-			GameObject floramist27 = DoDAssets.LoadAsset<GameObject>("BlueMushroom_DoD");
-			CustomVegetation customVegetation33 = new CustomVegetation(floramist27, new VegetationConfig
-			{
-				Max = 2f,
-				GroupSizeMin = 2,
-				GroupSizeMax = 5,
-				GroupRadius = 2f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 100f,
-				MaxTilt = 45f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation33);
-
-			GameObject floramist26 = DoDAssets.LoadAsset<GameObject>("PurpleMushroom_DoD");
-			CustomVegetation customVegetation32 = new CustomVegetation(floramist26, new VegetationConfig
-			{
-				Max = 2f,
-				GroupSizeMin = 2,
-				GroupSizeMax = 5,
-				GroupRadius = 2f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 100f,
-				MaxTilt = 45f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation32);
-
-			GameObject floramist25 = DoDAssets.LoadAsset<GameObject>("Tree_Willow02_DoD");
-			CustomVegetation customVegetation31 = new CustomVegetation(floramist25, new VegetationConfig
-			{
-				Max = 5f,
-				GroupSizeMin = 3,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 1f,
-				MaxAltitude = 750f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation31);
-
-			GameObject floramist24 = DoDAssets.LoadAsset<GameObject>("Tree_Willow01_DoD");
-			CustomVegetation customVegetation30 = new CustomVegetation(floramist24, new VegetationConfig
-			{
-				Max = 5f,
-				GroupSizeMin = 3,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 1f,
-				MaxAltitude = 1500f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation30);
-
-			GameObject floramist23 = DoDAssets.LoadAsset<GameObject>("Tree_Poplar02_DoD");
-			CustomVegetation customVegetation29 = new CustomVegetation(floramist23, new VegetationConfig
-			{
-				Max = 5f,
-				GroupSizeMin = 3,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 1f,
-				MaxAltitude = 750f,
-				MaxTilt = 40f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation29);
-
-			GameObject floramist22 = DoDAssets.LoadAsset<GameObject>("Tree_Poplar01_DoD");
-			CustomVegetation customVegetation28 = new CustomVegetation(floramist22, new VegetationConfig
-			{
-				Max = 5f,
-				GroupSizeMin = 3,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 1f,
-				MaxAltitude = 1500f,
-				MaxTilt = 40f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation28);
-
-			GameObject floramist21 = DoDAssets.LoadAsset<GameObject>("Bush_RedBerries_Pickable_DoD");
-			CustomVegetation customVegetation27 = new CustomVegetation(floramist21, new VegetationConfig
-			{
-				Max = 1f,
-				GroupSizeMin = 3,
-				GroupSizeMax = 3,
-				GroupRadius = 10f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 1f,
-				MaxAltitude = 50f,
-				MaxTilt = 20f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation27);
-
-			GameObject floramist19 = DoDAssets.LoadAsset<GameObject>("Tree_OldOak02_DoD");
-			CustomVegetation customVegetation25 = new CustomVegetation(floramist19, new VegetationConfig
-			{
-				Max = 6f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 2,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 10f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation25);
-
-			GameObject rockmist4 = DoDAssets.LoadAsset<GameObject>("Mineable_RockMS_DoD");
-			CustomVegetation customVegetation24 = new CustomVegetation(rockmist4, new VegetationConfig
-			{
-				Max = 12f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 5,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation24);
-
-			GameObject rockmist3 = DoDAssets.LoadAsset<GameObject>("Mineable_RockMM_DoD");
-			CustomVegetation customVegetation23 = new CustomVegetation(rockmist3, new VegetationConfig
-			{
-				Max = 10f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 5,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation23);
-
-			GameObject rockmist2 = DoDAssets.LoadAsset<GameObject>("Mineable_RockML_DoD");
-			CustomVegetation customVegetation21 = new CustomVegetation(rockmist2, new VegetationConfig
-			{
-				Max = 8f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 5,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation21);
-
-			GameObject rockmist1 = DoDAssets.LoadAsset<GameObject>("Mineable_RockMH_DoD");
-			CustomVegetation customVegetation20 = new CustomVegetation(rockmist1, new VegetationConfig
-			{
-				Max = 6f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 5,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 1f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation20);
-
-			GameObject floramist18 = DoDAssets.LoadAsset<GameObject>("Tree_OldOak01_DoD");
-			CustomVegetation customVegetation19 = new CustomVegetation(floramist18, new VegetationConfig
-			{
-				Max = 2f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 10f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation19);
-
-			GameObject floramist17 = DoDAssets.LoadAsset<GameObject>("Tree_Oak02_DoD");
-			CustomVegetation customVegetation18 = new CustomVegetation(floramist17, new VegetationConfig
-			{
-				Max = 2f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 10f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation18);
-
-			GameObject floramist16 = DoDAssets.LoadAsset<GameObject>("Tree_Oak01_DoD");
-			CustomVegetation customVegetation17 = new CustomVegetation(floramist16, new VegetationConfig
-			{
-				Max = 2f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 5f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation17);
-
-			GameObject floramist14 = DoDAssets.LoadAsset<GameObject>("Bush_02_DoD");
-			CustomVegetation customVegetation15 = new CustomVegetation(floramist14, new VegetationConfig
-			{
-				Max = 2f,
-				GroupSizeMin = 4,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 5f,
-				MaxTilt = 45f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation15);
-
-			GameObject floramist13 = DoDAssets.LoadAsset<GameObject>("Bush_01_DoD");
-			CustomVegetation customVegetation14 = new CustomVegetation(floramist13, new VegetationConfig
-			{
-				Max = 2f,
-				GroupSizeMin = 4,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 1f,
-				MaxTilt = 45f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation14);
-
-			GameObject floramist12 = DoDAssets.LoadAsset<GameObject>("Mineable_RockMRFL_DoD");
-			CustomVegetation customVegetation13 = new CustomVegetation(floramist12, new VegetationConfig
-			{
-				Max = 2f,
-				GroupSizeMin = 4,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 1f,
-				MaxTilt = 45f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation13);
-
-			GameObject floramist11 = DoDAssets.LoadAsset<GameObject>("Mineable_RockMRFM_DoD");
-			CustomVegetation customVegetation12 = new CustomVegetation(floramist11, new VegetationConfig
-			{
-				Max = 2f,
-				GroupSizeMin = 4,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 1f,
-				MaxTilt = 45f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation12);
-
-			GameObject floramist10 = DoDAssets.LoadAsset<GameObject>("Flora_LargeBroad_DoD");
-			CustomVegetation customVegetation11 = new CustomVegetation(floramist10, new VegetationConfig
-			{
-				Max = 10f,
-				GroupSizeMin = 4,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 0f,
-				MaxAltitude = 300f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation11);
-			//10
-			GameObject floramist8 = DoDAssets.LoadAsset<GameObject>("Flora_SmallMulti_B_DoD");
-			CustomVegetation customVegetation9 = new CustomVegetation(floramist8, new VegetationConfig
-			{
-				Max = 10f,
-				GroupSizeMin = 4,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 0f,
-				MaxAltitude = 300f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation9);
-			//8
-			//7
-			GameObject floramist5 = DoDAssets.LoadAsset<GameObject>("Flora_LargeSingle_DoD");
-			CustomVegetation customVegetation6 = new CustomVegetation(floramist5, new VegetationConfig
-			{
-				Max = 10f,
-				GroupSizeMin = 4,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 0f,
-				MaxAltitude = 300f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation6);
-
-			GameObject floramist4 = DoDAssets.LoadAsset<GameObject>("Flora_MediumSingle_DoD");
-			CustomVegetation customVegetation5 = new CustomVegetation(floramist4, new VegetationConfig
-			{
-				Max = 10f,
-				GroupSizeMin = 4,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 0f,
-				MaxAltitude = 300f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation5);
-
-			GameObject floramist3 = DoDAssets.LoadAsset<GameObject>("Flora_Large_DoD");
-			CustomVegetation customVegetation4 = new CustomVegetation(floramist3, new VegetationConfig
-			{
-				Max = 10f,
-				GroupSizeMin = 4,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 0f,
-				MaxAltitude = 300f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation4);
-
-			GameObject floramist2 = DoDAssets.LoadAsset<GameObject>("Flora_LargeTrio_DoD");
-			CustomVegetation customVegetation3 = new CustomVegetation(floramist2, new VegetationConfig
-			{
-				Max = 10f,
-				GroupSizeMin = 4,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 0f,
-				MaxAltitude = 300f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation3);
-
-			GameObject floramist1 = DoDAssets.LoadAsset<GameObject>("Flora_LargeDuo_DoD");
-			CustomVegetation customVegetation2 = new CustomVegetation(floramist1, new VegetationConfig
-			{
-				Max = 10f,
-				GroupSizeMin = 4,
-				GroupSizeMax = 10,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 0f,
-				MaxAltitude = 300f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation2);
-
-			GameObject pickWalnut = DoDAssets.LoadAsset<GameObject>("Tree_Walnut_Pickable_DoD");
-			CustomVegetation customVegetation1 = new CustomVegetation(pickWalnut, new VegetationConfig
-			{
-				Max = 1f,
-				GroupSizeMin = 3,
-				GroupSizeMax = 3,
-				GroupRadius = 10f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.Mistlands,
-				MinAltitude = 20f,
-				MaxAltitude = 750f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation1);
-		}
-		private void AddDeepNorthVegetation()
-		{
-
-			GameObject MineRockFroOre = DoDAssets.LoadAsset<GameObject>("MineRock_FroOre_DoD");
-			GameObject rockdeepnorth14 = DoDAssets.LoadAsset<GameObject>("Bush3_DeepNorth_DoD");
-			GameObject rockdeepnorth13 = DoDAssets.LoadAsset<GameObject>("Bush2_DeepNorth_DoD");
-			CustomVegetation customVegetation21 = new CustomVegetation(MineRockFroOre, new VegetationConfig
-			{
-				Max = 2f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 2,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation21);
-			CustomVegetation customVegetation20 = new CustomVegetation(rockdeepnorth14, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation20);
-			CustomVegetation customVegetation19 = new CustomVegetation(rockdeepnorth13, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation19);
-			GameObject rockdeepnorth12 = DoDAssets.LoadAsset<GameObject>("Bush1_DeepNorth_DoD");
-			CustomVegetation customVegetation18 = new CustomVegetation(rockdeepnorth12, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation18);
-			GameObject rockdeepnorth11 = DoDAssets.LoadAsset<GameObject>("WinterPine7_DoD");
-			CustomVegetation customVegetation17 = new CustomVegetation(rockdeepnorth11, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation17);
-			GameObject rockdeepnorth10 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN10_DoD");
-			CustomVegetation customVegetation16 = new CustomVegetation(rockdeepnorth10, new VegetationConfig
-			{
-				Max = 4f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation16);
-			GameObject rockdeepnorth9 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN9_DoD");
-			CustomVegetation customVegetation15 = new CustomVegetation(rockdeepnorth9, new VegetationConfig
-			{
-				Max = 4f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation15);
-			GameObject rockdeepnorth8 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN8_DoD");
-			CustomVegetation customVegetation14 = new CustomVegetation(rockdeepnorth8, new VegetationConfig
-			{
-				Max = 5f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 1,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation14);
-			GameObject rockdeepnorth7 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN7_DoD");
-			CustomVegetation customVegetation13 = new CustomVegetation(rockdeepnorth7, new VegetationConfig
-			{
-				Max = 1f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation13);
-			GameObject rockdeepnorth6 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN6_DoD");
-			CustomVegetation customVegetation12 = new CustomVegetation(rockdeepnorth6, new VegetationConfig
-			{
-				Max = 5f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 1,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation12);
-			GameObject rockdeepnorth5 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN5_DoD");
-			CustomVegetation customVegetation11 = new CustomVegetation(rockdeepnorth5, new VegetationConfig
-			{
-				Max = 1f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation11);
-			GameObject rockdeepnorth4 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN4_DoD");
-			CustomVegetation customVegetation10 = new CustomVegetation(rockdeepnorth4, new VegetationConfig
-			{
-				Max = 5f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 1,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation10);
-			GameObject rockdeepnorth3 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN3_DoD");
-			CustomVegetation customVegetation9 = new CustomVegetation(rockdeepnorth3, new VegetationConfig
-			{
-				Max = 1f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation9);
-			GameObject rockdeepnorth2 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN2_DoD");
-			CustomVegetation customVegetation8 = new CustomVegetation(rockdeepnorth2, new VegetationConfig
-			{
-				Max = 12f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation8);
-			GameObject rockdeepnorth1 = DoDAssets.LoadAsset<GameObject>("Mineable_RockDN1_DoD");
-			CustomVegetation customVegetation7 = new CustomVegetation(rockdeepnorth1, new VegetationConfig
-			{
-				Max = 12f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation7);
-			GameObject floradeepnorth6 = DoDAssets.LoadAsset<GameObject>("WinterPine6_DoD");
-			CustomVegetation customVegetation6 = new CustomVegetation(floradeepnorth6, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 1f,
-				MaxAltitude = 1500f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation6);
-			GameObject floradeepnorth5 = DoDAssets.LoadAsset<GameObject>("WinterPine5_DoD");
-			CustomVegetation customVegetation5 = new CustomVegetation(floradeepnorth5, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 1f,
-				MaxAltitude = 1500f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation5);
-			GameObject floradeepnorth4 = DoDAssets.LoadAsset<GameObject>("WinterPine4_DoD");
-			CustomVegetation customVegetation4 = new CustomVegetation(floradeepnorth4, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 1f,
-				MaxAltitude = 1500f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation4);
-			GameObject floradeepnorth3 = DoDAssets.LoadAsset<GameObject>("WinterPine3_DoD");
-			CustomVegetation customVegetation3 = new CustomVegetation(floradeepnorth3, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 1f,
-				MaxAltitude = 1500f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation3);
-			GameObject floradeepnorth2 = DoDAssets.LoadAsset<GameObject>("WinterPine2_DoD");
-			CustomVegetation customVegetation2 = new CustomVegetation(floradeepnorth2, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 3,
-				GroupSizeMax = 5,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 1f,
-				MaxAltitude = 2500f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation2);
-			GameObject floradeepnorth1 = DoDAssets.LoadAsset<GameObject>("WinterPine1_DoD");
-			CustomVegetation customVegetation1 = new CustomVegetation(floradeepnorth1, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 3,
-				GroupSizeMax = 5,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.DeepNorth,
-				MinAltitude = 1f,
-				MaxAltitude = 2500f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation1);
-
-
-		}
-		private void AddAshLandsVegetation()
-		{
-			GameObject ashlandrock14 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock16_DoD");
-			CustomVegetation customVegetation14 = new CustomVegetation(ashlandrock14, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation14);
-			GameObject ashlandrock13 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock15_DoD");
-			CustomVegetation customVegetation13 = new CustomVegetation(ashlandrock13, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation13);
-			GameObject ashlandrock12 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock14_DoD");
-			CustomVegetation customVegetation12 = new CustomVegetation(ashlandrock12, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation12);
-			GameObject ashlandrock11 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock13_DoD");
-			CustomVegetation customVegetation11 = new CustomVegetation(ashlandrock11, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation11);
-			GameObject ashlandrock10 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock12_DoD");
-			CustomVegetation customVegetation10 = new CustomVegetation(ashlandrock10, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation10);
-			GameObject ashlandrock9 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock11_DoD");
-			CustomVegetation customVegetation9 = new CustomVegetation(ashlandrock9, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation9);
-			GameObject ashlandrock8 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock10_DoD");
-			CustomVegetation customVegetation8 = new CustomVegetation(ashlandrock8, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation8);
-			GameObject ashlandrock7 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock9_DoD");
-			CustomVegetation customVegetation7 = new CustomVegetation(ashlandrock7, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation7);
-			GameObject ashlandrock6 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock8_DoD");
-			CustomVegetation customVegetation6 = new CustomVegetation(ashlandrock6, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			//5
-			//4
-			GameObject ashlandrock3 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock5_DoD");
-			CustomVegetation customVegetation3 = new CustomVegetation(ashlandrock3, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation3);
-			GameObject ashlandrock2 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock4_DoD");
-			CustomVegetation customVegetation2 = new CustomVegetation(ashlandrock2, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation2);
-			GameObject ashlandrock1 = DoDAssets.LoadAsset<GameObject>("Mineable_SandRock3_DoD");
-			CustomVegetation customVegetation1 = new CustomVegetation(ashlandrock1, new VegetationConfig
-			{
-				Max = 3f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.AshLands,
-				MinAltitude = 0f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customVegetation1);
+			TreeBase prefab1 = PrefabManager.Cache.GetPrefab<TreeBase>("Oak1");
+			prefab1.m_minToolTier = 4;
+			ItemManager.OnItemsRegistered -= ModWorldObjects;
 		}
 		private void CreateMonsterItems()
 		{
@@ -2239,19 +1210,176 @@ namespace DoDMonsters
 			GameObject monsteritem21 = BowCharred;
 			CustomItem customItem21 = new CustomItem(monsteritem21, fixReference: true);
 			ItemManager.Instance.AddItem(customItem21);
+			GameObject monsteritem22 = BeholderA1;
+			CustomItem customItem22 = new CustomItem(monsteritem22, fixReference: true);
+			ItemManager.Instance.AddItem(customItem22);
+			GameObject monsteritem23 = BeholderA2;
+			CustomItem customItem23 = new CustomItem(monsteritem23, fixReference: true);
+			ItemManager.Instance.AddItem(customItem23);
+			GameObject monsteritem24 = EntA1;
+			CustomItem customItem24 = new CustomItem(monsteritem24, fixReference: true);
+			ItemManager.Instance.AddItem(customItem24);
+			GameObject monsteritem25 = EntA2;
+			CustomItem customItem25 = new CustomItem(monsteritem25, fixReference: true);
+			ItemManager.Instance.AddItem(customItem25);
+			GameObject monsteritem26 = EntA3;
+			CustomItem customItem26 = new CustomItem(monsteritem26, fixReference: true);
+			ItemManager.Instance.AddItem(customItem26);
+			GameObject monsteritem27 = EntA4;
+			CustomItem customItem27 = new CustomItem(monsteritem27, fixReference: true);
+			ItemManager.Instance.AddItem(customItem27);
+			GameObject monsteritem28 = EntA5;
+			CustomItem customItem28 = new CustomItem(monsteritem28, fixReference: true);
+			ItemManager.Instance.AddItem(customItem28);
+			GameObject monsteritem29 = DemonLordA1;
+			CustomItem customItem29 = new CustomItem(monsteritem29, fixReference: true);
+			ItemManager.Instance.AddItem(customItem29);
+			GameObject monsteritem30 = DemonLordA2;
+			CustomItem customItem30 = new CustomItem(monsteritem30, fixReference: true);
+			ItemManager.Instance.AddItem(customItem30);
+			GameObject monsteritem31 = DemonLordA3;
+			CustomItem customItem31 = new CustomItem(monsteritem31, fixReference: true);
+			ItemManager.Instance.AddItem(customItem31);
+			GameObject monsteritem32 = DemonLordA4;
+			CustomItem customItem32 = new CustomItem(monsteritem32, fixReference: true);
+			ItemManager.Instance.AddItem(customItem32);
+			GameObject monsteritem33 = DemonLordA5;
+			CustomItem customItem33 = new CustomItem(monsteritem33, fixReference: true);
+			ItemManager.Instance.AddItem(customItem33);
+
+			GameObject monsteritem34 = ElementalA1;
+			CustomItem customItem34 = new CustomItem(monsteritem34, fixReference: true);
+			ItemManager.Instance.AddItem(customItem34);
+			GameObject monsteritem35 = ElementalA2;
+			CustomItem customItem35 = new CustomItem(monsteritem35, fixReference: true);
+			ItemManager.Instance.AddItem(customItem35);
+			GameObject monsteritem36 = ElementalA3;
+			CustomItem customItem36 = new CustomItem(monsteritem36, fixReference: true);
+			ItemManager.Instance.AddItem(customItem36);
+			GameObject monsteritem37 = ElementalA4;
+			CustomItem customItem37 = new CustomItem(monsteritem37, fixReference: true);
+			ItemManager.Instance.AddItem(customItem37);
+			GameObject monsteritem38 = ElementalA5;
+			CustomItem customItem38 = new CustomItem(monsteritem38, fixReference: true);
+			ItemManager.Instance.AddItem(customItem38);
+			GameObject monsteritem39 = ElementalA6;
+			CustomItem customItem39 = new CustomItem(monsteritem39, fixReference: true);
+			ItemManager.Instance.AddItem(customItem39);
+			GameObject monsteritem40 = ElementalA7;
+			CustomItem customItem40 = new CustomItem(monsteritem40, fixReference: true);
+			ItemManager.Instance.AddItem(customItem40);
+			GameObject monsteritem41 = ElementalA8;
+			CustomItem customItem41 = new CustomItem(monsteritem41, fixReference: true);
+			ItemManager.Instance.AddItem(customItem41);
+
+			GameObject monsteritem42 = IceElementalA1;
+			CustomItem customItem42 = new CustomItem(monsteritem42, fixReference: true);
+			ItemManager.Instance.AddItem(customItem42);
+			GameObject monsteritem43 = IceElementalA2;
+			CustomItem customItem43 = new CustomItem(monsteritem43, fixReference: true);
+			ItemManager.Instance.AddItem(customItem43);
+			GameObject monsteritem44 = IceElementalA3;
+			CustomItem customItem44 = new CustomItem(monsteritem44, fixReference: true);
+			ItemManager.Instance.AddItem(customItem44);
+			GameObject monsteritem45 = IceElementalA4;
+			CustomItem customItem45 = new CustomItem(monsteritem45, fixReference: true);
+			ItemManager.Instance.AddItem(customItem45);
+			GameObject monsteritem46 = IceElementalA5;
+			CustomItem customItem46 = new CustomItem(monsteritem46, fixReference: true);
+			ItemManager.Instance.AddItem(customItem46);
+			GameObject monsteritem47 = IceElementalA6;
+			CustomItem customItem47 = new CustomItem(monsteritem47, fixReference: true);
+			ItemManager.Instance.AddItem(customItem47);
+			GameObject monsteritem48 = IceElementalA7;
+			CustomItem customItem48 = new CustomItem(monsteritem48, fixReference: true);
+			ItemManager.Instance.AddItem(customItem48);
+			GameObject monsteritem49 = IceElementalA8;
+			CustomItem customItem49 = new CustomItem(monsteritem49, fixReference: true);
+			ItemManager.Instance.AddItem(customItem49);
+			GameObject monsteritem50 = FireElementalA1;
+			CustomItem customItem50 = new CustomItem(monsteritem50, fixReference: true);
+			ItemManager.Instance.AddItem(customItem50);
+			GameObject monsteritem51 = FireElementalA2;
+			CustomItem customItem51 = new CustomItem(monsteritem51, fixReference: true);
+			ItemManager.Instance.AddItem(customItem51);
+			GameObject monsteritem52 = FireElementalA3;
+			CustomItem customItem52 = new CustomItem(monsteritem52, fixReference: true);
+			ItemManager.Instance.AddItem(customItem52);
+			GameObject monsteritem53 = FireElementalA4;
+			CustomItem customItem53 = new CustomItem(monsteritem53, fixReference: true);
+			ItemManager.Instance.AddItem(customItem53);
+			GameObject monsteritem54 = FireElementalA5;
+			CustomItem customItem54 = new CustomItem(monsteritem54, fixReference: true);
+			ItemManager.Instance.AddItem(customItem54);
+			GameObject monsteritem55 = FireElementalA6;
+			CustomItem customItem55 = new CustomItem(monsteritem55, fixReference: true);
+			ItemManager.Instance.AddItem(customItem55);
+			GameObject monsteritem56 = FireElementalA7;
+			CustomItem customItem56 = new CustomItem(monsteritem56, fixReference: true);
+			ItemManager.Instance.AddItem(customItem56);
+			GameObject monsteritem57 = FireElementalA8;
+			CustomItem customItem57 = new CustomItem(monsteritem57, fixReference: true);
+			ItemManager.Instance.AddItem(customItem57);
+			GameObject monsteritem58 = KoboldA1;
+			CustomItem customItem58 = new CustomItem(monsteritem58, fixReference: true);
+			ItemManager.Instance.AddItem(customItem58);
+			GameObject monsteritem59 = KoboldA2;
+			CustomItem customItem59 = new CustomItem(monsteritem59, fixReference: true);
+			ItemManager.Instance.AddItem(customItem59);
+			GameObject monsteritem60 = KoboldA3;
+			CustomItem customItem60 = new CustomItem(monsteritem60, fixReference: true);
+			ItemManager.Instance.AddItem(customItem60);
+			GameObject monsteritem61 = KoboldA4;
+			CustomItem customItem61 = new CustomItem(monsteritem61, fixReference: true);
+			ItemManager.Instance.AddItem(customItem61);
+			GameObject monsteritem62 = KoboldA5;
+			CustomItem customItem62 = new CustomItem(monsteritem62, fixReference: true);
+			ItemManager.Instance.AddItem(customItem62);
+			GameObject monsteritem63 = KoboldA6;
+			CustomItem customItem63 = new CustomItem(monsteritem63, fixReference: true);
+			ItemManager.Instance.AddItem(customItem63);
+			GameObject monsteritem64 = KoboldA7;
+			CustomItem customItem64 = new CustomItem(monsteritem64, fixReference: true);
+			ItemManager.Instance.AddItem(customItem64);
+			GameObject monsteritem65 = KoboldA8;
+			CustomItem customItem65 = new CustomItem(monsteritem65, fixReference: true);
+			ItemManager.Instance.AddItem(customItem65);
+			GameObject monsteritem66 = HydraA1;
+			CustomItem customItem66 = new CustomItem(monsteritem66, fixReference: true);
+			ItemManager.Instance.AddItem(customItem66);
+			GameObject monsteritem67 = HydraA2;
+			CustomItem customItem67 = new CustomItem(monsteritem67, fixReference: true);
+			ItemManager.Instance.AddItem(customItem67);
+			GameObject monsteritem68 = HydraA3;
+			CustomItem customItem68 = new CustomItem(monsteritem68, fixReference: true);
+			ItemManager.Instance.AddItem(customItem68);
+			GameObject monsteritem69 = HydraA4;
+			CustomItem customItem69 = new CustomItem(monsteritem69, fixReference: true);
+			ItemManager.Instance.AddItem(customItem69);
+			GameObject monsteritem70 = DragonA1;
+			CustomItem customItem70 = new CustomItem(monsteritem70, fixReference: true);
+			ItemManager.Instance.AddItem(customItem70);
+			GameObject monsteritem71 = DragonA2;
+			CustomItem customItem71 = new CustomItem(monsteritem71, fixReference: true);
+			ItemManager.Instance.AddItem(customItem71);
+			GameObject monsteritem72 = DragonA3;
+			CustomItem customItem72 = new CustomItem(monsteritem72, fixReference: true);
+			ItemManager.Instance.AddItem(customItem72);
+			GameObject monsteritem73 = DragonA4;
+			CustomItem customItem73 = new CustomItem(monsteritem73, fixReference: true);
+			ItemManager.Instance.AddItem(customItem73);
+			GameObject monsteritem74 = DragonA5;
+			CustomItem customItem74 = new CustomItem(monsteritem74, fixReference: true);
+			ItemManager.Instance.AddItem(customItem74);
+			GameObject monsteritem75 = DragonA6;
+			CustomItem customItem75 = new CustomItem(monsteritem75, fixReference: true);
+			ItemManager.Instance.AddItem(customItem75);
+			GameObject monsteritem76 = DragonA7;
+			CustomItem customItem76 = new CustomItem(monsteritem76, fixReference: true);
+			ItemManager.Instance.AddItem(customItem76);
 		}
 		private void CreateMonsterAbilities()
 		{
-			GameObject testability1 = TestingA1;
-			CustomItem customAbility1 = new CustomItem(testability1, fixReference: true);
-			ItemManager.Instance.AddItem(customAbility1);
-			GameObject testability2 = TestingA2;
-			CustomItem customAbility2 = new CustomItem(testability2, fixReference: true);
-			ItemManager.Instance.AddItem(customAbility2);
-			GameObject testability3 = TestingA3;
-			CustomItem customAbility3 = new CustomItem(testability3, fixReference: true);
-			ItemManager.Instance.AddItem(customAbility3);
-
 			GameObject monsterability1 = NPC_NomadAoE_Attack;
 			CustomItem customItem1 = new CustomItem(monsterability1, fixReference: true);
 			ItemManager.Instance.AddItem(customItem1);
@@ -2400,9 +1528,9 @@ namespace DoDMonsters
 		}
 		private void AddBosses()
 		{
-			//GameObject gameObject6 = Rylan;
-			//CustomPrefab customPrefab6 = new CustomPrefab(gameObject6, true);
-			//PrefabManager.Instance.AddPrefab(customPrefab6);
+			GameObject gameObject6 = BhygshanAlt;
+			CustomPrefab customPrefab6 = new CustomPrefab(gameObject6, true);
+			PrefabManager.Instance.AddPrefab(customPrefab6);
 
 			GameObject gameObject5 = SkirSandburst;
 			CustomPrefab customPrefab5 = new CustomPrefab(gameObject5, true);
@@ -2426,9 +1554,13 @@ namespace DoDMonsters
 		}
 		private void AddMonsterReskins()
 		{
-			GameObject testing = Testing;
-			CustomPrefab testingmob = new CustomPrefab(testing, true);
-			PrefabManager.Instance.AddPrefab(testingmob);
+			GameObject npc4 = GrayWolf;
+			CustomPrefab customNPC4 = new CustomPrefab(npc4, true);
+			PrefabManager.Instance.AddPrefab(customNPC4);
+
+			GameObject npc3 = Nomad;
+			CustomPrefab customNPC3 = new CustomPrefab(npc3, true);
+			PrefabManager.Instance.AddPrefab(customNPC3);
 
 			GameObject npc2 = Einherjar;
 			CustomPrefab customNPC2 = new CustomPrefab(npc2, true);
@@ -2558,99 +1690,47 @@ namespace DoDMonsters
 			CustomPrefab customPrefab1 = new CustomPrefab(gameObject1, true);
 			PrefabManager.Instance.AddPrefab(customPrefab1);
 		}
-		private void AddNewAnimals()
+		private void AddNewMonsters()
 		{
-			//Debug.Log("DoDMonsters: Loading and Creating Critters");
-			GameObject animal16 = SpottedLizard;
-			CustomPrefab critter16 = new CustomPrefab(animal16, true);
-			PrefabManager.Instance.AddPrefab(critter16);
-			GameObject animal15 = GreenLizard;
-			CustomPrefab critter15 = new CustomPrefab(animal15, true);
-			PrefabManager.Instance.AddPrefab(critter15);
-			GameObject animal14 = BrownLizard;
-			CustomPrefab critter14 = new CustomPrefab(animal14, true);
-			PrefabManager.Instance.AddPrefab(critter14);
-			GameObject animal13 = Penguin;
-			CustomPrefab critter13 = new CustomPrefab(animal13, true);
-			PrefabManager.Instance.AddPrefab(critter13);
-			GameObject animal12 = Salamander;
-			CustomPrefab critter12 = new CustomPrefab(animal12, true);
-			PrefabManager.Instance.AddPrefab(critter12);
-			GameObject animal11 = Rat;
-			CustomPrefab critter11 = new CustomPrefab(animal11, true);
-			PrefabManager.Instance.AddPrefab(critter11);
-			GameObject animal10 = Turtle;
-			CustomPrefab critter10 = new CustomPrefab(animal10, true);
-			PrefabManager.Instance.AddPrefab(critter10);
-			GameObject animal9 = Goose;
-			CustomPrefab critter9 = new CustomPrefab(animal9, true);
-			PrefabManager.Instance.AddPrefab(critter9);
-			GameObject animal8 = Goat;
-			CustomPrefab critter8 = new CustomPrefab(animal8, true);
-			PrefabManager.Instance.AddPrefab(critter8);
-			GameObject animal7 = Sheep;
-			CustomPrefab critter7 = new CustomPrefab(animal7, true);
-			PrefabManager.Instance.AddPrefab(critter7);
-			GameObject animal6 = GiantSnail;
-			CustomPrefab critter6 = new CustomPrefab(animal6, true);
-			PrefabManager.Instance.AddPrefab(critter6);
-			GameObject animal5 = BrownRabbit;
-			CustomPrefab critter5 = new CustomPrefab(animal5, true);
-			PrefabManager.Instance.AddPrefab(critter5);
-			GameObject animal4 = GreyRabbit;
-			CustomPrefab critter4 = new CustomPrefab(animal4, true);
-			PrefabManager.Instance.AddPrefab(critter4);
-			GameObject animal3 = SpottedFrog;
-			CustomPrefab critter3 = new CustomPrefab(animal3, true);
-			PrefabManager.Instance.AddPrefab(critter3);
-			GameObject animal2 = BlackFrog;
-			CustomPrefab critter2 = new CustomPrefab(animal2, true);
-			PrefabManager.Instance.AddPrefab(critter2);
-			GameObject animal1 = GreenFrog;
-			CustomPrefab critter1 = new CustomPrefab(animal1, true);
-			PrefabManager.Instance.AddPrefab(critter1);
-		}
-		private void UpdateBlastFurnace()
-		{
-			GameObject itemPrefab = DoDAssets.LoadAsset<GameObject>("SteelBar_DoD");
-			CustomItem customItem = new CustomItem(itemPrefab, fixReference: false);
-			ItemManager.Instance.AddItem(customItem);
-
-			CustomItemConversion itemConversion = new CustomItemConversion(new SmelterConversionConfig
-			{
-				Station = "blastfurnace",
-				FromItem = "Iron",
-				ToItem = "SteelBar_DoD"
-			});
-			ItemManager.Instance.AddItemConversion(itemConversion);
-			GameObject itemPrefab2 = DoDAssets.LoadAsset<GameObject>("FrometalOre_DoD");
-			GameObject itemPrefab3 = DoDAssets.LoadAsset<GameObject>("FrometalBar_DoD");
-			CustomItem customItem2 = new CustomItem(itemPrefab2, fixReference: false);
-			CustomItem customItem3 = new CustomItem(itemPrefab3, fixReference: false);
-			ItemManager.Instance.AddItem(customItem2);
-			ItemManager.Instance.AddItem(customItem3);
-
-			CustomItemConversion itemConversion2 = new CustomItemConversion(new SmelterConversionConfig
-			{
-				Station = "blastfurnace",
-				FromItem = "FrometalOre_DoD",
-				ToItem = "FrometalBar_DoD"
-			});
-			ItemManager.Instance.AddItemConversion(itemConversion2);
-			GameObject itemPrefab4 = DoDAssets.LoadAsset<GameObject>("FelmetalOre_DoD");
-			GameObject itemPrefab5 = DoDAssets.LoadAsset<GameObject>("FelmetalBar_DoD");
-			CustomItem customItem4 = new CustomItem(itemPrefab4, fixReference: false);
-			CustomItem customItem5 = new CustomItem(itemPrefab5, fixReference: false);
-			ItemManager.Instance.AddItem(customItem4);
-			ItemManager.Instance.AddItem(customItem5);
-
-			CustomItemConversion itemConversion3 = new CustomItemConversion(new SmelterConversionConfig
-			{
-				Station = "blastfurnace",
-				FromItem = "FelmetalOre_DoD",
-				ToItem = "FelmetalBar_DoD"
-			});
-			ItemManager.Instance.AddItemConversion(itemConversion3);
+			GameObject monster1 = TreeEnt;
+			CustomPrefab creature1 = new CustomPrefab(monster1, true);
+			PrefabManager.Instance.AddPrefab(creature1);
+			/*GameObject monster2 = Beholder;
+			CustomPrefab creature2 = new CustomPrefab(monster2, true);
+			PrefabManager.Instance.AddPrefab(creature2);*/
+			GameObject monster3 = DemonLord;
+			CustomPrefab creature3 = new CustomPrefab(monster3, true);
+			PrefabManager.Instance.AddPrefab(creature3);
+			GameObject monster4 = FarkasAlt;
+			CustomPrefab creature4 = new CustomPrefab(monster4, true);
+			PrefabManager.Instance.AddPrefab(creature4);
+			GameObject monster5 = Elemental;
+			CustomPrefab creature5 = new CustomPrefab(monster5, true);
+			PrefabManager.Instance.AddPrefab(creature5);
+			GameObject monster6 = IceElemental;
+			CustomPrefab creature6 = new CustomPrefab(monster6, true);
+			PrefabManager.Instance.AddPrefab(creature6);
+			GameObject monster7 = FireElemental;
+			CustomPrefab creature7 = new CustomPrefab(monster7, true);
+			PrefabManager.Instance.AddPrefab(creature7);
+			GameObject monster8 = Kobold;
+			CustomPrefab creature8 = new CustomPrefab(monster8, true);
+			PrefabManager.Instance.AddPrefab(creature8);
+			GameObject monster9 = Hydra;
+			CustomPrefab creature9 = new CustomPrefab(monster9, true);
+			PrefabManager.Instance.AddPrefab(creature9);
+			GameObject monster10 = Dragon;
+			CustomPrefab creature10 = new CustomPrefab(monster10, true);
+			PrefabManager.Instance.AddPrefab(creature10);
+			GameObject monster11 = Hobgoblin;
+			CustomPrefab creature11 = new CustomPrefab(monster11, true);
+			PrefabManager.Instance.AddPrefab(creature11);
+			GameObject monster12 = Ogre;
+			CustomPrefab creature12 = new CustomPrefab(monster12, true);
+			PrefabManager.Instance.AddPrefab(creature12);
+			GameObject monster13 = Cyclops;
+			CustomPrefab creature13 = new CustomPrefab(monster13, true);
+			PrefabManager.Instance.AddPrefab(creature13);
 		}
 		private void CreateAnvils()
 		{
@@ -4077,6 +3157,60 @@ namespace DoDMonsters
 			ItemManager.Instance.AddItem(customItem9);
 			//Jotunn.Logger.LogMessage("Created Recipie: Nethersbane");
 		}
+		private void CreateArrows()
+		{
+			GameObject arrow3 = DoDAssets.LoadAsset<GameObject>("ArrowMistlands_DoD");
+			CustomItem customItem3 = new CustomItem(arrow3, fixReference: true, new ItemConfig
+			{
+				Name = "Shocking Arrow",
+				Amount = 100,
+				CraftingStation = "piece_workbench",
+				MinStationLevel = 1,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "ExcellentWeaponKit_DoD",
+					Amount = 1
+				}
+				}
+			});
+			ItemManager.Instance.AddItem(customItem3);
+			GameObject arrow2 = DoDAssets.LoadAsset<GameObject>("ArrowDeepNorth_DoD");
+			CustomItem customItem2 = new CustomItem(arrow2, fixReference: true, new ItemConfig
+			{
+				Name = "Frosty Arrow",
+				Amount = 100,
+				CraftingStation = "piece_workbench",
+				MinStationLevel = 1,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "ExceptionalWeaponKit_DoD",
+					Amount = 1
+				}
+				}
+			});
+			ItemManager.Instance.AddItem(customItem2);
+			GameObject arrow1 = DoDAssets.LoadAsset<GameObject>("ArrowAshLands_DoD");
+			CustomItem customItem1 = new CustomItem(arrow1, fixReference: true, new ItemConfig
+			{
+				Name = "Fiery Arrow",
+				Amount = 100,
+				CraftingStation = "piece_workbench",
+				MinStationLevel = 1,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "ExtraordinaryWeaponKit_DoD",
+					Amount = 1
+				}
+				}
+			});
+			ItemManager.Instance.AddItem(customItem1);
+		}
 		private void CreateDropables()
 		{
 			GameObject npcitem4 = DoDAssets.LoadAsset<GameObject>("SkullToken_DoD");
@@ -4101,7 +3235,7 @@ namespace DoDMonsters
 				Name = "Carnivor Bait",
 				Amount = 5,
 				CraftingStation = "piece_artisanstation",
-				MinStationLevel = 5,
+				MinStationLevel = 1,
 				Requirements = new RequirementConfig[1]
 				{
 					new RequirementConfig
@@ -4112,18 +3246,6 @@ namespace DoDMonsters
 				}
 			});
 			ItemManager.Instance.AddItem(customFood4);
-
-			GameObject food3 = Apple;
-			CustomItem customFood3 = new CustomItem(food3, fixReference: true);
-			ItemManager.Instance.AddItem(customFood3);
-
-			GameObject food2 = Cherry;
-			CustomItem customFood2 = new CustomItem(food2, fixReference: true);
-			ItemManager.Instance.AddItem(customFood2);
-
-			GameObject food1 = Banana;
-			CustomItem customFood1 = new CustomItem(food1, fixReference: true);
-			ItemManager.Instance.AddItem(customFood1);
 
 			GameObject dropable1 = TrophyCharredRemains;
 			CustomItem customItem1 = new CustomItem(dropable1, fixReference: true);
@@ -4341,9 +3463,6 @@ namespace DoDMonsters
 			CustomItem customItem55 = new CustomItem(dropable55, fixReference: true);
 			ItemManager.Instance.AddItem(customItem55);
 
-			GameObject dropable56 = Walnuts;
-			CustomItem customItem56 = new CustomItem(dropable56, fixReference: true);
-			ItemManager.Instance.AddItem(customItem56);
 		}
 		private void CreateTierItems()
         {
@@ -4754,7 +3873,7 @@ namespace DoDMonsters
 				{
 				new RequirementConfig
 				{
-					Item = "ExcellentArmorKit_DoD",
+					Item = "ExcellentWeaponKit_DoD",
 					Amount = 1,
 					AmountPerLevel = 0
 				},
@@ -4772,7 +3891,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "ExceptionalArmorKit_DoD",
+					Item = "ExceptionalWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -4791,7 +3910,7 @@ namespace DoDMonsters
 				{
 				new RequirementConfig
 				{
-					Item = "SuperiorArmorKit_DoD",
+					Item = "SuperiorWeaponKit_DoD",
 					Amount = 1,
 					AmountPerLevel = 0
 				},
@@ -4809,7 +3928,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "ExcellentArmorKit_DoD",
+					Item = "ExcellentWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -4828,7 +3947,7 @@ namespace DoDMonsters
 				{
 				new RequirementConfig
 				{
-					Item = "GreatArmorKit_DoD",
+					Item = "GreatWeaponKit_DoD",
 					Amount = 1,
 					AmountPerLevel = 0
 				},
@@ -4846,7 +3965,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "SuperiorArmorKit_DoD",
+					Item = "SuperiorWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -4865,7 +3984,7 @@ namespace DoDMonsters
 				{
 				new RequirementConfig
 				{
-					Item = "GoodArmorKit_DoD",
+					Item = "GoodWeaponKit_DoD",
 					Amount = 1,
 					AmountPerLevel = 0
 				},
@@ -4883,7 +4002,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "GreatArmorKit_DoD",
+					Item = "GreatWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -4902,7 +4021,7 @@ namespace DoDMonsters
 				{
 				new RequirementConfig
 				{
-					Item = "BasicArmorKit_DoD",
+					Item = "BasicWeaponKit_DoD",
 					Amount = 1,
 					AmountPerLevel = 0
 				},
@@ -4920,7 +4039,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "GoodArmorKit_DoD",
+					Item = "GoodWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -4957,7 +4076,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "BasicArmorKit_DoD",
+					Item = "BasicWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -4967,6 +4086,31 @@ namespace DoDMonsters
 		}
 		private void CreateSwords()
 		{
+			GameObject sword7 = SwordMoonlight;
+			CustomItem customItem7 = new CustomItem(sword7, fixReference: true, new ItemConfig
+			{
+				Name = "Moonlight",
+				Amount = 1,
+				CraftingStation = "forge",
+				MinStationLevel = 2,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "CrudeWeaponKit_DoD",
+						Amount = 1,
+						AmountPerLevel = 1
+					},
+					new RequirementConfig
+					{
+						Item = "InfusedGemstone_DoD",
+						Amount = 5,
+						AmountPerLevel = 2
+					}
+				}
+			});
+			ItemManager.Instance.AddItem(customItem7);
+
 			GameObject sword6 = SwordAshLands;
 			CustomItem customItem6 = new CustomItem(sword6, fixReference: true, new ItemConfig
 			{
@@ -4978,7 +4122,7 @@ namespace DoDMonsters
 				{
 				new RequirementConfig
 				{
-					Item = "ExcellentArmorKit_DoD",
+					Item = "ExcellentWeaponKit_DoD",
 					Amount = 1,
 					AmountPerLevel = 0
 				},
@@ -4996,7 +4140,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "ExtraordinaryArmorKit_DoD",
+					Item = "ExceptionalWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -5015,7 +4159,7 @@ namespace DoDMonsters
 				{
 				new RequirementConfig
 				{
-					Item = "ExcellentArmorKit_DoD",
+					Item = "ExcellentWeaponKit_DoD",
 					Amount = 1,
 					AmountPerLevel = 0
 				},
@@ -5033,7 +4177,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "ExceptionalArmorKit_DoD",
+					Item = "ExceptionalWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -5052,7 +4196,7 @@ namespace DoDMonsters
 				{
 				new RequirementConfig
 				{
-					Item = "SuperiorArmorKit_DoD",
+					Item = "SuperiorWeaponKit_DoD",
 					Amount = 1,
 					AmountPerLevel = 0
 				},
@@ -5070,7 +4214,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "ExcellentArmorKit_DoD",
+					Item = "ExcellentWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -5089,7 +4233,7 @@ namespace DoDMonsters
 				{
 				new RequirementConfig
 				{
-					Item = "GreatArmorKit_DoD",
+					Item = "GreatWeaponKit_DoD",
 					Amount = 1,
 					AmountPerLevel = 0
 				},
@@ -5107,7 +4251,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "SuperiorArmorKit_DoD",
+					Item = "SuperiorWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -5126,7 +4270,7 @@ namespace DoDMonsters
 				{
 				new RequirementConfig
 				{
-					Item = "BasicArmorKit_DoD",
+					Item = "BasicWeaponKit_DoD",
 					Amount = 1,
 					AmountPerLevel = 0
 				},
@@ -5144,7 +4288,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "GoodArmorKit_DoD",
+					Item = "GoodWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -5181,7 +4325,7 @@ namespace DoDMonsters
 				},
 				new RequirementConfig
 				{
-					Item = "BasicArmorKit_DoD",
+					Item = "BasicWeaponKit_DoD",
 					Amount = 0,
 					AmountPerLevel = 1
 				}
@@ -5309,13 +4453,65 @@ namespace DoDMonsters
 		{
 			DoDAssets?.Unload(unloadAllLoadedObjects: false);
 		}
-		private void OnDestroy()
+		private static void ModMonsterAttackSE()
 		{
-			Harmony harmony = _harmony;
-			if (harmony != null)
-			{
-				harmony.UnpatchSelf();
-			}
+			Aoe prefab30 = PrefabManager.Cache.GetPrefab<Aoe>("bonemass_aoe");
+			Aoe prefab34 = PrefabManager.Cache.GetPrefab<Aoe>("shaman_attack_aoe");
+			Aoe prefab35 = PrefabManager.Cache.GetPrefab<Aoe>("blob_aoe");
+			Aoe prefab36 = PrefabManager.Cache.GetPrefab<Aoe>("bee_aoe");
+			Projectile prefab38 = PrefabManager.Cache.GetPrefab<Projectile>("GoblinShaman_projectile_fireball");
+			Projectile prefab29 = PrefabManager.Cache.GetPrefab<Projectile>("gdking_root_projectile");
+			Projectile prefab33 = PrefabManager.Cache.GetPrefab<Projectile>("troll_throw_projectile");
+			prefab29.m_statusEffect = "SE_Weak_DoD";
+			prefab30.m_statusEffect = "SE_Infected_DoD";
+			prefab33.m_statusEffect = "SE_Slow_DoD";
+			prefab34.m_statusEffect = "SE_Infected_DoD";
+			prefab35.m_statusEffect = "SE_Diseased_DoD";
+			prefab36.m_statusEffect = "SE_Infected_DoD";
+			prefab38.m_statusEffect = "SE_Blistered_DoD";
+
+			/*ItemDrop prefab28 = PrefabManager.Cache.GetPrefab<ItemDrop>("Eikthyr_stomp");
+			ItemDrop prefab31 = PrefabManager.Cache.GetPrefab<ItemDrop>("dragon_coldbreath");
+			ItemDrop prefab32 = PrefabManager.Cache.GetPrefab<ItemDrop>("GoblinKing_Nova");
+			ItemDrop prefab37 = PrefabManager.Cache.GetPrefab<ItemDrop>("stonegolem_attack_doublesmash");
+			var SE_Blistered_DoD = ObjectDB.instance.GetStatusEffect("SE_Blistered_DoD");
+			var SE_Frostbitten_DoD = ObjectDB.instance.GetStatusEffect("SE_Frostbitten_DoD");
+			var SE_Frostbite_DoD = ObjectDB.instance.GetStatusEffect("SE_Frostbite_DoD");
+			var SE_Weak_DoD = ObjectDB.instance.GetStatusEffect("SE_Weak_DoD");
+			prefab28.m_itemData.m_shared.m_attackStatusEffect = SE_Blistered_DoD;
+			prefab31.m_itemData.m_shared.m_attackStatusEffect = SE_Frostbitten_DoD;
+			prefab32.m_itemData.m_shared.m_attackStatusEffect = SE_Blistered_DoD;
+			prefab37.m_itemData.m_shared.m_attackStatusEffect = SE_Weak_DoD;*/
+
+			ItemManager.OnItemsRegistered -= ModMonsterAttackSE;
 		}
+
+		/*private void ModPlayer()
+		{
+			var prefab2 = ObjectDB.instance.GetItemPrefab("MyItem");
+			Player prefab1 = PrefabManager.Cache.GetPrefab<Player>("Player");
+			prefab1.m_defaultItems.AddItem<GameObject>(prefab2);
+			ItemManager.OnItemsRegistered -= ModPlayer;
+		}*/
+		/*[HarmonyPatch(typeof(OfferingBowl), "Awake")]
+		public static class AlterOfferBowlAwake
+		{
+			public static void Prefix(OfferingBowl __instance)
+			{
+				if (__instance == null) return;
+				if (ZNetScene.instance.GetPrefab("AltarLaughingRylan_DoD"))
+				{
+					GameObject prefab = PrefabManager.Cache.GetPrefab<GameObject>("AltarLaughingRylan_DoD");
+					OfferingBowl componentInChildren = prefab.GetComponentInChildren<OfferingBowl>();
+					componentInChildren.m_bossPrefab = ZNetScene.instance.GetPrefab("RRRN_LaughingRylan_DoD").gameObject;
+
+					Jotunn.Logger.LogInfo("Updated Altars");
+				}
+				else
+				{
+					//Debug.LogError("Error offering bowl didn't contain offer");
+				}
+			}
+		}*/
 	}
 }
