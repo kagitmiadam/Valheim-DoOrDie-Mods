@@ -13,6 +13,11 @@ namespace DoOrDieBiomes
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+			{"enemy_pin_skirsandburst_dod", "Skir Sandburst"},
+			{"enemy_pin_bhygshan_dod", "Bhygshan"},
+			{"piece_skirsandburstaltar_dod", "Skir Sandburst Altar"},
+			{"piece_skirsandburstaltar_text_dod", "Requires 5 Ruby Foci"},
+
 			{"piece_bhygshanaltar_dod", "Bhygshan Altar"},
 			{"piece_bhygshanaltar_text_dod", "Requires 5 Skeleton Bones"},
 			{"piece_farkascave_dod", "Farkas Altar"},
@@ -41,13 +46,13 @@ namespace DoOrDieBiomes
 			{ "lore_start_label_dod", "Do or Die Difficulty" },
 			{ "lore_start_dod", "Scaling difficulty is always active. The longer you are in the world and the more bosses you kill, the harder the world will become. Bosses will level up one tier per world level, after you kill them the first time. Biome creatures level up once, after you kill the Vanilla boss in that biome. All creatures gain 5% Damage and Health every world level. Maximum Stars is increased to 10 plus 3 from sector level ups." },
 
-			{"piece_vegvisir_dod", "Runestone"},
+			{"piece_vegvisir_dod", "Location Stone"},
 			{"prop_altar_bitterstump_dod", "Bitterstump Altar"},
 			{"item_token_skull_dod", "Skull Token"},
 			{"item_token_skull_description_dod", "Knarr the Trader likes these."},
 			{"location_bitterstumpcave_dod", "Bitterstump Altar"},
 			{"location_bitterstumpcave_text_dod", "Requires 5 Greydwarf Hearts"},
-			{"enemy_pin_bitterstump_dod", "Bitterstump's Cave"},
+			{"enemy_pin_bitterstump_dod", "Bitterstump"},
 			{"location_bitterstump_dod", "Bitterstump's Cave"},
 			{"lore_bitterstump_dod", "Bitterstump - Unknown"},
 
@@ -78,7 +83,7 @@ namespace DoOrDieBiomes
 
 			{"piece_ramborecave_dod", "Ram'Bore Altar"},
 			{"piece_ramborecave_text_dod", "Requires 5 Boar Tusks"},
-			{"enemy_pin_rambore_dod", "Ram'Bore's Cave"},
+			{"enemy_pin_rambore_dod", "Ram'Bore"},
 			{"location_rambore_dod", "Ram'Bore's Cave"},
 			{"lore_rambore_dod", "Ram'Bore - Unknown"},
 

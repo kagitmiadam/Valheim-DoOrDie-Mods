@@ -26,7 +26,7 @@ namespace DoOrDieBiomes
 
 		public const string PluginName = "DoOrDieBiomes";
 
-		public const string PluginVersion = "0.0.7";
+		public const string PluginVersion = "0.0.8";
 
 		public static GameObject SteelPick;
 		// Fruit
@@ -205,101 +205,6 @@ namespace DoOrDieBiomes
 		}
 		private void LoadDoDBiomes()
 		{
-			//Debug.Log("DoDMonsters: 28");
-			/*GameObject FDSpawner = DoDBiome.LoadAsset<GameObject>("Spawner_FireDrake_DoD");
-			CustomPrefab spawn1 = new CustomPrefab(FDSpawner, true);
-			GameObject AreaSpawner = DoDBiome.LoadAsset<GameObject>("Area_Spawner_DoD");
-			CustomPrefab spawn2 = new CustomPrefab(AreaSpawner, true);
-			GameObject CampSpawner = DoDBiome.LoadAsset<GameObject>("Camp_Spawner_DoD");
-			CustomPrefab spawn3 = new CustomPrefab(CampSpawner, true);
-			GameObject LocationSpawner = DoDBiome.LoadAsset<GameObject>("Location_Spawner_DoD");
-			CustomPrefab spawn4 = new CustomPrefab(LocationSpawner, true);
-			GameObject TraderSpawner = DoDBiome.LoadAsset<GameObject>("Spawn_Trader_DoD");
-			CustomPrefab spawn5 = new CustomPrefab(TraderSpawner, true);
-			GameObject GSSpawner = DoDBiome.LoadAsset<GameObject>("Spawner_GreaterSurtling_DoD");
-			CustomPrefab spawn6 = new CustomPrefab(GSSpawner, true);
-			PrefabManager.Instance.AddPrefab(spawn1);
-			PrefabManager.Instance.AddPrefab(spawn2);
-			PrefabManager.Instance.AddPrefab(spawn3);
-			PrefabManager.Instance.AddPrefab(spawn4);
-			PrefabManager.Instance.AddPrefab(spawn5);
-			PrefabManager.Instance.AddPrefab(spawn6);
-			//Debug.Log("DoDMonsters: 29");
-			GameObject loca4 = DoDBiome.LoadAsset<GameObject>("Loc_Boss_Bitterstump_DoD");
-			CustomPrefab loc4 = new CustomPrefab(loca4, true);
-			PrefabManager.Instance.AddPrefab(loc4);
-			GameObject loca6 = DoDBiome.LoadAsset<GameObject>("Loc_Boss_Rambore_DoD");
-			CustomPrefab loc6 = new CustomPrefab(loca6, true);
-			PrefabManager.Instance.AddPrefab(loc6);
-			GameObject loca7 = DoDBiome.LoadAsset<GameObject>("Loc_Camp_DoD");
-			CustomPrefab loc7 = new CustomPrefab(loca7, true);
-			PrefabManager.Instance.AddPrefab(loc7);
-			GameObject loca8 = DoDBiome.LoadAsset<GameObject>("Loc_CastleArena_DoD");
-			CustomPrefab loc8 = new CustomPrefab(loca8, true);
-			PrefabManager.Instance.AddPrefab(loc8);
-			GameObject loca11 = DoDBiome.LoadAsset<GameObject>("Loc_OreMine_DoD");
-			CustomPrefab loc11 = new CustomPrefab(loca11, true);
-			PrefabManager.Instance.AddPrefab(loc11);
-			GameObject loca12 = DoDBiome.LoadAsset<GameObject>("Loc_Underworld_DoD");
-			CustomPrefab loc12 = new CustomPrefab(loca12, true);
-			PrefabManager.Instance.AddPrefab(loc12);
-			GameObject loca13 = DoDBiome.LoadAsset<GameObject>("Loc_FroOreMine_DoD");
-			CustomPrefab loc13 = new CustomPrefab(loca13, true);
-			PrefabManager.Instance.AddPrefab(loc13);
-			GameObject loca14 = DoDBiome.LoadAsset<GameObject>("Loc_HellPlatformA_DoD");
-			CustomPrefab loc14 = new CustomPrefab(loca14, true);
-			PrefabManager.Instance.AddPrefab(loc14);
-			GameObject loca15 = DoDBiome.LoadAsset<GameObject>("Loc_HellPlatformB_DoD");
-			CustomPrefab loc15 = new CustomPrefab(loca15, true);
-			PrefabManager.Instance.AddPrefab(loc15);
-			GameObject loca16 = DoDBiome.LoadAsset<GameObject>("Loc_AshTower_DoD");
-			CustomPrefab loc16 = new CustomPrefab(loca16, true);
-			PrefabManager.Instance.AddPrefab(loc16);
-			GameObject MassiveCave = DoDBiome.LoadAsset<GameObject>("MassiveCave_DoD");
-			GameObject TopCave = DoDBiome.LoadAsset<GameObject>("TopCave_DoD");
-			GameObject MiddleCave = DoDBiome.LoadAsset<GameObject>("MiddleCave_DoD");
-			GameObject BotttomCave = DoDBiome.LoadAsset<GameObject>("BottomCave_DoD");
-			GameObject CastleGate = DoDBiome.LoadAsset<GameObject>("CastleGate_DoD");
-			GameObject CastleWall = DoDBiome.LoadAsset<GameObject>("CastleWall_DoD");
-			GameObject CastleStairs = DoDBiome.LoadAsset<GameObject>("CastleWallStairs_DoD");
-			GameObject CastleDetailed = DoDBiome.LoadAsset<GameObject>("CastleWall_Detailed_DoD");
-			GameObject Leveler = DoDBiome.LoadAsset<GameObject>("LevelGround_DoD");
-			GameObject Camp = DoDBiome.LoadAsset<GameObject>("Camp_DoD");
-			GameObject SmallCave = DoDBiome.LoadAsset<GameObject>("MiniCave_DoD");
-			GameObject Runestone = DoDBiome.LoadAsset<GameObject>("RunestoneRam_DoD");
-			GameObject VisirBitter = DoDBiome.LoadAsset<GameObject>("Vegvisir_Bitterstump_DoD");
-			GameObject VisirRambone = DoDBiome.LoadAsset<GameObject>("Vegvisir_Rambore_DoD");
-			GameObject CaveDeep = DoDBiome.LoadAsset<GameObject>("CaveDeep_DoD");
-			GameObject CaveEnter = DoDBiome.LoadAsset<GameObject>("CaveEntrance_DoD");
-			GameObject BeechGround = DoDBiome.LoadAsset<GameObject>("BeechGroundCover_DoD");
-			PrefabManager.Instance.AddPrefab(TopCave);
-			PrefabManager.Instance.AddPrefab(MiddleCave);
-			PrefabManager.Instance.AddPrefab(BotttomCave);
-			PrefabManager.Instance.AddPrefab(MassiveCave);
-			PrefabManager.Instance.AddPrefab(CastleGate);
-			PrefabManager.Instance.AddPrefab(CastleWall);
-			PrefabManager.Instance.AddPrefab(CastleStairs);
-			PrefabManager.Instance.AddPrefab(CastleDetailed);
-			PrefabManager.Instance.AddPrefab(Leveler);
-			PrefabManager.Instance.AddPrefab(Camp);
-			PrefabManager.Instance.AddPrefab(SmallCave);
-			PrefabManager.Instance.AddPrefab(Runestone);
-			PrefabManager.Instance.AddPrefab(VisirBitter);
-			PrefabManager.Instance.AddPrefab(VisirRambone);
-			PrefabManager.Instance.AddPrefab(CaveDeep);
-			PrefabManager.Instance.AddPrefab(CaveEnter);
-			PrefabManager.Instance.AddPrefab(BeechGround);
-
-			//Debug.Log("DoDMonsters: 30");
-			GameObject vegvisirUnder = DoDBiome.LoadAsset<GameObject>("Vegvisir_Underworld_DoD");
-			CustomPrefab zone1 = new CustomPrefab(vegvisirUnder, false);
-			PrefabManager.Instance.AddPrefab(zone1);
-			GameObject EventZone2 = DoDBiome.LoadAsset<GameObject>("Eventzone_Rambore_DoD");
-			CustomPrefab zone3 = new CustomPrefab(EventZone2, false);
-			PrefabManager.Instance.AddPrefab(zone3);
-			GameObject EnvZone2 = DoDBiome.LoadAsset<GameObject>("InteriorEnvironmentZone");
-			CustomPrefab zone5 = new CustomPrefab(EnvZone2, false);
-			PrefabManager.Instance.AddPrefab(zone5);*/
 			GameObject SFXRockHit = DoDBiome.LoadAsset<GameObject>("loc_sfx_rock_hit_dod");
 			GameObject SFXRockDest = DoDBiome.LoadAsset<GameObject>("loc_sfx_rock_destroyed_dod");
 			GameObject SFXBossSpawn = DoDBiome.LoadAsset<GameObject>("SFX_BossSpawn_DoD");
@@ -524,7 +429,7 @@ namespace DoOrDieBiomes
 						MinAltitude = 5f,
 						ClearArea = true,
 						SlopeRotation = true,
-						MinDistanceFromSimilar = 300f,
+						MinDistanceFromSimilar = 250f,
 					}));
 					var BossPlatformDN = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_BossPlatform_DN_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformDN, true, new LocationConfig
@@ -585,8 +490,10 @@ namespace DoOrDieBiomes
 						Quantity = 4,
 						Priotized = true,
 						ExteriorRadius = 9f,
-						MinAltitude = 200f,
+						MinAltitude = 100f,
 						ClearArea = true,
+						MinDistance = 3000f,
+						MaxDistance = 7000f,
 						MinDistanceFromSimilar = 1000f,
 					}));
 					var BossBhygshan = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Boss_Bhygshan_DoD"));
@@ -598,6 +505,8 @@ namespace DoOrDieBiomes
 						ExteriorRadius = 12f,
 						MinAltitude = 0.5f,
 						ClearArea = true,
+						MinDistance = 3000f,
+						MaxDistance = 7000f,
 						MinDistanceFromSimilar = 1000f,
 					}));
 					var BossPlatformPlains = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_BossPlatform_Plains_DoD"));
@@ -665,6 +574,7 @@ namespace DoOrDieBiomes
 						MinAltitude = 5f,
 						ClearArea = true,
 						SlopeRotation = true,
+						MaxDistance = 3000f,
 						MinDistanceFromSimilar = 1000f,
 					}));
 					var Bitterstump = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Boss_Bitterstump_DoD"));
@@ -677,6 +587,7 @@ namespace DoOrDieBiomes
 						MinAltitude = 5f,
 						ClearArea = true,
 						SlopeRotation = true,
+						MaxDistance = 3000f,
 						MinDistanceFromSimilar = 1000f,
 					}));
 					var AnyLoc1 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_CastleArena_DoD"));
@@ -710,7 +621,8 @@ namespace DoOrDieBiomes
 						ExteriorRadius = 15f,
 						MinAltitude = 5f,
 						ClearArea = true,
-						MinDistance = 1000f,
+						MinDistance = 150f,
+						MaxDistance = 400f,
 					}));
 				}
 			}

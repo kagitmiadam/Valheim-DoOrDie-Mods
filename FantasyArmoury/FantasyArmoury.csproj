@@ -272,6 +272,7 @@
   <ItemGroup>
     <Compile Include="fantasyArmoury.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Localization.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="fabundle" />

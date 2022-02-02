@@ -113,7 +113,7 @@ namespace DoDSoloExperience
 			}
             finally
 			{
-				ZoneManager.OnVanillaLocationsAvailable -= AddSELocations;
+				//ZoneManager.OnVanillaLocationsAvailable -= AddSELocations;
 				DoDSoloAssets.Unload(false);
 			}
 		}

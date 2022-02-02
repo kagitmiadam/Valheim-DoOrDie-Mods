@@ -12,17 +12,7 @@ namespace DoDMonsters
         private static Localization lcl;
         public static Dictionary<string, string> t;
         private static Dictionary<string, string> english = new Dictionary<string, string>() {
-
-			{"enemy_iceelemental_dod", "Ice Elemental"},
-			{"enemy_fireelemental_dod", "Fire Elemental"},
-			{"enemy_elemental_dod", "Elemental"},
-			{"enemy_hydra_dod", "Hydra"},
-			{"enemy_dragon_dod", "Dragon"},
-			{"creature_lizard_dod", "Lizardman"},
-			{"creature_treeent_dod", "Elderling"},
-			{"creature_beholder_dod", "Beholder"},
-			{"creature_demonlord_dod", "Demon Lord"},
-			
+						
 			{"item_arrow_ashlands_dod", "Firery Arrow"},
 			{"item_arrow_deepnorth_dod", "Frosty Arrow"},
 			{"item_arrow_mistlands_dod", "Shocking Arrow"},

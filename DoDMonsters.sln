@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoDBiomes", "DoOrDieLocatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoDSoloExperience", "DoDSoloExperience\DoDSoloExperience.csproj", "{2F1E8D65-5758-4359-9DE6-B342D3EAB386}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friendlies", "..\..\..\Valheim Mods\Friendlies\Friendlies.csproj", "{F166F7C8-6B1B-40C5-A4E1-3E34512498C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friendlies", "..\Friendlies\Friendlies.csproj", "{F166F7C8-6B1B-40C5-A4E1-3E34512498C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendliesAI", "..\..\..\Valheim Mods\FriendliesAI\FriendliesAI.csproj", "{44FCC8C9-0EC2-46FA-B832-2A0A452E394F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendliesAI", "..\FriendliesAI\FriendliesAI.csproj", "{44FCC8C9-0EC2-46FA-B832-2A0A452E394F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrynServer", "BrynServer\BrynServer.csproj", "{492F36AB-5FCE-4F82-9EA0-4941A3B9138D}"
 EndProject
@@ -25,7 +25,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyArmoury", "FantasyAr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wildlife", "Wildlife\Wildlife.csproj", "{F247181F-9DA0-443A-8CD2-7B38A43A08C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalsExotic", "AnimalsExotic\AnimalsExotic.csproj", "{227FA176-28F2-45A0-9E86-AFF66A35D231}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatsAndDogs", "CatsAndDogs\CatsAndDogs.csproj", "{40365863-0956-42F8-A415-6A172624EAB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyCreatures", "FantasyCreatures\FantasyCreatures.csproj", "{94817582-02D9-45C5-9BF2-6647733FACE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,10 +79,14 @@ Global
 		{F247181F-9DA0-443A-8CD2-7B38A43A08C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F247181F-9DA0-443A-8CD2-7B38A43A08C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F247181F-9DA0-443A-8CD2-7B38A43A08C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{227FA176-28F2-45A0-9E86-AFF66A35D231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{227FA176-28F2-45A0-9E86-AFF66A35D231}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{227FA176-28F2-45A0-9E86-AFF66A35D231}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{227FA176-28F2-45A0-9E86-AFF66A35D231}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40365863-0956-42F8-A415-6A172624EAB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40365863-0956-42F8-A415-6A172624EAB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40365863-0956-42F8-A415-6A172624EAB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40365863-0956-42F8-A415-6A172624EAB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94817582-02D9-45C5-9BF2-6647733FACE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94817582-02D9-45C5-9BF2-6647733FACE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94817582-02D9-45C5-9BF2-6647733FACE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94817582-02D9-45C5-9BF2-6647733FACE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

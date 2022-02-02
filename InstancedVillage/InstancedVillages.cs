@@ -72,11 +72,11 @@ namespace InstancedVillages
                     Priotized = true,
                     ExteriorRadius = 32f,
                     ClearArea = true,
-                    MinDistance = 150,
-                    MaxDistance = 1000,
+                    MinDistance = 1000,
+                    MaxDistance = 2500,
                     MinAltitude = 4f,
-                    MaxAltitude = 400f,
-                    MinDistanceFromSimilar = 100f,
+                    MaxAltitude = 100f,
+                    MinDistanceFromSimilar = 500f,
                 }));
                 var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_VillageMed"));
                 ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc2, true, new LocationConfig
@@ -86,11 +86,11 @@ namespace InstancedVillages
                     Priotized = true,
                     ExteriorRadius = 32f,
                     ClearArea = true,
-                    MinDistance = 1000,
-                    MaxDistance = 2000,
+                    MinDistance = 3000,
+                    MaxDistance = 5000,
                     MinAltitude = 4f,
-                    MaxAltitude = 400f,
-                    MinDistanceFromSimilar = 100f,
+                    MaxAltitude = 100f,
+                    MinDistanceFromSimilar = 500f,
                 }));
                 var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(IVAssets.LoadAsset<GameObject>("Loc_Instanced_Hut"));
                 ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc3, true, new LocationConfig
@@ -101,7 +101,7 @@ namespace InstancedVillages
                     ExteriorRadius = 10f,
                     ClearArea = true,
                     MinAltitude = 4f,
-                    MaxAltitude = 400f,
+                    MaxAltitude = 100f,
                     MinDistanceFromSimilar = 100f,
                 }));
             }
