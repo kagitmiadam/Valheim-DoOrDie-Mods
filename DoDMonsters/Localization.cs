@@ -12,17 +12,7 @@ namespace DoDMonsters
         private static Localization lcl;
         public static Dictionary<string, string> t;
         private static Dictionary<string, string> english = new Dictionary<string, string>() {
-
-			{"enemy_iceelemental_dod", "Ice Elemental"},
-			{"enemy_fireelemental_dod", "Fire Elemental"},
-			{"enemy_elemental_dod", "Elemental"},
-			{"enemy_hydra_dod", "Hydra"},
-			{"enemy_dragon_dod", "Dragon"},
-			{"creature_lizard_dod", "Lizardman"},
-			{"creature_treeent_dod", "Elderling"},
-			{"creature_beholder_dod", "Beholder"},
-			{"creature_demonlord_dod", "Demon Lord"},
-			
+						
 			{"item_arrow_ashlands_dod", "Firery Arrow"},
 			{"item_arrow_deepnorth_dod", "Frosty Arrow"},
 			{"item_arrow_mistlands_dod", "Shocking Arrow"},
@@ -219,44 +209,6 @@ namespace DoDMonsters
  			{"item_arrow_deepnorth_dod", "Морозная стрела"},
  			{"item_arrow_mistlands_dod", "Грозовая стрела"},
  			{"npc_skugga_young_dod", "Юнец"},
-
-<<<<<<< HEAD
-			{"item_walnuts_dod", "Грецкие орехи"},
-			{"item_walnuts_description_dod", "Собранный с орехового дерева в Туманных Землях."},
-			{"item_apple_dod", "Яблоки"},
-			{"item_apple_description_dod", "Собранный с яблони в Туманных землях."},
-			{"item_redberries_dod", "Вишни"},
-			{"item_redberries_description_dod", "Собран с вишневого дерева в Туманных землях."},
-=======
-			{"animal_sheep_dod", "Овца"},
-			{"animal_goat_dod", "Козел"},
-			{"animal_goose_dod", "Гусь"},
-			{"animal_penguin_dod", "Пингвин"},
-			{"animal_salamander_dod", "Огненная саламандра"},
-			{"animal_turtle_dod", "Коробчатая черепаха"},
-			{"animal_rat_dod", "Крыса"},
-			{"animal_greenlizard_dod", "Зеленая ящерица"},
-			{"animal_brownlizard_dod", "Коричневая ящерица"},
-			{"animal_spottedlizard_dod", "Пятнистая ящерица"},
-			{"animal_greenfrog_dod", "Зеленая лягушка"},
-			{"animal_blackfrog_dod", "Черная лягушка"},
-			{"animal_spottedfrog_dod", "Пятнистая лягушка"},
-			{"animal_greyrabbit_dod", "Серый кролик"},
-			{"animal_brownrabbit_dod", "Коричневый кролик"},
-			{"animal_giantsnail_dod", "Гигантская улитка"},
-			{"item_token_skull_dod", "Жетон черепа"},
- 			{"item_token_skull_description_dod", "Торговцу Кнарру это нравится."},
-
- 			{"npc_skugga_dod", "Скугга"},
-			{"npc_einherjar_dod", "Эйнхерийяр"},
-
-			{"item_walnuts_dod", "Грецкие орехи"}, 
- 			{"item_walnuts_description_dod", "Собраны с Ореха в Туманных Землях."},
- 			{"item_apple_dod", "Яблоки"},
- 			{"item_apple_description_dod", "Собраны с Яблони в Туманных землях."},
- 			{"item_redberries_dod", "Вишни"},
- 			{"item_redberries_description_dod", "Собраны с Вишни в Туманных землях."},
->>>>>>> 95e9e0a8005e2d80eda8ad45b6362591d9de2153
 
 			{"item_shield_bgskull_dod", "Сломанный щит Бхигшана"},
 			{"item_shield_bgskull_description_dod", "Раньше это был щит Бхыгшана, пока вы не сломали его во время боя с ним. Интересно, сможешь ли ты его починить."},

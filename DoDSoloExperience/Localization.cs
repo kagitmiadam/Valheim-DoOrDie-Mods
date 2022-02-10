@@ -16,7 +16,7 @@ namespace DoDSoloExperience
                                 { "lore_creatures_dod", "Do or Die: Creatures" },
                                 { "lore_creatures_description_dod", "Most of the new Monsters are in the 3 empty biomes, Skugga are everywhere. You will find some random new monsters in the populated biomes depending on what bosses you have killed." },
                                 { "lore_materials_dod", "Do or Die: Items" },
-                                { "lore_materials_description_dod", "You can find Essences in Chests, on Bosses and with the Trader." },
+                                { "lore_materials_description_dod", "You can find Class Essences and Infused Gemstone's in Chests, on Bosses and with the Trader. You will require Armor or Weapon Kit's to make most of the items added by Do or Die." },
                                 { "lore_worldlevel_dod", "Do or Die: World Level" },
                                 { "lore_worldlevel_description_dod", "Level 1: Day 15 - Level 2: Day 25 - Level 3: Day 50 - Level 4: Day 100 - Level 5: Day 200" },
                                 { "piece_startstone_dod", "Do or Die Compendium" },

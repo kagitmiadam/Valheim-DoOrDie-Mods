@@ -27,6 +27,8 @@ namespace FantasyArmoury
 
         public const string PluginVersion = "0.0.1";
 
+        private Harmony _harmony;
+
         public AssetBundle FAAssets;
         public static AssetBundle GetAssetBundleFromResources(string fileName)
         {
@@ -40,6 +42,7 @@ namespace FantasyArmoury
             Debug.Log("FantasyArmoury: Loading and Creating Assets");
             LoadBundle();
             LoadFAAssets();
+            _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.FantasyArmoury");
         }
         public void LoadBundle()
         {
@@ -47,6 +50,330 @@ namespace FantasyArmoury
         }
         private void LoadFAAssets()
         {
+            GameObject shield8 = FAAssets.LoadAsset<GameObject>("Shield_09_FA");
+            CustomItem tower8 = new CustomItem(shield8, true, new ItemConfig
+            {
+                Name = "Peacekeeper Warden",
+                Amount = 1,
+                CraftingStation = "forge",
+                MinStationLevel = 1,
+                Requirements = new RequirementConfig[4]
+                {
+                new RequirementConfig
+                {
+                    Item = "Bronze",
+                    Amount = 10,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "Wood",
+                    Amount = 2,
+                    AmountPerLevel = 1
+                },
+                new RequirementConfig
+                {
+                    Item = "Iron",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "DeerHide",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                }
+                }
+            });
+            ItemManager.Instance.AddItem(tower8);
+            GameObject shield7 = FAAssets.LoadAsset<GameObject>("Shield_08_FA");
+            CustomItem tower7 = new CustomItem(shield7, true, new ItemConfig
+            {
+                Name = "Venom Greatshield",
+                Amount = 1,
+                CraftingStation = "forge",
+                MinStationLevel = 1,
+                Requirements = new RequirementConfig[4]
+                {
+                new RequirementConfig
+                {
+                    Item = "Bronze",
+                    Amount = 10,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "Wood",
+                    Amount = 2,
+                    AmountPerLevel = 1
+                },
+                new RequirementConfig
+                {
+                    Item = "Iron",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "DeerHide",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                }
+                }
+            });
+            ItemManager.Instance.AddItem(tower7);
+            GameObject shield6 = FAAssets.LoadAsset<GameObject>("Shield_07_FA");
+            CustomItem tower6 = new CustomItem(shield6, true, new ItemConfig
+            {
+                Name = "Thirsty Skeletal Blockade",
+                Amount = 1,
+                CraftingStation = "forge",
+                MinStationLevel = 1,
+                Requirements = new RequirementConfig[4]
+                {
+                new RequirementConfig
+                {
+                    Item = "Bronze",
+                    Amount = 10,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "Wood",
+                    Amount = 2,
+                    AmountPerLevel = 1
+                },
+                new RequirementConfig
+                {
+                    Item = "Iron",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "DeerHide",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                }
+                }
+            });
+            ItemManager.Instance.AddItem(tower6);
+            GameObject shield5 = FAAssets.LoadAsset<GameObject>("Shield_06_FA");
+            CustomItem tower5 = new CustomItem(shield5, true, new ItemConfig
+            {
+                Name = "Legionnaire's Carapace",
+                Amount = 1,
+                CraftingStation = "forge",
+                MinStationLevel = 1,
+                Requirements = new RequirementConfig[4]
+                {
+                new RequirementConfig
+                {
+                    Item = "Bronze",
+                    Amount = 10,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "Wood",
+                    Amount = 2,
+                    AmountPerLevel = 1
+                },
+                new RequirementConfig
+                {
+                    Item = "Iron",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "DeerHide",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                }
+                }
+            });
+            ItemManager.Instance.AddItem(tower5);
+            GameObject shield4 = FAAssets.LoadAsset<GameObject>("Shield_05_FA");
+            CustomItem tower4 = new CustomItem(shield4, true, new ItemConfig
+            {
+                Name = "Desire's Willow Keeper",
+                Amount = 1,
+                CraftingStation = "forge",
+                MinStationLevel = 1,
+                Requirements = new RequirementConfig[4]
+                {
+                new RequirementConfig
+                {
+                    Item = "Bronze",
+                    Amount = 10,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "Wood",
+                    Amount = 2,
+                    AmountPerLevel = 1
+                },
+                new RequirementConfig
+                {
+                    Item = "Iron",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "DeerHide",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                }
+                }
+            });
+            ItemManager.Instance.AddItem(tower4);
+            GameObject shield3 = FAAssets.LoadAsset<GameObject>("Shield_04_FA");
+            CustomItem tower3 = new CustomItem(shield3, true, new ItemConfig
+            {
+                Name = "Lusting Warden",
+                Amount = 1,
+                CraftingStation = "forge",
+                MinStationLevel = 1,
+                Requirements = new RequirementConfig[4]
+                {
+                new RequirementConfig
+                {
+                    Item = "Bronze",
+                    Amount = 10,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "Wood",
+                    Amount = 2,
+                    AmountPerLevel = 1
+                },
+                new RequirementConfig
+                {
+                    Item = "Iron",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "DeerHide",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                }
+                }
+            });
+            ItemManager.Instance.AddItem(tower3);
+            GameObject shield2 = FAAssets.LoadAsset<GameObject>("Shield_03_FA");
+            CustomItem tower2 = new CustomItem(shield2, true, new ItemConfig
+            {
+                Name = "Blood Infused Greatshield",
+                Amount = 1,
+                CraftingStation = "forge",
+                MinStationLevel = 1,
+                Requirements = new RequirementConfig[4]
+                {
+                new RequirementConfig
+                {
+                    Item = "Bronze",
+                    Amount = 10,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "Wood",
+                    Amount = 2,
+                    AmountPerLevel = 1
+                },
+                new RequirementConfig
+                {
+                    Item = "Iron",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "DeerHide",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                }
+                }
+            });
+            ItemManager.Instance.AddItem(tower2);
+            GameObject shield1 = FAAssets.LoadAsset<GameObject>("Shield_02_FA");
+            CustomItem tower1 = new CustomItem(shield1, true, new ItemConfig
+            {
+                Name = "Defiled Shield Wall",
+                Amount = 1,
+                CraftingStation = "forge",
+                MinStationLevel = 1,
+                Requirements = new RequirementConfig[4]
+                {
+                new RequirementConfig
+                {
+                    Item = "Bronze",
+                    Amount = 10,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "Wood",
+                    Amount = 2,
+                    AmountPerLevel = 1
+                },
+                new RequirementConfig
+                {
+                    Item = "Iron",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "DeerHide",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                }
+                }
+            });
+            ItemManager.Instance.AddItem(tower1);
+            GameObject shield0 = FAAssets.LoadAsset<GameObject>("Shield_01_FA");
+            CustomItem tower0 = new CustomItem(shield0, true, new ItemConfig
+            {
+                Name = "Sorrow's Guardian",
+                Amount = 1,
+                CraftingStation = "forge",
+                MinStationLevel = 1,
+                Requirements = new RequirementConfig[4]
+                {
+                new RequirementConfig
+                {
+                    Item = "Bronze",
+                    Amount = 10,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "Wood",
+                    Amount = 2,
+                    AmountPerLevel = 1
+                },
+                new RequirementConfig
+                {
+                    Item = "Iron",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                },
+                new RequirementConfig
+                {
+                    Item = "DeerHide",
+                    Amount = 0,
+                    AmountPerLevel = 3
+                }
+                }
+            });
+            ItemManager.Instance.AddItem(tower0);
             GameObject weapon0 = FAAssets.LoadAsset<GameObject>("Axe_1H_07_FA");
             CustomItem axe0 = new CustomItem(weapon0, true, new ItemConfig
             {
