@@ -240,13 +240,11 @@
     "AddsMaxLevel": 4,
     "AddsHealthMultiplier": 1.5, 
     "Targets": [
-      { "Biome": "Meadows",     "TargetID": "Skugga_DoD",   		"RewardGold": 0, "RewardIron": 1   },
       { "Biome": "Meadows",     "TargetID": "Boar",             "RewardGold": 0, "RewardIron": 1   },
       { "Biome": "Meadows",     "TargetID": "Boar",             "RewardGold": 0, "RewardIron": 2,  "Adds": [ { "ID": "Boar",        "Count": 2 }  ] },
       { "Biome": "Meadows",     "TargetID": "Neck",             "RewardGold": 0, "RewardIron": 1   },
       { "Biome": "Meadows",     "TargetID": "Neck",             "RewardGold": 0, "RewardIron": 2,  "Adds": [ { "ID": "Neck",        "Count": 2 }  ] },
       
-      { "Biome": "BlackForest", "TargetID": "Skugga_DoD",			  			"RewardGold": 0, "RewardIron": 2   },
       { "Biome": "BlackForest", "TargetID": "RRRM_ElderSpawn_BF_DoD",	"RewardGold": 1, "RewardIron": 2   },
       { "Biome": "BlackForest", "TargetID": "Greydwarf",        		  "RewardGold": 0, "RewardIron": 2   },
       { "Biome": "BlackForest", "TargetID": "Skeleton",         		  "RewardGold": 0, "RewardIron": 2   },
@@ -256,7 +254,7 @@
       { "Biome": "BlackForest", "TargetID": "Troll",            		  "RewardGold": 1, "RewardIron": 0   },
       { "Biome": "BlackForest", "TargetID": "Greydwarf_Shaman", 		  "RewardGold": 1, "RewardIron": 4,  "Adds": [ { "ID": "Greydwarf",   "Count": 3 }  ] },
       
-      { "Biome": "Swamp",       "TargetID": "Skugga_DoD", "RewardGold": 1, "RewardIron": 0   },
+      { "Biome": "Swamp",       "TargetID": "Skugga_DoD", 				"RewardGold": 1, "RewardIron": 0   },
       { "Biome": "Swamp",       "TargetID": "SkeletonG_DoD",    	"RewardGold": 1, "RewardIron": 0   },
       { "Biome": "Swamp",       "TargetID": "SkeletonR_DoD",    	"RewardGold": 1, "RewardIron": 0   },
       { "Biome": "Swamp",       "TargetID": "Blob",             	"RewardGold": 0, "RewardIron": 3   },
@@ -269,7 +267,6 @@
       { "Biome": "Swamp",       "TargetID": "PoisonDrake_DoD",    "RewardGold": 1, "RewardIron": 2   },
       { "Biome": "Swamp",       "TargetID": "RRRM_Lich_DoD",    	"RewardGold": 7, "RewardIron": 10,  "Adds": [ { "ID": "SkeletonG_DoD",    "Count": 5 }  ] },
       
-      { "Biome": "Mountain",    "TargetID": "Skugga_DoD",   		    		"RewardGold": 2, "RewardIron": 0   },
       { "Biome": "Mountain",    "TargetID": "RRRM_SkeletonWarrior_DoD", "RewardGold": 2, "RewardIron": 0   },
       { "Biome": "Mountain",    "TargetID": "Wolf",             		    "RewardGold": 0, "RewardIron": 4   },
       { "Biome": "Mountain",    "TargetID": "RRRM_GhostWarrior_DoD",    "RewardGold": 2, "RewardIron": 0   },
@@ -281,7 +278,6 @@
       { "Biome": "Mountain",    "TargetID": "RRRM_Bear_DoD",      		  "RewardGold": 1, "RewardIron": 3   },
       
       { "Biome": "Plains",      "TargetID": "DarkDrake_DoD", 	  "RewardGold": 2, "RewardIron": 3   },
-      { "Biome": "Plains",      "TargetID": "Skugga_DoD", 			"RewardGold": 3, "RewardIron": 0   },
       { "Biome": "Plains",      "TargetID": "Goblin",           "RewardGold": 0, "RewardIron": 5   },
       { "Biome": "Plains",      "TargetID": "Lox",              "RewardGold": 0, "RewardIron": 5   },
       { "Biome": "Plains",      "TargetID": "Deathsquito",      "RewardGold": 0, "RewardIron": 5   },
@@ -292,7 +288,6 @@
       { "Biome": "Plains",      "TargetID": "GoblinShaman",     "RewardGold": 3, "RewardIron": 10, "Adds": [ { "ID": "Goblin",      "Count": 3 }  ] },
       { "Biome": "Plains",      "TargetID": "GoblinShaman",     "RewardGold": 5, "RewardIron": 15, "Adds": [ { "ID": "GoblinBrute", "Count": 1 }, { "ID": "Goblin", "Count": 2 } ] },
 
-      { "Biome": "Mistlands",      "TargetID": "Skugga_DoD",        		  			"RewardGold": 1, "RewardIron": 5   },
       { "Biome": "Mistlands",      "TargetID": "RRRN_ShadowGuard_DoD",        	"RewardGold": 2, "RewardIron": 7   },
       { "Biome": "Mistlands",      "TargetID": "RRRN_ShadowWarrior_DoD",      	"RewardGold": 2, "RewardIron": 7   },
       { "Biome": "Mistlands",      "TargetID": "RRRN_ShadowSentinel_DoD",     	"RewardGold": 2, "RewardIron": 7   },
