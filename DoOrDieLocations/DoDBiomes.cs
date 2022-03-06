@@ -116,6 +116,15 @@ namespace DoOrDieBiomes
 		public static GameObject CaveMushroom;
 		public static GameObject HardLog;
 		public static GameObject HardLogHalf;
+		// anvils
+		public static GameObject AnvilsFel;
+		public static GameObject AnvilsFro;
+		public static GameObject AnvilsFlam;
+		public static Sprite TexFlaAnvil;
+		public static Sprite TexFroAnvil;
+		public static Sprite TexFelAnvil;
+		// oak
+		public static GameObject OakWood;
 		// Config
 		public ConfigEntry<bool> DeepNorthLocations;
 		public ConfigEntry<bool> DeepNorthVegEnable;
@@ -125,6 +134,9 @@ namespace DoOrDieBiomes
 		public ConfigEntry<bool> MistlandsVegEnable;
 		public ConfigEntry<bool> DoDLocEnable;
 		public ConfigEntry<bool> FruitEnable;
+		public ConfigEntry<bool> KnarrEnable;
+		public ConfigEntry<bool> TowerEnable;
+		public ConfigEntry<bool> UnderworldEnable;
 
 		// Bundle
 		public AssetBundle DoDBiome;
@@ -170,6 +182,18 @@ namespace DoOrDieBiomes
 			{
 				IsAdminOnly = true
 			}));
+			KnarrEnable = base.Config.Bind("Custom Trader", "Enable", defaultValue: true, new ConfigDescription("Enables Knarr's Tower Location", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			TowerEnable = base.Config.Bind("Towers", "Enable", defaultValue: true, new ConfigDescription("Enables Abandonded Tower Locations", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			UnderworldEnable = base.Config.Bind("Underworld", "Enable", defaultValue: true, new ConfigDescription("Enables the Underworld Locations", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
 		}
 		private void Awake()
         {
@@ -195,6 +219,7 @@ namespace DoOrDieBiomes
 			}
 			UpdateBlastFurnace();
 			CreatePickAxe();
+			CreateAnvils();
 			ZoneManager.OnVanillaLocationsAvailable += AddLocations;
 			UnloadBundle();
 			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoDBiomes");
@@ -205,6 +230,15 @@ namespace DoOrDieBiomes
 		}
 		private void LoadDoDBiomes()
 		{
+			Debug.Log("DoDBiomes: Chests");
+			GameObject TCMistlands = DoDBiome.LoadAsset<GameObject>("TreasureChest_Mistlands_DoD");
+			GameObject TCDeepNorth = DoDBiome.LoadAsset<GameObject>("TreasureChest_DeepNorth_DoD");
+			GameObject TCAshLands = DoDBiome.LoadAsset<GameObject>("TreasureChest_AshLands_DoD");
+			PrefabManager.Instance.AddPrefab(TCMistlands);
+			PrefabManager.Instance.AddPrefab(TCDeepNorth);
+			PrefabManager.Instance.AddPrefab(TCAshLands);
+
+			Debug.Log("DoDBiomes: SFX");
 			GameObject SFXRockHit = DoDBiome.LoadAsset<GameObject>("loc_sfx_rock_hit_dod");
 			GameObject SFXRockDest = DoDBiome.LoadAsset<GameObject>("loc_sfx_rock_destroyed_dod");
 			GameObject SFXBossSpawn = DoDBiome.LoadAsset<GameObject>("SFX_BossSpawn_DoD");
@@ -232,6 +266,7 @@ namespace DoOrDieBiomes
 			PrefabManager.Instance.AddPrefab(SFXBossSpawn);
 			PrefabManager.Instance.AddPrefab(SFXSummoning);
 
+			Debug.Log("DoDBiomes: VFX");
 			GameObject VFXBiiterSpawn = DoDBiome.LoadAsset<GameObject>("VFX_BiiterSpawn_DoD");
 			GameObject VFXBitterSpawnIn = DoDBiome.LoadAsset<GameObject>("VFX_BitterSpawnIn_DoD");
 			GameObject VFXDustPiece = DoDBiome.LoadAsset<GameObject>("VFX_Dust_Piece_DoD");
@@ -255,6 +290,8 @@ namespace DoOrDieBiomes
 			PrefabManager.Instance.AddPrefab(VFXHit);
 			PrefabManager.Instance.AddPrefab(VFXRockHit);
 
+			Debug.Log("DoDBiomes: Items");
+			OakWood = DoDBiome.LoadAsset<GameObject>("OakWood_DoD");
 			SteelPick = DoDBiome.LoadAsset<GameObject>("SteelPickaxe_DoD");
 			Walnuts = DoDBiome.LoadAsset<GameObject>("Walnuts_DoD");
 			Apple = DoDBiome.LoadAsset<GameObject>("Apple_DoD");
@@ -267,29 +304,28 @@ namespace DoOrDieBiomes
 			HardLogHalf = DoDBiome.LoadAsset<GameObject>("Hardwood_LogHalf_DoD");
 			CustomPrefab Log1 = new CustomPrefab(HardLogHalf, true);
 			PrefabManager.Instance.AddPrefab(Log1);
+
+			Debug.Log("DoDBiomes: Anvils");
+			TexFlaAnvil = DoDBiome.LoadAsset<Sprite>("FlaAnvil_Icon_DoD");
+			TexFroAnvil = DoDBiome.LoadAsset<Sprite>("FroAnvil_Icon_DoD");
+			TexFelAnvil = DoDBiome.LoadAsset<Sprite>("FelAnvil_Icon_DoD");
+			AnvilsFel = DoDBiome.LoadAsset<GameObject>("FelmetalAnvils_DoD");
+			AnvilsFro = DoDBiome.LoadAsset<GameObject>("FrometalAnvils_DoD");
+			AnvilsFlam = DoDBiome.LoadAsset<GameObject>("FlametalAnvils_DoD");
 			// ores
+			Debug.Log("DoDBiomes: Ores");
 			MineRock_FroOre_DoD = DoDBiome.LoadAsset<GameObject>("MineRock_FroOre_DoD");
-			CustomPrefab customOre2 = new CustomPrefab(MineRock_FroOre_DoD, fixReference: true);
-			PrefabManager.Instance.AddPrefab(customOre2);
 			MineRock_FelOre_DoD = DoDBiome.LoadAsset<GameObject>("MineRock_FelOre_DoD");
-			CustomPrefab customOre1 = new CustomPrefab(MineRock_FelOre_DoD, fixReference: true);
-			PrefabManager.Instance.AddPrefab(customOre1);
 
 			// fruit trees
+			Debug.Log("DoDBiomes: Fruit Trees");
 			Tree_Banana_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Banana_Pickable_DoD");
-			CustomPrefab customFruit1 = new CustomPrefab(Tree_Banana_Pickable_DoD, fixReference: true);
-			PrefabManager.Instance.AddPrefab(customFruit1);
 			Tree_Apple_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Apple_Pickable_DoD");
-			CustomPrefab customFruit2 = new CustomPrefab(Tree_Apple_Pickable_DoD, fixReference: true);
-			PrefabManager.Instance.AddPrefab(customFruit2);
 			Mushroom_Cave_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Mushroom_Cave_Pickable_DoD");
-			CustomPrefab customFruit3 = new CustomPrefab(Mushroom_Cave_Pickable_DoD, fixReference: true);
-			PrefabManager.Instance.AddPrefab(customFruit3);
 			Tree_Walnut_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Walnut_Pickable_DoD");
-			CustomPrefab customFruit4 = new CustomPrefab(Tree_Walnut_Pickable_DoD, fixReference: true);
-			PrefabManager.Instance.AddPrefab(customFruit4);
 			// mistlands veg
 			//Debug.Log("DoDMonsters: 31");
+			Debug.Log("DoDBiomes: Mistlands Veg");
 			BlueMushroom_DoD = DoDBiome.LoadAsset<GameObject>("BlueMushroom_DoD");
 			PurpleMushroom_DoD = DoDBiome.LoadAsset<GameObject>("PurpleMushroom_DoD");
 			Tree_Willow02_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Willow02_DoD");
@@ -318,6 +354,7 @@ namespace DoOrDieBiomes
 			Flora_LargeDuo_DoD = DoDBiome.LoadAsset<GameObject>("Flora_LargeDuo_DoD");
 			//Debug.Log("DoDMonsters: 32");
 			// deep north
+			Debug.Log("DoDBiomes: Deep North Veg");
 			Bush3_DeepNorth_DoD = DoDBiome.LoadAsset<GameObject>("Bush3_DeepNorth_DoD");
 			Bush2_DeepNorth_DoD = DoDBiome.LoadAsset<GameObject>("Bush2_DeepNorth_DoD");
 			Bush1_DeepNorth_DoD = DoDBiome.LoadAsset<GameObject>("Bush1_DeepNorth_DoD");
@@ -340,6 +377,7 @@ namespace DoOrDieBiomes
 			WinterPine1_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine1_DoD");
 			//Debug.Log("DoDMonsters: 33");
 			// ash lands
+			Debug.Log("DoDBiomes: Ashlands Veg");
 			Mineable_SandRock16_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock16_DoD");
 			Mineable_SandRock15_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock15_DoD");
 			Mineable_SandRock14_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock14_DoD");
@@ -370,6 +408,46 @@ namespace DoOrDieBiomes
 			DoDBiome = AssetUtils.LoadAssetBundleFromResources("dodbiomes", Assembly.GetExecutingAssembly());
 			try
 			{
+				if (TowerEnable.Value == true)
+				{
+					var towerLocA = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_AbandonedTowerL_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(towerLocA, true, new LocationConfig
+					{
+						Biome = ZoneManager.AnyBiomeOf(Heightmap.Biome.Meadows, Heightmap.Biome.BlackForest, Heightmap.Biome.Swamp, Heightmap.Biome.Plains, Heightmap.Biome.Mistlands),
+						Quantity = 4,
+						Priotized = true,
+						ExteriorRadius = 15f,
+						MinAltitude = 2f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 500f,
+					}));
+					var towerLocB = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_AbandonedTowerS_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(towerLocB, true, new LocationConfig
+					{
+						Biome = ZoneManager.AnyBiomeOf(Heightmap.Biome.Meadows, Heightmap.Biome.BlackForest, Heightmap.Biome.Swamp, Heightmap.Biome.Plains, Heightmap.Biome.Mistlands),
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 15f,
+						MinAltitude = 0.5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 500f,
+					}));
+				}
+				if (KnarrEnable.Value == true)
+				{
+					var knarrLoc = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_KnarrTrader_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(knarrLoc, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Meadows,
+						Quantity = 1,
+						Priotized = true,
+						ExteriorRadius = 15f,
+						MinAltitude = 2f,
+						ClearArea = true,
+						MinDistance = 500f,
+						MaxDistance = 1000f,
+					}));
+				}
 				if (AshLandsLocations.Value == true)
 				{
 					var BossPlatformAL = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_BossPlatform_AL_DoD"));
@@ -612,6 +690,9 @@ namespace DoOrDieBiomes
 						ClearArea = true,
 						MinDistanceFromSimilar = 500f,
 					}));
+				}
+				if (UnderworldEnable.Value == true)
+                {
 					var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Underworld_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc3, true, new LocationConfig
 					{
@@ -624,7 +705,7 @@ namespace DoOrDieBiomes
 						MinDistance = 150f,
 						MaxDistance = 400f,
 					}));
-				}
+                }
 			}
 			finally
 			{
@@ -1560,6 +1641,10 @@ namespace DoOrDieBiomes
 		}
 		private void CreateFruit()
 		{
+			GameObject dropable53 = OakWood;
+			CustomItem customItem53 = new CustomItem(dropable53, fixReference: true);
+			ItemManager.Instance.AddItem(customItem53);
+
 			GameObject food5 = CaveMushroom;
 			CustomItem customFood5 = new CustomItem(food5, fixReference: true);
 			ItemManager.Instance.AddItem(customFood5);
@@ -1621,6 +1706,107 @@ namespace DoOrDieBiomes
 				ToItem = "FelmetalBar_DoD"
 			});
 			ItemManager.Instance.AddItemConversion(itemConversion3);
+		}
+		private void CreateAnvils()
+		{
+			GameObject gameObject1 = AnvilsFlam;
+			CustomPiece customPiece1 = new CustomPiece(gameObject1, true, new PieceConfig
+			{
+				Description = "Increases Forge level by one",
+				Icon = TexFlaAnvil,
+				PieceTable = "Hammer",
+				Category = "Crafting",
+				Requirements = new RequirementConfig[3]
+				{
+				new RequirementConfig
+				{
+					Item = "FelmetalBar_DoD",
+					Amount = 15,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "OakWood_DoD",
+					Amount = 15,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "SurtlingCore",
+					Amount = 2,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece1);
+
+			GameObject gameObject2 = AnvilsFro;
+			CustomPiece customPiece2 = new CustomPiece(gameObject2, true, new PieceConfig
+			{
+				Description = "Increases Forge level by one",
+				Icon = TexFroAnvil,
+				PieceTable = "Hammer",
+				Category = "Crafting",
+				Requirements = new RequirementConfig[3]
+				{
+				new RequirementConfig
+				{
+					Item = "FrometalBar_DoD",
+					Amount = 15,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "OakWood_DoD",
+					Amount = 15,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "FrostlingCore_DoD",
+					Amount = 2,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece2);
+
+			GameObject gameObject3 = AnvilsFel;
+			CustomPiece customPiece3 = new CustomPiece(gameObject3, true, new PieceConfig
+			{
+				Description = "Increases Forge level by one",
+				Icon = TexFelAnvil,
+				PieceTable = "Hammer",
+				Category = "Crafting",
+				Requirements = new RequirementConfig[3]
+				{
+				new RequirementConfig
+				{
+					Item = "FelmetalBar_DoD",
+					Amount = 15,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "OakWood_DoD",
+					Amount = 15,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "VoidlingCore_DoD",
+					Amount = 2,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece3);
+		}
+		private void ModWorldObjects()
+		{
+			TreeBase prefab1 = PrefabManager.Cache.GetPrefab<TreeBase>("Oak1");
+			prefab1.m_minToolTier = 4;
+			ItemManager.OnItemsRegistered -= ModWorldObjects;
 		}
 		private void UnloadBundle()
 		{

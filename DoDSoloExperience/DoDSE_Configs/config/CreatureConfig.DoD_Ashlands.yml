@@ -125,27 +125,29 @@ Greater Surtling:
         3: 1.15
         4: 1.2
         5: 1.25
-# FireGolem
-Fire Golem:
+# Skeleton - Fire
+SkeletonWarriorFire:
   size: 0.02
+  health: 20.0
+  damage: 7.2
   infusion: 
       Fire: 14
       Frost: 0
   AshLands:
     health:
-        0: 1
-        1: 1.05
-        2: 1.1
-        3: 1.15
-        4: 1.2
-        5: 1.25
+        0: 20
+        1: 21
+        2: 22
+        3: 23
+        4: 24
+        5: 25
     damage: 
-        0: 1
-        1: 1.1
-        2: 1.2
-        3: 1.3
-        4: 1.4
-        5: 1.5
+        0: 7.2
+        1: 7.9
+        2: 8.6
+        3: 9.3
+        4: 10.0
+        5: 10.07
     damage taken: 
         0: 1
         1: 0.95
@@ -167,49 +169,7 @@ Fire Golem:
         3: 1.15
         4: 1.2
         5: 1.25
-# FireSpider
-Fire Spider:
-  size: 0.02
-  infusion: 
-      Fire: 14
-      Frost: 0
-  AshLands:
-    health:
-        0: 1
-        1: 1.05
-        2: 1.1
-        3: 1.15
-        4: 1.2
-        5: 1.25
-    damage: 
-        0: 1
-        1: 1.1
-        2: 1.2
-        3: 1.3
-        4: 1.4
-        5: 1.5
-    damage taken: 
-        0: 1
-        1: 0.95
-        2: 0.9
-        3: 0.85
-        4: 0.8
-        5: 0.75
-    attack speed: 
-        0: 1
-        1: 1.05
-        2: 1.1
-        3: 1.15
-        4: 1.2
-        5: 1.25
-    movement speed: 
-        0: 1
-        1: 1.05
-        2: 1.1
-        3: 1.15
-        4: 1.2
-        5: 1.25
-# LivingLava
+# Living Lava
 Living Lava:
   size: 0.02
   infusion: 

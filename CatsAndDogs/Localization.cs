@@ -13,6 +13,11 @@ namespace CatsAndDogs
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+			{"animal_pug_cd", "Pug"},
+			{"animal_hound_cd", "Hound"},
+			{"animal_celtic_cd", "Wolfhound"},
+			{"animal_corso_cd", "Cane Corso"},
+			{"animal_beagle_cd", "Beagle"},
 			{"animal_cat_cd", "Cat"},
 			{"animal_cat_kit_cd", "Kitten"}
 

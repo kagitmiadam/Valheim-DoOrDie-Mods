@@ -28,6 +28,7 @@ namespace ThemedBuildPieces
 		public const string PluginVersion = "0.0.1";
 
 		public AssetBundle TBPAssets;
+		private Harmony _harmony;
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
 			Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -41,7 +42,10 @@ namespace ThemedBuildPieces
 			LoadBundle();
 			AddTBPHammer();
 			CreatePieces();
+			CreatePremades();
+			CreateTowerPieces();
 			UnloadBundle();
+			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.ThemedBuildPieces");
 		}
 		public void LoadBundle()
 		{
@@ -1325,6 +1329,426 @@ namespace ThemedBuildPieces
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece14);
+		}
+		private void CreatePremades()
+		{
+			Debug.Log("TBP House: 1");
+			var pieceHouseCobbleA = TBPAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_A");
+			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Building",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse1);
+			Debug.Log("TBP House: 2");
+			var pieceHouseCobbleB = TBPAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_B");
+			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Building",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse2);
+			Debug.Log("TBP House: 3");
+			var pieceHouseCobbleC = TBPAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_C");
+			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Building",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse3);
+			Debug.Log("TBP House: 4");
+			var pieceHouseCobbleD = TBPAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_D");
+			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Building",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse4);
+			Debug.Log("TBP House: 5");
+			var pieceHouseCobbleE = TBPAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_E");
+			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Building",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse5);
+		}
+		private void CreateTowerPieces()
+		{
+			Debug.Log("TBP Tower: 1");
+			var pieceTower1 = TBPAssets.LoadAsset<GameObject>("Tower_Round_WindowWM_TBP");
+			var customTower1 = new CustomPiece(pieceTower1, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[3]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 20,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Crystal",
+					Amount = 15,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 10,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower1);
+			Debug.Log("TBP Tower: 2");
+			var pieceTower2 = TBPAssets.LoadAsset<GameObject>("Tower_Round_WindowWS_TBP");
+			var customTower2 = new CustomPiece(pieceTower2, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 25,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 5,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower2);
+			Debug.Log("TBP Tower: 3");
+			var pieceTower3 = TBPAssets.LoadAsset<GameObject>("Tower_Round_Doorway_TBP");
+			var customTower3 = new CustomPiece(pieceTower3, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 50,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 10,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower3);
+			Debug.Log("TBP Tower: 4");
+			var pieceTower4 = TBPAssets.LoadAsset<GameObject>("Tower_Round_Stair_TBP");
+			var customTower4 = new CustomPiece(pieceTower4, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 15,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower4);
+			Debug.Log("TBP Tower: 5");
+			var pieceTower5 = TBPAssets.LoadAsset<GameObject>("Tower_Round_FloorS1_TBP");
+			var customTower5 = new CustomPiece(pieceTower5, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 10,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower5);
+			Debug.Log("TBP Tower: 6");
+			var pieceTower6 = TBPAssets.LoadAsset<GameObject>("Tower_Round_FloorS2_TBP");
+			var customTower6 = new CustomPiece(pieceTower6, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 10,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower6);
+			Debug.Log("TBP Tower: 7");
+			var pieceTower7 = TBPAssets.LoadAsset<GameObject>("Tower_Round_FloorS3_TBP");
+			var customTower7 = new CustomPiece(pieceTower7, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 10,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower7);
+			Debug.Log("TBP Tower: 8");
+			var pieceTower8 = TBPAssets.LoadAsset<GameObject>("Tower_Round_FloorS4_TBP");
+			var customTower8 = new CustomPiece(pieceTower8, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 10,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower8);
+			Debug.Log("TBP Tower: 9");
+			var pieceTower9 = TBPAssets.LoadAsset<GameObject>("Tower_Round_FloorLE1_TBP");
+			var customTower9 = new CustomPiece(pieceTower9, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 20,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower9);
+			Debug.Log("TBP Tower: 10");
+			var pieceTower10 = TBPAssets.LoadAsset<GameObject>("Tower_Round_FloorLE2_TBP");
+			var customTower10 = new CustomPiece(pieceTower10, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 20,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower10);
+			Debug.Log("TBP Tower: 11");
+			var pieceTower11 = TBPAssets.LoadAsset<GameObject>("Tower_Round_FloorLE3_TBP");
+			var customTower11 = new CustomPiece(pieceTower11, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 20,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower11);
+			Debug.Log("TBP Tower: 12");
+			var pieceTower12 = TBPAssets.LoadAsset<GameObject>("Tower_Round_FloorLE4_TBP");
+			var customTower12 = new CustomPiece(pieceTower12, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 20,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower12);
+			Debug.Log("TBP Tower: 13");
+			var pieceTower13 = TBPAssets.LoadAsset<GameObject>("Tower_Round_Wall_TBP");
+			var customTower13 = new CustomPiece(pieceTower13, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 30,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower13);
+			Debug.Log("TBP Tower: 14");
+			var pieceTower14 = TBPAssets.LoadAsset<GameObject>("Tower_Round_WallS_TBP");
+			var customTower14 = new CustomPiece(pieceTower14, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 20,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower14);
+			Debug.Log("TBP Tower: 15");
+			var pieceTower15 = TBPAssets.LoadAsset<GameObject>("StonePillar_TBP");
+			var customTower15 = new CustomPiece(pieceTower15, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Cobble",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 10,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower15);
 		}
 		private void UnloadBundle()
 		{

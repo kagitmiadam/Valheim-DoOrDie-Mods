@@ -1,25 +1,27 @@
 #### DoD Vanilla Changes ####
-# Ice Troll
-Ice Troll:
+# Skeleton - Ice
+SkeletonWarriorIce:
   size: 0.02
+  health: 13.0
+  damage: 5.7
   infusion: 
       Fire: 0
       Frost: 14
   Deep North:
     health:
-        0: 1
-        1: 1.05
-        2: 1.1
-        3: 1.15
-        4: 1.2
-        5: 1.25
+        0: 13
+        1: 13.65
+        2: 14.3
+        3: 14.95
+        4: 15.6
+        5: 16.35
     damage: 
-        0: 1
-        1: 1.1
-        2: 1.2
-        3: 1.3
-        4: 1.4
-        5: 1.5
+        0: 5.7
+        1: 6.3
+        2: 6.9
+        3: 10.5
+        4: 11.6
+        5: 12.3
     damage taken: 
         0: 1
         1: 0.95
@@ -125,48 +127,6 @@ Dire Wolf:
         3: 1.15
         4: 1.2
         5: 1.25
-# Small Black Spider
-Ice Ogre:
-  size: 0.02
-  infusion: 
-      Fire: 0
-      Frost: 14
-  Deep North:
-    health:
-        0: 1
-        1: 1.05
-        2: 1.1
-        3: 1.15
-        4: 1.2
-        5: 1.25
-    damage: 
-        0: 1
-        1: 1.1
-        2: 1.2
-        3: 1.3
-        4: 1.4
-        5: 1.5
-    damage taken: 
-        0: 1
-        1: 0.95
-        2: 0.9
-        3: 0.85
-        4: 0.8
-        5: 0.75
-    attack speed: 
-        0: 1
-        1: 1.05
-        2: 1.1
-        3: 1.15
-        4: 1.2
-        5: 1.25
-    movement speed: 
-        0: 1
-        1: 1.05
-        2: 1.1
-        3: 1.15
-        4: 1.2
-        5: 1.25
 # Frozen Bones
 Frozen Bones:
   size: 0.02
@@ -209,27 +169,29 @@ Frozen Bones:
         3: 1.15
         4: 1.2
         5: 1.25
-# IceSpider
-Ice Spider:
+# Frigid Spider
+Frigid Spider:
   size: 0.02
+  health: 5
+  damage: 2.37
   infusion: 
       Fire: 0
       Frost: 14
   Deep North:
     health:
-        0: 1
-        1: 1.05
-        2: 1.1
-        3: 1.15
-        4: 1.2
-        5: 1.25
+        0: 5
+        1: 5.25
+        2: 5.5
+        3: 5.75
+        4: 6
+        5: 6.25
     damage: 
-        0: 1
-        1: 1.1
-        2: 1.2
-        3: 1.3
-        4: 1.4
-        5: 1.5
+        0: 2.37
+        1: 2.61
+        2: 2.85
+        3: 3.09
+        4: 3.23
+        5: 3.47
     damage taken: 
         0: 1
         1: 0.95

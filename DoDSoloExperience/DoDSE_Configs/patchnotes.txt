@@ -1,5 +1,35 @@
 ﻿Patch Notes
 
+1.3.0
+
+	Removed RRR Mods.
+	Updated for new DoD Dll's.
+	Moved NPC spawns to the NPC Mod.
+	Moved Reskined mobs spawns to the Monster Mod.
+	Moved Mini Boss scaling to the NPC mod.
+	
+1.2.14
+
+	Deer drop Deer Meat.
+	Judes Equipment uses Armor Kits for crafting.
+
+1.2.13
+
+	Fixed Skugga not showing up.
+	Fixed Black Deer not spawning.
+	Fixed Mini Bosses not showing up.
+	Updated incompatible mod list.
+	Moved Miniboss and Knarr spawns over to Spawn That's API.
+
+1.2.12
+
+	Removed some sneaky test files.
+
+1.2.11
+
+	Minor Bugfixing.
+	Update to new format for Judes Equipment.
+	
 1.2.10
 
 	Moved all NPC's over to DoD Monsters.

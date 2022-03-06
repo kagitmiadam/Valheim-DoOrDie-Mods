@@ -14,12 +14,19 @@ using Jotunn.Entities;
 using Jotunn.Managers;
 using Jotunn.Utils;
 using UnityEngine;
+using SpawnThat.Integrations.CLLC.Models;
+using SpawnThat.Integrations.EpicLoot.Models;
+using SpawnThat.Options.Conditions;
+using SpawnThat.Spawners;
+using SpawnThat.Spawners.LocalSpawner;
+using SpawnThat.Spawners.WorldSpawner;
 
 namespace FantasyCreatures
 {
 	[BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
 	[BepInDependency("com.jotunn.jotunn", BepInDependency.DependencyFlags.HardDependency)]
+	[BepInDependency("asharppen.valheim.spawn_that", BepInDependency.DependencyFlags.HardDependency)]
 	internal class fantasyCreatures : BaseUnityPlugin
 	{
 		public const string PluginGUID = "horemvore.FantasyCreatures";
@@ -135,6 +142,10 @@ namespace FantasyCreatures
 
 		public AssetBundle FantasyBundle;
 		private Harmony _harmony;
+		internal static ManualLogSource Log;
+
+		public ConfigEntry<bool> WorldSpawnsEnable;
+		public ConfigEntry<bool> UnderworldSpawnsEnable;
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
 			Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -142,12 +153,48 @@ namespace FantasyCreatures
 			using Stream stream = executingAssembly.GetManifestResourceStream(text);
 			return AssetBundle.LoadFromStream(stream);
 		}
+		public void CreateConfigurationValues()
+		{
+			WorldSpawnsEnable = base.Config.Bind("World Spawns", "Enable", defaultValue: true, new ConfigDescription("Enables Spawns around the world.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			UnderworldSpawnsEnable = base.Config.Bind("Do Or Die Biomes", "Enable", defaultValue: false, new ConfigDescription("Enables Spawns in the Underworld.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+		}
 		private void Awake() 
 		{
+			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.FantasyCreatures");
+			CreateConfigurationValues();
+			Log = Logger;
 			LoadBundle();
 			LoadAssets();
 			AddNewCreatures();
-			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.FantasyCreatures");
+			if (WorldSpawnsEnable.Value == true)
+			{
+				try
+				{
+					SpawnerConfigurationManager.OnConfigure += ConfigureUnderworldSpawners;
+				}
+				catch (Exception e)
+				{
+					System.Console.WriteLine(e);
+				}
+
+			}
+			if (UnderworldSpawnsEnable.Value == true)
+            {
+				try
+				{
+					SpawnerConfigurationManager.OnConfigure += ConfigureUnderworldSpawners;
+				}
+				catch (Exception e)
+				{
+					System.Console.WriteLine(e);
+				}
+            }	
 		}
 		public void LoadBundle()
 		{
@@ -155,7 +202,7 @@ namespace FantasyCreatures
 		}
 		private void LoadAssets()
 		{
-			Debug.Log("Fantasy Creatures: -4");
+			Debug.Log("Fantasy Creatures: Spider Attacks");
 			SpiderA1 = FantasyBundle.LoadAsset<GameObject>("Spider_Attack1_DoD");
 			CustomPrefab Spiderattack1 = new CustomPrefab(SpiderA1, true);
 			PrefabManager.Instance.AddPrefab(Spiderattack1);
@@ -163,7 +210,7 @@ namespace FantasyCreatures
 			CustomPrefab Viperattack1 = new CustomPrefab(ViperA1, true);
 			PrefabManager.Instance.AddPrefab(Viperattack1);
 
-			Debug.Log("Fantasy Creatures: -3");
+			Debug.Log("Fantasy Creatures: Manticore Attacks");
 			ManticoreA1 = FantasyBundle.LoadAsset<GameObject>("Manticore_Attack1_DoD");
 			CustomPrefab Manticoreattack1 = new CustomPrefab(ManticoreA1, true);
 			PrefabManager.Instance.AddPrefab(Manticoreattack1);
@@ -180,7 +227,7 @@ namespace FantasyCreatures
 			CustomPrefab Manticoreattack5 = new CustomPrefab(ManticoreA5, true);
 			PrefabManager.Instance.AddPrefab(Manticoreattack5);
 
-			Debug.Log("Fantasy Creatures: -2");
+			Debug.Log("Fantasy Creatures: Harpy Attacks");
 			HarpyA1 = FantasyBundle.LoadAsset<GameObject>("Harpy_Attack1_DoD");
 			CustomPrefab Harpyattack1 = new CustomPrefab(HarpyA1, true);
 			PrefabManager.Instance.AddPrefab(Harpyattack1);
@@ -197,7 +244,7 @@ namespace FantasyCreatures
 			CustomPrefab Harpyattack5 = new CustomPrefab(HarpyA5, true);
 			PrefabManager.Instance.AddPrefab(Harpyattack5);
 
-			Debug.Log("Fantasy Creatures: -1");
+			Debug.Log("Fantasy Creatures: Griffin Attacks");
 			GriffinA1 = FantasyBundle.LoadAsset<GameObject>("Griffin_Attack1_DoD");
 			CustomPrefab Griffinattack1 = new CustomPrefab(GriffinA1, true);
 			PrefabManager.Instance.AddPrefab(Griffinattack1);
@@ -213,8 +260,11 @@ namespace FantasyCreatures
 			GriffinA5 = FantasyBundle.LoadAsset<GameObject>("Griffin_AttackCombo3_DoD");
 			CustomPrefab Griffinattack5 = new CustomPrefab(GriffinA5, true);
 			PrefabManager.Instance.AddPrefab(Griffinattack5);
+			GriffinA6 = FantasyBundle.LoadAsset<GameObject>("Griffin_AttackFlight_DoD");
+			CustomPrefab Griffinattack6 = new CustomPrefab(GriffinA6, true);
+			PrefabManager.Instance.AddPrefab(Griffinattack6);
 
-			Debug.Log("Fantasy Creatures: 0");
+			Debug.Log("Fantasy Creatures: Ghoul Attacks");
 			GhoulA1 = FantasyBundle.LoadAsset<GameObject>("Ghoul_Attack1_DoD");
 			CustomPrefab Ghoulattack1 = new CustomPrefab(GhoulA1, true);
 			PrefabManager.Instance.AddPrefab(Ghoulattack1);
@@ -231,7 +281,7 @@ namespace FantasyCreatures
 			CustomPrefab Ghoulattack5 = new CustomPrefab(GhoulA5, true);
 			PrefabManager.Instance.AddPrefab(Ghoulattack5);
 
-			Debug.Log("Fantasy Creatures: 1");
+			Debug.Log("Fantasy Creatures: Mummy Attacks");
 			MummyA1 = FantasyBundle.LoadAsset<GameObject>("Mummy_Attack1_DoD");
 			CustomPrefab mummyattack1 = new CustomPrefab(MummyA1, true);
 			PrefabManager.Instance.AddPrefab(mummyattack1);
@@ -263,7 +313,7 @@ namespace FantasyCreatures
 			CustomPrefab mummyattack10 = new CustomPrefab(MummyR5, true);
 			PrefabManager.Instance.AddPrefab(mummyattack10);
 
-			Debug.Log("Fantasy Creatures: 2");
+			Debug.Log("Fantasy Creatures: Beholder Attacks");
 			BeholderA1 = FantasyBundle.LoadAsset<GameObject>("Beholder_Attack1_DoD");
 			CustomPrefab attack1 = new CustomPrefab(BeholderA1, true);
 			PrefabManager.Instance.AddPrefab(attack1);
@@ -271,7 +321,7 @@ namespace FantasyCreatures
 			CustomPrefab attack2 = new CustomPrefab(BeholderA2, true);
 			PrefabManager.Instance.AddPrefab(attack2);
 
-			Debug.Log("Fantasy Creatures: 3");
+			Debug.Log("Fantasy Creatures: Ent Arracks");
 			EntA1 = FantasyBundle.LoadAsset<GameObject>("Ent_Attack1_DoD");
 			CustomPrefab attack3 = new CustomPrefab(EntA1, true);
 			PrefabManager.Instance.AddPrefab(attack3);
@@ -288,7 +338,7 @@ namespace FantasyCreatures
 			CustomPrefab attack7 = new CustomPrefab(EntA5, true);
 			PrefabManager.Instance.AddPrefab(attack7);
 
-			Debug.Log("Fantasy Creatures: 4");
+			Debug.Log("Fantasy Creatures: Demon Attacks");
 			DemonLordA1 = FantasyBundle.LoadAsset<GameObject>("DemonLord_Attack1_DoD");
 			CustomPrefab attack8 = new CustomPrefab(DemonLordA1, true);
 			PrefabManager.Instance.AddPrefab(attack8);
@@ -305,7 +355,7 @@ namespace FantasyCreatures
 			CustomPrefab attack12 = new CustomPrefab(DemonLordA5, true);
 			PrefabManager.Instance.AddPrefab(attack12);
 
-			Debug.Log("Fantasy Creatures: 5");
+			Debug.Log("Fantasy Creatures: Elemental Attacks");
 			ElementalA1 = FantasyBundle.LoadAsset<GameObject>("Element_Attack1_DoD");
 			CustomPrefab attack13 = new CustomPrefab(ElementalA1, true);
 			PrefabManager.Instance.AddPrefab(attack13);
@@ -331,7 +381,7 @@ namespace FantasyCreatures
 			CustomPrefab attack20 = new CustomPrefab(ElementalA8, true);
 			PrefabManager.Instance.AddPrefab(attack20);
 
-			Debug.Log("Fantasy Creatures: 6");
+			Debug.Log("Fantasy Creatures: Ice Elemental Attacks");
 			IceElementalA1 = FantasyBundle.LoadAsset<GameObject>("IceElement_Attack1_DoD");
 			CustomPrefab attack21 = new CustomPrefab(IceElementalA1, true);
 			PrefabManager.Instance.AddPrefab(attack21);
@@ -357,7 +407,7 @@ namespace FantasyCreatures
 			CustomPrefab attack28 = new CustomPrefab(IceElementalA8, true);
 			PrefabManager.Instance.AddPrefab(attack28);
 
-			Debug.Log("Fantasy Creatures: 7");
+			Debug.Log("Fantasy Creatures: Fire Elemental Attacks");
 			FireElementalA1 = FantasyBundle.LoadAsset<GameObject>("FireElement_Attack1_DoD");
 			CustomPrefab attack29 = new CustomPrefab(FireElementalA1, true);
 			PrefabManager.Instance.AddPrefab(attack29);
@@ -383,7 +433,7 @@ namespace FantasyCreatures
 			CustomPrefab attack36 = new CustomPrefab(FireElementalA8, true);
 			PrefabManager.Instance.AddPrefab(attack36);
 
-			Debug.Log("Fantasy Creatures: 8");
+			Debug.Log("Fantasy Creatures: Kobold Attacks");
 			KoboldA1 = FantasyBundle.LoadAsset<GameObject>("Kobold_Attack1_DoD");
 			CustomPrefab attack37 = new CustomPrefab(KoboldA1, true);
 			PrefabManager.Instance.AddPrefab(attack37);
@@ -409,7 +459,7 @@ namespace FantasyCreatures
 			CustomPrefab attack44 = new CustomPrefab(KoboldA8, true);
 			PrefabManager.Instance.AddPrefab(attack44);
 
-			Debug.Log("Fantasy Creatures: 9");
+			Debug.Log("Fantasy Creatures: Hydra Attacks");
 			HydraA1 = FantasyBundle.LoadAsset<GameObject>("Hydra_Attack1_DoD");
 			CustomPrefab attack45 = new CustomPrefab(HydraA1, true);
 			PrefabManager.Instance.AddPrefab(attack45);
@@ -423,7 +473,7 @@ namespace FantasyCreatures
 			CustomPrefab attack48 = new CustomPrefab(HydraA4, true);
 			PrefabManager.Instance.AddPrefab(attack48);
 
-			Debug.Log("Fantasy Creatures: 10");
+			Debug.Log("Fantasy Creatures: Dragon Attacks");
 			DragonA1 = FantasyBundle.LoadAsset<GameObject>("Dragon_Attack1_DoD");
 			CustomPrefab attack49 = new CustomPrefab(DragonA1, true);
 			PrefabManager.Instance.AddPrefab(attack49);
@@ -446,7 +496,7 @@ namespace FantasyCreatures
 			CustomPrefab attack55 = new CustomPrefab(DragonA7, true);
 			PrefabManager.Instance.AddPrefab(attack55);
 
-			Debug.Log("Fantasy Creatures: 11");
+			Debug.Log("Fantasy Creatures: Ogre Attacks");
 			OgreA1 = FantasyBundle.LoadAsset<GameObject>("Ogre_Attack1_DoD");
 			CustomPrefab attack56 = new CustomPrefab(OgreA1, true);
 			PrefabManager.Instance.AddPrefab(attack56);
@@ -463,7 +513,7 @@ namespace FantasyCreatures
 			CustomPrefab attack60 = new CustomPrefab(OgreA5, true);
 			PrefabManager.Instance.AddPrefab(attack60);
 
-			Debug.Log("Fantasy Creatures: 12");
+			Debug.Log("Fantasy Creatures: Hobgoblin Attacks");
 			HobgoblinA1 = FantasyBundle.LoadAsset<GameObject>("Hobgoblin_Attack1_DoD");
 			CustomPrefab attack61 = new CustomPrefab(HobgoblinA1, true);
 			PrefabManager.Instance.AddPrefab(attack61);
@@ -480,7 +530,7 @@ namespace FantasyCreatures
 			CustomPrefab attack65 = new CustomPrefab(HobgoblinA5, true);
 			PrefabManager.Instance.AddPrefab(attack65);
 
-			Debug.Log("Fantasy Creatures: 13");
+			Debug.Log("Fantasy Creatures: Cyclops Attacks");
 			CyclopsA1 = FantasyBundle.LoadAsset<GameObject>("Cyclops_Attack1_DoD");
 			CustomPrefab attack66 = new CustomPrefab(CyclopsA1, true);
 			PrefabManager.Instance.AddPrefab(attack66);
@@ -500,41 +550,35 @@ namespace FantasyCreatures
 			CustomPrefab attack71 = new CustomPrefab(CyclopsA6, true);
 			PrefabManager.Instance.AddPrefab(attack71);
 
-			Debug.Log("Fantasy Creatures: 14");
+			Debug.Log("Fantasy Creatures: SFX");
 			GameObject SFXEntGetHit = FantasyBundle.LoadAsset<GameObject>("SFX_EntGetHit_DoD");
 			PrefabManager.Instance.AddPrefab(SFXEntGetHit);
-			Debug.Log("Fantasy Creatures: 14b");
 			GameObject SFXEntAlert = FantasyBundle.LoadAsset<GameObject>("SFX_EntAlert_DoD");
 			PrefabManager.Instance.AddPrefab(SFXEntAlert);
-			Debug.Log("Fantasy Creatures: 14c");
 			GameObject SFXEntIdle = FantasyBundle.LoadAsset<GameObject>("SFX_EntIdle_DoD");
 			PrefabManager.Instance.AddPrefab(SFXEntIdle);
-			Debug.Log("Fantasy Creatures: 14d");
 			GameObject SFXEntDeath = FantasyBundle.LoadAsset<GameObject>("SFX_EntDeath_DoD");
 			PrefabManager.Instance.AddPrefab(SFXEntDeath);
-			Debug.Log("Fantasy Creatures: 14e");
 			GameObject SFXDLGetHit = FantasyBundle.LoadAsset<GameObject>("SFX_DLGetHit_DoD");
 			PrefabManager.Instance.AddPrefab(SFXDLGetHit);
-			Debug.Log("Fantasy Creatures: 14f");
 			GameObject SFXDLAlert = FantasyBundle.LoadAsset<GameObject>("SFX_DLAlert_DoD");
 			PrefabManager.Instance.AddPrefab(SFXDLAlert);
-			Debug.Log("Fantasy Creatures: 14g");
 			GameObject SFXDLIdle = FantasyBundle.LoadAsset<GameObject>("SFX_DLIdle_DoD");
 			PrefabManager.Instance.AddPrefab(SFXDLIdle);
-			Debug.Log("Fantasy Creatures: 14h");
 			GameObject SFXDLDeath = FantasyBundle.LoadAsset<GameObject>("SFX_DLDeath_DoD");
 			PrefabManager.Instance.AddPrefab(SFXDLDeath);
+			Debug.Log("Fantasy Creatures: SFX Done");
 		}
 		private void AddNewCreatures()
 		{
 			try
 			{
-				// Debug.Log("Fantasy Creatures: DemonLord");
+				Debug.Log("Fantasy Creatures: DemonLord");
 				var DemonLordFab = FantasyBundle.LoadAsset<GameObject>("DemonLord_DoD");
 				var DemonLordMob = new CustomCreature(DemonLordFab, false,
 					new CreatureConfig
 					{
-						Name = "DemonLord",
+						//Name = "DemonLord",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -543,8 +587,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -552,17 +596,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.AshLands
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(DemonLordMob);
-				// Debug.Log("Fantasy Creatures: FireElemental");
+				Debug.Log("Fantasy Creatures: FireElemental");
 				var FireElementalFab = FantasyBundle.LoadAsset<GameObject>("FireElemental_DoD");
 				var FireElementalMob = new CustomCreature(FireElementalFab, false,
 					new CreatureConfig
 					{
-						Name = "Fire Elemental",
+						//Name = "Fire Elemental",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -571,8 +616,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -580,17 +625,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.AshLands
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(FireElementalMob);
-				// Debug.Log("Fantasy Creatures: IceElemental");
+				Debug.Log("Fantasy Creatures: IceElemental");
 				var IceElementalFab = FantasyBundle.LoadAsset<GameObject>("IceElemental_DoD");
 				var IceElementalMob = new CustomCreature(IceElementalFab, false,
 					new CreatureConfig
 					{
-						Name = "Ice Elemental",
+						//Name = "Ice Elemental",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -599,8 +645,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -608,17 +654,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.DeepNorth
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(IceElementalMob);
-				// Debug.Log("Fantasy Creatures: Harpy");
-				var HarpyFab = FantasyBundle.LoadAsset<GameObject>("Harpy_FC");
+				Debug.Log("Fantasy Creatures: Harpy");
+				/*var HarpyFab = FantasyBundle.LoadAsset<GameObject>("Harpy_FC");
 				var HarpyMob = new CustomCreature(HarpyFab, false,
 					new CreatureConfig
 					{
-						Name = "Earth Elemental",
+						//Name = "Harpy",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -636,17 +683,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.Mistlands
 							}
 						}
 					});
-				CreatureManager.Instance.AddCreature(HarpyMob);
-				// Debug.Log("Fantasy Creatures: EarthElemental");
+				CreatureManager.Instance.AddCreature(HarpyMob);*/
+				Debug.Log("Fantasy Creatures: EarthElemental");
 				var EarthElementalFab = FantasyBundle.LoadAsset<GameObject>("EarthElemental_DoD");
 				var EarthElementalMob = new CustomCreature(EarthElementalFab, false,
 					new CreatureConfig
 					{
-						Name = "Earth Elemental",
+						//Name = "Earth Elemental",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -656,7 +704,7 @@ namespace FantasyCreatures
 								MaxAmount = 10
 							}
 						},
-						SpawnConfigs = new[]
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -664,17 +712,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.Mistlands
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(EarthElementalMob);
-				// Debug.Log("Fantasy Creatures: Manticore");
+				Debug.Log("Fantasy Creatures: Manticore");
 				var ManticoreFab = FantasyBundle.LoadAsset<GameObject>("Manticore_FC");
 				var ManticoreMob = new CustomCreature(ManticoreFab, false,
 					new CreatureConfig
 					{
-						Name = "Manticore",
+						//Name = "Manticore",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -683,8 +732,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -692,17 +741,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.Plains
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(ManticoreMob);
-				// Debug.Log("Fantasy Creatures: Cyclops");
+				Debug.Log("Fantasy Creatures: Cyclops");
 				var CyclopsFab = FantasyBundle.LoadAsset<GameObject>("Cyclops_DoD");
 				var CyclopsMob = new CustomCreature(CyclopsFab, false,
 					new CreatureConfig
 					{
-						Name = "Cyclops",
+						//Name = "Cyclops",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -711,8 +761,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -720,17 +770,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.Plains
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(CyclopsMob);
-				// Debug.Log("Fantasy Creatures: Griffin");
-				var GriffinFab = FantasyBundle.LoadAsset<GameObject>("Griffin_FC");
+				Debug.Log("Fantasy Creatures: Griffin");
+				/*var GriffinFab = FantasyBundle.LoadAsset<GameObject>("Griffin_FC");
 				var GriffinMob = new CustomCreature(GriffinFab, false,
 					new CreatureConfig
 					{
-						Name = "Griffin",
+						//Name = "Griffin",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -748,17 +799,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 85f,
 								Biome = Heightmap.Biome.Mountain
 							}
 						}
 					});
-				CreatureManager.Instance.AddCreature(GriffinMob);
-				// Debug.Log("Fantasy Creatures: Ogre");
+				CreatureManager.Instance.AddCreature(GriffinMob);*/
+				Debug.Log("Fantasy Creatures: Ogre");
 				var OgreFab = FantasyBundle.LoadAsset<GameObject>("Ogre_DoD");
 				var OgreMob = new CustomCreature(OgreFab, false,
 					new CreatureConfig
 					{
-						Name = "Ogre",
+						//Name = "Ogre",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -767,8 +819,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -776,17 +828,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 85f,
 								Biome = Heightmap.Biome.Mountain
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(OgreMob);
-				// Debug.Log("Fantasy Creatures: Mummy");
+				Debug.Log("Fantasy Creatures: Mummy");
 				var MummyFab = FantasyBundle.LoadAsset<GameObject>("Mummy_FC");
 				var MummyMob = new CustomCreature(MummyFab, false,
 					new CreatureConfig
 					{
-						Name = "Mummy",
+						//Name = "Mummy",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -795,8 +848,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -804,17 +857,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.Swamp
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(MummyMob);
-				// Debug.Log("Fantasy Creatures: Ghoul");
+				Debug.Log("Fantasy Creatures: Ghoul");
 				var GhoulFab = FantasyBundle.LoadAsset<GameObject>("Ghoul_FC");
 				var GhoulMob = new CustomCreature(GhoulFab, false,
 					new CreatureConfig
 					{
-						Name = "Ghoul",
+						//Name = "Ghoul",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -823,8 +877,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -832,17 +886,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.Swamp
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(GhoulMob);
-				// Debug.Log("Fantasy Creatures: TreeEnt");
+				Debug.Log("Fantasy Creatures: TreeEnt");
 				var TreeEntFab = FantasyBundle.LoadAsset<GameObject>("TreeEnt_DoD");
 				var TreeEntMob = new CustomCreature(TreeEntFab, false,
 					new CreatureConfig
 					{
-						Name = "Tree Ent",						
+						//Name = "Tree Ent",						
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -851,8 +906,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -860,17 +915,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.BlackForest
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(TreeEntMob);
-				// Debug.Log("Fantasy Creatures: Ogre");
+				Debug.Log("Fantasy Creatures: Ogre");
 				var HobgoblinFab = FantasyBundle.LoadAsset<GameObject>("Hobgoblin_DoD");
 				var HobgoblinMob = new CustomCreature(HobgoblinFab, false,
 					new CreatureConfig
 					{
-						Name = "Hobgoblin",
+						//Name = "Hobgoblin",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -879,8 +935,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -888,17 +944,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.BlackForest
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(HobgoblinMob);
-				// Debug.Log("Fantasy Creatures: Viper");
+				Debug.Log("Fantasy Creatures: Viper");
 				var ViperFab = FantasyBundle.LoadAsset<GameObject>("GiantViper_FC");
 				var ViperMob = new CustomCreature(ViperFab, false,
 					new CreatureConfig
 					{
-						Name = "Viper",
+						//Name = "Viper",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -907,8 +964,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -916,17 +973,18 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
-								Biome = Heightmap.Biome.Meadows
+								MinAltitude = 0.5f,
+								Biome = Heightmap.Biome.BlackForest
 							}
-						}
+						}*/
 					});
 				CreatureManager.Instance.AddCreature(ViperMob);
-				// Debug.Log("Fantasy Creatures: Kobold");
+				Debug.Log("Fantasy Creatures: Kobold");
 				var KoboldFab = FantasyBundle.LoadAsset<GameObject>("Kobold_DoD");
 				var KoboldMob = new CustomCreature(KoboldFab, false,
 					new CreatureConfig
 					{
-						Name = "Kobold",
+						//Name = "Kobold",
 						DropConfigs = new[]
 						{
 							new DropConfig
@@ -935,8 +993,8 @@ namespace FantasyCreatures
 								MinAmount = 3,
 								MaxAmount = 10
 							}
-						},
-						SpawnConfigs = new[]
+						}
+						/*SpawnConfigs = new[]
 						{
 							new SpawnConfig
 							{
@@ -944,11 +1002,28 @@ namespace FantasyCreatures
 								SpawnChance = 10,
 								SpawnInterval = 60f,
 								SpawnDistance = 100f,
+								MinAltitude = 0.5f,
 								Biome = Heightmap.Biome.Meadows
+							}
+						}*/
+					});
+				CreatureManager.Instance.AddCreature(KoboldMob);
+				Debug.Log("Fantasy Creatures: Spider");
+				var SpiderFab = FantasyBundle.LoadAsset<GameObject>("DarknessSpider_FC");
+				var SpiderMob = new CustomCreature(SpiderFab, false,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 3,
+								MaxAmount = 10
 							}
 						}
 					});
-				CreatureManager.Instance.AddCreature(KoboldMob);
+				CreatureManager.Instance.AddCreature(SpiderMob);
 			}
 			catch (Exception ex)
 			{
@@ -957,6 +1032,410 @@ namespace FantasyCreatures
 			finally
 			{
 				FantasyBundle.Unload(false);
+			}
+		}
+		public static void ConfigureUnderworldSpawners(ISpawnerConfigurationCollection config)
+		{
+			Debug.Log("Fantasy Creatures: Configure Underworld Spawns");
+			try
+			{
+				ConfigureUWSpawnerByNamed(config);
+			}
+			catch (Exception e)
+			{
+				System.Console.WriteLine($"Something went horribly wrong: {e.Message}\nStackTrace:\n{e.StackTrace}");
+			}
+		}
+		public static void ConfigureBiomeSpawners(ISpawnerConfigurationCollection config)
+		{
+			Debug.Log("Fantasy Creatures: Configure Spawns");
+			try
+			{
+				ConfigureWorldSpawner(config);
+			}
+			catch (Exception e)
+			{
+				System.Console.WriteLine($"Something went horribly wrong: {e.Message}\nStackTrace:\n{e.StackTrace}");
+			}
+		}
+		private static void ConfigureUWSpawnerByNamed(ISpawnerConfigurationCollection config)
+		{
+			Debug.Log("Fantasy Creatures: Create Underworld Spawns");
+			try
+			{
+				LocalSpawnSettings underworldT1Normal = new()
+				{
+					PrefabName = "DarknessSpider_FC",
+					SpawnInterval = TimeSpan.FromSeconds(600),
+				};
+
+				LocalSpawnSettings underworldT1Elite = new()
+				{
+					PrefabName = "Kobold_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(600),
+				};
+
+				LocalSpawnSettings underworldT1MiniBoss = new()
+				{
+					PrefabName = "Kobold_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(900),
+				};
+
+				LocalSpawnSettings underworldT1SubBoss = new()
+				{
+					PrefabName = "Kobold_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(1800),
+				};
+
+				LocalSpawnSettings underworldT1Boss = new()
+				{
+					PrefabName = "Kobold_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(3600),
+				};
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T1")
+					.WithSettings(underworldT1Normal);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T1_Elite")
+					.WithSettings(underworldT1Elite);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T1_MiniBoss")
+					.WithSettings(underworldT1MiniBoss);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T1_SubBoss")
+					.WithSettings(underworldT1SubBoss);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T1_Boss")
+					.WithSettings(underworldT1Boss);
+
+				LocalSpawnSettings underworldT2Normal = new()
+				{
+					PrefabName = "Hobgoblin_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(600),
+				};
+
+				LocalSpawnSettings underworldT2Elite = new()
+				{
+					PrefabName = "Hobgoblin_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(600),
+				};
+
+				LocalSpawnSettings underworldT2MiniBoss = new()
+				{
+					PrefabName = "TreeEnt_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(900),
+				};
+
+				LocalSpawnSettings underworldT2SubBoss = new()
+				{
+					PrefabName = "TreeEnt_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(1800),
+				};
+
+				LocalSpawnSettings underworldT2Boss = new()
+				{
+					PrefabName = "TreeEnt_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(3600),
+				};
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T2")
+					.WithSettings(underworldT2Normal);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T2_Elite")
+					.WithSettings(underworldT2Elite);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T2_MiniBoss")
+					.WithSettings(underworldT2MiniBoss);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T2_SubBoss")
+					.WithSettings(underworldT2SubBoss);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T2_Boss")
+					.WithSettings(underworldT2Boss);
+
+				LocalSpawnSettings underworldT3Normal = new()
+				{
+					PrefabName = "Draugr",
+					SpawnInterval = TimeSpan.FromSeconds(600),
+				};
+
+				LocalSpawnSettings underworldT3Elite = new()
+				{
+					PrefabName = "Ghoul_FC",
+					SpawnInterval = TimeSpan.FromSeconds(600),
+				};
+
+				LocalSpawnSettings underworldT3MiniBoss = new()
+				{
+					PrefabName = "Mummy_FC",
+					SpawnInterval = TimeSpan.FromSeconds(900),
+				};
+
+				LocalSpawnSettings underworldT3SubBoss = new()
+				{
+					PrefabName = "Mummy_FC",
+					SpawnInterval = TimeSpan.FromSeconds(1800),
+				};
+
+				LocalSpawnSettings underworldT3Boss = new()
+				{
+					PrefabName = "Mummy_FC",
+					SpawnInterval = TimeSpan.FromSeconds(3600),
+				};
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T3")
+					.WithSettings(underworldT3Normal);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T3_Elite")
+					.WithSettings(underworldT3Elite);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T3_MiniBoss")
+					.WithSettings(underworldT3MiniBoss);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T3_SubBoss")
+					.WithSettings(underworldT3SubBoss);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T3_Boss")
+					.WithSettings(underworldT3Boss);
+
+				LocalSpawnSettings underworldT4Normal = new()
+				{
+					PrefabName = "Ogre_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(600),
+				};
+
+				/*LocalSpawnSettings underworldT4Elite = new()
+				{
+					PrefabName = "",
+					SpawnInterval = TimeSpan.FromSeconds(600),
+				};*/
+
+				LocalSpawnSettings underworldT4MiniBoss = new()
+				{
+					PrefabName = "Ogre_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(900),
+				};
+
+				LocalSpawnSettings underworldT4SubBoss = new()
+				{
+					PrefabName = "Cyclops_DoD",
+					SpawnInterval = TimeSpan.FromSeconds(1800),
+				};
+
+				/*LocalSpawnSettings underworldT4Boss = new()
+				{
+					PrefabName = "",
+					SpawnInterval = TimeSpan.FromSeconds(3600),
+				};*/
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T4")
+					.WithSettings(underworldT4Normal);
+
+				//config.ConfigureLocalSpawnerByName("Spawner_UW_T4_Elite")
+				//	.WithSettings(underworldT4Elite);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T4_MiniBoss")
+					.WithSettings(underworldT4MiniBoss);
+
+				config.ConfigureLocalSpawnerByName("Spawner_UW_T4_SubBoss")
+					.WithSettings(underworldT4SubBoss);
+
+				//config.ConfigureLocalSpawnerByName("Spawner_UW_T4_Boss")
+				//	.WithSettings(underworldT4Boss);
+			}
+            catch (Exception e)
+			{
+				Log.LogError(e);
+			}
+		}
+		private static void ConfigureWorldSpawner(ISpawnerConfigurationCollection config)
+		{
+			Debug.Log("Fantasy Creatures: Create Spawns");
+			try
+			{
+				config.ConfigureWorldSpawner(20_014)
+					.SetPrefabName("DemonLord_DoD")
+					.SetTemplateName("Demon Lord")
+					.SetConditionBiomes(Heightmap.Biome.AshLands)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(210))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(4)
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)					
+					;
+				config.ConfigureWorldSpawner(20_013)
+					.SetPrefabName("FireElemental_DoD")
+					.SetTemplateName("Fire Elemental")
+					.SetConditionBiomes(Heightmap.Biome.AshLands)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(3)
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
+				config.ConfigureWorldSpawner(20_012)
+					.SetPrefabName("IceElemental_DoD")
+					.SetTemplateName("Ice Elemental")
+					.SetConditionBiomes(Heightmap.Biome.DeepNorth)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(3)
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
+				config.ConfigureWorldSpawner(20_011)
+					.SetPrefabName("EarthElemental_DoD")
+					.SetTemplateName("Earth Elemental")
+					.SetConditionBiomes(Heightmap.Biome.Mistlands)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(3)
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
+				config.ConfigureWorldSpawner(20_010)
+					.SetPrefabName("Manticore_FC")
+					.SetTemplateName("Maticore")
+					.SetConditionBiomes(Heightmap.Biome.Plains)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(3)
+					.SetSpawnDuringDay(false)
+					.SetConditionRequiredGlobalKey("defeated_goblinking")
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
+				config.ConfigureWorldSpawner(20_009)
+					.SetPrefabName("Cyclops_DoD")
+					.SetTemplateName("Cyclops")
+					.SetConditionBiomes(Heightmap.Biome.Plains)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(3)
+					.SetConditionRequiredGlobalKey("defeated_goblinking")
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
+				config.ConfigureWorldSpawner(20_008)
+					.SetPrefabName("Ogre_DoD")
+					.SetTemplateName("Ogre")
+					.SetConditionBiomes(Heightmap.Biome.Mountain)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(150))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionRequiredGlobalKey("defeated_moder")
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
+				config.ConfigureWorldSpawner(20_006)
+					.SetPrefabName("Mummy_FC")
+					.SetTemplateName("Mummy")
+					.SetConditionBiomes(Heightmap.Biome.Swamp)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(120))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionRequiredGlobalKey("defeated_bonemass")
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
+				config.ConfigureWorldSpawner(20_005)
+					.SetPrefabName("Ghoul_FC")
+					.SetTemplateName("Ghoul")
+					.SetConditionBiomes(Heightmap.Biome.Swamp)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(120))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionRequiredGlobalKey("defeated_bonemass")
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
+				config.ConfigureWorldSpawner(20_004)
+					.SetPrefabName("TreeEnt_DoD")
+					.SetTemplateName("Tree Ent")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(120))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(2)
+					.SetConditionRequiredGlobalKey("defeated_gdking")
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
+				config.ConfigureWorldSpawner(20_003)
+					.SetPrefabName("Hobgoblin_DoD")
+					.SetTemplateName("Hobgoblin")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(90))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(2)
+					.SetConditionEnvironments("Misty", "DeepForest Mist")
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
+				config.ConfigureWorldSpawner(20_002)
+					.SetPrefabName("GiantViper_FC")
+					.SetTemplateName("Giant Viper")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(90))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(2)
+					.SetSpawnDuringDay(false)
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
+				config.ConfigureWorldSpawner(20_001)
+					.SetPrefabName("Kobold_DoD")
+					.SetTemplateName("Kobold")
+					.SetConditionBiomes(Heightmap.Biome.Meadows)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(60))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(4)
+					.SetConditionEnvironments("Misty", "DeepForest Mist")
+					.SetSpawnAtDistanceToPlayerMin(60)
+					.SetSpawnAtDistanceToPlayerMax(100)
+					;
+				config.ConfigureWorldSpawner(20_000)
+					.SetPrefabName("DarknessSpider_FC")
+					.SetTemplateName("Darkness Spider")
+					.SetConditionBiomes(Heightmap.Biome.Meadows)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(60))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(2)
+					.SetSpawnDuringDay(false)
+					.SetSpawnAtDistanceToPlayerMin(60)
+					.SetSpawnAtDistanceToPlayerMax(100)
+					;
+			}
+			catch (Exception e)
+			{
+				Log.LogError(e);
 			}
 		}
 	}

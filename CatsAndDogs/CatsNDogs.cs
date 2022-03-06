@@ -44,6 +44,21 @@ namespace CatsAndDogs
 		public static GameObject SFXCatSoothe;
 		public static GameObject SFXCatTame;
 		public static GameObject SFXCatBirth;
+		public static GameObject SFXDogHit;
+		public static GameObject SFXDogGetHit;
+		public static GameObject SFXDogAlert;
+		public static GameObject SFXDogIdle;
+		public static GameObject SFXDogDeath;
+		public static GameObject SFXDogPet;
+		public static GameObject SFXDogSoothe;
+		public static GameObject SFXDogTame;
+		public static GameObject SFXDogBirth;
+
+		public static GameObject Dog1;
+		public static GameObject Dog2;
+		public static GameObject Dog3;
+		public static GameObject Dog4;
+		public static GameObject DogBite;
 
 		public AssetBundle PetsBundle;
 		private Harmony _harmony;
@@ -69,6 +84,10 @@ namespace CatsAndDogs
 		}
 		private void LoadAssets()
 		{
+			Dog1 = PetsBundle.LoadAsset<GameObject>("Animal_Dog1_CD");
+			Dog2 = PetsBundle.LoadAsset<GameObject>("Animal_Dog2_CD");
+			Dog3 = PetsBundle.LoadAsset<GameObject>("Animal_Dog3_CD");
+			Dog4 = PetsBundle.LoadAsset<GameObject>("Animal_Dog4_CD");
 			Cat1 = PetsBundle.LoadAsset<GameObject>("Animal_Cat1_CD");
 			Cat2 = PetsBundle.LoadAsset<GameObject>("Animal_Cat2_CD");
 			Cat3 = PetsBundle.LoadAsset<GameObject>("Animal_Cat3_CD");
@@ -76,6 +95,7 @@ namespace CatsAndDogs
 			Kitten2 = PetsBundle.LoadAsset<GameObject>("Animal_Cat2_Kit_CD");
 			Kitten3 = PetsBundle.LoadAsset<GameObject>("Animal_Cat3_Kit_CD");
 			CatBite = PetsBundle.LoadAsset<GameObject>("Cat_Bite_CD");
+			DogBite = PetsBundle.LoadAsset<GameObject>("Dog_Bite_CD");
 
 			SFXCatHit = PetsBundle.LoadAsset<GameObject>("SFX_Cat_Hit_CD");
 			SFXCatGetHit = PetsBundle.LoadAsset<GameObject>("SFX_Cat_GetHit_CD");
@@ -86,6 +106,17 @@ namespace CatsAndDogs
 			SFXCatSoothe = PetsBundle.LoadAsset<GameObject>("SFX_Cat_Soothe_CD");
 			SFXCatTame = PetsBundle.LoadAsset<GameObject>("SFX_Cat_Tame_CD");
 			SFXCatBirth = PetsBundle.LoadAsset<GameObject>("SFX_Cat_Birth_CD");
+
+			SFXDogHit = PetsBundle.LoadAsset<GameObject>("SFX_Dog_Hit_CD");
+			SFXDogGetHit = PetsBundle.LoadAsset<GameObject>("SFX_Dog_GetHit_CD");
+			SFXDogAlert = PetsBundle.LoadAsset<GameObject>("SFX_Dog_Alert_CD");
+			SFXDogIdle = PetsBundle.LoadAsset<GameObject>("SFX_Dog_Idle_CD");
+			SFXDogDeath = PetsBundle.LoadAsset<GameObject>("SFX_Dog_Die_CD");
+			SFXDogPet = PetsBundle.LoadAsset<GameObject>("SFX_Dog_Pet_CD");
+			SFXDogSoothe = PetsBundle.LoadAsset<GameObject>("SFX_Dog_Soothe_CD");
+			SFXDogTame = PetsBundle.LoadAsset<GameObject>("SFX_Dog_Tame_CD");
+			SFXDogBirth = PetsBundle.LoadAsset<GameObject>("SFX_Dog_Birth_CD");
+
 			CustomPrefab sfx1 = new CustomPrefab(SFXCatHit, false);
 			PrefabManager.Instance.AddPrefab(sfx1);
 			CustomPrefab sfx2 = new CustomPrefab(SFXCatGetHit, false);
@@ -105,6 +136,25 @@ namespace CatsAndDogs
 			CustomPrefab sfx9 = new CustomPrefab(SFXCatBirth, false);
 			PrefabManager.Instance.AddPrefab(sfx9);
 
+			CustomPrefab sfx10 = new CustomPrefab(SFXDogHit, false);
+			PrefabManager.Instance.AddPrefab(sfx10);
+			CustomPrefab sfx11 = new CustomPrefab(SFXDogGetHit, false);
+			PrefabManager.Instance.AddPrefab(sfx11);
+			CustomPrefab sfx12 = new CustomPrefab(SFXDogAlert, false);
+			PrefabManager.Instance.AddPrefab(sfx12);
+			CustomPrefab sfx13 = new CustomPrefab(SFXDogIdle, false);
+			PrefabManager.Instance.AddPrefab(sfx13);
+			CustomPrefab sfx14 = new CustomPrefab(SFXDogDeath, false);
+			PrefabManager.Instance.AddPrefab(sfx14);
+			CustomPrefab sfx15 = new CustomPrefab(SFXDogPet, false);
+			PrefabManager.Instance.AddPrefab(sfx15);
+			CustomPrefab sfx16 = new CustomPrefab(SFXDogSoothe, false);
+			PrefabManager.Instance.AddPrefab(sfx16);
+			CustomPrefab sfx17 = new CustomPrefab(SFXDogTame, false);
+			PrefabManager.Instance.AddPrefab(sfx17);
+			CustomPrefab sfx18 = new CustomPrefab(SFXDogBirth, false);
+			PrefabManager.Instance.AddPrefab(sfx18);
+
 			GameObject VFXGetHit = PetsBundle.LoadAsset<GameObject>("VFX_Blood_Hit_CD");
 			GameObject VFXDeath = PetsBundle.LoadAsset<GameObject>("VFX_Animal_Death_CD");
 			GameObject VFXPoof = PetsBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_CD");
@@ -115,52 +165,55 @@ namespace CatsAndDogs
 			GameObject attack1 = CatBite;
 			CustomPrefab catbite1 = new CustomPrefab(attack1, true);
 			PrefabManager.Instance.AddPrefab(catbite1);
+			GameObject attack2 = DogBite;
+			CustomPrefab dogbite1 = new CustomPrefab(attack2, true);
+			PrefabManager.Instance.AddPrefab(dogbite1);
 		}
 		private void AddNewAnimals()
 		{
-			GameObject animal21 = Cat1;
-			CustomPrefab pet1 = new CustomPrefab(animal21, true);
+			GameObject animal1 = Cat1;
+			CustomPrefab pet1 = new CustomPrefab(animal1, true);
 			PrefabManager.Instance.AddPrefab(pet1);
-			GameObject animal22 = Cat2;
-			CustomPrefab pet2 = new CustomPrefab(animal22, true);
+			GameObject animal2 = Cat2;
+			CustomPrefab pet2 = new CustomPrefab(animal2, true);
 			PrefabManager.Instance.AddPrefab(pet2);
-			GameObject animal23 = Cat3;
-			CustomPrefab pet3 = new CustomPrefab(animal23, true);
+			GameObject animal3 = Cat3;
+			CustomPrefab pet3 = new CustomPrefab(animal3, true);
 			PrefabManager.Instance.AddPrefab(pet3);
-			GameObject animal24 = Kitten1;
-			CustomPrefab pet4 = new CustomPrefab(animal24, true);
+			GameObject animal4 = Kitten1;
+			CustomPrefab pet4 = new CustomPrefab(animal4, true);
 			PrefabManager.Instance.AddPrefab(pet4);
-			GameObject animal25 = Kitten2;
-			CustomPrefab pet5 = new CustomPrefab(animal25, true);
+			GameObject animal5 = Kitten2;
+			CustomPrefab pet5 = new CustomPrefab(animal5, true);
 			PrefabManager.Instance.AddPrefab(pet5);
-			GameObject animal26 = Kitten3;
-			CustomPrefab pet6 = new CustomPrefab(animal26, true);
+			GameObject animal6 = Kitten3;
+			CustomPrefab pet6 = new CustomPrefab(animal6, true);
 			PrefabManager.Instance.AddPrefab(pet6);
+			GameObject animal7 = Dog1;
+			CustomPrefab pet7 = new CustomPrefab(animal7, true);
+			PrefabManager.Instance.AddPrefab(pet7);
+			GameObject animal8 = Dog2;
+			CustomPrefab pet8 = new CustomPrefab(animal8, true);
+			PrefabManager.Instance.AddPrefab(pet8);
+			GameObject animal9 = Dog3;
+			CustomPrefab pet9 = new CustomPrefab(animal9, true);
+			PrefabManager.Instance.AddPrefab(pet9);
+			GameObject animal10 = Dog4;
+			CustomPrefab pet10 = new CustomPrefab(animal10, true);
+			PrefabManager.Instance.AddPrefab(pet10);
 		}
 		private void FixSFX()
 		{
-			Debug.Log("CnD SFX Fix: Start");
-			AudioSource prefab1 = PrefabManager.Cache.GetPrefab<AudioSource>("SFX_Cat_Hit_CD");
-			AudioSource prefab2 = PrefabManager.Cache.GetPrefab<AudioSource>("SFX_Cat_GetHit_CD");
-			AudioSource prefab3 = PrefabManager.Cache.GetPrefab<AudioSource>("SFX_Cat_Alert_CD");
-			AudioSource prefab4 = PrefabManager.Cache.GetPrefab<AudioSource>("SFX_Cat_Idle_CD");
-			AudioSource prefab5 = PrefabManager.Cache.GetPrefab<AudioSource>("SFX_Cat_Die_CD");
-			AudioSource prefab6 = PrefabManager.Cache.GetPrefab<AudioSource>("SFX_Cat_Pet_CD");
-			AudioSource prefab7 = PrefabManager.Cache.GetPrefab<AudioSource>("SFX_Cat_Soothe_CD");
-			AudioSource prefab8 = PrefabManager.Cache.GetPrefab<AudioSource>("SFX_Cat_Tame_CD");
-			AudioSource prefab9 = PrefabManager.Cache.GetPrefab<AudioSource>("SFX_Cat_Birth_CD");
-			Debug.Log("CnD SFX Fix: Find Mixer");
-			var ambientGroup = AudioMan.instance.m_ambientMixer;
-			Debug.Log("CnD SFX Fix: Set Mixer");
-			prefab1.outputAudioMixerGroup = ambientGroup;
-			prefab2.outputAudioMixerGroup = ambientGroup;
-			prefab3.outputAudioMixerGroup = ambientGroup;
-			prefab4.outputAudioMixerGroup = ambientGroup;
-			prefab5.outputAudioMixerGroup = ambientGroup;
-			prefab6.outputAudioMixerGroup = ambientGroup;
-			prefab7.outputAudioMixerGroup = ambientGroup;
-			prefab8.outputAudioMixerGroup = ambientGroup;
-			prefab9.outputAudioMixerGroup = ambientGroup;
+			GameObject sfxfab1 = ZNetScene.instance.GetPrefab("SFX_Cat_Hit_CD");
+			try
+			{
+				sfxfab1.GetComponent<AudioSource>().outputAudioMixerGroup =
+					AudioMan.instance.m_ambientMixer;
+			}
+			catch
+			{
+				Debug.LogWarning("CatsAndDogs: SFX Fix Failed");
+			}
 		}
 		private void UnloadBundle()
 		{

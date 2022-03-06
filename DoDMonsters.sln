@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatsAndDogs", "CatsAndDogs\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyCreatures", "FantasyCreatures\FantasyCreatures.csproj", "{94817582-02D9-45C5-9BF2-6647733FACE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoDNPCBosses", "DoDNPCBosses\DoDNPCBosses.csproj", "{9A55E7AC-3CFD-4087-B909-7A6C9B4D3259}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoDItems", "DoDItems\DoDItems.csproj", "{04633DA0-EDC9-429F-AA97-E2314F7F7038}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,14 @@ Global
 		{94817582-02D9-45C5-9BF2-6647733FACE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94817582-02D9-45C5-9BF2-6647733FACE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94817582-02D9-45C5-9BF2-6647733FACE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A55E7AC-3CFD-4087-B909-7A6C9B4D3259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A55E7AC-3CFD-4087-B909-7A6C9B4D3259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A55E7AC-3CFD-4087-B909-7A6C9B4D3259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A55E7AC-3CFD-4087-B909-7A6C9B4D3259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04633DA0-EDC9-429F-AA97-E2314F7F7038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04633DA0-EDC9-429F-AA97-E2314F7F7038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04633DA0-EDC9-429F-AA97-E2314F7F7038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04633DA0-EDC9-429F-AA97-E2314F7F7038}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

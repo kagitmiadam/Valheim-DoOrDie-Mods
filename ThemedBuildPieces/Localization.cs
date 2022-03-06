@@ -13,6 +13,24 @@ namespace ThemedBuildPieces
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+								{ "piece_stonehouse_tp", "Stone House" },
+
+								{ "piece_stonepillar_tp", "Stone Pillar" },
+								{ "piece_roundwalls_tp", "Small Stone Tower Wall" },
+								{ "piece_roundwall_tp", "Stone Tower Wall" },
+								{ "piece_roundfloorle4_tp", "Stone Tower Floor Q4" },
+								{ "piece_roundfloorle3_tp", "Stone Tower Floor Q3" },
+								{ "piece_roundfloorle2_tp", "Stone Tower Floor Q2" },
+								{ "piece_roundfloorle1_tp", "Stone Tower Floor Q1" },
+								{ "piece_roundfloors4_tp", "Small Stone Tower Floor Q4" },
+								{ "piece_roundfloors3_tp", "Small Stone Tower Floor Q3" },
+								{ "piece_roundfloors2_tp", "Small Stone Tower Floor Q2" },
+								{ "piece_roundfloors1_tp", "Small Stone Tower Floor Q1" },
+								{ "piece_roundstairs_tp", "Stone Tower Stairs" },
+								{ "piece_roundbase_tp", "Stone Tower Base" },
+								{ "piece_roundwindowws_tp", "Stone Tower Glass Window" },
+								{ "piece_roundwindowwm_tp", "Stone Tower Window" },
+
 								{ "item_tbphammer_tp", "Themed Hammer" },
 								{ "item_tbphammer_description_tp", "Required for the construction of themed building pieces" },
 
@@ -54,6 +72,24 @@ namespace ThemedBuildPieces
 								{ "piece_wallside45_tp", "Side Wall 45" }
 		};
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
+
+								{ "piece_stonehouse_tp", "Stone House" },
+
+								{ "piece_stonepillar_tp", "Stone Pillar" },
+								{ "piece_roundwalls_tp", "Small Stone Tower Wall" },
+								{ "piece_roundwall_tp", "Stone Tower Wall" },
+								{ "piece_roundfloorle4_tp", "Stone Tower Floor Q4" },
+								{ "piece_roundfloorle3_tp", "Stone Tower Floor Q3" },
+								{ "piece_roundfloorle2_tp", "Stone Tower Floor Q2" },
+								{ "piece_roundfloorle1_tp", "Stone Tower Floor Q1" },
+								{ "piece_roundfloors4_tp", "Small Stone Tower Floor Q4" },
+								{ "piece_roundfloors3_tp", "Small Stone Tower Floor Q3" },
+								{ "piece_roundfloors2_tp", "Small Stone Tower Floor Q2" },
+								{ "piece_roundfloors1_tp", "Small Stone Tower Floor Q1" },
+								{ "piece_roundstairs_tp", "Stone Tower Stairs" },
+								{ "piece_roundbase_tp", "Stone Tower Base" },
+								{ "piece_roundwindowws_tp", "Stone Tower Glass Window" },
+								{ "piece_roundwindowwm_tp", "Stone Tower Window" },
 
 								{ "item_tbphammer_tp", "Themed Hammer" },
 								{ "item_tbphammer_description_tp", "Required for the construction of themed building pieces" },

@@ -13,7 +13,6 @@ namespace FantasyCreatures
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
-			{"enemy_harpy_fc", "Harpy"},
 			{"enemy_demonlord_dod", "Demon Lord"},
 			{"enemy_fireelemental_dod", "Fire Elemental"},
 			{"enemy_iceelemental_dod", "Ice Elemental"},
@@ -21,7 +20,6 @@ namespace FantasyCreatures
 			{"enemy_elemental_dod", "Elemental"},
 			{"enemy_manticore_fc", "Manticore"},
 			{"enemy_cyclops_dod", "Cyclops"},
-			{"enemy_griffin_fc", "Griffin"},
 			{"enemy_ogre_dod", "Ogre"},
 			{"enemy_ghoul_fc", "Ghoul"},
 			{"enemy_mummy_fc", "Mummy"},
@@ -30,6 +28,8 @@ namespace FantasyCreatures
 			{"enemy_giantviper_fc", "Giant Viper"},
 			{"enemy_kobold_dod", "Kobold"},
 			// Unfinished
+			{"enemy_harpy_fc", "Harpy"},
+			{"enemy_griffin_fc", "Griffin"},
 			{"enemy_beholder_dod", "Beholder"},
 			{"enemy_hydra_dod", "Hydra"},
 			{"enemy_dragon_dod", "Dragon"},

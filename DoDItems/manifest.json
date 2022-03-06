@@ -1,0 +1,7 @@
+{
+    "name": "DoOrDieMonsters",
+    "version_number": "0.4.3",
+    "website_url": "https://discord.gg/7BcEZXhRbV",
+    "description": "Adds vanilla monster re-skins and abilities, crafting materials and items. Read the description. Resistance is futile...",
+    "dependencies": [ "ValheimModding-Jotunn-2.4.1" ]
+}

@@ -25,9 +25,10 @@ namespace InstancedVillages
 
         public const string PluginName = "InstancedVillages";
 
-        public const string PluginVersion = "0.0.1";
+        public const string PluginVersion = "0.0.3";
 
-        public AssetBundle IVAssets;
+		private Harmony _harmony;
+		public AssetBundle IVAssets;
         public static AssetBundle GetAssetBundleFromResources(string fileName)
         {
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -38,9 +39,16 @@ namespace InstancedVillages
         private void Awake()
         {
             Debug.Log("Instanced Villages: Loading and Creating Assets");
-            LoadBundle();
+			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.ThemedBuildPieces");
+			LoadBundle();
+			CreateStonePremades();
+			CreateThatchPremades();
+			CreateOakPremades();
+			CreatePinePremades();
+			CreateGreyPremades();
+			CreateWornPremades();
             LoadIVAssets();
-            ZoneManager.OnVanillaLocationsAvailable += AddLocations;
+			ZoneManager.OnVanillaLocationsAvailable += AddLocations;
         }
         public void LoadBundle()
         {
@@ -110,6 +118,744 @@ namespace InstancedVillages
                 ZoneManager.OnVanillaLocationsAvailable -= AddLocations;
                 IVAssets.Unload(false);
             }
-        }
-    }
+		}
+		private void CreateStonePremades()
+		{
+			Debug.Log("TBP House: 1");
+			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_A");
+			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse1);
+			Debug.Log("TBP House: 2");
+			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_B");
+			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse2);
+			Debug.Log("TBP House: 3");
+			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_C");
+			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse3);
+			Debug.Log("TBP House: 4");
+			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_D");
+			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse4);
+			Debug.Log("TBP House: 5");
+			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_E");
+			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse5);
+		}
+		private void CreateThatchPremades()
+		{
+			Debug.Log("TBP House: 1");
+			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_ThatchHouse_A");
+			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse1);
+			Debug.Log("TBP House: 2");
+			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_ThatchHouse_B");
+			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse2);
+			Debug.Log("TBP House: 3");
+			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_ThatchHouse_C");
+			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse3);
+			Debug.Log("TBP House: 4");
+			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_ThatchHouse_D");
+			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse4);
+			Debug.Log("TBP House: 5");
+			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_ThatchHouse_E");
+			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse5);
+		}
+		private void CreateOakPremades()
+		{
+			Debug.Log("TBP House: 1");
+			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_OakHouse_A");
+			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse1);
+			Debug.Log("TBP House: 2");
+			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_OakHouse_B");
+			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse2);
+			Debug.Log("TBP House: 3");
+			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_OakHouse_C");
+			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse3);
+			Debug.Log("TBP House: 4");
+			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_OakHouse_D");
+			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse4);
+			Debug.Log("TBP House: 5");
+			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_OakHouse_E");
+			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse5);
+		}
+		private void CreatePinePremades()
+		{
+			Debug.Log("TBP House: 1");
+			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_PineHouse_A");
+			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse1);
+			Debug.Log("TBP House: 2");
+			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_PineHouse_B");
+			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse2);
+			Debug.Log("TBP House: 3");
+			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_PineHouse_C");
+			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse3);
+			Debug.Log("TBP House: 4");
+			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_PineHouse_D");
+			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse4);
+			Debug.Log("TBP House: 5");
+			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_PineHouse_E");
+			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse5);
+		}
+		private void CreateGreyPremades()
+		{
+			Debug.Log("TBP House: 1");
+			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_GreyHouse_A");
+			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse1);
+			Debug.Log("TBP House: 2");
+			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_GreyHouse_B");
+			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse2);
+			Debug.Log("TBP House: 3");
+			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_GreyHouse_C");
+			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse3);
+			Debug.Log("TBP House: 4");
+			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_GreyHouse_D");
+			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse4);
+			Debug.Log("TBP House: 5");
+			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_GreyHouse_E");
+			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse5);
+		}
+		private void CreateWornPremades()
+		{
+			Debug.Log("TBP House: 1");
+			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_WornHouse_A");
+			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse1);
+			Debug.Log("TBP House: 2");
+			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_WornHouse_B");
+			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse2);
+			Debug.Log("TBP House: 3");
+			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_WornHouse_C");
+			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse3);
+			Debug.Log("TBP House: 4");
+			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_WornHouse_D");
+			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse4);
+			Debug.Log("TBP House: 5");
+			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_WornHouse_E");
+			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Cosmetic Buildings",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 1,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 1,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customHouse5);
+		}
+	}
 }

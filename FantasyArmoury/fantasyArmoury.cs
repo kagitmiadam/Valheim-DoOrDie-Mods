@@ -25,10 +25,9 @@ namespace FantasyArmoury
 
         public const string PluginName = "FantasyArmoury";
 
-        public const string PluginVersion = "0.0.1";
+        public const string PluginVersion = "0.0.4";
 
         private Harmony _harmony;
-
         public AssetBundle FAAssets;
         public static AssetBundle GetAssetBundleFromResources(string fileName)
         {
@@ -40,9 +39,9 @@ namespace FantasyArmoury
         private void Awake()
         {
             Debug.Log("FantasyArmoury: Loading and Creating Assets");
+            _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.FantasyArmoury");
             LoadBundle();
             LoadFAAssets();
-            _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.FantasyArmoury");
         }
         public void LoadBundle()
         {
@@ -53,7 +52,7 @@ namespace FantasyArmoury
             GameObject shield8 = FAAssets.LoadAsset<GameObject>("Shield_09_FA");
             CustomItem tower8 = new CustomItem(shield8, true, new ItemConfig
             {
-                Name = "Peacekeeper Warden",
+                //Name = "$item_shield_09_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -89,7 +88,7 @@ namespace FantasyArmoury
             GameObject shield7 = FAAssets.LoadAsset<GameObject>("Shield_08_FA");
             CustomItem tower7 = new CustomItem(shield7, true, new ItemConfig
             {
-                Name = "Venom Greatshield",
+                //Name = "$item_shield_08_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -125,7 +124,7 @@ namespace FantasyArmoury
             GameObject shield6 = FAAssets.LoadAsset<GameObject>("Shield_07_FA");
             CustomItem tower6 = new CustomItem(shield6, true, new ItemConfig
             {
-                Name = "Thirsty Skeletal Blockade",
+                //Name = "$item_shield_07_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -161,7 +160,7 @@ namespace FantasyArmoury
             GameObject shield5 = FAAssets.LoadAsset<GameObject>("Shield_06_FA");
             CustomItem tower5 = new CustomItem(shield5, true, new ItemConfig
             {
-                Name = "Legionnaire's Carapace",
+                //Name = "$item_shield_06_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -197,7 +196,7 @@ namespace FantasyArmoury
             GameObject shield4 = FAAssets.LoadAsset<GameObject>("Shield_05_FA");
             CustomItem tower4 = new CustomItem(shield4, true, new ItemConfig
             {
-                Name = "Desire's Willow Keeper",
+                //Name = "$item_shield_05_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -233,7 +232,7 @@ namespace FantasyArmoury
             GameObject shield3 = FAAssets.LoadAsset<GameObject>("Shield_04_FA");
             CustomItem tower3 = new CustomItem(shield3, true, new ItemConfig
             {
-                Name = "Lusting Warden",
+                //Name = "$item_shield_04_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -269,7 +268,7 @@ namespace FantasyArmoury
             GameObject shield2 = FAAssets.LoadAsset<GameObject>("Shield_03_FA");
             CustomItem tower2 = new CustomItem(shield2, true, new ItemConfig
             {
-                Name = "Blood Infused Greatshield",
+                //Name = "$item_shield_03_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -305,7 +304,7 @@ namespace FantasyArmoury
             GameObject shield1 = FAAssets.LoadAsset<GameObject>("Shield_02_FA");
             CustomItem tower1 = new CustomItem(shield1, true, new ItemConfig
             {
-                Name = "Defiled Shield Wall",
+                //Name = "$item_shield_02_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -341,7 +340,7 @@ namespace FantasyArmoury
             GameObject shield0 = FAAssets.LoadAsset<GameObject>("Shield_01_FA");
             CustomItem tower0 = new CustomItem(shield0, true, new ItemConfig
             {
-                Name = "Sorrow's Guardian",
+                //Name = "$item_shield_01_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -377,7 +376,7 @@ namespace FantasyArmoury
             GameObject weapon0 = FAAssets.LoadAsset<GameObject>("Axe_1H_07_FA");
             CustomItem axe0 = new CustomItem(weapon0, true, new ItemConfig
             {
-                Name = "Hope's Ravager",
+                //Name = "$item_axe_1H_07_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -414,7 +413,7 @@ namespace FantasyArmoury
             GameObject weapon1 = FAAssets.LoadAsset<GameObject>("Axe2H_01_FA");
             CustomItem axe1 = new CustomItem(weapon1, true, new ItemConfig
             {
-                Name = "Dire Axe",
+                //Name = "$item_axe2H_01_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -450,7 +449,7 @@ namespace FantasyArmoury
             GameObject weapon2 = FAAssets.LoadAsset<GameObject>("Axe2H_02_FA");
             CustomItem axe2 = new CustomItem(weapon2, true, new ItemConfig
             {
-                Name = "Broken Promise",
+                //Name = "$item_axe2H_02_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -486,7 +485,7 @@ namespace FantasyArmoury
             GameObject weapon3 = FAAssets.LoadAsset<GameObject>("Axe2H_03_FA");
             CustomItem axe3 = new CustomItem(weapon3, true, new ItemConfig
             {
-                Name = "Scourgeborne",
+                //Name = "$item_axe2H_03_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -522,7 +521,7 @@ namespace FantasyArmoury
             GameObject weapon4 = FAAssets.LoadAsset<GameObject>("Axe2H_04_FA");
             CustomItem axe4 = new CustomItem(weapon4, true, new ItemConfig
             {
-                Name = "Narcoleptic",
+                //Name = "$item_axe2H_04_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -558,7 +557,7 @@ namespace FantasyArmoury
             GameObject weapon5 = FAAssets.LoadAsset<GameObject>("Axe2H_05_FA");
             CustomItem axe5 = new CustomItem(weapon5, true, new ItemConfig
             {
-                Name = "Spinefall",
+                //Name = "$item_axe2H_05_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -594,7 +593,7 @@ namespace FantasyArmoury
             GameObject weapon6 = FAAssets.LoadAsset<GameObject>("Axe2H_06_FA");
             CustomItem axe6 = new CustomItem(weapon6, true, new ItemConfig
             {
-                Name = "Soul Breaker",
+                //Name = "$item_axe2H_06_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -631,7 +630,7 @@ namespace FantasyArmoury
             GameObject weapon7 = FAAssets.LoadAsset<GameObject>("Hammer_2H_01_FA");
             CustomItem hammer1 = new CustomItem(weapon7, true, new ItemConfig
             {
-                Name = "Blackout",
+                //Name = "$item_hammer_2H_01_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -667,7 +666,7 @@ namespace FantasyArmoury
             GameObject weapon8 = FAAssets.LoadAsset<GameObject>("Hammer_2H_02_FA");
             CustomItem hammer2 = new CustomItem(weapon8, true, new ItemConfig
             {
-                Name = "Willbreaker",
+                //Name = "$item_hammer_2H_02_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -703,7 +702,7 @@ namespace FantasyArmoury
             GameObject weapon9 = FAAssets.LoadAsset<GameObject>("Hammer_2H_03_FA");
             CustomItem hammer3 = new CustomItem(weapon9, true, new ItemConfig
             {
-                Name = "Reckoning",
+                //Name = "$item_hammer_2H_03_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -740,7 +739,7 @@ namespace FantasyArmoury
             GameObject weapon10 = FAAssets.LoadAsset<GameObject>("Sword_2H_01_FA");
             CustomItem sword1 = new CustomItem(weapon10, true, new ItemConfig
             {
-                Name = "Faithkeeper",
+                //Name = "$item_sword_2H_01_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -776,7 +775,7 @@ namespace FantasyArmoury
             GameObject weapon11 = FAAssets.LoadAsset<GameObject>("Sword_2H_02_FA");
             CustomItem sword2 = new CustomItem(weapon11, true, new ItemConfig
             {
-                Name = "Purifier",
+                //Name = "$item_sword_2H_02_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -812,7 +811,7 @@ namespace FantasyArmoury
             GameObject weapon12 = FAAssets.LoadAsset<GameObject>("Sword_2H_03_FA");
             CustomItem sword3 = new CustomItem(weapon12, true, new ItemConfig
             {
-                Name = "Malignant Defender",
+                //Name = "$item_sword_2H_03_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -848,7 +847,7 @@ namespace FantasyArmoury
             GameObject weapon13 = FAAssets.LoadAsset<GameObject>("Sword_2H_04_FA");
             CustomItem sword4 = new CustomItem(weapon13, true, new ItemConfig
             {
-                Name = "Vindictive Spellblade",
+                //Name = "$item_sword_2H_04_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -884,7 +883,7 @@ namespace FantasyArmoury
             GameObject weapon14 = FAAssets.LoadAsset<GameObject>("Sword_2H_05_FA");
             CustomItem sword5 = new CustomItem(weapon14, true, new ItemConfig
             {
-                Name = "Reckoning",
+                //Name = "$item_sword_2H_05_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -920,7 +919,7 @@ namespace FantasyArmoury
             GameObject weapon15 = FAAssets.LoadAsset<GameObject>("Sword_2H_06_FA");
             CustomItem sword6 = new CustomItem(weapon15, true, new ItemConfig
             {
-                Name = "Betrayer",
+                //Name = "$item_sword_2H_06_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -957,7 +956,7 @@ namespace FantasyArmoury
             GameObject weapon16 = FAAssets.LoadAsset<GameObject>("Scythe2H_01_FA");
             CustomItem scythe1 = new CustomItem(weapon16, true, new ItemConfig
             {
-                Name = "Extinction",
+                //Name = "$item_scythe2H_01_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -994,7 +993,7 @@ namespace FantasyArmoury
             GameObject weapon17 = FAAssets.LoadAsset<GameObject>("Staff_2H_01_FA");
             CustomItem staff1 = new CustomItem(weapon17, true, new ItemConfig
             {
-                Name = "Scar",
+                //Name = "$item_staff_2H_01_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1030,7 +1029,7 @@ namespace FantasyArmoury
             GameObject weapon18 = FAAssets.LoadAsset<GameObject>("Staff_2H_02_FA");
             CustomItem staff2 = new CustomItem(weapon18, true, new ItemConfig
             {
-                Name = "Fate",
+                //Name = "$item_staff_2H_02_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1066,7 +1065,7 @@ namespace FantasyArmoury
             GameObject weapon19 = FAAssets.LoadAsset<GameObject>("Staff_2H_03_FA");
             CustomItem staff3 = new CustomItem(weapon19, true, new ItemConfig
             {
-                Name = "Seism",
+                //Name = "$item_staff_2H_03_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1102,7 +1101,7 @@ namespace FantasyArmoury
             GameObject weapon20 = FAAssets.LoadAsset<GameObject>("Staff_2H_04_FA");
             CustomItem staff4 = new CustomItem(weapon20, true, new ItemConfig
             {
-                Name = "Comet",
+                //Name = "$item_staff_2H_04_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1138,7 +1137,7 @@ namespace FantasyArmoury
             GameObject weapon21 = FAAssets.LoadAsset<GameObject>("Staff_2H_05_FA");
             CustomItem staff5 = new CustomItem(weapon21, true, new ItemConfig
             {
-                Name = "Sleepwalker",
+                //Name = "$item_staff_2H_05_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1175,7 +1174,7 @@ namespace FantasyArmoury
             GameObject weapon22 = FAAssets.LoadAsset<GameObject>("Axe_1H_01_FA");
             CustomItem axe7 = new CustomItem(weapon22, true, new ItemConfig
             {
-                Name = "Remorse",
+                //Name = "$item_axe_1H_01_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1211,7 +1210,7 @@ namespace FantasyArmoury
             GameObject weapon23 = FAAssets.LoadAsset<GameObject>("Axe_1H_02_FA");
             CustomItem axe8 = new CustomItem(weapon23, true, new ItemConfig
             {
-                Name = "Celeste",
+                //Name = "$item_axe_1H_02_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1247,7 +1246,7 @@ namespace FantasyArmoury
             GameObject weapon24 = FAAssets.LoadAsset<GameObject>("Axe_1H_03_FA");
             CustomItem axe9 = new CustomItem(weapon24, true, new ItemConfig
             {
-                Name = "Nirvana",
+                //Name = "$item_axe_1H_03_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1283,7 +1282,7 @@ namespace FantasyArmoury
             GameObject weapon25 = FAAssets.LoadAsset<GameObject>("Axe_1H_04_FA");
             CustomItem axe10 = new CustomItem(weapon25, true, new ItemConfig
             {
-                Name = "Justifier",
+                //Name = "$item_axe_1H_04_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1319,7 +1318,7 @@ namespace FantasyArmoury
             GameObject weapon26 = FAAssets.LoadAsset<GameObject>("Axe_1H_05_FA");
             CustomItem axe11 = new CustomItem(weapon26, true, new ItemConfig
             {
-                Name = "Ashes",
+                //Name = "$item_axe_1H_05_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1355,7 +1354,7 @@ namespace FantasyArmoury
             GameObject weapon27 = FAAssets.LoadAsset<GameObject>("Axe_1H_06_FA");
             CustomItem axe12 = new CustomItem(weapon27, true, new ItemConfig
             {
-                Name = "Harvester",
+                //Name = "$item_axe_1H_06_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1392,7 +1391,7 @@ namespace FantasyArmoury
             GameObject weapon28 = FAAssets.LoadAsset<GameObject>("Sword_1H_01_FA");
             CustomItem sword7 = new CustomItem(weapon28, true, new ItemConfig
             {
-                Name = "Fortune's Razor",
+                //Name = "$item_sword_1H_01_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1428,7 +1427,7 @@ namespace FantasyArmoury
             GameObject weapon29 = FAAssets.LoadAsset<GameObject>("Sword_1H_02_FA");
             CustomItem sword8 = new CustomItem(weapon29, true, new ItemConfig
             {
-                Name = "Ritual Reaver",
+                //Name = "$item_sword_1H_02_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1464,7 +1463,7 @@ namespace FantasyArmoury
             GameObject weapon30 = FAAssets.LoadAsset<GameObject>("Sword_1H_03_FA");
             CustomItem sword9 = new CustomItem(weapon30, true, new ItemConfig
             {
-                Name = "Sharpened Spellblade",
+                //Name = "$item_sword_1H_03_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1500,7 +1499,7 @@ namespace FantasyArmoury
             GameObject weapon31 = FAAssets.LoadAsset<GameObject>("Sword_1H_04_FA");
             CustomItem sword10 = new CustomItem(weapon31, true, new ItemConfig
             {
-                Name = "Divine Light",
+                //Name = "$item_sword_1H_04_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1536,7 +1535,7 @@ namespace FantasyArmoury
             GameObject weapon32 = FAAssets.LoadAsset<GameObject>("Sword_1H_05_FA");
             CustomItem sword11 = new CustomItem(weapon32, true, new ItemConfig
             {
-                Name = "Lusting Silver Slicer",
+                //Name = "$item_sword_1H_05_fa",
                 Amount = 1,
                 CraftingStation = "forge",
                 MinStationLevel = 1,
@@ -1570,6 +1569,11 @@ namespace FantasyArmoury
             });
             ItemManager.Instance.AddItem(sword11);
             FAAssets.Unload(false);
+        }
+        private void AddRecipesFromJSON()
+        {
+            // Load recipes from JSON file
+            ItemManager.Instance.AddRecipesFromJson("Horem-FantasyArmoury/Assets/fa_recipes.json");
         }
     }
 }
