@@ -25,7 +25,7 @@ namespace FantasyArmoury
 
         public const string PluginName = "FantasyArmoury";
 
-        public const string PluginVersion = "0.0.4";
+        public const string PluginVersion = "0.0.5";
 
         private Harmony _harmony;
         public AssetBundle FAAssets;
