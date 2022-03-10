@@ -34,6 +34,17 @@ namespace CatsAndDogs
 			{"animal_cat_kit_cd", "Kitten"}
 
 			};
+		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
+
+			{"animal_pug_cd", "Pug"},
+			{"animal_hound_cd", "Tazı"},
+			{"animal_celtic_cd", "Kurt Tazısı"},
+			{"animal_corso_cd", "Cane Corso"},
+			{"animal_beagle_cd", "Av Köpeği"},
+			{"animal_cat_cd", "Kedi"},
+			{"animal_cat_kit_cd", "Yavru Kedi"}
+
+		};
 
 		public static void init(string lang, Localization l)
 		{
@@ -45,6 +56,10 @@ namespace CatsAndDogs
 			else if (lang == "English")
 			{
 				t = english;
+			}
+			else if (lang == "Turkish")
+			{
+				t = turkish;
 			}
 			else
 			{

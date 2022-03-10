@@ -70,6 +70,31 @@ namespace FantasyCreatures
 			{"enemy_demonlord_dod", "Demon Lord"},
 
 			};
+		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
+
+			{"enemy_demonlord_dod", "Şeytan Lordu"},
+			{"enemy_fireelemental_dod", "Ateş Elementali"},
+			{"enemy_iceelemental_dod", "Ayaz Elemanteli"},
+			{"enemy_darknessspider_fc", "Dev Örümcek"},
+			{"enemy_elemental_dod", "Elemental"},
+			{"enemy_manticore_fc", "Mantikor"},
+			{"enemy_cyclops_dod", "Tepegöz"},
+			{"enemy_ogre_dod", "Ogre"},
+			{"enemy_ghoul_fc", "Hortlak"},
+			{"enemy_mummy_fc", "Mumya"},
+			{"enemy_treeent_dod", "Ent"},
+			{"enemy_hobgoblin_dod", "İfrit"},
+			{"enemy_giantviper_fc", "Dev Engerek"},
+			{"enemy_kobold_dod", "Kobold"},
+			// Unfinished
+			{"enemy_harpy_fc", "Harpi"},
+			{"enemy_griffin_fc", "Griffin"},
+			{"enemy_beholder_dod", "Beholder"},
+			{"enemy_hydra_dod", "Hidra"},
+			{"enemy_dragon_dod", "Ejderha"},
+			{"enemy_lizard_dod", "Kertenkele Adam"},
+
+		};
 
 		public static void init(string lang, Localization l)
 		{
@@ -81,6 +106,10 @@ namespace FantasyCreatures
 			else if (lang == "English")
 			{
 				t = english;
+			}
+			else if (lang == "Turkish")
+			{
+				t = turkish;
 			}
 			else
 			{

@@ -31,6 +31,16 @@ namespace InstancedVillages
 								{ "piece_pinehouse_tp", "Pine Wood House" }
 
 		};
+		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
+
+								{ "piece_stonehouse_tp", "Taş Ev" },
+								{ "piece_greyhouse_tp", "Gri Ahşap Ev" },
+								{ "piece_oakhouse_tp", "Meşe Ahşap Ev" },
+								{ "piece_thatchhouse_tp", "Kara Ahşap Ev" },
+								{ "piece_wornhouse_tp", "Yıpranmış Tudor Evi" },
+								{ "piece_pinehouse_tp", "Çam Ahşap Ev" }
+
+		};
 
 		public static void init(string lang, Localization l)
 		{
@@ -38,6 +48,10 @@ namespace InstancedVillages
 			if (lang == "Russian")
 			{
 				t = russian;
+			}
+			if (lang == "Turkish")
+			{
+				t = turkish;
 			}
 			else
 			{
