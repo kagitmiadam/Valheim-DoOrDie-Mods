@@ -13,7 +13,7 @@ namespace Stronghold
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
-								{ "piece_towerdoor_sh", "Door" },
+								{ "piece_towerdoorr_sh", "Door" },
 								{ "piece_outerwallcovcap_sh", "Outer Wall - Covered, Capped" },
 								{ "piece_outerwallcov_sh", "Outer Wall - Covered" },
 								{ "piece_outerwallcap_sh", "Outer Wall - Capped" },

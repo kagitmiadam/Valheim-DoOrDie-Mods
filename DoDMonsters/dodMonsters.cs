@@ -228,7 +228,7 @@ namespace DoDMonsters
 			{
 				IsAdminOnly = true
 			}));
-			BuildablesEnable = base.Config.Bind("Buildables", "Enable", defaultValue: true, new ConfigDescription("Enables Anvils and Rugs", null, new ConfigurationManagerAttributes
+			BuildablesEnable = base.Config.Bind("Buildables", "Enable", defaultValue: true, new ConfigDescription("Enables Rugs", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
 			}));
