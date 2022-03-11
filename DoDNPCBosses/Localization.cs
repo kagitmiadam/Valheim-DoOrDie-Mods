@@ -92,6 +92,33 @@ namespace DoDNPCs
 			{"npc_skugga_dod", "Skugga"}
 
 			};
+		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
+
+			{"boss_meadows_ashvexx", "Ash Vexx"},
+			{"boss_meadows_cindermortem", "Kül Ölüm"},
+			{"boss_meadows_lincolnhunt", "Avcı Lincoln"},
+			{"boss_meadows_dravennox", "Draven Nox"},
+			{"boss_meadows_lazarusdeamonne", "Lazarus Deamonne"},
+			{"boss_meadows_sceledrusshadowend", "Sceledrus Songölge"},
+			{"boss_meadows_mathianserphent", "Mathian Serphent"},
+			{"boss_meadows_echoblack", "Karanlık Yankı"},
+			{"boss_meadows_firionwinter", "Ateş Kışı"},
+			{"boss_meadows_luxfrost", "Ayaz Lux"},
+			{"boss_meadows_jaydenshadowmend", "Jayden Gölgetamir"},
+			{"boss_meadows_crisenthshadowsoul", "Crisenth Gölgeruh"},
+			{"boss_meadows_lazarusautumn", "Bahar Lazarus"},
+			{"boss_meadows_grailthornheart", "Grail Dikenlikalp"},
+			{"boss_meadows_zaineevilian", "Zaine Evilian"},
+			{"boss_meadows_upirgrim", "Upir Grim"},
+			{"npc_einherjar_dod", "Einherjar"},
+			{"npc_graywolf_dod", "Gri Kurt"},
+			{"npc_njord_dod", "Njord"},
+			{"npc_nomad_dod", "Nomad"},
+			{"npc_vidar_dod", "Vidar"},
+			{"npc_skugga_young_dod", "Youngling"},
+			{"npc_skugga_dod", "Skugga"}
+
+		};
 
 		public static void init(string lang, Localization l)
 		{
@@ -103,6 +130,10 @@ namespace DoDNPCs
 			else if (lang == "English")
 			{
 				t = english;
+			}
+			else if (lang == "Turkish")
+			{
+				t = turkish;
 			}
 			else
 			{
