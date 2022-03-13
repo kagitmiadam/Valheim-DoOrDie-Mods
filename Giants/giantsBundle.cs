@@ -198,7 +198,7 @@ namespace Giants
 								MinAmount = 23,
 								MaxAmount = 78,
 								Chance = 100
-							},
+							}/*,
 							new DropConfig
 							{
 								Item = "SilverNecklace",
@@ -219,7 +219,7 @@ namespace Giants
 								MinAmount = 1,
 								MaxAmount = 3,
 								Chance = 5
-							}
+							}*/
 						}
 					});
 				CreatureManager.Instance.AddCreature(JotunnMob);
