@@ -37,6 +37,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stronghold", "Stronghold\St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstancedVillages2k", "InstancedVillage2k\InstancedVillages2k.csproj", "{23E8A4A0-D073-4C37-B187-2B5E2EC99868}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FarmyardAnimals", "FarmyardAnimals\FarmyardAnimals.csproj", "{7BA936CC-9CA2-4507-A8D2-95CF6832E419}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Giants", "Giants\Giants.csproj", "{93B38300-D100-41CF-9AF8-FC94A4313C21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +115,14 @@ Global
 		{23E8A4A0-D073-4C37-B187-2B5E2EC99868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23E8A4A0-D073-4C37-B187-2B5E2EC99868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23E8A4A0-D073-4C37-B187-2B5E2EC99868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BA936CC-9CA2-4507-A8D2-95CF6832E419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA936CC-9CA2-4507-A8D2-95CF6832E419}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA936CC-9CA2-4507-A8D2-95CF6832E419}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA936CC-9CA2-4507-A8D2-95CF6832E419}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93B38300-D100-41CF-9AF8-FC94A4313C21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93B38300-D100-41CF-9AF8-FC94A4313C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93B38300-D100-41CF-9AF8-FC94A4313C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93B38300-D100-41CF-9AF8-FC94A4313C21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

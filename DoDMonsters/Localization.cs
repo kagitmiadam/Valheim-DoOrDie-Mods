@@ -240,7 +240,7 @@ namespace DoDMonsters
 			{"item_trophy_gsurtling_dod", "Großer Surtlingkopf"},
 			{"item_trophy_gsurtling_description", "Eine Trophäe, häng sie an deine Wand"}
 		};
-        private static Dictionary<string, string> english = new Dictionary<string, string>() {
+        private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
 
 			{"Bhygshan", "Bhygshan"},
 			{"Bitterstump", "Bitterstump"},

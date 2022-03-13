@@ -176,7 +176,7 @@ namespace FantasyCreatures
 			{
 				try
 				{
-					SpawnerConfigurationManager.OnConfigure += ConfigureUnderworldSpawners;
+					SpawnerConfigurationManager.OnConfigure += ConfigureBiomeSpawners;
 				}
 				catch (Exception e)
 				{

@@ -26,7 +26,7 @@ namespace DoOrDieBiomes
 
 		public const string PluginName = "DoOrDieBiomes";
 
-		public const string PluginVersion = "0.0.8";
+		public const string PluginVersion = "0.0.10";
 
 		public static GameObject SteelPick;
 		// Fruit
