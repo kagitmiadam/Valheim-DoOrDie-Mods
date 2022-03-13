@@ -33,7 +33,7 @@ namespace FantasyCreatures
 
 		public const string PluginName = "FantasyCreatures";
 
-		public const string PluginVersion = "0.0.1";
+		public const string PluginVersion = "0.0.2";
 
 		//public static GameObject BeholderA1;
 		//public static GameObject BeholderA2;

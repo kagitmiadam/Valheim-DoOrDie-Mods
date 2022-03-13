@@ -35,6 +35,7 @@ namespace Giants
 		public static GameObject Giant2;
 		public static GameObject Giant3;
 		public static GameObject Giant4;
+		public static GameObject Giant5;
 		public static GameObject HGAttack1;
 		public static GameObject HGAttack2;
 		public static GameObject HGAttack3;
@@ -47,6 +48,9 @@ namespace Giants
 		public static GameObject FGAttack1;
 		public static GameObject FGAttack2;
 		public static GameObject FGAttack3;
+		public static GameObject JAttack1;
+		public static GameObject JAttack2;
+		public static GameObject JAttack3;
 		public static GameObject SFX1;
 		public static GameObject SFX2;
 		public static GameObject SFX3;
@@ -95,6 +99,7 @@ namespace Giants
 			Giant2 = GiantBundle.LoadAsset<GameObject>("MountainGiant_HG");
 			Giant3 = GiantBundle.LoadAsset<GameObject>("Giant_HG");
 			Giant4 = GiantBundle.LoadAsset<GameObject>("FrostGiant_HG");
+			Giant5 = GiantBundle.LoadAsset<GameObject>("Jotunn_HG");
 			// Attacks
 			Debug.Log("Giants: Attacks");
 			HGAttack1 = GiantBundle.LoadAsset<GameObject>("HillGiant_Attack1_HG");
@@ -109,6 +114,9 @@ namespace Giants
 			FGAttack1 = GiantBundle.LoadAsset<GameObject>("FrostGiant_Attack1_HG");
 			FGAttack2 = GiantBundle.LoadAsset<GameObject>("FrostGiant_Attack2_HG");
 			FGAttack3 = GiantBundle.LoadAsset<GameObject>("FrostGiant_Attack3_HG");
+			JAttack1 = GiantBundle.LoadAsset<GameObject>("Jotunn_Attack1_HG");
+			JAttack2 = GiantBundle.LoadAsset<GameObject>("Jotunn_Attack2_HG");
+			JAttack3 = GiantBundle.LoadAsset<GameObject>("Jotunn_Attack3_HG");
 			GameObject attack1 = HGAttack1;
 			CustomPrefab HGattack1 = new CustomPrefab(attack1, false);
 			PrefabManager.Instance.AddPrefab(HGattack1);
@@ -178,6 +186,43 @@ namespace Giants
 		{
 			try
 			{
+				Debug.Log("Giants: Jotunn");
+				var JotunnMob = new CustomCreature(Giant5, false,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 23,
+								MaxAmount = 78,
+								Chance = 100
+							},
+							new DropConfig
+							{
+								Item = "SilverNecklace",
+								MinAmount = 3,
+								MaxAmount = 5,
+								Chance = 15
+							},
+							new DropConfig
+							{
+								Item = "FreezeGland",
+								MinAmount = 2,
+								MaxAmount = 4,
+								Chance = 25
+							},
+							new DropConfig
+							{
+								Item = "YmirRemains",
+								MinAmount = 1,
+								MaxAmount = 3,
+								Chance = 5
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(JotunnMob);
 				Debug.Log("Giants: Frost");
 				var FrostGiantMob = new CustomCreature(Giant4, false,
 					new CreatureConfig
