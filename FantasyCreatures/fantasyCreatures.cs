@@ -33,7 +33,7 @@ namespace FantasyCreatures
 
 		public const string PluginName = "FantasyCreatures";
 
-		public const string PluginVersion = "0.0.2";
+		public const string PluginVersion = "0.0.3";
 
 		//public static GameObject BeholderA1;
 		//public static GameObject BeholderA2;
@@ -760,7 +760,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(HobgoblinMob);
-				Debug.Log("Fantasy Creatures: Viper");
+				/*Debug.Log("Fantasy Creatures: Viper");
 				var ViperFab = FantasyBundle.LoadAsset<GameObject>("GiantViper_FC");
 				var ViperMob = new CustomCreature(ViperFab, false,
 					new CreatureConfig
@@ -776,7 +776,7 @@ namespace FantasyCreatures
 							}
 						}
 					});
-				CreatureManager.Instance.AddCreature(ViperMob);
+				CreatureManager.Instance.AddCreature(ViperMob);*/
 				Debug.Log("Fantasy Creatures: Kobold");
 				var KoboldFab = FantasyBundle.LoadAsset<GameObject>("Kobold_DoD");
 				var KoboldMob = new CustomCreature(KoboldFab, false,
@@ -1179,7 +1179,7 @@ namespace FantasyCreatures
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					;
-				config.ConfigureWorldSpawner(20_002)
+				/*config.ConfigureWorldSpawner(20_002)
 					.SetPrefabName("GiantViper_FC")
 					.SetTemplateName("Giant Viper")
 					.SetConditionBiomes(Heightmap.Biome.BlackForest)
@@ -1191,7 +1191,7 @@ namespace FantasyCreatures
 					.SetSpawnDuringDay(false)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
-					;
+					;*/
 				config.ConfigureWorldSpawner(20_001)
 					.SetPrefabName("Kobold_DoD")
 					.SetTemplateName("Kobold")

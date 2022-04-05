@@ -38,7 +38,7 @@ namespace DoDNPCs
 
 		public const string PluginName = "DoOrDieNPC";
 
-		public const string PluginVersion = "0.0.2";
+		public const string PluginVersion = "0.0.4";
 
 		public AssetBundle NPCBundle;
 		private Harmony _harmony;
@@ -108,7 +108,7 @@ namespace DoDNPCs
 		}
 		private void LoadAssets()
 		{
-			Debug.Log("DoD NPC Assets: Attacks");
+			//Debug.Log("DoD NPC Assets: Attacks");
 			NPCSmash = NPCBundle.LoadAsset<GameObject>("NPC_SmashAttack_DoD");
 			NPCSpin = NPCBundle.LoadAsset<GameObject>("NPC_SpinAttack_DoD");
 			NPCJab = NPCBundle.LoadAsset<GameObject>("NPC_JabAttack_DoD");
@@ -116,7 +116,7 @@ namespace DoDNPCs
 			NPCJump = NPCBundle.LoadAsset<GameObject>("NPC_JumpAttack_DoD");
 			NPCCone = NPCBundle.LoadAsset<GameObject>("NPC_ConeAttack_DoD");
 
-			Debug.Log("DoD NPC Assets: NPCs");
+			//Debug.Log("DoD NPC Assets: NPCs");
 			Vidar = NPCBundle.LoadAsset<GameObject>("Vidar_DoD");
 			Skugga = NPCBundle.LoadAsset<GameObject>("Skugga_DoD");
 			SkuggaYoung = NPCBundle.LoadAsset<GameObject>("Skugga_Young_DoD");
@@ -125,13 +125,13 @@ namespace DoDNPCs
 			Njord = NPCBundle.LoadAsset<GameObject>("Njord_DoD");
 			Einherjar = NPCBundle.LoadAsset<GameObject>("Einherjar_DoD");
 
-			Debug.Log("DoD NPC Assets: Aura");
+			//Debug.Log("DoD NPC Assets: Aura");
 			NPCAuraFire = NPCBundle.LoadAsset<GameObject>("NPC_BossAuraF_Attack_DoD");
 			NPCAuraIce = NPCBundle.LoadAsset<GameObject>("NPC_BossAuraI_Attack_DoD");
 			NPCAuraLightning = NPCBundle.LoadAsset<GameObject>("NPC_BossAuraL_Attack_DoD");
 			NPCAuraPoison = NPCBundle.LoadAsset<GameObject>("NPC_BossAuraP_Attack_DoD");
 
-			Debug.Log("DoD NPC Assets: Aoe");
+			//Debug.Log("DoD NPC Assets: Aoe");
 			NPCAuraFireAoE = NPCBundle.LoadAsset<GameObject>("AoE_BossFire_DoD");
 			NPCAuraIceAoE = NPCBundle.LoadAsset<GameObject>("AoE_BossIce_DoD");
 			NPCAuraLightningAoE = NPCBundle.LoadAsset<GameObject>("AoE_BossLightning_DoD");
@@ -139,7 +139,7 @@ namespace DoDNPCs
 		}
 		private void AddNPCAttacks()
 		{
-			Debug.Log("DoD NPC: Attacks");
+			//Debug.Log("DoD NPC: Attacks");
 			GameObject monsteritem1 = NPCSmash;
 			CustomItem customItem1 = new CustomItem(monsteritem1, fixReference: true);
 			ItemManager.Instance.AddItem(customItem1);
@@ -161,7 +161,7 @@ namespace DoDNPCs
 		}
 		private void AddNPCAuras()
 		{
-			Debug.Log("DoD NPC: Auras");
+			//Debug.Log("DoD NPC: Auras");
 			GameObject monsteritem1 = NPCAuraFire;
 			CustomItem customItem1 = new CustomItem(monsteritem1, fixReference: true);
 			ItemManager.Instance.AddItem(customItem1);
@@ -187,7 +187,7 @@ namespace DoDNPCs
 		{
 			try
 			{
-				Debug.Log("DoD NPC: Vidar");
+				//Debug.Log("DoD NPC: Vidar");
 				var VidarMob = new CustomCreature(Vidar, true,
 					new CreatureConfig
 					{
@@ -202,7 +202,7 @@ namespace DoDNPCs
 						}
 					});
 				CreatureManager.Instance.AddCreature(VidarMob);
-				Debug.Log("DoD NPC: Skugga");
+				//Debug.Log("DoD NPC: Skugga");
 				var SkuggaMob = new CustomCreature(Skugga, true,
 					new CreatureConfig
 					{
@@ -217,7 +217,7 @@ namespace DoDNPCs
 						}
 					});
 				CreatureManager.Instance.AddCreature(SkuggaMob);
-				Debug.Log("DoD NPC: SkuggaYoung");
+				//Debug.Log("DoD NPC: SkuggaYoung");
 				var SkuggaYMob = new CustomCreature(SkuggaYoung, true,
 					new CreatureConfig
 					{
@@ -232,7 +232,7 @@ namespace DoDNPCs
 						}
 					});
 				CreatureManager.Instance.AddCreature(SkuggaYMob);
-				Debug.Log("DoD NPC: Nomad");
+				//Debug.Log("DoD NPC: Nomad");
 				var NomadMob = new CustomCreature(Nomad, true,
 					new CreatureConfig
 					{
@@ -247,7 +247,7 @@ namespace DoDNPCs
 						}
 					});
 				CreatureManager.Instance.AddCreature(NomadMob);
-				Debug.Log("DoD NPC: GrayWolf");
+				//Debug.Log("DoD NPC: GrayWolf");
 				var GrayWolfMob = new CustomCreature(GrayWolf, true,
 					new CreatureConfig
 					{
@@ -262,7 +262,7 @@ namespace DoDNPCs
 						}
 					});
 				CreatureManager.Instance.AddCreature(GrayWolfMob);
-				Debug.Log("DoD NPC: Njord");
+				//Debug.Log("DoD NPC: Njord");
 				var NjordMob = new CustomCreature(Njord, true,
 					new CreatureConfig
 					{
@@ -277,7 +277,7 @@ namespace DoDNPCs
 						}
 					});
 				CreatureManager.Instance.AddCreature(NjordMob);
-				Debug.Log("DoD NPC: Einherjar");
+				//Debug.Log("DoD NPC: Einherjar");
 				var EinherjarMob = new CustomCreature(Einherjar, true,
 					new CreatureConfig
 					{
@@ -299,7 +299,7 @@ namespace DoDNPCs
 			}
 			finally
 			{
-				Debug.Log("DoD NPC: NPC's Done");
+				//Debug.Log("DoD NPC: NPC's Done");
 				//FantasyBundle.Unload(false);
 			}
 		}

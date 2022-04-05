@@ -25,7 +25,7 @@ namespace Stronghold
 
 		public const string PluginName = "Stronghold";
 
-		public const string PluginVersion = "0.0.1";
+		public const string PluginVersion = "0.0.3";
 
 		public AssetBundle StrongholdAssets;
 		private Harmony _harmony;
@@ -53,7 +53,6 @@ namespace Stronghold
 		public static GameObject piece21;
 		public static GameObject piece22;
 		public static GameObject piece23;
-
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
 			Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -61,8 +60,14 @@ namespace Stronghold
 			using Stream stream = executingAssembly.GetManifestResourceStream(text);
 			return AssetBundle.LoadFromStream(stream);
 		}
-		private void Awake()
+		public void Awake()
 		{
+			Stream stream = Assembly.GetExecutingAssembly()
+									.GetManifestResourceStream("Stronghold.Assembly-CSharp.dll");
+			byte[] buffer = new byte[stream.Length];
+			stream.Read(buffer, 0, buffer.Length);
+			Assembly.Load(buffer);
+
 			Debug.Log("Stronghold: Loading and Creating Assets");
 			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.Stronghold");
 			LoadBundle();
@@ -98,11 +103,11 @@ namespace Stronghold
 			piece20 = StrongholdAssets.LoadAsset<GameObject>("SHWatchtower");
 			piece21 = StrongholdAssets.LoadAsset<GameObject>("SHTowerRoundWallEnd");
 			piece22 = StrongholdAssets.LoadAsset<GameObject>("SHOuterWallCoverdCapped");
-			piece23 = StrongholdAssets.LoadAsset<GameObject>("TowerDoorWT_SH");
+			piece23 = StrongholdAssets.LoadAsset<GameObject>("ArchedDoor_SH");
 		}
 		private void CreatePieces()
 		{
-			Debug.Log("Stronghold: TowerDoorWT_SH");
+			Debug.Log("Stronghold: ArchedDoor_SH");
 			var customPiece23 = new CustomPiece(piece23, true, new PieceConfig
 			{
 				PieceTable = "Hammer",

@@ -33,7 +33,7 @@ namespace DoDMonsters
 
 		public const string PluginName = "DoOrDieMonsters";
 
-		public const string PluginVersion = "0.5.1";
+		public const string PluginVersion = "0.5.2";
 
 		private Harmony _harmony;
 		public static readonly ManualLogSource DoDLogger = BepInEx.Logging.Logger.CreateLogSource(PluginName);
@@ -207,6 +207,7 @@ namespace DoDMonsters
 		public ConfigEntry<bool> BossesEnable;
 		public ConfigEntry<bool> MonstersEnable;
 		public ConfigEntry<bool> BuildablesEnable;
+		public ConfigEntry<bool> SpawnsEnable;
 
 		public AssetBundle DoDAssets;
 		internal static ManualLogSource Log;
@@ -232,6 +233,10 @@ namespace DoDMonsters
 			{
 				IsAdminOnly = true
 			}));
+			SpawnsEnable = base.Config.Bind("Monster Reskin Spawns", "Enable", defaultValue: true, new ConfigDescription("Enables spawning of the Monster Reskins", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
 		}
 		private void Awake()
 		{
@@ -247,11 +252,14 @@ namespace DoDMonsters
 				CreateMonsterItems();
 				AddMonsterReskins();
 				CreateRugs();
-				SpawnerConfigurationManager.OnConfigure += ConfigureBiomeSpawners;
 			}
 			if (BossesEnable.Value == true) {
 				AddBosses();
 				AddNewMonsters();
+			}
+			if (SpawnsEnable.Value == true)
+			{
+				SpawnerConfigurationManager.OnConfigure += ConfigureBiomeSpawners;
 			}
 			//ItemManager.OnItemsRegistered += ModMonsterAttackSE;
 			UnloadBundle();

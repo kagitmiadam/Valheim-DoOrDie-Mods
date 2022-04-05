@@ -110,5 +110,8 @@
   <ItemGroup>
     <EmbeddedResource Include="stronghold" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assembly-CSharp.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

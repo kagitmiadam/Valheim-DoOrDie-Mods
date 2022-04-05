@@ -36,6 +36,7 @@ namespace Giants
 		public static GameObject Giant3;
 		public static GameObject Giant4;
 		public static GameObject Giant5;
+		public static GameObject Giant6;
 		public static GameObject HGAttack1;
 		public static GameObject HGAttack2;
 		public static GameObject HGAttack3;
@@ -51,6 +52,11 @@ namespace Giants
 		public static GameObject JAttack1;
 		public static GameObject JAttack2;
 		public static GameObject JAttack3;
+		public static GameObject JAttack4;
+		public static GameObject JAttack5;
+		public static GameObject FrGAttack1;
+		public static GameObject FrGAttack2;
+		public static GameObject FrGAttack3;
 		public static GameObject SFX1;
 		public static GameObject SFX2;
 		public static GameObject SFX3;
@@ -60,6 +66,13 @@ namespace Giants
 		public static GameObject VFX1;
 		public static GameObject VFX2;
 		public static GameObject VFX3;
+		public static GameObject VFX4;
+		public static GameObject VFX5;
+		public static GameObject Item1;
+		public static GameObject Projectile1;
+		public static GameObject Projectile2;
+		public static GameObject FX1;
+		public static GameObject FX2;
 
 		public AssetBundle GiantBundle;
 		private Harmony _harmony;
@@ -100,6 +113,7 @@ namespace Giants
 			Giant3 = GiantBundle.LoadAsset<GameObject>("Giant_HG");
 			Giant4 = GiantBundle.LoadAsset<GameObject>("FrostGiant_HG");
 			Giant5 = GiantBundle.LoadAsset<GameObject>("Jotunn_HG");
+			Giant6 = GiantBundle.LoadAsset<GameObject>("FireGiant_HG");
 			// Attacks
 			Debug.Log("Giants: Attacks");
 			HGAttack1 = GiantBundle.LoadAsset<GameObject>("HillGiant_Attack1_HG");
@@ -117,6 +131,11 @@ namespace Giants
 			JAttack1 = GiantBundle.LoadAsset<GameObject>("Jotunn_Attack1_HG");
 			JAttack2 = GiantBundle.LoadAsset<GameObject>("Jotunn_Attack2_HG");
 			JAttack3 = GiantBundle.LoadAsset<GameObject>("Jotunn_Attack3_HG");
+			JAttack4 = GiantBundle.LoadAsset<GameObject>("Jotunn_AttackSpawn_HG");
+			JAttack5 = GiantBundle.LoadAsset<GameObject>("Jotunn_AttackJump_HG");
+			FrGAttack1 = GiantBundle.LoadAsset<GameObject>("FireGiant_Attack1_HG");
+			FrGAttack2 = GiantBundle.LoadAsset<GameObject>("FireGiant_Attack2_HG");
+			FrGAttack3 = GiantBundle.LoadAsset<GameObject>("FireGiant_Attack3_HG");
 			GameObject attack1 = HGAttack1;
 			CustomPrefab HGattack1 = new CustomPrefab(attack1, false);
 			PrefabManager.Instance.AddPrefab(HGattack1);
@@ -153,6 +172,46 @@ namespace Giants
 			GameObject attack12 = FGAttack3;
 			CustomPrefab FGattack3 = new CustomPrefab(attack12, false);
 			PrefabManager.Instance.AddPrefab(FGattack3);
+			GameObject attack13 = JAttack1;
+			CustomPrefab Jattack1 = new CustomPrefab(attack13, false);
+			PrefabManager.Instance.AddPrefab(Jattack1);
+			GameObject attack14 = JAttack2;
+			CustomPrefab Jattack2 = new CustomPrefab(attack14, false);
+			PrefabManager.Instance.AddPrefab(Jattack2);
+			GameObject attack15 = JAttack3;
+			CustomPrefab Jattack3 = new CustomPrefab(attack15, false);
+			PrefabManager.Instance.AddPrefab(Jattack3);
+			GameObject attack16 = JAttack4;
+			CustomPrefab Jattack4 = new CustomPrefab(attack16, false);
+			PrefabManager.Instance.AddPrefab(Jattack4);
+			GameObject attack17 = JAttack5;
+			CustomPrefab Jattack5 = new CustomPrefab(attack17, false);
+			PrefabManager.Instance.AddPrefab(Jattack5);
+			GameObject attack18 = FrGAttack1;
+			CustomPrefab FrGattack1 = new CustomPrefab(attack18, false);
+			PrefabManager.Instance.AddPrefab(FrGattack1);
+			GameObject attack19 = FrGAttack2;
+			CustomPrefab FrGattack2 = new CustomPrefab(attack19, false);
+			PrefabManager.Instance.AddPrefab(FrGattack2);
+			GameObject attack20 = FrGAttack3;
+			CustomPrefab FrGattack3 = new CustomPrefab(attack20, false);
+			PrefabManager.Instance.AddPrefab(FrGattack3);
+			//Projectile
+			Projectile1 = GiantBundle.LoadAsset<GameObject>("Jotunn_Spawn_HG");
+			Projectile2 = GiantBundle.LoadAsset<GameObject>("AoE_Jotunn_HG");
+			GameObject projectile1 = Projectile1;
+			CustomPrefab Proj1 = new CustomPrefab(projectile1, false);
+			PrefabManager.Instance.AddPrefab(Proj1);
+			GameObject projectile2 = Projectile2;
+			CustomPrefab Proj2 = new CustomPrefab(projectile2, false);
+			PrefabManager.Instance.AddPrefab(Proj2);
+			// FX
+			FX1 = GiantBundle.LoadAsset<GameObject>("FX_Backstab_HG");
+			FX2 = GiantBundle.LoadAsset<GameObject>("FX_Crit_HG");
+			CustomPrefab fx1 = new CustomPrefab(FX1, false);
+			PrefabManager.Instance.AddPrefab(fx1);
+			CustomPrefab fx2 = new CustomPrefab(FX2, false);
+			PrefabManager.Instance.AddPrefab(fx2);
 			//SFX
 			Debug.Log("Giants: SFX");
 			SFX1 = GiantBundle.LoadAsset<GameObject>("SFX_GiantAlert_HG");
@@ -175,17 +234,64 @@ namespace Giants
 			VFX1 = GiantBundle.LoadAsset<GameObject>("VFX_Blood_Hit_HG");
 			VFX2 = GiantBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_HG");
 			VFX3 = GiantBundle.LoadAsset<GameObject>("VFX_HitSparks_HG");
+			VFX4 = GiantBundle.LoadAsset<GameObject>("VFX_GiantArrive_HG");
+			VFX5 = GiantBundle.LoadAsset<GameObject>("VFX_JotunnLand_HG");
 			CustomPrefab vfx1 = new CustomPrefab(VFX1, false);
 			PrefabManager.Instance.AddPrefab(vfx1);
 			CustomPrefab vfx2 = new CustomPrefab(VFX2, false);
 			PrefabManager.Instance.AddPrefab(vfx2);
 			CustomPrefab vfx3 = new CustomPrefab(VFX3, false);
 			PrefabManager.Instance.AddPrefab(vfx3);
+			CustomPrefab vfx4 = new CustomPrefab(VFX4, false);
+			PrefabManager.Instance.AddPrefab(vfx4);
+			CustomPrefab vfx5 = new CustomPrefab(VFX5, false);
+			PrefabManager.Instance.AddPrefab(vfx5);
+			// Items
+			Item1 = GiantBundle.LoadAsset<GameObject>("HillGiantSword_HG");
+			CustomItem customItem1 = new CustomItem(Item1, fixReference: false);
+			ItemManager.Instance.AddItem(customItem1);
 		}
 		private void AddGiants()
 		{
 			try
 			{
+				Debug.Log("Giants: Fire Giant");
+				var FireGiantMob = new CustomCreature(Giant6, false,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 43,
+								MaxAmount = 98,
+								Chance = 100
+							},
+							new DropConfig
+							{
+								Item = "SilverNecklace",
+								MinAmount = 3,
+								MaxAmount = 5,
+								Chance = 15
+							},
+							new DropConfig
+							{
+								Item = "Flametal",
+								MinAmount = 2,
+								MaxAmount = 4,
+								Chance = 25
+							},
+							new DropConfig
+							{
+								Item = "YmirRemains",
+								MinAmount = 1,
+								MaxAmount = 3,
+								Chance = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(FireGiantMob);
 				Debug.Log("Giants: Jotunn");
 				var JotunnMob = new CustomCreature(Giant5, false,
 					new CreatureConfig
@@ -195,10 +301,10 @@ namespace Giants
 							new DropConfig
 							{
 								Item = "Coins",
-								MinAmount = 23,
-								MaxAmount = 78,
+								MinAmount = 113,
+								MaxAmount = 178,
 								Chance = 100
-							}/*,
+							},
 							new DropConfig
 							{
 								Item = "SilverNecklace",
@@ -219,7 +325,7 @@ namespace Giants
 								MinAmount = 1,
 								MaxAmount = 3,
 								Chance = 5
-							}*/
+							}
 						}
 					});
 				CreatureManager.Instance.AddCreature(JotunnMob);
@@ -255,7 +361,7 @@ namespace Giants
 								Item = "YmirRemains",
 								MinAmount = 1,
 								MaxAmount = 3,
-								Chance = 5
+								Chance = 2
 							}
 						}
 					});
@@ -447,7 +553,7 @@ namespace Giants
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(1)
 					.SetMaxSpawned(2)
-					.SetConditionAltitudeMin(35)
+					.SetConditionAltitudeMin(40)
 					.SetConditionAltitudeMax(70)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
