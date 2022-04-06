@@ -25,7 +25,7 @@ namespace Stronghold
 
 		public const string PluginName = "Stronghold";
 
-		public const string PluginVersion = "0.0.3";
+		public const string PluginVersion = "0.0.4";
 
 		public AssetBundle StrongholdAssets;
 		private Harmony _harmony;
@@ -53,6 +53,16 @@ namespace Stronghold
 		public static GameObject piece21;
 		public static GameObject piece22;
 		public static GameObject piece23;
+		public static GameObject piece24;
+		public static GameObject piece25;
+		public static GameObject piece26;
+		public static GameObject piece27;
+		public static GameObject piece28;
+		public static GameObject piece29;
+		public static GameObject piece30;
+		public static GameObject piece31;
+		public static GameObject piece32;
+		public static GameObject piece33;
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
 			Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -62,12 +72,6 @@ namespace Stronghold
 		}
 		public void Awake()
 		{
-			Stream stream = Assembly.GetExecutingAssembly()
-									.GetManifestResourceStream("Stronghold.Assembly-CSharp.dll");
-			byte[] buffer = new byte[stream.Length];
-			stream.Read(buffer, 0, buffer.Length);
-			Assembly.Load(buffer);
-
 			Debug.Log("Stronghold: Loading and Creating Assets");
 			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.Stronghold");
 			LoadBundle();
@@ -86,7 +90,7 @@ namespace Stronghold
 			piece3 = StrongholdAssets.LoadAsset<GameObject>("SHTowerSquareTwoFloorCenter");
 			piece4 = StrongholdAssets.LoadAsset<GameObject>("SHTowerSquareTwoFloorCorner");
 			piece5 = StrongholdAssets.LoadAsset<GameObject>("SHTowerSquareTwoFloorJunction");
-			piece6 = StrongholdAssets.LoadAsset<GameObject>("SHWallOpenTwoFloorWithLadder");
+			piece6 = StrongholdAssets.LoadAsset<GameObject>("SHWallOpenTwoFloorCapped");
 			piece7 = StrongholdAssets.LoadAsset<GameObject>("SHWallOpenTwoFloorWithNest");
 			piece8 = StrongholdAssets.LoadAsset<GameObject>("SHWallOpenTwoFloorWithNestCapped");
 			piece9 = StrongholdAssets.LoadAsset<GameObject>("SHWallOpenTwoFloor");
@@ -103,12 +107,254 @@ namespace Stronghold
 			piece20 = StrongholdAssets.LoadAsset<GameObject>("SHWatchtower");
 			piece21 = StrongholdAssets.LoadAsset<GameObject>("SHTowerRoundWallEnd");
 			piece22 = StrongholdAssets.LoadAsset<GameObject>("SHOuterWallCoverdCapped");
-			piece23 = StrongholdAssets.LoadAsset<GameObject>("ArchedDoor_SH");
+			piece23 = StrongholdAssets.LoadAsset<GameObject>("SHWallInnerArch");
+			piece24 = StrongholdAssets.LoadAsset<GameObject>("SHWallInnerPillar");
+			piece25 = StrongholdAssets.LoadAsset<GameObject>("SHWallInnerPlain");
+			piece26 = StrongholdAssets.LoadAsset<GameObject>("SHWallInnerPosh");
+			piece27 = StrongholdAssets.LoadAsset<GameObject>("SHHouseSmall");
+			piece28 = StrongholdAssets.LoadAsset<GameObject>("SHHouseMedium");
+			piece29 = StrongholdAssets.LoadAsset<GameObject>("SHHouseLarge");
+			piece30 = StrongholdAssets.LoadAsset<GameObject>("SHHayBarn");
+			piece31 = StrongholdAssets.LoadAsset<GameObject>("SHOldBarn");
+			piece32 = StrongholdAssets.LoadAsset<GameObject>("SHStorageBarn");
+			piece33 = StrongholdAssets.LoadAsset<GameObject>("SHMainHall");
 		}
 		private void CreatePieces()
 		{
-			Debug.Log("Stronghold: ArchedDoor_SH");
-			var customPiece23 = new CustomPiece(piece23, true, new PieceConfig
+			Debug.Log("Stronghold: SHMainHall");
+			var customPiece33 = new CustomPiece(piece33, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[3]
+				{
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 400,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 100,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 200,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece33);
+			Debug.Log("Stronghold: SHStorageBarn");
+			var customPiece32 = new CustomPiece(piece32, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[3]
+				{
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 250,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 50,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 75,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece32);
+			Debug.Log("Stronghold: SHOldBarn");
+			var customPiece31 = new CustomPiece(piece31, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[3]
+				{
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 50,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 40,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 225,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece31);
+			Debug.Log("Stronghold: SHHayBarn");
+			var customPiece30 = new CustomPiece(piece30, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[3]
+				{
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 50,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 50,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 175,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece30);
+			Debug.Log("Stronghold: SHHouseLarge");
+			var customPiece29 = new CustomPiece(piece29, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[3]
+				{
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 375,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 100,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 200,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece29);
+			Debug.Log("Stronghold: SHHouseMedium");
+			var customPiece28 = new CustomPiece(piece28, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[3]
+				{
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 300,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 75,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 150,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece28);
+			Debug.Log("Stronghold: SHHouseSmall");
+			var customPiece27 = new CustomPiece(piece27, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[3]
+				{
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 200,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 50,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 100,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece27);
+			Debug.Log("Stronghold: SHWallInnerPosh");
+			var customPiece26 = new CustomPiece(piece26, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[3]
+				{
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 15,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 10,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 5,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece26);
+			Debug.Log("Stronghold: SHWallInnerPlain");
+			var customPiece25 = new CustomPiece(piece25, true, new PieceConfig
 			{
 				PieceTable = "Hammer",
 				Category = "Stronghold",
@@ -117,14 +363,48 @@ namespace Stronghold
 				{
 					new RequirementConfig
 					{
-						Item = "Wood",
+						Item = "Stone",
 						Amount = 20,
 						Recover = true
 					},
 					new RequirementConfig
 					{
-						Item = "Iron",
-						Amount = 15,
+						Item = "Wood",
+						Amount = 10,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece25);
+			Debug.Log("Stronghold: SHWallInnerPillar");
+			var customPiece24 = new CustomPiece(piece24, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 20,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece24);
+			Debug.Log("Stronghold: SHWallInnerArch");
+			var customPiece23 = new CustomPiece(piece23, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 50,
 						Recover = true
 					}
 				}
@@ -510,7 +790,7 @@ namespace Stronghold
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece7);
-			Debug.Log("Stronghold: SHWallOpenTwoFloorWithLadder");
+			Debug.Log("Stronghold: SHWallOpenTwoFloorCapped");
 			var customPiece6 = new CustomPiece(piece6, true, new PieceConfig
 			{
 				PieceTable = "Hammer",

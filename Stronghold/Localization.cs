@@ -13,8 +13,15 @@ namespace Stronghold
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
-								{ "piece_archeddoor_sh", "Door" },
-								{ "piece_towerdoor_sh", "Door" },
+								{ "piece_oldbarn_sh", "Old Barn" },
+								{ "piece_haybarn_sh", "Hay Barn" },
+								{ "piece_houselarge_sh", "Large House" },
+								{ "piece_housemedium_sh", "Medium House" },
+								{ "piece_housesmall_sh", "Small House" },
+								{ "piece_wallinnerposh_sh", "Inner Wall Posh" },
+								{ "piece_wallinnerplain_sh", "Inner Wall" },
+								{ "piece_wallinnerarch_sh", "Inner Wall Arch" },
+								{ "piece_wallinnerpiller_sh", "Inner Wall Pillar" },
 								{ "piece_outerwallcovcap_sh", "Outer Wall - Covered, Capped" },
 								{ "piece_outerwallcov_sh", "Outer Wall - Covered" },
 								{ "piece_outerwallcap_sh", "Outer Wall - Capped" },
@@ -42,7 +49,14 @@ namespace Stronghold
 		};
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
 
-								{ "piece_towerdoor_sh", "Door" },
+								{ "piece_haybarn_sh", "Hay Barn" },
+								{ "piece_houselarge_sh", "Large House" },
+								{ "piece_housemedium_sh", "Medium House" },
+								{ "piece_housesmall_sh", "Small House" },
+								{ "piece_wallinnerposh_sh", "Inner Wall Posh" },
+								{ "piece_wallinnerplain_sh", "Inner Wall" },
+								{ "piece_wallinnerarch_sh", "Inner Wall Arch" },
+								{ "piece_wallinnerpiller_sh", "Inner Wall Pillar" },
 								{ "piece_outerwallcovcap_sh", "Outer Wall - Covered, Capped" },
 								{ "piece_outerwallcov_sh", "Outer Wall - Covered" },
 								{ "piece_outerwallcap_sh", "Outer Wall - Capped" },
@@ -71,7 +85,14 @@ namespace Stronghold
 		};
 		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
 
-								{ "piece_towerdoor_sh", "Kapı" },
+								{ "piece_haybarn_sh", "Hay Barn" },
+								{ "piece_houselarge_sh", "Large House" },
+								{ "piece_housemedium_sh", "Medium House" },
+								{ "piece_housesmall_sh", "Small House" },
+								{ "piece_wallinnerposh_sh", "Inner Wall Posh" },
+								{ "piece_wallinnerplain_sh", "Inner Wall" },
+								{ "piece_wallinnerarch_sh", "Inner Wall Arch" },
+								{ "piece_wallinnerpiller_sh", "Inner Wall Pillar" },
 								{ "piece_outerwallcovcap_sh", "Dış Duvar - Kapalı, Kapaklı" },
 								{ "piece_outerwallcov_sh", "Dış Duvar - Kapalı" },
 								{ "piece_outerwallcap_sh", "Dış Duvar - Kapaklı" },
