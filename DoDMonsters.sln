@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Giants", "Giants\Giants.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minotaurs", "Minotaurs\Minotaurs.csproj", "{5B7C8476-D351-477F-8ED2-3F8FCC674E4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThereBeElves", "ThereBeElves\ThereBeElves.csproj", "{C0E4E07E-02BD-4C21-BF76-7ED9F6093B61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{5B7C8476-D351-477F-8ED2-3F8FCC674E4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B7C8476-D351-477F-8ED2-3F8FCC674E4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B7C8476-D351-477F-8ED2-3F8FCC674E4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0E4E07E-02BD-4C21-BF76-7ED9F6093B61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0E4E07E-02BD-4C21-BF76-7ED9F6093B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0E4E07E-02BD-4C21-BF76-7ED9F6093B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0E4E07E-02BD-4C21-BF76-7ED9F6093B61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

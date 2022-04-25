@@ -4,49 +4,68 @@ using UnityEngine;
 
 public class TriggerDoorController : MonoBehaviour
 {
-    [SerializeField] private Animator myDoor = null;
+    [Header("Object to use. Must have Animator Component")]
+    [SerializeField] private Animator myObject = null;
+    [Header("Use Keypress E")]
+    [SerializeField] private bool useKeyE = false;
+    [Header("Is Open Trigger")]
     [SerializeField] private bool openTrigger = false;
-    [SerializeField] private bool autoTrigger = false;
-    [SerializeField] private bool useKeyPress = false;
-    [SerializeField] private string doorOpen = "AnimationName";
     [SerializeField] private float openSpeed = 0.0f;
+    [Header("Is Close Trigger")]
     [SerializeField] private bool closeTrigger = false;
-    [SerializeField] private string doorClose = "AnimationName";
     [SerializeField] private float closeSpeed = 0.0f;
-    bool isOpen = false;
+    [Header("Auto Closes")]
+    [SerializeField] private bool autoClose = false;
+    [SerializeField] private float closeDelay = 0.0f;
+    [Header("Animations to use in Animator")]
+    [SerializeField] private string doorOpen = "AnimationName";
+    [SerializeField] private string doorClose = "AnimationName";
+    [SerializeField] private ItemDrop m_keyItem;
+    private bool isOpen;
+    private bool inReach;
     private void OnTriggerEnter(Collider collider)
     {
         Player component = collider.GetComponent<Player>();
         if (!(component == null) && !(Player.m_localPlayer != component))
         {
-            if (openTrigger && !isOpen)
+            inReach = true;
+            if (openTrigger && !isOpen && !useKeyE)
             {
-                myDoor.Play(doorOpen, 0, openSpeed);
+                myObject.Play(doorOpen, 0, openSpeed);
                 isOpen = true;
             }
-            else if (closeTrigger && isOpen)
+            else if (closeTrigger && isOpen && !useKeyE)
             {
-                myDoor.Play(doorClose, 0, closeSpeed);
-                isOpen = false;
-            }
-            else if (useKeyPress && Input.GetKeyDown(KeyCode.F) && !isOpen)
-            {
-                myDoor.Play(doorOpen, 0, openSpeed);
-                isOpen = true;
-            }
-            else if (useKeyPress && Input.GetKeyDown(KeyCode.F) && isOpen)
-            {
-                myDoor.Play(doorClose, 0, closeSpeed);
+                myObject.Play(doorClose, 0, closeSpeed);
                 isOpen = false;
             }
         }
     }
     private void OnTriggerExit(Collider collider)
     {
-        if ((autoTrigger) && (isOpen))
+        inReach = false;
+        if (autoClose && isOpen)
         {
-            myDoor.Play(doorClose, 0, closeSpeed);
-            isOpen = false;
+            Invoke(doorClose, closeDelay);
         }
     }
+    /*void Update()
+    {
+        if (inReach && useKeyE && Input.GetKeyDown(KeyCode.E))
+        {
+            if (!openTrigger)
+            {
+                myObject.Play(doorOpen, 0, openSpeed);
+                isOpen = true;
+            }
+        }
+        else
+        {
+            if (!closeTrigger)
+            {
+                myObject.Play(doorClose, 0, closeSpeed);
+                isOpen = false;
+            }
+        }
+    }*/
 }

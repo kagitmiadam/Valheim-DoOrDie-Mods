@@ -33,7 +33,7 @@ namespace FantasyCreatures
 
 		public const string PluginName = "FantasyCreatures";
 
-		public const string PluginVersion = "0.0.3";
+		public const string PluginVersion = "0.0.4";
 
 		//public static GameObject BeholderA1;
 		//public static GameObject BeholderA2;
@@ -1049,7 +1049,8 @@ namespace FantasyCreatures
 					.SetPackSizeMax(1)
 					.SetMaxSpawned(4)
 					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)					
+					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_013)
 					.SetPrefabName("FireElemental_DoD")
@@ -1062,6 +1063,7 @@ namespace FantasyCreatures
 					.SetMaxSpawned(3)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_012)
 					.SetPrefabName("IceElemental_DoD")
@@ -1074,6 +1076,7 @@ namespace FantasyCreatures
 					.SetMaxSpawned(3)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_011)
 					.SetPrefabName("EarthElemental_DoD")
@@ -1086,6 +1089,7 @@ namespace FantasyCreatures
 					.SetMaxSpawned(3)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_010)
 					.SetPrefabName("Manticore_FC")
@@ -1100,6 +1104,7 @@ namespace FantasyCreatures
 					.SetConditionRequiredGlobalKey("defeated_goblinking")
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_009)
 					.SetPrefabName("Cyclops_DoD")
@@ -1113,6 +1118,7 @@ namespace FantasyCreatures
 					.SetConditionRequiredGlobalKey("defeated_goblinking")
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_008)
 					.SetPrefabName("Ogre_DoD")
@@ -1126,6 +1132,7 @@ namespace FantasyCreatures
 					.SetConditionRequiredGlobalKey("defeated_moder")
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_006)
 					.SetPrefabName("Mummy_FC")
@@ -1139,6 +1146,7 @@ namespace FantasyCreatures
 					.SetConditionRequiredGlobalKey("defeated_bonemass")
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.01f)
 					;
 				config.ConfigureWorldSpawner(20_005)
 					.SetPrefabName("Ghoul_FC")
@@ -1152,6 +1160,7 @@ namespace FantasyCreatures
 					.SetConditionRequiredGlobalKey("defeated_bonemass")
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.01f)
 					;
 				config.ConfigureWorldSpawner(20_004)
 					.SetPrefabName("TreeEnt_DoD")
@@ -1165,6 +1174,7 @@ namespace FantasyCreatures
 					.SetConditionRequiredGlobalKey("defeated_gdking")
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_003)
 					.SetPrefabName("Hobgoblin_DoD")
@@ -1178,6 +1188,7 @@ namespace FantasyCreatures
 					.SetConditionEnvironments("Misty", "DeepForest Mist")
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				/*config.ConfigureWorldSpawner(20_002)
 					.SetPrefabName("GiantViper_FC")
@@ -1191,6 +1202,7 @@ namespace FantasyCreatures
 					.SetSpawnDuringDay(false)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(0.1f)
 					;*/
 				config.ConfigureWorldSpawner(20_001)
 					.SetPrefabName("Kobold_DoD")
@@ -1204,6 +1216,7 @@ namespace FantasyCreatures
 					.SetConditionEnvironments("Misty", "DeepForest Mist")
 					.SetSpawnAtDistanceToPlayerMin(60)
 					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_000)
 					.SetPrefabName("DarknessSpider_FC")
@@ -1217,6 +1230,7 @@ namespace FantasyCreatures
 					.SetSpawnDuringDay(false)
 					.SetSpawnAtDistanceToPlayerMin(60)
 					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 			}
 			catch (Exception e)

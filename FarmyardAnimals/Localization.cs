@@ -13,10 +13,13 @@ namespace FarmyardAnimals
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 			// Pieces
+			{"piece_milkgoat_fya", "Milk Goat"},
+			{"piece_goatstall_fya", "Goat Stall"},
+			{"piece_goatstall_fya_desc", "Produces 8 Milk every 12 hours (real time)"},
 			{"piece_milkcow_fya", "Milk Cow"},
 			{"piece_cowstall_fya", "Cow Stall"},
 			{"piece_cowstall_fya_desc", "Produces 8 Milk every 6 hours (real time)"},
-			{"piece_butchersbench_fya", "Butcher Bench"},
+			{"piece_butcherbench_fya", "Butcher Bench"},
 			// Carcass
 			{"object_carcass_fya", "Carcass"},
 			{"item_legsm_fya", "Piece of a Carcass"},
@@ -26,6 +29,10 @@ namespace FarmyardAnimals
 			{"item_quatersm_fya", "Piece of a Carcass"},
 			{"item_quatersm_fya_desc", "Chop it up at the butcher station"},
 			// Materials
+			{"item_goat_fya", "A Goat"},
+			{"item_goat_fya_desc", "Required to build the Goat Stall."},
+			{"item_cow_fya", "A Cow"},
+			{"item_cow_fya_desc", "Required to build the Cow Stall."},
 			{"item_steak_fya", "Steak"},
 			{"item_steak_fya_desc", "Can be cooked in the Oven"},
 			{"item_steaksmall_fya", "Small Steak"},

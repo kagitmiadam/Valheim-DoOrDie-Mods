@@ -25,7 +25,7 @@ namespace Stronghold
 
 		public const string PluginName = "Stronghold";
 
-		public const string PluginVersion = "0.0.4";
+		public const string PluginVersion = "0.0.6";
 
 		public AssetBundle StrongholdAssets;
 		private Harmony _harmony;
@@ -63,6 +63,23 @@ namespace Stronghold
 		public static GameObject piece31;
 		public static GameObject piece32;
 		public static GameObject piece33;
+
+		public static GameObject door1;
+		public static GameObject door2;
+		public static GameObject door3;
+		public static GameObject door4;
+		public static GameObject door5;
+		public static GameObject door6;
+		public static GameObject door7;
+		public static GameObject door8;
+		public static GameObject door9;
+		public static GameObject door10;
+		public static GameObject door11;
+		public static GameObject door12;
+		public static GameObject door13;
+		public static GameObject door14;
+		public static GameObject door15;
+		public static GameObject door16;
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
 		{
 			Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -77,6 +94,7 @@ namespace Stronghold
 			LoadBundle();
 			LoadAssets();
 			CreatePieces();
+			CreateDoors();
 			UnloadBundle();
 		}
 		public void LoadBundle()
@@ -118,6 +136,382 @@ namespace Stronghold
 			piece31 = StrongholdAssets.LoadAsset<GameObject>("SHOldBarn");
 			piece32 = StrongholdAssets.LoadAsset<GameObject>("SHStorageBarn");
 			piece33 = StrongholdAssets.LoadAsset<GameObject>("SHMainHall");
+
+			door1 = StrongholdAssets.LoadAsset<GameObject>("SHArchDoor");
+			door2 = StrongholdAssets.LoadAsset<GameObject>("SHArchDoorMH");
+			door3 = StrongholdAssets.LoadAsset<GameObject>("SHBarnDoor");
+			door4 = StrongholdAssets.LoadAsset<GameObject>("SHBarnDoorsArch");
+			door5 = StrongholdAssets.LoadAsset<GameObject>("SHBarnDoorTall");
+			door6 = StrongholdAssets.LoadAsset<GameObject>("SHBunkhouseDoor");
+			door7 = StrongholdAssets.LoadAsset<GameObject>("SHHouseDoor");
+			door8 = StrongholdAssets.LoadAsset<GameObject>("SHLattice");
+			door9 = StrongholdAssets.LoadAsset<GameObject>("SHMainHallDoor");
+			door10 = StrongholdAssets.LoadAsset<GameObject>("SHMusterHallDoor");
+			door11 = StrongholdAssets.LoadAsset<GameObject>("SHPortcullis");
+			door12 = StrongholdAssets.LoadAsset<GameObject>("SHSmallDoor");
+			door13 = StrongholdAssets.LoadAsset<GameObject>("SHSTowerDoor");
+			door14 = StrongholdAssets.LoadAsset<GameObject>("SHSTowerDoorWide");
+			door15 = StrongholdAssets.LoadAsset<GameObject>("SHTowerDoorTall");
+			door16 = StrongholdAssets.LoadAsset<GameObject>("SHTrapDoor");
+		}
+		private void CreateDoors()
+		{
+			Debug.Log("Stronghold: SHTrapDoor");
+			var customDoor16 = new CustomPiece(door16, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 5,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 25,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor16);
+			Debug.Log("Stronghold: SHTowerDoorTall");
+			var customDoor15 = new CustomPiece(door15, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 7,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 30,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor15);
+			Debug.Log("Stronghold: SHSTowerDoorWide");
+			var customDoor14 = new CustomPiece(door14, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 7,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 30,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor14);
+			Debug.Log("Stronghold: SHSTowerDoor");
+			var customDoor13 = new CustomPiece(door13, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 5,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 25,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor13);
+			Debug.Log("Stronghold: SHSmallDoor");
+			var customDoor12 = new CustomPiece(door12, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 4,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 15,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor12);
+			Debug.Log("Stronghold: SHPortcullis");
+			var customDoor11 = new CustomPiece(door11, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 35,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor11);
+			Debug.Log("Stronghold: SHMusterHallDoor");
+			var customDoor10 = new CustomPiece(door10, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 10,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 45,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor10);
+			Debug.Log("Stronghold: SHMainHallDoor");
+			var customDoor9 = new CustomPiece(door9, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 15,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 55,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor9);
+			Debug.Log("Stronghold: SHLattice");
+			var customDoor8 = new CustomPiece(door8, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[1]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 25,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor8);
+			Debug.Log("Stronghold: SHHouseDoor");
+			var customDoor7 = new CustomPiece(door7, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 5,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 20,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor7);
+			Debug.Log("Stronghold: SHBunkhouseDoor");
+			var customDoor6 = new CustomPiece(door6, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 10,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 40,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor6);
+			Debug.Log("Stronghold: SHBarnDoorTall");
+			var customDoor5 = new CustomPiece(door5, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 7,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 30,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor5);
+			Debug.Log("Stronghold: SHBarnDoorsArch");
+			var customDoor4 = new CustomPiece(door4, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 15,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 50,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor4);
+			Debug.Log("Stronghold: SHBarnDoor");
+			var customDoor3 = new CustomPiece(door3, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 5,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 25,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor3);
+			Debug.Log("Stronghold: SHArchDoorMH");
+			var customDoor2 = new CustomPiece(door2, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 7,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 35,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor2);
+			Debug.Log("Stronghold: SHArchDoor");
+			var customDoor1 = new CustomPiece(door1, true, new PieceConfig
+			{
+				PieceTable = "Hammer",
+				Category = "Stronghold",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Iron",
+						Amount = 5,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FineWood",
+						Amount = 20,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customDoor1);
 		}
 		private void CreatePieces()
 		{

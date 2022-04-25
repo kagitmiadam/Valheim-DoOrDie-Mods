@@ -1338,6 +1338,7 @@ namespace DoDMonsters
 					.SetConditionRequiredGlobalKey("defeated_bonemass")
 					.SetConditionDistanceToCenter(1500)
 					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_022)
 					.SetPrefabName("Ghost_White_DoD")
@@ -1354,6 +1355,7 @@ namespace DoDMonsters
 					.SetConditionRequiredGlobalKey("defeated_gdking")
 					.SetConditionDistanceToCenter(1500)
 					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_021)
 					.SetPrefabName("LavaGolem_DoD")
@@ -1367,6 +1369,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_020)
 					.SetPrefabName("CharredRemains_DoD")
@@ -1380,6 +1383,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_019)
 					.SetPrefabName("LivingLava_DoD")
@@ -1393,6 +1397,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_018)
 					.SetPrefabName("ObsidianGolem_DoD")
@@ -1406,6 +1411,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_017)
 					.SetPrefabName("FlameDrake_DoD")
@@ -1419,6 +1425,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_016)
 					.SetPrefabName("GreaterSurtling_DoD")
@@ -1432,6 +1439,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_015)
 					.SetPrefabName("IceGolem_DoD")
@@ -1445,6 +1453,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_014)
 					.SetPrefabName("FrozenBones_DoD")
@@ -1458,6 +1467,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_013)
 					.SetPrefabName("DireWolf_DoD")
@@ -1471,6 +1481,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_012)
 					.SetPrefabName("IceDrake_DoD")
@@ -1484,6 +1495,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_011)
 					.SetPrefabName("BlackStag_DoD")
@@ -1497,6 +1509,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(150)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_010)
 					.SetPrefabName("BlackDeer_DoD")
@@ -1510,6 +1523,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_009)
 					.SetPrefabName("Vilefang_DoD")
@@ -1523,6 +1537,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_008)
 					.SetPrefabName("DarknessDrake_DoD")
@@ -1539,6 +1554,7 @@ namespace DoDMonsters
 					.SetMinDistanceToOther(100)
 					.SetConditionDistanceToCenter(3000)
 					.SetModifierFaction(Character.Faction.Boss)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_007)
 					.SetPrefabName("LivingWater_DoD")
@@ -1556,6 +1572,7 @@ namespace DoDMonsters
 					.SetConditionDistanceToCenter(1500)
 					.SetMinDistanceToOther(50)
 					.SetModifierFaction(Character.Faction.Boss)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_006)
 					.SetPrefabName("Voidling_DoD")
@@ -1570,6 +1587,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetConditionEnvironments("Misty", "ThunderStorm")
 					.SetConditionDistanceToCenter(1500)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_005)
 					.SetPrefabName("Frostling_DoD")
@@ -1584,6 +1602,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetConditionEnvironments("Twilight_SnowStorm", "SnowStorm")
 					.SetConditionDistanceToCenter(1500)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_004)
 					.SetPrefabName("FrozenBones_DoD")
@@ -1599,6 +1618,7 @@ namespace DoDMonsters
 					.SetConditionRequiredGlobalKey("defeated_dravennox")
 					.SetMinDistanceToOther(100)
 					.SetConditionDistanceToCenter(3000)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_003)
 					.SetPrefabName("SkeletonR_DoD")
@@ -1613,6 +1633,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetSpawnDuringDay(false)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_002)
 					.SetPrefabName("SkeletonG_DoD")
@@ -1627,6 +1648,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetSpawnDuringNight(false)
 					.SetMinDistanceToOther(100)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_001)
 					.SetPrefabName("Stormling_DoD")
@@ -1641,6 +1663,7 @@ namespace DoDMonsters
 					.SetSpawnAtDistanceToPlayerMax(125)
 					.SetConditionEnvironments("Thunderstorm")
 					.SetConditionDistanceToCenter(1500)
+					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(21_000)
 					.SetPrefabName("ForestWolf_DoD")
@@ -1656,6 +1679,7 @@ namespace DoDMonsters
 					.SetConditionRequiredGlobalKey("defeated_dragon")
 					.SetMinDistanceToOther(100)
 					.SetConditionDistanceToCenter(3000)
+					.SetConditionAltitudeMin(0.1f)
 					;
 			}
 			catch (Exception e)

@@ -25,10 +25,15 @@ namespace FantasyArmoury
 
         public const string PluginName = "FantasyArmoury";
 
-        public const string PluginVersion = "0.0.5";
+        public const string PluginVersion = "0.0.7";
 
         private Harmony _harmony;
         public AssetBundle FAAssets;
+        public AssetBundle FAAdditions;
+        public GameObject furnacePiece;
+        public GameObject firepitPiece;
+        public GameObject pressPiece;
+        public GameObject troughPiece;
         public static AssetBundle GetAssetBundleFromResources(string fileName)
         {
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
@@ -42,10 +47,96 @@ namespace FantasyArmoury
             _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.FantasyArmoury");
             LoadBundle();
             LoadFAAssets();
+            AddForgeExtensions();
         }
         public void LoadBundle()
         {
             FAAssets = AssetUtils.LoadAssetBundleFromResources("fabundle", Assembly.GetExecutingAssembly());
+            FAAdditions = AssetUtils.LoadAssetBundleFromResources("smithfa", Assembly.GetExecutingAssembly());
+        }
+        private void AddForgeExtensions()
+        {
+            furnacePiece = FAAdditions.LoadAsset<GameObject>("Furnace_FA");
+            firepitPiece = FAAdditions.LoadAsset<GameObject>("Firepit_FA");
+            pressPiece = FAAdditions.LoadAsset<GameObject>("Press_FA");
+            troughPiece = FAAdditions.LoadAsset<GameObject>("Trough_FA");
+            //Furnace
+            var customPiece1 = new CustomPiece(furnacePiece, false, new PieceConfig
+            {
+                PieceTable = "_HammerPieceTable",
+                Category = "Armoury",
+                Requirements = new RequirementConfig[2]
+                {
+                    new RequirementConfig
+                    {
+                        Item = "BlackMetal",
+                        Amount = 35,
+                        Recover = true
+                    },
+                    new RequirementConfig
+                    {
+                        Item = "Coal",
+                        Amount = 20,
+                        Recover = true
+                    }
+                }
+            });
+            PieceManager.Instance.AddPiece(customPiece1);
+            // Press
+            var customPiece2 = new CustomPiece(pressPiece, false, new PieceConfig
+            {
+                PieceTable = "_HammerPieceTable",
+                Category = "Armoury",
+                Requirements = new RequirementConfig[1]
+                {
+                    new RequirementConfig
+                    {
+                        Item = "BlackMetal",
+                        Amount = 25,
+                        Recover = true
+                    }
+                }
+            });
+            PieceManager.Instance.AddPiece(customPiece2);
+            // Trough
+            var customPiece3 = new CustomPiece(troughPiece, false, new PieceConfig
+            {
+                PieceTable = "_HammerPieceTable",
+                Category = "Armoury",
+                Requirements = new RequirementConfig[1]
+                {
+                    new RequirementConfig
+                    {
+                        Item = "BlackMetal",
+                        Amount = 20,
+                        Recover = true
+                    }
+                }
+            });
+            PieceManager.Instance.AddPiece(customPiece3);
+            // Firepit
+            var customPiece4 = new CustomPiece(firepitPiece, false, new PieceConfig
+            {
+                PieceTable = "_HammerPieceTable",
+                Category = "Armoury",
+                Requirements = new RequirementConfig[2]
+                {
+                    new RequirementConfig
+                    {
+                        Item = "Stone",
+                        Amount = 25,
+                        Recover = true
+                    },
+                    new RequirementConfig
+                    {
+                        Item = "Coal",
+                        Amount = 20,
+                        Recover = true
+                    }
+                }
+            });
+            PieceManager.Instance.AddPiece(customPiece4);
+            FAAdditions.Unload(false);
         }
         private void LoadFAAssets()
         {

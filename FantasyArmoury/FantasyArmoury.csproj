@@ -277,5 +277,8 @@
   <ItemGroup>
     <EmbeddedResource Include="fabundle" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="smithfa" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

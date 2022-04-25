@@ -76,6 +76,8 @@ namespace FarmyardAnimals
 		public static GameObject BurgerMeat;
 		public static GameObject MeatChunks;
 		public static GameObject PrimeCut;
+		public static GameObject CowItem;
+		public static GameObject GoatItem;
 		// Food
 		public static GameObject BurgerRound;
 		public static GameObject Chop;
@@ -91,6 +93,10 @@ namespace FarmyardAnimals
 		public static GameObject ButcherStation;
 		// Pieces
 		public static GameObject MilkCow;
+		public static GameObject MilkGoat;
+		// Attacks
+		public static GameObject AttackCow;
+		public static GameObject AttackSheep;
 		// Asset Bundles
 		public AssetBundle FarmyardBundle;
 		// Harmony (for localization)
@@ -109,12 +115,13 @@ namespace FarmyardAnimals
 			LoadBundle();
 			LoadAssets();
 			CreateStations();
-			CreateCarcassParts();
+			CreateMiscItems();
 			CreateMaterials();
 			AddRecipes();
 			CreatePieces();
 			AddFoodItems();
 			UpdateOven();
+			AddAttacks();
 			AddNewAnimals();
 			UnloadBundle();
 			try
@@ -132,6 +139,14 @@ namespace FarmyardAnimals
 		}
 		private void LoadAssets()
 		{
+			Debug.Log("FarmyardAnimals: Animal Items");
+			CowItem = FarmyardBundle.LoadAsset<GameObject>("CowItem_FYA");
+			GoatItem = FarmyardBundle.LoadAsset<GameObject>("GoatItem_FYA");
+
+			Debug.Log("FarmyardAnimals: Attacks");
+			AttackCow = FarmyardBundle.LoadAsset<GameObject>("Cow_Attack_FYA");
+			AttackSheep = FarmyardBundle.LoadAsset<GameObject>("Sheep_Attack_FYA");
+
 			Debug.Log("FarmyardAnimals: Carcass Parts");
 			Poultry = FarmyardBundle.LoadAsset<GameObject>("PoultryCarcass_FYA");
 			LegS = FarmyardBundle.LoadAsset<GameObject>("LegS_FYA");
@@ -166,6 +181,7 @@ namespace FarmyardAnimals
 
 			Debug.Log("FarmyardAnimals: Pieces");
 			MilkCow = FarmyardBundle.LoadAsset<GameObject>("CowStall_FYA");
+			MilkGoat = FarmyardBundle.LoadAsset<GameObject>("GoatStall_FYA");
 
 			Debug.Log("FarmyardAnimals: Creatures");
 			Sheep = FarmyardBundle.LoadAsset<GameObject>("Sheep_FYA");
@@ -222,19 +238,43 @@ namespace FarmyardAnimals
 			PrefabManager.Instance.AddPrefab(SFXPig3);
 			GameObject SFXButcherChop = FarmyardBundle.LoadAsset<GameObject>("SFX_ButcherChop_FYA");
 			PrefabManager.Instance.AddPrefab(SFXButcherChop);
+			GameObject SFXSheep1 = FarmyardBundle.LoadAsset<GameObject>("SFX_Sheep_Death_FYA");
+			PrefabManager.Instance.AddPrefab(SFXSheep1);
+			GameObject SFXSheep2 = FarmyardBundle.LoadAsset<GameObject>("SFX_Sheep_Idle_FYA");
+			PrefabManager.Instance.AddPrefab(SFXSheep2);
+			GameObject SFXSheep3 = FarmyardBundle.LoadAsset<GameObject>("SFX_Sheep_Footstep_FYA");
+			PrefabManager.Instance.AddPrefab(SFXSheep3);
+			GameObject SFXGoat1 = FarmyardBundle.LoadAsset<GameObject>("SFX_Goat_Death_FYA");
+			PrefabManager.Instance.AddPrefab(SFXGoat1);
+			GameObject SFXGoat2 = FarmyardBundle.LoadAsset<GameObject>("SFX_Goat_Idle_FYA");
+			PrefabManager.Instance.AddPrefab(SFXGoat2);
+			GameObject SFXGoose1 = FarmyardBundle.LoadAsset<GameObject>("SFX_Goose_Death_FYA");
+			PrefabManager.Instance.AddPrefab(SFXGoose1);
+			GameObject SFXGoose2 = FarmyardBundle.LoadAsset<GameObject>("SFX_Goose_Idle_FYA");
+			PrefabManager.Instance.AddPrefab(SFXGoose2);
 
 			Debug.Log("FarmyardAnimals: VFX");
 			GameObject VFXCarcass = FarmyardBundle.LoadAsset<GameObject>("VFX_Carcass_Destruction_FYA");
 			PrefabManager.Instance.AddPrefab(VFXCarcass);
 			GameObject VFXCorpse = FarmyardBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_FYA");
 			PrefabManager.Instance.AddPrefab(VFXCorpse);
+			GameObject VFXHit = FarmyardBundle.LoadAsset<GameObject>("VFX_Blood_Hit_FYA");
+			PrefabManager.Instance.AddPrefab(VFXHit);
+			GameObject VFXDeath = FarmyardBundle.LoadAsset<GameObject>("VFX_Animal_Death_FYA");
+			PrefabManager.Instance.AddPrefab(VFXDeath);
 
 			Debug.Log("FarmyardAnimals: Carcass");
 			GameObject Corpse = FarmyardBundle.LoadAsset<GameObject>("CarcassS_FYA");
 			PrefabManager.Instance.AddPrefab(Corpse);
 		}
-		private void CreateCarcassParts()
+		private void CreateMiscItems()
 		{
+			GameObject dropable7 = CowItem;
+			CustomItem customItem7 = new CustomItem(dropable7, false);
+			ItemManager.Instance.AddItem(customItem7);
+			GameObject dropable6 = GoatItem;
+			CustomItem customItem6 = new CustomItem(dropable6, false);
+			ItemManager.Instance.AddItem(customItem6);
 			GameObject dropable5 = QuarterS;
 			CustomItem customItem5 = new CustomItem(dropable5, false);
 			ItemManager.Instance.AddItem(customItem5);
@@ -475,6 +515,15 @@ namespace FarmyardAnimals
 			CustomItem customItem1 = new CustomItem(dropable1, false);
 			ItemManager.Instance.AddItem(customItem1);
 		}
+		private void AddAttacks()
+		{
+			GameObject attack1 = AttackCow;
+			CustomItem cowAttack = new CustomItem(attack1, false);
+			ItemManager.Instance.AddItem(cowAttack);
+			GameObject attack2 = AttackSheep;
+			CustomItem sheepAttack = new CustomItem(attack2, false);
+			ItemManager.Instance.AddItem(sheepAttack);
+		}
 		private void UpdateOven()
 		{
 			CustomItemConversion food9 = new CustomItemConversion(new CookingConversionConfig
@@ -555,14 +604,14 @@ namespace FarmyardAnimals
 			var customPiece1 = new CustomPiece(ButcherStation, false, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
-				Category = "Crafting",
+				Category = "Farm",
 				Requirements = new RequirementConfig[3
 				]
 				{
 					new RequirementConfig
 					{
 						Item = "LeatherScraps",
-						Amount = 25,
+						Amount = 10,
 						Recover = true
 					},
 					new RequirementConfig
@@ -574,7 +623,7 @@ namespace FarmyardAnimals
 					new RequirementConfig
 					{
 						Item = "Wood",
-						Amount = 50,
+						Amount = 15,
 						Recover = true
 					}
 				}
@@ -583,12 +632,18 @@ namespace FarmyardAnimals
 		}
 		private void CreatePieces()
 		{
-			var customPiece1 = new CustomPiece(MilkCow, false, new PieceConfig
+			var customPiece2 = new CustomPiece(MilkCow, false, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
-				Category = "Crafting",
-				Requirements = new RequirementConfig[2]
+				Category = "Farm",
+				Requirements = new RequirementConfig[3]
 				{
+					new RequirementConfig
+					{
+						Item = "CowItem_FYA",
+						Amount = 1,
+						Recover = true
+					},
 					new RequirementConfig
 					{
 						Item = "Carrot",
@@ -598,12 +653,39 @@ namespace FarmyardAnimals
 					new RequirementConfig
 					{
 						Item = "Wood",
-						Amount = 40,
+						Amount = 50,
 						Recover = true
 					}
 				}
 			});
-			PieceManager.Instance.AddPiece(customPiece1);
+			PieceManager.Instance.AddPiece(customPiece2);
+			var customPiece3 = new CustomPiece(MilkGoat, false, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[3]
+				{
+					new RequirementConfig
+					{
+						Item = "GoatItem_FYA",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Carrot",
+						Amount = 12,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 30,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece3);
 		}
 		private void AddNewAnimals()
 		{
@@ -852,23 +934,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("LightRain")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
-					.SetConditionLocation("WoodVillage1")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
-					;
-				config.ConfigureWorldSpawner(25_006)
-					.SetPrefabName("Goose_FYA")
-					.SetTemplateName("Goose")
-					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
-					.SetSpawnInterval(TimeSpan.FromSeconds(300))
-					.SetPackSizeMin(2)
-					.SetPackSizeMax(4)
-					.SetMaxSpawned(2)
-					.SetSpawnDuringNight(false)
 					.SetConditionEnvironments("LightRain")
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
