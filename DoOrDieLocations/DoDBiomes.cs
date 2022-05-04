@@ -1678,13 +1678,13 @@ namespace DoOrDieBiomes
 				ToItem = "SteelBar_DoD"
 			});
 			ItemManager.Instance.AddItemConversion(itemConversion);
+
 			GameObject itemPrefab2 = DoDBiome.LoadAsset<GameObject>("FrometalOre_DoD");
 			GameObject itemPrefab3 = DoDBiome.LoadAsset<GameObject>("FrometalBar_DoD");
 			CustomItem customItem2 = new CustomItem(itemPrefab2, fixReference: false);
 			CustomItem customItem3 = new CustomItem(itemPrefab3, fixReference: false);
 			ItemManager.Instance.AddItem(customItem2);
 			ItemManager.Instance.AddItem(customItem3);
-
 			CustomItemConversion itemConversion2 = new CustomItemConversion(new SmelterConversionConfig
 			{
 				Station = "blastfurnace",
@@ -1692,13 +1692,13 @@ namespace DoOrDieBiomes
 				ToItem = "FrometalBar_DoD"
 			});
 			ItemManager.Instance.AddItemConversion(itemConversion2);
+
 			GameObject itemPrefab4 = DoDBiome.LoadAsset<GameObject>("FelmetalOre_DoD");
 			GameObject itemPrefab5 = DoDBiome.LoadAsset<GameObject>("FelmetalBar_DoD");
 			CustomItem customItem4 = new CustomItem(itemPrefab4, fixReference: false);
 			CustomItem customItem5 = new CustomItem(itemPrefab5, fixReference: false);
 			ItemManager.Instance.AddItem(customItem4);
 			ItemManager.Instance.AddItem(customItem5);
-
 			CustomItemConversion itemConversion3 = new CustomItemConversion(new SmelterConversionConfig
 			{
 				Station = "blastfurnace",

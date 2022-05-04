@@ -42,7 +42,7 @@ namespace ThemedBuildPieces
 			LoadBundle();
 			AddTBPHammer();
 			CreatePieces();
-			CreatePremades();
+			//CreatePremades();
 			CreateTowerPieces();
 			UnloadBundle();
 			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.ThemedBuildPieces");
@@ -80,7 +80,7 @@ namespace ThemedBuildPieces
 					UseCustomCategories = true,
 					CustomCategories = new string[]
 					{
-						"Thatch", "Cobble", "Oak", "Aged", "Pine", "Tudor", "Worn Tudor", "Tile Roof", "Hardwood"
+						"Stone", "Wood"
 					}
 				}
 			);
@@ -93,7 +93,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_clayrooftop45_tp",
 				//Icon = pieceClay3Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Tile Roof",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -126,7 +126,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_clayrooftop45E_tp",
 				//Icon = pieceClay4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Tile Roof",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -159,7 +159,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_hardwoodpost_tp",
 				//Icon = pieceHardwood4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Hardwood",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -192,7 +192,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_hardwoodpostl_tp",
 				//Icon = pieceHardwood4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Hardwood",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -225,7 +225,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_thatchwall1_tp",
 				//Icon = pieceTudor2Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Thatch",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -258,7 +258,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_thatchwall2_tp",
 				//Icon = pieceTudor3Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Thatch",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -291,7 +291,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_thatchwindow2x1_tp",
 				//Icon = pieceTudor4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Thatch",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[4]
 				{
@@ -330,7 +330,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_cobblewall1_tp",
 				//Icon = pieceTudor2Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -363,7 +363,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_cobblewall2_tp",
 				//Icon = pieceTudor3Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -396,7 +396,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_cobblewindow2x1_tp",
 				//Icon = pieceTudor4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[4]
 				{
@@ -435,7 +435,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_greywall1_tp",
 				//Icon = pieceTudor2Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Aged",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -468,7 +468,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_greywall2_tp",
 				//Icon = pieceTudor3Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Aged",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -501,7 +501,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_greywindow2x1_tp",
 				//Icon = pieceTudor4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Aged",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[4]
 				{
@@ -540,7 +540,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_oakwall1_tp",
 				//Icon = pieceTudor2Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Oak",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -573,7 +573,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_oakwall2_tp",
 				//Icon = pieceTudor3Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Oak",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -606,7 +606,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_oakwindow2x1_tp",
 				//Icon = pieceTudor4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Oak",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[4]
 				{
@@ -645,7 +645,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_pinewall1_tp",
 				//Icon = pieceTudor2Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Pine",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -678,7 +678,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_pinewall2_tp",
 				//Icon = pieceTudor3Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Pine",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -711,7 +711,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_pinewindow2x1_tp",
 				//Icon = pieceTudor4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Pine",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[4]
 				{
@@ -750,7 +750,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_tudorwall1_tp",
 				//Icon = pieceTudor2Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Tudor",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -783,7 +783,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_tudorwall2_tp",
 				//Icon = pieceTudor3Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Tudor",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -816,7 +816,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_tudorwindow2x1_tp",
 				//Icon = pieceTudor4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Tudor",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[4]
 				{
@@ -856,7 +856,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_worntudorfloor_tp",
 				//Icon = pieceTudor1Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Worn Tudor",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -890,7 +890,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_worntudorwall1_tp",
 				//Icon = pieceTudor2Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Worn Tudor",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -924,7 +924,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_worntudorwall2_tp",
 				//Icon = pieceTudor3Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Worn Tudor",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -958,7 +958,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_worntudorwindow2x1_tp",
 				//Icon = pieceTudor4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Worn Tudor",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[4]
 				{
@@ -998,7 +998,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_clayroof26_tp",
 				//Icon = pieceClay1Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Tile Roof",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -1032,7 +1032,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_clayroof45_tp",
 				//Icon = pieceClay2Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Tile Roof",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -1066,7 +1066,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_clayrooftop45_tp",
 				//Icon = pieceClay3Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Tile Roof",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -1100,7 +1100,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_clayrooftop45E_tp",
 				//Icon = pieceClay4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Tile Roof",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -1134,7 +1134,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_hardwoodbeam45_tp",
 				//Icon = pieceHardwood1Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Hardwood",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -1168,7 +1168,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_hardwoodbeam_tp",
 				//Icon = pieceHardwood2Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Hardwood",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -1202,7 +1202,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_hardwoodbeamh_tp",
 				//Icon = pieceHardwood3Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Hardwood",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -1236,7 +1236,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_hardwoodbeaml_tp",
 				//Icon = pieceHardwood4Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Hardwood",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -1270,7 +1270,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_hardwooddoor_tp",
 				//Icon = pieceHardwood5Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Hardwood",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -1304,7 +1304,7 @@ namespace ThemedBuildPieces
 				//Description = "$piece_wallside45_tp",
 				//Icon = pieceHardwood6Icon,
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Hardwood",
+				Category = "Wood",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -1330,129 +1330,6 @@ namespace ThemedBuildPieces
 			});
 			PieceManager.Instance.AddPiece(customPiece14);
 		}
-		private void CreatePremades()
-		{
-			Debug.Log("TBP House: 1");
-			var pieceHouseCobbleA = TBPAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_A");
-			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
-			{
-				PieceTable = "Hammer",
-				Category = "Building",
-				AllowedInDungeons = true,
-				Requirements = new RequirementConfig[2]
-				{
-				new RequirementConfig
-				{
-					Item = "Stone",
-					Amount = 1,
-					Recover = true
-				},
-				new RequirementConfig
-				{
-					Item = "Wood",
-					Amount = 1,
-					Recover = true
-				}
-				}
-			});
-			PieceManager.Instance.AddPiece(customHouse1);
-			Debug.Log("TBP House: 2");
-			var pieceHouseCobbleB = TBPAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_B");
-			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
-			{
-				PieceTable = "Hammer",
-				Category = "Building",
-				AllowedInDungeons = true,
-				Requirements = new RequirementConfig[2]
-				{
-				new RequirementConfig
-				{
-					Item = "Stone",
-					Amount = 1,
-					Recover = true
-				},
-				new RequirementConfig
-				{
-					Item = "Wood",
-					Amount = 1,
-					Recover = true
-				}
-				}
-			});
-			PieceManager.Instance.AddPiece(customHouse2);
-			Debug.Log("TBP House: 3");
-			var pieceHouseCobbleC = TBPAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_C");
-			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
-			{
-				PieceTable = "Hammer",
-				Category = "Building",
-				AllowedInDungeons = true,
-				Requirements = new RequirementConfig[2]
-				{
-				new RequirementConfig
-				{
-					Item = "Stone",
-					Amount = 1,
-					Recover = true
-				},
-				new RequirementConfig
-				{
-					Item = "Wood",
-					Amount = 1,
-					Recover = true
-				}
-				}
-			});
-			PieceManager.Instance.AddPiece(customHouse3);
-			Debug.Log("TBP House: 4");
-			var pieceHouseCobbleD = TBPAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_D");
-			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
-			{
-				PieceTable = "Hammer",
-				Category = "Building",
-				AllowedInDungeons = true,
-				Requirements = new RequirementConfig[2]
-				{
-				new RequirementConfig
-				{
-					Item = "Stone",
-					Amount = 1,
-					Recover = true
-				},
-				new RequirementConfig
-				{
-					Item = "Wood",
-					Amount = 1,
-					Recover = true
-				}
-				}
-			});
-			PieceManager.Instance.AddPiece(customHouse4);
-			Debug.Log("TBP House: 5");
-			var pieceHouseCobbleE = TBPAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_E");
-			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
-			{
-				PieceTable = "Hammer",
-				Category = "Building",
-				AllowedInDungeons = true,
-				Requirements = new RequirementConfig[2]
-				{
-				new RequirementConfig
-				{
-					Item = "Stone",
-					Amount = 1,
-					Recover = true
-				},
-				new RequirementConfig
-				{
-					Item = "Wood",
-					Amount = 1,
-					Recover = true
-				}
-				}
-			});
-			PieceManager.Instance.AddPiece(customHouse5);
-		}
 		private void CreateTowerPieces()
 		{
 			Debug.Log("TBP Tower: 1");
@@ -1460,7 +1337,7 @@ namespace ThemedBuildPieces
 			var customTower1 = new CustomPiece(pieceTower1, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[3]
 				{
@@ -1490,7 +1367,7 @@ namespace ThemedBuildPieces
 			var customTower2 = new CustomPiece(pieceTower2, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
 				{
@@ -1514,7 +1391,7 @@ namespace ThemedBuildPieces
 			var customTower3 = new CustomPiece(pieceTower3, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
 				{
@@ -1538,7 +1415,7 @@ namespace ThemedBuildPieces
 			var customTower4 = new CustomPiece(pieceTower4, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{
@@ -1556,7 +1433,7 @@ namespace ThemedBuildPieces
 			var customTower5 = new CustomPiece(pieceTower5, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{
@@ -1574,7 +1451,7 @@ namespace ThemedBuildPieces
 			var customTower6 = new CustomPiece(pieceTower6, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{
@@ -1592,7 +1469,7 @@ namespace ThemedBuildPieces
 			var customTower7 = new CustomPiece(pieceTower7, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{
@@ -1610,7 +1487,7 @@ namespace ThemedBuildPieces
 			var customTower8 = new CustomPiece(pieceTower8, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{
@@ -1628,7 +1505,7 @@ namespace ThemedBuildPieces
 			var customTower9 = new CustomPiece(pieceTower9, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{
@@ -1646,7 +1523,7 @@ namespace ThemedBuildPieces
 			var customTower10 = new CustomPiece(pieceTower10, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{
@@ -1664,7 +1541,7 @@ namespace ThemedBuildPieces
 			var customTower11 = new CustomPiece(pieceTower11, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{
@@ -1682,7 +1559,7 @@ namespace ThemedBuildPieces
 			var customTower12 = new CustomPiece(pieceTower12, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{
@@ -1700,7 +1577,7 @@ namespace ThemedBuildPieces
 			var customTower13 = new CustomPiece(pieceTower13, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{
@@ -1718,7 +1595,7 @@ namespace ThemedBuildPieces
 			var customTower14 = new CustomPiece(pieceTower14, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{
@@ -1736,7 +1613,7 @@ namespace ThemedBuildPieces
 			var customTower15 = new CustomPiece(pieceTower15, true, new PieceConfig
 			{
 				PieceTable = "TBPPieceTable_TP",
-				Category = "Cobble",
+				Category = "Stone",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[1]
 				{

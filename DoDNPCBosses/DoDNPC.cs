@@ -38,7 +38,7 @@ namespace DoDNPCs
 
 		public const string PluginName = "DoOrDieNPC";
 
-		public const string PluginVersion = "0.0.4";
+		public const string PluginVersion = "0.0.5";
 
 		public AssetBundle NPCBundle;
 		private Harmony _harmony;
@@ -1174,8 +1174,8 @@ namespace DoDNPCs
 					.SetPackSizeMin(2)
 					.SetPackSizeMax(4)
 					.SetMaxSpawned(3)
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetMinDistanceToOther(100)
 					;
 				config.ConfigureWorldSpawner(22_000)
@@ -1187,8 +1187,8 @@ namespace DoDNPCs
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(3)
 					.SetMaxSpawned(4)
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetMinDistanceToOther(100)
 					;
 			}

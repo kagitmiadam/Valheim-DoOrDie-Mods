@@ -23,13 +23,14 @@ namespace FarmyardAnimals
 	[BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
 	[BepInDependency("com.jotunn.jotunn", BepInDependency.DependencyFlags.HardDependency)]
+	[BepInDependency("asharppen.valheim.spawn_that", BepInDependency.DependencyFlags.HardDependency)]
 	internal class farmyardBundle : BaseUnityPlugin
 	{
 		public const string PluginGUID = "horemvore.FarmyardAnimals";
 
 		public const string PluginName = "FarmyardAnimals";
 
-		public const string PluginVersion = "0.0.1";
+		public const string PluginVersion = "0.0.8";
 
 		internal static ManualLogSource Log;
 		// Animals
@@ -61,6 +62,12 @@ namespace FarmyardAnimals
 		public static GameObject OldSpots;
 		public static GameObject PiggletOS;
 		public static GameObject EggG;
+		public static GameObject TurkeyB;
+		public static GameObject TurkeyR;
+		public static GameObject TurkeyW;
+		public static GameObject TurkeyChickB;
+		public static GameObject TurkeyChickR;
+		public static GameObject TurkeyChickW;
 		// Carcass
 		public static GameObject Poultry;
 		public static GameObject LegS;
@@ -91,14 +98,20 @@ namespace FarmyardAnimals
 		public static GameObject RoastedPoultry;
 		// Stations
 		public static GameObject ButcherStation;
+		public static GameObject Marl;
+		public static GameObject Thon;
 		// Pieces
 		public static GameObject MilkCow;
 		public static GameObject MilkGoat;
 		// Attacks
 		public static GameObject AttackCow;
 		public static GameObject AttackSheep;
+		public static GameObject AttackTurkey;
 		// Asset Bundles
 		public AssetBundle FarmyardBundle;
+		// Config Entries
+		public ConfigEntry<bool> SpawnsEnable;
+		public ConfigEntry<bool> MilkingEnable;
 		// Harmony (for localization)
 		private Harmony _harmony;
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
@@ -108,30 +121,56 @@ namespace FarmyardAnimals
 			using Stream stream = executingAssembly.GetManifestResourceStream(text);
 			return AssetBundle.LoadFromStream(stream);
 		}
+		public void CreateConfigurationValues()
+		{
+			SpawnsEnable = base.Config.Bind("Spawns", "Enable", defaultValue: true, new ConfigDescription("Enables World Spawns.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			MilkingEnable = base.Config.Bind("Milking", "Enable", defaultValue: true, new ConfigDescription("Enables Cow and Goat Milking.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+		}
 		private void Awake()
 		{
 			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.FarmyardAnimals");
 			Log = Logger;
 			LoadBundle();
 			LoadAssets();
+			CreateConfigurationValues();
 			CreateStations();
 			CreateMiscItems();
 			CreateMaterials();
 			AddRecipes();
-			CreatePieces();
 			AddFoodItems();
-			UpdateOven();
+			//UpdateOven();
 			AddAttacks();
-			AddNewAnimals();
+			AddGoats();
+			AddGeese();
+			AddSheep();
+			AddChickens();
+			AddCows();
+			AddPigs();
+			AddTurkeys();
+			//AddEggs();
+			if (SpawnsEnable.Value == true)
+            {
+				try
+				{
+					SpawnerConfigurationManager.OnConfigure += ConfigureBiomeSpawners;
+				}
+				catch (Exception e)
+				{
+					System.Console.WriteLine(e);
+				}
+			}
+			if (MilkingEnable.Value == true)
+            {
+				CreatePieces();
+				CreateMilkItems();
+			}
 			UnloadBundle();
-			try
-			{
-				SpawnerConfigurationManager.OnConfigure += ConfigureBiomeSpawners;
-			}
-			catch (Exception e)
-			{
-				System.Console.WriteLine(e);
-			}
 		}
 		public void LoadBundle()
 		{
@@ -146,6 +185,7 @@ namespace FarmyardAnimals
 			Debug.Log("FarmyardAnimals: Attacks");
 			AttackCow = FarmyardBundle.LoadAsset<GameObject>("Cow_Attack_FYA");
 			AttackSheep = FarmyardBundle.LoadAsset<GameObject>("Sheep_Attack_FYA");
+			AttackTurkey = FarmyardBundle.LoadAsset<GameObject>("Turkey_Attack_FYA");
 
 			Debug.Log("FarmyardAnimals: Carcass Parts");
 			Poultry = FarmyardBundle.LoadAsset<GameObject>("PoultryCarcass_FYA");
@@ -178,12 +218,20 @@ namespace FarmyardAnimals
 
 			Debug.Log("FarmyardAnimals: Stations");
 			ButcherStation = FarmyardBundle.LoadAsset<GameObject>("ButchersBench_FYA");
+			Marl = FarmyardBundle.LoadAsset<GameObject>("Piece_Marl_FYA");
+			Thon = FarmyardBundle.LoadAsset<GameObject>("Piece_Thon_FYA");
 
 			Debug.Log("FarmyardAnimals: Pieces");
 			MilkCow = FarmyardBundle.LoadAsset<GameObject>("CowStall_FYA");
 			MilkGoat = FarmyardBundle.LoadAsset<GameObject>("GoatStall_FYA");
 
 			Debug.Log("FarmyardAnimals: Creatures");
+			TurkeyB = FarmyardBundle.LoadAsset<GameObject>("TurkeyB_FYA");
+			TurkeyR = FarmyardBundle.LoadAsset<GameObject>("TurkeyR_FYA");
+			TurkeyW = FarmyardBundle.LoadAsset<GameObject>("TurkeyW_FYA");
+			TurkeyChickB = FarmyardBundle.LoadAsset<GameObject>("TurkeyChickB_FYA");
+			TurkeyChickR = FarmyardBundle.LoadAsset<GameObject>("TurkeyChickR_FYA");
+			TurkeyChickW = FarmyardBundle.LoadAsset<GameObject>("TurkeyChickW_FYA");
 			Sheep = FarmyardBundle.LoadAsset<GameObject>("Sheep_FYA");
 			Lamb = FarmyardBundle.LoadAsset<GameObject>("Lamb_FYA");
 			Goat = FarmyardBundle.LoadAsset<GameObject>("Goat_FYA");
@@ -248,10 +296,20 @@ namespace FarmyardAnimals
 			PrefabManager.Instance.AddPrefab(SFXGoat1);
 			GameObject SFXGoat2 = FarmyardBundle.LoadAsset<GameObject>("SFX_Goat_Idle_FYA");
 			PrefabManager.Instance.AddPrefab(SFXGoat2);
+			GameObject SFXGoat3 = FarmyardBundle.LoadAsset<GameObject>("SFX_Goat_Alert_FYA");
+			PrefabManager.Instance.AddPrefab(SFXGoat3);
 			GameObject SFXGoose1 = FarmyardBundle.LoadAsset<GameObject>("SFX_Goose_Death_FYA");
 			PrefabManager.Instance.AddPrefab(SFXGoose1);
 			GameObject SFXGoose2 = FarmyardBundle.LoadAsset<GameObject>("SFX_Goose_Idle_FYA");
 			PrefabManager.Instance.AddPrefab(SFXGoose2);
+			GameObject SFXTurkey1 = FarmyardBundle.LoadAsset<GameObject>("SFX_Turkey_Alert_FYA");
+			PrefabManager.Instance.AddPrefab(SFXTurkey1);
+			GameObject SFXTurkey2 = FarmyardBundle.LoadAsset<GameObject>("SFX_Turkey_Death_FYA");
+			PrefabManager.Instance.AddPrefab(SFXTurkey2);
+			GameObject SFXTurkey3 = FarmyardBundle.LoadAsset<GameObject>("SFX_Turkey_GetHit_FYA");
+			PrefabManager.Instance.AddPrefab(SFXTurkey3);
+			GameObject SFXTurkey4 = FarmyardBundle.LoadAsset<GameObject>("SFX_Turkey_Idle_FYA");
+			PrefabManager.Instance.AddPrefab(SFXTurkey4);
 
 			Debug.Log("FarmyardAnimals: VFX");
 			GameObject VFXCarcass = FarmyardBundle.LoadAsset<GameObject>("VFX_Carcass_Destruction_FYA");
@@ -262,19 +320,29 @@ namespace FarmyardAnimals
 			PrefabManager.Instance.AddPrefab(VFXHit);
 			GameObject VFXDeath = FarmyardBundle.LoadAsset<GameObject>("VFX_Animal_Death_FYA");
 			PrefabManager.Instance.AddPrefab(VFXDeath);
+			GameObject VFXHeart = FarmyardBundle.LoadAsset<GameObject>("VFX_Heart_FYA");
+			PrefabManager.Instance.AddPrefab(VFXHeart);
+			GameObject VFXStar = FarmyardBundle.LoadAsset<GameObject>("VFX_Star_FYA");
+			PrefabManager.Instance.AddPrefab(VFXStar);
 
 			Debug.Log("FarmyardAnimals: Carcass");
 			GameObject Corpse = FarmyardBundle.LoadAsset<GameObject>("CarcassS_FYA");
 			PrefabManager.Instance.AddPrefab(Corpse);
 		}
-		private void CreateMiscItems()
-		{
+		private void CreateMilkItems()
+        {
 			GameObject dropable7 = CowItem;
 			CustomItem customItem7 = new CustomItem(dropable7, false);
 			ItemManager.Instance.AddItem(customItem7);
 			GameObject dropable6 = GoatItem;
 			CustomItem customItem6 = new CustomItem(dropable6, false);
 			ItemManager.Instance.AddItem(customItem6);
+			GameObject dropable2 = Milk;
+			CustomItem customItem2 = new CustomItem(dropable2, false);
+			ItemManager.Instance.AddItem(customItem2);
+        }
+		private void CreateMiscItems()
+		{
 			GameObject dropable5 = QuarterS;
 			CustomItem customItem5 = new CustomItem(dropable5, false);
 			ItemManager.Instance.AddItem(customItem5);
@@ -284,9 +352,6 @@ namespace FarmyardAnimals
 			GameObject dropable3 = LegS;
 			CustomItem customItem3 = new CustomItem(dropable3, false);
 			ItemManager.Instance.AddItem(customItem3);
-			GameObject dropable2 = Milk;
-			CustomItem customItem2 = new CustomItem(dropable2, false);
-			ItemManager.Instance.AddItem(customItem2);
 			GameObject dropable1 = Poultry;
 			CustomItem customItem1 = new CustomItem(dropable1, false);
 			ItemManager.Instance.AddItem(customItem1);
@@ -523,6 +588,9 @@ namespace FarmyardAnimals
 			GameObject attack2 = AttackSheep;
 			CustomItem sheepAttack = new CustomItem(attack2, false);
 			ItemManager.Instance.AddItem(sheepAttack);
+			GameObject attack3 = AttackTurkey;
+			CustomItem turkeyAttack = new CustomItem(attack3, false);
+			ItemManager.Instance.AddItem(turkeyAttack);
 		}
 		private void UpdateOven()
 		{
@@ -629,6 +697,64 @@ namespace FarmyardAnimals
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece1);
+
+			var customPiece2 = new CustomPiece(Marl, false, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[3
+				]
+				{
+					new RequirementConfig
+					{
+						Item = "Copper",
+						Amount = 8,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 8,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Bronze",
+						Amount = 3,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece2);
+
+			var customPiece3 = new CustomPiece(Thon, false, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[3
+				]
+				{
+					new RequirementConfig
+					{
+						Item = "Copper",
+						Amount = 8,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Stone",
+						Amount = 8,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Bronze",
+						Amount = 3,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece3);
 		}
 		private void CreatePieces()
 		{
@@ -687,92 +813,794 @@ namespace FarmyardAnimals
 			});
 			PieceManager.Instance.AddPiece(customPiece3);
 		}
-		private void AddNewAnimals()
+        private void AddTurkeys()
+        {
+            try
+			{
+				Debug.Log("FYA: TurkeyB");
+				var turkeyBFab = TurkeyB;
+				var TurkeyBMob = new CustomCreature(turkeyBFab, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 5
+							},
+							new DropConfig
+							{
+								Item = "PoultryCarcass_FYA",
+								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(TurkeyBMob);
+
+				Debug.Log("FYA: TurkeyR");
+				var turkeyRFab = TurkeyR;
+				var TurkeyRMob = new CustomCreature(turkeyRFab, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 5
+							},
+							new DropConfig
+							{
+								Item = "PoultryCarcass_FYA",
+								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(TurkeyRMob);
+
+				Debug.Log("FYA: TurkeyW");
+				var turkeyWFab = TurkeyW;
+				var TurkeyWMob = new CustomCreature(turkeyWFab, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 5
+							},
+							new DropConfig
+							{
+								Item = "PoultryCarcass_FYA",
+								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(TurkeyWMob);
+
+				Debug.Log("FYA: TurkeyChickB");
+				var turkeyChickBFab = TurkeyChickB;
+				var TurkeyChickBMob = new CustomCreature(turkeyChickBFab, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(TurkeyChickBMob);
+
+				Debug.Log("FYA: TurkeyChickR");
+				var turkeyChickRFab = TurkeyChickR;
+				var TurkeyChickRMob = new CustomCreature(turkeyChickRFab, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(TurkeyChickRMob);
+
+				Debug.Log("FYA: TurkeyChickW");
+				var turkeyChickWFab = TurkeyChickW;
+				var TurkeyChickWMob = new CustomCreature(turkeyChickWFab, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(TurkeyChickWMob);
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding custom Turkeys: {ex}");
+			}
+			finally
+			{
+				Debug.Log("FYA: Turkeys Added");
+			}
+		}
+		private void AddPigs()
+        {
+            try
+			{
+				Debug.Log("FYA: PiggletOS");
+				var mobFab1 = PiggletOS;
+				var customMob1 = new CustomCreature(mobFab1, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob1);
+
+				Debug.Log("FYA: OldSpots");
+				var mobFab2 = OldSpots;
+				var customMob2 = new CustomCreature(mobFab2, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "CarcassS_FYA",
+								Chance = 75,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob2);
+
+				Debug.Log("FYA: PiggletM");
+				var mobFab3 = PiggletM;
+				var customMob3 = new CustomCreature(mobFab3, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob3);
+
+				Debug.Log("FYA: Mulefoot");
+				var mobFab4 = Mulefoot;
+				var customMob4 = new CustomCreature(mobFab4, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "CarcassS_FYA",
+								Chance = 75,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob4);
+
+				Debug.Log("FYA: PiggletC");
+				var mobFab5 = PiggletC;
+				var customMob5 = new CustomCreature(mobFab5, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob5);
+
+				Debug.Log("FYA: Chester");
+				var mobFab6 = Chester;
+				var customMob6 = new CustomCreature(mobFab6, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "CarcassS_FYA",
+								Chance = 75,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob6);
+
+				Debug.Log("FYA: PiggletO");
+				var mobFab7 = PiggletO;
+				var customMob7 = new CustomCreature(mobFab7, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob7);
+
+				Debug.Log("FYA: Oxford");
+				var mobFab8 = Oxford;
+				var customMob8 = new CustomCreature(mobFab8, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "CarcassS_FYA",
+								Chance = 75,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob8);
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding custom Pigs: {ex}");
+			}
+			finally
+			{
+				Debug.Log("FYA: Pigs Added");
+			}
+		}
+		private void AddCows()
+        {
+            try
+			{
+				Debug.Log("FYA: Highland");
+				var mobFab1 = Highland;
+				var customMob1 = new CustomCreature(mobFab1, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "CarcassS_FYA",
+								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 1
+							},
+							new DropConfig
+							{
+								Item = "CowItem_FYA",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob1);
+
+				Debug.Log("FYA: LonghornW");
+				var mobFab2 = LonghornW;
+				var customMob2 = new CustomCreature(mobFab2, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "CarcassS_FYA",
+								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob2);
+
+				Debug.Log("FYA: LonghornB");
+				var mobFab3 = LonghornB;
+				var customMob3 = new CustomCreature(mobFab3, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "CarcassS_FYA",
+								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob3);
+
+				Debug.Log("FYA: CowBW");
+				var mobFab4 = CowBW;
+				var customMob4 = new CustomCreature(mobFab4, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "CarcassS_FYA",
+								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob4);
+
+				Debug.Log("FYA: CowB");
+				var mobFab5 = CowB;
+				var customMob5 = new CustomCreature(mobFab5, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "CarcassS_FYA",
+								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob5);
+
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding custom Cows: {ex}");
+			}
+			finally
+			{
+				Debug.Log("FYA: Cows Added");
+			}
+		}
+		private void AddChickens()
 		{
-			GameObject animal28 = PiggletOS;
-			CustomPrefab critter28 = new CustomPrefab(animal28, true);
-			PrefabManager.Instance.AddPrefab(critter28);
-			GameObject animal27 = OldSpots;
-			CustomPrefab critter27 = new CustomPrefab(animal27, true);
-			PrefabManager.Instance.AddPrefab(critter27);
-			GameObject animal26 = PiggletM;
-			CustomPrefab critter26 = new CustomPrefab(animal26, true);
-			PrefabManager.Instance.AddPrefab(critter26);
-			GameObject animal25 = Mulefoot;
-			CustomPrefab critter25 = new CustomPrefab(animal25, true);
-			PrefabManager.Instance.AddPrefab(critter25);
-			GameObject animal24 = PiggletC;
-			CustomPrefab critter24 = new CustomPrefab(animal24, true);
-			PrefabManager.Instance.AddPrefab(critter24);
-			GameObject animal23 = Chester;
-			CustomPrefab critter23 = new CustomPrefab(animal23, true);
-			PrefabManager.Instance.AddPrefab(critter23);
-			GameObject animal22 = PiggletO;
-			CustomPrefab critter22 = new CustomPrefab(animal22, true);
-			PrefabManager.Instance.AddPrefab(critter22);
-			GameObject animal21 = Oxford;
-			CustomPrefab critter21 = new CustomPrefab(animal21, true);
-			PrefabManager.Instance.AddPrefab(critter21);
-			GameObject animal20 = Highland;
-			CustomPrefab critter20 = new CustomPrefab(animal20, true);
-			PrefabManager.Instance.AddPrefab(critter20);
-			GameObject animal19 = LonghornW;
-			CustomPrefab critter19 = new CustomPrefab(animal19, true);
-			PrefabManager.Instance.AddPrefab(critter19);
-			GameObject animal18 = LonghornB;
-			CustomPrefab critter18 = new CustomPrefab(animal18, true);
-			PrefabManager.Instance.AddPrefab(critter18);
-			GameObject animal17 = CowBW;
-			CustomPrefab critter17 = new CustomPrefab(animal17, true);
-			PrefabManager.Instance.AddPrefab(critter17);
-			GameObject animal16 = CowB;
-			CustomPrefab critter16 = new CustomPrefab(animal16, true);
-			PrefabManager.Instance.AddPrefab(critter16);
+			try
+			{
+				Debug.Log("FYA: ChickW");
+				var mobFab1 = ChickW;
+				var customMob1 = new CustomCreature(mobFab1, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob1);
+
+				Debug.Log("FYA: ChickenW");
+				var mobFab2 = ChickenW;
+				var customMob2 = new CustomCreature(mobFab2, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "PoultryCarcass_FYA",
+								Chance = 74,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob2);
+
+				Debug.Log("FYA: ChickBW");
+				var mobFab3 = ChickBW;
+				var customMob3 = new CustomCreature(mobFab3, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob3);
+
+				Debug.Log("FYA: ChickenBW");
+				var mobFab4 = ChickenBW;
+				var customMob4 = new CustomCreature(mobFab4, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "PoultryCarcass_FYA",
+								Chance = 75,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob4);
+
+				Debug.Log("FYA: ChickB");
+				var mobFab5 = ChickB;
+				var customMob5 = new CustomCreature(mobFab5, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob5);
+
+				Debug.Log("FYA: ChickenB");
+				var mobFab6 = ChickenB;
+				var customMob6 = new CustomCreature(mobFab6, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "PoultryCarcass_FYA",
+								Chance = 75,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob6);
+
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding custom Chickens: {ex}");
+			}
+			finally
+			{
+				Debug.Log("FYA: Chickens Added");
+			}
+		}
+		private void AddSheep()
+        {
+            try
+			{
+				Debug.Log("FYA: Lamb");
+				var mobFab1 = Lamb;
+				var customMob1 = new CustomCreature(mobFab1, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob1);
+
+				Debug.Log("FYA: Sheep");
+				var mobFab2 = Sheep;
+				var customMob2 = new CustomCreature(mobFab2, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "CarcassS_FYA",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob2);
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding custom Sheep: {ex}");
+			}
+			finally
+			{
+				Debug.Log("FYA: Sheep Added");
+			}
+		}
+		private void AddGeese()
+        {
+            try
+			{
+				Debug.Log("FYA: Gosling");
+				var mobFab1 = Gosling;
+				var customMob1 = new CustomCreature(mobFab1, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 2
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob1);
+
+				Debug.Log("FYA: Goose");
+				var mobFab2 = Goose;
+				var customMob2 = new CustomCreature(mobFab2, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Feathers",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "PoultryCarcass_FYA",
+								Chance = 75,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob2);
+
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding custom Geese: {ex}");
+			}
+			finally
+			{
+				Debug.Log("FYA: Geese Added");
+			}
+		}
+		private void AddGoats()
+		{
+			try
+			{
+				Debug.Log("FYA: Goat");
+				var mobFab1 = Goat;
+				var customMob1 = new CustomCreature(mobFab1, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 4
+							},
+							new DropConfig
+							{
+								Item = "CarcassS_FYA",
+								Chance = 75,
+								MinAmount = 1,
+								MaxAmount = 1
+							},
+							new DropConfig
+							{
+								Item = "GoatItem_FYA",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 1
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(customMob1);
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding custom Goats: {ex}");
+			}
+			finally
+			{
+				Debug.Log("FYA: Goats Added");
+			}
+		}
+		private void AddEggs()
+		{
 			GameObject animal15 = EggW;
 			CustomPrefab critter15 = new CustomPrefab(animal15, true);
 			PrefabManager.Instance.AddPrefab(critter15);
-			GameObject animal14 = ChickW;
-			CustomPrefab critter14 = new CustomPrefab(animal14, true);
-			PrefabManager.Instance.AddPrefab(critter14);
-			GameObject animal13 = ChickenW;
-			CustomPrefab critter13 = new CustomPrefab(animal13, true);
-			PrefabManager.Instance.AddPrefab(critter13);
 			GameObject animal12 = EggBW;
 			CustomPrefab critter12 = new CustomPrefab(animal12, true);
 			PrefabManager.Instance.AddPrefab(critter12);
-			GameObject animal11 = ChickBW;
-			CustomPrefab critter11 = new CustomPrefab(animal11, true);
-			PrefabManager.Instance.AddPrefab(critter11);
-			GameObject animal10 = ChickenBW;
-			CustomPrefab critter10 = new CustomPrefab(animal10, true);
-			PrefabManager.Instance.AddPrefab(critter10);
 			GameObject animal9 = EggB;
 			CustomPrefab critter9 = new CustomPrefab(animal9, true);
 			PrefabManager.Instance.AddPrefab(critter9);
-			GameObject animal8 = ChickB;
-			CustomPrefab critter8 = new CustomPrefab(animal8, true);
-			PrefabManager.Instance.AddPrefab(critter8);
-			GameObject animal7 = ChickenB;
-			CustomPrefab critter7 = new CustomPrefab(animal7, true);
-			PrefabManager.Instance.AddPrefab(critter7);
-			GameObject animal6 = Goat;
-			CustomPrefab critter6 = new CustomPrefab(animal6, true);
-			PrefabManager.Instance.AddPrefab(critter6);
-			GameObject animal4 = Lamb;
-			CustomPrefab critter4 = new CustomPrefab(animal4, true);
-			PrefabManager.Instance.AddPrefab(critter4);
-			GameObject animal3 = Sheep;
-			CustomPrefab critter3 = new CustomPrefab(animal3, true);
-			PrefabManager.Instance.AddPrefab(critter3);
 			GameObject animal5 = EggG;
 			CustomPrefab critter5 = new CustomPrefab(animal5, true);
 			PrefabManager.Instance.AddPrefab(critter5);
-			GameObject animal2 = Gosling;
-			CustomPrefab critter2 = new CustomPrefab(animal2, true);
-			PrefabManager.Instance.AddPrefab(critter2);
-			GameObject animal1 = Goose;
-			CustomPrefab critter1 = new CustomPrefab(animal1, true);
-			PrefabManager.Instance.AddPrefab(critter1);
 		}
 		private void UnloadBundle()
 		{
@@ -795,6 +1623,150 @@ namespace FarmyardAnimals
 			Debug.Log("Farmyard Animals: Create Spawns");
 			try
 			{
+				config.ConfigureWorldSpawner(25_024)
+					.SetPrefabName("TurkeyW_FYA")
+					.SetTemplateName("Turkey White")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(8)
+					.SetSpawnInterval(TimeSpan.FromSeconds(300))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionEnvironments("Clear")
+					.SetConditionAltitudeMin(2)
+					.SetConditionAltitudeMax(75)
+					.SetConditionLocation("StoneTowerRuins01")
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					;
+				config.ConfigureWorldSpawner(25_023)
+					.SetPrefabName("TurkeyW_FYA")
+					.SetTemplateName("Turkey White")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(8)
+					.SetSpawnInterval(TimeSpan.FromSeconds(300))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionEnvironments("DeepForest Mist")
+					.SetConditionAltitudeMin(2)
+					.SetConditionAltitudeMax(75)
+					.SetConditionLocation("Greydwarf_camp1")
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					;
+				config.ConfigureWorldSpawner(25_022)
+					.SetPrefabName("TurkeyW_FYA")
+					.SetTemplateName("Turkey White")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(8)
+					.SetSpawnInterval(TimeSpan.FromSeconds(300))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionEnvironments("Rain")
+					.SetConditionAltitudeMin(2)
+					.SetConditionAltitudeMax(75)
+					.SetConditionLocation("Crypt4")
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					;
+				config.ConfigureWorldSpawner(25_021)
+					.SetPrefabName("TurkeyR_FYA")
+					.SetTemplateName("Turkey Red")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(8)
+					.SetSpawnInterval(TimeSpan.FromSeconds(300))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionEnvironments("Clear")
+					.SetConditionAltitudeMin(2)
+					.SetConditionAltitudeMax(75)
+					.SetConditionLocation("Ruin2")
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					;
+				config.ConfigureWorldSpawner(25_020)
+					.SetPrefabName("TurkeyR_FYA")
+					.SetTemplateName("Turkey Red")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(8)
+					.SetSpawnInterval(TimeSpan.FromSeconds(300))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionEnvironments("DeepForest Mist")
+					.SetConditionAltitudeMin(2)
+					.SetConditionAltitudeMax(75)
+					.SetConditionLocation("Crypt2")
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					;
+				config.ConfigureWorldSpawner(25_019)
+					.SetPrefabName("TurkeyR_FYA")
+					.SetTemplateName("Turkey Red")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(8)
+					.SetSpawnInterval(TimeSpan.FromSeconds(300))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionEnvironments("Rain")
+					.SetConditionAltitudeMin(2)
+					.SetConditionAltitudeMax(75)
+					.SetConditionLocation("Crypt3")
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					;
+				config.ConfigureWorldSpawner(25_018)
+					.SetPrefabName("TurkeyB_FYA")
+					.SetTemplateName("Turkey Black")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(8)
+					.SetSpawnInterval(TimeSpan.FromSeconds(300))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionEnvironments("Clear")
+					.SetConditionAltitudeMin(2)
+					.SetConditionAltitudeMax(75)
+					.SetConditionLocation("Ruin1")
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					;
+				config.ConfigureWorldSpawner(25_017)
+					.SetPrefabName("TurkeyB_FYA")
+					.SetTemplateName("Turkey Black")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(8)
+					.SetSpawnInterval(TimeSpan.FromSeconds(300))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionEnvironments("DeepForest Mist")
+					.SetConditionAltitudeMin(2)
+					.SetConditionAltitudeMax(75)
+					.SetConditionLocation("TrollCamp")
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					;
+				config.ConfigureWorldSpawner(25_016)
+					.SetPrefabName("TurkeyB_FYA")
+					.SetTemplateName("Turkey Black")
+					.SetConditionBiomes(Heightmap.Biome.BlackForest)
+					.SetSpawnChance(8)
+					.SetSpawnInterval(TimeSpan.FromSeconds(300))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionEnvironments("Rain")
+					.SetConditionAltitudeMin(2)
+					.SetConditionAltitudeMax(75)
+					.SetConditionLocation("TrollCave")
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					;
 				config.ConfigureWorldSpawner(25_015)
 					.SetPrefabName("LonghornB_FYA")
 					.SetTemplateName("Longhorn Brown")
@@ -808,8 +1780,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("StoneHenge3")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetModifierFaction(Character.Faction.PlainsMonsters)
 					;
 				config.ConfigureWorldSpawner(25_014)
@@ -825,8 +1797,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("StoneHenge4")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetModifierFaction(Character.Faction.PlainsMonsters)
 					;
 				config.ConfigureWorldSpawner(25_013)
@@ -842,8 +1814,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodFarm1")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_012)
 					.SetPrefabName("CowBW_FYA")
@@ -858,8 +1830,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodFarm1")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_011)
 					.SetPrefabName("CowB_FYA")
@@ -874,8 +1846,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodFarm1")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_010)
 					.SetPrefabName("OldSpots_FYA")
@@ -890,8 +1862,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodFarm1")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_009)
 					.SetPrefabName("Mulefoot_FYA")
@@ -906,8 +1878,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodFarm1")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_008)
 					.SetPrefabName("Oxford_FYA")
@@ -922,8 +1894,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodVillage1")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_007)
 					.SetPrefabName("Chester_FYA")
@@ -938,8 +1910,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodVillage1")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_005)
 					.SetPrefabName("Goat_FYA")
@@ -955,8 +1927,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodVillage1")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_004)
 					.SetPrefabName("Sheep_FYA")
@@ -972,8 +1944,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodVillage1")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_003)
 					.SetPrefabName("Goose_FYA")
@@ -989,8 +1961,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodHouse8")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_002)
 					.SetPrefabName("ChickenW_FYA")
@@ -1005,8 +1977,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodHouse8")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_001)
 					.SetPrefabName("ChickenBW_FYA")
@@ -1022,8 +1994,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodHouse8")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_000)
 					.SetPrefabName("ChickenB_FYA")
@@ -1039,8 +2011,8 @@ namespace FarmyardAnimals
 					.SetConditionAltitudeMin(10)
 					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodHouse8")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 			}
 			catch (Exception e)

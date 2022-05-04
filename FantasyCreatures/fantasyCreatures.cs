@@ -33,7 +33,7 @@ namespace FantasyCreatures
 
 		public const string PluginName = "FantasyCreatures";
 
-		public const string PluginVersion = "0.0.4";
+		public const string PluginVersion = "0.0.5";
 
 		//public static GameObject BeholderA1;
 		//public static GameObject BeholderA2;
@@ -1048,8 +1048,8 @@ namespace FantasyCreatures
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(1)
 					.SetMaxSpawned(4)
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_013)
@@ -1061,8 +1061,8 @@ namespace FantasyCreatures
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(1)
 					.SetMaxSpawned(3)
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_012)
@@ -1074,8 +1074,8 @@ namespace FantasyCreatures
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(1)
 					.SetMaxSpawned(3)
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_011)
@@ -1087,8 +1087,8 @@ namespace FantasyCreatures
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(1)
 					.SetMaxSpawned(3)
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_010)
@@ -1102,8 +1102,8 @@ namespace FantasyCreatures
 					.SetMaxSpawned(3)
 					.SetSpawnDuringDay(false)
 					.SetConditionRequiredGlobalKey("defeated_goblinking")
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_009)
@@ -1116,8 +1116,8 @@ namespace FantasyCreatures
 					.SetPackSizeMax(1)
 					.SetMaxSpawned(3)
 					.SetConditionRequiredGlobalKey("defeated_goblinking")
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_008)
@@ -1130,8 +1130,8 @@ namespace FantasyCreatures
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionRequiredGlobalKey("defeated_moder")
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_006)
@@ -1144,8 +1144,8 @@ namespace FantasyCreatures
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionRequiredGlobalKey("defeated_bonemass")
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.01f)
 					;
 				config.ConfigureWorldSpawner(20_005)
@@ -1158,8 +1158,8 @@ namespace FantasyCreatures
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionRequiredGlobalKey("defeated_bonemass")
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.01f)
 					;
 				config.ConfigureWorldSpawner(20_004)
@@ -1172,8 +1172,8 @@ namespace FantasyCreatures
 					.SetPackSizeMax(1)
 					.SetMaxSpawned(2)
 					.SetConditionRequiredGlobalKey("defeated_gdking")
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_003)
@@ -1186,8 +1186,8 @@ namespace FantasyCreatures
 					.SetPackSizeMax(1)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Misty", "DeepForest Mist")
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.1f)
 					;
 				/*config.ConfigureWorldSpawner(20_002)
@@ -1214,8 +1214,8 @@ namespace FantasyCreatures
 					.SetPackSizeMax(1)
 					.SetMaxSpawned(4)
 					.SetConditionEnvironments("Misty", "DeepForest Mist")
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.1f)
 					;
 				config.ConfigureWorldSpawner(20_000)
@@ -1228,8 +1228,8 @@ namespace FantasyCreatures
 					.SetPackSizeMax(1)
 					.SetMaxSpawned(2)
 					.SetSpawnDuringDay(false)
-					.SetSpawnAtDistanceToPlayerMin(60)
-					.SetSpawnAtDistanceToPlayerMax(100)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionAltitudeMin(0.1f)
 					;
 			}

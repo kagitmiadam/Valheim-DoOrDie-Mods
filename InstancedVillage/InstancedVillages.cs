@@ -25,39 +25,70 @@ namespace InstancedVillages
 
         public const string PluginName = "InstancedVillages";
 
-        public const string PluginVersion = "0.0.3";
+        public const string PluginVersion = "0.0.4";
 
 		private Harmony _harmony;
 		public AssetBundle IVAssets;
-        public static AssetBundle GetAssetBundleFromResources(string fileName)
+		public ConfigEntry<bool> CosmeticEnable;
+		public ConfigEntry<bool> UsableEnable;
+		public ConfigEntry<bool> LocationsEnable;
+		public static AssetBundle GetAssetBundleFromResources(string fileName)
         {
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
             string text = executingAssembly.GetManifestResourceNames().Single((string str) => str.EndsWith(fileName));
             using Stream stream = executingAssembly.GetManifestResourceStream(text);
             return AssetBundle.LoadFromStream(stream);
-        }
-        private void Awake()
+		}
+		public void CreateConfigurationValues()
+		{
+			CosmeticEnable = base.Config.Bind("Cosmetic", "Enable", defaultValue: false, new ConfigDescription("Enables placable cosmetic house's.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			UsableEnable = base.Config.Bind("Usable", "Enable", defaultValue: false, new ConfigDescription("Enables placable usable house's.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			LocationsEnable = base.Config.Bind("Locations", "Enable", defaultValue: true, new ConfigDescription("Enables the Village Locations.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+		}
+		private void Awake()
         {
-            Debug.Log("Instanced Villages: Loading and Creating Assets");
-			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.ThemedBuildPieces");
+            //Debug.Log("Instanced Villages: Loading and Creating Assets");
+			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.InstancedVillages");
+			CreateConfigurationValues();
 			LoadBundle();
 			// Cosmetic
 			//CreateStonePremades();
-			CreateThatchPremades();
-			CreateOakPremades();
-			CreatePinePremades();
-			CreateGreyPremades();
-			CreateWornPremades();
+			if (CosmeticEnable.Value == true)
+			{
+				//Debug.Log("Instanced Villages: Do Cosmetic");
+				CreateThatchPremades();
+				CreateOakPremades();
+				CreatePinePremades();
+				CreateGreyPremades();
+				CreateWornPremades();
+            }
 			// Useable
-			CreateCobblePlaceables();
-			CreateGreyPlaceables();
-			CreateOakPlaceables();
-			CreatePinePlaceables();
-			CreateThatchPlaceables();
-			CreateTudorPlaceables();
-			CreateWornTudorPlaceables();
+			if (UsableEnable.Value == true)
+			{
+				//Debug.Log("Instanced Villages: Do Usable");
+				CreateCobblePlaceables();
+				CreateGreyPlaceables();
+				CreateOakPlaceables();
+				CreatePinePlaceables();
+				CreateThatchPlaceables();
+				CreateTudorPlaceables();
+				CreateWornTudorPlaceables();
+			}
+			if (LocationsEnable.Value == true)
+			{
+				//Debug.Log("Instanced Villages: Do Locations");
+				ZoneManager.OnVanillaLocationsAvailable += AddLocations;
+            }
 			LoadIVAssets();
-			ZoneManager.OnVanillaLocationsAvailable += AddLocations;
         }
         public void LoadBundle()
         {
@@ -130,11 +161,11 @@ namespace InstancedVillages
 		}
         private void CreateCobblePlaceables()
 		{
-			Debug.Log("Cobble: Small House");
+			//Debug.Log("Cobble: Small House");
 			var pieceHouse1 = IVAssets.LoadAsset<GameObject>("SmallHouseCobble_IV");
 			var smallHouse = new CustomPiece(pieceHouse1, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -154,11 +185,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(smallHouse);
-			Debug.Log("Cobble: Medium House");
+			//Debug.Log("Cobble: Medium House");
 			var pieceHouse2 = IVAssets.LoadAsset<GameObject>("MediumHouseCobble_IV");
 			var medHouse = new CustomPiece(pieceHouse2, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -178,11 +209,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(medHouse);
-			Debug.Log("Cobble: Large House");
+			//Debug.Log("Cobble: Large House");
 			var pieceHouse3 = IVAssets.LoadAsset<GameObject>("BigHouseCobble_IV");
 			var largeHouse = new CustomPiece(pieceHouse3, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -205,11 +236,11 @@ namespace InstancedVillages
 		}
 		private void CreateGreyPlaceables()
 		{
-			Debug.Log("Grey: Small House");
+			//Debug.Log("Grey: Small House");
 			var pieceHouse1 = IVAssets.LoadAsset<GameObject>("SmallHouseGrey_IV");
 			var smallHouse = new CustomPiece(pieceHouse1, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -229,11 +260,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(smallHouse);
-			Debug.Log("Grey: Medium House");
+			//Debug.Log("Grey: Medium House");
 			var pieceHouse2 = IVAssets.LoadAsset<GameObject>("MediumHouseGrey_IV");
 			var medHouse = new CustomPiece(pieceHouse2, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -253,11 +284,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(medHouse);
-			Debug.Log("Grey: Large House");
+			//Debug.Log("Grey: Large House");
 			var pieceHouse3 = IVAssets.LoadAsset<GameObject>("BigHouseGrey_IV");
 			var largeHouse = new CustomPiece(pieceHouse3, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -280,11 +311,11 @@ namespace InstancedVillages
 		}
 		private void CreateOakPlaceables()
 		{
-			Debug.Log("Oak: Small House");
+			//Debug.Log("Oak: Small House");
 			var pieceHouse1 = IVAssets.LoadAsset<GameObject>("SmallHouseOak_IV");
 			var smallHouse = new CustomPiece(pieceHouse1, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -304,11 +335,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(smallHouse);
-			Debug.Log("Oak: Medium House");
+			//Debug.Log("Oak: Medium House");
 			var pieceHouse2 = IVAssets.LoadAsset<GameObject>("MediumHouseOak_IV");
 			var medHouse = new CustomPiece(pieceHouse2, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -328,11 +359,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(medHouse);
-			Debug.Log("Oak: Large House");
+			//Debug.Log("Oak: Large House");
 			var pieceHouse3 = IVAssets.LoadAsset<GameObject>("BigHouseOak_IV");
 			var largeHouse = new CustomPiece(pieceHouse3, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -355,11 +386,11 @@ namespace InstancedVillages
 		}
 		private void CreatePinePlaceables()
 		{
-			Debug.Log("Pine: Small House");
+			//Debug.Log("Pine: Small House");
 			var pieceHouse1 = IVAssets.LoadAsset<GameObject>("SmallHousePine_IV");
 			var smallHouse = new CustomPiece(pieceHouse1, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -379,11 +410,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(smallHouse);
-			Debug.Log("Pine: Medium House");
+			//Debug.Log("Pine: Medium House");
 			var pieceHouse2 = IVAssets.LoadAsset<GameObject>("MediumHousePine_IV");
 			var medHouse = new CustomPiece(pieceHouse2, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -403,11 +434,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(medHouse);
-			Debug.Log("Pine: Large House");
+			//Debug.Log("Pine: Large House");
 			var pieceHouse3 = IVAssets.LoadAsset<GameObject>("BigHousePine_IV");
 			var largeHouse = new CustomPiece(pieceHouse3, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -430,11 +461,11 @@ namespace InstancedVillages
 		}
 		private void CreateThatchPlaceables()
 		{
-			Debug.Log("Thatch: Small House");
+			//Debug.Log("Thatch: Small House");
 			var pieceHouse1 = IVAssets.LoadAsset<GameObject>("SmallHouseThatch_IV");
 			var smallHouse = new CustomPiece(pieceHouse1, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -454,11 +485,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(smallHouse);
-			Debug.Log("Thatch: Medium House");
+			//Debug.Log("Thatch: Medium House");
 			var pieceHouse2 = IVAssets.LoadAsset<GameObject>("MediumHouseThatch_IV");
 			var medHouse = new CustomPiece(pieceHouse2, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -478,11 +509,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(medHouse);
-			Debug.Log("Thatch: Large House");
+			//Debug.Log("Thatch: Large House");
 			var pieceHouse3 = IVAssets.LoadAsset<GameObject>("BigHouseThatch_IV");
 			var largeHouse = new CustomPiece(pieceHouse3, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -505,11 +536,11 @@ namespace InstancedVillages
 		}
 		private void CreateTudorPlaceables()
 		{
-			Debug.Log("Tudor: Small House");
+			//Debug.Log("Tudor: Small House");
 			var pieceHouse1 = IVAssets.LoadAsset<GameObject>("SmallHouseTudor_IV");
 			var smallHouse = new CustomPiece(pieceHouse1, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -529,11 +560,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(smallHouse);
-			Debug.Log("Tudor: Medium House");
+			//Debug.Log("Tudor: Medium House");
 			var pieceHouse2 = IVAssets.LoadAsset<GameObject>("MediumHouseTudor_IV");
 			var medHouse = new CustomPiece(pieceHouse2, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -553,11 +584,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(medHouse);
-			Debug.Log("Tudor: Large House");
+			//Debug.Log("Tudor: Large House");
 			var pieceHouse3 = IVAssets.LoadAsset<GameObject>("BigHouseTudor_IV");
 			var largeHouse = new CustomPiece(pieceHouse3, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -580,11 +611,11 @@ namespace InstancedVillages
 		}
 		private void CreateWornTudorPlaceables()
 		{
-			Debug.Log("WornTudor: Small House");
+			//Debug.Log("WornTudor: Small House");
 			var pieceHouse1 = IVAssets.LoadAsset<GameObject>("SmallHouseWornTudor_IV");
 			var smallHouse = new CustomPiece(pieceHouse1, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -604,11 +635,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(smallHouse);
-			Debug.Log("WornTudor: Medium House");
+			//Debug.Log("WornTudor: Medium House");
 			var pieceHouse2 = IVAssets.LoadAsset<GameObject>("MediumHouseWornTudor_IV");
 			var medHouse = new CustomPiece(pieceHouse2, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -628,11 +659,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(medHouse);
-			Debug.Log("WornTudor: Large House");
+			//Debug.Log("WornTudor: Large House");
 			var pieceHouse3 = IVAssets.LoadAsset<GameObject>("BigHouseWornTudor_IV");
 			var largeHouse = new CustomPiece(pieceHouse3, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Placeable",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -655,11 +686,11 @@ namespace InstancedVillages
 		}
 		private void CreateStonePremades()
 		{
-			Debug.Log("TBP House: 1");
+			//Debug.Log("TBP House: 1");
 			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_A");
 			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -679,11 +710,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse1);
-			Debug.Log("TBP House: 2");
+			//Debug.Log("TBP House: 2");
 			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_B");
 			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -703,11 +734,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse2);
-			Debug.Log("TBP House: 3");
+			//Debug.Log("TBP House: 3");
 			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_C");
 			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -727,11 +758,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse3);
-			Debug.Log("TBP House: 4");
+			//Debug.Log("TBP House: 4");
 			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_D");
 			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -751,11 +782,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse4);
-			Debug.Log("TBP House: 5");
+			//Debug.Log("TBP House: 5");
 			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_StoneHouse_E");
 			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -778,11 +809,11 @@ namespace InstancedVillages
 		}
 		private void CreateThatchPremades()
 		{
-			Debug.Log("TBP House: 1");
+			//Debug.Log("TBP House: 1");
 			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_ThatchHouse_A");
 			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -802,11 +833,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse1);
-			Debug.Log("TBP House: 2");
+			//Debug.Log("TBP House: 2");
 			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_ThatchHouse_B");
 			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -826,11 +857,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse2);
-			Debug.Log("TBP House: 3");
+			//Debug.Log("TBP House: 3");
 			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_ThatchHouse_C");
 			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -850,11 +881,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse3);
-			Debug.Log("TBP House: 4");
+			//Debug.Log("TBP House: 4");
 			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_ThatchHouse_D");
 			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -874,11 +905,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse4);
-			Debug.Log("TBP House: 5");
+			//Debug.Log("TBP House: 5");
 			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_ThatchHouse_E");
 			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -901,11 +932,11 @@ namespace InstancedVillages
 		}
 		private void CreateOakPremades()
 		{
-			Debug.Log("TBP House: 1");
+			//Debug.Log("TBP House: 1");
 			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_OakHouse_A");
 			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -925,11 +956,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse1);
-			Debug.Log("TBP House: 2");
+			//Debug.Log("TBP House: 2");
 			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_OakHouse_B");
 			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -949,11 +980,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse2);
-			Debug.Log("TBP House: 3");
+			//Debug.Log("TBP House: 3");
 			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_OakHouse_C");
 			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -973,11 +1004,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse3);
-			Debug.Log("TBP House: 4");
+			//Debug.Log("TBP House: 4");
 			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_OakHouse_D");
 			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -997,11 +1028,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse4);
-			Debug.Log("TBP House: 5");
+			//Debug.Log("TBP House: 5");
 			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_OakHouse_E");
 			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1024,11 +1055,11 @@ namespace InstancedVillages
 		}
 		private void CreatePinePremades()
 		{
-			Debug.Log("TBP House: 1");
+			//Debug.Log("TBP House: 1");
 			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_PineHouse_A");
 			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1048,11 +1079,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse1);
-			Debug.Log("TBP House: 2");
+			//Debug.Log("TBP House: 2");
 			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_PineHouse_B");
 			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1072,11 +1103,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse2);
-			Debug.Log("TBP House: 3");
+			//Debug.Log("TBP House: 3");
 			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_PineHouse_C");
 			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1096,11 +1127,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse3);
-			Debug.Log("TBP House: 4");
+			//Debug.Log("TBP House: 4");
 			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_PineHouse_D");
 			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1120,11 +1151,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse4);
-			Debug.Log("TBP House: 5");
+			//Debug.Log("TBP House: 5");
 			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_PineHouse_E");
 			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1147,11 +1178,11 @@ namespace InstancedVillages
 		}
 		private void CreateGreyPremades()
 		{
-			Debug.Log("TBP House: 1");
+			//Debug.Log("TBP House: 1");
 			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_GreyHouse_A");
 			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1171,11 +1202,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse1);
-			Debug.Log("TBP House: 2");
+			//Debug.Log("TBP House: 2");
 			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_GreyHouse_B");
 			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1195,11 +1226,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse2);
-			Debug.Log("TBP House: 3");
+			//Debug.Log("TBP House: 3");
 			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_GreyHouse_C");
 			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1219,11 +1250,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse3);
-			Debug.Log("TBP House: 4");
+			//Debug.Log("TBP House: 4");
 			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_GreyHouse_D");
 			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1243,11 +1274,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse4);
-			Debug.Log("TBP House: 5");
+			//Debug.Log("TBP House: 5");
 			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_GreyHouse_E");
 			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1270,11 +1301,11 @@ namespace InstancedVillages
 		}
 		private void CreateWornPremades()
 		{
-			Debug.Log("TBP House: 1");
+			//Debug.Log("TBP House: 1");
 			var pieceHouseCobbleA = IVAssets.LoadAsset<GameObject>("Cosmetic_WornHouse_A");
 			var customHouse1 = new CustomPiece(pieceHouseCobbleA, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1294,11 +1325,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse1);
-			Debug.Log("TBP House: 2");
+			//Debug.Log("TBP House: 2");
 			var pieceHouseCobbleB = IVAssets.LoadAsset<GameObject>("Cosmetic_WornHouse_B");
 			var customHouse2 = new CustomPiece(pieceHouseCobbleB, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1318,11 +1349,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse2);
-			Debug.Log("TBP House: 3");
+			//Debug.Log("TBP House: 3");
 			var pieceHouseCobbleC = IVAssets.LoadAsset<GameObject>("Cosmetic_WornHouse_C");
 			var customHouse3 = new CustomPiece(pieceHouseCobbleC, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1342,11 +1373,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse3);
-			Debug.Log("TBP House: 4");
+			//Debug.Log("TBP House: 4");
 			var pieceHouseCobbleD = IVAssets.LoadAsset<GameObject>("Cosmetic_WornHouse_D");
 			var customHouse4 = new CustomPiece(pieceHouseCobbleD, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
@@ -1366,11 +1397,11 @@ namespace InstancedVillages
 				}
 			});
 			PieceManager.Instance.AddPiece(customHouse4);
-			Debug.Log("TBP House: 5");
+			//Debug.Log("TBP House: 5");
 			var pieceHouseCobbleE = IVAssets.LoadAsset<GameObject>("Cosmetic_WornHouse_E");
 			var customHouse5 = new CustomPiece(pieceHouseCobbleE, true, new PieceConfig
 			{
-				PieceTable = "Hammer",
+				PieceTable = "_HammerPieceTable",
 				Category = "IV Cosmetic",
 				AllowedInDungeons = true,
 				Requirements = new RequirementConfig[2]
