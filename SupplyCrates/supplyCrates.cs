@@ -63,10 +63,40 @@ namespace SupplyCrates
 		public static GameObject Pickable2;
 		public static GameObject Pickable3;
 
+		public static GameObject Bowl1;
+		public static GameObject Bowl2;
+		public static GameObject Bowl3;
+		public static GameObject Bowl4;
+		public static GameObject Bowl5;
+		public static GameObject Bowl6;
+		public static GameObject Bowl7;
+		public static GameObject Bowl8;
+		public static GameObject Bowl9;
+		public static GameObject Bowl10;
+		public static GameObject Bowl11;
+		public static GameObject Bowl12;
+		public static GameObject Bowl13;
+		public static GameObject Bowl14;
+		public static GameObject Bowl15;
+		public static GameObject Bowl16;
+		public static GameObject Bowl17;
+		public static GameObject Bowl18;
+		public static GameObject Bowl19;
+		public static GameObject Bowl20;
+		public static GameObject Bowl21;
+		public static GameObject Bowl22;
+		public static GameObject Bowl23;
+		public static GameObject Bowl24;
+		public static GameObject Bowl25;
+		public static GameObject Bowl26;
+		public static GameObject Bowl27;
+		public static GameObject Bowl28;
+		public static GameObject Bowl29;
+
 		public ConfigEntry<bool> MeadowsEnable;
 		public ConfigEntry<bool> BlackForestEnable;
 		public ConfigEntry<bool> SwampEnable;
-		//public ConfigEntry<bool> MountainEnable;
+		public ConfigEntry<bool> MountainEnable;
 		//public ConfigEntry<bool> PlainsEnable;
 
 		public AssetBundle SupplyBundle;
@@ -84,11 +114,15 @@ namespace SupplyCrates
 			{
 				IsAdminOnly = true
 			}));
-			BlackForestEnable = base.Config.Bind("Black Forest", "Enable", defaultValue: true, new ConfigDescription("Enables Supply Crates in the Blackforest.", null, new ConfigurationManagerAttributes
+			BlackForestEnable = base.Config.Bind("Black Forest", "Enable", defaultValue: true, new ConfigDescription("Enables Supply Crates in the Black Forest.", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
 			}));
 			SwampEnable = base.Config.Bind("Swamp", "Enable", defaultValue: true, new ConfigDescription("Enables Supply Crates in the Swamp.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			MountainEnable = base.Config.Bind("Mountain", "Enable", defaultValue: true, new ConfigDescription("Enables Supply Crates in the Mountain's.", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
 			}));
@@ -101,6 +135,7 @@ namespace SupplyCrates
 			LoadBundle();
 			LoadAssets();
 			AddItems();
+			AddBowlPieces();
 			ZoneManager.OnVanillaLocationsAvailable += UpdateLocations;
 		}
 		public void LoadBundle()
@@ -109,6 +144,36 @@ namespace SupplyCrates
 		}
 		private void LoadAssets()
 		{
+			// Bowls
+			Bowl1 = SupplyBundle.LoadAsset<GameObject>("BowlApple_SC");
+			Bowl2 = SupplyBundle.LoadAsset<GameObject>("BowlBagel_SC");
+			Bowl3 = SupplyBundle.LoadAsset<GameObject>("BowlBanana_SC");
+			Bowl4 = SupplyBundle.LoadAsset<GameObject>("BowlBellPepper_SC");
+			Bowl5 = SupplyBundle.LoadAsset<GameObject>("BowlBlueCheese_SC");
+			Bowl6 = SupplyBundle.LoadAsset<GameObject>("BowlBroccoli_SC");
+			Bowl7 = SupplyBundle.LoadAsset<GameObject>("BowlCabbage_SC");
+			Bowl8 = SupplyBundle.LoadAsset<GameObject>("BowlCarrot_SC");
+			Bowl9 = SupplyBundle.LoadAsset<GameObject>("BowlCoconut_SC");
+			Bowl10 = SupplyBundle.LoadAsset<GameObject>("BowlCorn_SC");
+			Bowl11 = SupplyBundle.LoadAsset<GameObject>("BowlCucumber_SC");
+			Bowl12 = SupplyBundle.LoadAsset<GameObject>("BowlEgg_SC");
+			Bowl13 = SupplyBundle.LoadAsset<GameObject>("BowlGrape_SC");
+			Bowl14 = SupplyBundle.LoadAsset<GameObject>("BowlLemon_SC");
+			Bowl15 = SupplyBundle.LoadAsset<GameObject>("BowlLettuce_SC");
+			Bowl16 = SupplyBundle.LoadAsset<GameObject>("BowlLime_SC");
+			Bowl17 = SupplyBundle.LoadAsset<GameObject>("BowlMangoe_SC");
+			Bowl18 = SupplyBundle.LoadAsset<GameObject>("BowlMushroom_SC");
+			Bowl19 = SupplyBundle.LoadAsset<GameObject>("BowlOrange_SC");
+			Bowl20 = SupplyBundle.LoadAsset<GameObject>("BowlPeach_SC");
+			Bowl21 = SupplyBundle.LoadAsset<GameObject>("BowlPear_SC");
+			Bowl22 = SupplyBundle.LoadAsset<GameObject>("BowlPlum_SC");
+			Bowl23 = SupplyBundle.LoadAsset<GameObject>("BowlPotato_SC");
+			Bowl24 = SupplyBundle.LoadAsset<GameObject>("BowlPumpkin_SC");
+			Bowl25 = SupplyBundle.LoadAsset<GameObject>("BowlSpringOnion_SC");
+			Bowl26 = SupplyBundle.LoadAsset<GameObject>("BowlSquash_SC");
+			Bowl27 = SupplyBundle.LoadAsset<GameObject>("BowlSweetPotato_SC");
+			Bowl28 = SupplyBundle.LoadAsset<GameObject>("BowlTomato_SC");
+			Bowl29 = SupplyBundle.LoadAsset<GameObject>("BowlWatermelon_SC");
 			// Fruit
 			Food1 = SupplyBundle.LoadAsset<GameObject>("Apple_SC");
 			Food2 = SupplyBundle.LoadAsset<GameObject>("Banana_SC");
@@ -152,6 +217,619 @@ namespace SupplyCrates
 			PrefabManager.Instance.AddPrefab(pick2);
 			CustomPrefab pick3 = new CustomPrefab(Pickable3, true);
 			PrefabManager.Instance.AddPrefab(pick3);
+		}
+		private void AddBowlPieces()
+		{
+			var customPiece1 = new CustomPiece(Bowl1, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Apple_SC",
+						Amount = 11,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece1);
+			var customPiece2 = new CustomPiece(Bowl2, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Bagel_SC",
+						Amount = 10,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece2);
+			var customPiece3 = new CustomPiece(Bowl3, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Banana_SC",
+						Amount = 10,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece3);
+			var customPiece4 = new CustomPiece(Bowl4, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "BellPepper_SC",
+						Amount = 6,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece4);
+			var customPiece5 = new CustomPiece(Bowl5, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "BlueCheese_SC",
+						Amount = 10,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece5);
+			var customPiece6 = new CustomPiece(Bowl6, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Broccoli_SC",
+						Amount = 4,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece6);
+			var customPiece7 = new CustomPiece(Bowl7, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Cabbage_SC",
+						Amount = 3,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece7);
+			var customPiece8 = new CustomPiece(Bowl8, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Carrot",
+						Amount = 12,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece8);
+			var customPiece9 = new CustomPiece(Bowl9, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Coconut_SC",
+						Amount = 4,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece9);
+			var customPiece10 = new CustomPiece(Bowl10, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Corn_SC",
+						Amount = 5,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece10);
+			var customPiece11 = new CustomPiece(Bowl11, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Cucumber_SC",
+						Amount = 5,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece11);
+			/*var customPiece12 = new CustomPiece(Bowl12, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Egg_SC",
+						Amount = 2,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece12);*/
+			var customPiece13 = new CustomPiece(Bowl13, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Grapes_SC",
+						Amount = 2,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece13);
+			var customPiece14 = new CustomPiece(Bowl14, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Lemon_SC",
+						Amount = 7,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece14);
+			var customPiece15 = new CustomPiece(Bowl15, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Lettuce_SC",
+						Amount = 3,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece15);
+			/*var customPiece16 = new CustomPiece(Bowl16, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Lime_SC",
+						Amount = 11,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece16);*/
+			var customPiece17 = new CustomPiece(Bowl17, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Mango_SC",
+						Amount = 5,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece17);
+			/*var customPiece18 = new CustomPiece(Bowl18, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Mushroom_SC",
+						Amount = 8,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece18);*/
+			var customPiece19 = new CustomPiece(Bowl19, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Orange_SC",
+						Amount = 7,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece19);
+			var customPiece20 = new CustomPiece(Bowl20, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Peach_SC",
+						Amount = 7,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece20);
+			var customPiece21 = new CustomPiece(Bowl21, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Pear_SC",
+						Amount = 7,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece21);
+			var customPiece22 = new CustomPiece(Bowl22, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Plum_SC",
+						Amount = 10,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece22);
+			var customPiece23 = new CustomPiece(Bowl23, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Potato_SC",
+						Amount = 11,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece23);
+			var customPiece24 = new CustomPiece(Bowl24, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Pumpkin_SC",
+						Amount = 5,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece24);
+			var customPiece25 = new CustomPiece(Bowl25, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "SpringOnion_SC",
+						Amount = 7,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece25);
+			var customPiece26 = new CustomPiece(Bowl26, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Squash_SC",
+						Amount = 4,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece26);
+			var customPiece27 = new CustomPiece(Bowl27, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "SweetPotato_SC",
+						Amount = 6,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece27);
+			var customPiece28 = new CustomPiece(Bowl28, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Tomato_SC",
+						Amount = 10,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece28);
+			var customPiece29 = new CustomPiece(Bowl29, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 1,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Watermelon_SC",
+						Amount = 3,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece29);
+
 		}
 		private void AddItems()
 		{
@@ -263,7 +941,7 @@ namespace SupplyCrates
 				var fruitPrefab = PrefabManager.Instance.GetPrefab("BoxOfFruits_SC");
 				var vegPrefab = PrefabManager.Instance.GetPrefab("BoxOfVegetables_SC");
 				var dairyPrefab = PrefabManager.Instance.GetPrefab("BoxOfDairy_SC");
-				Debug.Log("Supply Crates: Box1");
+				Debug.Log("Supply Crates: Boxes");
 				// Biomes
 				if (MeadowsEnable.Value == true)
                 {
@@ -372,6 +1050,10 @@ namespace SupplyCrates
 					var rune1Location = ZoneManager.Instance.GetZoneLocation("Runestone_Draugr");
 					var crypt4Location = ZoneManager.Instance.GetZoneLocation("SunkenCrypt1");
 					var crypt5Location = ZoneManager.Instance.GetZoneLocation("SunkenCrypt4");
+					var graveLocation = ZoneManager.Instance.GetZoneLocation("Grave1");
+					var crypt6Location = ZoneManager.Instance.GetZoneLocation("SunkenCrypt3");
+					var hut1Location = ZoneManager.Instance.GetZoneLocation("SwampHut2");
+					var hut2Location = ZoneManager.Instance.GetZoneLocation("SwampHut4");
 					// Runestone_Draugr
 					var runeVeg = Instantiate(vegPrefab, rune1Location.m_prefab.transform);
 					runeVeg.name = vegPrefab.name;
@@ -387,7 +1069,61 @@ namespace SupplyCrates
 					suncrypt2Veg.name = vegPrefab.name;
 					suncrypt2Veg.transform.localPosition = new Vector3(-3.64f, 0f, -2.77f);
 					Debug.Log("Supply Crates: Loc17");
-                }
+					// Grave1
+					var graveDairy = Instantiate(dairyPrefab, graveLocation.m_prefab.transform);
+					graveDairy.name = dairyPrefab.name;
+					graveDairy.transform.localPosition = new Vector3(4.12f, 0f, -1.65f);
+					Debug.Log("Supply Crates: Loc18");
+					// SunkenCrypt3
+					var crypt1Dairy = Instantiate(dairyPrefab, crypt6Location.m_prefab.transform);
+					crypt1Dairy.name = dairyPrefab.name;
+					crypt1Dairy.transform.localPosition = new Vector3(-3.48f, 0f, 1f);
+					Debug.Log("Supply Crates: Loc19");
+					// SwampHut2
+					var hut1Dairy = Instantiate(dairyPrefab, hut1Location.m_prefab.transform);
+					hut1Dairy.name = dairyPrefab.name;
+					hut1Dairy.transform.localPosition = new Vector3(-3.52f, 0f, 0.116f);
+					Debug.Log("Supply Crates: Loc20");
+					// SwampHut4
+					var hut2Dairy = Instantiate(dairyPrefab, hut2Location.m_prefab.transform);
+					hut2Dairy.name = dairyPrefab.name;
+					hut2Dairy.transform.localPosition = new Vector3(6f, 1.05f, 0f);
+					Debug.Log("Supply Crates: Loc21");
+				}
+				if (MountainEnable.Value == true)
+				{
+					var lore1Location = ZoneManager.Instance.GetZoneLocation("DrakeLorestone");
+					var rune2Location = ZoneManager.Instance.GetZoneLocation("Runestone_Mountains");
+					var cabin1Location = ZoneManager.Instance.GetZoneLocation("AbandonedLogCabin01");
+					var cabin2Location = ZoneManager.Instance.GetZoneLocation("AbandonedLogCabin03");
+					var tower1Location = ZoneManager.Instance.GetZoneLocation("StoneTowerRuins04");
+					// DrakeLorestone
+					var lore1Dairy = Instantiate(dairyPrefab, lore1Location.m_prefab.transform);
+					lore1Dairy.name = dairyPrefab.name;
+					lore1Dairy.transform.localPosition = new Vector3(-0.27f, 0f, 1.82f);
+					Debug.Log("Supply Crates: Loc22");
+					// Runestone_Mountains
+					var rune2Dairy = Instantiate(dairyPrefab, rune2Location.m_prefab.transform);
+					rune2Dairy.name = dairyPrefab.name;
+					rune2Dairy.transform.localPosition = new Vector3(0f, 0f, 2f);
+					Debug.Log("Supply Crates: Loc23");
+					// AbandonedLogCabin01
+					/*var cabin1Dairy = Instantiate(dairyPrefab, cabin1Location.m_prefab.transform);
+					cabin1Dairy.name = dairyPrefab.name;
+					cabin1Dairy.transform.localPosition = new Vector3(-2.4f, 0f, -3.9f);
+					Debug.Log("Supply Crates: Loc24");*/
+					// AbandonedLogCabin03
+					var cabin2Dairy = Instantiate(dairyPrefab, cabin2Location.m_prefab.transform);
+					cabin2Dairy.name = dairyPrefab.name;
+					cabin2Dairy.transform.localPosition = new Vector3(2.363f, 0f, 3.836f);
+					Debug.Log("Supply Crates: Loc25");
+					// StoneTowerRuins04
+					var tower1Dairy = Instantiate(dairyPrefab, tower1Location.m_prefab.transform);
+					tower1Dairy.name = dairyPrefab.name;
+					tower1Dairy.transform.localPosition = new Vector3(-2.69f, 0f, -0.86f);
+					Debug.Log("Supply Crates: Loc26");
+
+				}
 			}
 			catch (Exception ex)
 			{

@@ -30,7 +30,7 @@ namespace FarmyardAnimals
 
 		public const string PluginName = "FarmyardAnimals";
 
-		public const string PluginVersion = "0.0.8";
+		public const string PluginVersion = "0.0.10";
 
 		internal static ManualLogSource Log;
 		// Animals

@@ -123,6 +123,11 @@ May require balancing for more than 2-3 players at a time. Can be done by tweaki
 	If you wish to donate please donate to any of the modpacks dependancies, as I do not accept donations myself.
   
   
+## Support
+
+If you want to support this mod you can [Buy me a Coffee] (https://www.buymeacoffee.com/horemvore)
+
+
 ## Epic Loot Magic Effect Changes
 
 	Resistance Percents range from 1-40% and are limited to the following items:
