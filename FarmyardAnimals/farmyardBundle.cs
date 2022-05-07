@@ -112,6 +112,8 @@ namespace FarmyardAnimals
 		// Config Entries
 		public ConfigEntry<bool> SpawnsEnable;
 		public ConfigEntry<bool> MilkingEnable;
+		// Items
+		public static GameObject ButcherAxe;
 		// Harmony (for localization)
 		private Harmony _harmony;
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
@@ -144,6 +146,7 @@ namespace FarmyardAnimals
 			CreateMaterials();
 			AddRecipes();
 			AddFoodItems();
+			AddButcherItems();
 			//UpdateOven();
 			AddAttacks();
 			AddGoats();
@@ -178,22 +181,23 @@ namespace FarmyardAnimals
 		}
 		private void LoadAssets()
 		{
-			Debug.Log("FarmyardAnimals: Animal Items");
+			ButcherAxe = FarmyardBundle.LoadAsset<GameObject>("ButcherAxe_FYA");
+			//Debug.Log("FarmyardAnimals: Animal Items");
 			CowItem = FarmyardBundle.LoadAsset<GameObject>("CowItem_FYA");
 			GoatItem = FarmyardBundle.LoadAsset<GameObject>("GoatItem_FYA");
 
-			Debug.Log("FarmyardAnimals: Attacks");
+			//Debug.Log("FarmyardAnimals: Attacks");
 			AttackCow = FarmyardBundle.LoadAsset<GameObject>("Cow_Attack_FYA");
 			AttackSheep = FarmyardBundle.LoadAsset<GameObject>("Sheep_Attack_FYA");
 			AttackTurkey = FarmyardBundle.LoadAsset<GameObject>("Turkey_Attack_FYA");
 
-			Debug.Log("FarmyardAnimals: Carcass Parts");
+			//Debug.Log("FarmyardAnimals: Carcass Parts");
 			Poultry = FarmyardBundle.LoadAsset<GameObject>("PoultryCarcass_FYA");
 			LegS = FarmyardBundle.LoadAsset<GameObject>("LegS_FYA");
 			PieceS = FarmyardBundle.LoadAsset<GameObject>("PieceS_FYA");
 			QuarterS = FarmyardBundle.LoadAsset<GameObject>("QuarterS_FYA");
 
-			Debug.Log("FarmyardAnimals: Materials");
+			//Debug.Log("FarmyardAnimals: Materials");
 			PoultryLeg = FarmyardBundle.LoadAsset<GameObject>("PoultryLeg_FYA");
 			PoultryBreast = FarmyardBundle.LoadAsset<GameObject>("PoultryBreast_FYA");
 			PoultryWhole = FarmyardBundle.LoadAsset<GameObject>("PoultryWhole_FYA");
@@ -204,7 +208,7 @@ namespace FarmyardAnimals
 			MeatChunks = FarmyardBundle.LoadAsset<GameObject>("DicedMeat_FYA");
 			PrimeCut = FarmyardBundle.LoadAsset<GameObject>("PrimeCut_FYA");
 
-			Debug.Log("FarmyardAnimals: Food");
+			//Debug.Log("FarmyardAnimals: Food");
 			BurgerRound = FarmyardBundle.LoadAsset<GameObject>("BurgerRound_FYA");
 			Chop = FarmyardBundle.LoadAsset<GameObject>("Chop_FYA");
 			CookedSteak = FarmyardBundle.LoadAsset<GameObject>("CookedSteak_FYA");
@@ -216,16 +220,16 @@ namespace FarmyardAnimals
 			RoastedPoultry = FarmyardBundle.LoadAsset<GameObject>("RoastPoultry_FYA");
 			Milk = FarmyardBundle.LoadAsset<GameObject>("Milk_FYA");
 
-			Debug.Log("FarmyardAnimals: Stations");
+			//Debug.Log("FarmyardAnimals: Stations");
 			ButcherStation = FarmyardBundle.LoadAsset<GameObject>("ButchersBench_FYA");
 			Marl = FarmyardBundle.LoadAsset<GameObject>("Piece_Marl_FYA");
 			Thon = FarmyardBundle.LoadAsset<GameObject>("Piece_Thon_FYA");
 
-			Debug.Log("FarmyardAnimals: Pieces");
+			//Debug.Log("FarmyardAnimals: Pieces");
 			MilkCow = FarmyardBundle.LoadAsset<GameObject>("CowStall_FYA");
 			MilkGoat = FarmyardBundle.LoadAsset<GameObject>("GoatStall_FYA");
 
-			Debug.Log("FarmyardAnimals: Creatures");
+			//Debug.Log("FarmyardAnimals: Creatures");
 			TurkeyB = FarmyardBundle.LoadAsset<GameObject>("TurkeyB_FYA");
 			TurkeyR = FarmyardBundle.LoadAsset<GameObject>("TurkeyR_FYA");
 			TurkeyW = FarmyardBundle.LoadAsset<GameObject>("TurkeyW_FYA");
@@ -261,7 +265,7 @@ namespace FarmyardAnimals
 			PiggletOS = FarmyardBundle.LoadAsset<GameObject>("PiggletOS_FYA");
 			EggG = FarmyardBundle.LoadAsset<GameObject>("EggG_FYA");
 
-			Debug.Log("FarmyardAnimals: SFX");
+			//Debug.Log("FarmyardAnimals: SFX");
 			GameObject SFXCattle1 = FarmyardBundle.LoadAsset<GameObject>("SFX_Cattle_Idle_WL");
 			PrefabManager.Instance.AddPrefab(SFXCattle1);
 			GameObject SFXCattle2 = FarmyardBundle.LoadAsset<GameObject>("SFX_Cattle_Hit_WL");
@@ -311,7 +315,7 @@ namespace FarmyardAnimals
 			GameObject SFXTurkey4 = FarmyardBundle.LoadAsset<GameObject>("SFX_Turkey_Idle_FYA");
 			PrefabManager.Instance.AddPrefab(SFXTurkey4);
 
-			Debug.Log("FarmyardAnimals: VFX");
+			//Debug.Log("FarmyardAnimals: VFX");
 			GameObject VFXCarcass = FarmyardBundle.LoadAsset<GameObject>("VFX_Carcass_Destruction_FYA");
 			PrefabManager.Instance.AddPrefab(VFXCarcass);
 			GameObject VFXCorpse = FarmyardBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_FYA");
@@ -325,7 +329,7 @@ namespace FarmyardAnimals
 			GameObject VFXStar = FarmyardBundle.LoadAsset<GameObject>("VFX_Star_FYA");
 			PrefabManager.Instance.AddPrefab(VFXStar);
 
-			Debug.Log("FarmyardAnimals: Carcass");
+			//Debug.Log("FarmyardAnimals: Carcass");
 			GameObject Corpse = FarmyardBundle.LoadAsset<GameObject>("CarcassS_FYA");
 			PrefabManager.Instance.AddPrefab(Corpse);
 		}
@@ -359,7 +363,7 @@ namespace FarmyardAnimals
 		private void CreateMaterials()
 		{
 			// Burger Meat
-			Debug.Log("FarmyardAnimals: BurgerMeat");
+			//Debug.Log("FarmyardAnimals: BurgerMeat");
 			GameObject material9 = BurgerMeat;
 			CustomItem customMat9 = new CustomItem(material9, false, new ItemConfig
 			{
@@ -377,7 +381,7 @@ namespace FarmyardAnimals
 			});
 			ItemManager.Instance.AddItem(customMat9);
 			// Chop
-			Debug.Log("FarmyardAnimals: PrimeCut");
+			//Debug.Log("FarmyardAnimals: PrimeCut");
 			GameObject material8 = PrimeCut;
 			CustomItem customMat8 = new CustomItem(material8, false, new ItemConfig
 			{
@@ -395,7 +399,7 @@ namespace FarmyardAnimals
 			});
 			ItemManager.Instance.AddItem(customMat8);
 			// Small Steak
-			Debug.Log("FarmyardAnimals: SmallSteak");
+			//Debug.Log("FarmyardAnimals: SmallSteak");
 			GameObject material7 = SmallSteak;
 			CustomItem customMat7 = new CustomItem(material7, false, new ItemConfig
 			{
@@ -413,7 +417,7 @@ namespace FarmyardAnimals
 			});
 			ItemManager.Instance.AddItem(customMat7);
 			// Steak
-			Debug.Log("FarmyardAnimals: Steak");
+			//Debug.Log("FarmyardAnimals: Steak");
 			GameObject material6 = Steak;
 			CustomItem customMat6 = new CustomItem(material6, false, new ItemConfig
 			{
@@ -431,7 +435,7 @@ namespace FarmyardAnimals
 			});
 			ItemManager.Instance.AddItem(customMat6);
 			// Meat Chunks
-			Debug.Log("FarmyardAnimals: MeatChunks");
+			//Debug.Log("FarmyardAnimals: MeatChunks");
 			GameObject material5 = MeatChunks;
 			CustomItem customMat5 = new CustomItem(material5, false, new ItemConfig
 			{
@@ -449,7 +453,7 @@ namespace FarmyardAnimals
 			});
 			ItemManager.Instance.AddItem(customMat5);
 			// Meat Roll
-			Debug.Log("FarmyardAnimals: MeatRoll");
+			//Debug.Log("FarmyardAnimals: MeatRoll");
 			GameObject material4 = MeatRoll;
 			CustomItem customMat4 = new CustomItem(material4, false, new ItemConfig
 			{
@@ -467,7 +471,7 @@ namespace FarmyardAnimals
 			});
 			ItemManager.Instance.AddItem(customMat4);
 			// Poultry Whole
-			Debug.Log("FarmyardAnimals: PoultryWhole");
+			//Debug.Log("FarmyardAnimals: PoultryWhole");
 			GameObject material3 = PoultryWhole;
 			CustomItem customMat3 = new CustomItem(material3, false, new ItemConfig
 			{
@@ -485,7 +489,7 @@ namespace FarmyardAnimals
 			});
 			ItemManager.Instance.AddItem(customMat3);
 			// Poultry Breast
-			Debug.Log("FarmyardAnimals: PoultryBreast");
+			//Debug.Log("FarmyardAnimals: PoultryBreast");
 			GameObject material2 = PoultryBreast;
 			CustomItem customMat2 = new CustomItem(material2, false, new ItemConfig
 			{
@@ -503,7 +507,7 @@ namespace FarmyardAnimals
 			});
 			ItemManager.Instance.AddItem(customMat2);
 			// Poultry Leg
-			Debug.Log("FarmyardAnimals: PoultryLeg");
+			//Debug.Log("FarmyardAnimals: PoultryLeg");
 			GameObject material1 = PoultryLeg;
 			CustomItem customMat1 = new CustomItem(material1, false, new ItemConfig
 			{
@@ -813,11 +817,43 @@ namespace FarmyardAnimals
 			});
 			PieceManager.Instance.AddPiece(customPiece3);
 		}
+		private void AddButcherItems()
+		{
+			GameObject item1 = ButcherAxe;
+			CustomItem butcheraxe = new CustomItem(item1, true, new ItemConfig
+			{
+				Amount = 1,
+				CraftingStation = "forge",
+				MinStationLevel = 1,
+				Requirements = new RequirementConfig[3]
+				{
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 2,
+					AmountPerLevel = 1
+				},
+				new RequirementConfig
+				{
+					Item = "Iron",
+					Amount = 5,
+					AmountPerLevel = 2
+				},
+				new RequirementConfig
+				{
+					Item = "DeerHide",
+					Amount = 1,
+					AmountPerLevel = 1
+				}
+				}
+			});
+			ItemManager.Instance.AddItem(butcheraxe);
+		}
         private void AddTurkeys()
         {
             try
 			{
-				Debug.Log("FYA: TurkeyB");
+				//Debug.Log("FYA: TurkeyB");
 				var turkeyBFab = TurkeyB;
 				var TurkeyBMob = new CustomCreature(turkeyBFab, true,
 					new CreatureConfig
@@ -842,7 +878,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(TurkeyBMob);
 
-				Debug.Log("FYA: TurkeyR");
+				//Debug.Log("FYA: TurkeyR");
 				var turkeyRFab = TurkeyR;
 				var TurkeyRMob = new CustomCreature(turkeyRFab, true,
 					new CreatureConfig
@@ -867,7 +903,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(TurkeyRMob);
 
-				Debug.Log("FYA: TurkeyW");
+				//Debug.Log("FYA: TurkeyW");
 				var turkeyWFab = TurkeyW;
 				var TurkeyWMob = new CustomCreature(turkeyWFab, true,
 					new CreatureConfig
@@ -892,7 +928,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(TurkeyWMob);
 
-				Debug.Log("FYA: TurkeyChickB");
+				//Debug.Log("FYA: TurkeyChickB");
 				var turkeyChickBFab = TurkeyChickB;
 				var TurkeyChickBMob = new CustomCreature(turkeyChickBFab, true,
 					new CreatureConfig
@@ -910,7 +946,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(TurkeyChickBMob);
 
-				Debug.Log("FYA: TurkeyChickR");
+				//Debug.Log("FYA: TurkeyChickR");
 				var turkeyChickRFab = TurkeyChickR;
 				var TurkeyChickRMob = new CustomCreature(turkeyChickRFab, true,
 					new CreatureConfig
@@ -928,7 +964,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(TurkeyChickRMob);
 
-				Debug.Log("FYA: TurkeyChickW");
+				//Debug.Log("FYA: TurkeyChickW");
 				var turkeyChickWFab = TurkeyChickW;
 				var TurkeyChickWMob = new CustomCreature(turkeyChickWFab, true,
 					new CreatureConfig
@@ -952,14 +988,14 @@ namespace FarmyardAnimals
 			}
 			finally
 			{
-				Debug.Log("FYA: Turkeys Added");
+				//Debug.Log("FYA: Turkeys Added");
 			}
 		}
 		private void AddPigs()
         {
             try
 			{
-				Debug.Log("FYA: PiggletOS");
+				//Debug.Log("FYA: PiggletOS");
 				var mobFab1 = PiggletOS;
 				var customMob1 = new CustomCreature(mobFab1, true,
 					new CreatureConfig
@@ -977,7 +1013,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob1);
 
-				Debug.Log("FYA: OldSpots");
+				//Debug.Log("FYA: OldSpots");
 				var mobFab2 = OldSpots;
 				var customMob2 = new CustomCreature(mobFab2, true,
 					new CreatureConfig
@@ -1002,7 +1038,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob2);
 
-				Debug.Log("FYA: PiggletM");
+				//Debug.Log("FYA: PiggletM");
 				var mobFab3 = PiggletM;
 				var customMob3 = new CustomCreature(mobFab3, true,
 					new CreatureConfig
@@ -1020,7 +1056,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob3);
 
-				Debug.Log("FYA: Mulefoot");
+				//Debug.Log("FYA: Mulefoot");
 				var mobFab4 = Mulefoot;
 				var customMob4 = new CustomCreature(mobFab4, true,
 					new CreatureConfig
@@ -1045,7 +1081,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob4);
 
-				Debug.Log("FYA: PiggletC");
+				//Debug.Log("FYA: PiggletC");
 				var mobFab5 = PiggletC;
 				var customMob5 = new CustomCreature(mobFab5, true,
 					new CreatureConfig
@@ -1063,7 +1099,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob5);
 
-				Debug.Log("FYA: Chester");
+				//Debug.Log("FYA: Chester");
 				var mobFab6 = Chester;
 				var customMob6 = new CustomCreature(mobFab6, true,
 					new CreatureConfig
@@ -1088,7 +1124,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob6);
 
-				Debug.Log("FYA: PiggletO");
+				//Debug.Log("FYA: PiggletO");
 				var mobFab7 = PiggletO;
 				var customMob7 = new CustomCreature(mobFab7, true,
 					new CreatureConfig
@@ -1106,7 +1142,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob7);
 
-				Debug.Log("FYA: Oxford");
+				//Debug.Log("FYA: Oxford");
 				var mobFab8 = Oxford;
 				var customMob8 = new CustomCreature(mobFab8, true,
 					new CreatureConfig
@@ -1137,14 +1173,14 @@ namespace FarmyardAnimals
 			}
 			finally
 			{
-				Debug.Log("FYA: Pigs Added");
+				//Debug.Log("FYA: Pigs Added");
 			}
 		}
 		private void AddCows()
         {
             try
 			{
-				Debug.Log("FYA: Highland");
+				//Debug.Log("FYA: Highland");
 				var mobFab1 = Highland;
 				var customMob1 = new CustomCreature(mobFab1, true,
 					new CreatureConfig
@@ -1176,7 +1212,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob1);
 
-				Debug.Log("FYA: LonghornW");
+				//Debug.Log("FYA: LonghornW");
 				var mobFab2 = LonghornW;
 				var customMob2 = new CustomCreature(mobFab2, true,
 					new CreatureConfig
@@ -1201,7 +1237,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob2);
 
-				Debug.Log("FYA: LonghornB");
+				//Debug.Log("FYA: LonghornB");
 				var mobFab3 = LonghornB;
 				var customMob3 = new CustomCreature(mobFab3, true,
 					new CreatureConfig
@@ -1226,7 +1262,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob3);
 
-				Debug.Log("FYA: CowBW");
+				//Debug.Log("FYA: CowBW");
 				var mobFab4 = CowBW;
 				var customMob4 = new CustomCreature(mobFab4, true,
 					new CreatureConfig
@@ -1251,7 +1287,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob4);
 
-				Debug.Log("FYA: CowB");
+				//Debug.Log("FYA: CowB");
 				var mobFab5 = CowB;
 				var customMob5 = new CustomCreature(mobFab5, true,
 					new CreatureConfig
@@ -1283,14 +1319,14 @@ namespace FarmyardAnimals
 			}
 			finally
 			{
-				Debug.Log("FYA: Cows Added");
+				//Debug.Log("FYA: Cows Added");
 			}
 		}
 		private void AddChickens()
 		{
 			try
 			{
-				Debug.Log("FYA: ChickW");
+				//Debug.Log("FYA: ChickW");
 				var mobFab1 = ChickW;
 				var customMob1 = new CustomCreature(mobFab1, true,
 					new CreatureConfig
@@ -1308,7 +1344,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob1);
 
-				Debug.Log("FYA: ChickenW");
+				//Debug.Log("FYA: ChickenW");
 				var mobFab2 = ChickenW;
 				var customMob2 = new CustomCreature(mobFab2, true,
 					new CreatureConfig
@@ -1325,7 +1361,7 @@ namespace FarmyardAnimals
 							new DropConfig
 							{
 								Item = "PoultryCarcass_FYA",
-								Chance = 74,
+								Chance = 75,
 								MinAmount = 1,
 								MaxAmount = 1
 							}
@@ -1333,7 +1369,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob2);
 
-				Debug.Log("FYA: ChickBW");
+				//Debug.Log("FYA: ChickBW");
 				var mobFab3 = ChickBW;
 				var customMob3 = new CustomCreature(mobFab3, true,
 					new CreatureConfig
@@ -1351,7 +1387,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob3);
 
-				Debug.Log("FYA: ChickenBW");
+				//Debug.Log("FYA: ChickenBW");
 				var mobFab4 = ChickenBW;
 				var customMob4 = new CustomCreature(mobFab4, true,
 					new CreatureConfig
@@ -1376,7 +1412,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob4);
 
-				Debug.Log("FYA: ChickB");
+				//Debug.Log("FYA: ChickB");
 				var mobFab5 = ChickB;
 				var customMob5 = new CustomCreature(mobFab5, true,
 					new CreatureConfig
@@ -1394,7 +1430,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob5);
 
-				Debug.Log("FYA: ChickenB");
+				//Debug.Log("FYA: ChickenB");
 				var mobFab6 = ChickenB;
 				var customMob6 = new CustomCreature(mobFab6, true,
 					new CreatureConfig
@@ -1426,14 +1462,14 @@ namespace FarmyardAnimals
 			}
 			finally
 			{
-				Debug.Log("FYA: Chickens Added");
+				//Debug.Log("FYA: Chickens Added");
 			}
 		}
 		private void AddSheep()
         {
             try
 			{
-				Debug.Log("FYA: Lamb");
+				//Debug.Log("FYA: Lamb");
 				var mobFab1 = Lamb;
 				var customMob1 = new CustomCreature(mobFab1, true,
 					new CreatureConfig
@@ -1451,7 +1487,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob1);
 
-				Debug.Log("FYA: Sheep");
+				//Debug.Log("FYA: Sheep");
 				var mobFab2 = Sheep;
 				var customMob2 = new CustomCreature(mobFab2, true,
 					new CreatureConfig
@@ -1482,14 +1518,14 @@ namespace FarmyardAnimals
 			}
 			finally
 			{
-				Debug.Log("FYA: Sheep Added");
+				//Debug.Log("FYA: Sheep Added");
 			}
 		}
 		private void AddGeese()
         {
             try
 			{
-				Debug.Log("FYA: Gosling");
+				//Debug.Log("FYA: Gosling");
 				var mobFab1 = Gosling;
 				var customMob1 = new CustomCreature(mobFab1, true,
 					new CreatureConfig
@@ -1507,7 +1543,7 @@ namespace FarmyardAnimals
 					});
 				CreatureManager.Instance.AddCreature(customMob1);
 
-				Debug.Log("FYA: Goose");
+				//Debug.Log("FYA: Goose");
 				var mobFab2 = Goose;
 				var customMob2 = new CustomCreature(mobFab2, true,
 					new CreatureConfig
@@ -1539,14 +1575,14 @@ namespace FarmyardAnimals
 			}
 			finally
 			{
-				Debug.Log("FYA: Geese Added");
+				//Debug.Log("FYA: Geese Added");
 			}
 		}
 		private void AddGoats()
 		{
 			try
 			{
-				Debug.Log("FYA: Goat");
+				//Debug.Log("FYA: Goat");
 				var mobFab1 = Goat;
 				var customMob1 = new CustomCreature(mobFab1, true,
 					new CreatureConfig
@@ -1584,7 +1620,7 @@ namespace FarmyardAnimals
 			}
 			finally
 			{
-				Debug.Log("FYA: Goats Added");
+				//Debug.Log("FYA: Goats Added");
 			}
 		}
 		private void AddEggs()
@@ -1608,7 +1644,7 @@ namespace FarmyardAnimals
 		}
 		public static void ConfigureBiomeSpawners(ISpawnerConfigurationCollection config)
 		{
-			Debug.Log("Farmyard Animals: Configure Spawns");
+			//Debug.Log("Farmyard Animals: Configure Spawns");
 			try
 			{
 				ConfigureWorldSpawner(config);
@@ -1620,7 +1656,7 @@ namespace FarmyardAnimals
 		}
 		private static void ConfigureWorldSpawner(ISpawnerConfigurationCollection config)
 		{
-			Debug.Log("Farmyard Animals: Create Spawns");
+			//Debug.Log("Farmyard Animals: Create Spawns");
 			try
 			{
 				config.ConfigureWorldSpawner(25_024)
