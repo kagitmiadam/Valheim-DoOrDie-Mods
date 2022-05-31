@@ -14,6 +14,7 @@ namespace Giants
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
 			{"enemy_jotunn_hg", "Jotunn"},
+			{"enemy_firegiant_hg", "Fire Giant"},
 			{"enemy_frostgiant_hg", "Frost Giant"},
 			{"enemy_giant_hg", "Giant"},
 			{"enemy_mountaingiant_hg", "Mountain Giant"},
@@ -23,6 +24,7 @@ namespace Giants
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
 
 			{"enemy_jotunn_hg", "Jotunn"},
+			{"enemy_firegiant_hg", "Fire Giant"},
 			{"enemy_frostgiant_hg", "Frost Giant"},
 			{"enemy_giant_hg", "Giant"},
 			{"enemy_mountaingiant_hg", "Mountain Giant"},
@@ -32,6 +34,7 @@ namespace Giants
 		private static Dictionary<string, string> german = new Dictionary<string, string>() {
 
 			{"enemy_jotunn_hg", "Jotunn"},
+			{"enemy_firegiant_hg", "Fire Giant"},
 			{"enemy_frostgiant_hg", "Frost Giant"},
 			{"enemy_giant_hg", "Giant"},
 			{"enemy_mountaingiant_hg", "Mountain Giant"},
@@ -41,6 +44,7 @@ namespace Giants
 		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
 
 			{"enemy_jotunn_hg", "Jotunn"},
+			{"enemy_firegiant_hg", "Fire Giant"},
 			{"enemy_frostgiant_hg", "Frost Giant"},
 			{"enemy_giant_hg", "Giant"},
 			{"enemy_mountaingiant_hg", "Mountain Giant"},

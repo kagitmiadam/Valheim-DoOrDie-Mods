@@ -125,6 +125,36 @@ namespace SupplyCrates
 		public static GameObject Box28;
 		public static GameObject Box29;
 
+		public static GameObject Bucket1;
+		//public static GameObject Bucket2;
+		public static GameObject Bucket3;
+		public static GameObject Bucket4;
+		//public static GameObject Bucket5;
+		public static GameObject Bucket6;
+		public static GameObject Bucket7;
+		public static GameObject Bucket8;
+		public static GameObject Bucket9;
+		public static GameObject Bucket10;
+		public static GameObject Bucket11;
+		public static GameObject Bucket12;
+		public static GameObject Bucket13;
+		public static GameObject Bucket14;
+		public static GameObject Bucket15;
+		public static GameObject Bucket16;
+		public static GameObject Bucket17;
+		public static GameObject Bucket18;
+		public static GameObject Bucket19;
+		public static GameObject Bucket20;
+		public static GameObject Bucket21;
+		public static GameObject Bucket22;
+		public static GameObject Bucket23;
+		public static GameObject Bucket24;
+		//public static GameObject Bucket25;
+		public static GameObject Bucket26;
+		public static GameObject Bucket27;
+		public static GameObject Bucket28;
+		public static GameObject Bucket29;
+
 		public ConfigEntry<bool> MeadowsEnable;
 		public ConfigEntry<bool> BlackForestEnable;
 		public ConfigEntry<bool> SwampEnable;
@@ -132,6 +162,7 @@ namespace SupplyCrates
 		//public ConfigEntry<bool> PlainsEnable;
 		public ConfigEntry<bool> valharvestEnabled;
 		public ConfigEntry<bool> FYAEnabled;
+		public ConfigEntry<bool> BAEnabled;
 
 		public AssetBundle SupplyBundle;
 		private Harmony _harmony;
@@ -160,11 +191,15 @@ namespace SupplyCrates
 			{
 				IsAdminOnly = true
 			}));
-			valharvestEnabled = base.Config.Bind("Valharvest", "Enable", defaultValue: true, new ConfigDescription("Adds Valharvest's Apple, Salt and Vegetables to Provision Crate's.", null, new ConfigurationManagerAttributes
+			valharvestEnabled = base.Config.Bind("Valharvest", "Enable", defaultValue: false, new ConfigDescription("Adds Valharvest's Apple, Salt and Vegetables to Provision Crate's.", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
 			}));
-			FYAEnabled = base.Config.Bind("Farmyard Animals", "Enable", defaultValue: true, new ConfigDescription("Adds additional food to the consume list for taming.", null, new ConfigurationManagerAttributes
+			FYAEnabled = base.Config.Bind("Farmyard Animals", "Enable", defaultValue: false, new ConfigDescription("Adds additional food to the consume list for taming.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			BAEnabled = base.Config.Bind("Bone Appetite", "Enable", defaultValue: false, new ConfigDescription("Adds BA Egg's to the dairy Provision Crate.", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
 			}));
@@ -179,8 +214,10 @@ namespace SupplyCrates
 			AddItems();
 			AddBowlPieces();
 			AddBoxPieces();
+			AddBucketPieces();
 			if (valharvestEnabled.Value) PrefabManager.OnVanillaPrefabsAvailable += ValHavestAdditions;
 			if (FYAEnabled.Value) CreatureManager.OnVanillaCreaturesAvailable += FYAAdditions;
+			if (BAEnabled.Value) CreatureManager.OnVanillaCreaturesAvailable += BAAdditions;
 			ZoneManager.OnVanillaLocationsAvailable += UpdateLocations;
 		}
 		public void LoadBundle()
@@ -189,6 +226,36 @@ namespace SupplyCrates
 		}
 		private void LoadAssets()
 		{
+			// Buckets
+			Bucket1 = SupplyBundle.LoadAsset<GameObject>("BucketApples_SC");
+			//Bucket2 = SupplyBundle.LoadAsset<GameObject>("BucketBagettes_SC");
+			Bucket3 = SupplyBundle.LoadAsset<GameObject>("BucketBananas_SC");
+			Bucket4 = SupplyBundle.LoadAsset<GameObject>("BucketBellPeppers_SC");
+			//Bucket5 = SupplyBundle.LoadAsset<GameObject>("BucketBlueCheese_SC");
+			Bucket6 = SupplyBundle.LoadAsset<GameObject>("BucketBroccoli_SC");
+			Bucket7 = SupplyBundle.LoadAsset<GameObject>("BucketCabbages_SC");
+			Bucket8 = SupplyBundle.LoadAsset<GameObject>("BucketCarrots_SC");
+			Bucket9 = SupplyBundle.LoadAsset<GameObject>("BucketCoconuts_SC");
+			Bucket10 = SupplyBundle.LoadAsset<GameObject>("BucketCorn_SC");
+			Bucket11 = SupplyBundle.LoadAsset<GameObject>("BucketCucumber_SC");
+			Bucket12 = SupplyBundle.LoadAsset<GameObject>("BucketGrapes_SC");
+			Bucket13 = SupplyBundle.LoadAsset<GameObject>("BucketBagettes_SC");
+			Bucket14 = SupplyBundle.LoadAsset<GameObject>("BucketLemons_SC");
+			Bucket15 = SupplyBundle.LoadAsset<GameObject>("BucketLettuces_SC");
+			Bucket16 = SupplyBundle.LoadAsset<GameObject>("BucketLimes_SC");
+			Bucket17 = SupplyBundle.LoadAsset<GameObject>("BucketMangoes_SC");
+			Bucket18 = SupplyBundle.LoadAsset<GameObject>("BucketMushrooms_SC");
+			Bucket19 = SupplyBundle.LoadAsset<GameObject>("BucketOranges_SC");
+			Bucket20 = SupplyBundle.LoadAsset<GameObject>("BucketPeaches_SC");
+			Bucket21 = SupplyBundle.LoadAsset<GameObject>("BucketPears_SC");
+			Bucket22 = SupplyBundle.LoadAsset<GameObject>("BucketPlums_SC");
+			Bucket23 = SupplyBundle.LoadAsset<GameObject>("BucketPotatoes_SC");
+			Bucket24 = SupplyBundle.LoadAsset<GameObject>("BucketPumpkins_SC");
+			//Bucket25 = SupplyBundle.LoadAsset<GameObject>("BucketSpringOnions_SC");
+			Bucket26 = SupplyBundle.LoadAsset<GameObject>("BucketSqaush_SC");
+			Bucket27 = SupplyBundle.LoadAsset<GameObject>("BucketSweetPotatoes_SC");
+			Bucket28 = SupplyBundle.LoadAsset<GameObject>("BucketTomatoes_SC");
+			Bucket29 = SupplyBundle.LoadAsset<GameObject>("BucketWatermelons_SC");
 			// Boxes
 			Box1 = SupplyBundle.LoadAsset<GameObject>("BoxApples_SC");
 			Box2 = SupplyBundle.LoadAsset<GameObject>("BoxBagels_SC");
@@ -1521,6 +1588,647 @@ namespace SupplyCrates
 			PieceManager.Instance.AddPiece(customPiece29);
 
 		}
+		private void AddBucketPieces()
+		{
+			var customPiece1 = new CustomPiece(Bucket1, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Apple_SC",
+						Amount = 13,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece1);
+			Debug.Log("Supply Crates: Bucket1");
+			/*var customPiece2 = new CustomPiece(Bucket2, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Bagette_SC",
+						Amount = 13,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece2);
+			Debug.Log("Supply Crates: Bucket2");*/
+			var customPiece3 = new CustomPiece(Bucket3, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Banana_SC",
+						Amount = 37,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece3);
+			Debug.Log("Supply Crates: Bucket3");
+			var customPiece4 = new CustomPiece(Bucket4, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "BellPepper_SC",
+						Amount = 10,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece4);
+			Debug.Log("Supply Crates: Bucket4");
+			/*var customPiece5 = new CustomPiece(Bucket5, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "BlueCheese_SC",
+						Amount = 11,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece5);
+			Debug.Log("Supply Crates: Bucket5");*/
+			var customPiece6 = new CustomPiece(Bucket6, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Broccoli_SC",
+						Amount = 11,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece6);
+			Debug.Log("Supply Crates: Bucket6");
+			var customPiece7 = new CustomPiece(Bucket7, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Cabbage_SC",
+						Amount = 5,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece7);
+			Debug.Log("Supply Crates: Bucket7");
+			var customPiece8 = new CustomPiece(Bucket8, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Carrot",
+						Amount = 17,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece8);
+			Debug.Log("Supply Crates: Bucket8");
+			var customPiece9 = new CustomPiece(Bucket9, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Coconut_SC",
+						Amount = 9,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece9);
+			Debug.Log("Supply Crates: Bucket9");
+			var customPiece10 = new CustomPiece(Bucket10, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Corn_SC",
+						Amount = 9,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece10);
+			Debug.Log("Supply Crates: Bucket10");
+			var customPiece11 = new CustomPiece(Bucket11, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Cucumber_SC",
+						Amount = 16,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece11);
+			Debug.Log("Supply Crates: Bucket11");
+			var customPiece12 = new CustomPiece(Bucket12, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Grapes_SC",
+						Amount = 6,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece12);
+			Debug.Log("Supply Crates: Bucket12");
+			var customPiece13 = new CustomPiece(Bucket13, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Bagette_SC",
+						Amount = 13,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece13);
+			Debug.Log("Supply Crates: Bucket13");
+			var customPiece14 = new CustomPiece(Bucket14, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Lemon_SC",
+						Amount = 13,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece14);
+			Debug.Log("Supply Crates: Bucket14");
+			var customPiece15 = new CustomPiece(Bucket15, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Lettuce_SC",
+						Amount = 7,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece15);
+			Debug.Log("Supply Crates: Bucket15");
+			var customPiece16 = new CustomPiece(Bucket16, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Lime_SC",
+						Amount = 32,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece16);
+			Debug.Log("Supply Crates: Bucket16");
+			var customPiece17 = new CustomPiece(Bucket17, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Mango_SC",
+						Amount = 10,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece17);
+			Debug.Log("Supply Crates: Bucket17");
+			var customPiece18 = new CustomPiece(Bucket18, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "BrownMushroom_SC",
+						Amount = 14,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece18);
+			Debug.Log("Supply Crates: Bucket18");
+			var customPiece19 = new CustomPiece(Bucket19, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Orange_SC",
+						Amount = 13,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece19);
+			Debug.Log("Supply Crates: Bucket19");
+			var customPiece20 = new CustomPiece(Bucket20, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Peach_SC",
+						Amount = 30,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece20);
+			Debug.Log("Supply Crates: Bucket20");
+			var customPiece21 = new CustomPiece(Bucket21, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Pear_SC",
+						Amount = 11,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece21);
+			Debug.Log("Supply Crates: Bucket21");
+			var customPiece22 = new CustomPiece(Bucket22, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Plum_SC",
+						Amount = 41,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece22);
+			Debug.Log("Supply Crates: Bucket22");
+			var customPiece23 = new CustomPiece(Bucket23, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Potato_SC",
+						Amount = 11,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece23);
+			Debug.Log("Supply Crates: Bucket23");
+			var customPiece24 = new CustomPiece(Bucket24, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Pumpkin_SC",
+						Amount = 8,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece24);
+			Debug.Log("Supply Crates: Bucket24");
+			/*var customPiece25 = new CustomPiece(Bucket25, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "SpringOnion_SC",
+						Amount = 12,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece25);
+			Debug.Log("Supply Crates: Bucket25");*/
+			var customPiece26 = new CustomPiece(Bucket26, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Squash_SC",
+						Amount = 8,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece26);
+			Debug.Log("Supply Crates: Bucket26");
+			var customPiece27 = new CustomPiece(Bucket27, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "SweetPotato_SC",
+						Amount = 8,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece27);
+			Debug.Log("Supply Crates: Bucket27");
+			var customPiece28 = new CustomPiece(Bucket28, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Tomato_SC",
+						Amount = 21,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece28);
+			Debug.Log("Supply Crates: Bucket28");
+			var customPiece29 = new CustomPiece(Bucket29, true, new PieceConfig
+			{
+				PieceTable = "_HammerPieceTable",
+				Category = "Farm",
+				Requirements = new RequirementConfig[2]
+				{
+					new RequirementConfig
+					{
+						Item = "Wood",
+						Amount = 2,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "Watermelon_SC",
+						Amount = 6,
+						Recover = true
+					}
+				}
+			});
+			PieceManager.Instance.AddPiece(customPiece29);
+			Debug.Log("Supply Crates: Bucket29");
+		}
 		private void AddItems()
 		{
             try
@@ -1942,7 +2650,7 @@ namespace SupplyCrates
 			}
 			catch (Exception ex)
 			{
-				Logger.LogWarning($"Exception caught while updating ValHarvest: {ex}");
+				Logger.LogWarning($"Exception caught while updating for ValHarvest: {ex}");
 			}
             finally
             {
@@ -2086,12 +2794,35 @@ namespace SupplyCrates
 			}
 			catch (Exception ex)
 			{
-				Logger.LogWarning($"Exception caught while updating FYA: {ex}");
+				Logger.LogWarning($"Exception caught while updating for FYA: {ex}");
 			}
             finally
             {
 				CreatureManager.OnVanillaCreaturesAvailable -= FYAAdditions;
 			}
         }
+		private void BAAdditions()
+        {
+            try
+			{
+				var pick1 = PrefabManager.Instance.GetPrefab("BoxOfDairy_SC");
+				var ba1 = PrefabManager.Instance.GetPrefab("rk_egg");
+				pick1.GetComponent<Pickable>().m_extraDrops.m_drops.Add(new DropTable.DropData
+				{
+					m_item = ba1,
+					m_stackMin = 1,
+					m_stackMax = 3,
+					m_weight = 1
+				});
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while updating for Bone Appetite: {ex}");
+			}
+			finally
+			{
+				PrefabManager.OnVanillaPrefabsAvailable -= BAAdditions;
+			}
+		}
 	}
 }

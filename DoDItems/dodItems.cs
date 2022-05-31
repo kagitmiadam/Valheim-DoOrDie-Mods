@@ -28,7 +28,7 @@ namespace DoDItems
 
 		public const string PluginName = "DoOrDieItems";
 
-		public const string PluginVersion = "0.0.1";
+		public const string PluginVersion = "0.0.2";
 
 		private Harmony _harmony;
 		public static readonly ManualLogSource DoDLogger = BepInEx.Logging.Logger.CreateLogSource(PluginName);
@@ -54,6 +54,8 @@ namespace DoDItems
 		public static GameObject AxeBattle;
 		public static GameObject MaceShock;
 		public static GameObject SpearAoE;
+		public static GameObject SpartanBlade;
+		public static GameObject HolyStaff;
 
 		public static GameObject T1ArmorKit;
 		public static GameObject T2ArmorKit;
@@ -85,6 +87,8 @@ namespace DoDItems
 		public static GameObject ShamanItem;
 		public static GameObject WarlockItem;
 		public static GameObject EngineerItem;
+		public static GameObject PriestItem;
+		public static GameObject SpartanItem;
 
 		public static GameObject ShieldGSkull;
 		public static GameObject ShieldBGSkull;
@@ -122,18 +126,17 @@ namespace DoDItems
 		public static GameObject SwordDeepNorth;
 		public static GameObject SwordAshLands;
 
+		public static GameObject WandMountains;
+		public static GameObject MaceMistlands;
+		public static GameObject MaceDeepNorth;
+
+		public static GameObject SwordMoonlight;
 
 		public ConfigEntry<bool> ArmorCrateEnable;
 		public ConfigEntry<bool> WeaponCrateEnable;
 		public ConfigEntry<bool> ClassWeaponEnable;
 		public ConfigEntry<bool> WeaponsEnable;
 		public ConfigEntry<bool> BossesEnable;
-
-		public static GameObject WandMountains;
-		public static GameObject MaceMistlands;
-		public static GameObject MaceDeepNorth;
-
-		public static GameObject SwordMoonlight;
 
 		public AssetBundle DoDAssets;
 
@@ -248,6 +251,8 @@ namespace DoDItems
 			AxeBattle = DoDAssets.LoadAsset<GameObject>("BerserkerAxe_DoD");
 			MaceShock = DoDAssets.LoadAsset<GameObject>("MonkMace_DoD");
 			SpearAoE = DoDAssets.LoadAsset<GameObject>("AoE_AuraHealing_DoD");
+			SpartanBlade = DoDAssets.LoadAsset<GameObject>("SpartanSword_DoD");
+			HolyStaff = DoDAssets.LoadAsset<GameObject>("PriestStaff_DoD");
 			Debug.Log("DoDItems: Armor Kits");
 			// Armor Kit Assets
 			T1ArmorKit = DoDAssets.LoadAsset<GameObject>("CrudeArmorKit_DoD");
@@ -282,6 +287,8 @@ namespace DoDItems
 			RogueItem = DoDAssets.LoadAsset<GameObject>("RogueItem_DoD");
 			ShamanItem = DoDAssets.LoadAsset<GameObject>("ShamanItem_DoD");
 			WarlockItem = DoDAssets.LoadAsset<GameObject>("WarlockItem_DoD");
+			PriestItem = DoDAssets.LoadAsset<GameObject>("PriestItem_DoD");
+			SpartanItem = DoDAssets.LoadAsset<GameObject>("SpartanItem_DoD");
 
 			Debug.Log("DoDItems: AoE");
 			GameObject AoEDivineMace = DoDAssets.LoadAsset<GameObject>("AoE_DivineMace_DoD");
@@ -1232,6 +1239,79 @@ namespace DoDItems
 			});
 			ItemManager.Instance.AddItem(customItem10);
 			//Jotunn.Logger.LogMessage("Created Recipie: SwordNinja");
+			GameObject prieststaff = HolyStaff;
+			CustomItem customItem11 = new CustomItem(prieststaff, fixReference: true, new ItemConfig
+			{
+				//Name = "Void Sword",
+				Amount = 1,
+				CraftingStation = "forge",
+				MinStationLevel = 1,
+				Requirements = new RequirementConfig[4]
+				{
+				new RequirementConfig
+				{
+					Item = "CrudeWeaponKit_DoD",
+					Amount = 1,
+					AmountPerLevel = 0
+				},
+				new RequirementConfig
+				{
+					Item = "InfusedGemstone_DoD",
+					Amount = 4,
+					AmountPerLevel = 2
+				},
+				new RequirementConfig
+				{
+					Item = "PriestItem_DoD",
+					Amount = 3,
+					AmountPerLevel = 0
+				},
+				new RequirementConfig
+				{
+					Item = "BasicWeaponKit_DoD",
+					Amount = 0,
+					AmountPerLevel = 1
+				}
+				}
+			});
+			ItemManager.Instance.AddItem(customItem11);
+			//Jotunn.Logger.LogMessage("Created Recipie: HolyStaff");
+			GameObject spartansword = SpartanBlade;
+			CustomItem customItem12 = new CustomItem(spartansword, fixReference: true, new ItemConfig
+			{
+				Amount = 1,
+				CraftingStation = "forge",
+				MinStationLevel = 1,
+				Requirements = new RequirementConfig[4]
+				{
+				new RequirementConfig
+				{
+					Item = "CrudeWeaponKit_DoD",
+					Amount = 1,
+					AmountPerLevel = 0
+				},
+				new RequirementConfig
+				{
+					Item = "InfusedGemstone_DoD",
+					Amount = 4,
+					AmountPerLevel = 2
+				},
+				new RequirementConfig
+				{
+					Item = "SpartanItem_DoD",
+					Amount = 3,
+					AmountPerLevel = 0
+				},
+				new RequirementConfig
+				{
+					Item = "BasicWeaponKit_DoD",
+					Amount = 0,
+					AmountPerLevel = 1
+				}
+				}
+			});
+			ItemManager.Instance.AddItem(customItem12);
+			//Jotunn.Logger.LogMessage("Created Recipie: SpartanBlade");
 		}
 		private void CreateMagicSwords()
 		{
@@ -1672,6 +1752,14 @@ namespace DoDItems
 			GameObject dropable56 = EngineerItem;
 			CustomItem customItem56 = new CustomItem(dropable56, fixReference: true);
 			ItemManager.Instance.AddItem(customItem56);
+
+			GameObject dropable57 = PriestItem;
+			CustomItem customItem57 = new CustomItem(dropable57, fixReference: true);
+			ItemManager.Instance.AddItem(customItem57);
+
+			GameObject dropable58 = SpartanItem;
+			CustomItem customItem58 = new CustomItem(dropable58, fixReference: true);
+			ItemManager.Instance.AddItem(customItem58);
 
 		}
 		private void CreateTierItems()

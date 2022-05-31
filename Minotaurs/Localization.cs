@@ -13,6 +13,8 @@ namespace Minotaurs
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+			{"enemy_fireminotaurarmored_hm", "Armoured Fire Minotaur"},
+			{"enemy_fireminotaur_hm", "Fire Minotaur"},
 			{"enemy_frostminotaurarmored_hm", "Armoured Frost Minotaur"},
 			{"enemy_frostminotaur_hm", "Frost Minotaur"},
 			{"enemy_minotaurarmored_hm", "Armoured Minotaur"},
@@ -21,6 +23,8 @@ namespace Minotaurs
 		};
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
 
+			{"enemy_fireminotaurarmored_hm", "Armoured Fire Minotaur"},
+			{"enemy_fireminotaur_hm", "Fire Minotaur"},
 			{"enemy_frostminotaurarmored_hm", "Armoured Frost Minotaur"},
 			{"enemy_frostminotaur_hm", "Frost Minotaur"},
 			{"enemy_minotaurarmored_hm", "Armoured Minotaur"},
@@ -29,6 +33,8 @@ namespace Minotaurs
 			};
 		private static Dictionary<string, string> german = new Dictionary<string, string>() {
 
+			{"enemy_fireminotaurarmored_hm", "Armoured Fire Minotaur"},
+			{"enemy_fireminotaur_hm", "Fire Minotaur"},
 			{"enemy_frostminotaurarmored_hm", "Armoured Frost Minotaur"},
 			{"enemy_frostminotaur_hm", "Frost Minotaur"},
 			{"enemy_minotaurarmored_hm", "Armoured Minotaur"},
@@ -37,6 +43,8 @@ namespace Minotaurs
 			};
 		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
 
+			{"enemy_fireminotaurarmored_hm", "Armoured Fire Minotaur"},
+			{"enemy_fireminotaur_hm", "Fire Minotaur"},
 			{"enemy_frostminotaurarmored_hm", "Armoured Frost Minotaur"},
 			{"enemy_frostminotaur_hm", "Frost Minotaur"},
 			{"enemy_minotaurarmored_hm", "Armoured Minotaur"},

@@ -30,7 +30,7 @@ namespace FarmyardAnimals
 
 		public const string PluginName = "FarmyardAnimals";
 
-		public const string PluginVersion = "0.0.10";
+		public const string PluginVersion = "0.0.17";
 
 		internal static ManualLogSource Log;
 		// Animals
@@ -85,6 +85,7 @@ namespace FarmyardAnimals
 		public static GameObject PrimeCut;
 		public static GameObject CowItem;
 		public static GameObject GoatItem;
+		public static GameObject chickenItem;
 		// Food
 		public static GameObject BurgerRound;
 		public static GameObject Chop;
@@ -103,6 +104,7 @@ namespace FarmyardAnimals
 		// Pieces
 		public static GameObject MilkCow;
 		public static GameObject MilkGoat;
+		public static GameObject chickenCoop;
 		// Attacks
 		public static GameObject AttackCow;
 		public static GameObject AttackSheep;
@@ -112,6 +114,7 @@ namespace FarmyardAnimals
 		// Config Entries
 		public ConfigEntry<bool> SpawnsEnable;
 		public ConfigEntry<bool> MilkingEnable;
+		public ConfigEntry<bool> BAEnable;
 		// Items
 		public static GameObject ButcherAxe;
 		// Harmony (for localization)
@@ -133,6 +136,10 @@ namespace FarmyardAnimals
 			{
 				IsAdminOnly = true
 			}));
+			BAEnable = base.Config.Bind("Bone Appetit", "Enable", defaultValue: true, new ConfigDescription("Enables the Chicken Coop.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
 		}
 		private void Awake()
 		{
@@ -147,7 +154,6 @@ namespace FarmyardAnimals
 			AddRecipes();
 			AddFoodItems();
 			AddButcherItems();
-			//UpdateOven();
 			AddAttacks();
 			AddGoats();
 			AddGeese();
@@ -156,7 +162,11 @@ namespace FarmyardAnimals
 			AddCows();
 			AddPigs();
 			AddTurkeys();
-			//AddEggs();
+			if (BAEnable.Value == true) 
+			{ 
+				AddCoop();
+				CreatureManager.OnVanillaCreaturesAvailable += UpdateChickens;
+			}
 			if (SpawnsEnable.Value == true)
             {
 				try
@@ -181,6 +191,8 @@ namespace FarmyardAnimals
 		}
 		private void LoadAssets()
 		{
+			chickenCoop = FarmyardBundle.LoadAsset<GameObject>("ChickenCoop_BAA");
+			chickenItem = FarmyardBundle.LoadAsset<GameObject>("ChickenItem_BAA");
 			ButcherAxe = FarmyardBundle.LoadAsset<GameObject>("ButcherAxe_FYA");
 			//Debug.Log("FarmyardAnimals: Animal Items");
 			CowItem = FarmyardBundle.LoadAsset<GameObject>("CowItem_FYA");
@@ -333,6 +345,93 @@ namespace FarmyardAnimals
 			GameObject Corpse = FarmyardBundle.LoadAsset<GameObject>("CarcassS_FYA");
 			PrefabManager.Instance.AddPrefab(Corpse);
 		}
+		private void AddCoop()
+		{
+            try
+			{
+				// Chicken Item
+				GameObject dropable1 = chickenItem;
+				CustomItem customItem1 = new CustomItem(dropable1, true);
+				ItemManager.Instance.AddItem(customItem1);
+				// Piece
+				var customPiece1 = new CustomPiece(chickenCoop, true, new PieceConfig
+				{
+					PieceTable = "_HammerPieceTable",
+					Category = "Misc",
+					Requirements = new RequirementConfig[4]
+					{
+						new RequirementConfig
+						{
+							Item = "rk_egg",
+							Amount = 5,
+							Recover = true
+						},
+						new RequirementConfig
+						{
+							Item = "FineWood",
+							Amount = 25,
+							Recover = true
+						},
+						new RequirementConfig
+						{
+							Item = "Stone",
+							Amount = 10,
+							Recover = true
+						},
+						new RequirementConfig
+						{
+							Item = "ChickenItem_BAA",
+							Amount = 1,
+							Recover = true
+						}
+					}
+				});
+				PieceManager.Instance.AddPiece(customPiece1);
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding Chicken Coop for Bone Appetite: {ex}");
+			}
+		}
+		private void UpdateChickens()
+        {
+            try
+			{
+				// Update Chickens
+				var chicken = PrefabManager.Instance.GetPrefab("ChickenItem_BAA");
+				var chickenB = CreatureManager.Instance.GetCreaturePrefab("ChickenB_FYA");
+					chickenB.GetComponent<CharacterDrop>().m_drops.Add(new CharacterDrop.Drop { 
+						m_prefab = chicken,
+						m_chance = 10f,
+						m_amountMin = 1,
+						m_amountMax = 1
+				});
+				var chickenBW = CreatureManager.Instance.GetCreaturePrefab("ChickenBW_FYA");
+					chickenBW.GetComponent<CharacterDrop>().m_drops.Add(new CharacterDrop.Drop
+					{
+						m_prefab = chicken,
+						m_chance = 10f,
+						m_amountMin = 1,
+						m_amountMax = 1
+				});
+				var chickenW = CreatureManager.Instance.GetCreaturePrefab("ChickenW_FYA");
+					chickenW.GetComponent<CharacterDrop>().m_drops.Add(new CharacterDrop.Drop
+					{
+						m_prefab = chicken,
+						m_chance = 10f,
+						m_amountMin = 1,
+						m_amountMax = 1
+				});
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while updating Chickens for Bone Appetite: {ex}");
+			}
+			finally
+			{
+				CreatureManager.OnVanillaCreaturesAvailable -= UpdateChickens;
+			}
+		}
 		private void CreateMilkItems()
         {
 			GameObject dropable7 = CowItem;
@@ -344,7 +443,7 @@ namespace FarmyardAnimals
 			GameObject dropable2 = Milk;
 			CustomItem customItem2 = new CustomItem(dropable2, false);
 			ItemManager.Instance.AddItem(customItem2);
-        }
+		}
 		private void CreateMiscItems()
 		{
 			GameObject dropable5 = QuarterS;
@@ -596,81 +695,6 @@ namespace FarmyardAnimals
 			CustomItem turkeyAttack = new CustomItem(attack3, false);
 			ItemManager.Instance.AddItem(turkeyAttack);
 		}
-		private void UpdateOven()
-		{
-			CustomItemConversion food9 = new CustomItemConversion(new CookingConversionConfig
-			{
-				Station = "piece_oven",
-				FromItem = "SmallSteak_FYA",
-				ToItem = "FriedSteak_FYA",
-				CookTime = 15f
-			});
-			ItemManager.Instance.AddItemConversion(food9);
-			CustomItemConversion food8 = new CustomItemConversion(new CookingConversionConfig
-			{
-				Station = "piece_oven",
-				FromItem = "DicedMeat_FYA",
-				ToItem = "FriedMeat_FYA",
-				CookTime = 20f
-			});
-			ItemManager.Instance.AddItemConversion(food8);
-			CustomItemConversion food7 = new CustomItemConversion(new CookingConversionConfig
-			{
-				Station = "piece_oven",
-				FromItem = "MeatRoll_FYA",
-				ToItem = "CookedJoint_FYA",
-				CookTime = 180f
-			});
-			ItemManager.Instance.AddItemConversion(food7);
-			CustomItemConversion food6 = new CustomItemConversion(new CookingConversionConfig
-			{
-				Station = "piece_oven",
-				FromItem = "Steak_FYA",
-				ToItem = "CookedSteak_FYA",
-				CookTime = 25f
-			});
-			ItemManager.Instance.AddItemConversion(food6);
-			CustomItemConversion food5 = new CustomItemConversion(new CookingConversionConfig
-			{
-				Station = "piece_oven",
-				FromItem = "PrimeCut_FYA",
-				ToItem = "Chop_FYA",
-				CookTime = 20f
-			});
-			ItemManager.Instance.AddItemConversion(food5);
-			CustomItemConversion food4 = new CustomItemConversion(new CookingConversionConfig
-			{
-				Station = "piece_oven",
-				FromItem = "BurgerMeat_FYA",
-				ToItem = "BurgerRound_FYA",
-				CookTime = 15f
-			});
-			ItemManager.Instance.AddItemConversion(food4);
-			CustomItemConversion food3 = new CustomItemConversion(new CookingConversionConfig
-			{
-				Station = "piece_oven",
-				FromItem = "PoultryBreast_FYA",
-				ToItem = "CookedBreast_FYA",
-				CookTime = 25f
-			});
-			ItemManager.Instance.AddItemConversion(food3);
-			CustomItemConversion food2 = new CustomItemConversion(new CookingConversionConfig
-			{
-				Station = "piece_oven",
-				FromItem = "PoultryLeg_FYA",
-				ToItem = "Drumstick_FYA",
-				CookTime = 15f
-			});
-			ItemManager.Instance.AddItemConversion(food2);
-			CustomItemConversion food1 = new CustomItemConversion(new CookingConversionConfig
-			{
-				Station = "piece_oven",
-				FromItem = "PoultryWhole_FYA",
-				ToItem = "RoastPoultry_FYA",
-				CookTime = 120f
-			});
-			ItemManager.Instance.AddItemConversion(food1);
-		}
 		private void CreateStations()
 		{
 			var customPiece1 = new CustomPiece(ButcherStation, false, new PieceConfig
@@ -766,8 +790,14 @@ namespace FarmyardAnimals
 			{
 				PieceTable = "_HammerPieceTable",
 				Category = "Farm",
-				Requirements = new RequirementConfig[3]
+				Requirements = new RequirementConfig[4]
 				{
+					new RequirementConfig
+					{
+						Item = "Milk_FYA",
+						Amount = 6,
+						Recover = true
+					},
 					new RequirementConfig
 					{
 						Item = "CowItem_FYA",
@@ -793,8 +823,14 @@ namespace FarmyardAnimals
 			{
 				PieceTable = "_HammerPieceTable",
 				Category = "Farm",
-				Requirements = new RequirementConfig[3]
+				Requirements = new RequirementConfig[4]
 				{
+					new RequirementConfig
+					{
+						Item = "Milk_FYA",
+						Amount = 6,
+						Recover = true
+					},
 					new RequirementConfig
 					{
 						Item = "GoatItem_FYA",
@@ -1232,6 +1268,13 @@ namespace FarmyardAnimals
 								Chance = 100,
 								MinAmount = 1,
 								MaxAmount = 1
+							},
+							new DropConfig
+							{
+								Item = "CowItem_FYA",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 1
 							}
 						}
 					});
@@ -1255,6 +1298,13 @@ namespace FarmyardAnimals
 							{
 								Item = "CarcassS_FYA",
 								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 1
+							},
+							new DropConfig
+							{
+								Item = "CowItem_FYA",
+								Chance = 10,
 								MinAmount = 1,
 								MaxAmount = 1
 							}
@@ -1282,6 +1332,13 @@ namespace FarmyardAnimals
 								Chance = 100,
 								MinAmount = 1,
 								MaxAmount = 1
+							},
+							new DropConfig
+							{
+								Item = "CowItem_FYA",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 1
 							}
 						}
 					});
@@ -1305,6 +1362,13 @@ namespace FarmyardAnimals
 							{
 								Item = "CarcassS_FYA",
 								Chance = 100,
+								MinAmount = 1,
+								MaxAmount = 1
+							},
+							new DropConfig
+							{
+								Item = "CowItem_FYA",
+								Chance = 10,
 								MinAmount = 1,
 								MaxAmount = 1
 							}
@@ -1663,392 +1727,296 @@ namespace FarmyardAnimals
 					.SetPrefabName("TurkeyW_FYA")
 					.SetTemplateName("Turkey White")
 					.SetConditionBiomes(Heightmap.Biome.BlackForest)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Clear")
-					.SetConditionAltitudeMin(2)
-					.SetConditionAltitudeMax(75)
 					.SetConditionLocation("StoneTowerRuins01")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_023)
 					.SetPrefabName("TurkeyW_FYA")
 					.SetTemplateName("Turkey White")
 					.SetConditionBiomes(Heightmap.Biome.BlackForest)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("DeepForest Mist")
-					.SetConditionAltitudeMin(2)
-					.SetConditionAltitudeMax(75)
 					.SetConditionLocation("Greydwarf_camp1")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_022)
 					.SetPrefabName("TurkeyW_FYA")
 					.SetTemplateName("Turkey White")
 					.SetConditionBiomes(Heightmap.Biome.BlackForest)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Rain")
-					.SetConditionAltitudeMin(2)
-					.SetConditionAltitudeMax(75)
 					.SetConditionLocation("Crypt4")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_021)
 					.SetPrefabName("TurkeyR_FYA")
 					.SetTemplateName("Turkey Red")
 					.SetConditionBiomes(Heightmap.Biome.BlackForest)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Clear")
-					.SetConditionAltitudeMin(2)
-					.SetConditionAltitudeMax(75)
 					.SetConditionLocation("Ruin2")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_020)
 					.SetPrefabName("TurkeyR_FYA")
 					.SetTemplateName("Turkey Red")
 					.SetConditionBiomes(Heightmap.Biome.BlackForest)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("DeepForest Mist")
-					.SetConditionAltitudeMin(2)
-					.SetConditionAltitudeMax(75)
 					.SetConditionLocation("Crypt2")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_019)
 					.SetPrefabName("TurkeyR_FYA")
 					.SetTemplateName("Turkey Red")
 					.SetConditionBiomes(Heightmap.Biome.BlackForest)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Rain")
-					.SetConditionAltitudeMin(2)
-					.SetConditionAltitudeMax(75)
 					.SetConditionLocation("Crypt3")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_018)
 					.SetPrefabName("TurkeyB_FYA")
 					.SetTemplateName("Turkey Black")
 					.SetConditionBiomes(Heightmap.Biome.BlackForest)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Clear")
-					.SetConditionAltitudeMin(2)
-					.SetConditionAltitudeMax(75)
 					.SetConditionLocation("Ruin1")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_017)
 					.SetPrefabName("TurkeyB_FYA")
 					.SetTemplateName("Turkey Black")
 					.SetConditionBiomes(Heightmap.Biome.BlackForest)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("DeepForest Mist")
-					.SetConditionAltitudeMin(2)
-					.SetConditionAltitudeMax(75)
 					.SetConditionLocation("TrollCamp")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_016)
 					.SetPrefabName("TurkeyB_FYA")
 					.SetTemplateName("Turkey Black")
 					.SetConditionBiomes(Heightmap.Biome.BlackForest)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Rain")
-					.SetConditionAltitudeMin(2)
-					.SetConditionAltitudeMax(75)
 					.SetConditionLocation("TrollCave")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_015)
 					.SetPrefabName("LonghornB_FYA")
 					.SetTemplateName("Longhorn Brown")
 					.SetConditionBiomes(Heightmap.Biome.Plains)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Rain")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("StoneHenge3")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetModifierFaction(Character.Faction.PlainsMonsters)
 					;
 				config.ConfigureWorldSpawner(25_014)
 					.SetPrefabName("LonghornW_FYA")
 					.SetTemplateName("Longhorn White")
 					.SetConditionBiomes(Heightmap.Biome.Plains)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Rain")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("StoneHenge4")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetModifierFaction(Character.Faction.PlainsMonsters)
 					;
 				config.ConfigureWorldSpawner(25_013)
 					.SetPrefabName("Highland_FYA")
 					.SetTemplateName("Highland")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Rain")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodFarm1")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_012)
 					.SetPrefabName("CowBW_FYA")
 					.SetTemplateName("Cattle")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Rain")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodFarm1")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_011)
 					.SetPrefabName("CowB_FYA")
 					.SetTemplateName("Cattle")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Clear")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodFarm1")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_010)
 					.SetPrefabName("OldSpots_FYA")
 					.SetTemplateName("Oxford Pig")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("LightRain")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodFarm1")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_009)
 					.SetPrefabName("Mulefoot_FYA")
 					.SetTemplateName("Oxford Pig")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Clear")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodFarm1")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_008)
 					.SetPrefabName("Oxford_FYA")
 					.SetTemplateName("Oxford Pig")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Clear")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodVillage1")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_007)
 					.SetPrefabName("Chester_FYA")
 					.SetTemplateName("Chester Pig")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("LightRain")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodVillage1")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_005)
 					.SetPrefabName("Goat_FYA")
 					.SetTemplateName("Goat")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(3)
 					.SetMaxSpawned(2)
 					.SetSpawnDuringNight(false)
 					.SetConditionEnvironments("Clear")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodVillage1")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_004)
 					.SetPrefabName("Sheep_FYA")
 					.SetTemplateName("Sheep")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(3)
 					.SetMaxSpawned(2)
 					.SetSpawnDuringNight(false)
 					.SetConditionEnvironments("Misty")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodVillage1")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_003)
 					.SetPrefabName("Goose_FYA")
 					.SetTemplateName("Goose")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(2)
 					.SetPackSizeMax(4)
 					.SetMaxSpawned(2)
 					.SetSpawnDuringNight(false)
 					.SetConditionEnvironments("Misty")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodHouse8")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_002)
 					.SetPrefabName("ChickenW_FYA")
 					.SetTemplateName("White Chicken")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(2)
 					.SetPackSizeMax(4)
 					.SetMaxSpawned(2)
 					.SetConditionEnvironments("Twilight_Clear")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodHouse8")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_001)
 					.SetPrefabName("ChickenBW_FYA")
 					.SetTemplateName("Brown White Chicken")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(2)
 					.SetPackSizeMax(4)
 					.SetMaxSpawned(2)
 					.SetSpawnDuringNight(false)
 					.SetConditionEnvironments("LightRain")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodHouse8")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 				config.ConfigureWorldSpawner(25_000)
 					.SetPrefabName("ChickenB_FYA")
 					.SetTemplateName("Brown Chicken")
 					.SetConditionBiomes(Heightmap.Biome.Meadows)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(300))
 					.SetPackSizeMin(2)
 					.SetPackSizeMax(4)
 					.SetMaxSpawned(2)
 					.SetSpawnDuringNight(false)
 					.SetConditionEnvironments("Clear")
-					.SetConditionAltitudeMin(10)
-					.SetConditionAltitudeMax(65)
 					.SetConditionLocation("WoodHouse8")
-					.SetSpawnAtDistanceToPlayerMin(45)
-					.SetSpawnAtDistanceToPlayerMax(60)
 					;
 			}
 			catch (Exception e)

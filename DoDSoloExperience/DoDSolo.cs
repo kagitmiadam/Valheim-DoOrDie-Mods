@@ -33,7 +33,7 @@ namespace DoDSoloExperience
 
 		public const string PluginName = "DoOrDieSoloExperience";
 
-		public const string PluginVersion = "1.2.14";
+		public const string PluginVersion = "1.3.4";
 
 		private Harmony _harmony;
 

@@ -221,7 +221,7 @@ namespace DoDMonsters
 		}
 		public void CreateConfigurationValues()
 		{
-			BossesEnable = base.Config.Bind("Bosses", "Enable", defaultValue: true, new ConfigDescription("Adds Bosses and Altars", null, new ConfigurationManagerAttributes
+			BossesEnable = base.Config.Bind("Bosses", "Enable", defaultValue: true, new ConfigDescription("Enables Boss Reskins", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
 			}));
@@ -1313,6 +1313,7 @@ namespace DoDMonsters
 			try
 			{
 				ConfigureWorldSpawners(config);
+				ConfigureAltarSpawners(config);
 			}
 			catch (Exception e)
 			{
@@ -1323,6 +1324,136 @@ namespace DoDMonsters
 		{
 			try
 			{
+				config.ConfigureWorldSpawner(21_031)
+					.SetPrefabName("WereWolfWhite")
+					.SetTemplateName("White WereWolf")
+					.SetConditionBiomes(Heightmap.Biome.DeepNorth)
+					.SetSpawnChance(12)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					.SetConditionDistanceToCenter(1500)
+					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(0.1f)
+					.SetModifierFaction(Character.Faction.MountainMonsters)
+					;
+				config.ConfigureWorldSpawner(21_030)
+					.SetPrefabName("WereWolfDarkGrey")
+					.SetTemplateName("Grey WereWolf")
+					.SetConditionBiomes(Heightmap.Biome.DeepNorth)
+					.SetSpawnChance(12)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					.SetConditionDistanceToCenter(1500)
+					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(0.1f)
+					.SetModifierFaction(Character.Faction.MountainMonsters)
+					;
+				config.ConfigureWorldSpawner(21_029)
+					.SetPrefabName("WereWolfBlack")
+					.SetTemplateName("Black WereWolf")
+					.SetConditionBiomes(Heightmap.Biome.DeepNorth)
+					.SetSpawnChance(12)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					.SetConditionDistanceToCenter(1500)
+					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(0.1f)
+					.SetModifierFaction(Character.Faction.MountainMonsters)
+					;
+				config.ConfigureWorldSpawner(21_028)
+					.SetPrefabName("WereWolfBlackArmored")
+					.SetTemplateName("Turned Gray Wolf")
+					.SetConditionBiomes(Heightmap.Biome.DeepNorth)
+					.SetSpawnChance(12)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					.SetConditionDistanceToCenter(1500)
+					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(0.1f)
+					.SetModifierFaction(Character.Faction.MountainMonsters)
+					;
+				config.ConfigureWorldSpawner(21_027)
+					.SetPrefabName("WendigoForest")
+					.SetTemplateName("Forest Wendigo")
+					.SetConditionBiomes(Heightmap.Biome.Mistlands)
+					.SetSpawnChance(12)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					.SetConditionDistanceToCenter(1500)
+					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(0.1f)
+					.SetModifierFaction(Character.Faction.MountainMonsters)
+					;
+				config.ConfigureWorldSpawner(21_026)
+					.SetPrefabName("Yeti")
+					.SetTemplateName("Yeti")
+					.SetConditionBiomes(Heightmap.Biome.Mountain)
+					.SetSpawnChance(12)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					.SetConditionDistanceToCenter(1500)
+					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(75f)
+					.SetModifierFaction(Character.Faction.MountainMonsters)
+					;
+				config.ConfigureWorldSpawner(21_025)
+					.SetPrefabName("WereWolfBrown")
+					.SetTemplateName("Brown WereWolf")
+					.SetConditionBiomes(Heightmap.Biome.Meadows, Heightmap.Biome.BlackForest, Heightmap.Biome.Swamp)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(180))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					.SetConditionEnvironments("Misty")
+					.SetConditionDistanceToCenter(1500)
+					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(0.1f)
+					.SetModifierFaction(Character.Faction.PlainsMonsters)
+					;
+				config.ConfigureWorldSpawner(21_024)
+					.SetPrefabName("WendigoSwamp")
+					.SetTemplateName("Swamp Wendigo")
+					.SetConditionBiomes(Heightmap.Biome.Swamp)
+					.SetSpawnChance(10)
+					.SetSpawnInterval(TimeSpan.FromSeconds(360))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(3)
+					.SetMaxSpawned(3)
+					.SetSpawnAtDistanceToPlayerMin(45)
+					.SetSpawnAtDistanceToPlayerMax(60)
+					.SetConditionRequiredGlobalKey("defeated_bonemass")
+					.SetConditionDistanceToCenter(1500)
+					.SetMinDistanceToOther(75)
+					.SetConditionAltitudeMin(0.1f)
+					.SetModifierFaction(Character.Faction.Undead)
+					;
 				config.ConfigureWorldSpawner(21_023)
 					.SetPrefabName("Ghost_Ice_DoD")
 					.SetTemplateName("Ghost Ice")
@@ -1681,6 +1812,17 @@ namespace DoDMonsters
 					.SetConditionDistanceToCenter(3000)
 					.SetConditionAltitudeMin(0.1f)
 					;
+			}
+			catch (Exception e)
+			{
+				Log.LogError(e);
+			}
+		}
+		private static void ConfigureAltarSpawners(ISpawnerConfigurationCollection config)
+        {
+            try
+            {
+
 			}
 			catch (Exception e)
 			{

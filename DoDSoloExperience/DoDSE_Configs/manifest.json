@@ -1,8 +1,8 @@
 {
     "name": "DoOrDieSoloExperience",
-    "version_number": "1.3.0",
+    "version_number": "1.3.4",
     "website_url": "https://discord.gg/BYtsnyHNke",
-    "description": "A Darksouls/Diablo inspired difficulty mod. Balanced around Duos's, hense the Do or Die Solo Experience, please read the Description.",
+    "description": "A Darksouls/Diablo inspired difficulty and loot mod. Balanced around Duos's, hense the Do or Die Solo Experience, please read the Description.",
     "dependencies": [
 		"Horem-DoOrDieMonsters-0.4.5",
 		"Horem-LessFoodDegradation-1.1.1",
@@ -12,6 +12,10 @@
 		"Horem-Do_Or_Die_NPC-0.0.1",
 		"Horem-Do_or_Die_Items-0.0.1",
 		"Horem-Fantasy_Armoury-0.0.3",
+		"Horem-Fee_Fi_Fo_Fum-0.0.1",
+		"Horem-Fantasy_Creatures-0.0.8",
+		"Horem-Farmyard_Animals-0.0.15",
+		"Horem-Supply_Crates-0.0.2",
 		"MonsterLabZ-MonsterLabZ-1.6.1",
 		"ASharpPen-Spawn_That-1.0.3",
 		"ASharpPen-Drop_That-2.1.1",
@@ -25,13 +29,12 @@
 		"Smoothbrain-PassivePowers-1.0.0",
 		"OdinPlus-Digitalroot_Valheim_SlopeCombatFix-2.0.0",
 		"RockerKitten-BoneAppetit-3.0.4",
-		"OdinPlus-BuildIt-1.3.1",
-		"OdinPlus-OdinArchitect-0.1.3",
-		"OdinPlus-BasementJVLedition-1.0.3",
 		"OdinPlus-PotionPlus-3.0.2",
 		"OdinPlus-KnarrTheTrader-0.1.0",
-		"KGvalheim-MagicOverhaul-1.3.0",
+		"KGvalheim-MagicOverhaul-1.5.5",
 		"RandyKnapp-EpicLoot-0.8.7",
+		"Frenvius-Valharvest-2.0.1",
+		"LambaSun-EpicMMOSystem-1.2.1",
 		"Advize-PlantEverything-1.7.0"
 	]
 }

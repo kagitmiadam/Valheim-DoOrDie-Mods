@@ -27,8 +27,7 @@ DELETE the Do or Die SE config folder before UPDATING to 1.3.0.
 
 **Auto**
 
-	Use a mod manager of your choice.
-
+	Use either TSMM or R2MM.
 
 **Manual** 
 
@@ -47,8 +46,8 @@ For further assistance you can find me on my offical Discord:- https://discord.g
 Uses Aedenthorn's Questing system as a soft requirement. (Includes cfg's and custom quest files, use down to user)
 For questing to work you will require these 2 mods from nexus mods. 
 
-- [Questing Framework] (https://www.nexusmods.com/valheim/mods/1583)
-- [Hugin Quests] (https://www.nexusmods.com/valheim/mods/1588)
+- [Questing Framework](https://www.nexusmods.com/valheim/mods/1583)
+- [Hugin Quests](https://www.nexusmods.com/valheim/mods/1588)
 
 Install them in to your profiles, BepInEx\Plugins folder, or, your main games BepInEx\Plugins folder if you manually installed all your mods.
 
@@ -66,7 +65,6 @@ In com.alexanderstrada.rrrbetterraids.cfg, I have the option: UpdateEventMobMini
 **Loot**
 
 Random Legendaries showing up instead of Set Items. Under investigation.
-Free loot at 0,0,0. Under investigation. (DoD Kit drops disabled as a result)
 
 **Questing**
 
@@ -75,6 +73,7 @@ Random Quests can be odd. Issue with custom mobs not registering for kill quests
 **Epic Loot**
 
 Mildly effects performance. (10-15 fps loss)
+Can cause High Latency on servers.
 
 
 ## Incompatible Mods
@@ -89,8 +88,8 @@ Mildly effects performance. (10-15 fps loss)
 ## Mods that can cause Issues
 
 - Simply Recycling can break Epic Loot/Tombstone depending on mods used.
-- Terrahiem. (NRE Spam)
-- Forgotten Biomes. (NRE Spam)
+- Terrahiem. (Can cause NRE Spam due to clashing)
+- Forgotten Biomes. (Can  cause NRE Spam due to clashing)
 
 
 ## Crossover Mods
@@ -122,10 +121,12 @@ May require balancing for more than 2-3 players at a time. Can be done by tweaki
   If you like and use this ModPack, show you support by leaving a like for each mod included. Cheers and happy hunting!
 	If you wish to donate please donate to any of the modpacks dependancies, as I do not accept donations myself.
   
-  
+
 ## Support
 
-If you want to support this mod you can [Buy me a Coffee] (https://www.buymeacoffee.com/horemvore)
+If you like what I do and want to support me.
+
+<a href="https://www.buymeacoffee.com/horemvore"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=horemvore&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
 
 
 ## Epic Loot Magic Effect Changes
@@ -187,6 +188,14 @@ To Do
 
 ## Magic Overhaul Class Changes
 
+**Spartan**
+	
+	Type: Starter
+	Item: None
+	Helmet: 32AC 
+	Weapon: 75D
+	Mana Regen: 1
+
 **Death Knight**
 	
 	Type: Starter
@@ -194,12 +203,6 @@ To Do
 	Helmet: 32AC 
 	Weapon: 75D
 	Mana Regen: 1
-	Skill 2 Mana: 50
-	Skill 1 Damage: 30
-	Skill 2 Lifesteal: 0.2%
-	Skill 3 Heal: 5%
-	Skill 4 Damage: 25%
-	Max Souls: 75
 
 **Archer**
 
@@ -208,7 +211,6 @@ To Do
 	Helmet: 34AC
 	Weapon: 95D
 	Mana Regen: 2
-	Skill 1 Damage: 51
 
 **Berserker**
 
@@ -217,9 +219,6 @@ To Do
 	Helmet: 38AC
 	Weapon: 90D
 	Mana Regen: 2
-	Skill 1 Damage: 47
-	Skill 3 Stamina Use: -75%
-	Skill 4 Attack Speed: 100%
 
 **Druid**
 
@@ -228,9 +227,6 @@ To Do
 	Helmet: 35AC
 	Weapon: 80D
 	Mana Regen: 3
-	Skill 1 Mana Cost: 75
-	Skill 2 Damage: 42
-	Skill 3 Heal: 55
 
 **Mage**
 
@@ -239,7 +235,6 @@ To Do
 	Helmet: 35AC
 	Weapon: 80D
 	Mana Regen: 3
-	Skill 2 Damage: 50
 
 **Monk**
 
@@ -248,8 +243,6 @@ To Do
 	Helmet: 40AC
 	Weapon: 65D
 	Mana Regen: 2
-	Skill 1 Defense: 75%
-	Skill 2 Damage: 46
 
 **Ninja**
 
@@ -258,8 +251,6 @@ To Do
 	Helmet: 38AC
 	Weapon: 90D
 	Mana Regen: 2
-	Skill 1 Heal: 27%
-	Skill 3 Damage: 42
 
 **Paladin**
 
@@ -268,8 +259,6 @@ To Do
 	Helmet: 40AC
 	Shield: 175 Block Power
 	Mana Regen: 2
-	Skill 3 Defense: 125%
-	Skill 4 Defense: 75%
 
 **Rogue**
 
@@ -278,8 +267,6 @@ To Do
 	Helmet: 38AC
 	Weapon: 90D
 	Mana Regen: 2
-	Skill 3 Damage: 50%
-	Skill 4 Damage: 75%
 
 **Shaman**
 
@@ -288,8 +275,6 @@ To Do
 	Helmet: 35AC
 	Weapon: 80D
 	Mana Regen: 3
-	Skill 2 Damage: 48
-	Skill 4 Damage: 30
 
 **Warlock**
 
@@ -298,9 +283,6 @@ To Do
 	Helmet: 35AC
 	Weapon: 80D
 	Mana Regen: 3
-	Skill 1 Damage: 30
-	Skill 2 Damage: 50
-	Skill 4 Damage: 35
 
 
 ## Loot
@@ -430,10 +412,34 @@ Note: Boss and Mini Boss Item Sets currently in planning.
 	
 ## Patch Notes
 
+**1.3.4**
+
+	Removed a bunch of config files that made their way into the zip from my testing.
+	Added Set drops for Mistlands, Deep North and Ash Lands monsters included in Giants, Minotaurs and Fantasy Creatures.
+	Tweaked MO Classes.
+	
+**1.3.3**
+
+- Fix for Priest.
+
+**1.3.2**
+
+- Included correct EpicMMOSystem config.
+
+**1.3.1**
+
+- Removed the Build mods, down to user to choose which they want to use, now there are so many.
+- Updated for Magic Overhaul 1.5.5
+- Added Epic MMO System.
+- Added Fantasy Creatures.
+- Added Farmyard Animals.
+- Added Giants.
+- Added Supply Crates.
+	
 **1.3**
 
-	Removed RRR Mods.
-	Updated for new DoD Dll's.
-	Moved NPC spawns to the NPC Mod.
-	Moved Reskined mobs spawns to the Monster Mod.
-	Moved Mini Boss scaling to the NPC mod.
+- Removed RRR Mods.
+- Updated for new DoD Dll's.
+- Moved NPC spawns to the NPC Mod.
+- Moved Reskined mobs spawns to the Monster Mod.
+- Moved Mini Boss scaling to the NPC mod.

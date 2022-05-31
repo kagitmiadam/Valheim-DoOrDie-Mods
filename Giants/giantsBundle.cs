@@ -25,9 +25,9 @@ namespace Giants
 	[BepInDependency("com.jotunn.jotunn", BepInDependency.DependencyFlags.HardDependency)]
 	internal class giantsBundle : BaseUnityPlugin
 	{
-		public const string PluginGUID = "horemvore.Giants";
+		public const string PluginGUID = "horemvore.FeeFiFoFum";
 
-		public const string PluginName = "Giants";
+		public const string PluginName = "Fee Fi Fo Fum";
 
 		public const string PluginVersion = "0.0.1";
 
@@ -87,7 +87,7 @@ namespace Giants
 		private void Awake()
 		{
 			Log = Logger;
-			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.Giants");
+			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.FeeFiFoFum");
 			LoadBundle();
 			LoadAssets();
 			AddGiants();
@@ -107,7 +107,7 @@ namespace Giants
 		private void LoadAssets()
 		{
 			// Mobs
-			Debug.Log("Giants: Mobs");
+			//Debug.Log("Giants: Mobs");
 			Giant1 = GiantBundle.LoadAsset<GameObject>("HillGiant_HG");
 			Giant2 = GiantBundle.LoadAsset<GameObject>("MountainGiant_HG");
 			Giant3 = GiantBundle.LoadAsset<GameObject>("Giant_HG");
@@ -115,7 +115,7 @@ namespace Giants
 			Giant5 = GiantBundle.LoadAsset<GameObject>("Jotunn_HG");
 			Giant6 = GiantBundle.LoadAsset<GameObject>("FireGiant_HG");
 			// Attacks
-			Debug.Log("Giants: Attacks");
+			//Debug.Log("Giants: Attacks");
 			HGAttack1 = GiantBundle.LoadAsset<GameObject>("HillGiant_Attack1_HG");
 			HGAttack2 = GiantBundle.LoadAsset<GameObject>("HillGiant_Attack2_HG");
 			HGAttack3 = GiantBundle.LoadAsset<GameObject>("HillGiant_Attack3_HG");
@@ -213,7 +213,7 @@ namespace Giants
 			CustomPrefab fx2 = new CustomPrefab(FX2, false);
 			PrefabManager.Instance.AddPrefab(fx2);
 			//SFX
-			Debug.Log("Giants: SFX");
+			//Debug.Log("Giants: SFX");
 			SFX1 = GiantBundle.LoadAsset<GameObject>("SFX_GiantAlert_HG");
 			SFX2 = GiantBundle.LoadAsset<GameObject>("SFX_GiantAttack_HG");
 			SFX3 = GiantBundle.LoadAsset<GameObject>("SFX_GiantDeath_HG");
@@ -230,7 +230,7 @@ namespace Giants
 			CustomPrefab sfx5 = new CustomPrefab(SFX5, false);
 			PrefabManager.Instance.AddPrefab(sfx5);
 			//VFX
-			Debug.Log("Giants: VFX");
+			//Debug.Log("Giants: VFX");
 			VFX1 = GiantBundle.LoadAsset<GameObject>("VFX_Blood_Hit_HG");
 			VFX2 = GiantBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_HG");
 			VFX3 = GiantBundle.LoadAsset<GameObject>("VFX_HitSparks_HG");
@@ -255,7 +255,7 @@ namespace Giants
 		{
 			try
 			{
-				Debug.Log("Giants: Fire Giant");
+				//Debug.Log("Giants: Fire Giant");
 				var FireGiantMob = new CustomCreature(Giant6, false,
 					new CreatureConfig
 					{
@@ -292,7 +292,7 @@ namespace Giants
 						}
 					});
 				CreatureManager.Instance.AddCreature(FireGiantMob);
-				Debug.Log("Giants: Jotunn");
+				//Debug.Log("Giants: Jotunn");
 				var JotunnMob = new CustomCreature(Giant5, false,
 					new CreatureConfig
 					{
@@ -329,7 +329,7 @@ namespace Giants
 						}
 					});
 				CreatureManager.Instance.AddCreature(JotunnMob);
-				Debug.Log("Giants: Frost");
+				//Debug.Log("Giants: Frost");
 				var FrostGiantMob = new CustomCreature(Giant4, false,
 					new CreatureConfig
 					{
@@ -366,7 +366,7 @@ namespace Giants
 						}
 					});
 				CreatureManager.Instance.AddCreature(FrostGiantMob);
-				Debug.Log("Giants: Giant");
+				//Debug.Log("Giants: Giant");
 				var GiantMob = new CustomCreature(Giant3, false,
 					new CreatureConfig
 					{
@@ -403,7 +403,7 @@ namespace Giants
 						}
 					});
 				CreatureManager.Instance.AddCreature(GiantMob);
-				Debug.Log("Giants: Mountain");
+				//Debug.Log("Giants: Mountain");
 				var MountGiantMob = new CustomCreature(Giant2, false,
 					new CreatureConfig
 					{
@@ -440,7 +440,7 @@ namespace Giants
 						}
 					});
 				CreatureManager.Instance.AddCreature(MountGiantMob);
-				Debug.Log("Giants: Hill");
+				//Debug.Log("Giants: Hill");
 				var HillGiantMob = new CustomCreature(Giant1, false,
 					new CreatureConfig
 					{
@@ -489,7 +489,7 @@ namespace Giants
 		}
 		public static void ConfigureBiomeSpawners(ISpawnerConfigurationCollection config)
 		{
-			Debug.Log("Giants: Configure Spawns");
+			//Debug.Log("Giants: Configure Spawns");
 			try
 			{
 				ConfigureWorldSpawner(config);
@@ -501,9 +501,22 @@ namespace Giants
 		}
 		private static void ConfigureWorldSpawner(ISpawnerConfigurationCollection config)
 		{
-			Debug.Log("Giants: Create Spawns");
+			//Debug.Log("Giants: Create Spawns");
 			try
 			{
+				config.ConfigureWorldSpawner(26_004)
+					.SetPrefabName("FireGiant_HG")
+					.SetTemplateName("Fire Giant")
+					.SetConditionBiomes(Heightmap.Biome.AshLands)
+					.SetSpawnChance(12)
+					.SetSpawnInterval(TimeSpan.FromSeconds(350))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(2)
+					.SetConditionAltitudeMin(1)
+					.SetSpawnAtDistanceToPlayerMin(75)
+					.SetSpawnAtDistanceToPlayerMax(125)
+					;
 				config.ConfigureWorldSpawner(26_003)
 					.SetPrefabName("FrostGiant_HG")
 					.SetTemplateName("Frost Giant")
@@ -521,7 +534,7 @@ namespace Giants
 					.SetPrefabName("Giant_HG")
 					.SetTemplateName("Giant")
 					.SetConditionBiomes(Heightmap.Biome.Plains)
-					.SetSpawnChance(6)
+					.SetSpawnChance(12)
 					.SetSpawnInterval(TimeSpan.FromSeconds(350))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(1)

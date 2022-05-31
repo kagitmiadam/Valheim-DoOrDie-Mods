@@ -13,6 +13,8 @@ namespace FarmyardAnimals
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 			// Pieces
+			{"piece_chickencoop_baa", "Chicken Coop"},
+			{"piece_chickencoop_desc_baa", "Produces 5 Egg's every 12hrs (Real Time)"},
 			{"piece_marl_fya", "Marl"},
 			{"piece_thon_fya", "Thon"},
 			{"piece_milkgoat_fya", "Milk Goat"},
@@ -31,10 +33,12 @@ namespace FarmyardAnimals
 			{"item_quatersm_fya", "Piece of a Carcass"},
 			{"item_quatersm_fya_desc", "Chop it up at the butcher station"},
 			// Materials
+			{"item_chicken_baa", "A Chicken"},
+			{"item_chicken_desc_baa", "Required to build the Chicken Coop"},
 			{"item_goat_fya", "A Goat"},
-			{"item_goat_fya_desc", "Required to build the Goat Stall."},
+			{"item_goat_fya_desc", "Required to build the Goat Stall"},
 			{"item_cow_fya", "A Cow"},
-			{"item_cow_fya_desc", "Required to build the Cow Stall."},
+			{"item_cow_fya_desc", "Required to build the Cow Stall"},
 			{"item_steak_fya", "Steak"},
 			{"item_steak_fya_desc", "Can be cooked in the Oven"},
 			{"item_steaksmall_fya", "Small Steak"},
@@ -82,7 +86,7 @@ namespace FarmyardAnimals
 			{"animal_turkey_fya", "Turkey"},
 			{"animal_turkeychick_fya", "Poult"},
 			{"animal_pigglet_fya", "Pigglet"},
-			{"animal_oldspots_fya", "Old Spots"},
+			{"animal_oldspot_fya", "Old Spots"},
 			{"animal_mulefoot_fya", "Mulesfoot"},
 			{"animal_okford_fya", "Oxford"},
 			{"animal_chester_fya", "Chester"},

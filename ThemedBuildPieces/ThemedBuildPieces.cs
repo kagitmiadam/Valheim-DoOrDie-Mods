@@ -25,7 +25,7 @@ namespace ThemedBuildPieces
 
 		public const string PluginName = "ThemedBuildPieces";
 
-		public const string PluginVersion = "0.0.1";
+		public const string PluginVersion = "0.0.2";
 
 		public AssetBundle TBPAssets;
 		private Harmony _harmony;
@@ -1332,6 +1332,30 @@ namespace ThemedBuildPieces
 		}
 		private void CreateTowerPieces()
 		{
+			Debug.Log("TBP Tower: 0");
+			var pieceTower0 = TBPAssets.LoadAsset<GameObject>("Tower_Round_DoorwayFloor_TBP");
+			var customTower0 = new CustomPiece(pieceTower0, true, new PieceConfig
+			{
+				PieceTable = "TBPPieceTable_TP",
+				Category = "Stone",
+				AllowedInDungeons = true,
+				Requirements = new RequirementConfig[2]
+				{
+				new RequirementConfig
+				{
+					Item = "Stone",
+					Amount = 50,
+					Recover = true
+				},
+				new RequirementConfig
+				{
+					Item = "Wood",
+					Amount = 10,
+					Recover = true
+				}
+				}
+			});
+			PieceManager.Instance.AddPiece(customTower0);
 			Debug.Log("TBP Tower: 1");
 			var pieceTower1 = TBPAssets.LoadAsset<GameObject>("Tower_Round_WindowWM_TBP");
 			var customTower1 = new CustomPiece(pieceTower1, true, new PieceConfig

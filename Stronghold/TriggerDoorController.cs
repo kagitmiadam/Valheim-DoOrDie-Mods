@@ -6,8 +6,8 @@ public class TriggerDoorController : MonoBehaviour
 {
     [Header("Object to use. Must have Animator Component")]
     [SerializeField] private Animator myObject = null;
-    [Header("Use Keypress E")]
-    [SerializeField] private bool useKeyE = false;
+    //[Header("Use Keypress E")]
+    //[SerializeField] private bool useKeyE = false;
     [Header("Is Open Trigger")]
     [SerializeField] private bool openTrigger = false;
     [SerializeField] private float openSpeed = 0.0f;
@@ -20,52 +20,49 @@ public class TriggerDoorController : MonoBehaviour
     [Header("Animations to use in Animator")]
     [SerializeField] private string doorOpen = "AnimationName";
     [SerializeField] private string doorClose = "AnimationName";
-    [SerializeField] private ItemDrop m_keyItem;
+    //[SerializeField] private ItemDrop m_keyItem;
     private bool isOpen;
-    private bool inReach;
+    private bool inUse;
     private void OnTriggerEnter(Collider collider)
     {
         Player component = collider.GetComponent<Player>();
-        if (!(component == null) && !(Player.m_localPlayer != component))
+        if (!(component == null) && !(Player.m_localPlayer != component) && !inUse)
         {
-            inReach = true;
-            if (openTrigger && !isOpen && !useKeyE)
+            if (openTrigger && !isOpen)
             {
+                inUse = true;
                 myObject.Play(doorOpen, 0, openSpeed);
-                isOpen = true;
+                Invoke("IsOpen", 1.5f);
             }
-            else if (closeTrigger && isOpen && !useKeyE)
+            else if (closeTrigger && isOpen)
             {
+                inUse = true;
                 myObject.Play(doorClose, 0, closeSpeed);
-                isOpen = false;
+                Invoke("IsClosed", 1.5f);
             }
         }
     }
     private void OnTriggerExit(Collider collider)
     {
-        inReach = false;
-        if (autoClose && isOpen)
+        if (autoClose && isOpen && !inUse)
         {
-            Invoke(doorClose, closeDelay);
+            inUse = true;
+            Invoke("AutoClose", closeDelay);
         }
     }
-    /*void Update()
+    void IsOpen()
     {
-        if (inReach && useKeyE && Input.GetKeyDown(KeyCode.E))
-        {
-            if (!openTrigger)
-            {
-                myObject.Play(doorOpen, 0, openSpeed);
-                isOpen = true;
-            }
-        }
-        else
-        {
-            if (!closeTrigger)
-            {
-                myObject.Play(doorClose, 0, closeSpeed);
-                isOpen = false;
-            }
-        }
-    }*/
+        isOpen = true;
+        inUse = false;
+    }
+    void IsClosed()
+    {
+        isOpen = false;
+        inUse = false;
+    }
+    void AutoClose()
+    {
+        myObject.Play(doorClose, 0, closeSpeed);
+        Invoke("IsClosed", 1.5f);
+    }
 }

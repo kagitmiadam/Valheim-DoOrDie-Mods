@@ -28,6 +28,7 @@ namespace ThemedBuildPieces
 								{ "piece_roundfloors1_tp", "Small Stone Tower Floor Q1" },
 								{ "piece_roundstairs_tp", "Stone Tower Stairs" },
 								{ "piece_roundbase_tp", "Stone Tower Base" },
+								{ "piece_rounddoorway_tp", "Tower Doorway" },
 								{ "piece_roundwindowws_tp", "Stone Tower Glass Window" },
 								{ "piece_roundwindowwm_tp", "Stone Tower Window" },
 

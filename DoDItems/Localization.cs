@@ -13,6 +13,10 @@ namespace DoDItems
         public static Dictionary<string, string> t;
         private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+			{"item_spartan_sword", "Spartan's Blade"},
+			{"item_spartan_sword_desc", "You can feel a tingling when you touch this sword."},
+			{"item_priest_staff", "Holy Staff"},
+			{"item_priest_staff_desc", "Warm to the touch, you can feel the energy contained within."},
 			{"RagingBattleaxe", "Raging Battleaxe"},
 			{"RagingBattleaxe_desc", "It glows..."},
 			{"ChillingAxe", "Chilling Axe"},
@@ -58,6 +62,10 @@ namespace DoDItems
 			{"essence_shaman_desc", "Required to change class to Shaman"},
 			{"essence_warlock", "Essence of the Warlock"},
 			{"essence_warlock_desc", "Required to change class to Warlock"},
+			{"essence_priest", "Essence of the Priest"},
+			{"essence_priest_desc", "Required to change class to Priest"},
+			{"essence_spartan", "Essence of the Spartan"},
+			{"essence_spartan_desc", "Required to change class to Spartan"},
 
 			{"item_arrow_ashlands_dod", "Firery Arrow"},
 			{"item_arrow_deepnorth_dod", "Frosty Arrow"},

@@ -26,7 +26,7 @@ namespace DoOrDieBiomes
 
 		public const string PluginName = "DoOrDieBiomes";
 
-		public const string PluginVersion = "0.0.12";
+		public const string PluginVersion = "0.0.13";
 
 		public static GameObject SteelPick;
 		// Fruit
@@ -136,7 +136,7 @@ namespace DoOrDieBiomes
 		public ConfigEntry<bool> FruitEnable;
 		public ConfigEntry<bool> KnarrEnable;
 		public ConfigEntry<bool> TowerEnable;
-		//public ConfigEntry<bool> UnderworldEnable;
+		public ConfigEntry<bool> UnderworldEnable;
 
 		// Bundle
 		public AssetBundle DoDBiome;
@@ -190,10 +190,10 @@ namespace DoOrDieBiomes
 			{
 				IsAdminOnly = true
 			}));
-			/*UnderworldEnable = base.Config.Bind("Underworld", "Enable", defaultValue: true, new ConfigDescription("Enables the Underworld Locations", null, new ConfigurationManagerAttributes
+			UnderworldEnable = base.Config.Bind("Underworld", "Enable", defaultValue: true, new ConfigDescription("Enables the Underworld Locations", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
-			}));*/
+			}));
 		}
 		private void Awake()
         {
@@ -691,7 +691,7 @@ namespace DoOrDieBiomes
 						MinDistanceFromSimilar = 500f,
 					}));
 				}
-				/*if (UnderworldEnable.Value == true)
+				if (UnderworldEnable.Value == true)
                 {
 					var AnyLoc3 = ZoneManager.Instance.CreateLocationContainer(DoDBiome.LoadAsset<GameObject>("Loc_Underworld_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc3, true, new LocationConfig
@@ -705,7 +705,7 @@ namespace DoOrDieBiomes
 						MinDistance = 150f,
 						MaxDistance = 400f,
 					}));
-                }*/
+                }
 			}
 			finally
 			{

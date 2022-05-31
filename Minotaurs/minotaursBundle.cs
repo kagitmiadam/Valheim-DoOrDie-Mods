@@ -35,12 +35,17 @@ namespace Minotaurs
 		public static GameObject Minotaur2;
 		public static GameObject Minotaur3;
 		public static GameObject Minotaur4;
+		public static GameObject Minotaur5;
+		public static GameObject Minotaur6;
 		public static GameObject MAttack1;
 		public static GameObject MAttack2;
 		public static GameObject MAttack3;
 		public static GameObject FMAttack1;
 		public static GameObject FMAttack2;
 		public static GameObject FMAttack3;
+		public static GameObject FrMAttack1;
+		public static GameObject FrMAttack2;
+		public static GameObject FrMAttack3;
 		public static GameObject SFX1;
 		public static GameObject SFX2;
 		public static GameObject SFX3;
@@ -64,10 +69,10 @@ namespace Minotaurs
 		private void Awake()
 		{
 			Log = Logger;
-			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.Giants");
+			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.Minotaurs");
 			LoadBundle();
 			LoadAssets();
-			AddGiants();
+			AddMinotaurs();
 			try
 			{
 				SpawnerConfigurationManager.OnConfigure += ConfigureBiomeSpawners;
@@ -84,39 +89,53 @@ namespace Minotaurs
 		private void LoadAssets()
 		{
 			// Mobs
-			Debug.Log("Minotaurs: Mobs");
+			//Debug.Log("Minotaurs: Mobs");
+			Minotaur6 = MinotaursBundle.LoadAsset<GameObject>("FireMinotaur_HM");
+			Minotaur5 = MinotaursBundle.LoadAsset<GameObject>("FireMinotaurArmoured_HM");
 			Minotaur4 = MinotaursBundle.LoadAsset<GameObject>("Minotaur_HM");
-			Minotaur3 = MinotaursBundle.LoadAsset<GameObject>("ArmouredMinotaur_HM");
+			Minotaur3 = MinotaursBundle.LoadAsset<GameObject>("MinotaurArmoured_HM");
 			Minotaur2 = MinotaursBundle.LoadAsset<GameObject>("FrostMinotaur_HM");
-			Minotaur1 = MinotaursBundle.LoadAsset<GameObject>("ArmouredFrostMinotaur_HM");
+			Minotaur1 = MinotaursBundle.LoadAsset<GameObject>("FrostMinotaurArmoured_HM");
 			// Attacks
-			Debug.Log("Minotaurs: Attacks");
-			MAttack1 = MinotaursBundle.LoadAsset<GameObject>("Minotaur_Attack1_HM");
-			MAttack2 = MinotaursBundle.LoadAsset<GameObject>("Minotaur_Attack2_HM");
-			MAttack3 = MinotaursBundle.LoadAsset<GameObject>("Minotaur_Attack3_HM");
-			FMAttack1 = MinotaursBundle.LoadAsset<GameObject>("FrostMinotaur_Attack1_HM");
-			FMAttack2 = MinotaursBundle.LoadAsset<GameObject>("FrostMinotaur_Attack1_HM");
-			FMAttack3 = MinotaursBundle.LoadAsset<GameObject>("FrostMinotaur_Attack1_HM");
+			//Debug.Log("Minotaurs: Attacks");
+			MAttack1 = MinotaursBundle.LoadAsset<GameObject>("Minotaur_Attack1_HG");
+			MAttack2 = MinotaursBundle.LoadAsset<GameObject>("Minotaur_Attack2_HG");
+			MAttack3 = MinotaursBundle.LoadAsset<GameObject>("Minotaur_Attack3_HG");
+			FMAttack1 = MinotaursBundle.LoadAsset<GameObject>("FrostMinotaur_Attack1_HG");
+			FMAttack2 = MinotaursBundle.LoadAsset<GameObject>("FrostMinotaur_Attack2_HG");
+			FMAttack3 = MinotaursBundle.LoadAsset<GameObject>("FrostMinotaur_Attack3_HG");
+			FrMAttack1 = MinotaursBundle.LoadAsset<GameObject>("FireMinotaur_Attack1_HG");
+			FrMAttack2 = MinotaursBundle.LoadAsset<GameObject>("FireMinotaur_Attack2_HG");
+			FrMAttack3 = MinotaursBundle.LoadAsset<GameObject>("FireMinotaur_Attack3_HG");
 			GameObject attack1 = MAttack1;
-			CustomPrefab HGattack1 = new CustomPrefab(attack1, false);
-			PrefabManager.Instance.AddPrefab(HGattack1);
+			CustomPrefab HMattack1 = new CustomPrefab(attack1, false);
+			PrefabManager.Instance.AddPrefab(HMattack1);
 			GameObject attack2 = MAttack2;
-			CustomPrefab HGattack2 = new CustomPrefab(attack2, false);
-			PrefabManager.Instance.AddPrefab(HGattack2);
+			CustomPrefab HMattack2 = new CustomPrefab(attack2, false);
+			PrefabManager.Instance.AddPrefab(HMattack2);
 			GameObject attack3 = MAttack3;
-			CustomPrefab HGattack3 = new CustomPrefab(attack3, false);
-			PrefabManager.Instance.AddPrefab(HGattack3);
+			CustomPrefab HMattack3 = new CustomPrefab(attack3, false);
+			PrefabManager.Instance.AddPrefab(HMattack3);
 			GameObject attack4 = FMAttack1;
-			CustomPrefab MGattack1 = new CustomPrefab(attack4, false);
-			PrefabManager.Instance.AddPrefab(MGattack1);
+			CustomPrefab FHMattack1 = new CustomPrefab(attack4, false);
+			PrefabManager.Instance.AddPrefab(FHMattack1);
 			GameObject attack5 = FMAttack2;
-			CustomPrefab MGattack2 = new CustomPrefab(attack5, false);
-			PrefabManager.Instance.AddPrefab(MGattack2);
+			CustomPrefab FHMattack2 = new CustomPrefab(attack5, false);
+			PrefabManager.Instance.AddPrefab(FHMattack2);
 			GameObject attack6 = FMAttack3;
-			CustomPrefab MGattack3 = new CustomPrefab(attack6, false);
-			PrefabManager.Instance.AddPrefab(MGattack3);
+			CustomPrefab FHMattack3 = new CustomPrefab(attack6, false);
+			PrefabManager.Instance.AddPrefab(FHMattack3);
+			GameObject attack7 = FrMAttack1;
+			CustomPrefab FrHMattack1 = new CustomPrefab(attack7, false);
+			PrefabManager.Instance.AddPrefab(FrHMattack1);
+			GameObject attack8 = FrMAttack2;
+			CustomPrefab FrHMattack2 = new CustomPrefab(attack8, false);
+			PrefabManager.Instance.AddPrefab(FrHMattack2);
+			GameObject attack9 = FrMAttack3;
+			CustomPrefab FrHMattack3 = new CustomPrefab(attack9, false);
+			PrefabManager.Instance.AddPrefab(FrHMattack3);
 			//SFX
-			Debug.Log("Minotaurs: SFX");
+			//Debug.Log("Minotaurs: SFX");
 			SFX1 = MinotaursBundle.LoadAsset<GameObject>("SFX_MinotaurAlert_HM");
 			SFX2 = MinotaursBundle.LoadAsset<GameObject>("SFX_MinotaurAttack_HM");
 			SFX3 = MinotaursBundle.LoadAsset<GameObject>("SFX_MinotaurDeath_HM");
@@ -133,7 +152,7 @@ namespace Minotaurs
 			CustomPrefab sfx5 = new CustomPrefab(SFX5, false);
 			PrefabManager.Instance.AddPrefab(sfx5);
 			//VFX
-			Debug.Log("Minotaurs: VFX");
+			//Debug.Log("Minotaurs: VFX");
 			VFX1 = MinotaursBundle.LoadAsset<GameObject>("VFX_Blood_Hit_HM");
 			VFX2 = MinotaursBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_HM");
 			VFX3 = MinotaursBundle.LoadAsset<GameObject>("VFX_HitSparks_HM");
@@ -144,11 +163,85 @@ namespace Minotaurs
 			CustomPrefab vfx3 = new CustomPrefab(VFX3, false);
 			PrefabManager.Instance.AddPrefab(vfx3);
 		}
-		private void AddGiants()
+		private void AddMinotaurs()
 		{
 			try
 			{
-				Debug.Log("Minotaurs: Minotaur");
+				//Debug.Log("Minotaurs: Minotaur");
+				var FireMinotaurMob = new CustomCreature(Minotaur5, false,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 24,
+								MaxAmount = 55,
+								Chance = 100
+							},
+							new DropConfig
+							{
+								Item = "FlametalOre",
+								MinAmount = 2,
+								MaxAmount = 4,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "CookedLoxMeat",
+								MinAmount = 2,
+								MaxAmount = 8,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "Cloudberry",
+								MinAmount = 3,
+								MaxAmount = 12,
+								Chance = 25
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(FireMinotaurMob);
+				//Debug.Log("Minotaurs: Armoured Fire Minotaur");
+				var ArmorFireMinotaurMob = new CustomCreature(Minotaur6, false,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 24,
+								MaxAmount = 55,
+								Chance = 100
+							},
+							new DropConfig
+							{
+								Item = "FlametalOre",
+								MinAmount = 2,
+								MaxAmount = 4,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "CookedLoxMeat",
+								MinAmount = 2,
+								MaxAmount = 8,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "Cloudberry",
+								MinAmount = 3,
+								MaxAmount = 12,
+								Chance = 25
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(ArmorFireMinotaurMob);
+				//Debug.Log("Minotaurs: Minotaur");
 				var MinotaurMob = new CustomCreature(Minotaur4, false,
 					new CreatureConfig
 					{
@@ -157,35 +250,35 @@ namespace Minotaurs
 							new DropConfig
 							{
 								Item = "Coins",
-								MinAmount = 23,
-								MaxAmount = 78,
+								MinAmount = 17,
+								MaxAmount = 41,
 								Chance = 100
 							},
 							new DropConfig
 							{
-								Item = "SilverNecklace",
-								MinAmount = 3,
-								MaxAmount = 5,
-								Chance = 15
-							},
-							new DropConfig
-							{
-								Item = "FreezeGland",
+								Item = "LoxPelt",
 								MinAmount = 2,
 								MaxAmount = 4,
-								Chance = 25
+								Chance = 10
 							},
 							new DropConfig
 							{
-								Item = "YmirRemains",
-								MinAmount = 1,
-								MaxAmount = 3,
-								Chance = 5
+								Item = "CookedLoxMeat",
+								MinAmount = 2,
+								MaxAmount = 8,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "Cloudberry",
+								MinAmount = 3,
+								MaxAmount = 12,
+								Chance = 25
 							}
 						}
 					});
 				CreatureManager.Instance.AddCreature(MinotaurMob);
-				Debug.Log("Minotaurs: Armoured Minotaur");
+				//Debug.Log("Minotaurs: Armoured Minotaur");
 				var ArmorMinotaurMob = new CustomCreature(Minotaur3, false,
 					new CreatureConfig
 					{
@@ -222,7 +315,7 @@ namespace Minotaurs
 						}
 					});
 				CreatureManager.Instance.AddCreature(ArmorMinotaurMob);
-				Debug.Log("Minotaurs: Frost Minotaur");
+				//Debug.Log("Minotaurs: Frost Minotaur");
 				var FrostMinotaurMob = new CustomCreature(Minotaur2, false,
 					new CreatureConfig
 					{
@@ -259,7 +352,7 @@ namespace Minotaurs
 						}
 					});
 				CreatureManager.Instance.AddCreature(FrostMinotaurMob);
-				Debug.Log("Minotaurs: Armoured Frost Minotaur");
+				//Debug.Log("Minotaurs: Armoured Frost Minotaur");
 				var ArmorFrostMinotaurMob = new CustomCreature(Minotaur1, false,
 					new CreatureConfig
 					{
@@ -308,7 +401,7 @@ namespace Minotaurs
 		}
 		public static void ConfigureBiomeSpawners(ISpawnerConfigurationCollection config)
 		{
-			Debug.Log("Minotaurs: Configure Spawns");
+			//Debug.Log("Minotaurs: Configure Spawns");
 			try
 			{
 				ConfigureWorldSpawner(config);
@@ -320,60 +413,74 @@ namespace Minotaurs
 		}
 		private static void ConfigureWorldSpawner(ISpawnerConfigurationCollection config)
 		{
-			Debug.Log("Minotaurs: Create Spawns");
+			//Debug.Log("Minotaurs: Create Spawns");
 			try
 			{
 				config.ConfigureWorldSpawner(26_103)
-					.SetPrefabName("ArmouredFrostMinotaur_HM")
-					.SetTemplateName("Armoured Frost Minotaur")
-					.SetConditionBiomes(Heightmap.Biome.DeepNorth)
-					.SetSpawnChance(8)
+					.SetPrefabName("FireMinotaurArmoured_HM")
+					.SetTemplateName("Armoured Fire Minotaur")
+					.SetConditionBiomes(Heightmap.Biome.AshLands)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(210))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionAltitudeMin(5)
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(1)
+					;
+				config.ConfigureWorldSpawner(26_102)
+					.SetPrefabName("FireMinotaur_HM")
+					.SetTemplateName("Fire Minotaur")
+					.SetConditionBiomes(Heightmap.Biome.AshLands)
+					.SetSpawnChance(18)
+					.SetSpawnInterval(TimeSpan.FromSeconds(210))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionAltitudeMin(1)
+					;
+				config.ConfigureWorldSpawner(26_103)
+					.SetPrefabName("FrostMinotaurArmoured_HM")
+					.SetTemplateName("Armoured Frost Minotaur")
+					.SetConditionBiomes(Heightmap.Biome.DeepNorth)
+					.SetSpawnChance(18)
+					.SetSpawnInterval(TimeSpan.FromSeconds(210))
+					.SetPackSizeMin(1)
+					.SetPackSizeMax(2)
+					.SetMaxSpawned(2)
+					.SetConditionAltitudeMin(1)
 					;
 				config.ConfigureWorldSpawner(26_102)
 					.SetPrefabName("FrostMinotaur_HM")
 					.SetTemplateName("Frost Minotaur")
 					.SetConditionBiomes(Heightmap.Biome.DeepNorth)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(210))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionAltitudeMin(5)
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(1)
 					;
 				config.ConfigureWorldSpawner(26_101)
-					.SetPrefabName("ArmouredMinotaur_HM")
+					.SetPrefabName("MinotaurArmoured_HM")
 					.SetTemplateName("Armoured Minotaur")
 					.SetConditionBiomes(Heightmap.Biome.Mistlands)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(210))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionAltitudeMin(5)
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(1)
 					;
 				config.ConfigureWorldSpawner(26_100)
 					.SetPrefabName("Minotaur_HM")
 					.SetTemplateName("Minotaur")
 					.SetConditionBiomes(Heightmap.Biome.Mistlands)
-					.SetSpawnChance(8)
+					.SetSpawnChance(18)
 					.SetSpawnInterval(TimeSpan.FromSeconds(210))
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionAltitudeMin(5)
-					.SetSpawnAtDistanceToPlayerMin(75)
-					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionAltitudeMin(1)
 					;
 			}
 			catch (Exception e)
