@@ -28,6 +28,8 @@ namespace MedievalVillage
 
         public const string PluginVersion = "0.0.3";
 
+        public static bool isModded = true;
+
         internal static ManualLogSource Log;
 		private Harmony _harmony;
         public AssetBundle MVAssets;

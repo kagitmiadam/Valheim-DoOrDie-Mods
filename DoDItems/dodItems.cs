@@ -30,6 +30,8 @@ namespace DoDItems
 
 		public const string PluginVersion = "0.0.2";
 
+		public static bool isModded = true;
+
 		private Harmony _harmony;
 		public static readonly ManualLogSource DoDLogger = BepInEx.Logging.Logger.CreateLogSource(PluginName);
 

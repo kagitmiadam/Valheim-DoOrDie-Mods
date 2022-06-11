@@ -29,7 +29,9 @@ namespace Giants
 
 		public const string PluginName = "Fee Fi Fo Fum";
 
-		public const string PluginVersion = "0.0.1";
+		public const string PluginVersion = "0.0.3";
+
+		public static bool isModded = true;
 
 		public static GameObject Giant1;
 		public static GameObject Giant2;
@@ -73,6 +75,12 @@ namespace Giants
 		public static GameObject Projectile2;
 		public static GameObject FX1;
 		public static GameObject FX2;
+		public static GameObject GiantTrophy1;
+		public static GameObject GiantTrophy2;
+		public static GameObject GiantTrophy3;
+		public static GameObject GiantTrophy4;
+		public static GameObject GiantTrophy5;
+		public static GameObject GiantTrophy6;
 
 		public AssetBundle GiantBundle;
 		private Harmony _harmony;
@@ -250,6 +258,25 @@ namespace Giants
 			Item1 = GiantBundle.LoadAsset<GameObject>("HillGiantSword_HG");
 			CustomItem customItem1 = new CustomItem(Item1, fixReference: false);
 			ItemManager.Instance.AddItem(customItem1);
+			// Trophies
+			GiantTrophy1 = GiantBundle.LoadAsset<GameObject>("Trophy_HillGiant_HG");
+			CustomItem customItem2 = new CustomItem(GiantTrophy1, fixReference: false);
+			ItemManager.Instance.AddItem(customItem2);
+			GiantTrophy2 = GiantBundle.LoadAsset<GameObject>("Trophy_MountainGiant_HG");
+			CustomItem customItem3 = new CustomItem(GiantTrophy2, fixReference: false);
+			ItemManager.Instance.AddItem(customItem3);
+			GiantTrophy3 = GiantBundle.LoadAsset<GameObject>("Trophy_Giant_HG");
+			CustomItem customItem4 = new CustomItem(GiantTrophy3, fixReference: false);
+			ItemManager.Instance.AddItem(customItem4);
+			GiantTrophy4 = GiantBundle.LoadAsset<GameObject>("Trophy_FrostGiant_HG");
+			CustomItem customItem5 = new CustomItem(GiantTrophy4, fixReference: false);
+			ItemManager.Instance.AddItem(customItem5);
+			GiantTrophy5 = GiantBundle.LoadAsset<GameObject>("Trophy_Jotunn_HG");
+			CustomItem customItem6 = new CustomItem(GiantTrophy5, fixReference: false);
+			ItemManager.Instance.AddItem(customItem6);
+			GiantTrophy6 = GiantBundle.LoadAsset<GameObject>("Trophy_FireGiant_HG");
+			CustomItem customItem7 = new CustomItem(GiantTrophy6, fixReference: false);
+			ItemManager.Instance.AddItem(customItem7);
 		}
 		private void AddGiants()
 		{
@@ -261,6 +288,13 @@ namespace Giants
 					{
 						DropConfigs = new[]
 						{
+							new DropConfig
+							{
+								Item = "Trophy_FireGiant_HG",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
 							new DropConfig
 							{
 								Item = "Coins",
@@ -300,6 +334,13 @@ namespace Giants
 						{
 							new DropConfig
 							{
+								Item = "Trophy_Jotunn_HG",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
+							new DropConfig
+							{
 								Item = "Coins",
 								MinAmount = 113,
 								MaxAmount = 178,
@@ -335,6 +376,13 @@ namespace Giants
 					{
 						DropConfigs = new[]
 						{
+							new DropConfig
+							{
+								Item = "Trophy_FrostGiant_HG",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
 							new DropConfig
 							{
 								Item = "Coins",
@@ -374,6 +422,13 @@ namespace Giants
 						{
 							new DropConfig
 							{
+								Item = "Trophy_Giant_HG",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
+							new DropConfig
+							{
 								Item = "Coins",
 								MinAmount = 17,
 								MaxAmount = 41,
@@ -411,6 +466,13 @@ namespace Giants
 						{
 							new DropConfig
 							{
+								Item = "Trophy_MountainGiant_HG",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
+							new DropConfig
+							{
 								Item = "Coins",
 								MinAmount = 10,
 								MaxAmount = 28,
@@ -446,6 +508,13 @@ namespace Giants
 					{
 						DropConfigs = new[]
 						{
+							new DropConfig
+							{
+								Item = "Trophy_HillGiant_HG",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
 							new DropConfig
 							{
 								Item = "Coins",

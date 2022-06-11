@@ -1,0 +1,583 @@
+[
+  {
+    "name": "Boar",
+    "minExp": 15,
+    "maxExp": 20
+  },
+  {
+    "name": "Deer",
+    "minExp": 5,
+    "maxExp": 10
+  },
+  {
+    "name": "Neck",
+    "minExp": 15,
+    "maxExp": 20
+  },
+  {
+    "name": "Greyling",
+    "minExp": 25,
+    "maxExp": 40
+  },
+  {
+    "name": "Kobold",
+    "minExp": 25,
+    "maxExp": 40
+  },
+  {
+    "name": "Giant Spider",
+    "minExp": 25,
+    "maxExp": 40
+  },
+  {
+    "name": "Hill Giant",
+    "minExp": 50,
+    "maxExp": 60
+  },
+  {
+    "name": "Nomad",
+    "minExp": 50,
+    "maxExp": 60
+  },
+  {
+    "name": "Skugga",
+    "minExp": 50,
+    "maxExp": 60
+  },
+  {
+    "name": "Forest Wolf",
+    "minExp": 250,
+    "maxExp": 350
+  },
+
+
+
+
+  {
+    "name": "Greydwarf",
+    "minExp": 50,
+    "maxExp": 60
+  },
+  {
+    "name": "Greydwarf_Elite",
+    "minExp": 100,
+    "maxExp": 150
+  },
+  {
+    "name": "Greydwarf_Shaman",
+    "minExp": 80,
+    "maxExp": 120
+  },
+  {
+    "name": "Skeleton",
+    "minExp": 60,
+    "maxExp": 80
+  },
+  {
+    "name": "Skeleton_Poison",
+    "minExp": 100,
+    "maxExp": 150
+  },
+  {
+    "name": "Skeleton_NoArcher",
+    "minExp": 60,
+    "maxExp": 80
+  },
+  {
+    "name": "Ghost",
+    "minExp": 80,
+    "maxExp": 120
+  },
+
+  {
+    "name": "Troll",
+    "minExp": 300,
+    "maxExp": 500
+  },
+  {
+    "name": "Tree Spider",
+    "minExp": 50,
+    "maxExp": 60
+  },
+  {
+    "name": "Stormling",
+    "minExp": 50,
+    "maxExp": 60
+  },
+  {
+    "name": "Hobgoblin",
+    "minExp": 80,
+    "maxExp": 120
+  },
+  {
+    "name": "Ent",
+    "minExp": 300,
+    "maxExp": 500
+  },
+
+
+
+
+
+  {
+    "name": "Blob",
+    "minExp": 120,
+    "maxExp": 180
+  },
+
+  {
+    "name": "Leech",
+    "minExp": 120,
+    "maxExp": 180
+  },
+  {
+    "name": "Wraith",
+    "minExp": 200,
+    "maxExp": 250
+  },
+  {
+    "name": "Draugr",
+    "minExp": 100,
+    "maxExp": 150
+  },
+  {
+    "name": "Draugr_Ranged",
+    "minExp": 180,
+    "maxExp": 220
+  },
+  {
+    "name": "Surtling",
+    "minExp": 100,
+    "maxExp": 130
+  },
+  {
+    "name": "Draugr_Elite",
+    "minExp": 300,
+    "maxExp": 500
+  },
+  {
+    "name": "BlobElite",
+    "minExp": 180,
+    "maxExp": 250
+  },
+  {
+    "name": "Slimy Wendigo",
+    "minExp": 180,
+    "maxExp": 250
+  },
+  {
+    "name": "Ghoul",
+    "minExp": 100,
+    "maxExp": 150
+  },
+  {
+    "name": "Mummy",
+    "minExp": 100,
+    "maxExp": 150
+  },
+
+
+
+
+  {
+    "name": "Wolf",
+    "minExp": 250,
+    "maxExp": 350
+  },
+  {
+    "name": "Fenring",
+    "minExp": 300,
+    "maxExp": 400
+  },
+  {
+    "name": "Hatchling",
+    "minExp": 250,
+    "maxExp": 300
+  },
+  {
+    "name": "StoneGolem",
+    "minExp": 450,
+    "maxExp": 600
+  },
+  {
+    "name": "Frost Spider",
+    "minExp": 250,
+    "maxExp": 300
+  },
+  {
+    "name": "Ghost Warrior",
+    "minExp": 250,
+    "maxExp": 300
+  },
+  {
+    "name": "Skeleton Warrior",
+    "minExp": 250,
+    "maxExp": 300
+  },
+  {
+    "name": "Frostling",
+    "minExp": 250,
+    "maxExp": 300
+  },
+  {
+    "name": "Yeti",
+    "minExp": 300,
+    "maxExp": 400
+  },
+  {
+    "name": "Ogre",
+    "minExp": 250,
+    "maxExp": 300
+  },
+  {
+    "name": "Mountain Giant",
+    "minExp": 350,
+    "maxExp": 500
+  },
+
+
+
+
+
+  {
+    "name": "Goblin",
+    "minExp": 350,
+    "maxExp": 450
+  },
+  {
+    "name": "GoblinArcher",
+    "minExp": 380,
+    "maxExp": 480
+  },
+  {
+    "name": "Deathsquito",
+    "minExp": 200,
+    "maxExp": 300
+  },
+  {
+    "name": "Lox",
+    "minExp": 500,
+    "maxExp": 700
+  },
+  {
+    "name": "GoblinBrute",
+    "minExp": 450,
+    "maxExp": 650
+  },
+  {
+    "name": "GoblinShaman",
+    "minExp": 400,
+    "maxExp": 500
+  },
+  {
+    "name": "Voidling",
+    "minExp": 400,
+    "maxExp": 500
+  },
+  {
+    "name": "Werewolf",
+    "minExp": 450,
+    "maxExp": 550
+  },
+  {
+    "name": "Cyclops",
+    "minExp": 500,
+    "maxExp": 600
+  },
+  {
+    "name": "Manticore",
+    "minExp": 600,
+    "maxExp": 600
+  },
+  {
+    "name": "Giant",
+    "minExp": 600,
+    "maxExp": 700
+  },
+
+
+
+  {
+    "name": "Vilefang",
+    "minExp": 800,
+    "maxExp": 900
+  },
+  {
+    "name": "Brown Spider",
+    "minExp": 800,
+    "maxExp": 900
+  },
+  {
+    "name": "Forest Spider",
+    "minExp": 800,
+    "maxExp": 900
+  },
+  {
+    "name": "Einherjar",
+    "minExp": 850,
+    "maxExp": 950
+  },
+  {
+    "name": "Forest Wendigo",
+    "minExp": 900,
+    "maxExp": 1000
+  },
+  {
+    "name": "Earth Elemental",
+    "minExp": 950,
+    "maxExp": 1050
+  },
+	
+
+
+  {
+    "name": "Ice Drake",
+    "minExp": 1050,
+    "maxExp": 1150
+  },
+  {
+    "name": "Dire Wolf",
+    "minExp": 1050,
+    "maxExp": 1150
+  },
+  {
+    "name": "Frozen Bones",
+    "minExp": 1050,
+    "maxExp": 1150
+  },
+  {
+    "name": "Frigid Spider",
+    "minExp": 1050,
+    "maxExp": 1150
+  },
+  {
+    "name": "Gray Wolf",
+    "minExp": 1100,
+    "maxExp": 1200
+  },
+  {
+    "name": "Black Werewolf",
+    "minExp": 1100,
+    "maxExp": 1200
+  },
+  {
+    "name": "Grey Werewolf",
+    "minExp": 1100,
+    "maxExp": 1200
+  },
+  {
+    "name": "White Werewolf",
+    "minExp": 1100,
+    "maxExp": 1200
+  },
+  {
+    "name": "Armored Black Werewolf",
+    "minExp": 1100,
+    "maxExp": 1200
+  },
+  {
+    "name": "Ice Elemental",
+    "minExp": 1200,
+    "maxExp": 1300
+  },
+  {
+    "name": "Frost Giant",
+    "minExp": 1200,
+    "maxExp": 1300
+  },
+	
+	
+  {
+    "name": "Obsidian Golem",
+    "minExp": 1300,
+    "maxExp": 1400
+  },
+  {
+    "name": "Flame Drake",
+    "minExp": 1300,
+    "maxExp": 1400
+  },
+  {
+    "name": "Greater Surtling",
+    "minExp": 1300,
+    "maxExp": 1400
+  },
+  {
+    "name": "Living Lava",
+    "minExp": 1300,
+    "maxExp": 1400
+  },
+  {
+    "name": "Fire Elemental",
+    "minExp": 1400,
+    "maxExp": 1500
+  },
+  {
+    "name": "Demon Lord",
+    "minExp": 1400,
+    "maxExp": 1500
+  },
+  {
+    "name": "Fire Giant",
+    "minExp": 1500,
+    "maxExp": 1600
+  },
+	
+	
+  {
+    "name": "Kraken",
+    "minExp": 1500,
+    "maxExp": 1600
+  },
+  {
+    "name": "Molluscan",
+    "minExp": 50,
+    "maxExp": 60
+  },
+  {
+    "name": "Giant Viper",
+    "minExp": 90,
+    "maxExp": 100
+  },
+	
+	
+	
+  {
+    "name": "Upir Grim",
+    "minExp": 100,
+    "maxExp": 150
+  },
+  {
+    "name": "Zaine Evilian",
+    "minExp": 100,
+    "maxExp": 150
+  },
+  {
+    "name": "Lazarus Autumn",
+    "minExp": 200,
+    "maxExp": 300
+  },
+  {
+    "name": "Grail Thornheart",
+    "minExp": 200,
+    "maxExp": 300
+  },
+  {
+    "name": "Crisenth Shadowsoul",
+    "minExp": 400,
+    "maxExp": 600
+  },
+  {
+    "name": "Jayden Shadowmend",
+    "minExp": 400,
+    "maxExp": 600
+  },
+  {
+    "name": "Lux Frost",
+    "minExp": 400,
+    "maxExp": 800
+  },
+  {
+    "name": "Firion Winter",
+    "minExp": 400,
+    "maxExp": 800
+  },
+  {
+    "name": "Echo Black",
+    "minExp": 600,
+    "maxExp": 1000
+  },
+  {
+    "name": "Mathian Serphent",
+    "minExp": 600,
+    "maxExp": 1000
+  },
+  {
+    "name": "Sceledrus Shadowend",
+    "minExp": 800,
+    "maxExp": 1200
+  },
+  {
+    "name": "Lazarus Deamonne",
+    "minExp": 800,
+    "maxExp": 1200
+  },
+  {
+    "name": "Lincoln Hunt",
+    "minExp": 1000,
+    "maxExp": 1400
+  },
+  {
+    "name": "Draven Nox",
+    "minExp": 1000,
+    "maxExp": 1400
+  },
+  {
+    "name": "Ash Vexx",
+    "minExp": 1200,
+    "maxExp": 1600
+  },
+  {
+    "name": "Cinder Mortem",
+    "minExp": 1200,
+    "maxExp": 1600
+  },
+
+
+
+  {
+    "name": "Eikthyr",
+    "minExp": 150,
+    "maxExp": 200
+  },
+  {
+    "name": "Ram'bore",
+    "minExp": 150,
+    "maxExp": 200
+  },
+  {
+    "name": "gd_king",
+    "minExp": 300,
+    "maxExp": 500
+  },
+  {
+    "name": "Bitterstump",
+    "minExp": 300,
+    "maxExp": 500
+  },
+  {
+    "name": "Serpent",
+    "minExp": 400,
+    "maxExp": 500
+  },
+  {
+    "name": "Bonemass",
+    "minExp": 700,
+    "maxExp": 900
+  },
+  {
+    "name": "Bhygshan",
+    "minExp": 700,
+    "maxExp": 900
+  },
+  {
+    "name": "Dragon",
+    "minExp": 1000,
+    "maxExp": 1400
+  },
+  {
+    "name": "Farkas",
+    "minExp": 1000,
+    "maxExp": 1400
+  },
+  {
+    "name": "GoblinKing",
+    "minExp": 1500,
+    "maxExp": 2000
+  },
+  {
+    "name": "Skir Sandburst",
+    "minExp": 1500,
+    "maxExp": 2000
+  }
+]

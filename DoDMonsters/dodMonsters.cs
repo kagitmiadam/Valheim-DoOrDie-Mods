@@ -35,6 +35,8 @@ namespace DoDMonsters
 
 		public const string PluginVersion = "0.5.3";
 
+		public static bool isModded = true;
+
 		private Harmony _harmony;
 		public static readonly ManualLogSource DoDLogger = BepInEx.Logging.Logger.CreateLogSource(PluginName);
 

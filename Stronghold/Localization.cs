@@ -13,6 +13,12 @@ namespace Stronghold
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+								{ "piece_wellgroundround_sh", "Ground Level Well" },
+								{ "piece_wellgroundround_sh_desc", "Levels the ground in a 50m radius and paves it." },
+								{ "piece_wellground_sh", "Ground Level Well" },
+								{ "piece_wellground_sh_desc", "Levels the ground for 50m in each direction and paves it." },
+								{ "piece_storagebarn_sh", "Storage Barn" },
+								{ "piece_mainhall_sh", "Main Hall" },
 								{ "piece_oldbarn_sh", "Old Barn" },
 								{ "piece_haybarn_sh", "Hay Barn" },
 								{ "piece_houselarge_sh", "Large House" },
@@ -32,8 +38,8 @@ namespace Stronghold
 								{ "piece_outerroundtowerend_sh", "Outer Wall Tower - Round End" },
 								{ "piece_outergate_sh", "Outer Wall Gate" },
 								{ "piece_watchtower_sh", "Watchtower" },
-								{ "piece_well_sh", "Well" },
-								{ "piece_well_sh_desc", "Levels the ground for 50m in each direction and paves it." },
+								{ "piece_well_sh", "5m High Well" },
+								{ "piece_well_sh_desc", "Levels the ground for 50m in each direction and paves it at a height of 5m." },
 								{ "name_portcullis_sh", "Portcullis" },
 								{ "piece_wall2f_sh", "Stronghold Wall" },
 								{ "piece_enclosedtower_sh", "Enclosed Tower" },
@@ -49,6 +55,13 @@ namespace Stronghold
 		};
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
 
+								{ "piece_wellgroundround_sh", "Round Ground Level Well" },
+								{ "piece_wellgroundround_sh_desc", "Levels the ground in a 50m radius and paves it." },
+								{ "piece_wellground_sh", "Ground Level Well" },
+								{ "piece_wellground_sh_desc", "Levels the ground for 50m in each direction and paves it." },
+								{ "piece_storagebarn_sh", "Storage Barn" },
+								{ "piece_mainhall_sh", "Main Hall" },
+								{ "piece_oldbarn_sh", "Old Barn" },
 								{ "piece_haybarn_sh", "Hay Barn" },
 								{ "piece_houselarge_sh", "Large House" },
 								{ "piece_housemedium_sh", "Medium House" },
@@ -67,8 +80,8 @@ namespace Stronghold
 								{ "piece_outerroundtowerend_sh", "Outer Wall Tower - Round End" },
 								{ "piece_outergate_sh", "Outer Wall Gate" },
 								{ "piece_watchtower_sh", "Watchtower" },
-								{ "piece_well_sh", "Well" },
-								{ "piece_well_sh_desc", "Levels the ground for 50m in each direction and paves it." },
+								{ "piece_well_sh", "5m High Well" },
+								{ "piece_well_sh_desc", "Levels the ground for 50m in each direction and paves it at a height of 5m." },
 								{ "name_portcullis_sh", "Portcullis" },
 								{ "piece_wall2f_sh", "Stronghold Wall" },
 								{ "piece_enclosedtower_sh", "Enclosed Tower" },
@@ -85,6 +98,13 @@ namespace Stronghold
 		};
 		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
 
+								{ "piece_wellgroundround_sh", "Ground Level Well" },
+								{ "piece_wellgroundround_sh_desc", "Levels the ground in a 50m radius and paves it." },
+								{ "piece_wellground_sh", "Ground Level Well" },
+								{ "piece_wellground_sh_desc", "Levels the ground for 50m in each direction and paves it." },
+								{ "piece_storagebarn_sh", "Storage Barn" },
+								{ "piece_mainhall_sh", "Main Hall" },
+								{ "piece_oldbarn_sh", "Old Barn" },
 								{ "piece_haybarn_sh", "Hay Barn" },
 								{ "piece_houselarge_sh", "Large House" },
 								{ "piece_housemedium_sh", "Medium House" },

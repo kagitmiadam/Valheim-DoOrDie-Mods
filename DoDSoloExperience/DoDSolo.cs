@@ -35,6 +35,8 @@ namespace DoDSoloExperience
 
 		public const string PluginVersion = "1.3.4";
 
+		public static bool isModded = true;
+
 		private Harmony _harmony;
 
 		public ConfigEntry<bool> DoDMessageEnable;

@@ -13,6 +13,18 @@ namespace Giants
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+			{"item_trophy_jotunn_hg", "Jotunn"},
+			{"item_trophy_jotunn_desc_hg", "Animated trophy of a Jotunn"},
+			{"item_trophy_firegiant_hg", "Fire Giant"},
+			{"item_trophy_firegiant_desc_hg", "Animated trophy of a Fire Giant"},
+			{"item_trophy_frostgiant_hg", "Frost Giant"},
+			{"item_trophy_frostgiant_desc_hg", "Animated trophy of a Frost Giant"},
+			{"item_trophy_giant_hg", "Giant"},
+			{"item_trophy_giant_desc_hg", "Animated trophy of a Giant"},
+			{"item_trophy_mountaingiant_hg", "Mountain Giant"},
+			{"item_trophy_mountaingiant_desc_hg", "Animated trophy of a Mountain Giant"},
+			{"item_trophy_hillgiant_hg", "Hill Giant"},
+			{"item_trophy_hillgiant_desc_hg", "Animated trophy of a Hill Giant"},
 			{"enemy_jotunn_hg", "Jotunn"},
 			{"enemy_firegiant_hg", "Fire Giant"},
 			{"enemy_frostgiant_hg", "Frost Giant"},
@@ -23,6 +35,18 @@ namespace Giants
 		};
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
 
+			{"item_trophy_jotunn_hg", "Jotunn"},
+			{"item_trophy_jotunn_desc_hg", "Animated trophy of a Jotunn"},
+			{"item_trophy_firegiant_hg", "Fire Giant"},
+			{"item_trophy_firegiant_desc_hg", "Animated trophy of a Fire Giant"},
+			{"item_trophy_frostgiant_hg", "Frost Giant"},
+			{"item_trophy_frostgiant_desc_hg", "Animated trophy of a Frost Giant"},
+			{"item_trophy_giant_hg", "Giant"},
+			{"item_trophy_giant_desc_hg", "Animated trophy of a Giant"},
+			{"item_trophy_mountaingiant_hg", "Mountain Giant"},
+			{"item_trophy_mountaingiant_desc_hg", "Animated trophy of a Mountain Giant"},
+			{"item_trophy_hillgiant_hg", "Hill Giant"},
+			{"item_trophy_hillgiant_desc_hg", "Animated trophy of a Hill Giant"},
 			{"enemy_jotunn_hg", "Jotunn"},
 			{"enemy_firegiant_hg", "Fire Giant"},
 			{"enemy_frostgiant_hg", "Frost Giant"},
@@ -33,6 +57,18 @@ namespace Giants
 			};
 		private static Dictionary<string, string> german = new Dictionary<string, string>() {
 
+			{"item_trophy_jotunn_hg", "Jotunn"},
+			{"item_trophy_jotunn_desc_hg", "Animated trophy of a Jotunn"},
+			{"item_trophy_firegiant_hg", "Fire Giant"},
+			{"item_trophy_firegiant_desc_hg", "Animated trophy of a Fire Giant"},
+			{"item_trophy_frostgiant_hg", "Frost Giant"},
+			{"item_trophy_frostgiant_desc_hg", "Animated trophy of a Frost Giant"},
+			{"item_trophy_giant_hg", "Giant"},
+			{"item_trophy_giant_desc_hg", "Animated trophy of a Giant"},
+			{"item_trophy_mountaingiant_hg", "Mountain Giant"},
+			{"item_trophy_mountaingiant_desc_hg", "Animated trophy of a Mountain Giant"},
+			{"item_trophy_hillgiant_hg", "Hill Giant"},
+			{"item_trophy_hillgiant_desc_hg", "Animated trophy of a Hill Giant"},
 			{"enemy_jotunn_hg", "Jotunn"},
 			{"enemy_firegiant_hg", "Fire Giant"},
 			{"enemy_frostgiant_hg", "Frost Giant"},
@@ -43,6 +79,18 @@ namespace Giants
 			};
 		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
 
+			{"item_trophy_jotunn_hg", "Jotunn"},
+			{"item_trophy_jotunn_desc_hg", "Animated trophy of a Jotunn"},
+			{"item_trophy_firegiant_hg", "Fire Giant"},
+			{"item_trophy_firegiant_desc_hg", "Animated trophy of a Fire Giant"},
+			{"item_trophy_frostgiant_hg", "Frost Giant"},
+			{"item_trophy_frostgiant_desc_hg", "Animated trophy of a Frost Giant"},
+			{"item_trophy_giant_hg", "Giant"},
+			{"item_trophy_giant_desc_hg", "Animated trophy of a Giant"},
+			{"item_trophy_mountaingiant_hg", "Mountain Giant"},
+			{"item_trophy_mountaingiant_desc_hg", "Animated trophy of a Mountain Giant"},
+			{"item_trophy_hillgiant_hg", "Hill Giant"},
+			{"item_trophy_hillgiant_desc_hg", "Animated trophy of a Hill Giant"},
 			{"enemy_jotunn_hg", "Jotunn"},
 			{"enemy_firegiant_hg", "Fire Giant"},
 			{"enemy_frostgiant_hg", "Frost Giant"},

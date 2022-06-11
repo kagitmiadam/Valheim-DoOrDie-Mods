@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedievalVillage", "Medieval
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RangerArmorModification", "RAMod\RangerArmorModification.csproj", "{E53CFDB2-B8C8-4404-A69B-07D13AEC7AAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedsArmy", "DedsArmy\DedsArmy.csproj", "{60523865-1707-47D9-AAB3-23A91422C33A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +149,10 @@ Global
 		{E53CFDB2-B8C8-4404-A69B-07D13AEC7AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E53CFDB2-B8C8-4404-A69B-07D13AEC7AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E53CFDB2-B8C8-4404-A69B-07D13AEC7AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60523865-1707-47D9-AAB3-23A91422C33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60523865-1707-47D9-AAB3-23A91422C33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60523865-1707-47D9-AAB3-23A91422C33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60523865-1707-47D9-AAB3-23A91422C33A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

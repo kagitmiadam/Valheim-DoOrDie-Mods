@@ -271,3 +271,17 @@ Draven Nox:
     damage per star: 0.05
     movement speed: 1.1
     attack speed per star: 0.1
+## Ash Vexx - Ash Lands Daytime
+Ash Vexx:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1
+## Cinder Mortem - Ash Lands Night time
+Cinder Mortem:
+    size: 0
+    health per star: 0.25
+    damage per star: 0.05
+    movement speed: 1.1
+    attack speed per star: 0.1

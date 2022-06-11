@@ -33,7 +33,9 @@ namespace FantasyCreatures
 
 		public const string PluginName = "FantasyCreatures";
 
-		public const string PluginVersion = "0.0.9";
+		public const string PluginVersion = "0.1.0";
+
+		public static bool isModded = true;
 
 		//public static GameObject BeholderA1;
 		//public static GameObject BeholderA2;
@@ -139,6 +141,21 @@ namespace FantasyCreatures
 		public static GameObject ManticoreA3;
 		public static GameObject ManticoreA4;
 		public static GameObject ManticoreA5;
+
+		public static GameObject Trophy1;
+		public static GameObject Trophy2;
+		public static GameObject Trophy3;
+		public static GameObject Trophy4;
+		public static GameObject Trophy5;
+		public static GameObject Trophy6;
+		public static GameObject Trophy7;
+		public static GameObject Trophy8;
+		public static GameObject Trophy9;
+		public static GameObject Trophy10;
+		public static GameObject Trophy11;
+		public static GameObject Trophy12;
+		public static GameObject Trophy13;
+		public static GameObject Trophy14;
 
 		public AssetBundle FantasyBundle;
 		private Harmony _harmony;
@@ -567,6 +584,49 @@ namespace FantasyCreatures
 			PrefabManager.Instance.AddPrefab(SFXDLIdle);
 			GameObject SFXDLDeath = FantasyBundle.LoadAsset<GameObject>("SFX_DLDeath_DoD");
 			PrefabManager.Instance.AddPrefab(SFXDLDeath);
+			//Debug.Log("Fantasy Creatures: Trophies");
+			Trophy1 = FantasyBundle.LoadAsset<GameObject>("Trophy_Cyclops_FC");
+			CustomItem customItem1 = new CustomItem(Trophy1, fixReference: false);
+			ItemManager.Instance.AddItem(customItem1);
+			Trophy2 = FantasyBundle.LoadAsset<GameObject>("Trophy_DarknessSpider_FC");
+			CustomItem customItem2 = new CustomItem(Trophy2, fixReference: false);
+			ItemManager.Instance.AddItem(customItem2);
+			Trophy3 = FantasyBundle.LoadAsset<GameObject>("Trophy_DemonLord_FC");
+			CustomItem customItem3 = new CustomItem(Trophy3, fixReference: false);
+			ItemManager.Instance.AddItem(customItem3);
+			Trophy4 = FantasyBundle.LoadAsset<GameObject>("Trophy_EarthElemental_FC");
+			CustomItem customItem4 = new CustomItem(Trophy4, fixReference: false);
+			ItemManager.Instance.AddItem(customItem4);
+			Trophy5 = FantasyBundle.LoadAsset<GameObject>("Trophy_Ent_FC");
+			CustomItem customItem5 = new CustomItem(Trophy5, fixReference: false);
+			ItemManager.Instance.AddItem(customItem5);
+			Trophy6 = FantasyBundle.LoadAsset<GameObject>("Trophy_FireElemental_FC");
+			CustomItem customItem6 = new CustomItem(Trophy6, fixReference: false);
+			ItemManager.Instance.AddItem(customItem6);
+			Trophy7 = FantasyBundle.LoadAsset<GameObject>("Trophy_Ghoul_FC");
+			CustomItem customItem7 = new CustomItem(Trophy7, fixReference: false);
+			ItemManager.Instance.AddItem(customItem7);
+			Trophy8 = FantasyBundle.LoadAsset<GameObject>("Trophy_GiantViper_FC");
+			CustomItem customItem8 = new CustomItem(Trophy8, fixReference: false);
+			ItemManager.Instance.AddItem(customItem8);
+			Trophy9 = FantasyBundle.LoadAsset<GameObject>("Trophy_Hobgoblin_FC");
+			CustomItem customItem9 = new CustomItem(Trophy9, fixReference: false);
+			ItemManager.Instance.AddItem(customItem9);
+			Trophy10 = FantasyBundle.LoadAsset<GameObject>("Trophy_IceElemental_FC");
+			CustomItem customItem10 = new CustomItem(Trophy10, fixReference: false);
+			ItemManager.Instance.AddItem(customItem10);
+			Trophy11 = FantasyBundle.LoadAsset<GameObject>("Trophy_Kobold_FC");
+			CustomItem customItem11 = new CustomItem(Trophy11, fixReference: false);
+			ItemManager.Instance.AddItem(customItem11);
+			Trophy12 = FantasyBundle.LoadAsset<GameObject>("Trophy_Manticore_FC");
+			CustomItem customItem12 = new CustomItem(Trophy12, fixReference: false);
+			ItemManager.Instance.AddItem(customItem12);
+			Trophy13 = FantasyBundle.LoadAsset<GameObject>("Trophy_Mummy_FC");
+			CustomItem customItem13 = new CustomItem(Trophy13, fixReference: false);
+			ItemManager.Instance.AddItem(customItem13);
+			Trophy14 = FantasyBundle.LoadAsset<GameObject>("Trophy_Ogre_FC");
+			CustomItem customItem14 = new CustomItem(Trophy14, fixReference: false);
+			ItemManager.Instance.AddItem(customItem14);
 			//Debug.Log("Fantasy Creatures: SFX Done");
 		}
 		private void AddNewCreatures()
@@ -583,9 +643,24 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_DemonLord_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "FlametalOre",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 45,
+								MaxAmount = 75,
+								Chance = 100
 							}
 						}
 					});
@@ -600,9 +675,24 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_FireElemental_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "FlametalOre",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 45,
+								MaxAmount = 65,
+								Chance = 100
 							}
 						}
 					});
@@ -617,9 +707,23 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_IceElemental_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "FreezeGland",
 								MinAmount = 3,
 								MaxAmount = 10
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 45,
+								MaxAmount = 55,
+								Chance = 100
 							}
 						}
 					});
@@ -634,9 +738,24 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_EarthElemental_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "Ruby",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 40,
+								MaxAmount = 50,
+								Chance = 100
 							}
 						},
 					});
@@ -651,9 +770,31 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_Manticore_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "BlackMetalScrap",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Flax",
+								MinAmount = 3,
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 25,
+								MaxAmount = 35,
+								Chance = 100
 							}
 						}
 					});
@@ -668,9 +809,31 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_Cyclops_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "BlackMetalScrap",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Flax",
+								MinAmount = 3,
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 25,
+								MaxAmount = 35,
+								Chance = 100
 							}
 						}
 					});
@@ -685,9 +848,31 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_Ogre_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "SilverOre",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Thistle",
+								MinAmount = 3,
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 20,
+								MaxAmount = 30,
+								Chance = 100
 							}
 						}
 					});
@@ -702,9 +887,31 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_Mummy_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "IronOre",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Chain",
+								MinAmount = 2,
+								MaxAmount = 5,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 15,
+								MaxAmount = 25,
+								Chance = 100
 							}
 						}
 					});
@@ -719,9 +926,31 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_Ghoul_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "IronOre",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Chain",
+								MinAmount = 2,
+								MaxAmount = 5,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 10,
+								MaxAmount = 20,
+								Chance = 100
 							}
 						}
 					});
@@ -736,9 +965,31 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_Ent_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "FineWood",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "ElderBark",
+								MinAmount = 3,
+								MaxAmount = 10,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 10,
+								MaxAmount = 20,
+								Chance = 100
 							}
 						}
 					});
@@ -753,9 +1004,31 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_Hobgoblin_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "CopperOre",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 5,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "TinOre",
+								MinAmount = 3,
+								MaxAmount = 5,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 5,
+								MaxAmount = 15,
+								Chance = 100
 							}
 						}
 					});
@@ -770,9 +1043,24 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
-								Item = "Coins",
+								Item = "Trophy_GiantViper_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "SerpentMeat",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 5,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "Coins",
+								MinAmount = 5,
+								MaxAmount = 15,
+								Chance = 100
 							}
 						}
 					});
@@ -787,9 +1075,31 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
+								Item = "Trophy_Kobold_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "FishRaw",
+								MinAmount = 3,
+								MaxAmount = 5,
+								Chance = 50
+							},
+							new DropConfig
+							{
+								Item = "DeerHide",
+								MinAmount = 1,
+								MaxAmount = 2,
+								Chance = 50
+							},
+							new DropConfig
+							{
 								Item = "Coins",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 10,
+								Chance = 100
 							}
 						}
 					});
@@ -803,9 +1113,24 @@ namespace FantasyCreatures
 						{
 							new DropConfig
 							{
+								Item = "Trophy_DarknessSpider_FC",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 10
+							},
+							new DropConfig
+							{
+								Item = "Ooze",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
+							new DropConfig
+							{
 								Item = "Coins",
 								MinAmount = 3,
-								MaxAmount = 10
+								MaxAmount = 10,
+								Chance = 100
 							}
 						}
 					});
@@ -813,7 +1138,7 @@ namespace FantasyCreatures
 			}
 			catch (Exception ex)
 			{
-				Logger.LogWarning($"Exception caught while adding custom creatures: {ex}");
+				Logger.LogWarning($"Exception caught while adding custom creatures for Fantasy Creatures: {ex}");
 			}
 			finally
 			{

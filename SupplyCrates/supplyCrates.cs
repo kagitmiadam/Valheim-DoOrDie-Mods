@@ -26,7 +26,9 @@ namespace SupplyCrates
 
 		public const string PluginName = "SupplyCrates";
 
-		public const string PluginVersion = "0.0.1";
+		public const string PluginVersion = "0.0.3";
+
+		public static bool isModded = true;
 
 		internal static ManualLogSource Log;
 
@@ -2583,6 +2585,7 @@ namespace SupplyCrates
 				var vharv7 = PrefabManager.Instance.GetPrefab("potato");
 				var vharv8 = PrefabManager.Instance.GetPrefab("rice");
 				var vharv9 = PrefabManager.Instance.GetPrefab("bonemeal");
+				var vharv10 = PrefabManager.Instance.GetPrefab("milk_bottle");
 				pick1.GetComponent<Pickable>().m_extraDrops.m_drops.Add(new DropTable.DropData 
 				{ 
 					m_item = vharv1,
@@ -2593,6 +2596,13 @@ namespace SupplyCrates
 				pick3.GetComponent<Pickable>().m_extraDrops.m_drops.Add(new DropTable.DropData
 				{
 					m_item = vharv2,
+					m_stackMin = 1,
+					m_stackMax = 3,
+					m_weight = 1
+				});
+				pick3.GetComponent<Pickable>().m_extraDrops.m_drops.Add(new DropTable.DropData
+				{
+					m_item = vharv10,
 					m_stackMin = 1,
 					m_stackMax = 3,
 					m_weight = 1
@@ -2807,9 +2817,17 @@ namespace SupplyCrates
 			{
 				var pick1 = PrefabManager.Instance.GetPrefab("BoxOfDairy_SC");
 				var ba1 = PrefabManager.Instance.GetPrefab("rk_egg");
+				var ba2 = PrefabManager.Instance.GetPrefab("rk_butter");
 				pick1.GetComponent<Pickable>().m_extraDrops.m_drops.Add(new DropTable.DropData
 				{
 					m_item = ba1,
+					m_stackMin = 1,
+					m_stackMax = 3,
+					m_weight = 1
+				});
+				pick1.GetComponent<Pickable>().m_extraDrops.m_drops.Add(new DropTable.DropData
+				{
+					m_item = ba2,
 					m_stackMin = 1,
 					m_stackMax = 3,
 					m_weight = 1

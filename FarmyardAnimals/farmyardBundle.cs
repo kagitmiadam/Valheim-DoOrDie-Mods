@@ -32,6 +32,8 @@ namespace FarmyardAnimals
 
 		public const string PluginVersion = "0.0.17";
 
+		public static bool isModded = true;
+
 		internal static ManualLogSource Log;
 		// Animals
 		public static GameObject Sheep;

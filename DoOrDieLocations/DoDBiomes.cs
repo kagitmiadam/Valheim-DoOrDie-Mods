@@ -28,6 +28,8 @@ namespace DoOrDieBiomes
 
 		public const string PluginVersion = "0.0.13";
 
+		public static bool isModded = true;
+		
 		public static GameObject SteelPick;
 		// Fruit
 		public static GameObject Walnuts;

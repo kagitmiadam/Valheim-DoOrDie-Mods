@@ -40,6 +40,8 @@ namespace DoDNPCs
 
 		public const string PluginVersion = "0.0.5";
 
+		public static bool isModded = true;
+
 		public AssetBundle NPCBundle;
 		private Harmony _harmony;
 		internal static ManualLogSource Log;

@@ -25,7 +25,9 @@ namespace FantasyArmoury
 
         public const string PluginName = "FantasyArmoury";
 
-        public const string PluginVersion = "0.0.7";
+        public const string PluginVersion = "0.0.8";
+
+        public static bool isModded = true;
 
         private Harmony _harmony;
         public AssetBundle FAAssets;
@@ -165,7 +167,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -201,7 +203,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -237,7 +239,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -273,7 +275,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -309,7 +311,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -345,7 +347,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -381,7 +383,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -417,7 +419,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -453,7 +455,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -489,7 +491,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -526,7 +528,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -562,7 +564,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -598,7 +600,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -634,7 +636,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -670,7 +672,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -706,7 +708,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -743,7 +745,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -779,7 +781,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -815,7 +817,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -852,7 +854,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -888,7 +890,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -924,7 +926,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -960,7 +962,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -996,7 +998,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1032,7 +1034,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1069,7 +1071,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1106,7 +1108,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1142,7 +1144,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1178,7 +1180,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1214,7 +1216,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1250,7 +1252,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1287,7 +1289,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1323,7 +1325,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1359,7 +1361,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1395,7 +1397,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1431,7 +1433,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1467,7 +1469,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1504,7 +1506,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1540,7 +1542,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1576,7 +1578,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1612,7 +1614,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {
@@ -1648,7 +1650,7 @@ namespace FantasyArmoury
                 {
                     Item = "Iron",
                     Amount = 0,
-                    AmountPerLevel = 3
+                    AmountPerLevel = 6
                 },
                 new RequirementConfig
                 {

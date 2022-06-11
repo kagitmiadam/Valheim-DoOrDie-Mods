@@ -27,6 +27,8 @@ namespace InstancedVillages
 
         public const string PluginVersion = "0.0.4";
 
+		public static bool isModded = true;
+
 		private Harmony _harmony;
 		public AssetBundle IVAssets;
 		public ConfigEntry<bool> CosmeticEnable;

@@ -13,6 +13,18 @@ namespace Minotaurs
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+			{"item_trophy_fireminotaurarmoured_hm", "Armoured Fire Minotaur"},
+			{"item_trophy_fireminotaurarmoured_desc_hm", "Animated trophy of an Armoured Fire Minotaur"},
+			{"item_trophy_fireminotaur_hm", "Fire Minotaur"},
+			{"item_trophy_fireminotaur_desc_hm", "Animated trophy of a Fire Minotaur"},
+			{"item_trophy_frostminotaurarmoured_hm", "Armoured Frost Minotaur"},
+			{"item_trophy_frostminotaurarmoured_desc_hm", "Animated trophy of an Armoured Frost Minotaur"},
+			{"item_trophy_frostminotaur_hm", "Frost Minotaur"},
+			{"item_trophy_frostminotaur_desc_hm", "Animated trophy of a Frost Minotaur"},
+			{"item_trophy_minotaurarmoured_hm", "Armoured Minotaur"},
+			{"item_trophy_minotaurarmoured_desc_hm", "Animated trophy of an Armoured Minotaur"},
+			{"item_trophy_minotaur_hm", "Minotaur"},
+			{"item_trophy_minotaur_desc_hm", "Animated trophy of a Minotaur"},
 			{"enemy_fireminotaurarmored_hm", "Armoured Fire Minotaur"},
 			{"enemy_fireminotaur_hm", "Fire Minotaur"},
 			{"enemy_frostminotaurarmored_hm", "Armoured Frost Minotaur"},
@@ -23,6 +35,18 @@ namespace Minotaurs
 		};
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
 
+			{"item_trophy_fireminotaurarmoured_hm", "Armoured Fire Minotaur"},
+			{"item_trophy_fireminotaurarmoured_desc_hm", "Animated trophy of an Armoured Fire Minotaur"},
+			{"item_trophy_fireminotaur_hm", "Fire Minotaur"},
+			{"item_trophy_fireminotaur_desc_hm", "Animated trophy of a Fire Minotaur"},
+			{"item_trophy_frostminotaurarmoured_hm", "Armoured Frost Minotaur"},
+			{"item_trophy_frostminotaurarmoured_desc_hm", "Animated trophy of an Armoured Frost Minotaur"},
+			{"item_trophy_frostminotaur_hm", "Frost Minotaur"},
+			{"item_trophy_frostminotaur_desc_hm", "Animated trophy of a Frost Minotaur"},
+			{"item_trophy_minotaurarmoured_hm", "Armoured Minotaur"},
+			{"item_trophy_minotaurarmoured_desc_hm", "Animated trophy of an Armoured Minotaur"},
+			{"item_trophy_minotaur_hm", "Minotaur"},
+			{"item_trophy_minotaur_desc_hm", "Animated trophy of a Minotaur"},
 			{"enemy_fireminotaurarmored_hm", "Armoured Fire Minotaur"},
 			{"enemy_fireminotaur_hm", "Fire Minotaur"},
 			{"enemy_frostminotaurarmored_hm", "Armoured Frost Minotaur"},
@@ -33,6 +57,18 @@ namespace Minotaurs
 			};
 		private static Dictionary<string, string> german = new Dictionary<string, string>() {
 
+			{"item_trophy_fireminotaurarmoured_hm", "Armoured Fire Minotaur"},
+			{"item_trophy_fireminotaurarmoured_desc_hm", "Animated trophy of an Armoured Fire Minotaur"},
+			{"item_trophy_fireminotaur_hm", "Fire Minotaur"},
+			{"item_trophy_fireminotaur_desc_hm", "Animated trophy of a Fire Minotaur"},
+			{"item_trophy_frostminotaurarmoured_hm", "Armoured Frost Minotaur"},
+			{"item_trophy_frostminotaurarmoured_desc_hm", "Animated trophy of an Armoured Frost Minotaur"},
+			{"item_trophy_frostminotaur_hm", "Frost Minotaur"},
+			{"item_trophy_frostminotaur_desc_hm", "Animated trophy of a Frost Minotaur"},
+			{"item_trophy_minotaurarmoured_hm", "Armoured Minotaur"},
+			{"item_trophy_minotaurarmoured_desc_hm", "Animated trophy of an Armoured Minotaur"},
+			{"item_trophy_minotaur_hm", "Minotaur"},
+			{"item_trophy_minotaur_desc_hm", "Animated trophy of a Minotaur"},
 			{"enemy_fireminotaurarmored_hm", "Armoured Fire Minotaur"},
 			{"enemy_fireminotaur_hm", "Fire Minotaur"},
 			{"enemy_frostminotaurarmored_hm", "Armoured Frost Minotaur"},
@@ -43,6 +79,18 @@ namespace Minotaurs
 			};
 		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
 
+			{"item_trophy_fireminotaurarmoured_hm", "Armoured Fire Minotaur"},
+			{"item_trophy_fireminotaurarmoured_desc_hm", "Animated trophy of an Armoured Fire Minotaur"},
+			{"item_trophy_fireminotaur_hm", "Fire Minotaur"},
+			{"item_trophy_fireminotaur_desc_hm", "Animated trophy of a Fire Minotaur"},
+			{"item_trophy_frostminotaurarmoured_hm", "Armoured Frost Minotaur"},
+			{"item_trophy_frostminotaurarmoured_desc_hm", "Animated trophy of an Armoured Frost Minotaur"},
+			{"item_trophy_frostminotaur_hm", "Frost Minotaur"},
+			{"item_trophy_frostminotaur_desc_hm", "Animated trophy of a Frost Minotaur"},
+			{"item_trophy_minotaurarmoured_hm", "Armoured Minotaur"},
+			{"item_trophy_minotaurarmoured_desc_hm", "Animated trophy of an Armoured Minotaur"},
+			{"item_trophy_minotaur_hm", "Minotaur"},
+			{"item_trophy_minotaur_desc_hm", "Animated trophy of a Minotaur"},
 			{"enemy_fireminotaurarmored_hm", "Armoured Fire Minotaur"},
 			{"enemy_fireminotaur_hm", "Fire Minotaur"},
 			{"enemy_frostminotaurarmored_hm", "Armoured Frost Minotaur"},

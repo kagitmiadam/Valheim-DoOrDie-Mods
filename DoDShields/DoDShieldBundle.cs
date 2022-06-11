@@ -25,6 +25,8 @@ namespace DoDShields
 		public const string PluginName = "DoOrDieShields";
 		public const string PluginVersion = "0.0.4";
 
+		public static bool isModded = true;
+
 		public static GameObject ShieldGSkull;
 		public static GameObject ShieldBGSkull;
 		public static GameObject ShieldEikthyr;

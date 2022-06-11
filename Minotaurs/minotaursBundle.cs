@@ -29,7 +29,9 @@ namespace Minotaurs
 
 		public const string PluginName = "Minotaurs";
 
-		public const string PluginVersion = "0.0.1";
+		public const string PluginVersion = "0.0.2";
+
+		public static bool isModded = true;
 
 		public static GameObject Minotaur1;
 		public static GameObject Minotaur2;
@@ -55,6 +57,12 @@ namespace Minotaurs
 		public static GameObject VFX1;
 		public static GameObject VFX2;
 		public static GameObject VFX3;
+		public static GameObject MinotaurTrophy1;
+		public static GameObject MinotaurTrophy2;
+		public static GameObject MinotaurTrophy3;
+		public static GameObject MinotaurTrophy4;
+		public static GameObject MinotaurTrophy5;
+		public static GameObject MinotaurTrophy6;
 
 		public AssetBundle MinotaursBundle;
 		private Harmony _harmony;
@@ -162,17 +170,43 @@ namespace Minotaurs
 			PrefabManager.Instance.AddPrefab(vfx2);
 			CustomPrefab vfx3 = new CustomPrefab(VFX3, false);
 			PrefabManager.Instance.AddPrefab(vfx3);
+			// Trophies
+			MinotaurTrophy6 = MinotaursBundle.LoadAsset<GameObject>("Trophy_FireMinotaur_HM");
+			CustomItem customItem1 = new CustomItem(MinotaurTrophy6, fixReference: false);
+			ItemManager.Instance.AddItem(customItem1);
+			MinotaurTrophy5 = MinotaursBundle.LoadAsset<GameObject>("Trophy_FireMinotaurArmoured_HM");
+			CustomItem customItem2 = new CustomItem(MinotaurTrophy5, fixReference: false);
+			ItemManager.Instance.AddItem(customItem2);
+			MinotaurTrophy4 = MinotaursBundle.LoadAsset<GameObject>("Trophy_Minotaur_HM");
+			CustomItem customItem3 = new CustomItem(MinotaurTrophy4, fixReference: false);
+			ItemManager.Instance.AddItem(customItem3);
+			MinotaurTrophy3 = MinotaursBundle.LoadAsset<GameObject>("Trophy_MinotaurArmoured_HM");
+			CustomItem customItem4 = new CustomItem(MinotaurTrophy3, fixReference: false);
+			ItemManager.Instance.AddItem(customItem4);
+			MinotaurTrophy2 = MinotaursBundle.LoadAsset<GameObject>("Trophy_FrostMinotaur_HM");
+			CustomItem customItem5 = new CustomItem(MinotaurTrophy2, fixReference: false);
+			ItemManager.Instance.AddItem(customItem5);
+			MinotaurTrophy1 = MinotaursBundle.LoadAsset<GameObject>("Trophy_FrostMinotaurArmoured_HM");
+			CustomItem customItem6 = new CustomItem(MinotaurTrophy1, fixReference: false);
+			ItemManager.Instance.AddItem(customItem6);
 		}
 		private void AddMinotaurs()
 		{
 			try
 			{
-				//Debug.Log("Minotaurs: Minotaur");
+				//Debug.Log("Minotaurs: Fire Minotaur");
 				var FireMinotaurMob = new CustomCreature(Minotaur5, false,
 					new CreatureConfig
 					{
 						DropConfigs = new[]
 						{
+							new DropConfig
+							{
+								Item = "Trophy_FireMinotaur_HM",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
 							new DropConfig
 							{
 								Item = "Coins",
@@ -212,6 +246,13 @@ namespace Minotaurs
 						{
 							new DropConfig
 							{
+								Item = "Trophy_FireMinotaurArmoured_HM",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
+							new DropConfig
+							{
 								Item = "Coins",
 								MinAmount = 24,
 								MaxAmount = 55,
@@ -247,6 +288,13 @@ namespace Minotaurs
 					{
 						DropConfigs = new[]
 						{
+							new DropConfig
+							{
+								Item = "Trophy_Minotaur_HM",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
 							new DropConfig
 							{
 								Item = "Coins",
@@ -286,6 +334,13 @@ namespace Minotaurs
 						{
 							new DropConfig
 							{
+								Item = "Trophy_MinotaurArmoured_HM",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
+							new DropConfig
+							{
 								Item = "Coins",
 								MinAmount = 17,
 								MaxAmount = 41,
@@ -323,6 +378,13 @@ namespace Minotaurs
 						{
 							new DropConfig
 							{
+								Item = "Trophy_FrostMinotaur_HM",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
+							new DropConfig
+							{
 								Item = "Coins",
 								MinAmount = 10,
 								MaxAmount = 28,
@@ -358,6 +420,13 @@ namespace Minotaurs
 					{
 						DropConfigs = new[]
 						{
+							new DropConfig
+							{
+								Item = "Trophy_FrostMinotaurArmoured_HM",
+								MinAmount = 1,
+								MaxAmount = 1,
+								Chance = 5
+							},
 							new DropConfig
 							{
 								Item = "Coins",
