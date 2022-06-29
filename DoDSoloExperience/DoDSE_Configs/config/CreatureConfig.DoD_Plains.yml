@@ -464,23 +464,23 @@ Voidling:
           5: 1.25
 # Brown Werewolf
 Werewolf:
-  size: 0.75
+  size: 0.02
   Plains:
     nokey_defeated_goblinking:
       health:
-          0: 1
-          1: 1.05
-          2: 1.1
-          3: 1.15
-          4: 1.2
-          5: 1.25
+          0: 0.5
+          1: 0.55
+          2: 0.6
+          3: 0.65
+          4: 0.7
+          5: 0.75
       damage: 
-          0: 1
-          1: 1.1
-          2: 1.2
-          3: 1.3
-          4: 1.4
-          5: 1.5
+          0: 0.5
+          1: 0.6
+          2: 0.7
+          3: 0.8
+          4: 0.9
+          5: 1
       damage taken: 
           0: 1
           1: 0.95
@@ -690,6 +690,7 @@ Manticore:
           5: 1.25
 # Giant
 Giant:
+  Size: 0
   Plains:
     nokey_defeated_goblinking:
       health:

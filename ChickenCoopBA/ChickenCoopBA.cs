@@ -29,6 +29,8 @@ namespace ChickenCoopBA
 
 		public const string PluginVersion = "0.0.1";
 
+		public static bool isModded = true;
+
 		public static GameObject chickenCoop;
 		public static GameObject chickenItem;
 

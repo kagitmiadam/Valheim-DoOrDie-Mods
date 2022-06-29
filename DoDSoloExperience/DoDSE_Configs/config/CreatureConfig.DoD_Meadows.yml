@@ -689,7 +689,7 @@ Giant Spider:
         5: 1.25
 ## Hill Giant
 Hill Giant:
-  size: 0.02
+  size: 0
   Meadows:
     health:
         0: 1

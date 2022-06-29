@@ -64,7 +64,7 @@ namespace FarmyardAnimals
 			// Food
 			{"item_joint_fya", "Roasted Joint"},
 			{"item_joint_fya_desc", ""},
-			{"item_milk_fya", "Milk"},
+			{"item_milk_fya", "Cream"},
 			{"item_milk_fya_desc", ""},
 			{"item_steakfried_fya", "Fired Steak"},
 			{"item_steakfried_fya_desc", ""},

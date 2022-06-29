@@ -30,7 +30,7 @@ namespace FarmyardAnimals
 
 		public const string PluginName = "FarmyardAnimals";
 
-		public const string PluginVersion = "0.0.17";
+		public const string PluginVersion = "0.1.0";
 
 		public static bool isModded = true;
 
@@ -1241,6 +1241,13 @@ namespace FarmyardAnimals
 							},
 							new DropConfig
 							{
+								Item = "Milk_FYA",
+								Chance = 33,
+								MinAmount = 1,
+								MaxAmount = 3
+							},
+							new DropConfig
+							{
 								Item = "CowItem_FYA",
 								Chance = 10,
 								MinAmount = 1,
@@ -1270,6 +1277,13 @@ namespace FarmyardAnimals
 								Chance = 100,
 								MinAmount = 1,
 								MaxAmount = 1
+							},
+							new DropConfig
+							{
+								Item = "Milk_FYA",
+								Chance = 33,
+								MinAmount = 1,
+								MaxAmount = 3
 							},
 							new DropConfig
 							{
@@ -1305,6 +1319,13 @@ namespace FarmyardAnimals
 							},
 							new DropConfig
 							{
+								Item = "Milk_FYA",
+								Chance = 33,
+								MinAmount = 1,
+								MaxAmount = 3
+							},
+							new DropConfig
+							{
 								Item = "CowItem_FYA",
 								Chance = 10,
 								MinAmount = 1,
@@ -1337,6 +1358,13 @@ namespace FarmyardAnimals
 							},
 							new DropConfig
 							{
+								Item = "Milk_FYA",
+								Chance = 33,
+								MinAmount = 1,
+								MaxAmount = 3
+							},
+							new DropConfig
+							{
 								Item = "CowItem_FYA",
 								Chance = 10,
 								MinAmount = 1,
@@ -1366,6 +1394,13 @@ namespace FarmyardAnimals
 								Chance = 100,
 								MinAmount = 1,
 								MaxAmount = 1
+							},
+							new DropConfig
+							{
+								Item = "Milk_FYA",
+								Chance = 33,
+								MinAmount = 1,
+								MaxAmount = 3
 							},
 							new DropConfig
 							{
@@ -1671,6 +1706,13 @@ namespace FarmyardAnimals
 							},
 							new DropConfig
 							{
+								Item = "Milk_FYA",
+								Chance = 25,
+								MinAmount = 1,
+								MaxAmount = 3
+							},
+							new DropConfig
+							{
 								Item = "GoatItem_FYA",
 								Chance = 10,
 								MinAmount = 1,
@@ -1734,7 +1776,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Clear")
 					.SetConditionLocation("StoneTowerRuins01")
 					;
 				config.ConfigureWorldSpawner(25_023)
@@ -1746,7 +1787,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("DeepForest Mist")
 					.SetConditionLocation("Greydwarf_camp1")
 					;
 				config.ConfigureWorldSpawner(25_022)
@@ -1758,7 +1798,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Rain")
 					.SetConditionLocation("Crypt4")
 					;
 				config.ConfigureWorldSpawner(25_021)
@@ -1770,7 +1809,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Clear")
 					.SetConditionLocation("Ruin2")
 					;
 				config.ConfigureWorldSpawner(25_020)
@@ -1782,7 +1820,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("DeepForest Mist")
 					.SetConditionLocation("Crypt2")
 					;
 				config.ConfigureWorldSpawner(25_019)
@@ -1794,7 +1831,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Rain")
 					.SetConditionLocation("Crypt3")
 					;
 				config.ConfigureWorldSpawner(25_018)
@@ -1806,7 +1842,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Clear")
 					.SetConditionLocation("Ruin1")
 					;
 				config.ConfigureWorldSpawner(25_017)
@@ -1818,7 +1853,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("DeepForest Mist")
 					.SetConditionLocation("TrollCamp")
 					;
 				config.ConfigureWorldSpawner(25_016)
@@ -1830,7 +1864,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Rain")
 					.SetConditionLocation("TrollCave")
 					;
 				config.ConfigureWorldSpawner(25_015)
@@ -1842,7 +1875,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Rain")
 					.SetConditionLocation("StoneHenge3")
 					.SetModifierFaction(Character.Faction.PlainsMonsters)
 					;
@@ -1855,7 +1887,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Rain")
 					.SetConditionLocation("StoneHenge4")
 					.SetModifierFaction(Character.Faction.PlainsMonsters)
 					;
@@ -1868,7 +1899,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Rain")
 					.SetConditionLocation("WoodFarm1")
 					;
 				config.ConfigureWorldSpawner(25_012)
@@ -1880,7 +1910,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Rain")
 					.SetConditionLocation("WoodFarm1")
 					;
 				config.ConfigureWorldSpawner(25_011)
@@ -1892,7 +1921,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Clear")
 					.SetConditionLocation("WoodFarm1")
 					;
 				config.ConfigureWorldSpawner(25_010)
@@ -1904,7 +1932,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("LightRain")
 					.SetConditionLocation("WoodFarm1")
 					;
 				config.ConfigureWorldSpawner(25_009)
@@ -1916,7 +1943,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Clear")
 					.SetConditionLocation("WoodFarm1")
 					;
 				config.ConfigureWorldSpawner(25_008)
@@ -1928,7 +1954,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Clear")
 					.SetConditionLocation("WoodVillage1")
 					;
 				config.ConfigureWorldSpawner(25_007)
@@ -1940,7 +1965,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(1)
 					.SetPackSizeMax(2)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("LightRain")
 					.SetConditionLocation("WoodVillage1")
 					;
 				config.ConfigureWorldSpawner(25_005)
@@ -1953,7 +1977,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMax(3)
 					.SetMaxSpawned(2)
 					.SetSpawnDuringNight(false)
-					.SetConditionEnvironments("Clear")
 					.SetConditionLocation("WoodVillage1")
 					;
 				config.ConfigureWorldSpawner(25_004)
@@ -1966,7 +1989,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMax(3)
 					.SetMaxSpawned(2)
 					.SetSpawnDuringNight(false)
-					.SetConditionEnvironments("Misty")
 					.SetConditionLocation("WoodVillage1")
 					;
 				config.ConfigureWorldSpawner(25_003)
@@ -1979,7 +2001,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMax(4)
 					.SetMaxSpawned(2)
 					.SetSpawnDuringNight(false)
-					.SetConditionEnvironments("Misty")
 					.SetConditionLocation("WoodHouse8")
 					;
 				config.ConfigureWorldSpawner(25_002)
@@ -1991,7 +2012,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMin(2)
 					.SetPackSizeMax(4)
 					.SetMaxSpawned(2)
-					.SetConditionEnvironments("Twilight_Clear")
 					.SetConditionLocation("WoodHouse8")
 					;
 				config.ConfigureWorldSpawner(25_001)
@@ -2004,7 +2024,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMax(4)
 					.SetMaxSpawned(2)
 					.SetSpawnDuringNight(false)
-					.SetConditionEnvironments("LightRain")
 					.SetConditionLocation("WoodHouse8")
 					;
 				config.ConfigureWorldSpawner(25_000)
@@ -2017,7 +2036,6 @@ namespace FarmyardAnimals
 					.SetPackSizeMax(4)
 					.SetMaxSpawned(2)
 					.SetSpawnDuringNight(false)
-					.SetConditionEnvironments("Clear")
 					.SetConditionLocation("WoodHouse8")
 					;
 			}

@@ -46,7 +46,8 @@ namespace DoOrDieBiomes
 			{ "lore_start_label_dod", "Do or Die Difficulty" },
 			{ "lore_start_dod", "Scaling difficulty is always active. The longer you are in the world and the more bosses you kill, the harder the world will become. Bosses will level up one tier per world level, after you kill them the first time. Biome creatures level up once, after you kill the Vanilla boss in that biome. All creatures gain 5% Damage and Health every world level. Maximum Stars is increased to 10 plus 3 from sector level ups." },
 
-			{"piece_vegvisir_dod", "Location Stone"},
+			{"piece_vegvisir_dod", "Location Rune"},
+			{"piece_vegvisir_desc_dod", "Shows the location of a Do or Die boss"},
 			{"prop_altar_bitterstump_dod", "Bitterstump Altar"},
 			{"item_token_skull_dod", "Skull Token"},
 			{"item_token_skull_description_dod", "Knarr the Trader likes these."},
@@ -90,11 +91,11 @@ namespace DoOrDieBiomes
 			{"piece_lorestone_dod", "Lorestone"},
 
 			{"item_walnut_dod", "Walnuts"},
-			{"item_walnuts_description_dod", "Gatherd from a Walnut Tree in the Mistlands."},
-			{"item_apple_dod", "Apples"},
-			{"item_apple_description_dod", "Gatherd from an Apple Tree in the Mistlands."},
+			{"item_walnuts_description_dod", "Gatherd from Walnut Tree's in the Mistlands."},
+			{"item_apple_dod", "Pink Lady"},
+			{"item_apple_description_dod", "Gatherd from Apple Tree's in the Black Forest."},
 			{"item_redberries_dod", "Cherries"},
-			{"item_redberries_description_dod", "Gatherd from a Cherry Tree in the Mistlands."},
+			{"item_redberries_description_dod", "Gatherd from Cherry Tree's in the Mistlands."},
 		};
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
 

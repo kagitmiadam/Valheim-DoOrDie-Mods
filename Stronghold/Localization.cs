@@ -13,7 +13,7 @@ namespace Stronghold
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
-								{ "piece_wellgroundround_sh", "Ground Level Well" },
+								{ "piece_wellgroundround_sh", "Round Ground Level Well" },
 								{ "piece_wellgroundround_sh_desc", "Levels the ground in a 50m radius and paves it." },
 								{ "piece_wellground_sh", "Ground Level Well" },
 								{ "piece_wellground_sh_desc", "Levels the ground for 50m in each direction and paves it." },

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="ContactDoor.cs" />
     <Compile Include="Localization.cs" />
+    <Compile Include="MultiDoorController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QS_MoverNode.cs" />
     <Compile Include="QS_SpawnPoint.cs" />

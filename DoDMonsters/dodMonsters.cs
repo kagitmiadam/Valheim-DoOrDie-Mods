@@ -33,7 +33,7 @@ namespace DoDMonsters
 
 		public const string PluginName = "DoOrDieMonsters";
 
-		public const string PluginVersion = "0.5.3";
+		public const string PluginVersion = "0.5.7";
 
 		public static bool isModded = true;
 
@@ -245,7 +245,7 @@ namespace DoDMonsters
 			Log = Logger;
 			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoDMonsters");
 			CreateConfigurationValues();
-			Debug.Log("DoDMonsters: Loading and Creating Assets");
+			// Debug.Log("DoDMonsters: Loading and Creating Assets");
 			LoadBundle();
 			LoadDoDAssets();
 			if (MonstersEnable.Value == true) {
@@ -279,7 +279,7 @@ namespace DoDMonsters
 			RugDeer = DoDAssets.LoadAsset<GameObject>("Rug_BlackDeer_DoD");
 			RugDire = DoDAssets.LoadAsset<GameObject>("Rug_DireWolf_DoD");
 			RugForest = DoDAssets.LoadAsset<GameObject>("Rug_ForestWolf_DoD");
-			Debug.Log("DoDMonsters: Materials");
+			// Debug.Log("DoDMonsters: Materials");
 			CBait = DoDAssets.LoadAsset<GameObject>("CarnivorBait_DoD");
 			InfusedGemstone = DoDAssets.LoadAsset<GameObject>("InfusedGemstone_DoD");
 			BoarTusk = DoDAssets.LoadAsset<GameObject>("BoarTusk_DoD");
@@ -299,7 +299,7 @@ namespace DoDMonsters
 			SpiderChitin = DoDAssets.LoadAsset<GameObject>("SpiderChitin_DoD");
 			BlackDeerHide = DoDAssets.LoadAsset<GameObject>("BlackDeerHide_DoD");
 
-			Debug.Log("DoDMonsters: Bosses");
+			// Debug.Log("DoDMonsters: Bosses");
 			BhygshanAlt = DoDAssets.LoadAsset<GameObject>("BhygshanAlt_DoD");
 			SkirSandburst = DoDAssets.LoadAsset<GameObject>("SkirSandburst_DoD");
 			Farkas = DoDAssets.LoadAsset<GameObject>("Farkas_DoD");
@@ -308,7 +308,7 @@ namespace DoDMonsters
 			Bitterstump = DoDAssets.LoadAsset<GameObject>("Bitterstump_DoD");
 			Rambore = DoDAssets.LoadAsset<GameObject>("Rambore_DoD");
 
-			Debug.Log("DoDMonsters: Monsters");
+			// Debug.Log("DoDMonsters: Monsters");
 			GreaterSurtling = DoDAssets.LoadAsset<GameObject>("GreaterSurtling_DoD");
 			CharredRemains = DoDAssets.LoadAsset<GameObject>("CharredRemains_DoD");
 			SkeletonG = DoDAssets.LoadAsset<GameObject>("SkeletonG_DoD");
@@ -340,7 +340,7 @@ namespace DoDMonsters
 			PoisonDrake = DoDAssets.LoadAsset<GameObject>("PoisonDrake_DoD");
 			BlackDrake = DoDAssets.LoadAsset<GameObject>("DarkDrake_DoD");
 
-			Debug.Log("DoDMonsters: Monster Attacks");
+			// Debug.Log("DoDMonsters: Monster Attacks");
 			DrakespitFire = DoDAssets.LoadAsset<GameObject>("drake_firespit_attack_dod");
 			DrakespitArcane = DoDAssets.LoadAsset<GameObject>("drake_arcanespit_attack_dod");
 			DrakespitFrost = DoDAssets.LoadAsset<GameObject>("drake_frostspit_attack_dod");
@@ -364,7 +364,7 @@ namespace DoDMonsters
 			imp_stormbolt_attack = DoDAssets.LoadAsset<GameObject>("imp_stormbolt_attack_dod");
 			imp_voidbolt_attack = DoDAssets.LoadAsset<GameObject>("imp_voidbolt_attack_dod");
 
-			Debug.Log("DoDMonsters: Boss Attacks");
+			// Debug.Log("DoDMonsters: Boss Attacks");
 			Farkas_FrostBite = DoDAssets.LoadAsset<GameObject>("Farkas_FrostBite_DoD");
 			Farkas_Hamper_Attack = DoDAssets.LoadAsset<GameObject>("Farkas_Hamper_Attack_DoD");
 			Farkas_Bleed = DoDAssets.LoadAsset<GameObject>("Farkas_Bleed_DoD");
@@ -392,7 +392,7 @@ namespace DoDMonsters
 			Bitterstump_SprayFrost = DoDAssets.LoadAsset<GameObject>("Bitterstump_SprayFrost_DoD");
 			Bitterstump_SprayPoison = DoDAssets.LoadAsset<GameObject>("Bitterstump_SprayPoison_DoD");
 
-			Debug.Log("DoDMonsters: Monster Items");
+			// Debug.Log("DoDMonsters: Monster Items");
 			// Monster Items
 			ObsidianGolemClubs = DoDAssets.LoadAsset<GameObject>("ObsidianGolem_Clubs_DoD");
 			HelmetBhygshan = DoDAssets.LoadAsset<GameObject>("HelmetBhygshan_DoD");
@@ -417,7 +417,7 @@ namespace DoDMonsters
 			BowCharred = DoDAssets.LoadAsset<GameObject>("Bow_Charred_DoD");
 			BowCharred = DoDAssets.LoadAsset<GameObject>("Bow_Charred_DoD");
 
-			Debug.Log("DoDMonsters: Trophies");
+			// Debug.Log("DoDMonsters: Trophies");
 			TrophyCharredRemains = DoDAssets.LoadAsset<GameObject>("TrophyCharredRemains_DoD");
 			TrophyFrozenBones = DoDAssets.LoadAsset<GameObject>("TrophyFrozenBones_DoD");
 			TrophySurtling = DoDAssets.LoadAsset<GameObject>("TrophyGreatSurtling_DoD");
@@ -443,7 +443,7 @@ namespace DoDMonsters
 			TrophyPoisonDrake = DoDAssets.LoadAsset<GameObject>("TrophyPoisonDrake_DoD");
 			TrophyDarkDrake = DoDAssets.LoadAsset<GameObject>("TrophyDarkDrake_DoD");
 
-			Debug.Log("DoDMonsters: AoE");
+			// Debug.Log("DoDMonsters: AoE");
 			GameObject AoEHealinng = DoDAssets.LoadAsset<GameObject>("AoE_AuraHealing_DoD");
 			GameObject AoEBhygshanMace = DoDAssets.LoadAsset<GameObject>("AoE_BhygshanMace_DoD");
 			GameObject AoEBitterHeal = DoDAssets.LoadAsset<GameObject>("AoE_Bitterstump_Heal_DoD");
@@ -461,7 +461,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(AoESpray);
 			PrefabManager.Instance.AddPrefab(AoERootSpawn);
 
-			Debug.Log("DoDMonsters: Ragdolls");
+			// Debug.Log("DoDMonsters: Ragdolls");
 			GameObject VilefangRD = DoDAssets.LoadAsset<GameObject>("Vilefang_Ragdoll_DoD");
 			GameObject BlackDeerRD = DoDAssets.LoadAsset<GameObject>("BlackDeer_Ragdoll_DoD");
 			GameObject ForestWolfRD = DoDAssets.LoadAsset<GameObject>("ForestWolf_Ragdoll_DoD");
@@ -493,7 +493,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(GoldDrakeRD);
 			PrefabManager.Instance.AddPrefab(GreenDrakeRD);
 
-			Debug.Log("DoDMonsters: Projectiles");
+			// Debug.Log("DoDMonsters: Projectiles");
 			GameObject BhygshanFireballProjectile = DoDAssets.LoadAsset<GameObject>("Bhygshan_Fireball_Projectile_DoD");
 			GameObject SkirVoidboltProjectile = DoDAssets.LoadAsset<GameObject>("Skir_Voidbolt_Projectile_DoD");
 			GameObject SkirSandburstVoidThrowProjectile = DoDAssets.LoadAsset<GameObject>("SkirSandburst_VoidThrow_Projectile_DoD");
@@ -527,19 +527,25 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(ShadowProjectileS);
 			PrefabManager.Instance.AddPrefab(ShadowProjectileL);
 
-			Debug.Log("DoDMonsters: Altars");
+			// Debug.Log("DoDMonsters: Altars");
 			GameObject AltarFarkas = DoDAssets.LoadAsset<GameObject>("AltarFarkas_DoD");
 			GameObject AltarSkirSandburst = DoDAssets.LoadAsset<GameObject>("AltarSkirSandburst_DoD");
 			GameObject AltarRambore = DoDAssets.LoadAsset<GameObject>("AltarRambone_DoD");
 			GameObject AltarBitterstump = DoDAssets.LoadAsset<GameObject>("AltarBitterstump_DoD");
 			GameObject AltarBhygshan = DoDAssets.LoadAsset<GameObject>("AltarBhygshan_DoD");
 			GameObject AltarFarkasAlt = DoDAssets.LoadAsset<GameObject>("AltarFarkasAlt_DoD");
-			PrefabManager.Instance.AddPrefab(AltarFarkas);
-			PrefabManager.Instance.AddPrefab(AltarSkirSandburst);
-			PrefabManager.Instance.AddPrefab(AltarRambore);
-			PrefabManager.Instance.AddPrefab(AltarBitterstump);
-			PrefabManager.Instance.AddPrefab(AltarBhygshan);
-			PrefabManager.Instance.AddPrefab(AltarFarkasAlt);
+			CustomPrefab Altar1 = new CustomPrefab(AltarFarkas, false);
+			PrefabManager.Instance.AddPrefab(Altar1);
+			CustomPrefab Altar2 = new CustomPrefab(AltarSkirSandburst, false);
+			PrefabManager.Instance.AddPrefab(Altar2);
+			CustomPrefab Altar3 = new CustomPrefab(AltarRambore, false);
+			PrefabManager.Instance.AddPrefab(Altar3);
+			CustomPrefab Altar4 = new CustomPrefab(AltarBitterstump, false);
+			PrefabManager.Instance.AddPrefab(Altar4);
+			CustomPrefab Altar5 = new CustomPrefab(AltarBhygshan, false);
+			PrefabManager.Instance.AddPrefab(Altar5);
+			CustomPrefab Altar6 = new CustomPrefab(AltarFarkasAlt, false);
+			PrefabManager.Instance.AddPrefab(Altar6);
 
 			GameObject BhygshanSummon = DoDAssets.LoadAsset<GameObject>("Bhygshan_Spawn_DoD");
 			GameObject VoidlingSummon = DoDAssets.LoadAsset<GameObject>("Voidling_Spawn_DoD");
@@ -548,7 +554,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(ForestWolfSummon);
 			PrefabManager.Instance.AddPrefab(BhygshanSummon);
 
-			Debug.Log("DoDMonsters: FX");
+			// Debug.Log("DoDMonsters: FX");
 			GameObject FXSkirProtect = DoDAssets.LoadAsset<GameObject>("FX_Skir_Protect_DoD");
 			GameObject FXSkirNova = DoDAssets.LoadAsset<GameObject>("FX_Skir_Nova_DoD");
 			GameObject FXBitterRoot = DoDAssets.LoadAsset<GameObject>("FX_Bitter_RootSpawn_DoD");
@@ -562,7 +568,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(FXCrit);
 			PrefabManager.Instance.AddPrefab(FXBhygshanFireballExpl);
 
-			Debug.Log("DoDMonsters: SFX");
+			// Debug.Log("DoDMonsters: SFX");
 			GameObject SFXLivingLavaDeath = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Death_DoD");
 			GameObject SFXLivingLavaHit = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Hit_DoD");
 			GameObject SFXLivingLavaJump = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Jump_DoD");
@@ -592,7 +598,7 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(SFXVoidlingDeath);
 			PrefabManager.Instance.AddPrefab(SFXVoidlingAttack);
 
-			Debug.Log("DoDMonsters: VFX");
+			// Debug.Log("DoDMonsters: VFX");
 			GameObject VFXArcaneImpDeath = DoDAssets.LoadAsset<GameObject>("VFX_ArcaneImpDeath_DoD");
 			GameObject VFXBhygshanSpray = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Spray_DoD");
 			GameObject VFXBhygshanBreath = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Breath_DoD");
@@ -615,6 +621,7 @@ namespace DoDMonsters
 			GameObject VFXVoidImpHit = DoDAssets.LoadAsset<GameObject>("VFX_VoidImpHit_DoD");
 			GameObject VFXWolfDeath = DoDAssets.LoadAsset<GameObject>("VFX_Wolf_Death_DoD");
 			GameObject VFXWolfHit = DoDAssets.LoadAsset<GameObject>("VFX_Wolf_Hit_DoD");
+			GameObject VFXBloodHit = DoDAssets.LoadAsset<GameObject>("VFX_Blood_Hit_DoD");
 			PrefabManager.Instance.AddPrefab(VFXBhygshanSpray);
 			PrefabManager.Instance.AddPrefab(VFXBhygshanBreath);
 			PrefabManager.Instance.AddPrefab(VFXSkirThrow);
@@ -637,10 +644,11 @@ namespace DoDMonsters
 			PrefabManager.Instance.AddPrefab(VFXIceImpHit);
 			PrefabManager.Instance.AddPrefab(VFXStormImpHit);
 			PrefabManager.Instance.AddPrefab(VFXVoidImpHit);
+			PrefabManager.Instance.AddPrefab(VFXBloodHit);
 		}
 		private void CreateDropables()
 		{
-			Debug.Log("DoDMonsters: CreateDropables");
+			// Debug.Log("DoDMonsters: CreateDropables");
 			GameObject food4 = CBait;
 			CustomItem customFood4 = new CustomItem(food4, fixReference: true, new ItemConfig
 			{
@@ -829,7 +837,7 @@ namespace DoDMonsters
 		}
 		private void CreateMonsterItems()
 		{
-			Debug.Log("DoDMonsters: CreateMonsterItems");
+			// Debug.Log("DoDMonsters: CreateMonsterItems");
 			GameObject monsteritem1 = ObsidianGolemClubs;
 			CustomItem customItem1 = new CustomItem(monsteritem1, fixReference: true);
 			ItemManager.Instance.AddItem(customItem1);
@@ -896,7 +904,7 @@ namespace DoDMonsters
 		}
 		private void CreateMonsterAbilities()
 		{
-			Debug.Log("DoDMonsters: CreateMonsterAbilities");
+			// Debug.Log("DoDMonsters: CreateMonsterAbilities");
 			GameObject monsterability2 = Farkas_FrostBite;
 			CustomItem customItem2 = new CustomItem(monsterability2, fixReference: true);
 			ItemManager.Instance.AddItem(customItem2);
@@ -1039,7 +1047,7 @@ namespace DoDMonsters
 		}
 		private void AddBosses()
 		{
-			Debug.Log("DoDMonsters: AddBosses");
+			// Debug.Log("DoDMonsters: AddBosses");
 			GameObject gameObject6 = BhygshanAlt;
 			CustomPrefab customPrefab6 = new CustomPrefab(gameObject6, true);
 			PrefabManager.Instance.AddPrefab(customPrefab6);
@@ -1066,7 +1074,7 @@ namespace DoDMonsters
 		}
 		private void AddMonsterReskins()
 		{
-			Debug.Log("DoDMonsters: AddMonsterReskins");
+			// Debug.Log("DoDMonsters: AddMonsterReskins");
 			GameObject gameObject30 = BlackDrake;
 			CustomPrefab customPrefab30 = new CustomPrefab(gameObject30, true);
 			PrefabManager.Instance.AddPrefab(customPrefab30);
@@ -1189,14 +1197,14 @@ namespace DoDMonsters
 		}
 		private void AddNewMonsters()
 		{
-			Debug.Log("DoDMonsters: AddNewMonsters");
+			// Debug.Log("DoDMonsters: AddNewMonsters");
 			GameObject monster4 = FarkasAlt;
 			CustomPrefab creature4 = new CustomPrefab(monster4, true);
 			PrefabManager.Instance.AddPrefab(creature4);
 		}
 		private void CreateRugs()
 		{
-			Debug.Log("DoDMonsters: RugDeer");
+			// Debug.Log("DoDMonsters: RugDeer");
 			GameObject gameObject1 = RugDeer;
 			CustomPiece customPiece1 = new CustomPiece(gameObject1, true, new PieceConfig
 			{
@@ -1222,7 +1230,7 @@ namespace DoDMonsters
 			});
 			PieceManager.Instance.AddPiece(customPiece1);
 
-			Debug.Log("DoDMonsters: RugDire");
+			// Debug.Log("DoDMonsters: RugDire");
 			GameObject gameObject2 = RugDire;
 			CustomPiece customPiece2 = new CustomPiece(gameObject2, true, new PieceConfig
 			{
@@ -1248,7 +1256,7 @@ namespace DoDMonsters
 			});
 			PieceManager.Instance.AddPiece(customPiece2);
 
-			Debug.Log("DoDMonsters: RugForest");
+			// Debug.Log("DoDMonsters: RugForest");
 			GameObject gameObject3 = RugForest;
 			CustomPiece customPiece3 = new CustomPiece(gameObject3, true, new PieceConfig
 			{
@@ -1417,6 +1425,7 @@ namespace DoDMonsters
 					.SetMaxSpawned(2)
 					.SetSpawnAtDistanceToPlayerMin(45)
 					.SetSpawnAtDistanceToPlayerMax(60)
+					.SetConditionEnvironments("SnowStorm")
 					.SetConditionDistanceToCenter(1500)
 					.SetMinDistanceToOther(75)
 					.SetConditionAltitudeMin(75f)
@@ -1425,7 +1434,7 @@ namespace DoDMonsters
 				config.ConfigureWorldSpawner(21_025)
 					.SetPrefabName("WereWolfBrown")
 					.SetTemplateName("Brown WereWolf")
-					.SetConditionBiomes(Heightmap.Biome.Meadows, Heightmap.Biome.BlackForest, Heightmap.Biome.Swamp)
+					.SetConditionBiomes(Heightmap.Biome.Plains)
 					.SetSpawnChance(10)
 					.SetSpawnInterval(TimeSpan.FromSeconds(180))
 					.SetPackSizeMin(1)

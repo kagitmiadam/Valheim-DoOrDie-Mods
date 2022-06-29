@@ -33,12 +33,10 @@ namespace FantasyCreatures
 
 		public const string PluginName = "FantasyCreatures";
 
-		public const string PluginVersion = "0.1.0";
+		public const string PluginVersion = "0.1.3";
 
 		public static bool isModded = true;
 
-		//public static GameObject BeholderA1;
-		//public static GameObject BeholderA2;
 		public static GameObject EntA1;
 		public static GameObject EntA2;
 		public static GameObject EntA3;
@@ -81,17 +79,6 @@ namespace FantasyCreatures
 		public static GameObject KoboldA6;
 		public static GameObject KoboldA7;
 		public static GameObject KoboldA8;
-		/*public static GameObject HydraA1;
-		public static GameObject HydraA2;
-		public static GameObject HydraA3;
-		public static GameObject HydraA4;
-		public static GameObject DragonA1;
-		public static GameObject DragonA2;
-		public static GameObject DragonA3;
-		public static GameObject DragonA4;
-		public static GameObject DragonA5;
-		public static GameObject DragonA6;
-		public static GameObject DragonA7;*/
 		public static GameObject OgreA1;
 		public static GameObject OgreA2;
 		public static GameObject OgreA3;
@@ -120,17 +107,6 @@ namespace FantasyCreatures
 		public static GameObject MummyR3;
 		public static GameObject MummyR4;
 		public static GameObject MummyR5;
-		/*public static GameObject GriffinA1;
-		public static GameObject GriffinA2;
-		public static GameObject GriffinA3;
-		public static GameObject GriffinA4;
-		public static GameObject GriffinA5;
-		public static GameObject GriffinA6;
-		public static GameObject HarpyA1;
-		public static GameObject HarpyA2;
-		public static GameObject HarpyA3;
-		public static GameObject HarpyA4;
-		public static GameObject HarpyA5;*/
 		public static GameObject GhoulA1;
 		public static GameObject GhoulA2;
 		public static GameObject GhoulA3;
@@ -211,7 +187,7 @@ namespace FantasyCreatures
 				{
 					System.Console.WriteLine(e);
 				}
-            }	
+            }
 		}
 		public void LoadBundle()
 		{
@@ -219,355 +195,273 @@ namespace FantasyCreatures
 		}
 		private void LoadAssets()
 		{
-			//Debug.Log("Fantasy Creatures: Spider Attacks");
+			Debug.Log("Fantasy Creatures: Spider Attacks");
 			SpiderA1 = FantasyBundle.LoadAsset<GameObject>("Spider_Attack1_DoD");
-			CustomPrefab Spiderattack1 = new CustomPrefab(SpiderA1, true);
+			CustomPrefab Spiderattack1 = new CustomPrefab(SpiderA1, false);
 			PrefabManager.Instance.AddPrefab(Spiderattack1);
 			ViperA1 = FantasyBundle.LoadAsset<GameObject>("Viper_Attack1_DoD");
-			CustomPrefab Viperattack1 = new CustomPrefab(ViperA1, true);
+			CustomPrefab Viperattack1 = new CustomPrefab(ViperA1, false);
 			PrefabManager.Instance.AddPrefab(Viperattack1);
 
-			//Debug.Log("Fantasy Creatures: Manticore Attacks");
+			Debug.Log("Fantasy Creatures: Manticore Attacks");
 			ManticoreA1 = FantasyBundle.LoadAsset<GameObject>("Manticore_Attack1_DoD");
-			CustomPrefab Manticoreattack1 = new CustomPrefab(ManticoreA1, true);
+			CustomPrefab Manticoreattack1 = new CustomPrefab(ManticoreA1, false);
 			PrefabManager.Instance.AddPrefab(Manticoreattack1);
 			ManticoreA2 = FantasyBundle.LoadAsset<GameObject>("Manticore_Attack2_DoD");
-			CustomPrefab Manticoreattack2 = new CustomPrefab(ManticoreA2, true);
+			CustomPrefab Manticoreattack2 = new CustomPrefab(ManticoreA2, false);
 			PrefabManager.Instance.AddPrefab(Manticoreattack2);
 			ManticoreA3 = FantasyBundle.LoadAsset<GameObject>("Manticore_Attack3_DoD");
-			CustomPrefab Manticoreattack3 = new CustomPrefab(ManticoreA3, true);
+			CustomPrefab Manticoreattack3 = new CustomPrefab(ManticoreA3, false);
 			PrefabManager.Instance.AddPrefab(Manticoreattack3);
 			ManticoreA4 = FantasyBundle.LoadAsset<GameObject>("Manticore_AttackCombo1_DoD");
-			CustomPrefab Manticoreattack4 = new CustomPrefab(ManticoreA4, true);
+			CustomPrefab Manticoreattack4 = new CustomPrefab(ManticoreA4, false);
 			PrefabManager.Instance.AddPrefab(Manticoreattack4);
 			ManticoreA5 = FantasyBundle.LoadAsset<GameObject>("Manticore_AttackSting_DoD");
-			CustomPrefab Manticoreattack5 = new CustomPrefab(ManticoreA5, true);
+			CustomPrefab Manticoreattack5 = new CustomPrefab(ManticoreA5, false);
 			PrefabManager.Instance.AddPrefab(Manticoreattack5);
 
-			/*//Debug.Log("Fantasy Creatures: Harpy Attacks");
-			HarpyA1 = FantasyBundle.LoadAsset<GameObject>("Harpy_Attack1_DoD");
-			CustomPrefab Harpyattack1 = new CustomPrefab(HarpyA1, true);
-			PrefabManager.Instance.AddPrefab(Harpyattack1);
-			HarpyA2 = FantasyBundle.LoadAsset<GameObject>("Harpy_Attack2_DoD");
-			CustomPrefab Harpyattack2 = new CustomPrefab(HarpyA2, true);
-			PrefabManager.Instance.AddPrefab(Harpyattack2);
-			HarpyA3 = FantasyBundle.LoadAsset<GameObject>("Harpy_Attack3_DoD");
-			CustomPrefab Harpyattack3 = new CustomPrefab(HarpyA3, true);
-			PrefabManager.Instance.AddPrefab(Harpyattack3);
-			HarpyA4 = FantasyBundle.LoadAsset<GameObject>("Harpy_AttackCombo3_DoD");
-			CustomPrefab Harpyattack4 = new CustomPrefab(HarpyA4, true);
-			PrefabManager.Instance.AddPrefab(Harpyattack4);
-			HarpyA5 = FantasyBundle.LoadAsset<GameObject>("Harpy_AttackCombo4_DoD");
-			CustomPrefab Harpyattack5 = new CustomPrefab(HarpyA5, true);
-			PrefabManager.Instance.AddPrefab(Harpyattack5);*/
-
-			/*//Debug.Log("Fantasy Creatures: Griffin Attacks");
-			GriffinA1 = FantasyBundle.LoadAsset<GameObject>("Griffin_Attack1_DoD");
-			CustomPrefab Griffinattack1 = new CustomPrefab(GriffinA1, true);
-			PrefabManager.Instance.AddPrefab(Griffinattack1);
-			GriffinA2 = FantasyBundle.LoadAsset<GameObject>("Griffin_Attack2_DoD");
-			CustomPrefab Griffinattack2 = new CustomPrefab(GriffinA2, true);
-			PrefabManager.Instance.AddPrefab(Griffinattack2);
-			GriffinA3 = FantasyBundle.LoadAsset<GameObject>("Griffin_Attack3_DoD");
-			CustomPrefab Griffinattack3 = new CustomPrefab(GriffinA3, true);
-			PrefabManager.Instance.AddPrefab(Griffinattack3);
-			GriffinA4 = FantasyBundle.LoadAsset<GameObject>("Griffin_AttackCombo2_DoD");
-			CustomPrefab Griffinattack4 = new CustomPrefab(GriffinA4, true);
-			PrefabManager.Instance.AddPrefab(Griffinattack4);
-			GriffinA5 = FantasyBundle.LoadAsset<GameObject>("Griffin_AttackCombo3_DoD");
-			CustomPrefab Griffinattack5 = new CustomPrefab(GriffinA5, true);
-			PrefabManager.Instance.AddPrefab(Griffinattack5);
-			GriffinA6 = FantasyBundle.LoadAsset<GameObject>("Griffin_AttackFlight_DoD");
-			CustomPrefab Griffinattack6 = new CustomPrefab(GriffinA6, true);
-			PrefabManager.Instance.AddPrefab(Griffinattack6);*/
-
-			//Debug.Log("Fantasy Creatures: Ghoul Attacks");
+			Debug.Log("Fantasy Creatures: Ghoul Attacks");
 			GhoulA1 = FantasyBundle.LoadAsset<GameObject>("Ghoul_Attack1_DoD");
-			CustomPrefab Ghoulattack1 = new CustomPrefab(GhoulA1, true);
+			CustomPrefab Ghoulattack1 = new CustomPrefab(GhoulA1, false);
 			PrefabManager.Instance.AddPrefab(Ghoulattack1);
 			GhoulA2 = FantasyBundle.LoadAsset<GameObject>("Ghoul_Attack2_DoD");
-			CustomPrefab Ghoulattack2 = new CustomPrefab(GhoulA2, true);
+			CustomPrefab Ghoulattack2 = new CustomPrefab(GhoulA2, false);
 			PrefabManager.Instance.AddPrefab(Ghoulattack2);
 			GhoulA3 = FantasyBundle.LoadAsset<GameObject>("Ghoul_Attack3_DoD");
-			CustomPrefab Ghoulattack3 = new CustomPrefab(GhoulA3, true);
+			CustomPrefab Ghoulattack3 = new CustomPrefab(GhoulA3, false);
 			PrefabManager.Instance.AddPrefab(Ghoulattack3);
 			GhoulA4 = FantasyBundle.LoadAsset<GameObject>("Ghoul_AttackCombo2_DoD");
-			CustomPrefab Ghoulattack4 = new CustomPrefab(GhoulA4, true);
+			CustomPrefab Ghoulattack4 = new CustomPrefab(GhoulA4, false);
 			PrefabManager.Instance.AddPrefab(Ghoulattack4);
 			GhoulA5 = FantasyBundle.LoadAsset<GameObject>("Ghoul_AttackCombo3_DoD");
-			CustomPrefab Ghoulattack5 = new CustomPrefab(GhoulA5, true);
+			CustomPrefab Ghoulattack5 = new CustomPrefab(GhoulA5, false);
 			PrefabManager.Instance.AddPrefab(Ghoulattack5);
 
-			//Debug.Log("Fantasy Creatures: Mummy Attacks");
+			Debug.Log("Fantasy Creatures: Mummy Attacks");
 			MummyA1 = FantasyBundle.LoadAsset<GameObject>("Mummy_Attack1_DoD");
-			CustomPrefab mummyattack1 = new CustomPrefab(MummyA1, true);
+			CustomPrefab mummyattack1 = new CustomPrefab(MummyA1, false);
 			PrefabManager.Instance.AddPrefab(mummyattack1);
 			MummyA2 = FantasyBundle.LoadAsset<GameObject>("Mummy_Attack2_DoD");
-			CustomPrefab mummyattack2 = new CustomPrefab(MummyA2, true);
+			CustomPrefab mummyattack2 = new CustomPrefab(MummyA2, false);
 			PrefabManager.Instance.AddPrefab(mummyattack2);
 			MummyA3 = FantasyBundle.LoadAsset<GameObject>("Mummy_Attack3_DoD");
-			CustomPrefab mummyattack3 = new CustomPrefab(MummyA3, true);
+			CustomPrefab mummyattack3 = new CustomPrefab(MummyA3, false);
 			PrefabManager.Instance.AddPrefab(mummyattack3);
 			MummyA4 = FantasyBundle.LoadAsset<GameObject>("Mummy_AttackCombo2_DoD");
-			CustomPrefab mummyattack4 = new CustomPrefab(MummyA4, true);
+			CustomPrefab mummyattack4 = new CustomPrefab(MummyA4, false);
 			PrefabManager.Instance.AddPrefab(mummyattack4);
 			MummyA5 = FantasyBundle.LoadAsset<GameObject>("Mummy_AttackCombo3_DoD");
-			CustomPrefab mummyattack5 = new CustomPrefab(MummyA5, true);
+			CustomPrefab mummyattack5 = new CustomPrefab(MummyA5, false);
 			PrefabManager.Instance.AddPrefab(mummyattack5);
 			MummyR1 = FantasyBundle.LoadAsset<GameObject>("Mummy_Whip1_DoD");
-			CustomPrefab mummyattack6 = new CustomPrefab(MummyR1, true);
+			CustomPrefab mummyattack6 = new CustomPrefab(MummyR1, false);
 			PrefabManager.Instance.AddPrefab(mummyattack6);
 			MummyR2 = FantasyBundle.LoadAsset<GameObject>("Mummy_Whip2_DoD");
-			CustomPrefab mummyattack7 = new CustomPrefab(MummyR2, true);
+			CustomPrefab mummyattack7 = new CustomPrefab(MummyR2, false);
 			PrefabManager.Instance.AddPrefab(mummyattack7);
 			MummyR3 = FantasyBundle.LoadAsset<GameObject>("Mummy_Whip3_DoD");
-			CustomPrefab mummyattack8 = new CustomPrefab(MummyR3, true);
+			CustomPrefab mummyattack8 = new CustomPrefab(MummyR3, false);
 			PrefabManager.Instance.AddPrefab(mummyattack8);
 			MummyR4 = FantasyBundle.LoadAsset<GameObject>("Mummy_WhipCombo2_DoD");
-			CustomPrefab mummyattack9 = new CustomPrefab(MummyR4, true);
+			CustomPrefab mummyattack9 = new CustomPrefab(MummyR4, false);
 			PrefabManager.Instance.AddPrefab(mummyattack9);
 			MummyR5 = FantasyBundle.LoadAsset<GameObject>("Mummy_WhipCombo3_DoD");
-			CustomPrefab mummyattack10 = new CustomPrefab(MummyR5, true);
+			CustomPrefab mummyattack10 = new CustomPrefab(MummyR5, false);
 			PrefabManager.Instance.AddPrefab(mummyattack10);
 
-			/*//Debug.Log("Fantasy Creatures: Beholder Attacks");
-			BeholderA1 = FantasyBundle.LoadAsset<GameObject>("Beholder_Attack1_DoD");
-			CustomPrefab attack1 = new CustomPrefab(BeholderA1, true);
-			PrefabManager.Instance.AddPrefab(attack1);
-			BeholderA2 = FantasyBundle.LoadAsset<GameObject>("Beholder_Attack2_DoD");
-			CustomPrefab attack2 = new CustomPrefab(BeholderA2, true);
-			PrefabManager.Instance.AddPrefab(attack2);*/
-
-			//Debug.Log("Fantasy Creatures: Ent Arracks");
+			Debug.Log("Fantasy Creatures: Ent Arracks");
 			EntA1 = FantasyBundle.LoadAsset<GameObject>("Ent_Attack1_DoD");
-			CustomPrefab attack3 = new CustomPrefab(EntA1, true);
+			CustomPrefab attack3 = new CustomPrefab(EntA1, false);
 			PrefabManager.Instance.AddPrefab(attack3);
 			EntA2 = FantasyBundle.LoadAsset<GameObject>("Ent_Attack2_DoD");
-			CustomPrefab attack4 = new CustomPrefab(EntA2, true);
+			CustomPrefab attack4 = new CustomPrefab(EntA2, false);
 			PrefabManager.Instance.AddPrefab(attack4);
 			EntA3 = FantasyBundle.LoadAsset<GameObject>("Ent_Attack3_DoD");
-			CustomPrefab attack5 = new CustomPrefab(EntA3, true);
+			CustomPrefab attack5 = new CustomPrefab(EntA3, false);
 			PrefabManager.Instance.AddPrefab(attack5);
 			EntA4 = FantasyBundle.LoadAsset<GameObject>("Ent_Attack2Combo_DoD");
-			CustomPrefab attack6 = new CustomPrefab(EntA4, true);
+			CustomPrefab attack6 = new CustomPrefab(EntA4, false);
 			PrefabManager.Instance.AddPrefab(attack6);
 			EntA5 = FantasyBundle.LoadAsset<GameObject>("Ent_Attack3Combo_DoD");
-			CustomPrefab attack7 = new CustomPrefab(EntA5, true);
+			CustomPrefab attack7 = new CustomPrefab(EntA5, false);
 			PrefabManager.Instance.AddPrefab(attack7);
 
-			//Debug.Log("Fantasy Creatures: Demon Attacks");
+			Debug.Log("Fantasy Creatures: Demon Attacks");
 			DemonLordA1 = FantasyBundle.LoadAsset<GameObject>("DemonLord_Attack1_DoD");
-			CustomPrefab attack8 = new CustomPrefab(DemonLordA1, true);
+			CustomPrefab attack8 = new CustomPrefab(DemonLordA1, false);
 			PrefabManager.Instance.AddPrefab(attack8);
 			DemonLordA2 = FantasyBundle.LoadAsset<GameObject>("DemonLord_Attack2_DoD");
-			CustomPrefab attack9 = new CustomPrefab(DemonLordA2, true);
+			CustomPrefab attack9 = new CustomPrefab(DemonLordA2, false);
 			PrefabManager.Instance.AddPrefab(attack9);
 			DemonLordA3 = FantasyBundle.LoadAsset<GameObject>("DemonLord_AttackWhip_DoD");
-			CustomPrefab attack10 = new CustomPrefab(DemonLordA3, true);
+			CustomPrefab attack10 = new CustomPrefab(DemonLordA3, false);
 			PrefabManager.Instance.AddPrefab(attack10);
 			DemonLordA4 = FantasyBundle.LoadAsset<GameObject>("DemonLord_AttackCombo2_DoD");
-			CustomPrefab attack11 = new CustomPrefab(DemonLordA4, true);
+			CustomPrefab attack11 = new CustomPrefab(DemonLordA4, false);
 			PrefabManager.Instance.AddPrefab(attack11);
 			DemonLordA5 = FantasyBundle.LoadAsset<GameObject>("DemonLord_AttackCombo3_DoD");
-			CustomPrefab attack12 = new CustomPrefab(DemonLordA5, true);
+			CustomPrefab attack12 = new CustomPrefab(DemonLordA5, false);
 			PrefabManager.Instance.AddPrefab(attack12);
 
-			//Debug.Log("Fantasy Creatures: Elemental Attacks");
+			Debug.Log("Fantasy Creatures: Elemental Attacks");
 			ElementalA1 = FantasyBundle.LoadAsset<GameObject>("Element_Attack1_DoD");
-			CustomPrefab attack13 = new CustomPrefab(ElementalA1, true);
+			CustomPrefab attack13 = new CustomPrefab(ElementalA1, false);
 			PrefabManager.Instance.AddPrefab(attack13);
 			ElementalA2 = FantasyBundle.LoadAsset<GameObject>("Element_Attack2_DoD");
-			CustomPrefab attack14 = new CustomPrefab(ElementalA2, true);
+			CustomPrefab attack14 = new CustomPrefab(ElementalA2, false);
 			PrefabManager.Instance.AddPrefab(attack14);
 			ElementalA3 = FantasyBundle.LoadAsset<GameObject>("Element_AttackGrab_DoD");
-			CustomPrefab attack15 = new CustomPrefab(ElementalA3, true);
+			CustomPrefab attack15 = new CustomPrefab(ElementalA3, false);
 			PrefabManager.Instance.AddPrefab(attack15);
 			ElementalA4 = FantasyBundle.LoadAsset<GameObject>("Element_AttackSmash_DoD");
-			CustomPrefab attack16 = new CustomPrefab(ElementalA4, true);
+			CustomPrefab attack16 = new CustomPrefab(ElementalA4, false);
 			PrefabManager.Instance.AddPrefab(attack16);
 			ElementalA5 = FantasyBundle.LoadAsset<GameObject>("Element_AttackSwipe_DoD");
-			CustomPrefab attack17 = new CustomPrefab(ElementalA5, true);
+			CustomPrefab attack17 = new CustomPrefab(ElementalA5, false);
 			PrefabManager.Instance.AddPrefab(attack17);
 			ElementalA6 = FantasyBundle.LoadAsset<GameObject>("Element_AttackCombo1_DoD");
-			CustomPrefab attack18 = new CustomPrefab(ElementalA6, true);
+			CustomPrefab attack18 = new CustomPrefab(ElementalA6, false);
 			PrefabManager.Instance.AddPrefab(attack18);
 			ElementalA7 = FantasyBundle.LoadAsset<GameObject>("Element_AttackCombo2_DoD");
-			CustomPrefab attack19 = new CustomPrefab(ElementalA7, true);
+			CustomPrefab attack19 = new CustomPrefab(ElementalA7, false);
 			PrefabManager.Instance.AddPrefab(attack19);
 			ElementalA8 = FantasyBundle.LoadAsset<GameObject>("Element_AttackCombo3_DoD");
-			CustomPrefab attack20 = new CustomPrefab(ElementalA8, true);
+			CustomPrefab attack20 = new CustomPrefab(ElementalA8, false);
 			PrefabManager.Instance.AddPrefab(attack20);
 
-			//Debug.Log("Fantasy Creatures: Ice Elemental Attacks");
+			Debug.Log("Fantasy Creatures: Ice Elemental Attacks");
 			IceElementalA1 = FantasyBundle.LoadAsset<GameObject>("IceElement_Attack1_DoD");
-			CustomPrefab attack21 = new CustomPrefab(IceElementalA1, true);
+			CustomPrefab attack21 = new CustomPrefab(IceElementalA1, false);
 			PrefabManager.Instance.AddPrefab(attack21);
 			IceElementalA2 = FantasyBundle.LoadAsset<GameObject>("IceElement_Attack2_DoD");
-			CustomPrefab attack22 = new CustomPrefab(IceElementalA2, true);
+			CustomPrefab attack22 = new CustomPrefab(IceElementalA2, false);
 			PrefabManager.Instance.AddPrefab(attack22);
 			IceElementalA3 = FantasyBundle.LoadAsset<GameObject>("IceElement_AttackGrab_DoD");
-			CustomPrefab attack23 = new CustomPrefab(IceElementalA3, true);
+			CustomPrefab attack23 = new CustomPrefab(IceElementalA3, false);
 			PrefabManager.Instance.AddPrefab(attack23);
 			IceElementalA4 = FantasyBundle.LoadAsset<GameObject>("IceElement_AttackSmash_DoD");
-			CustomPrefab attack24 = new CustomPrefab(IceElementalA4, true);
+			CustomPrefab attack24 = new CustomPrefab(IceElementalA4, false);
 			PrefabManager.Instance.AddPrefab(attack24);
 			IceElementalA5 = FantasyBundle.LoadAsset<GameObject>("IceElement_AttackSwipe_DoD");
-			CustomPrefab attack25 = new CustomPrefab(IceElementalA5, true);
+			CustomPrefab attack25 = new CustomPrefab(IceElementalA5, false);
 			PrefabManager.Instance.AddPrefab(attack25);
 			IceElementalA6 = FantasyBundle.LoadAsset<GameObject>("IceElement_AttackCombo1_DoD");
-			CustomPrefab attack26 = new CustomPrefab(IceElementalA6, true);
+			CustomPrefab attack26 = new CustomPrefab(IceElementalA6, false);
 			PrefabManager.Instance.AddPrefab(attack26);
 			IceElementalA7 = FantasyBundle.LoadAsset<GameObject>("IceElement_AttackCombo2_DoD");
-			CustomPrefab attack27 = new CustomPrefab(IceElementalA7, true);
+			CustomPrefab attack27 = new CustomPrefab(IceElementalA7, false);
 			PrefabManager.Instance.AddPrefab(attack27);
 			IceElementalA8 = FantasyBundle.LoadAsset<GameObject>("IceElement_AttackCombo3_DoD");
-			CustomPrefab attack28 = new CustomPrefab(IceElementalA8, true);
+			CustomPrefab attack28 = new CustomPrefab(IceElementalA8, false);
 			PrefabManager.Instance.AddPrefab(attack28);
 
-			//Debug.Log("Fantasy Creatures: Fire Elemental Attacks");
+			Debug.Log("Fantasy Creatures: Fire Elemental Attacks");
 			FireElementalA1 = FantasyBundle.LoadAsset<GameObject>("FireElement_Attack1_DoD");
-			CustomPrefab attack29 = new CustomPrefab(FireElementalA1, true);
+			CustomPrefab attack29 = new CustomPrefab(FireElementalA1, false);
 			PrefabManager.Instance.AddPrefab(attack29);
 			FireElementalA2 = FantasyBundle.LoadAsset<GameObject>("FireElement_Attack2_DoD");
-			CustomPrefab attack30 = new CustomPrefab(FireElementalA2, true);
+			CustomPrefab attack30 = new CustomPrefab(FireElementalA2, false);
 			PrefabManager.Instance.AddPrefab(attack30);
 			FireElementalA3 = FantasyBundle.LoadAsset<GameObject>("FireElement_AttackGrab_DoD");
-			CustomPrefab attack31 = new CustomPrefab(FireElementalA3, true);
+			CustomPrefab attack31 = new CustomPrefab(FireElementalA3, false);
 			PrefabManager.Instance.AddPrefab(attack31);
 			FireElementalA4 = FantasyBundle.LoadAsset<GameObject>("FireElement_AttackSmash_DoD");
-			CustomPrefab attack32 = new CustomPrefab(FireElementalA4, true);
+			CustomPrefab attack32 = new CustomPrefab(FireElementalA4, false);
 			PrefabManager.Instance.AddPrefab(attack32);
 			FireElementalA5 = FantasyBundle.LoadAsset<GameObject>("FireElement_AttackSwipe_DoD");
-			CustomPrefab attack33 = new CustomPrefab(FireElementalA5, true);
+			CustomPrefab attack33 = new CustomPrefab(FireElementalA5, false);
 			PrefabManager.Instance.AddPrefab(attack33);
 			FireElementalA6 = FantasyBundle.LoadAsset<GameObject>("FireElement_AttackCombo1_DoD");
-			CustomPrefab attack34 = new CustomPrefab(FireElementalA6, true);
+			CustomPrefab attack34 = new CustomPrefab(FireElementalA6, false);
 			PrefabManager.Instance.AddPrefab(attack34);
 			FireElementalA7 = FantasyBundle.LoadAsset<GameObject>("FireElement_AttackCombo2_DoD");
-			CustomPrefab attack35 = new CustomPrefab(FireElementalA7, true);
+			CustomPrefab attack35 = new CustomPrefab(FireElementalA7, false);
 			PrefabManager.Instance.AddPrefab(attack35);
 			FireElementalA8 = FantasyBundle.LoadAsset<GameObject>("FireElement_AttackCombo3_DoD");
-			CustomPrefab attack36 = new CustomPrefab(FireElementalA8, true);
+			CustomPrefab attack36 = new CustomPrefab(FireElementalA8, false);
 			PrefabManager.Instance.AddPrefab(attack36);
 
-			//Debug.Log("Fantasy Creatures: Kobold Attacks");
+			Debug.Log("Fantasy Creatures: Kobold Attacks");
 			KoboldA1 = FantasyBundle.LoadAsset<GameObject>("Kobold_Attack1_DoD");
-			CustomPrefab attack37 = new CustomPrefab(KoboldA1, true);
+			CustomPrefab attack37 = new CustomPrefab(KoboldA1, false);
 			PrefabManager.Instance.AddPrefab(attack37);
 			KoboldA2 = FantasyBundle.LoadAsset<GameObject>("Kobold_Attack2_DoD");
-			CustomPrefab attack38 = new CustomPrefab(KoboldA2, true);
+			CustomPrefab attack38 = new CustomPrefab(KoboldA2, false);
 			PrefabManager.Instance.AddPrefab(attack38);
 			KoboldA3 = FantasyBundle.LoadAsset<GameObject>("Kobold_Attack3_DoD");
-			CustomPrefab attack39 = new CustomPrefab(KoboldA3, true);
+			CustomPrefab attack39 = new CustomPrefab(KoboldA3, false);
 			PrefabManager.Instance.AddPrefab(attack39);
 			KoboldA4 = FantasyBundle.LoadAsset<GameObject>("Kobold_Attack4_DoD");
-			CustomPrefab attack40 = new CustomPrefab(KoboldA4, true);
+			CustomPrefab attack40 = new CustomPrefab(KoboldA4, false);
 			PrefabManager.Instance.AddPrefab(attack40);
 			KoboldA5 = FantasyBundle.LoadAsset<GameObject>("Kobold_AttackCombo1_DoD");
-			CustomPrefab attack41 = new CustomPrefab(KoboldA5, true);
+			CustomPrefab attack41 = new CustomPrefab(KoboldA5, false);
 			PrefabManager.Instance.AddPrefab(attack41);
 			KoboldA6 = FantasyBundle.LoadAsset<GameObject>("Kobold_AttackCombo2_DoD");
-			CustomPrefab attack42 = new CustomPrefab(KoboldA6, true);
+			CustomPrefab attack42 = new CustomPrefab(KoboldA6, false);
 			PrefabManager.Instance.AddPrefab(attack42);
 			KoboldA7 = FantasyBundle.LoadAsset<GameObject>("Kobold_AttackCombo3_DoD");
-			CustomPrefab attack43 = new CustomPrefab(KoboldA7, true);
+			CustomPrefab attack43 = new CustomPrefab(KoboldA7, false);
 			PrefabManager.Instance.AddPrefab(attack43);
 			KoboldA8 = FantasyBundle.LoadAsset<GameObject>("Kobold_AttackCombo4_DoD");
-			CustomPrefab attack44 = new CustomPrefab(KoboldA8, true);
+			CustomPrefab attack44 = new CustomPrefab(KoboldA8, false);
 			PrefabManager.Instance.AddPrefab(attack44);
 
-			/*//Debug.Log("Fantasy Creatures: Hydra Attacks");
-			HydraA1 = FantasyBundle.LoadAsset<GameObject>("Hydra_Attack1_DoD");
-			CustomPrefab attack45 = new CustomPrefab(HydraA1, true);
-			PrefabManager.Instance.AddPrefab(attack45);
-			HydraA2 = FantasyBundle.LoadAsset<GameObject>("Hydra_Attack2_DoD");
-			CustomPrefab attack46 = new CustomPrefab(HydraA2, true);
-			PrefabManager.Instance.AddPrefab(attack46);
-			HydraA3 = FantasyBundle.LoadAsset<GameObject>("Hydra_AttackBreath_DoD");
-			CustomPrefab attack47 = new CustomPrefab(HydraA3, true);
-			PrefabManager.Instance.AddPrefab(attack47);
-			HydraA4 = FantasyBundle.LoadAsset<GameObject>("Hydra_AttackSpit_DoD");
-			CustomPrefab attack48 = new CustomPrefab(HydraA4, true);
-			PrefabManager.Instance.AddPrefab(attack48);*/
-
-			/*//Debug.Log("Fantasy Creatures: Dragon Attacks");
-			DragonA1 = FantasyBundle.LoadAsset<GameObject>("Dragon_Attack1_DoD");
-			CustomPrefab attack49 = new CustomPrefab(DragonA1, true);
-			PrefabManager.Instance.AddPrefab(attack49);
-			DragonA2 = FantasyBundle.LoadAsset<GameObject>("Dragon_Attack2_DoD");
-			CustomPrefab attack50 = new CustomPrefab(DragonA2, true);
-			PrefabManager.Instance.AddPrefab(attack50);
-			DragonA3 = FantasyBundle.LoadAsset<GameObject>("Dragon_AttackBreath_DoD");
-			CustomPrefab attack51 = new CustomPrefab(DragonA3, true);
-			PrefabManager.Instance.AddPrefab(attack51);
-			DragonA4 = FantasyBundle.LoadAsset<GameObject>("Dragon_AttackSpit_DoD");
-			CustomPrefab attack52 = new CustomPrefab(DragonA4, true);
-			PrefabManager.Instance.AddPrefab(attack52);
-			DragonA5 = FantasyBundle.LoadAsset<GameObject>("Dragon_AttackCombo1_DoD");
-			CustomPrefab attack53 = new CustomPrefab(DragonA5, true);
-			PrefabManager.Instance.AddPrefab(attack53);
-			DragonA6 = FantasyBundle.LoadAsset<GameObject>("Dragon_AttackBreathFly_DoD");
-			CustomPrefab attack54 = new CustomPrefab(DragonA6, true);
-			PrefabManager.Instance.AddPrefab(attack54);
-			DragonA7 = FantasyBundle.LoadAsset<GameObject>("Dragon_AttackSpitFly_DoD");
-			CustomPrefab attack55 = new CustomPrefab(DragonA7, true);
-			PrefabManager.Instance.AddPrefab(attack55);*/
-
-			//Debug.Log("Fantasy Creatures: Ogre Attacks");
+			Debug.Log("Fantasy Creatures: Ogre Attacks");
 			OgreA1 = FantasyBundle.LoadAsset<GameObject>("Ogre_Attack1_DoD");
-			CustomPrefab attack56 = new CustomPrefab(OgreA1, true);
+			CustomPrefab attack56 = new CustomPrefab(OgreA1, false);
 			PrefabManager.Instance.AddPrefab(attack56);
 			OgreA2 = FantasyBundle.LoadAsset<GameObject>("Ogre_Attack2_DoD");
-			CustomPrefab attack57 = new CustomPrefab(OgreA2, true);
+			CustomPrefab attack57 = new CustomPrefab(OgreA2, false);
 			PrefabManager.Instance.AddPrefab(attack57);
 			OgreA3 = FantasyBundle.LoadAsset<GameObject>("Ogre_Attack3_DoD");
-			CustomPrefab attack58 = new CustomPrefab(OgreA3, true);
+			CustomPrefab attack58 = new CustomPrefab(OgreA3, false);
 			PrefabManager.Instance.AddPrefab(attack58);
 			OgreA4 = FantasyBundle.LoadAsset<GameObject>("Ogre_AttackCombo1_DoD");
-			CustomPrefab attack59 = new CustomPrefab(OgreA4, true);
+			CustomPrefab attack59 = new CustomPrefab(OgreA4, false);
 			PrefabManager.Instance.AddPrefab(attack59);
 			OgreA5 = FantasyBundle.LoadAsset<GameObject>("Ogre_AttackCombo2_DoD");
-			CustomPrefab attack60 = new CustomPrefab(OgreA5, true);
+			CustomPrefab attack60 = new CustomPrefab(OgreA5, false);
 			PrefabManager.Instance.AddPrefab(attack60);
 
-			//Debug.Log("Fantasy Creatures: Hobgoblin Attacks");
+			Debug.Log("Fantasy Creatures: Hobgoblin Attacks");
 			HobgoblinA1 = FantasyBundle.LoadAsset<GameObject>("Hobgoblin_Attack1_DoD");
-			CustomPrefab attack61 = new CustomPrefab(HobgoblinA1, true);
+			CustomPrefab attack61 = new CustomPrefab(HobgoblinA1, false);
 			PrefabManager.Instance.AddPrefab(attack61);
 			HobgoblinA2 = FantasyBundle.LoadAsset<GameObject>("Hobgoblin_Attack2_DoD");
-			CustomPrefab attack62 = new CustomPrefab(HobgoblinA2, true);
+			CustomPrefab attack62 = new CustomPrefab(HobgoblinA2, false);
 			PrefabManager.Instance.AddPrefab(attack62);
 			HobgoblinA3 = FantasyBundle.LoadAsset<GameObject>("Hobgoblin_Attack3_DoD");
-			CustomPrefab attack63 = new CustomPrefab(HobgoblinA3, true);
+			CustomPrefab attack63 = new CustomPrefab(HobgoblinA3, false);
 			PrefabManager.Instance.AddPrefab(attack63);
 			HobgoblinA4 = FantasyBundle.LoadAsset<GameObject>("Hobgoblin_AttackCombo3_DoD");
-			CustomPrefab attack64 = new CustomPrefab(HobgoblinA4, true);
+			CustomPrefab attack64 = new CustomPrefab(HobgoblinA4, false);
 			PrefabManager.Instance.AddPrefab(attack64);
 			HobgoblinA5 = FantasyBundle.LoadAsset<GameObject>("Hobgoblin_AttackCombo2_DoD");
-			CustomPrefab attack65 = new CustomPrefab(HobgoblinA5, true);
+			CustomPrefab attack65 = new CustomPrefab(HobgoblinA5, false);
 			PrefabManager.Instance.AddPrefab(attack65);
 
-			//Debug.Log("Fantasy Creatures: Cyclops Attacks");
+			Debug.Log("Fantasy Creatures: Cyclops Attacks");
 			CyclopsA1 = FantasyBundle.LoadAsset<GameObject>("Cyclops_Attack1_DoD");
-			CustomPrefab attack66 = new CustomPrefab(CyclopsA1, true);
+			CustomPrefab attack66 = new CustomPrefab(CyclopsA1, false);
 			PrefabManager.Instance.AddPrefab(attack66);
 			CyclopsA2 = FantasyBundle.LoadAsset<GameObject>("Cyclops_Attack2_DoD");
-			CustomPrefab attack67 = new CustomPrefab(CyclopsA2, true);
+			CustomPrefab attack67 = new CustomPrefab(CyclopsA2, false);
 			PrefabManager.Instance.AddPrefab(attack67);
 			CyclopsA3 = FantasyBundle.LoadAsset<GameObject>("Cyclops_AttackSmash_DoD");
-			CustomPrefab attack68 = new CustomPrefab(CyclopsA3, true);
+			CustomPrefab attack68 = new CustomPrefab(CyclopsA3, false);
 			PrefabManager.Instance.AddPrefab(attack68);
 			CyclopsA4 = FantasyBundle.LoadAsset<GameObject>("Cyclops_AttackCombo3_DoD");
-			CustomPrefab attack69 = new CustomPrefab(CyclopsA4, true);
+			CustomPrefab attack69 = new CustomPrefab(CyclopsA4, false);
 			PrefabManager.Instance.AddPrefab(attack69);
 			CyclopsA5 = FantasyBundle.LoadAsset<GameObject>("Cyclops_AttackCombo2_DoD");
-			CustomPrefab attack70 = new CustomPrefab(CyclopsA5, true);
+			CustomPrefab attack70 = new CustomPrefab(CyclopsA5, false);
 			PrefabManager.Instance.AddPrefab(attack70);
 			CyclopsA6 = FantasyBundle.LoadAsset<GameObject>("Cyclops_AttackCrush_DoD");
-			CustomPrefab attack71 = new CustomPrefab(CyclopsA6, true);
+			CustomPrefab attack71 = new CustomPrefab(CyclopsA6, false);
 			PrefabManager.Instance.AddPrefab(attack71);
 
-			//Debug.Log("Fantasy Creatures: SFX");
+			Debug.Log("Fantasy Creatures: SFX");
 			GameObject SFXEntGetHit = FantasyBundle.LoadAsset<GameObject>("SFX_EntGetHit_DoD");
 			PrefabManager.Instance.AddPrefab(SFXEntGetHit);
 			GameObject SFXEntAlert = FantasyBundle.LoadAsset<GameObject>("SFX_EntAlert_DoD");
@@ -584,56 +478,81 @@ namespace FantasyCreatures
 			PrefabManager.Instance.AddPrefab(SFXDLIdle);
 			GameObject SFXDLDeath = FantasyBundle.LoadAsset<GameObject>("SFX_DLDeath_DoD");
 			PrefabManager.Instance.AddPrefab(SFXDLDeath);
-			//Debug.Log("Fantasy Creatures: Trophies");
+			GameObject SFXDLFoot = FantasyBundle.LoadAsset<GameObject>("SFX_DLFootstep_DoD");
+			PrefabManager.Instance.AddPrefab(SFXDLFoot);
+			Debug.Log("Fantasy Creatures: Trophies");
 			Trophy1 = FantasyBundle.LoadAsset<GameObject>("Trophy_Cyclops_FC");
-			CustomItem customItem1 = new CustomItem(Trophy1, fixReference: false);
+			CustomItem customItem1 = new CustomItem(Trophy1, false);
 			ItemManager.Instance.AddItem(customItem1);
 			Trophy2 = FantasyBundle.LoadAsset<GameObject>("Trophy_DarknessSpider_FC");
-			CustomItem customItem2 = new CustomItem(Trophy2, fixReference: false);
+			CustomItem customItem2 = new CustomItem(Trophy2, false);
 			ItemManager.Instance.AddItem(customItem2);
 			Trophy3 = FantasyBundle.LoadAsset<GameObject>("Trophy_DemonLord_FC");
-			CustomItem customItem3 = new CustomItem(Trophy3, fixReference: false);
+			CustomItem customItem3 = new CustomItem(Trophy3, false);
 			ItemManager.Instance.AddItem(customItem3);
 			Trophy4 = FantasyBundle.LoadAsset<GameObject>("Trophy_EarthElemental_FC");
-			CustomItem customItem4 = new CustomItem(Trophy4, fixReference: false);
+			CustomItem customItem4 = new CustomItem(Trophy4, false);
 			ItemManager.Instance.AddItem(customItem4);
 			Trophy5 = FantasyBundle.LoadAsset<GameObject>("Trophy_Ent_FC");
-			CustomItem customItem5 = new CustomItem(Trophy5, fixReference: false);
+			CustomItem customItem5 = new CustomItem(Trophy5, false);
 			ItemManager.Instance.AddItem(customItem5);
 			Trophy6 = FantasyBundle.LoadAsset<GameObject>("Trophy_FireElemental_FC");
-			CustomItem customItem6 = new CustomItem(Trophy6, fixReference: false);
+			CustomItem customItem6 = new CustomItem(Trophy6, false);
 			ItemManager.Instance.AddItem(customItem6);
 			Trophy7 = FantasyBundle.LoadAsset<GameObject>("Trophy_Ghoul_FC");
-			CustomItem customItem7 = new CustomItem(Trophy7, fixReference: false);
+			CustomItem customItem7 = new CustomItem(Trophy7, false);
 			ItemManager.Instance.AddItem(customItem7);
 			Trophy8 = FantasyBundle.LoadAsset<GameObject>("Trophy_GiantViper_FC");
-			CustomItem customItem8 = new CustomItem(Trophy8, fixReference: false);
+			CustomItem customItem8 = new CustomItem(Trophy8, false);
 			ItemManager.Instance.AddItem(customItem8);
 			Trophy9 = FantasyBundle.LoadAsset<GameObject>("Trophy_Hobgoblin_FC");
-			CustomItem customItem9 = new CustomItem(Trophy9, fixReference: false);
+			CustomItem customItem9 = new CustomItem(Trophy9, false);
 			ItemManager.Instance.AddItem(customItem9);
 			Trophy10 = FantasyBundle.LoadAsset<GameObject>("Trophy_IceElemental_FC");
-			CustomItem customItem10 = new CustomItem(Trophy10, fixReference: false);
+			CustomItem customItem10 = new CustomItem(Trophy10, false);
 			ItemManager.Instance.AddItem(customItem10);
 			Trophy11 = FantasyBundle.LoadAsset<GameObject>("Trophy_Kobold_FC");
-			CustomItem customItem11 = new CustomItem(Trophy11, fixReference: false);
+			CustomItem customItem11 = new CustomItem(Trophy11, false);
 			ItemManager.Instance.AddItem(customItem11);
 			Trophy12 = FantasyBundle.LoadAsset<GameObject>("Trophy_Manticore_FC");
-			CustomItem customItem12 = new CustomItem(Trophy12, fixReference: false);
+			CustomItem customItem12 = new CustomItem(Trophy12, false);
 			ItemManager.Instance.AddItem(customItem12);
 			Trophy13 = FantasyBundle.LoadAsset<GameObject>("Trophy_Mummy_FC");
-			CustomItem customItem13 = new CustomItem(Trophy13, fixReference: false);
+			CustomItem customItem13 = new CustomItem(Trophy13, false);
 			ItemManager.Instance.AddItem(customItem13);
 			Trophy14 = FantasyBundle.LoadAsset<GameObject>("Trophy_Ogre_FC");
-			CustomItem customItem14 = new CustomItem(Trophy14, fixReference: false);
+			CustomItem customItem14 = new CustomItem(Trophy14, false);
 			ItemManager.Instance.AddItem(customItem14);
-			//Debug.Log("Fantasy Creatures: SFX Done");
+			Debug.Log("Fantasy Creatures: VFX");
+			GameObject VFX1 = FantasyBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_M_FC");
+			PrefabManager.Instance.AddPrefab(VFX1);
+			GameObject VFX2 = FantasyBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_L_FC");
+			PrefabManager.Instance.AddPrefab(VFX2);
+			GameObject VFX3 = FantasyBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_S_FC");
+			PrefabManager.Instance.AddPrefab(VFX3);
+			GameObject VFX4 = FantasyBundle.LoadAsset<GameObject>("FX_Backstab_FC");
+			PrefabManager.Instance.AddPrefab(VFX4);
+			GameObject VFX5 = FantasyBundle.LoadAsset<GameObject>("FX_Crit_FC");
+			PrefabManager.Instance.AddPrefab(VFX5);
+			GameObject VFX6 = FantasyBundle.LoadAsset<GameObject>("VFX_HitSparks_FC");
+			PrefabManager.Instance.AddPrefab(VFX6);
+			GameObject VFX7 = FantasyBundle.LoadAsset<GameObject>("VFX_Blood_Hit_FC");
+			PrefabManager.Instance.AddPrefab(VFX7);
+			GameObject VFX8 = FantasyBundle.LoadAsset<GameObject>("VFX_Hit_FC");
+			PrefabManager.Instance.AddPrefab(VFX8);
+			GameObject VFX9 = FantasyBundle.LoadAsset<GameObject>("VFX_Poisonspit_Hit_FC");
+			PrefabManager.Instance.AddPrefab(VFX9);
+			// Projectile
+			GameObject Projectile1 = FantasyBundle.LoadAsset<GameObject>("Fireball_Projectile_FC");
+			PrefabManager.Instance.AddPrefab(Projectile1);
+			GameObject Projectile2 = FantasyBundle.LoadAsset<GameObject>("Poisonspit_Projectile_FC");
+			PrefabManager.Instance.AddPrefab(Projectile2);
 		}
 		private void AddNewCreatures()
 		{
 			try
 			{
-				//Debug.Log("Fantasy Creatures: DemonLord");
+				Debug.Log("Fantasy Creatures: DemonLord");
 				var DemonLordFab = FantasyBundle.LoadAsset<GameObject>("DemonLord_DoD");
 				var DemonLordMob = new CustomCreature(DemonLordFab, false,
 					new CreatureConfig
@@ -665,7 +584,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(DemonLordMob);
-				//Debug.Log("Fantasy Creatures: FireElemental");
+				Debug.Log("Fantasy Creatures: FireElemental");
 				var FireElementalFab = FantasyBundle.LoadAsset<GameObject>("FireElemental_DoD");
 				var FireElementalMob = new CustomCreature(FireElementalFab, false,
 					new CreatureConfig
@@ -697,7 +616,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(FireElementalMob);
-				//Debug.Log("Fantasy Creatures: IceElemental");
+				Debug.Log("Fantasy Creatures: IceElemental");
 				var IceElementalFab = FantasyBundle.LoadAsset<GameObject>("IceElemental_DoD");
 				var IceElementalMob = new CustomCreature(IceElementalFab, false,
 					new CreatureConfig
@@ -728,7 +647,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(IceElementalMob);
-				//Debug.Log("Fantasy Creatures: EarthElemental");
+				Debug.Log("Fantasy Creatures: EarthElemental");
 				var EarthElementalFab = FantasyBundle.LoadAsset<GameObject>("EarthElemental_DoD");
 				var EarthElementalMob = new CustomCreature(EarthElementalFab, false,
 					new CreatureConfig
@@ -760,7 +679,7 @@ namespace FantasyCreatures
 						},
 					});
 				CreatureManager.Instance.AddCreature(EarthElementalMob);
-				//Debug.Log("Fantasy Creatures: Manticore");
+				Debug.Log("Fantasy Creatures: Manticore");
 				var ManticoreFab = FantasyBundle.LoadAsset<GameObject>("Manticore_FC");
 				var ManticoreMob = new CustomCreature(ManticoreFab, false,
 					new CreatureConfig
@@ -799,7 +718,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(ManticoreMob);
-				//Debug.Log("Fantasy Creatures: Cyclops");
+				Debug.Log("Fantasy Creatures: Cyclops");
 				var CyclopsFab = FantasyBundle.LoadAsset<GameObject>("Cyclops_DoD");
 				var CyclopsMob = new CustomCreature(CyclopsFab, false,
 					new CreatureConfig
@@ -838,7 +757,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(CyclopsMob);
-				//Debug.Log("Fantasy Creatures: Ogre");
+				Debug.Log("Fantasy Creatures: Ogre");
 				var OgreFab = FantasyBundle.LoadAsset<GameObject>("Ogre_DoD");
 				var OgreMob = new CustomCreature(OgreFab, false,
 					new CreatureConfig
@@ -877,7 +796,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(OgreMob);
-				//Debug.Log("Fantasy Creatures: Mummy");
+				Debug.Log("Fantasy Creatures: Mummy");
 				var MummyFab = FantasyBundle.LoadAsset<GameObject>("Mummy_FC");
 				var MummyMob = new CustomCreature(MummyFab, false,
 					new CreatureConfig
@@ -916,7 +835,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(MummyMob);
-				//Debug.Log("Fantasy Creatures: Ghoul");
+				Debug.Log("Fantasy Creatures: Ghoul");
 				var GhoulFab = FantasyBundle.LoadAsset<GameObject>("Ghoul_FC");
 				var GhoulMob = new CustomCreature(GhoulFab, false,
 					new CreatureConfig
@@ -955,7 +874,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(GhoulMob);
-				//Debug.Log("Fantasy Creatures: TreeEnt");
+				Debug.Log("Fantasy Creatures: TreeEnt");
 				var TreeEntFab = FantasyBundle.LoadAsset<GameObject>("TreeEnt_DoD");
 				var TreeEntMob = new CustomCreature(TreeEntFab, false,
 					new CreatureConfig
@@ -994,7 +913,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(TreeEntMob);
-				//Debug.Log("Fantasy Creatures: Ogre");
+				Debug.Log("Fantasy Creatures: Ogre");
 				var HobgoblinFab = FantasyBundle.LoadAsset<GameObject>("Hobgoblin_DoD");
 				var HobgoblinMob = new CustomCreature(HobgoblinFab, false,
 					new CreatureConfig
@@ -1033,7 +952,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(HobgoblinMob);
-				//Debug.Log("Fantasy Creatures: Viper");
+				Debug.Log("Fantasy Creatures: Viper");
 				var ViperFab = FantasyBundle.LoadAsset<GameObject>("GiantViper_FC");
 				var ViperMob = new CustomCreature(ViperFab, false,
 					new CreatureConfig
@@ -1065,7 +984,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(ViperMob);
-				//Debug.Log("Fantasy Creatures: Kobold");
+				Debug.Log("Fantasy Creatures: Kobold");
 				var KoboldFab = FantasyBundle.LoadAsset<GameObject>("Kobold_DoD");
 				var KoboldMob = new CustomCreature(KoboldFab, false,
 					new CreatureConfig
@@ -1104,7 +1023,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(KoboldMob);
-				//Debug.Log("Fantasy Creatures: Spider");
+				Debug.Log("Fantasy Creatures: Spider");
 				var SpiderFab = FantasyBundle.LoadAsset<GameObject>("DarknessSpider_FC");
 				var SpiderMob = new CustomCreature(SpiderFab, false,
 					new CreatureConfig
@@ -1147,7 +1066,7 @@ namespace FantasyCreatures
 		}
 		public static void ConfigureUnderworldSpawners(ISpawnerConfigurationCollection config)
 		{
-			//Debug.Log("Fantasy Creatures: Configure Underworld Spawns");
+			Debug.Log("Fantasy Creatures: Configure Underworld Spawns");
 			try
 			{
 				ConfigureUWSpawnerByNamed(config);
@@ -1159,7 +1078,7 @@ namespace FantasyCreatures
 		}
 		public static void ConfigureBiomeSpawners(ISpawnerConfigurationCollection config)
 		{
-			//Debug.Log("Fantasy Creatures: Configure Spawns");
+			Debug.Log("Fantasy Creatures: Configure Spawns");
 			try
 			{
 				ConfigureWorldSpawner(config);
@@ -1171,7 +1090,7 @@ namespace FantasyCreatures
 		}
 		private static void ConfigureUWSpawnerByNamed(ISpawnerConfigurationCollection config)
 		{
-			//Debug.Log("Fantasy Creatures: Create Underworld Spawns");
+			Debug.Log("Fantasy Creatures: Create Underworld Spawns");
 			try
 			{
 				LocalSpawnSettings underworldT1Normal = new()
@@ -1361,7 +1280,7 @@ namespace FantasyCreatures
 		}
 		private static void ConfigureWorldSpawner(ISpawnerConfigurationCollection config)
 		{
-			//Debug.Log("Fantasy Creatures: Create Spawns");
+			Debug.Log("Fantasy Creatures: Create Spawns");
 			try
 			{
 				config.ConfigureWorldSpawner(20_014)

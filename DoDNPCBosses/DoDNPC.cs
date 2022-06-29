@@ -38,7 +38,7 @@ namespace DoDNPCs
 
 		public const string PluginName = "DoOrDieNPC";
 
-		public const string PluginVersion = "0.0.5";
+		public const string PluginVersion = "0.1.0";
 
 		public static bool isModded = true;
 
@@ -71,13 +71,6 @@ namespace DoDNPCs
 		public static GameObject NPCAuraLightningAoE;
 		public static GameObject NPCAuraPoisonAoE;
 
-		public static AssetBundle GetAssetBundleFromResources(string fileName)
-		{
-			Assembly executingAssembly = Assembly.GetExecutingAssembly();
-			string text = executingAssembly.GetManifestResourceNames().Single((string str) => str.EndsWith(fileName));
-			using Stream stream = executingAssembly.GetManifestResourceStream(text);
-			return AssetBundle.LoadFromStream(stream);
-		}
 		private void Awake()
 		{
 			Log = Logger;
@@ -91,6 +84,7 @@ namespace DoDNPCs
 			CloneAndAddBlackForestBosses();
 			CloneAndAddSwampBosses();
 			CloneAndAddMountainBosses();
+			CloneAndAddPlainsBosses();
 			CloneAndAddMistlandsBosses();
 			CloneAndAddDeepNorthBosses();
 			CloneAndAddAshLandsBosses();
@@ -309,9 +303,6 @@ namespace DoDNPCs
 		{
 			try
 			{
-				// Load Items to add to creatures
-				var sword = PrefabManager.Cache.GetPrefab<GameObject>("Sword_1H_04_FA");
-				var axe = PrefabManager.Cache.GetPrefab<GameObject>("Axe_1H_03_FA");
 				var aura = PrefabManager.Cache.GetPrefab<GameObject>("NPC_BossAuraL_Attack_DoD");
 				// Meadows - Upir Grim
 				var boss1 = new CustomCreature("UpirGrim_DoD", "Vidar_DoD",
@@ -327,6 +318,51 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "DeerHide",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -334,9 +370,9 @@ namespace DoDNPCs
 					var upir = boss1.Prefab.GetComponent<Humanoid>();
 						upir.m_name = "$boss_meadows_upirgrim";
 						upir.m_health = 175f;
-						upir.m_defaultItems.AddItem(axe);
-						upir.m_defaultItems.AddItem(aura);
-						upir.m_defeatSetGlobalKey = "defeated_GrailThornheart";
+						Array.Resize(ref upir.m_defaultItems, upir.m_defaultItems.Length + 1);
+						upir.m_defaultItems[upir.m_defaultItems.Length - 1] = aura;
+						upir.m_defeatSetGlobalKey = "defeated_UpirGrim";
 				// Add Creature
 				CreatureManager.Instance.AddCreature(boss1);
 
@@ -354,6 +390,51 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "DeerHide",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "LeatherScraps",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -361,8 +442,8 @@ namespace DoDNPCs
 					var zaine = boss2.Prefab.GetComponent<Humanoid>();
 						zaine.m_name = "$boss_meadows_zaineevilian";
 						zaine.m_health = 175f;
-						zaine.m_defaultItems.AddItem(sword);
-						zaine.m_defaultItems.AddItem(aura);
+						Array.Resize(ref zaine.m_defaultItems, zaine.m_defaultItems.Length + 1);
+						zaine.m_defaultItems[zaine.m_defaultItems.Length - 1] = aura;
 						zaine.m_defeatSetGlobalKey = "defeated_ZaineEvilian";
 				// Add Creature
 				CreatureManager.Instance.AddCreature(boss2);
@@ -381,9 +462,7 @@ namespace DoDNPCs
 		{
 			try
 			{
-				// Load Items to add to creatures MaceBronze
-				var axe = PrefabManager.Cache.GetPrefab<GameObject>("Axe_1H_05_FA");
-				var sword = PrefabManager.Cache.GetPrefab<GameObject>("Sword_1H_05_FA");
+				// Load Items to add to creatures
 				var aura = PrefabManager.Cache.GetPrefab<GameObject>("NPC_BossAuraL_Attack_DoD");
 				// Grail Thornheart
 				var boss1 = new CustomCreature("GrailThornheart_DoD", "Vidar_DoD",
@@ -399,6 +478,51 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "CopperOre",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "TinOre",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -406,8 +530,8 @@ namespace DoDNPCs
 					var grail = boss1.Prefab.GetComponent<Humanoid>();
 						grail.m_name = "$boss_meadows_grailthornheart";
 						grail.m_health = 500f;
-						grail.m_defaultItems.AddItem(sword);
-						grail.m_defaultItems.AddItem(aura);
+						Array.Resize(ref grail.m_defaultItems, grail.m_defaultItems.Length + 1);
+						grail.m_defaultItems[grail.m_defaultItems.Length - 1] = aura;
 						grail.m_defeatSetGlobalKey = "defeated_GrailThornheart";
 				// Add Creature
 				CreatureManager.Instance.AddCreature(boss1);
@@ -426,6 +550,60 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "CopperOre",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "TinOre",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "TrollHide",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -433,8 +611,8 @@ namespace DoDNPCs
 					var lazarus = boss2.Prefab.GetComponent<Humanoid>();
 						lazarus.m_name = "$boss_meadows_lazarusautumn";
 						lazarus.m_health = 650f;
-						lazarus.m_defaultItems.AddItem(axe);
-						lazarus.m_defaultItems.AddItem(aura);
+						Array.Resize(ref lazarus.m_defaultItems, lazarus.m_defaultItems.Length + 1);
+						lazarus.m_defaultItems[lazarus.m_defaultItems.Length - 1] = aura;
 						lazarus.m_defeatSetGlobalKey = "defeated_LazarusAutumn";
 				// Add Creature
 				CreatureManager.Instance.AddCreature(boss2);
@@ -454,8 +632,6 @@ namespace DoDNPCs
 			try
 			{
 				// Load Items to add to creatures
-				var sword = PrefabManager.Cache.GetPrefab<GameObject>("Sword_Swamp_DoD");
-				var bow = PrefabManager.Cache.GetPrefab<GameObject>("Bow_Swamp_DoD");
 				var aura = PrefabManager.Cache.GetPrefab<GameObject>("NPC_BossAuraP_Attack_DoD");
 				///////////////////////
 				// JaydenShadowmend
@@ -472,6 +648,60 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "IronOre",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "IronScrap",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "Chain",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -479,8 +709,8 @@ namespace DoDNPCs
 					var jayden = boss1.Prefab.GetComponent<Humanoid>();
 						jayden.m_name = "$boss_meadows_jaydenshadowmend";
 						jayden.m_health = 850f;
-						jayden.m_defaultItems.AddItem(sword);
-						jayden.m_defaultItems.AddItem(aura);
+						Array.Resize(ref jayden.m_defaultItems, jayden.m_defaultItems.Length + 1);
+						jayden.m_defaultItems[jayden.m_defaultItems.Length - 1] = aura;
 						jayden.m_defeatSetGlobalKey = "defeated_JaydenShadowmend";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss1);
@@ -499,6 +729,60 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "IronOre",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "IronScrap",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "Chain",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -506,8 +790,8 @@ namespace DoDNPCs
 					var crisenth = boss2.Prefab.GetComponent<Humanoid>();
 						crisenth.m_name = "$boss_meadows_crisenthshadowsoul";
 						crisenth.m_health = 1000f;
-						crisenth.m_defaultItems.AddItem(bow);
-						crisenth.m_defaultItems.AddItem(aura);
+						Array.Resize(ref crisenth.m_defaultItems, crisenth.m_defaultItems.Length + 1);
+						crisenth.m_defaultItems[crisenth.m_defaultItems.Length - 1] = aura;
 						crisenth.m_defeatSetGlobalKey = "defeated_CrisenthShadowsoul";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss2);
@@ -527,8 +811,6 @@ namespace DoDNPCs
 			try
 			{
 				// Load Items to add to creatures
-				var sword = PrefabManager.Cache.GetPrefab<GameObject>("Sword_2H_01_FA");
-				var bow = PrefabManager.Cache.GetPrefab<GameObject>("Bow_Mountain_DoD");
 				var aura = PrefabManager.Cache.GetPrefab<GameObject>("NPC_BossAuraI_Attack_DoD");
 				///////////////////////
 				// Firion Winter
@@ -545,6 +827,51 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SilverOre",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "WolfPelt",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -552,8 +879,8 @@ namespace DoDNPCs
 					var firion = boss1.Prefab.GetComponent<Humanoid>();
 						firion.m_name = "$boss_meadows_firionwinter";
 						firion.m_health = 1250f;
-						firion.m_defaultItems.AddItem(sword);
-						firion.m_defaultItems.AddItem(aura);
+						Array.Resize(ref firion.m_defaultItems, firion.m_defaultItems.Length + 1);
+						firion.m_defaultItems[firion.m_defaultItems.Length - 1] = aura;
 						firion.m_defeatSetGlobalKey = "defeated_FirionWinter";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss1);
@@ -572,6 +899,51 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SilverOre",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "WolfPelt",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -579,8 +951,8 @@ namespace DoDNPCs
 						var lux = boss2.Prefab.GetComponent<Humanoid>();
 						lux.m_name = "$boss_meadows_luxfrost";
 						lux.m_health = 1100f;
-						lux.m_defaultItems.AddItem(bow);
-						lux.m_defaultItems.AddItem(aura);
+						Array.Resize(ref lux.m_defaultItems, lux.m_defaultItems.Length + 1);
+						lux.m_defaultItems[lux.m_defaultItems.Length - 1] = aura;
 						lux.m_defeatSetGlobalKey = "defeated_LuxFrost";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss2);
@@ -600,8 +972,6 @@ namespace DoDNPCs
 			try
 			{
 				// Load Items to add to creatures
-				var sword = PrefabManager.Cache.GetPrefab<GameObject>("Sword_2H_04_FA");
-				var axe = PrefabManager.Cache.GetPrefab<GameObject>("Axe2H_05_FA");
 				var aura = PrefabManager.Cache.GetPrefab<GameObject>("NPC_BossAuraF_Attack_DoD");
 				///////////////////////
 				// Mathian Serphent
@@ -618,6 +988,51 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "BlackmetalScrap",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "Flax",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -625,8 +1040,8 @@ namespace DoDNPCs
 					var mathian = boss1.Prefab.GetComponent<Humanoid>();
 						mathian.m_name = "$boss_meadows_mathianserphent";
 						mathian.m_health = 1500f;
-						mathian.m_defaultItems.AddItem(sword);
-						mathian.m_defaultItems.AddItem(aura);
+						Array.Resize(ref mathian.m_defaultItems, mathian.m_defaultItems.Length + 1);
+						mathian.m_defaultItems[mathian.m_defaultItems.Length - 1] = aura;
 						mathian.m_defeatSetGlobalKey = "defeated_MathianSerphent";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss1);
@@ -645,6 +1060,51 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "BlackmetalScrap",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "Flax",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -652,8 +1112,8 @@ namespace DoDNPCs
 					var echo = boss2.Prefab.GetComponent<Humanoid>();
 						echo.m_name = "$boss_meadows_echoblack";
 						echo.m_health = 1750f;
-						echo.m_defaultItems.AddItem(axe);
-						echo.m_defaultItems.AddItem(aura);
+						Array.Resize(ref echo.m_defaultItems, echo.m_defaultItems.Length + 1);
+						echo.m_defaultItems[echo.m_defaultItems.Length - 1] = aura;
 						echo.m_defeatSetGlobalKey = "defeated_EchoBlack";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss2);
@@ -673,8 +1133,6 @@ namespace DoDNPCs
 			try
 			{
 				// Load Items to add to creatures
-				var sword = PrefabManager.Cache.GetPrefab<GameObject>("Sword_1H_01_FA");
-				var axe = PrefabManager.Cache.GetPrefab<GameObject>("Axe2H_04_FA");
 				var aura = PrefabManager.Cache.GetPrefab<GameObject>("NPC_BossAuraP_Attack_DoD");
 				///////////////////////
 				// Lazarus Deamonne
@@ -691,6 +1149,60 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "FelmetalOre_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "OakWood_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "Steel_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -698,8 +1210,8 @@ namespace DoDNPCs
 					var lazarus = boss1.Prefab.GetComponent<Humanoid>();
 						lazarus.m_name = "$boss_meadows_lazarusdeamonne";
 						lazarus.m_health = 2500f;
-						lazarus.m_defaultItems.AddItem(sword);
-						lazarus.m_defaultItems.AddItem(aura);
+						Array.Resize(ref lazarus.m_defaultItems, lazarus.m_defaultItems.Length + 1);
+						lazarus.m_defaultItems[lazarus.m_defaultItems.Length - 1] = aura;
 						lazarus.m_defeatSetGlobalKey = "defeated_LazarusDeamonne";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss1);
@@ -718,6 +1230,60 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "FelmetalOre_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "OakWood_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "Steel_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -725,8 +1291,8 @@ namespace DoDNPCs
 					var sceledrus = boss2.Prefab.GetComponent<Humanoid>();
 						sceledrus.m_name = "$boss_meadows_sceledrusshadowend";
 						sceledrus.m_health = 2750f;
-						sceledrus.m_defaultItems.AddItem(axe);
-						sceledrus.m_defaultItems.AddItem(aura);
+						Array.Resize(ref sceledrus.m_defaultItems, sceledrus.m_defaultItems.Length + 1);
+						sceledrus.m_defaultItems[sceledrus.m_defaultItems.Length - 1] = aura;
 						sceledrus.m_defeatSetGlobalKey = "defeated_SceledrusShadowend";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss2);
@@ -746,8 +1312,6 @@ namespace DoDNPCs
 			try
 			{
 				// Load Items to add to creatures
-				var sword = PrefabManager.Cache.GetPrefab<GameObject>("Sword_2H_02_FA");
-				var axe = PrefabManager.Cache.GetPrefab<GameObject>("Axe2H_02_FA");
 				var aura = PrefabManager.Cache.GetPrefab<GameObject>("NPC_BossAuraI_Attack_DoD");
 				///////////////////////
 				// Draven Nox
@@ -764,6 +1328,60 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "FrometalOre_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "OakWood_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "DireWolfPelt_DoD",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -771,8 +1389,8 @@ namespace DoDNPCs
 					var draven = boss1.Prefab.GetComponent<Humanoid>();
 						draven.m_name = "$boss_meadows_dravennox";
 						draven.m_health = 3500f;
-						draven.m_defaultItems.AddItem(sword);
-						draven.m_defaultItems.AddItem(aura);
+						Array.Resize(ref draven.m_defaultItems, draven.m_defaultItems.Length + 1);
+						draven.m_defaultItems[draven.m_defaultItems.Length - 1] = aura;
 						draven.m_defeatSetGlobalKey = "defeated_DravenNox";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss1);
@@ -791,6 +1409,60 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "FrometalOre_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "OakWood_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "DireWolfPelt_DoD",
+								Chance = 50,
+								MinAmount = 1,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -798,8 +1470,8 @@ namespace DoDNPCs
 					var lincoln = boss2.Prefab.GetComponent<Humanoid>();
 						lincoln.m_name = "$boss_meadows_lincolnhunt";
 						lincoln.m_health = 3750f;
-						lincoln.m_defaultItems.AddItem(axe);
-						lincoln.m_defaultItems.AddItem(aura);
+						Array.Resize(ref lincoln.m_defaultItems, lincoln.m_defaultItems.Length + 1);
+						lincoln.m_defaultItems[lincoln.m_defaultItems.Length - 1] = aura;
 						lincoln.m_defeatSetGlobalKey = "defeated_LincolnHunt";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss2);
@@ -819,8 +1491,6 @@ namespace DoDNPCs
 			try
 			{
 				// Load Items to add to creatures
-				var sword = PrefabManager.Cache.GetPrefab<GameObject>("Sword_AshLands_DoD");
-				var sword2 = PrefabManager.Cache.GetPrefab<GameObject>("Sword_2H_05_FA");
 				var aura = PrefabManager.Cache.GetPrefab<GameObject>("NPC_BossAuraF_Attack_DoD");
 				///////////////////////
 				// Cinder Mortem
@@ -837,6 +1507,51 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "FlametalOre",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "OakWood_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -844,8 +1559,8 @@ namespace DoDNPCs
 					var cinder = boss1.Prefab.GetComponent<Humanoid>();
 						cinder.m_name = "$boss_meadows_cindermortem";
 						cinder.m_health = 4500f;
-						cinder.m_defaultItems.AddItem(sword);
-						cinder.m_defaultItems.AddItem(aura);
+						Array.Resize(ref cinder.m_defaultItems, cinder.m_defaultItems.Length + 1);
+						cinder.m_defaultItems[cinder.m_defaultItems.Length - 1] = aura;
 						cinder.m_defeatSetGlobalKey = "defeated_cindermortem";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss1);
@@ -864,6 +1579,51 @@ namespace DoDNPCs
 								MaxAmount = 87,
 								OnePerPlayer = false,
 								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "FlametalOre",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "OakWood_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 8,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 3,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -871,8 +1631,8 @@ namespace DoDNPCs
 					var ash = boss2.Prefab.GetComponent<Humanoid>();
 						ash.m_name = "$boss_meadows_ashvexx";
 						ash.m_health = 4750f;
-						ash.m_defaultItems.AddItem(sword2);
-						ash.m_defaultItems.AddItem(aura);
+						Array.Resize(ref ash.m_defaultItems, ash.m_defaultItems.Length + 1);
+						ash.m_defaultItems[ash.m_defaultItems.Length - 1] = aura;
 						ash.m_defeatSetGlobalKey = "defeated_AshVexx";
 				// Add cloned and modified Boss
 				CreatureManager.Instance.AddCreature(boss2);
@@ -1199,5 +1959,6 @@ namespace DoDNPCs
 				Log.LogError(e);
 			}
 		}
+
 	}
 }

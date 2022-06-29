@@ -26,16 +26,11 @@ namespace DoOrDieBiomes
 
 		public const string PluginName = "DoOrDieBiomes";
 
-		public const string PluginVersion = "0.0.13";
+		public const string PluginVersion = "0.0.15";
 
 		public static bool isModded = true;
 		
 		public static GameObject SteelPick;
-		// Fruit
-		public static GameObject Walnuts;
-		public static GameObject Cherry;
-		public static GameObject Apple;
-		public static GameObject Banana;
 		// Mistlands Veg
 		public static GameObject MineRock_FelOre_DoD;
 		public static GameObject BlueMushroom_DoD;
@@ -44,7 +39,6 @@ namespace DoOrDieBiomes
 		public static GameObject Tree_Willow01_DoD;
 		public static GameObject Tree_Poplar02_DoD;
 		public static GameObject Tree_Poplar01_DoD;
-		public static GameObject Bush_RedBerries_Pickable_DoD;
 		public static GameObject Tree_OldOak02_DoD;
 		public static GameObject Mineable_RockMS_DoD;
 		public static GameObject Mineable_RockMM_DoD;
@@ -64,7 +58,6 @@ namespace DoOrDieBiomes
 		public static GameObject Flora_Large_DoD;
 		public static GameObject Flora_LargeTrio_DoD;
 		public static GameObject Flora_LargeDuo_DoD;
-		public static GameObject Tree_Walnut_Pickable_DoD;
 		// Deep North Veg
 		public static GameObject MineRock_FroOre_DoD;
 		public static GameObject Bush3_DeepNorth_DoD;
@@ -112,8 +105,6 @@ namespace DoOrDieBiomes
 		public static GameObject LavaRock10;
 		public static GameObject LavaRock11;
 		// fruit trees
-		public static GameObject Tree_Banana_Pickable_DoD;
-		public static GameObject Tree_Apple_Pickable_DoD;
 		public static GameObject Mushroom_Cave_Pickable_DoD;
 		public static GameObject CaveMushroom;
 		public static GameObject HardLog;
@@ -192,7 +183,7 @@ namespace DoOrDieBiomes
 			{
 				IsAdminOnly = true
 			}));
-			UnderworldEnable = base.Config.Bind("Underworld", "Enable", defaultValue: true, new ConfigDescription("Enables the Underworld Locations", null, new ConfigurationManagerAttributes
+			UnderworldEnable = base.Config.Bind("Underworld", "Enable", defaultValue: false, new ConfigDescription("Enables the Underworld Locations", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
 			}));
@@ -232,7 +223,7 @@ namespace DoOrDieBiomes
 		}
 		private void LoadDoDBiomes()
 		{
-			Debug.Log("DoDBiomes: Chests");
+			//Debug.Log("DoDBiomes: Chests");
 			GameObject TCMistlands = DoDBiome.LoadAsset<GameObject>("TreasureChest_Mistlands_DoD");
 			GameObject TCDeepNorth = DoDBiome.LoadAsset<GameObject>("TreasureChest_DeepNorth_DoD");
 			GameObject TCAshLands = DoDBiome.LoadAsset<GameObject>("TreasureChest_AshLands_DoD");
@@ -240,7 +231,7 @@ namespace DoOrDieBiomes
 			PrefabManager.Instance.AddPrefab(TCDeepNorth);
 			PrefabManager.Instance.AddPrefab(TCAshLands);
 
-			Debug.Log("DoDBiomes: SFX");
+			//Debug.Log("DoDBiomes: SFX");
 			GameObject SFXRockHit = DoDBiome.LoadAsset<GameObject>("loc_sfx_rock_hit_dod");
 			GameObject SFXRockDest = DoDBiome.LoadAsset<GameObject>("loc_sfx_rock_destroyed_dod");
 			GameObject SFXBossSpawn = DoDBiome.LoadAsset<GameObject>("SFX_BossSpawn_DoD");
@@ -268,7 +259,7 @@ namespace DoOrDieBiomes
 			PrefabManager.Instance.AddPrefab(SFXBossSpawn);
 			PrefabManager.Instance.AddPrefab(SFXSummoning);
 
-			Debug.Log("DoDBiomes: VFX");
+			//Debug.Log("DoDBiomes: VFX");
 			GameObject VFXBiiterSpawn = DoDBiome.LoadAsset<GameObject>("VFX_BiiterSpawn_DoD");
 			GameObject VFXBitterSpawnIn = DoDBiome.LoadAsset<GameObject>("VFX_BitterSpawnIn_DoD");
 			GameObject VFXDustPiece = DoDBiome.LoadAsset<GameObject>("VFX_Dust_Piece_DoD");
@@ -292,13 +283,9 @@ namespace DoOrDieBiomes
 			PrefabManager.Instance.AddPrefab(VFXHit);
 			PrefabManager.Instance.AddPrefab(VFXRockHit);
 
-			Debug.Log("DoDBiomes: Items");
+			//Debug.Log("DoDBiomes: Items");
 			OakWood = DoDBiome.LoadAsset<GameObject>("OakWood_DoD");
 			SteelPick = DoDBiome.LoadAsset<GameObject>("SteelPickaxe_DoD");
-			Walnuts = DoDBiome.LoadAsset<GameObject>("Walnuts_DoD");
-			Apple = DoDBiome.LoadAsset<GameObject>("Apple_DoD");
-			Cherry = DoDBiome.LoadAsset<GameObject>("Cherries_DoD");
-			Banana = DoDBiome.LoadAsset<GameObject>("Banana_DoD");
 			CaveMushroom = DoDBiome.LoadAsset<GameObject>("CaveMushroom_DoD");
 			HardLog = DoDBiome.LoadAsset<GameObject>("Hardwood_Log_DoD");
 			CustomPrefab Log2 = new CustomPrefab(HardLog, true);
@@ -307,7 +294,7 @@ namespace DoOrDieBiomes
 			CustomPrefab Log1 = new CustomPrefab(HardLogHalf, true);
 			PrefabManager.Instance.AddPrefab(Log1);
 
-			Debug.Log("DoDBiomes: Anvils");
+			//Debug.Log("DoDBiomes: Anvils");
 			TexFlaAnvil = DoDBiome.LoadAsset<Sprite>("FlaAnvil_Icon_DoD");
 			TexFroAnvil = DoDBiome.LoadAsset<Sprite>("FroAnvil_Icon_DoD");
 			TexFelAnvil = DoDBiome.LoadAsset<Sprite>("FelAnvil_Icon_DoD");
@@ -315,26 +302,22 @@ namespace DoOrDieBiomes
 			AnvilsFro = DoDBiome.LoadAsset<GameObject>("FrometalAnvils_DoD");
 			AnvilsFlam = DoDBiome.LoadAsset<GameObject>("FlametalAnvils_DoD");
 			// ores
-			Debug.Log("DoDBiomes: Ores");
+			//Debug.Log("DoDBiomes: Ores");
 			MineRock_FroOre_DoD = DoDBiome.LoadAsset<GameObject>("MineRock_FroOre_DoD");
 			MineRock_FelOre_DoD = DoDBiome.LoadAsset<GameObject>("MineRock_FelOre_DoD");
 
 			// fruit trees
-			Debug.Log("DoDBiomes: Fruit Trees");
-			Tree_Banana_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Banana_Pickable_DoD");
-			Tree_Apple_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Apple_Pickable_DoD");
+			//Debug.Log("DoDBiomes: Fruit Trees");
 			Mushroom_Cave_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Mushroom_Cave_Pickable_DoD");
-			Tree_Walnut_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Walnut_Pickable_DoD");
 			// mistlands veg
-			//Debug.Log("DoDMonsters: 31");
-			Debug.Log("DoDBiomes: Mistlands Veg");
+			////Debug.Log("DoDMonsters: 31");
+			//Debug.Log("DoDBiomes: Mistlands Veg");
 			BlueMushroom_DoD = DoDBiome.LoadAsset<GameObject>("BlueMushroom_DoD");
 			PurpleMushroom_DoD = DoDBiome.LoadAsset<GameObject>("PurpleMushroom_DoD");
 			Tree_Willow02_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Willow02_DoD");
 			Tree_Willow01_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Willow01_DoD");
 			Tree_Poplar02_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Poplar02_DoD");
 			Tree_Poplar01_DoD = DoDBiome.LoadAsset<GameObject>("Tree_Poplar01_DoD");
-			Bush_RedBerries_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Bush_RedBerries_Pickable_DoD");
 			Tree_OldOak02_DoD = DoDBiome.LoadAsset<GameObject>("Tree_OldOak02_DoD");
 			Mineable_RockMS_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockMS_DoD");
 			Mineable_RockMM_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_RockMM_DoD");
@@ -354,9 +337,9 @@ namespace DoOrDieBiomes
 			Flora_Large_DoD = DoDBiome.LoadAsset<GameObject>("Flora_Large_DoD");
 			Flora_LargeTrio_DoD = DoDBiome.LoadAsset<GameObject>("Flora_LargeTrio_DoD");
 			Flora_LargeDuo_DoD = DoDBiome.LoadAsset<GameObject>("Flora_LargeDuo_DoD");
-			//Debug.Log("DoDMonsters: 32");
+			////Debug.Log("DoDMonsters: 32");
 			// deep north
-			Debug.Log("DoDBiomes: Deep North Veg");
+			//Debug.Log("DoDBiomes: Deep North Veg");
 			Bush3_DeepNorth_DoD = DoDBiome.LoadAsset<GameObject>("Bush3_DeepNorth_DoD");
 			Bush2_DeepNorth_DoD = DoDBiome.LoadAsset<GameObject>("Bush2_DeepNorth_DoD");
 			Bush1_DeepNorth_DoD = DoDBiome.LoadAsset<GameObject>("Bush1_DeepNorth_DoD");
@@ -377,9 +360,9 @@ namespace DoOrDieBiomes
 			WinterPine3_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine3_DoD");
 			WinterPine2_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine2_DoD");
 			WinterPine1_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine1_DoD");
-			//Debug.Log("DoDMonsters: 33");
+			////Debug.Log("DoDMonsters: 33");
 			// ash lands
-			Debug.Log("DoDBiomes: Ashlands Veg");
+			//Debug.Log("DoDBiomes: Ashlands Veg");
 			Mineable_SandRock16_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock16_DoD");
 			Mineable_SandRock15_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock15_DoD");
 			Mineable_SandRock14_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock14_DoD");
@@ -403,10 +386,23 @@ namespace DoOrDieBiomes
 			LavaRock9 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaRock9_DoD");
 			LavaRock10 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaGroup1_DoD");
 			LavaRock11 = DoDBiome.LoadAsset<GameObject>("Mineable_LavaGroup2_DoD");
+			// Runestones
+			GameObject Runestone1 = DoDBiome.LoadAsset<GameObject>("RuneTablet_Bhygshan_DoD");
+			CustomPrefab Rune1 = new CustomPrefab(Runestone1, false);
+			PrefabManager.Instance.AddPrefab(Rune1);
+			GameObject Runestone2 = DoDBiome.LoadAsset<GameObject>("RuneTablet_Bitterstump_DoD");
+			CustomPrefab Rune2 = new CustomPrefab(Runestone2, false);
+			PrefabManager.Instance.AddPrefab(Rune2);
+			GameObject Runestone3 = DoDBiome.LoadAsset<GameObject>("RuneTablet_Farkas_DoD");
+			CustomPrefab Rune3 = new CustomPrefab(Runestone3, false);
+			PrefabManager.Instance.AddPrefab(Rune3);
+			GameObject Runestone4 = DoDBiome.LoadAsset<GameObject>("RuneTablet_Skri_DoD");
+			CustomPrefab Rune4 = new CustomPrefab(Runestone4, false);
+			PrefabManager.Instance.AddPrefab(Rune4);
 		}
 		private void AddLocations()
 		{
-			//Debug.Log("DoDMonsters: 35");
+			////Debug.Log("DoDMonsters: 35");
 			DoDBiome = AssetUtils.LoadAssetBundleFromResources("dodbiomes", Assembly.GetExecutingAssembly());
 			try
 			{
@@ -711,39 +707,12 @@ namespace DoOrDieBiomes
 			}
 			finally
 			{
-				ZoneManager.OnVanillaLocationsAvailable -= AddLocations;
 				DoDBiome.Unload(false);
 			}
 		}
 		private void AddCustomFruitTrees()
 		{
-			//Debug.Log("DoDMonsters: 36");
-			CustomVegetation customBananaTree = new CustomVegetation(Tree_Banana_Pickable_DoD, true, new VegetationConfig
-			{
-				Max = 1f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 2,
-				GroupRadius = 64f,
-				BlockCheck = true,
-				Biome = ZoneManager.AnyBiomeOf(Heightmap.Biome.Swamp, Heightmap.Biome.Plains),
-				MinAltitude = 1f,
-				MaxAltitude = 100f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customBananaTree);
-			CustomVegetation customAppleTree = new CustomVegetation(Tree_Apple_Pickable_DoD, true, new VegetationConfig
-			{
-				Max = 1f,
-				GroupSizeMin = 1,
-				GroupSizeMax = 3,
-				GroupRadius = 10f,
-				BlockCheck = true,
-				Biome = Heightmap.Biome.BlackForest,
-				MinAltitude = 1f,
-				MaxAltitude = 500f,
-				MaxTilt = 30f
-			});
-			ZoneManager.Instance.AddCustomVegetation(customAppleTree);
+			////Debug.Log("DoDMonsters: 36");
 			CustomVegetation customFroOre = new CustomVegetation(MineRock_FroOre_DoD, true, new VegetationConfig
 			{
 				Max = 1f,
@@ -771,7 +740,7 @@ namespace DoOrDieBiomes
 		}
 		private void AddMistlandVegetation()
 		{
-			//Debug.Log("DoDMonsters: 37");
+			////Debug.Log("DoDMonsters: 37");
 			var mistlandsVeg = new List<CustomVegetation>
 			{
 				new CustomVegetation(BlueMushroom_DoD, true, new VegetationConfig
@@ -843,18 +812,6 @@ namespace DoOrDieBiomes
 					MinAltitude = 1f,
 					MaxAltitude = 1500f,
 					MaxTilt = 40f
-				}),
-				new CustomVegetation(Bush_RedBerries_Pickable_DoD, true, new VegetationConfig
-				{
-					Max = 1f,
-					GroupSizeMin = 3,
-					GroupSizeMax = 3,
-					GroupRadius = 10f,
-					BlockCheck = true,
-					Biome = Heightmap.Biome.Mistlands,
-					MinAltitude = 1f,
-					MaxAltitude = 50f,
-					MaxTilt = 20f
 				}),
 				new CustomVegetation(Tree_OldOak02_DoD, true, new VegetationConfig
 				{
@@ -1064,18 +1021,6 @@ namespace DoOrDieBiomes
 					Biome = Heightmap.Biome.Mistlands,
 					MinAltitude = 0f,
 					MaxAltitude = 300f
-				}),
-				new CustomVegetation(Tree_Walnut_Pickable_DoD, true, new VegetationConfig
-				{
-					Max = 1f,
-					GroupSizeMin = 3,
-					GroupSizeMax = 3,
-					GroupRadius = 10f,
-					BlockCheck = true,
-					Biome = Heightmap.Biome.Mistlands,
-					MinAltitude = 20f,
-					MaxAltitude = 750f,
-					MaxTilt = 30f
 				})
 			};
 
@@ -1087,7 +1032,7 @@ namespace DoOrDieBiomes
 		}
 		private void AddDeepNorthVegetation()
 		{
-			//Debug.Log("DoDMonsters: 38");
+			////Debug.Log("DoDMonsters: 38");
 			CustomVegetation customVegetation20 = new CustomVegetation(Bush3_DeepNorth_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
@@ -1469,7 +1414,7 @@ namespace DoOrDieBiomes
 				MaxTilt = 30f
 			});
 			ZoneManager.Instance.AddCustomVegetation(customVegetation15);
-			//Debug.Log("DoDMonsters: 39");
+			////Debug.Log("DoDMonsters: 39");
 			CustomVegetation customVegetation14 = new CustomVegetation(Mineable_SandRock16_DoD, true, new VegetationConfig
 			{
 				Max = 3f,
@@ -1650,22 +1595,6 @@ namespace DoOrDieBiomes
 			GameObject food5 = CaveMushroom;
 			CustomItem customFood5 = new CustomItem(food5, fixReference: true);
 			ItemManager.Instance.AddItem(customFood5);
-
-			GameObject food4 = Walnuts;
-			CustomItem customFood4 = new CustomItem(food4, fixReference: true);
-			ItemManager.Instance.AddItem(customFood4);
-
-			GameObject food3 = Apple;
-			CustomItem customFood3 = new CustomItem(food3, fixReference: true);
-			ItemManager.Instance.AddItem(customFood3);
-
-			GameObject food2 = Cherry;
-			CustomItem customFood2 = new CustomItem(food2, fixReference: true);
-			ItemManager.Instance.AddItem(customFood2);
-
-			GameObject food1 = Banana;
-			CustomItem customFood1 = new CustomItem(food1, fixReference: true);
-			ItemManager.Instance.AddItem(customFood1);
 		}
 		private void UpdateBlastFurnace()
 		{

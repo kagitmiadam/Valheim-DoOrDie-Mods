@@ -21,6 +21,7 @@ public class TriggerDoorController : MonoBehaviour
     [Header("Animations to use in Animator")]
     [SerializeField] private string doorOpen = "AnimationName";
     [SerializeField] private string doorClose = "AnimationName";
+    [Header("Internal Door")]
     //[SerializeField] private ItemDrop m_keyItem;
     private bool isOpen;
     private bool inUse;
@@ -63,7 +64,7 @@ public class TriggerDoorController : MonoBehaviour
     }
     void AutoClose()
     {
-        myObject.Play(doorClose, 0, closeSpeed);
+        myObject.Play(doorClose, 0, closeDelay);
         Invoke("IsClosed", isInUseDelay);
     }
 }

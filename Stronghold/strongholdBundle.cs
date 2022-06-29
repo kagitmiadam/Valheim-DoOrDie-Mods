@@ -25,7 +25,7 @@ namespace Stronghold
 
 		public const string PluginName = "Stronghold";
 
-		public const string PluginVersion = "0.0.7";
+		public const string PluginVersion = "0.0.8";
 
 		public AssetBundle StrongholdAssets;
 		private Harmony _harmony;

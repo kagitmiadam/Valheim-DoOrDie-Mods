@@ -1,4 +1,6 @@
 ﻿PrintComment: EpicMMOSystem updated for Do or Die.
 CopyFile:
 - From: config/Do or Die SE/EpicMMOSystem Configs/MonsterDB.json
-  To: plugins/EpicMMOSystem/adventuredata.json
+  To: plugins/EpicMMOSystem/MonsterDB.json
+- From: config/Do or Die SE/EpicMMOSystem Configs/MonsterDB.json
+  To: plugins/EpicMMOSystem/MonsterDB_2.json

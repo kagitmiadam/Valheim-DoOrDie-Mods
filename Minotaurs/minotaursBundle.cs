@@ -67,13 +67,6 @@ namespace Minotaurs
 		public AssetBundle MinotaursBundle;
 		private Harmony _harmony;
 		internal static ManualLogSource Log;
-		public static AssetBundle GetAssetBundleFromResources(string fileName)
-		{
-			Assembly executingAssembly = Assembly.GetExecutingAssembly();
-			string text = executingAssembly.GetManifestResourceNames().Single((string str) => str.EndsWith(fileName));
-			using Stream stream = executingAssembly.GetManifestResourceStream(text);
-			return AssetBundle.LoadFromStream(stream);
-		}
 		private void Awake()
 		{
 			Log = Logger;

@@ -297,7 +297,7 @@ Demon Lord:
         5: 1.25
 # Fire Giant
 Fire Giant:
-  size: 0.02
+  size: 0
   infusion: 
       Fire: 14
       Frost: 0

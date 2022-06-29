@@ -33,7 +33,7 @@ namespace DoDSoloExperience
 
 		public const string PluginName = "DoOrDieSoloExperience";
 
-		public const string PluginVersion = "1.3.4";
+		public const string PluginVersion = "2.0.4";
 
 		public static bool isModded = true;
 

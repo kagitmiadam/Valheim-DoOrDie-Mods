@@ -1,11 +1,13 @@
 ﻿
 ## Authors Notes
 
-**04/03/22**
+**12/06/22**
 
-Removed RRR Mods, due to this there will be some mobs and bosses missing from the biomes untill I get time to re do all the RRR attacks via Unity and Clone the mobs via JvL.
+**MAJOR CHANGE - Changed from Epic Loot to Jewelcrafting**
 
-DELETE the Do or Die SE config folder before UPDATING to 1.3.0.
+**New Character and World is REQUIRED for the upgrade to 2.0.0**
+
+**DELETE the Do or Die SE config folder before UPDATING to 2.0.0**
 
 
 ## Brief Overview
@@ -28,15 +30,16 @@ DELETE the Do or Die SE config folder before UPDATING to 1.3.0.
 **Auto**
 
 	Use either TSMM or R2MM.
-
-**Manual** 
-
-	Download the Zip. Open it up and Drag the contents into your profiles(Mod Managers) or main installs (Manual), BepInEx folder and overwrite when asked. 
 	
 	Thunderstore Mod Manager Profile Location:- C:\Users\USER_NAME\AppData\Roaming\Thunderstore Mod Manager\DataFolder\Valheim\profiles\PROFILE_NAME\BepInEx. 
 	
 	R2MM Profile Location:- C:/Users/USER_NAME/AppData/Roaming/r2modmanPlus-local/Valheim/profiles/PROFILE_NAME/BepInEx. 
 
+**Manual** 
+
+	Download the Zip. Open it up and Drag the contents into main installs, BepInEx folder and overwrite when asked. 	
+	
+	....steampapps/common/Valheim/BepinEx 
 
 For further assistance you can find me on my offical Discord:- https://discord.gg/7BcEZXhRbV
 
@@ -62,18 +65,9 @@ Hugin will offer a quest every 20 mins. There is a mix of Killing, Gathering, Co
 
 In com.alexanderstrada.rrrbetterraids.cfg, I have the option: UpdateEventMobMinimapPins option set to false. This is to prevent an error showing in the log when you leave the raid event zone with mobs still alive. You can turn this option on as it does not look to effect game play in anyway. Upto User.
 
-**Loot**
-
-Random Legendaries showing up instead of Set Items. Under investigation.
-
 **Questing**
 
 Random Quests can be odd. Issue with custom mobs not registering for kill quests. Been looked at.
-
-**Epic Loot**
-
-Mildly effects performance. (10-15 fps loss)
-Can cause High Latency on servers.
 
 
 ## Incompatible Mods
@@ -90,11 +84,6 @@ Can cause High Latency on servers.
 - Simply Recycling can break Epic Loot/Tombstone depending on mods used.
 - Terrahiem. (Can cause NRE Spam due to clashing)
 - Forgotten Biomes. (Can  cause NRE Spam due to clashing)
-
-
-## Crossover Mods
-
-- Digital Roots Bounties, its a case of his or mine. Up to user. (Until I find the time to look over this mod and mine and see if its possible to have both)
 
 
 ## Difficulty
@@ -118,39 +107,16 @@ May require balancing for more than 2-3 players at a time. Can be done by tweaki
 
 	Cepera for help with fixes and updates.
   
-  If you like and use this ModPack, show you support by leaving a like for each mod included. Cheers and happy hunting!
-	If you wish to donate please donate to any of the modpacks dependancies, as I do not accept donations myself.
-  
+	Thumbs up to Twenty-One for the Epic MMO xp json.
 
 ## Support
 
-If you like what I do and want to support me.
+- If you like and use this ModPack, show you support by leaving a like for each mod included. Cheers and happy hunting!
+	
+- If you wish to donate please donate to any of the modpacks dependancies before myself.
+  
 
 <a href="https://www.buymeacoffee.com/horemvore"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=horemvore&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
-
-
-## Epic Loot Magic Effect Changes
-
-	Resistance Percents range from 1-40% and are limited to the following items:
-
-	Helm: Blunt & Fire
-	Chest: Pierce & Frost
-	Legs: Slashing & Lightning
-	Shield: Elemental & Physical
-	Shoulder: Poison
-
-	Resistances (Like the games Wolf Armour) are Cloak and Utility only. Very Low Probability. 
-	Luck is Helmet only. 
-	Block and Parry range from 15-75% Depending on Rarity. 
-	Damage Percent range from 5-45% depending on Rarity. 
-	Damage Flat range from 3-30 depending on Rarity. 
-	Carry Weight is limited to Shoulder and Utility. Range from 25-225 depending on Rarity. 
-	Skills range from 1-20 depending on Rarity. 
-	Health and Stamina Regen percent ranges from 5-45% depending on Rarity. 
-	Health and Stamina increases range from 15-75 depending on Rarity. 
-	Attack Speed, Stagger Duration, Quick Learner, Reflect Damage and all Low Health Effects range from 5-27% depending on Rarity. 
-	All Magical Effect scale up with no crossover. This means a higher Rarity will always be better than its previous Rarity. 
-	Probably some I have missed. 
 
 
 ## Creature Level and Loot Control Changes
@@ -285,75 +251,6 @@ To Do
 	Mana Regen: 3
 
 
-## Loot
-
-	Item drops are intentionally hard to come by via killing mobs, 90% of the time normal worldly mobs will drop enchanting materials only. 
-	This is to make Crafting still a viable option, only option early game, encourage early enchanting and finding items via other means more rewarding.
-	Promotes exploration, heavily. Hodor hunting a must, Haldor too....
-	Chests are your friend. World, Dungeon and Treasure Hunts!
-
-	Explore, Explore, Explore!
-
-	You'll be the next Indiana Jones in no time!
-
-
-## Epic Loot Legendary Item Sets
-
-6 Piece
-
-    Unlucky Serf's Rags (Meadows)
-
-5 Piece
-
-    Beastmaster (Ash Lands)
-    Warlord's Battlegear (Yagluth)
-
-4 Piece
-
-    Bloodsoaked Armor (Mistlands)
-    Cinbri Attire (Deep North)
-    Battlemage Vestments (Plains)
-    Glitterdelve Heirlooms (Mountain)
-    Plagueheart Raiment (Bonemass)
-    Moder's Demise (Moder)
-
-3 Piece
-
-    Ravager's Outfit (Swamp)
-    Relentless  (Blackforest)
-    Spirit of Eikythr (Eikthyr)
-    Giantstalker's Armor (The Elder)
-
-2 Piece
-
-    Teasha's Armament (Mistlands\DeepNorth)
-    Traveller's Trinkets (Mountin\Plains)
-
-
-## Drop Rates
-
-Non Boss Drop Rates:
-
-        Enchanting Mats: 5-15% per material type
-        Magic Item: 10%
-        Item Sets: 0.5%
-    
-Vanilla Boss Drop Rates
-
-        Runestone: 1-2 (50%)
-        Magic Item: 1-3 (100%, 50%, 25%)
-        Chaos Armor: 10%
-        Unique Item Set: 10%
-
-Mini Boss Drop Rate
-
-        Magic Item: 1-2
-        Hugos 2H: 10%
-        Chaos Armor: 5%
-
-Note: Boss and Mini Boss Item Sets currently in planning.
-
-
 ## Bosses
 
 **Skir Sandburst (Tier 5) [Goblin Shaman]**
@@ -395,11 +292,9 @@ Note: Boss and Mini Boss Item Sets currently in planning.
 
 - Passive Powers By Smoothbrain(Config Included)
 - Backpack Redux by Aedenthorn (Config Included)
-- Discard or Recylce Inventory Items by Aedenthorn (Config Included)
-- Durability by Aedenthorn (Config Included)
 - Supplemental Raids
 - TripleBronzeJVL
-- Equipment and Quickslots
+- Odins QOL
 - Instant Monster Loot Drop
 
 
@@ -412,34 +307,31 @@ Note: Boss and Mini Boss Item Sets currently in planning.
 	
 ## Patch Notes
 
-**1.3.4**
+**2.0.4**
 
-	Removed a bunch of config files that made their way into the zip from my testing.
-	Added Set drops for Mistlands, Deep North and Ash Lands monsters included in Giants, Minotaurs and Fantasy Creatures.
-	Tweaked MO Classes.
+	Added missing Drops for Fantasy Creatures.
+	Added more items to Knarr.
 	
-**1.3.3**
+**2.0.3**
 
-- Fix for Priest.
+- Added more drops to the Wendigo, Yet and Werewolves
+- Removed the double DLL for DoD SE in the Quest Framework folder (You will need to manual delete this folder)
+- Slight adjustments to some monsters difficulty
 
-**1.3.2**
+**2.0.2**
 
-- Included correct EpicMMOSystem config.
-
-**1.3.1**
-
-- Removed the Build mods, down to user to choose which they want to use, now there are so many.
-- Updated for Magic Overhaul 1.5.5
-- Added Epic MMO System.
-- Added Fantasy Creatures.
-- Added Farmyard Animals.
-- Added Giants.
-- Added Supply Crates.
+- Added Fancy Food dependancy.
+- Updated Jewelcrafting config.
 	
-**1.3**
+**2.0.1**
 
-- Removed RRR Mods.
-- Updated for new DoD Dll's.
-- Moved NPC spawns to the NPC Mod.
-- Moved Reskined mobs spawns to the Monster Mod.
-- Moved Mini Boss scaling to the NPC mod.
+- Fixed Giant's scaling with CLLC.
+
+**2.0.0**
+
+- Added Dual Wield, Starvation, Minotaurs, Deds Army, Jewelcrafting, Evasion, Tenacity, Mining, Vitality, Blacksmithing and Cooking as dependancies.
+- Swamp monsters changed to Deds Army mobs once Bonemass is killed. (World Spawns)
+- Zarathos spawns once Bhygshan is killed.
+- Added all mobs to Epic MMO's XP System.	
+- Removed Epic Loot Dependancy.
+

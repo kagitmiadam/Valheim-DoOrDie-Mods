@@ -26,7 +26,7 @@ namespace SupplyCrates
 
 		public const string PluginName = "SupplyCrates";
 
-		public const string PluginVersion = "0.0.3";
+		public const string PluginVersion = "0.0.9";
 
 		public static bool isModded = true;
 
@@ -66,6 +66,11 @@ namespace SupplyCrates
 		public static GameObject Pickable1;
 		public static GameObject Pickable2;
 		public static GameObject Pickable3;
+
+		public static GameObject Material1;
+		public static GameObject Material2;
+		public static GameObject Material3;
+		public static GameObject Material4;
 
 		public static GameObject Bowl1;
 		public static GameObject Bowl2;
@@ -214,12 +219,13 @@ namespace SupplyCrates
 			LoadBundle();
 			LoadAssets();
 			AddItems();
+			AddMaterials();
 			AddBowlPieces();
 			AddBoxPieces();
 			AddBucketPieces();
 			if (valharvestEnabled.Value) PrefabManager.OnVanillaPrefabsAvailable += ValHavestAdditions;
 			if (FYAEnabled.Value) CreatureManager.OnVanillaCreaturesAvailable += FYAAdditions;
-			if (BAEnabled.Value) CreatureManager.OnVanillaCreaturesAvailable += BAAdditions;
+			if (BAEnabled.Value) PrefabManager.OnVanillaPrefabsAvailable += BAAdditions;
 			ZoneManager.OnVanillaLocationsAvailable += UpdateLocations;
 		}
 		public void LoadBundle()
@@ -228,6 +234,11 @@ namespace SupplyCrates
 		}
 		private void LoadAssets()
 		{
+			// Materials
+			Material1 = SupplyBundle.LoadAsset<GameObject>("CocoaFruit_SC");
+			Material2 = SupplyBundle.LoadAsset<GameObject>("CocoPowder_SC");
+			Material3 = SupplyBundle.LoadAsset<GameObject>("SugarBeet_SC");
+			Material4 = SupplyBundle.LoadAsset<GameObject>("SugarPowder_SC");
 			// Buckets
 			Bucket1 = SupplyBundle.LoadAsset<GameObject>("BucketApples_SC");
 			//Bucket2 = SupplyBundle.LoadAsset<GameObject>("BucketBagettes_SC");
@@ -1613,7 +1624,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece1);
-			Debug.Log("Supply Crates: Bucket1");
+			//Debug.Log("Supply Crates: Bucket1");
 			/*var customPiece2 = new CustomPiece(Bucket2, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1635,7 +1646,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece2);
-			Debug.Log("Supply Crates: Bucket2");*/
+			//Debug.Log("Supply Crates: Bucket2");*/
 			var customPiece3 = new CustomPiece(Bucket3, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1657,7 +1668,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece3);
-			Debug.Log("Supply Crates: Bucket3");
+			//Debug.Log("Supply Crates: Bucket3");
 			var customPiece4 = new CustomPiece(Bucket4, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1679,7 +1690,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece4);
-			Debug.Log("Supply Crates: Bucket4");
+			//Debug.Log("Supply Crates: Bucket4");
 			/*var customPiece5 = new CustomPiece(Bucket5, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1701,7 +1712,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece5);
-			Debug.Log("Supply Crates: Bucket5");*/
+			//Debug.Log("Supply Crates: Bucket5");*/
 			var customPiece6 = new CustomPiece(Bucket6, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1723,7 +1734,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece6);
-			Debug.Log("Supply Crates: Bucket6");
+			//Debug.Log("Supply Crates: Bucket6");
 			var customPiece7 = new CustomPiece(Bucket7, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1745,7 +1756,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece7);
-			Debug.Log("Supply Crates: Bucket7");
+			//Debug.Log("Supply Crates: Bucket7");
 			var customPiece8 = new CustomPiece(Bucket8, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1767,7 +1778,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece8);
-			Debug.Log("Supply Crates: Bucket8");
+			//Debug.Log("Supply Crates: Bucket8");
 			var customPiece9 = new CustomPiece(Bucket9, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1789,7 +1800,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece9);
-			Debug.Log("Supply Crates: Bucket9");
+			//Debug.Log("Supply Crates: Bucket9");
 			var customPiece10 = new CustomPiece(Bucket10, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1811,7 +1822,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece10);
-			Debug.Log("Supply Crates: Bucket10");
+			//Debug.Log("Supply Crates: Bucket10");
 			var customPiece11 = new CustomPiece(Bucket11, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1833,7 +1844,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece11);
-			Debug.Log("Supply Crates: Bucket11");
+			//Debug.Log("Supply Crates: Bucket11");
 			var customPiece12 = new CustomPiece(Bucket12, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1855,7 +1866,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece12);
-			Debug.Log("Supply Crates: Bucket12");
+			//Debug.Log("Supply Crates: Bucket12");
 			var customPiece13 = new CustomPiece(Bucket13, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1877,7 +1888,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece13);
-			Debug.Log("Supply Crates: Bucket13");
+			//Debug.Log("Supply Crates: Bucket13");
 			var customPiece14 = new CustomPiece(Bucket14, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1899,7 +1910,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece14);
-			Debug.Log("Supply Crates: Bucket14");
+			//Debug.Log("Supply Crates: Bucket14");
 			var customPiece15 = new CustomPiece(Bucket15, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1921,7 +1932,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece15);
-			Debug.Log("Supply Crates: Bucket15");
+			//Debug.Log("Supply Crates: Bucket15");
 			var customPiece16 = new CustomPiece(Bucket16, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1943,7 +1954,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece16);
-			Debug.Log("Supply Crates: Bucket16");
+			//Debug.Log("Supply Crates: Bucket16");
 			var customPiece17 = new CustomPiece(Bucket17, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1965,7 +1976,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece17);
-			Debug.Log("Supply Crates: Bucket17");
+			//Debug.Log("Supply Crates: Bucket17");
 			var customPiece18 = new CustomPiece(Bucket18, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -1987,7 +1998,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece18);
-			Debug.Log("Supply Crates: Bucket18");
+			//Debug.Log("Supply Crates: Bucket18");
 			var customPiece19 = new CustomPiece(Bucket19, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -2009,7 +2020,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece19);
-			Debug.Log("Supply Crates: Bucket19");
+			//Debug.Log("Supply Crates: Bucket19");
 			var customPiece20 = new CustomPiece(Bucket20, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -2031,7 +2042,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece20);
-			Debug.Log("Supply Crates: Bucket20");
+			//Debug.Log("Supply Crates: Bucket20");
 			var customPiece21 = new CustomPiece(Bucket21, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -2053,7 +2064,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece21);
-			Debug.Log("Supply Crates: Bucket21");
+			//Debug.Log("Supply Crates: Bucket21");
 			var customPiece22 = new CustomPiece(Bucket22, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -2075,7 +2086,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece22);
-			Debug.Log("Supply Crates: Bucket22");
+			//Debug.Log("Supply Crates: Bucket22");
 			var customPiece23 = new CustomPiece(Bucket23, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -2097,7 +2108,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece23);
-			Debug.Log("Supply Crates: Bucket23");
+			//Debug.Log("Supply Crates: Bucket23");
 			var customPiece24 = new CustomPiece(Bucket24, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -2119,7 +2130,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece24);
-			Debug.Log("Supply Crates: Bucket24");
+			//Debug.Log("Supply Crates: Bucket24");
 			/*var customPiece25 = new CustomPiece(Bucket25, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -2141,7 +2152,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece25);
-			Debug.Log("Supply Crates: Bucket25");*/
+			//Debug.Log("Supply Crates: Bucket25");*/
 			var customPiece26 = new CustomPiece(Bucket26, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -2163,7 +2174,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece26);
-			Debug.Log("Supply Crates: Bucket26");
+			//Debug.Log("Supply Crates: Bucket26");
 			var customPiece27 = new CustomPiece(Bucket27, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -2185,7 +2196,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece27);
-			Debug.Log("Supply Crates: Bucket27");
+			//Debug.Log("Supply Crates: Bucket27");
 			var customPiece28 = new CustomPiece(Bucket28, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -2207,7 +2218,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece28);
-			Debug.Log("Supply Crates: Bucket28");
+			//Debug.Log("Supply Crates: Bucket28");
 			var customPiece29 = new CustomPiece(Bucket29, true, new PieceConfig
 			{
 				PieceTable = "_HammerPieceTable",
@@ -2229,7 +2240,7 @@ namespace SupplyCrates
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece29);
-			Debug.Log("Supply Crates: Bucket29");
+			//Debug.Log("Supply Crates: Bucket29");
 		}
 		private void AddItems()
 		{
@@ -2334,10 +2345,56 @@ namespace SupplyCrates
 			{
 				Logger.LogWarning($"Exception caught while adding fruit: {ex}");
 			}
-            /*finally
+		}
+		private void AddMaterials()
+        {
+            try
 			{
-				SupplyBundle?.Unload(unloadAllLoadedObjects: false);
-			}*/
+				// Cocoa
+				GameObject material1 = Material1;
+				CustomItem customItem1 = new CustomItem(material1, false);
+				ItemManager.Instance.AddItem(customItem1);
+				GameObject material2 = Material2;
+				CustomItem customItem2 = new CustomItem(material2, false, new ItemConfig
+				{
+					Amount = 1,
+					CraftingStation = "piece_cauldron",
+					MinStationLevel = 2,
+					Requirements = new RequirementConfig[1]
+					{
+						new RequirementConfig
+						{
+							Item = "CocoaFruit_SC",
+							Amount = 5
+						}
+					}
+				});
+				ItemManager.Instance.AddItem(customItem2);
+				// Sugar
+				GameObject material3 = Material3;
+				CustomItem customItem3 = new CustomItem(material3, false);
+				ItemManager.Instance.AddItem(customItem3);
+				GameObject material4 = Material4;
+				CustomItem customItem4 = new CustomItem(material4, false, new ItemConfig
+				{
+					Amount = 1,
+					CraftingStation = "piece_cauldron",
+					MinStationLevel = 2,
+					Requirements = new RequirementConfig[1]
+					{
+						new RequirementConfig
+						{
+							Item = "SugarBeet_SC",
+							Amount = 5
+						}
+					}
+				});
+				ItemManager.Instance.AddItem(customItem4);
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding Materials: {ex}");
+			}
 		}
 		private void UpdateLocations()
         {
@@ -2347,76 +2404,76 @@ namespace SupplyCrates
 				var fruitPrefab = PrefabManager.Instance.GetPrefab("BoxOfFruits_SC");
 				var vegPrefab = PrefabManager.Instance.GetPrefab("BoxOfVegetables_SC");
 				var dairyPrefab = PrefabManager.Instance.GetPrefab("BoxOfDairy_SC");
-				Debug.Log("Supply Crates: Boxes");
+				//Debug.Log("Supply Crates: Boxes");
 				// Biomes
 				if (MeadowsEnable.Value == true)
                 {
 					// Load Locations to Edit
 					var house1Location = ZoneManager.Instance.GetZoneLocation("WoodHouse8");
-					Debug.Log("Supply Crates: House1");
+					//Debug.Log("Supply Crates: House1");
 					var house2Location = ZoneManager.Instance.GetZoneLocation("WoodHouse6");
-					Debug.Log("Supply Crates: House2");
+					//Debug.Log("Supply Crates: House2");
 					var house3Location = ZoneManager.Instance.GetZoneLocation("WoodHouse3");
-					Debug.Log("Supply Crates: House3");
+					//Debug.Log("Supply Crates: House3");
 					var house4Location = ZoneManager.Instance.GetZoneLocation("WoodHouse11");
-					Debug.Log("Supply Crates: House4");
+					//Debug.Log("Supply Crates: House4");
 					var house5Location = ZoneManager.Instance.GetZoneLocation("WoodHouse2");
-					Debug.Log("Supply Crates: House5");
+					//Debug.Log("Supply Crates: House5");
 					var house6Location = ZoneManager.Instance.GetZoneLocation("WoodHouse7");
-					Debug.Log("Supply Crates: House6");
+					//Debug.Log("Supply Crates: House6");
 					var house7Location = ZoneManager.Instance.GetZoneLocation("WoodHouse13");
-					Debug.Log("Supply Crates: House7");
+					//Debug.Log("Supply Crates: House7");
 					var house8Location = ZoneManager.Instance.GetZoneLocation("Dolmen03");
-					Debug.Log("Supply Crates: House8");
+					//Debug.Log("Supply Crates: House8");
 					// Add objects to locations
 					// WoodHouse8
 					var house1Fruit = Instantiate(fruitPrefab, house1Location.m_prefab.transform);
 					house1Fruit.name = fruitPrefab.name;
 					house1Fruit.transform.localPosition = new Vector3(3.379997f, 0f, 3.62999f); 
 					ZoneSystem.PrepareNetViews(house1Location.m_prefab, house1Location.m_netViews);
-					Debug.Log("Supply Crates: Loc1");
+					//Debug.Log("Supply Crates: Loc1");
 					// WoodHouse6
 					var house2Fruit = Instantiate(fruitPrefab, house2Location.m_prefab.transform);
 					house2Fruit.name = fruitPrefab.name;
 					house2Fruit.transform.localPosition = new Vector3(-0.4f, 0f, 2.8f);
 					ZoneSystem.PrepareNetViews(house2Location.m_prefab, house2Location.m_netViews);
-					Debug.Log("Supply Crates: Loc2");
+					//Debug.Log("Supply Crates: Loc2");
 					// WoodHouse3
 					var house3Fruit = Instantiate(fruitPrefab, house3Location.m_prefab.transform);
 					house3Fruit.name = fruitPrefab.name;
 					house3Fruit.transform.localPosition = new Vector3(-4.48f, 0f, 3f);
 					ZoneSystem.PrepareNetViews(house3Location.m_prefab, house3Location.m_netViews);
-					Debug.Log("Supply Crates: Loc3");
+					//Debug.Log("Supply Crates: Loc3");
 					// WoodHouse11
 					var house4Fruit = Instantiate(fruitPrefab, house4Location.m_prefab.transform);
 					house4Fruit.name = fruitPrefab.name;
 					house4Fruit.transform.localPosition = new Vector3(1.55f, 0f, 3.34f);
 					ZoneSystem.PrepareNetViews(house4Location.m_prefab, house4Location.m_netViews);
-					Debug.Log("Supply Crates: Loc4");
+					//Debug.Log("Supply Crates: Loc4");
 					// WoodHouse2
 					var house1Veg = Instantiate(vegPrefab, house5Location.m_prefab.transform);
 					house1Veg.name = vegPrefab.name;
 					house1Veg.transform.localPosition = new Vector3(1.7f, 0f, 2.8f);
 					ZoneSystem.PrepareNetViews(house5Location.m_prefab, house5Location.m_netViews);
-					Debug.Log("Supply Crates: Loc5");
+					//Debug.Log("Supply Crates: Loc5");
 					// WoodHouse7
 					var house2Veg = Instantiate(vegPrefab, house6Location.m_prefab.transform);
 					house2Veg.name = vegPrefab.name;
 					house2Veg.transform.localPosition = new Vector3(1.9f, 0f, 1f);
 					ZoneSystem.PrepareNetViews(house6Location.m_prefab, house6Location.m_netViews);
-					Debug.Log("Supply Crates: Loc6");
+					//Debug.Log("Supply Crates: Loc6");
 					// WoodHouse13
 					var house3Veg = Instantiate(vegPrefab, house7Location.m_prefab.transform);
 					house3Veg.name = vegPrefab.name;
 					house3Veg.transform.localPosition = new Vector3(3.1f, 0f, -2.55f);
 					ZoneSystem.PrepareNetViews(house7Location.m_prefab, house7Location.m_netViews);
-					Debug.Log("Supply Crates: Loc7");
+					//Debug.Log("Supply Crates: Loc7");
 					// WoodHouse13
 					var house4Veg = Instantiate(vegPrefab, house8Location.m_prefab.transform);
 					house4Veg.name = vegPrefab.name;
 					house4Veg.transform.localPosition = new Vector3(1.53f, 0f, 3.54f);
 					ZoneSystem.PrepareNetViews(house8Location.m_prefab, house8Location.m_netViews);
-					Debug.Log("Supply Crates: Loc8");
+					//Debug.Log("Supply Crates: Loc8");
 				}
 				if (BlackForestEnable.Value == true)
 				{
@@ -2433,37 +2490,37 @@ namespace SupplyCrates
 					trollFruit.name = fruitPrefab.name;
 					trollFruit.transform.localPosition = new Vector3(4.8f, 0f, 6f);
 					ZoneSystem.PrepareNetViews(trollLocation.m_prefab, trollLocation.m_netViews);
-					Debug.Log("Supply Crates: Loc9");
+					//Debug.Log("Supply Crates: Loc9");
 					// Runestone_Greydwarfs
 					var runeFruit = Instantiate(fruitPrefab, runeLocation.m_prefab.transform);
 					runeFruit.name = fruitPrefab.name;
 					runeFruit.transform.localPosition = new Vector3(0f, 0f, 1.7f);
 					ZoneSystem.PrepareNetViews(runeLocation.m_prefab, runeLocation.m_netViews);
-					Debug.Log("Supply Crates: Loc10");
+					//Debug.Log("Supply Crates: Loc10");
 					// Crypt2
 					var cryptFruit = Instantiate(fruitPrefab, crypt2Location.m_prefab.transform);
 					cryptFruit.name = fruitPrefab.name;
 					cryptFruit.transform.localPosition = new Vector3(-3.23f, 0f, -2.65f);
 					ZoneSystem.PrepareNetViews(crypt2Location.m_prefab, crypt2Location.m_netViews);
-					Debug.Log("Supply Crates: Loc11");
+					//Debug.Log("Supply Crates: Loc11");
 					// Ruin1
 					var ruinFruit = Instantiate(fruitPrefab, ruin1Location.m_prefab.transform);
 					ruinFruit.name = fruitPrefab.name;
 					ruinFruit.transform.localPosition = new Vector3(0f, 0f, 6.3f);
 					ZoneSystem.PrepareNetViews(ruin1Location.m_prefab, ruin1Location.m_netViews);
-					Debug.Log("Supply Crates: Loc12");
+					//Debug.Log("Supply Crates: Loc12");
 					// Crypt3
 					var cryptVeg = Instantiate(vegPrefab, crypt3Location.m_prefab.transform);
 					cryptVeg.name = vegPrefab.name;
 					cryptVeg.transform.localPosition = new Vector3(1.88f, -2.75f, 1.94f);
 					ZoneSystem.PrepareNetViews(crypt3Location.m_prefab, crypt3Location.m_netViews);
-					Debug.Log("Supply Crates: Loc13");
+					//Debug.Log("Supply Crates: Loc13");
 					// StoneTowerRuins03
 					var tower1Veg = Instantiate(vegPrefab, tower1Location.m_prefab.transform);
 					tower1Veg.name = vegPrefab.name;
 					tower1Veg.transform.localPosition = new Vector3(2.98f, 0f, -5.24f);
 					ZoneSystem.PrepareNetViews(tower1Location.m_prefab, tower1Location.m_netViews);
-					Debug.Log("Supply Crates: Loc14");
+					//Debug.Log("Supply Crates: Loc14");
 				}
 				if (SwampEnable.Value == true)
                 {
@@ -2479,43 +2536,43 @@ namespace SupplyCrates
 					runeVeg.name = vegPrefab.name;
 					runeVeg.transform.localPosition = new Vector3(2.98f, 0f, -5.24f);
 					ZoneSystem.PrepareNetViews(rune1Location.m_prefab, rune1Location.m_netViews);
-					Debug.Log("Supply Crates: Loc15");
+					//Debug.Log("Supply Crates: Loc15");
 					// SunkenCrypt1
 					var suncrypt1Veg = Instantiate(vegPrefab, crypt4Location.m_prefab.transform);
 					suncrypt1Veg.name = vegPrefab.name;
 					suncrypt1Veg.transform.localPosition = new Vector3(-4.2f, 0f, 1f);
 					ZoneSystem.PrepareNetViews(crypt4Location.m_prefab, crypt4Location.m_netViews);
-					Debug.Log("Supply Crates: Loc16");
+					//Debug.Log("Supply Crates: Loc16");
 					// SunkenCrypt4
 					var suncrypt2Veg = Instantiate(vegPrefab, crypt5Location.m_prefab.transform);
 					suncrypt2Veg.name = vegPrefab.name;
 					suncrypt2Veg.transform.localPosition = new Vector3(-3.64f, 0f, -2.77f);
 					ZoneSystem.PrepareNetViews(crypt5Location.m_prefab, crypt5Location.m_netViews);
-					Debug.Log("Supply Crates: Loc17");
+					//Debug.Log("Supply Crates: Loc17");
 					// Grave1
 					var graveDairy = Instantiate(dairyPrefab, graveLocation.m_prefab.transform);
 					graveDairy.name = dairyPrefab.name;
 					graveDairy.transform.localPosition = new Vector3(4.12f, 0f, -1.65f);
 					ZoneSystem.PrepareNetViews(graveLocation.m_prefab, graveLocation.m_netViews);
-					Debug.Log("Supply Crates: Loc18");
+					//Debug.Log("Supply Crates: Loc18");
 					// SunkenCrypt3
 					var crypt1Dairy = Instantiate(dairyPrefab, crypt6Location.m_prefab.transform);
 					crypt1Dairy.name = dairyPrefab.name;
 					crypt1Dairy.transform.localPosition = new Vector3(-3.48f, 0f, 1f);
 					ZoneSystem.PrepareNetViews(crypt6Location.m_prefab, crypt6Location.m_netViews);
-					Debug.Log("Supply Crates: Loc19");
+					//Debug.Log("Supply Crates: Loc19");
 					// SwampHut2
 					var hut1Dairy = Instantiate(dairyPrefab, hut1Location.m_prefab.transform);
 					hut1Dairy.name = dairyPrefab.name;
 					hut1Dairy.transform.localPosition = new Vector3(-3.52f, 0f, 0.116f);
 					ZoneSystem.PrepareNetViews(hut1Location.m_prefab, hut1Location.m_netViews);
-					Debug.Log("Supply Crates: Loc20");
+					//Debug.Log("Supply Crates: Loc20");
 					// SwampHut4
 					var hut2Dairy = Instantiate(dairyPrefab, hut2Location.m_prefab.transform);
 					hut2Dairy.name = dairyPrefab.name;
 					hut2Dairy.transform.localPosition = new Vector3(6f, 1.05f, 0f);
 					ZoneSystem.PrepareNetViews(hut2Location.m_prefab, hut2Location.m_netViews);
-					Debug.Log("Supply Crates: Loc21");
+					//Debug.Log("Supply Crates: Loc21");
 				}
 				if (MountainEnable.Value == true)
 				{
@@ -2529,31 +2586,31 @@ namespace SupplyCrates
 					lore1Dairy.name = dairyPrefab.name;
 					lore1Dairy.transform.localPosition = new Vector3(-0.27f, 0f, 1.82f);
 					ZoneSystem.PrepareNetViews(lore1Location.m_prefab, lore1Location.m_netViews);
-					Debug.Log("Supply Crates: Loc22");
+					//Debug.Log("Supply Crates: Loc22");
 					// Runestone_Mountains
 					var rune2Dairy = Instantiate(dairyPrefab, rune2Location.m_prefab.transform);
 					rune2Dairy.name = dairyPrefab.name;
 					rune2Dairy.transform.localPosition = new Vector3(0f, 0f, 2f);
 					ZoneSystem.PrepareNetViews(rune2Location.m_prefab, rune2Location.m_netViews);
-					Debug.Log("Supply Crates: Loc23");
+					//Debug.Log("Supply Crates: Loc23");
 					// AbandonedLogCabin01
 					/*var cabin1Dairy = Instantiate(dairyPrefab, cabin1Location.m_prefab.transform);
 					cabin1Dairy.name = dairyPrefab.name;
 					cabin1Dairy.transform.localPosition = new Vector3(-2.4f, 0f, -3.9f);
 					ZoneSystem.PrepareNetViews(cabin1Location.m_prefab, cabin1Location.m_netViews);
-					Debug.Log("Supply Crates: Loc24");*/
+					//Debug.Log("Supply Crates: Loc24");*/
 					// AbandonedLogCabin03
 					var cabin2Dairy = Instantiate(dairyPrefab, cabin2Location.m_prefab.transform);
 					cabin2Dairy.name = dairyPrefab.name;
 					cabin2Dairy.transform.localPosition = new Vector3(2.363f, 0f, 3.836f);
 					ZoneSystem.PrepareNetViews(cabin2Location.m_prefab, cabin2Location.m_netViews);
-					Debug.Log("Supply Crates: Loc25");
+					//Debug.Log("Supply Crates: Loc25");
 					// StoneTowerRuins04
 					var tower1Dairy = Instantiate(dairyPrefab, tower1Location.m_prefab.transform);
 					tower1Dairy.name = dairyPrefab.name;
 					tower1Dairy.transform.localPosition = new Vector3(-2.69f, 0f, -0.86f);
 					ZoneSystem.PrepareNetViews(tower1Location.m_prefab, tower1Location.m_netViews);
-					Debug.Log("Supply Crates: Loc26");
+					//Debug.Log("Supply Crates: Loc26");
 
 				}
 			}
@@ -2683,124 +2740,134 @@ namespace SupplyCrates
 				// Goat
 				var goat = CreatureManager.Instance.GetCreaturePrefab("Goat_FYA");
 				var animal1 = goat.GetComponent<MonsterAI>();
-					animal1.m_consumeItems.Add(apple);
-					animal1.m_consumeItems.Add(pear);
+					animal1.m_consumeItems.AddItem(apple);
+					animal1.m_consumeItems.AddItem(pear);
 				// Sheep
 				var sheep = CreatureManager.Instance.GetCreaturePrefab("Sheep_FYA");
 				var animal2 = goat.GetComponent<MonsterAI>();
-					animal2.m_consumeItems.Add(cabbage);
-					animal2.m_consumeItems.Add(lettuce);
+					animal2.m_consumeItems.AddItem(cabbage);
+					animal2.m_consumeItems.AddItem(lettuce);
 				// ChickenB
 				var chickenB = CreatureManager.Instance.GetCreaturePrefab("ChickenB_FYA");
 				var animal3 = goat.GetComponent<MonsterAI>();
-					animal3.m_consumeItems.Add(corn);
-					animal3.m_consumeItems.Add(bagel);
-					animal3.m_consumeItems.Add(bagette);
+					animal3.m_consumeItems.AddItem(corn);
+					animal3.m_consumeItems.AddItem(bagel);
+					animal3.m_consumeItems.AddItem(bagette);
 				// ChickenBW
 				var chickenBW = CreatureManager.Instance.GetCreaturePrefab("ChickenBW_FYA");
 				var animal4 = goat.GetComponent<MonsterAI>();
-					animal4.m_consumeItems.Add(corn);
-					animal4.m_consumeItems.Add(bagel);
-					animal4.m_consumeItems.Add(bagette);
+					animal4.m_consumeItems.AddItem(corn);
+					animal4.m_consumeItems.AddItem(bagel);
+					animal4.m_consumeItems.AddItem(bagette);
 				// ChickenBW
 				var chickenW = CreatureManager.Instance.GetCreaturePrefab("ChickenW_FYA");
 				var animal5 = goat.GetComponent<MonsterAI>();
-					animal5.m_consumeItems.Add(corn);
-					animal5.m_consumeItems.Add(bagel);
-					animal5.m_consumeItems.Add(bagette);
+					animal5.m_consumeItems.AddItem(corn);
+					animal5.m_consumeItems.AddItem(bagel);
+					animal5.m_consumeItems.AddItem(bagette);
 				// TurkeyB
 				var turkeyB = CreatureManager.Instance.GetCreaturePrefab("TurkeyB_FYA");
 				var animal6 = goat.GetComponent<MonsterAI>();
-					animal6.m_consumeItems.Add(corn);
-					animal6.m_consumeItems.Add(bagel);
-					animal6.m_consumeItems.Add(bagette);
+					animal6.m_consumeItems.AddItem(corn);
+					animal6.m_consumeItems.AddItem(bagel);
+					animal6.m_consumeItems.AddItem(bagette);
 				// TurkeyR
 				var turkeyR = CreatureManager.Instance.GetCreaturePrefab("TurkeyR_FYA");
 				var animal7 = goat.GetComponent<MonsterAI>();
-					animal7.m_consumeItems.Add(corn);
-					animal7.m_consumeItems.Add(bagel);
-					animal7.m_consumeItems.Add(bagette);
+					animal7.m_consumeItems.AddItem(corn);
+					animal7.m_consumeItems.AddItem(bagel);
+					animal7.m_consumeItems.AddItem(bagette);
 				// TurkeyW
 				var turkeyW = CreatureManager.Instance.GetCreaturePrefab("TurkeyW_FYA");
 				var animal8 = goat.GetComponent<MonsterAI>();
-					animal8.m_consumeItems.Add(corn);
-					animal8.m_consumeItems.Add(bagel);
-					animal8.m_consumeItems.Add(bagette);
+					animal8.m_consumeItems.AddItem(corn);
+					animal8.m_consumeItems.AddItem(bagel);
+					animal8.m_consumeItems.AddItem(bagette);
 				// CowB
 				var cowB = CreatureManager.Instance.GetCreaturePrefab("CowB_FYA");
 				var animal9 = goat.GetComponent<MonsterAI>();
-					animal9.m_consumeItems.Add(cabbage);
-					animal9.m_consumeItems.Add(lettuce);
+					animal9.m_consumeItems.AddItem(cabbage);
+					animal9.m_consumeItems.AddItem(lettuce);
 				// CowBW
 				var cowBW = CreatureManager.Instance.GetCreaturePrefab("CowBW_FYA");
 				var anima20 = goat.GetComponent<MonsterAI>();
-					anima20.m_consumeItems.Add(cabbage);
-					anima20.m_consumeItems.Add(lettuce);
+					anima20.m_consumeItems.AddItem(cabbage);
+					anima20.m_consumeItems.AddItem(lettuce);
 				// Goose
 				var goose = CreatureManager.Instance.GetCreaturePrefab("Goose_FYA");
 				var anima21 = goat.GetComponent<MonsterAI>();
-					anima21.m_consumeItems.Add(corn);
-					anima21.m_consumeItems.Add(bagel);
-					anima21.m_consumeItems.Add(bagette);
+					anima21.m_consumeItems.AddItem(corn);
+					anima21.m_consumeItems.AddItem(bagel);
+					anima21.m_consumeItems.AddItem(bagette);
 				// Highland
 				var highland = CreatureManager.Instance.GetCreaturePrefab("Highland_FYA");
 				var anima22 = goat.GetComponent<MonsterAI>();
-					anima22.m_consumeItems.Add(cabbage);
-					anima22.m_consumeItems.Add(lettuce);
+					anima22.m_consumeItems.AddItem(cabbage);
+					anima22.m_consumeItems.AddItem(lettuce);
 				// LonghornB
 				var longhornB = CreatureManager.Instance.GetCreaturePrefab("LonghornB_FYA");
 				var anima23 = goat.GetComponent<MonsterAI>();
-					anima23.m_consumeItems.Add(cabbage);
-					anima23.m_consumeItems.Add(lettuce);
+					anima23.m_consumeItems.AddItem(cabbage);
+					anima23.m_consumeItems.AddItem(lettuce);
 				// LonghornW
 				var longhornW = CreatureManager.Instance.GetCreaturePrefab("LonghornW_FYA");
 				var anima24 = goat.GetComponent<MonsterAI>();
-					anima24.m_consumeItems.Add(cabbage);
-					anima24.m_consumeItems.Add(lettuce);
+					anima24.m_consumeItems.AddItem(cabbage);
+					anima24.m_consumeItems.AddItem(lettuce);
 				// Mulefoot
 				var mulefoot = CreatureManager.Instance.GetCreaturePrefab("Mulefoot_FYA");
 				var anima25 = goat.GetComponent<MonsterAI>();
-					anima25.m_consumeItems.Add(cabbage);
-					anima25.m_consumeItems.Add(lettuce);
-					anima25.m_consumeItems.Add(corn);
-					anima25.m_consumeItems.Add(bagel);
-					anima25.m_consumeItems.Add(bagette);
-					anima25.m_consumeItems.Add(apple);
-					anima25.m_consumeItems.Add(pear);
-					anima25.m_consumeItems.Add(mushroom);
+					anima25.m_consumeItems.AddItem(cabbage);
+					anima25.m_consumeItems.AddItem(lettuce);
+					anima25.m_consumeItems.AddItem(corn);
+					anima25.m_consumeItems.AddItem(bagel);
+					anima25.m_consumeItems.AddItem(bagette);
+					anima25.m_consumeItems.AddItem(apple);
+					anima25.m_consumeItems.AddItem(pear);
+					anima25.m_consumeItems.AddItem(mushroom);
 				// OldSpots
 				var oldspots = CreatureManager.Instance.GetCreaturePrefab("OldSpots_FYA");
 				var anima26 = goat.GetComponent<MonsterAI>();
-					anima26.m_consumeItems.Add(cabbage);
-					anima26.m_consumeItems.Add(lettuce);
-					anima26.m_consumeItems.Add(corn);
-					anima26.m_consumeItems.Add(bagel);
-					anima26.m_consumeItems.Add(bagette);
-					anima26.m_consumeItems.Add(apple);
-					anima26.m_consumeItems.Add(pear);
-					anima26.m_consumeItems.Add(mushroom);
+					anima26.m_consumeItems.AddItem(cabbage);
+					anima26.m_consumeItems.AddItem(lettuce);
+					anima26.m_consumeItems.AddItem(corn);
+					anima26.m_consumeItems.AddItem(bagel);
+					anima26.m_consumeItems.AddItem(bagette);
+					anima26.m_consumeItems.AddItem(apple);
+					anima26.m_consumeItems.AddItem(pear);
+					anima26.m_consumeItems.AddItem(mushroom);
 				// OldSpots
 				var oxford = CreatureManager.Instance.GetCreaturePrefab("Oxford_FYA");
 				var anima27 = goat.GetComponent<MonsterAI>();
-					anima27.m_consumeItems.Add(cabbage);
-					anima27.m_consumeItems.Add(lettuce);
-					anima27.m_consumeItems.Add(corn);
-					anima27.m_consumeItems.Add(bagel);
-					anima27.m_consumeItems.Add(bagette);
-					anima27.m_consumeItems.Add(apple);
-					anima27.m_consumeItems.Add(pear);
-					anima27.m_consumeItems.Add(mushroom);
+					anima27.m_consumeItems.AddItem(cabbage);
+					anima27.m_consumeItems.AddItem(lettuce);
+					anima27.m_consumeItems.AddItem(corn);
+					anima27.m_consumeItems.AddItem(bagel);
+					anima27.m_consumeItems.AddItem(bagette);
+					anima27.m_consumeItems.AddItem(apple);
+					anima27.m_consumeItems.AddItem(pear);
+					anima27.m_consumeItems.AddItem(mushroom);
 				// Chester
 				var chester = CreatureManager.Instance.GetCreaturePrefab("Chester_FYA");
 				var anima28 = goat.GetComponent<MonsterAI>();
-					anima28.m_consumeItems.Add(cabbage);
-					anima28.m_consumeItems.Add(lettuce);
-					anima28.m_consumeItems.Add(corn);
-					anima28.m_consumeItems.Add(bagel);
-					anima28.m_consumeItems.Add(bagette);
-					anima28.m_consumeItems.Add(apple);
-					anima28.m_consumeItems.Add(pear);
-					anima28.m_consumeItems.Add(mushroom);
+					anima28.m_consumeItems.AddItem(cabbage);
+					anima28.m_consumeItems.AddItem(lettuce);
+					anima28.m_consumeItems.AddItem(corn);
+					anima28.m_consumeItems.AddItem(bagel);
+					anima28.m_consumeItems.AddItem(bagette);
+					anima28.m_consumeItems.AddItem(apple);
+					anima28.m_consumeItems.AddItem(pear);
+					anima28.m_consumeItems.AddItem(mushroom);
+				// Drops
+				var pick1 = PrefabManager.Instance.GetPrefab("BoxOfDairy_SC");
+				var fya1 = PrefabManager.Instance.GetPrefab("Milk_FYA");
+				pick1.GetComponent<Pickable>().m_extraDrops.m_drops.Add(new DropTable.DropData
+				{
+					m_item = fya1,
+					m_stackMin = 1,
+					m_stackMax = 3,
+					m_weight = 1
+				});
 			}
 			catch (Exception ex)
 			{

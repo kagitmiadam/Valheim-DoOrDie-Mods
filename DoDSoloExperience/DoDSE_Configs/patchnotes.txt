@@ -1,5 +1,33 @@
 ﻿Patch Notes
 
+2.0.4
+
+	Added missing Drops for Fantasy Creatures.
+	Added more items to Knarr.
+	
+2.0.3
+
+	Added more drops to the Wendigo, Yet and Werewolves
+	Removed the double DLL for DoD SE in the Quest Framework folder (You will need to manual delete this folder)
+	Slight adjustments to some monsters difficulty
+
+2.0.2
+
+	Added Fancy Food dependancy.
+	Updated Jewelcrafting config.
+	
+2.0.1
+
+	Fixed Giant's scaling with CLLC.
+
+2.0.0
+
+	Added Dual Wield, Starvation, Minotaurs, Deds Army, Jewelcrafting, Evasion, Tenacity, Mining, Vitality, Blacksmithing and Cooking as dependancies.
+	Swamp monsters changed to Deds Army mobs once Bonemass is killed. (World Spawns)
+	Zarathos spawns once Bhygshan is killed.
+	Added all mobs to Epic MMO's XP System.	
+	Removed Epic Loot Dependancy.
+	
 1.3.4
 
 	Removed a bunch of config files that made their way into the zip from my testing.

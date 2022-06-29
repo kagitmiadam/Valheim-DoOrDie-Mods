@@ -51,6 +51,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RangerArmorModification", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedsArmy", "DedsArmy\DedsArmy.csproj", "{60523865-1707-47D9-AAB3-23A91422C33A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FancyFoods", "FancyFoods\FancyFoods.csproj", "{E89BD080-FF9E-498B-BD5F-321DE53AA717}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FruitTrees", "FruitTrees\FruitTrees.csproj", "{CA520BCE-14A3-4820-BF77-39A39D19BF44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +157,14 @@ Global
 		{60523865-1707-47D9-AAB3-23A91422C33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60523865-1707-47D9-AAB3-23A91422C33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60523865-1707-47D9-AAB3-23A91422C33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E89BD080-FF9E-498B-BD5F-321DE53AA717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E89BD080-FF9E-498B-BD5F-321DE53AA717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E89BD080-FF9E-498B-BD5F-321DE53AA717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E89BD080-FF9E-498B-BD5F-321DE53AA717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA520BCE-14A3-4820-BF77-39A39D19BF44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA520BCE-14A3-4820-BF77-39A39D19BF44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA520BCE-14A3-4820-BF77-39A39D19BF44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA520BCE-14A3-4820-BF77-39A39D19BF44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

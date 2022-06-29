@@ -477,7 +477,7 @@ Ice Elemental:
         5: 1.25
 # Frost Giant
 Frost Giant:
-  size: 0.02
+  size: 0
   effect:
     Splitting: 0
   infusion: 

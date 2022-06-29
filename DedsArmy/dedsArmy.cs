@@ -29,7 +29,7 @@ namespace DedsArmy
 
 		public const string PluginName = "DedsArmy";
 
-		public const string PluginVersion = "0.0.5";
+		public const string PluginVersion = "0.0.8";
 
 		public static GameObject Ghoul1;
 		public static GameObject Ghoul2;
@@ -1053,6 +1053,7 @@ namespace DedsArmy
 					.SetConditionAltitudeMin(-0.25f)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionRequiredGlobalKey("defeated_bonemass")
 					;
 				config.ConfigureWorldSpawner(27_106)
 					.SetPrefabName("Skeleton2H_DA")
@@ -1066,6 +1067,7 @@ namespace DedsArmy
 					.SetConditionAltitudeMin(-0.25f)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionRequiredGlobalKey("defeated_bonemass")
 					;
 				config.ConfigureWorldSpawner(27_105)
 					.SetPrefabName("Skeleton1H_DA")
@@ -1079,6 +1081,7 @@ namespace DedsArmy
 					.SetConditionAltitudeMin(-0.25f)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionRequiredGlobalKey("defeated_bonemass")
 					;
 				config.ConfigureWorldSpawner(27_104)
 					.SetPrefabName("UndeadDesecrator_DA")
@@ -1092,6 +1095,7 @@ namespace DedsArmy
 					.SetConditionAltitudeMin(-0.25f)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionRequiredGlobalKey("defeated_bonemass")
 					;
 				config.ConfigureWorldSpawner(27_103)
 					.SetPrefabName("UndeadReaver_DA")
@@ -1105,6 +1109,7 @@ namespace DedsArmy
 					.SetConditionAltitudeMin(-0.25f)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionRequiredGlobalKey("defeated_bonemass")
 					;
 				config.ConfigureWorldSpawner(27_102)
 					.SetPrefabName("UndeadRipper_DA")
@@ -1118,6 +1123,7 @@ namespace DedsArmy
 					.SetConditionAltitudeMin(-0.25f)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionRequiredGlobalKey("defeated_bonemass")
 					;
 				config.ConfigureWorldSpawner(27_101)
 					.SetPrefabName("UndeadCarver_DA")
@@ -1131,6 +1137,7 @@ namespace DedsArmy
 					.SetConditionAltitudeMin(-0.25f)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionRequiredGlobalKey("defeated_bonemass")
 					;
 				config.ConfigureWorldSpawner(27_100)
 					.SetPrefabName("Undead_DA")
@@ -1144,6 +1151,7 @@ namespace DedsArmy
 					.SetConditionAltitudeMin(-0.25f)
 					.SetSpawnAtDistanceToPlayerMin(75)
 					.SetSpawnAtDistanceToPlayerMax(125)
+					.SetConditionRequiredGlobalKey("defeated_bonemass")
 					;
 			}
 			catch (Exception e)
