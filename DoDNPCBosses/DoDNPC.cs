@@ -27,7 +27,6 @@ namespace DoDNPCs
 	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
 	[BepInDependency("com.jotunn.jotunn", BepInDependency.DependencyFlags.HardDependency)]
 	[BepInDependency("asharppen.valheim.spawn_that", BepInDependency.DependencyFlags.HardDependency)]
-	[BepInDependency("horemvore.DoDBiomes", BepInDependency.DependencyFlags.HardDependency)]
 	[BepInDependency("horemvore.DoDItems", BepInDependency.DependencyFlags.HardDependency)]
 	[BepInDependency("horemvore.FantasyArmoury", BepInDependency.DependencyFlags.HardDependency)]
 	[BepInDependency("GoldenJude_JudesEquipment", BepInDependency.DependencyFlags.HardDependency)]
@@ -38,11 +37,12 @@ namespace DoDNPCs
 
 		public const string PluginName = "DoOrDieNPC";
 
-		public const string PluginVersion = "0.1.0";
+		public const string PluginVersion = "0.1.1";
 
 		public static bool isModded = true;
 
 		public AssetBundle NPCBundle;
+		public AssetBundle NPCLocBundle;
 		private Harmony _harmony;
 		internal static ManualLogSource Log;
 
@@ -71,10 +71,19 @@ namespace DoDNPCs
 		public static GameObject NPCAuraLightningAoE;
 		public static GameObject NPCAuraPoisonAoE;
 
+		public ConfigEntry<bool> DoDLocEnable;
+		public void CreateConfigurationValues()
+		{
+			DoDLocEnable = base.Config.Bind("Custom NPC Locations", "Enable", defaultValue: true, new ConfigDescription("Enables Camp and Mini Boss Locations around the world.", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+		}
 		private void Awake()
 		{
 			Log = Logger;
 			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoOrDieNPC");
+			CreateConfigurationValues();
 			LoadBundle();
 			LoadAssets();
 			AddNPCAttacks();
@@ -88,7 +97,8 @@ namespace DoDNPCs
 			CloneAndAddMistlandsBosses();
 			CloneAndAddDeepNorthBosses();
 			CloneAndAddAshLandsBosses();
-            try
+			ZoneManager.OnVanillaLocationsAvailable += AddLocations;
+			try
 			{
 				SpawnerConfigurationManager.OnConfigure += ConfigureSpawners;
 
@@ -192,6 +202,7 @@ namespace DoDNPCs
 							new DropConfig
 							{
 								Item = "Coins",
+								Chance = 100,
 								MinAmount = 3,
 								MaxAmount = 10
 							}
@@ -207,8 +218,36 @@ namespace DoDNPCs
 							new DropConfig
 							{
 								Item = "Coins",
+								Chance = 100,
 								MinAmount = 3,
 								MaxAmount = 10
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 1,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 5,
+								MinAmount = 1,
+								MaxAmount = 1,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 5,
+								MinAmount = 1,
+								MaxAmount = 1,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -222,6 +261,7 @@ namespace DoDNPCs
 							new DropConfig
 							{
 								Item = "Coins",
+								Chance = 100,
 								MinAmount = 3,
 								MaxAmount = 10
 							}
@@ -237,8 +277,36 @@ namespace DoDNPCs
 							new DropConfig
 							{
 								Item = "Coins",
+								Chance = 100,
 								MinAmount = 3,
 								MaxAmount = 10
+							},
+							new DropConfig
+							{
+								Item = "GreyPearl_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 1,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 5,
+								MinAmount = 1,
+								MaxAmount = 1,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 5,
+								MinAmount = 1,
+								MaxAmount = 1,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -252,6 +320,7 @@ namespace DoDNPCs
 							new DropConfig
 							{
 								Item = "Coins",
+								Chance = 100,
 								MinAmount = 3,
 								MaxAmount = 10
 							}
@@ -267,8 +336,36 @@ namespace DoDNPCs
 							new DropConfig
 							{
 								Item = "Coins",
+								Chance = 100,
 								MinAmount = 3,
 								MaxAmount = 10
+							},
+							new DropConfig
+							{
+								Item = "FrometalOre_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 15,
+								MinAmount = 1,
+								MaxAmount = 1,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 15,
+								MinAmount = 1,
+								MaxAmount = 1,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -282,8 +379,36 @@ namespace DoDNPCs
 							new DropConfig
 							{
 								Item = "Coins",
+								Chance = 100,
 								MinAmount = 3,
 								MaxAmount = 10
+							},
+							new DropConfig
+							{
+								Item = "FelmetalOre_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 1,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 10,
+								MinAmount = 1,
+								MaxAmount = 1,
+								OnePerPlayer = false,
+								LevelMultiplier = false,
 							}
 						}
 					});
@@ -296,7 +421,7 @@ namespace DoDNPCs
 			finally
 			{
 				//Debug.Log("DoD NPC: NPC's Done");
-				//FantasyBundle.Unload(false);
+				NPCBundle.Unload(false);
 			}
 		}
 		private void CloneAndAddMeadowsBosses()
@@ -991,7 +1116,7 @@ namespace DoDNPCs
 							},
 							new DropConfig
 							{
-								Item = "BlackmetalScrap",
+								Item = "BlackMetalScrap",
 								Chance = 50,
 								MinAmount = 3,
 								MaxAmount = 8,
@@ -1063,7 +1188,7 @@ namespace DoDNPCs
 							},
 							new DropConfig
 							{
-								Item = "BlackmetalScrap",
+								Item = "BlackMetalScrap",
 								Chance = 50,
 								MinAmount = 3,
 								MaxAmount = 8,
@@ -1170,7 +1295,7 @@ namespace DoDNPCs
 							},
 							new DropConfig
 							{
-								Item = "Steel_DoD",
+								Item = "SteelBar_DoD",
 								Chance = 50,
 								MinAmount = 3,
 								MaxAmount = 8,
@@ -1251,7 +1376,7 @@ namespace DoDNPCs
 							},
 							new DropConfig
 							{
-								Item = "Steel_DoD",
+								Item = "SteelBar_DoD",
 								Chance = 50,
 								MinAmount = 3,
 								MaxAmount = 8,
@@ -1647,6 +1772,124 @@ namespace DoDNPCs
 				CreatureManager.OnVanillaCreaturesAvailable -= CloneAndAddAshLandsBosses;
 			}
 		}
+		private void AddLocations()
+		{
+			////Debug.Log("DoDMonsters: 35");
+			NPCLocBundle = AssetUtils.LoadAssetBundleFromResources("dodnpclocations", Assembly.GetExecutingAssembly());
+			try
+			{
+				if (DoDLocEnable.Value == true)
+				{
+					var BossPlatformAL = ZoneManager.Instance.CreateLocationContainer(NPCLocBundle.LoadAsset<GameObject>("Loc_BossPlatform_AL_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformAL, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.AshLands,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var BossPlatformDN = ZoneManager.Instance.CreateLocationContainer(NPCLocBundle.LoadAsset<GameObject>("Loc_BossPlatform_DN_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformDN, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.DeepNorth,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var BossPlatformMist = ZoneManager.Instance.CreateLocationContainer(NPCLocBundle.LoadAsset<GameObject>("Loc_BossPlatform_Mist_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformMist, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Mistlands,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var BossPlatformPlains = ZoneManager.Instance.CreateLocationContainer(NPCLocBundle.LoadAsset<GameObject>("Loc_BossPlatform_Plains_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformPlains, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Plains,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var BossPlatformMount = ZoneManager.Instance.CreateLocationContainer(NPCLocBundle.LoadAsset<GameObject>("Loc_BossPlatform_Mount_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformMount, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Mountain,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var BossPlatformSwamp = ZoneManager.Instance.CreateLocationContainer(NPCLocBundle.LoadAsset<GameObject>("Loc_BossPlatform_Swamp_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformSwamp, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Swamp,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 0.5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var BossPlatformBF = ZoneManager.Instance.CreateLocationContainer(NPCLocBundle.LoadAsset<GameObject>("Loc_BossPlatform_BF_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformBF, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.BlackForest,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var BossPlatformMead = ZoneManager.Instance.CreateLocationContainer(NPCLocBundle.LoadAsset<GameObject>("Loc_BossPlatform_Meadows_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformMead, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Meadows,
+						Quantity = 8,
+						Priotized = true,
+						ExteriorRadius = 17f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 750f,
+					}));
+					var AnyLoc2 = ZoneManager.Instance.CreateLocationContainer(NPCLocBundle.LoadAsset<GameObject>("Loc_Camp_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(AnyLoc2, true, new LocationConfig
+					{
+						Biome = ZoneManager.AnyBiomeOf(Heightmap.Biome.Meadows, Heightmap.Biome.BlackForest, Heightmap.Biome.Swamp, Heightmap.Biome.Mountain, Heightmap.Biome.Plains, Heightmap.Biome.Mistlands),
+						Quantity = 300,
+						Priotized = true,
+						ExteriorRadius = 1f,
+						MinAltitude = 2f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 500f,
+					}));
+				}
+				else
+				{
+					Debug.Log("DoD NPC Locations disabled.");
+				}
+			}
+			finally
+			{
+				NPCLocBundle.Unload(false);
+			}
+		}
 		public static void ConfigureSpawners(ISpawnerConfigurationCollection config)
 		{
 			try
@@ -1959,6 +2202,5 @@ namespace DoDNPCs
 				Log.LogError(e);
 			}
 		}
-
 	}
 }

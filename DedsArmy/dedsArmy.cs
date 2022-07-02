@@ -29,7 +29,7 @@ namespace DedsArmy
 
 		public const string PluginName = "DedsArmy";
 
-		public const string PluginVersion = "0.0.8";
+		public const string PluginVersion = "0.1.1";
 
 		public static GameObject Ghoul1;
 		public static GameObject Ghoul2;
@@ -119,13 +119,6 @@ namespace DedsArmy
 		public AssetBundle GhoulBundle;
 		private Harmony _harmony;
 		internal static ManualLogSource Log;
-		public static AssetBundle GetAssetBundleFromResources(string fileName)
-		{
-			Assembly executingAssembly = Assembly.GetExecutingAssembly();
-			string text = executingAssembly.GetManifestResourceNames().Single((string str) => str.EndsWith(fileName));
-			using Stream stream = executingAssembly.GetManifestResourceStream(text);
-			return AssetBundle.LoadFromStream(stream);
-		}
 		private void CreateConfigurationValues()
 		{
 			EnableSpawns = base.Config.Bind("Spawning", "Enable", defaultValue: true, new ConfigDescription("Enables default swamp biome spawning.", null, new ConfigurationManagerAttributes
@@ -189,6 +182,35 @@ namespace DedsArmy
 			Skeleton2 = GhoulBundle.LoadAsset<GameObject>("Skeleton2H_DA");
 			Vampire1 = GhoulBundle.LoadAsset<GameObject>("Vampire_DA");
 			Boss1 = GhoulBundle.LoadAsset<GameObject>("UndeadBoss_DA");
+			// Ragdolls
+			//Debug.Log("Ded's Army: Ragdolls");
+			GameObject Ragdoll1 = GhoulBundle.LoadAsset<GameObject>("Skeleton1H_RD_DA");
+			CustomPrefab RD1 = new CustomPrefab(Ragdoll1, true);
+			PrefabManager.Instance.AddPrefab(RD1);
+			GameObject Ragdoll2 = GhoulBundle.LoadAsset<GameObject>("Skeleton2H_RD_DA");
+			CustomPrefab RD2 = new CustomPrefab(Ragdoll2, true);
+			PrefabManager.Instance.AddPrefab(RD2);
+			GameObject Ragdoll3 = GhoulBundle.LoadAsset<GameObject>("Undead_RD_DA");
+			CustomPrefab RD3 = new CustomPrefab(Ragdoll3, true);
+			PrefabManager.Instance.AddPrefab(RD3);
+			GameObject Ragdoll4 = GhoulBundle.LoadAsset<GameObject>("UndeadBoss_RD_DA");
+			CustomPrefab RD4 = new CustomPrefab(Ragdoll4, true);
+			PrefabManager.Instance.AddPrefab(RD4);
+			GameObject Ragdoll5 = GhoulBundle.LoadAsset<GameObject>("UndeadCarver_RD_DA");
+			CustomPrefab RD5 = new CustomPrefab(Ragdoll5, true);
+			PrefabManager.Instance.AddPrefab(RD5);
+			GameObject Ragdoll6 = GhoulBundle.LoadAsset<GameObject>("UndeadDesecrator_RD_DA");
+			CustomPrefab RD6 = new CustomPrefab(Ragdoll6, true);
+			PrefabManager.Instance.AddPrefab(RD6);
+			GameObject Ragdoll7 = GhoulBundle.LoadAsset<GameObject>("UndeadReaver_RD_DA");
+			CustomPrefab RD7 = new CustomPrefab(Ragdoll7, true);
+			PrefabManager.Instance.AddPrefab(RD7);
+			GameObject Ragdoll8 = GhoulBundle.LoadAsset<GameObject>("UndeadRipper_RD_DA");
+			CustomPrefab RD8 = new CustomPrefab(Ragdoll8, true);
+			PrefabManager.Instance.AddPrefab(RD8);
+			GameObject Ragdoll9 = GhoulBundle.LoadAsset<GameObject>("Vampire_RD_DA");
+			CustomPrefab RD9 = new CustomPrefab(Ragdoll9, true);
+			PrefabManager.Instance.AddPrefab(RD9);
 			// Attacks
 			//Debug.Log("Ded's Army: Attacks");
 			JAttack1 = GhoulBundle.LoadAsset<GameObject>("Undead_Attack1_DA");

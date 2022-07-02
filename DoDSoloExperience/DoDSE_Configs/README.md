@@ -307,6 +307,10 @@ To Do
 	
 ## Patch Notes
 
+**2.0.5**
+
+	General Bugfixing and Balancing.
+
 **2.0.4**
 
 	Added missing Drops for Fantasy Creatures.

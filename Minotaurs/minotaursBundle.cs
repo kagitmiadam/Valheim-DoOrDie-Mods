@@ -29,7 +29,7 @@ namespace Minotaurs
 
 		public const string PluginName = "Minotaurs";
 
-		public const string PluginVersion = "0.0.2";
+		public const string PluginVersion = "0.1.1";
 
 		public static bool isModded = true;
 
@@ -89,6 +89,26 @@ namespace Minotaurs
 		}
 		private void LoadAssets()
 		{
+			// Ragdolls
+			//Debug.Log("Minotaurs: Ragdolls");
+			GameObject Ragdoll1 = MinotaursBundle.LoadAsset<GameObject>("FireMinotaur_RD_HM");
+			CustomPrefab RD1 = new CustomPrefab(Ragdoll1, true);
+			PrefabManager.Instance.AddPrefab(RD1);
+			GameObject Ragdoll2 = MinotaursBundle.LoadAsset<GameObject>("FireMinotaurArmoured_RD_HM");
+			CustomPrefab RD2 = new CustomPrefab(Ragdoll2, true);
+			PrefabManager.Instance.AddPrefab(RD2);
+			GameObject Ragdoll3 = MinotaursBundle.LoadAsset<GameObject>("FrostMinotaur_RD_HM");
+			CustomPrefab RD3 = new CustomPrefab(Ragdoll3, true);
+			PrefabManager.Instance.AddPrefab(RD3);
+			GameObject Ragdoll4 = MinotaursBundle.LoadAsset<GameObject>("FrostMinotaurArmoured_RD_HM");
+			CustomPrefab RD4 = new CustomPrefab(Ragdoll4, true);
+			PrefabManager.Instance.AddPrefab(RD4);
+			GameObject Ragdoll5 = MinotaursBundle.LoadAsset<GameObject>("Minotaur_RD_HM");
+			CustomPrefab RD5 = new CustomPrefab(Ragdoll5, true);
+			PrefabManager.Instance.AddPrefab(RD5);
+			GameObject Ragdoll6 = MinotaursBundle.LoadAsset<GameObject>("MinotaurArmoured_RD_HM");
+			CustomPrefab RD6 = new CustomPrefab(Ragdoll6, true);
+			PrefabManager.Instance.AddPrefab(RD6);
 			// Mobs
 			//Debug.Log("Minotaurs: Mobs");
 			Minotaur6 = MinotaursBundle.LoadAsset<GameObject>("FireMinotaur_HM");

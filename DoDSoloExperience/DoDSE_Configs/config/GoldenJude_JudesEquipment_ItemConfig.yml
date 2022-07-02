@@ -1152,11 +1152,11 @@ simple backpack:
     backpack:
       item prefab name: BackpackSimple
       required for set bonus: true
-      armor: 0
-      armor per level: 2
+      armor: 1
+      armor per level: 1
       enable durability: true
-      baseDurability: 10
-      durability per level: 10
+      baseDurability: 50
+      durability per level: 20
       repairable: true
       destroy when broken: false
       weight: 15
@@ -1211,7 +1211,7 @@ heavy backpack:
     backpack:
       item prefab name: BackpackHeavy
       required for set bonus: true
-      armor: 0
+      armor: 2
       armor per level: 2
       enable durability: true
       baseDurability: 100

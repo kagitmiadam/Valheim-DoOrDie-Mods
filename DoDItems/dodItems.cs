@@ -20,7 +20,6 @@ namespace DoDItems
 	[BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
 	[BepInDependency("com.jotunn.jotunn", BepInDependency.DependencyFlags.HardDependency)]
-	[BepInDependency("horemvore.DoDBiomes", BepInDependency.DependencyFlags.HardDependency)]
 	[BepInDependency("horemvore.DoDMonsters", BepInDependency.DependencyFlags.HardDependency)]
 	internal class dodItems : BaseUnityPlugin
 	{
@@ -28,12 +27,22 @@ namespace DoDItems
 
 		public const string PluginName = "DoOrDieItems";
 
-		public const string PluginVersion = "0.0.2";
+		public const string PluginVersion = "0.1.1";
 
 		public static bool isModded = true;
 
 		private Harmony _harmony;
 		public static readonly ManualLogSource DoDLogger = BepInEx.Logging.Logger.CreateLogSource(PluginName);
+
+		// anvils
+		public static GameObject AnvilsFel;
+		public static GameObject AnvilsFro;
+		public static GameObject AnvilsFlam;
+		public static Sprite TexFlaAnvil;
+		public static Sprite TexFroAnvil;
+		public static Sprite TexFelAnvil;
+		public static GameObject MineRock_FelOre_DoD;
+		public static GameObject MineRock_FroOre_DoD;
 
 		public static GameObject Firesoul;
 		public static GameObject Solarflare;
@@ -133,52 +142,110 @@ namespace DoDItems
 		public static GameObject MaceDeepNorth;
 
 		public static GameObject SwordMoonlight;
+		public static GameObject SteelPick;
+		public static GameObject OakWood;
 
+		public ConfigEntry<bool> AModEnable;
 		public ConfigEntry<bool> ArmorCrateEnable;
 		public ConfigEntry<bool> WeaponCrateEnable;
 		public ConfigEntry<bool> ClassWeaponEnable;
 		public ConfigEntry<bool> WeaponsEnable;
 		public ConfigEntry<bool> BossesEnable;
+		public ConfigEntry<bool> DeepNorthLocations;
+		public ConfigEntry<bool> MistlandsLocations;
 
 		public AssetBundle DoDAssets;
+		public AssetBundle DoDOreMines;
 
-		public static AssetBundle GetAssetBundleFromResources(string fileName)
+		public void CreateConfigurationValues()
 		{
-			Assembly executingAssembly = Assembly.GetExecutingAssembly();
-			string text = executingAssembly.GetManifestResourceNames().Single((string str) => str.EndsWith(fileName));
-			using Stream stream = executingAssembly.GetManifestResourceStream(text);
-			return AssetBundle.LoadFromStream(stream);
+			AModEnable = base.Config.Bind("Enable Mod", "Enable", defaultValue: true, new ConfigDescription("Enables the mod", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			ArmorCrateEnable = base.Config.Bind("Armor Kits", "Enable", defaultValue: true, new ConfigDescription("Enables Armor Kits, if you disable these you will have to disable bosses below", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			WeaponCrateEnable = base.Config.Bind("Weapon Kits", "Enable", defaultValue: true, new ConfigDescription("Enables Weapon Kits, if you disable these you will have to disable all the Weapons below", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			ClassWeaponEnable = base.Config.Bind("Weapons - Magic Overhaul Themed", "Enable", defaultValue: true, new ConfigDescription("Enables Magic Overhaul Themed Class Weapons and items, requires Weapon Kits", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			WeaponsEnable = base.Config.Bind("Weapons", "Enable", defaultValue: true, new ConfigDescription("Enables Weapons, requires Weapon Kits", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			BossesEnable = base.Config.Bind("Shields", "Enable", defaultValue: true, new ConfigDescription("Shields, requires Armor Kits", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			DeepNorthLocations = base.Config.Bind("Deep North Ore Location", "Enable", defaultValue: true, new ConfigDescription("A location consisting of a large deposit of Valhallium", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
+			MistlandsLocations = base.Config.Bind("Mistlands Ore Location", "Enable", defaultValue: true, new ConfigDescription("A location consisting of a large deposit of Adamantine", null, new ConfigurationManagerAttributes
+			{
+				IsAdminOnly = true
+			}));
 		}
 		private void Awake()
 		{
-			CreateConfigurationValues();
-			Debug.Log("DoDItems: Loading and Creating Assets");
-			LoadBundle();
-			LoadDoDAssets();
-			CreateDropables();
-			if (ArmorCrateEnable.Value == true) {
-				CreateArmorCrates(); 
+			try
+			{
+				CreateConfigurationValues();
+				if (AModEnable.Value == true)
+				{
+					Debug.Log("DoDItems: Loading and Creating Assets");
+					LoadBundle();
+					LoadDoDAssets();
+					CreateOakWood();
+					UpdateBlastFurnace();
+					AddCustomOreDeposits();
+					CreateDropables();
+					CreatePickAxe();
+					CreateAnvils(); 
+					if (ArmorCrateEnable.Value == true) {
+						CreateArmorCrates(); 
+					}
+					if (WeaponCrateEnable.Value == true) {
+						CreateWeaponCrates(); 
+					}
+					if (ClassWeaponEnable.Value == true) {
+						CreateClassWeapons(); 
+					}
+					if (WeaponsEnable.Value == true) {
+						CreateArrows();
+						CreateMaces();
+						CreateWands();
+						CreateMagicSwords();
+						CreateBows();
+						CreateSwords(); 
+					}
+					if (BossesEnable.Value == true) {
+						CustomItem shields = ItemManager.Instance.GetItem("BrokenShieldBhygshan_DoD");
+						if (shields != null)
+						{
+							Debug.Log("Shields already added by DoD Shields");
+						}
+						else
+						{
+							CreateTierItems();
+							CreateShields();
+						}
+					}
+					UnloadBundle();
+					ZoneManager.OnVanillaLocationsAvailable += AddLocations;
+					_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoDItems");
+				}
 			}
-			if (WeaponCrateEnable.Value == true) {
-				CreateWeaponCrates(); 
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding DoD Items: {ex}");
 			}
-			if (ClassWeaponEnable.Value == true) {
-				CreateClassWeapons(); 
-			}
-			if (WeaponsEnable.Value == true) {
-				CreateArrows();
-				CreateMaces();
-				CreateWands();
-				CreateMagicSwords();
-				CreateBows();
-				CreateSwords(); 
-			}
-			if (BossesEnable.Value == true) {
-				CreateTierItems();
-				CreateShields(); 
-			}
-			UnloadBundle();
-			_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoDMonsters");
 		}
 		public void LoadBundle()
 		{
@@ -186,6 +253,18 @@ namespace DoDItems
 		}
 		private void LoadDoDAssets()
 		{
+			Debug.Log("DoDItems: Anvils");
+			TexFlaAnvil = DoDAssets.LoadAsset<Sprite>("FlaAnvil_Icon_DoD");
+			TexFroAnvil = DoDAssets.LoadAsset<Sprite>("FroAnvil_Icon_DoD");
+			TexFelAnvil = DoDAssets.LoadAsset<Sprite>("FelAnvil_Icon_DoD");
+			AnvilsFel = DoDAssets.LoadAsset<GameObject>("FelmetalAnvils_DoD");
+			AnvilsFro = DoDAssets.LoadAsset<GameObject>("FrometalAnvils_DoD");
+			AnvilsFlam = DoDAssets.LoadAsset<GameObject>("FlametalAnvils_DoD");
+			// ores
+			Debug.Log("DoDItems: Ores");
+			MineRock_FroOre_DoD = DoDAssets.LoadAsset<GameObject>("MineRock_FroOre_DoD");
+			MineRock_FelOre_DoD = DoDAssets.LoadAsset<GameObject>("MineRock_FelOre_DoD");
+			SteelPick = DoDAssets.LoadAsset<GameObject>("SteelPickaxe_DoD");
 			Debug.Log("DoDItems: Broken Shields");
 			// Broken Shields
 			ShieldBGSkull = DoDAssets.LoadAsset<GameObject>("BrokenShieldBhygshan_DoD");
@@ -297,33 +376,44 @@ namespace DoDItems
 			GameObject AoEMoonSword = DoDAssets.LoadAsset<GameObject>("AoE_MoonSword_DoD");
 			GameObject AoENinjaSword = DoDAssets.LoadAsset<GameObject>("AoE_NinjaSword_DoD");
 			GameObject AoERogueSword = DoDAssets.LoadAsset<GameObject>("AoE_RogueSword_DoD");
-			PrefabManager.Instance.AddPrefab(AoEDivineMace);
-			PrefabManager.Instance.AddPrefab(AoEMoonSword);
-			PrefabManager.Instance.AddPrefab(AoENinjaSword);
-			PrefabManager.Instance.AddPrefab(AoERogueSword);
-		}
-		public void CreateConfigurationValues()
-		{
-			ArmorCrateEnable = base.Config.Bind("Armor Kits", "Enable", defaultValue: true, new ConfigDescription("Enables Armor Kits, if you disable these you will have to disable bosses below", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));
-			WeaponCrateEnable = base.Config.Bind("Weapon Kits", "Enable", defaultValue: true, new ConfigDescription("Enables Weapon Kits, if you disable these you will have to disable all the Weapons below", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));
-			ClassWeaponEnable = base.Config.Bind("Weapons - Magic Overhaul Themed", "Enable", defaultValue: true, new ConfigDescription("Enables Magic Overhaul Themed Class Weapons and items, requires Weapon Kits", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));
-			WeaponsEnable = base.Config.Bind("Weapons", "Enable", defaultValue: true, new ConfigDescription("Enables Weapons, requires Weapon Kits", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));
-			BossesEnable = base.Config.Bind("Shields", "Enable", defaultValue: true, new ConfigDescription("Shields, requires Armor Kits", null, new ConfigurationManagerAttributes
-			{
-				IsAdminOnly = true
-			}));
+			CustomPrefab AoE1 = new CustomPrefab(AoEDivineMace, true);
+			PrefabManager.Instance.AddPrefab(AoE1);
+			CustomPrefab AoE2 = new CustomPrefab(AoEMoonSword, true);
+			PrefabManager.Instance.AddPrefab(AoE2);
+			CustomPrefab AoE3 = new CustomPrefab(AoENinjaSword, true);
+			PrefabManager.Instance.AddPrefab(AoE3);
+			CustomPrefab AoE4 = new CustomPrefab(AoERogueSword, true);
+			PrefabManager.Instance.AddPrefab(AoE4);
+
+			Debug.Log("DoDItems: SFX");
+			GameObject SFX1 = DoDAssets.LoadAsset<GameObject>("i_loc_sfx_rock_destroyed_dod");
+			CustomPrefab sfx1 = new CustomPrefab(SFX1, true);
+			PrefabManager.Instance.AddPrefab(sfx1);
+			GameObject SFX2 = DoDAssets.LoadAsset<GameObject>("i_loc_sfx_rock_hit_dod");
+			CustomPrefab sfx2 = new CustomPrefab(SFX2, true);
+			PrefabManager.Instance.AddPrefab(sfx2);
+			GameObject SFX3 = DoDAssets.LoadAsset<GameObject>("i_SFX_Rock_Destroyed_DoD");
+			CustomPrefab sfx3 = new CustomPrefab(SFX3, true);
+			PrefabManager.Instance.AddPrefab(sfx3);
+			GameObject SFX4 = DoDAssets.LoadAsset<GameObject>("i_SFX_Rock_Hit_DoD");
+			CustomPrefab sfx4 = new CustomPrefab(SFX4, true);
+			PrefabManager.Instance.AddPrefab(sfx4);
+			Debug.Log("DoDItems: VFX");
+			GameObject VFX1 = DoDAssets.LoadAsset<GameObject>("i_VFX_Felore_Destroy_DoD");
+			CustomPrefab vfx1 = new CustomPrefab(VFX1, true);
+			PrefabManager.Instance.AddPrefab(vfx1);
+			GameObject VFX2 = DoDAssets.LoadAsset<GameObject>("i_VFX_Mine_Hit_DoD");
+			CustomPrefab vfx2 = new CustomPrefab(VFX2, true);
+			PrefabManager.Instance.AddPrefab(vfx2);
+			GameObject VFX3 = DoDAssets.LoadAsset<GameObject>("i_VFX_RockDestroyed_DoD");
+			CustomPrefab vfx3 = new CustomPrefab(VFX3, true);
+			PrefabManager.Instance.AddPrefab(vfx3);
+			GameObject VFX4 = DoDAssets.LoadAsset<GameObject>("i_VFX_RockHit_DoD");
+			CustomPrefab vfx4 = new CustomPrefab(VFX4, true);
+			PrefabManager.Instance.AddPrefab(vfx4);
+			GameObject VFX5 = DoDAssets.LoadAsset<GameObject>("i_VFX_Hit_DoD");
+			CustomPrefab vfx5 = new CustomPrefab(VFX5, true);
+			PrefabManager.Instance.AddPrefab(vfx5);
 		}
 		private void CreateWeaponCrates()
 		{
@@ -2749,10 +2839,297 @@ namespace DoDItems
 			});
 			ItemManager.Instance.AddItem(customItem1);
 		}
+		private void UpdateBlastFurnace()
+		{
+            try
+			{
+				GameObject itemPrefab = DoDAssets.LoadAsset<GameObject>("SteelBar_DoD");
+				CustomItem customItem = new CustomItem(itemPrefab, fixReference: false);
+				ItemManager.Instance.AddItem(customItem);
+
+				CustomItemConversion itemConversion = new CustomItemConversion(new SmelterConversionConfig
+				{
+					Station = "blastfurnace",
+					FromItem = "Iron",
+					ToItem = "SteelBar_DoD"
+				});
+				ItemManager.Instance.AddItemConversion(itemConversion);
+
+				GameObject itemPrefab2 = DoDAssets.LoadAsset<GameObject>("FrometalOre_DoD");
+				GameObject itemPrefab3 = DoDAssets.LoadAsset<GameObject>("FrometalBar_DoD");
+				CustomItem customItem2 = new CustomItem(itemPrefab2, fixReference: false);
+				CustomItem customItem3 = new CustomItem(itemPrefab3, fixReference: false);
+				ItemManager.Instance.AddItem(customItem2);
+				ItemManager.Instance.AddItem(customItem3);
+				CustomItemConversion itemConversion2 = new CustomItemConversion(new SmelterConversionConfig
+				{
+					Station = "blastfurnace",
+					FromItem = "FrometalOre_DoD",
+					ToItem = "FrometalBar_DoD"
+				});
+				ItemManager.Instance.AddItemConversion(itemConversion2);
+
+				GameObject itemPrefab4 = DoDAssets.LoadAsset<GameObject>("FelmetalOre_DoD");
+				GameObject itemPrefab5 = DoDAssets.LoadAsset<GameObject>("FelmetalBar_DoD");
+				CustomItem customItem4 = new CustomItem(itemPrefab4, fixReference: false);
+				CustomItem customItem5 = new CustomItem(itemPrefab5, fixReference: false);
+				ItemManager.Instance.AddItem(customItem4);
+				ItemManager.Instance.AddItem(customItem5);
+				CustomItemConversion itemConversion3 = new CustomItemConversion(new SmelterConversionConfig
+				{
+					Station = "blastfurnace",
+					FromItem = "FelmetalOre_DoD",
+					ToItem = "FelmetalBar_DoD"
+				});
+				ItemManager.Instance.AddItemConversion(itemConversion3);
+
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding Ores and Metals: {ex}");
+			}
+		}
+		private void AddCustomOreDeposits()
+		{
+            try
+			{
+				Debug.Log("DoDItems: Ore Deposits");
+				CustomVegetation customFroOre = new CustomVegetation(MineRock_FroOre_DoD, true, new VegetationConfig
+				{
+					Max = 1f,
+					GroupSizeMin = 1,
+					GroupSizeMax = 2,
+					GroupRadius = 64f,
+					BlockCheck = true,
+					Biome = Heightmap.Biome.DeepNorth,
+					MinAltitude = 1f,
+					MaxTilt = 30f
+				});
+				ZoneManager.Instance.AddCustomVegetation(customFroOre);
+				CustomVegetation customFelOre = new CustomVegetation(MineRock_FelOre_DoD, true, new VegetationConfig
+				{
+					Max = 1f,
+					GroupSizeMin = 1,
+					GroupSizeMax = 2,
+					GroupRadius = 64f,
+					BlockCheck = true,
+					Biome = Heightmap.Biome.Mistlands,
+					MinAltitude = 15f,
+					MaxTilt = 30f
+				});
+				ZoneManager.Instance.AddCustomVegetation(customFelOre);
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding custom Ore Deposits: {ex}");
+			}
+		}
+		private void CreatePickAxe()
+		{
+            try
+			{
+				GameObject P1 = SteelPick;
+				CustomItem customItem1 = new CustomItem(P1, fixReference: true, new ItemConfig
+				{
+					Name = "Steel Pickaxe",
+					Amount = 1,
+					CraftingStation = "forge",
+					MinStationLevel = 1,
+					Requirements = new RequirementConfig[2]
+					{
+						new RequirementConfig
+						{
+							Item = "SteelBar_DoD",
+							Amount = 25
+						},
+						new RequirementConfig
+						{
+							Item = "OakWood_DoD",
+							Amount = 10
+						}
+					}
+				});
+				ItemManager.Instance.AddItem(customItem1);
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding Pick's: {ex}");
+			}
+		}
+		private void CreateAnvils()
+		{
+            try
+			{
+				GameObject gameObject1 = AnvilsFlam;
+				CustomPiece customPiece1 = new CustomPiece(gameObject1, true, new PieceConfig
+				{
+					Description = "Increases Forge level by one",
+					Icon = TexFlaAnvil,
+					PieceTable = "Hammer",
+					Category = "Crafting",
+					Requirements = new RequirementConfig[3]
+					{
+					new RequirementConfig
+					{
+						Item = "Flametal",
+						Amount = 15,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "OakWood_DoD",
+						Amount = 15,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "SurtlingCore",
+						Amount = 2,
+						Recover = true
+					}
+					}
+				});
+				PieceManager.Instance.AddPiece(customPiece1);
+
+				GameObject gameObject2 = AnvilsFro;
+				CustomPiece customPiece2 = new CustomPiece(gameObject2, true, new PieceConfig
+				{
+					Description = "Increases Forge level by one",
+					Icon = TexFroAnvil,
+					PieceTable = "Hammer",
+					Category = "Crafting",
+					Requirements = new RequirementConfig[3]
+					{
+					new RequirementConfig
+					{
+						Item = "FrometalBar_DoD",
+						Amount = 15,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "OakWood_DoD",
+						Amount = 15,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "FrostlingCore_DoD",
+						Amount = 2,
+						Recover = true
+					}
+					}
+				});
+				PieceManager.Instance.AddPiece(customPiece2);
+
+				GameObject gameObject3 = AnvilsFel;
+				CustomPiece customPiece3 = new CustomPiece(gameObject3, true, new PieceConfig
+				{
+					Description = "Increases Forge level by one",
+					Icon = TexFelAnvil,
+					PieceTable = "Hammer",
+					Category = "Crafting",
+					Requirements = new RequirementConfig[3]
+					{
+					new RequirementConfig
+					{
+						Item = "FelmetalBar_DoD",
+						Amount = 15,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "OakWood_DoD",
+						Amount = 15,
+						Recover = true
+					},
+					new RequirementConfig
+					{
+						Item = "VoidlingCore_DoD",
+						Amount = 2,
+						Recover = true
+					}
+					}
+				});
+				PieceManager.Instance.AddPiece(customPiece3);
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding Anvils: {ex}");
+			}
+		}
+		private void CreateOakWood()
+		{
+			try
+			{
+				CustomItem ow = ItemManager.Instance.GetItem("OakWood_DoD");
+				if (ow != null)
+				{
+					Debug.Log("OakWood already added by DoD Biomes");
+				}
+				else
+                {
+					// Add Oak Item
+					OakWood = DoDAssets.LoadAsset<GameObject>("OakWood_DoD");
+					GameObject dropable1 = OakWood;
+					CustomItem customItem1 = new CustomItem(dropable1, true);
+					ItemManager.Instance.AddItem(customItem1);
+                }
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding Oak material: {ex}");
+			}
+		}
+		private void AddLocations()
+		{
+			Debug.Log("DoDItems: Locations");
+			DoDOreMines = AssetUtils.LoadAssetBundleFromResources("dodoremines", Assembly.GetExecutingAssembly());
+			try
+			{
+				if (DeepNorthLocations.Value == true)
+				{
+					var FroOreMine = ZoneManager.Instance.CreateLocationContainer(DoDOreMines.LoadAsset<GameObject>("Loc_FroOreMine_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(FroOreMine, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.DeepNorth,
+						Quantity = 200,
+						Priotized = true,
+						ExteriorRadius = 3f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						SlopeRotation = true,
+						MinDistanceFromSimilar = 250f,
+					}));
+				}
+				if (MistlandsLocations.Value == true)
+				{
+					var MistLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDOreMines.LoadAsset<GameObject>("Loc_OreMine_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(MistLoc2, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Mistlands,
+						Quantity = 200,
+						Priotized = true,
+						ExteriorRadius = 3f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						SlopeRotation = true,
+						MinDistanceFromSimilar = 300f,
+					}));
+				}
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding custom Ore Locations: {ex}");
+			}
+			finally
+			{
+				DoDOreMines.Unload(false);
+			}
+		}
 		private void UnloadBundle()
 		{
 			DoDAssets?.Unload(unloadAllLoadedObjects: false);
 		}
-
 	}
 }

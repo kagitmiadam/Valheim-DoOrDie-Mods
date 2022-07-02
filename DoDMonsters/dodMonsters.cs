@@ -33,7 +33,7 @@ namespace DoDMonsters
 
 		public const string PluginName = "DoOrDieMonsters";
 
-		public const string PluginVersion = "0.5.7";
+		public const string PluginVersion = "0.6.1";
 
 		public static bool isModded = true;
 
@@ -44,6 +44,7 @@ namespace DoDMonsters
 		public static GameObject SkirSandburst;
 		public static GameObject Farkas;
 		public static GameObject FarkasAlt;
+		public static GameObject FarkasClone;
 		public static GameObject Bhygshan;
 		public static GameObject Bitterstump;
 		public static GameObject Rambore;
@@ -212,6 +213,7 @@ namespace DoDMonsters
 		public ConfigEntry<bool> SpawnsEnable;
 
 		public AssetBundle DoDAssets;
+		public AssetBundle DoDBossLoc;
 		internal static ManualLogSource Log;
 
 		public static AssetBundle GetAssetBundleFromResources(string fileName)
@@ -248,6 +250,7 @@ namespace DoDMonsters
 			// Debug.Log("DoDMonsters: Loading and Creating Assets");
 			LoadBundle();
 			LoadDoDAssets();
+			AddDoDMiscPrefabs();
 			if (MonstersEnable.Value == true) {
 				CreateDropables();
 				CreateMonsterAbilities();
@@ -258,6 +261,7 @@ namespace DoDMonsters
 			if (BossesEnable.Value == true) {
 				AddBosses();
 				AddNewMonsters();
+				ZoneManager.OnVanillaLocationsAvailable += AddLocations;
 			}
 			if (SpawnsEnable.Value == true)
 			{
@@ -272,6 +276,7 @@ namespace DoDMonsters
 		}
 		private void LoadDoDAssets()
 		{
+			// Debug.Log("DoDMonsters: Rugs");
 			SkullToken = DoDAssets.LoadAsset<GameObject>("SkullToken_DoD");
 			RugBDeer = DoDAssets.LoadAsset<Sprite>("BlackDeerRug_Icon_DoD");
 			RugDWolf = DoDAssets.LoadAsset<Sprite>("DireWolfRug_Icon_DoD");
@@ -307,6 +312,7 @@ namespace DoDMonsters
 			Bhygshan = DoDAssets.LoadAsset<GameObject>("Bhygshan_DoD");
 			Bitterstump = DoDAssets.LoadAsset<GameObject>("Bitterstump_DoD");
 			Rambore = DoDAssets.LoadAsset<GameObject>("Rambore_DoD");
+			FarkasClone = DoDAssets.LoadAsset<GameObject>("Farkas_Clone_DoD");
 
 			// Debug.Log("DoDMonsters: Monsters");
 			GreaterSurtling = DoDAssets.LoadAsset<GameObject>("GreaterSurtling_DoD");
@@ -367,7 +373,7 @@ namespace DoDMonsters
 			// Debug.Log("DoDMonsters: Boss Attacks");
 			Farkas_FrostBite = DoDAssets.LoadAsset<GameObject>("Farkas_FrostBite_DoD");
 			Farkas_Hamper_Attack = DoDAssets.LoadAsset<GameObject>("Farkas_Hamper_Attack_DoD");
-			Farkas_Bleed = DoDAssets.LoadAsset<GameObject>("Farkas_Bleed_DoD");
+			Farkas_Bleed = DoDAssets.LoadAsset<GameObject>("Farkas_Summon_DoD");
 			Farkas_Attack3 = DoDAssets.LoadAsset<GameObject>("Farkas_Attack3_DoD");
 			Farkas_Attack2 = DoDAssets.LoadAsset<GameObject>("Farkas_Attack2_DoD");
 			Farkas_Attack1 = DoDAssets.LoadAsset<GameObject>("Farkas_Attack1_DoD");
@@ -443,208 +449,331 @@ namespace DoDMonsters
 			TrophyPoisonDrake = DoDAssets.LoadAsset<GameObject>("TrophyPoisonDrake_DoD");
 			TrophyDarkDrake = DoDAssets.LoadAsset<GameObject>("TrophyDarkDrake_DoD");
 
-			// Debug.Log("DoDMonsters: AoE");
-			GameObject AoEHealinng = DoDAssets.LoadAsset<GameObject>("AoE_AuraHealing_DoD");
-			GameObject AoEBhygshanMace = DoDAssets.LoadAsset<GameObject>("AoE_BhygshanMace_DoD");
-			GameObject AoEBitterHeal = DoDAssets.LoadAsset<GameObject>("AoE_Bitterstump_Heal_DoD");
-			GameObject AoEHoT200 = DoDAssets.LoadAsset<GameObject>("AoE_HoT200_DoD");
-			GameObject AoEProtect500 = DoDAssets.LoadAsset<GameObject>("AoE_Protection500_DoD");
-			GameObject AoESkirHealing = DoDAssets.LoadAsset<GameObject>("AoE_Skir_Nova_DoD");
-			GameObject AoESpray = DoDAssets.LoadAsset<GameObject>("AoE_Spray_DoD");
-			GameObject AoERootSpawn = DoDAssets.LoadAsset<GameObject>("Bitter_RootSpawn_DoD");
-			PrefabManager.Instance.AddPrefab(AoEHealinng);
-			PrefabManager.Instance.AddPrefab(AoEBhygshanMace);
-			PrefabManager.Instance.AddPrefab(AoEBitterHeal);
-			PrefabManager.Instance.AddPrefab(AoEHoT200);
-			PrefabManager.Instance.AddPrefab(AoEProtect500);
-			PrefabManager.Instance.AddPrefab(AoESkirHealing);
-			PrefabManager.Instance.AddPrefab(AoESpray);
-			PrefabManager.Instance.AddPrefab(AoERootSpawn);
+		}
+		private void AddDoDMiscPrefabs()
+        {
+            try
+			{
+				// Debug.Log("DoDMonsters: AoE");
+				GameObject AoEHealinng = DoDAssets.LoadAsset<GameObject>("AoE_AuraHealing_DoD");
+				GameObject AoEBhygshanMace = DoDAssets.LoadAsset<GameObject>("AoE_BhygshanMace_DoD");
+				GameObject AoEBitterHeal = DoDAssets.LoadAsset<GameObject>("AoE_Bitterstump_Heal_DoD");
+				GameObject AoEHoT200 = DoDAssets.LoadAsset<GameObject>("AoE_HoT200_DoD");
+				GameObject AoEProtect500 = DoDAssets.LoadAsset<GameObject>("AoE_Protection500_DoD");
+				GameObject AoESkirHealing = DoDAssets.LoadAsset<GameObject>("AoE_Skir_Nova_DoD");
+				GameObject AoESpray = DoDAssets.LoadAsset<GameObject>("AoE_Spray_DoD");
+				GameObject AoERootSpawn = DoDAssets.LoadAsset<GameObject>("Bitter_RootSpawn_DoD");
+				GameObject AoEFarkasSpawn = DoDAssets.LoadAsset<GameObject>("Farkas_Spawn_DoD");
+				GameObject AoEFarkasAura = DoDAssets.LoadAsset<GameObject>("AoE_Farkas_DoD");
+				CustomPrefab AoE10 = new CustomPrefab(AoEFarkasSpawn, true);
+				PrefabManager.Instance.AddPrefab(AoE10);
+				CustomPrefab AoE9 = new CustomPrefab(AoEFarkasAura, false);
+				PrefabManager.Instance.AddPrefab(AoE9);
+				CustomPrefab AoE8 = new CustomPrefab(AoEHoT200, false);
+				PrefabManager.Instance.AddPrefab(AoE8);
+				CustomPrefab AoE7 = new CustomPrefab(AoEHealinng, false);
+				PrefabManager.Instance.AddPrefab(AoE7);
+				CustomPrefab AoE6 = new CustomPrefab(AoEBhygshanMace, false);
+				PrefabManager.Instance.AddPrefab(AoE6);
+				CustomPrefab AoE5 = new CustomPrefab(AoEBitterHeal, false);
+				PrefabManager.Instance.AddPrefab(AoE5);
+				CustomPrefab AoE4 = new CustomPrefab(AoEProtect500, false);
+				PrefabManager.Instance.AddPrefab(AoE4);
+				CustomPrefab AoE3 = new CustomPrefab(AoESkirHealing, false);
+				PrefabManager.Instance.AddPrefab(AoE3);
+				CustomPrefab AoE2 = new CustomPrefab(AoESpray, false);
+				PrefabManager.Instance.AddPrefab(AoE2);
+				CustomPrefab AoE1 = new CustomPrefab(AoERootSpawn, true);
+				PrefabManager.Instance.AddPrefab(AoE1);
 
-			// Debug.Log("DoDMonsters: Ragdolls");
-			GameObject VilefangRD = DoDAssets.LoadAsset<GameObject>("Vilefang_Ragdoll_DoD");
-			GameObject BlackDeerRD = DoDAssets.LoadAsset<GameObject>("BlackDeer_Ragdoll_DoD");
-			GameObject ForestWolfRD = DoDAssets.LoadAsset<GameObject>("ForestWolf_Ragdoll_DoD");
-			GameObject DireWolfRD = DoDAssets.LoadAsset<GameObject>("DireWolf_Ragdoll_DoD");
-			GameObject ObsidianGolemRD = DoDAssets.LoadAsset<GameObject>("ObsidianGolem_Ragdoll_DoD");
-			GameObject LavaGolemRD = DoDAssets.LoadAsset<GameObject>("LavaGolem_Ragdoll_DoD");
-			GameObject IceGolemRD = DoDAssets.LoadAsset<GameObject>("IceGolem_Ragdoll_DoD");
-			GameObject IceDrakeRD = DoDAssets.LoadAsset<GameObject>("IceDrake_Ragdoll_DoD");
-			GameObject FlameDrakeRD = DoDAssets.LoadAsset<GameObject>("FlameDrake_Ragdoll_DoD");
-			GameObject ArcaneDrakeRD = DoDAssets.LoadAsset<GameObject>("ArcaneDrake_Ragdoll_DoD");
-			GameObject DarkDrakeRD = DoDAssets.LoadAsset<GameObject>("DarknessDrake_Ragdoll_DoD");
-			GameObject GoldDrakeRD = DoDAssets.LoadAsset<GameObject>("GoldDrake_Ragdoll_DoD");
-			GameObject GreenDrakeRD = DoDAssets.LoadAsset<GameObject>("PoisonDrake_Ragdoll_DoD");
-			GameObject FarkasRD = DoDAssets.LoadAsset<GameObject>("Farkas_RD_DoD");
-			GameObject FarkasAltRD = DoDAssets.LoadAsset<GameObject>("Farkas_Alt_RD_DoD");
-			PrefabManager.Instance.AddPrefab(FarkasAltRD);
-			PrefabManager.Instance.AddPrefab(FarkasRD);
-			PrefabManager.Instance.AddPrefab(VilefangRD);
-			PrefabManager.Instance.AddPrefab(BlackDeerRD);
-			PrefabManager.Instance.AddPrefab(ForestWolfRD);
-			PrefabManager.Instance.AddPrefab(DireWolfRD);
-			PrefabManager.Instance.AddPrefab(ObsidianGolemRD);
-			PrefabManager.Instance.AddPrefab(LavaGolemRD);
-			PrefabManager.Instance.AddPrefab(IceGolemRD);
-			PrefabManager.Instance.AddPrefab(IceDrakeRD);
-			PrefabManager.Instance.AddPrefab(FlameDrakeRD);
-			PrefabManager.Instance.AddPrefab(ArcaneDrakeRD);
-			PrefabManager.Instance.AddPrefab(DarkDrakeRD);
-			PrefabManager.Instance.AddPrefab(GoldDrakeRD);
-			PrefabManager.Instance.AddPrefab(GreenDrakeRD);
+				// Debug.Log("DoDMonsters: Ragdolls");
+				GameObject VilefangRD = DoDAssets.LoadAsset<GameObject>("Vilefang_Ragdoll_DoD");
+				GameObject BlackDeerRD = DoDAssets.LoadAsset<GameObject>("BlackDeer_Ragdoll_DoD");
+				GameObject ForestWolfRD = DoDAssets.LoadAsset<GameObject>("ForestWolf_Ragdoll_DoD");
+				GameObject DireWolfRD = DoDAssets.LoadAsset<GameObject>("DireWolf_Ragdoll_DoD");
+				GameObject ObsidianGolemRD = DoDAssets.LoadAsset<GameObject>("ObsidianGolem_Ragdoll_DoD");
+				GameObject LavaGolemRD = DoDAssets.LoadAsset<GameObject>("LavaGolem_Ragdoll_DoD");
+				GameObject IceGolemRD = DoDAssets.LoadAsset<GameObject>("IceGolem_Ragdoll_DoD");
+				GameObject IceDrakeRD = DoDAssets.LoadAsset<GameObject>("IceDrake_Ragdoll_DoD");
+				GameObject FlameDrakeRD = DoDAssets.LoadAsset<GameObject>("FlameDrake_Ragdoll_DoD");
+				GameObject ArcaneDrakeRD = DoDAssets.LoadAsset<GameObject>("ArcaneDrake_Ragdoll_DoD");
+				GameObject DarkDrakeRD = DoDAssets.LoadAsset<GameObject>("DarknessDrake_Ragdoll_DoD");
+				GameObject GoldDrakeRD = DoDAssets.LoadAsset<GameObject>("GoldDrake_Ragdoll_DoD");
+				GameObject GreenDrakeRD = DoDAssets.LoadAsset<GameObject>("PoisonDrake_Ragdoll_DoD");
+				GameObject FarkasRD = DoDAssets.LoadAsset<GameObject>("Farkas_RD_DoD");
+				GameObject FarkasAltRD = DoDAssets.LoadAsset<GameObject>("Farkas_Alt_RD_DoD");
+				CustomPrefab RD1 = new CustomPrefab(FarkasAltRD, true);
+				PrefabManager.Instance.AddPrefab(RD1);
+				CustomPrefab RD2 = new CustomPrefab(FarkasRD, true);
+				PrefabManager.Instance.AddPrefab(RD2);
+				CustomPrefab RD3 = new CustomPrefab(GreenDrakeRD, true);
+				PrefabManager.Instance.AddPrefab(RD3);
+				CustomPrefab RD4 = new CustomPrefab(GoldDrakeRD, true);
+				PrefabManager.Instance.AddPrefab(RD4);
+				CustomPrefab RD5 = new CustomPrefab(DarkDrakeRD, true);
+				PrefabManager.Instance.AddPrefab(RD5);
+				CustomPrefab RD6 = new CustomPrefab(ArcaneDrakeRD, true);
+				PrefabManager.Instance.AddPrefab(RD6);
+				CustomPrefab RD7 = new CustomPrefab(FlameDrakeRD, true);
+				PrefabManager.Instance.AddPrefab(RD7);
+				CustomPrefab RD8 = new CustomPrefab(IceDrakeRD, true);
+				PrefabManager.Instance.AddPrefab(RD8);
+				CustomPrefab RD9 = new CustomPrefab(IceGolemRD, true);
+				PrefabManager.Instance.AddPrefab(RD9);
+				CustomPrefab RD10 = new CustomPrefab(LavaGolemRD, true);
+				PrefabManager.Instance.AddPrefab(RD10);
+				CustomPrefab RD11 = new CustomPrefab(ObsidianGolemRD, true);
+				PrefabManager.Instance.AddPrefab(RD11);
+				CustomPrefab RD12 = new CustomPrefab(DireWolfRD, true);
+				PrefabManager.Instance.AddPrefab(RD12);
+				CustomPrefab RD13 = new CustomPrefab(ForestWolfRD, true);
+				PrefabManager.Instance.AddPrefab(RD13);
+				CustomPrefab RD14 = new CustomPrefab(BlackDeerRD, true);
+				PrefabManager.Instance.AddPrefab(RD14);
+				CustomPrefab RD15 = new CustomPrefab(VilefangRD, true);
+				PrefabManager.Instance.AddPrefab(RD15);
 
-			// Debug.Log("DoDMonsters: Projectiles");
-			GameObject BhygshanFireballProjectile = DoDAssets.LoadAsset<GameObject>("Bhygshan_Fireball_Projectile_DoD");
-			GameObject SkirVoidboltProjectile = DoDAssets.LoadAsset<GameObject>("Skir_Voidbolt_Projectile_DoD");
-			GameObject SkirSandburstVoidThrowProjectile = DoDAssets.LoadAsset<GameObject>("SkirSandburst_VoidThrow_Projectile_DoD");
-			GameObject SkirSandburstFWThrowProjectile = DoDAssets.LoadAsset<GameObject>("SkirSandburst_FWThrow_Projectile_DoD");
-			GameObject BhygshanThrowProjectile = DoDAssets.LoadAsset<GameObject>("Bhygshan_Throw_Projectile_DoD");
-			GameObject BhygshanFBProjectile = DoDAssets.LoadAsset<GameObject>("Bhygshan_FB_Projectile_DoD");
-			GameObject ImpFireboltProjectile = DoDAssets.LoadAsset<GameObject>("Imp_Firebolt_Projectile_DoD");
-			GameObject ImpIceboltProjectile = DoDAssets.LoadAsset<GameObject>("Imp_Icebolt_projectile_dod");
-			GameObject ImpstormboltProjectile = DoDAssets.LoadAsset<GameObject>("Imp_stormbolt_projectile_dod");
-			GameObject ImpVoidboltProjectile = DoDAssets.LoadAsset<GameObject>("Imp_Voidbolt_projectile_dod");
-			GameObject StormProjectileS = DoDAssets.LoadAsset<GameObject>("Wand_Storm_ProjectileS_DoD");
-			GameObject StormProjectileL = DoDAssets.LoadAsset<GameObject>("Wand_Storm_ProjectileL_DoD");
-			GameObject FireProjectileS = DoDAssets.LoadAsset<GameObject>("Wand_Fire_ProjectileS_DoD");
-			GameObject FireProjectileL = DoDAssets.LoadAsset<GameObject>("Wand_Fire_ProjectileL_DoD");
-			GameObject ShadowProjectileS = DoDAssets.LoadAsset<GameObject>("Wand_Shadow_ProjectileS_DoD");
-			GameObject ShadowProjectileL = DoDAssets.LoadAsset<GameObject>("Wand_Shadow_ProjectileL_DoD");
-			PrefabManager.Instance.AddPrefab(BhygshanFireballProjectile);
-			PrefabManager.Instance.AddPrefab(SkirVoidboltProjectile);
-			PrefabManager.Instance.AddPrefab(SkirSandburstVoidThrowProjectile);
-			PrefabManager.Instance.AddPrefab(SkirSandburstFWThrowProjectile);
-			PrefabManager.Instance.AddPrefab(BhygshanThrowProjectile);
-			PrefabManager.Instance.AddPrefab(BhygshanFBProjectile);
-			PrefabManager.Instance.AddPrefab(ImpFireboltProjectile);
-			PrefabManager.Instance.AddPrefab(ImpIceboltProjectile);
-			PrefabManager.Instance.AddPrefab(ImpstormboltProjectile);
-			PrefabManager.Instance.AddPrefab(ImpVoidboltProjectile);
-			PrefabManager.Instance.AddPrefab(StormProjectileS);
-			PrefabManager.Instance.AddPrefab(StormProjectileL);
-			PrefabManager.Instance.AddPrefab(FireProjectileS);
-			PrefabManager.Instance.AddPrefab(FireProjectileL);
-			PrefabManager.Instance.AddPrefab(ShadowProjectileS);
-			PrefabManager.Instance.AddPrefab(ShadowProjectileL);
+				// Debug.Log("DoDMonsters: Projectiles");
+				GameObject BhygshanFireballProjectile = DoDAssets.LoadAsset<GameObject>("Bhygshan_Fireball_Projectile_DoD");
+				GameObject SkirVoidboltProjectile = DoDAssets.LoadAsset<GameObject>("Skir_Voidbolt_Projectile_DoD");
+				GameObject SkirSandburstVoidThrowProjectile = DoDAssets.LoadAsset<GameObject>("SkirSandburst_VoidThrow_Projectile_DoD");
+				GameObject SkirSandburstFWThrowProjectile = DoDAssets.LoadAsset<GameObject>("SkirSandburst_FWThrow_Projectile_DoD");
+				GameObject BhygshanThrowProjectile = DoDAssets.LoadAsset<GameObject>("Bhygshan_Throw_Projectile_DoD");
+				GameObject BhygshanFBProjectile = DoDAssets.LoadAsset<GameObject>("Bhygshan_FB_Projectile_DoD");
+				GameObject ImpFireboltProjectile = DoDAssets.LoadAsset<GameObject>("Imp_Firebolt_Projectile_DoD");
+				GameObject ImpIceboltProjectile = DoDAssets.LoadAsset<GameObject>("Imp_Icebolt_projectile_dod");
+				GameObject ImpstormboltProjectile = DoDAssets.LoadAsset<GameObject>("Imp_stormbolt_projectile_dod");
+				GameObject ImpVoidboltProjectile = DoDAssets.LoadAsset<GameObject>("Imp_Voidbolt_projectile_dod");
+				GameObject StormProjectileS = DoDAssets.LoadAsset<GameObject>("Wand_Storm_ProjectileS_DoD");
+				GameObject StormProjectileL = DoDAssets.LoadAsset<GameObject>("Wand_Storm_ProjectileL_DoD");
+				GameObject FireProjectileS = DoDAssets.LoadAsset<GameObject>("Wand_Fire_ProjectileS_DoD");
+				GameObject FireProjectileL = DoDAssets.LoadAsset<GameObject>("Wand_Fire_ProjectileL_DoD");
+				GameObject ShadowProjectileS = DoDAssets.LoadAsset<GameObject>("Wand_Shadow_ProjectileS_DoD");
+				GameObject ShadowProjectileL = DoDAssets.LoadAsset<GameObject>("Wand_Shadow_ProjectileL_DoD");
+				CustomPrefab Proj1 = new CustomPrefab(ShadowProjectileL, false);
+				PrefabManager.Instance.AddPrefab(Proj1);
+				CustomPrefab Proj2 = new CustomPrefab(ShadowProjectileS, false);
+				PrefabManager.Instance.AddPrefab(Proj2);
+				CustomPrefab Proj3 = new CustomPrefab(FireProjectileL, false);
+				PrefabManager.Instance.AddPrefab(Proj3);
+				CustomPrefab Proj4 = new CustomPrefab(FireProjectileS, false);
+				PrefabManager.Instance.AddPrefab(Proj4);
+				CustomPrefab Proj5 = new CustomPrefab(StormProjectileL, false);
+				PrefabManager.Instance.AddPrefab(Proj5);
+				CustomPrefab Proj6 = new CustomPrefab(StormProjectileS, false);
+				PrefabManager.Instance.AddPrefab(Proj6);
+				CustomPrefab Proj7 = new CustomPrefab(ImpVoidboltProjectile, false);
+				PrefabManager.Instance.AddPrefab(Proj7);
+				CustomPrefab Proj8 = new CustomPrefab(ImpstormboltProjectile, false);
+				PrefabManager.Instance.AddPrefab(Proj8);
+				CustomPrefab Proj9 = new CustomPrefab(ImpIceboltProjectile, false);
+				PrefabManager.Instance.AddPrefab(Proj9);
+				CustomPrefab Proj10 = new CustomPrefab(ImpFireboltProjectile, false);
+				PrefabManager.Instance.AddPrefab(Proj10);
+				CustomPrefab Proj11 = new CustomPrefab(BhygshanFBProjectile, false);
+				PrefabManager.Instance.AddPrefab(Proj11);
+				CustomPrefab Proj12 = new CustomPrefab(BhygshanThrowProjectile, false);
+				PrefabManager.Instance.AddPrefab(Proj12);
+				CustomPrefab Proj13 = new CustomPrefab(SkirSandburstFWThrowProjectile, false);
+				PrefabManager.Instance.AddPrefab(Proj13);
+				CustomPrefab Proj14 = new CustomPrefab(SkirSandburstVoidThrowProjectile, false);
+				PrefabManager.Instance.AddPrefab(Proj14);
+				CustomPrefab Proj15 = new CustomPrefab(SkirVoidboltProjectile, false);
+				PrefabManager.Instance.AddPrefab(Proj15);
+				CustomPrefab Proj16 = new CustomPrefab(BhygshanFireballProjectile, false);
+				PrefabManager.Instance.AddPrefab(Proj16);
 
-			// Debug.Log("DoDMonsters: Altars");
-			GameObject AltarFarkas = DoDAssets.LoadAsset<GameObject>("AltarFarkas_DoD");
-			GameObject AltarSkirSandburst = DoDAssets.LoadAsset<GameObject>("AltarSkirSandburst_DoD");
-			GameObject AltarRambore = DoDAssets.LoadAsset<GameObject>("AltarRambone_DoD");
-			GameObject AltarBitterstump = DoDAssets.LoadAsset<GameObject>("AltarBitterstump_DoD");
-			GameObject AltarBhygshan = DoDAssets.LoadAsset<GameObject>("AltarBhygshan_DoD");
-			GameObject AltarFarkasAlt = DoDAssets.LoadAsset<GameObject>("AltarFarkasAlt_DoD");
-			CustomPrefab Altar1 = new CustomPrefab(AltarFarkas, false);
-			PrefabManager.Instance.AddPrefab(Altar1);
-			CustomPrefab Altar2 = new CustomPrefab(AltarSkirSandburst, false);
-			PrefabManager.Instance.AddPrefab(Altar2);
-			CustomPrefab Altar3 = new CustomPrefab(AltarRambore, false);
-			PrefabManager.Instance.AddPrefab(Altar3);
-			CustomPrefab Altar4 = new CustomPrefab(AltarBitterstump, false);
-			PrefabManager.Instance.AddPrefab(Altar4);
-			CustomPrefab Altar5 = new CustomPrefab(AltarBhygshan, false);
-			PrefabManager.Instance.AddPrefab(Altar5);
-			CustomPrefab Altar6 = new CustomPrefab(AltarFarkasAlt, false);
-			PrefabManager.Instance.AddPrefab(Altar6);
+				// Debug.Log("DoDMonsters: Altars");
+				GameObject AltarFarkas = DoDAssets.LoadAsset<GameObject>("AltarFarkas_DoD");
+				GameObject AltarSkirSandburst = DoDAssets.LoadAsset<GameObject>("AltarSkirSandburst_DoD");
+				GameObject AltarRambore = DoDAssets.LoadAsset<GameObject>("AltarRambone_DoD");
+				GameObject AltarBitterstump = DoDAssets.LoadAsset<GameObject>("AltarBitterstump_DoD");
+				GameObject AltarBhygshan = DoDAssets.LoadAsset<GameObject>("AltarBhygshan_DoD");
+				GameObject AltarFarkasAlt = DoDAssets.LoadAsset<GameObject>("AltarFarkasAlt_DoD");
+				CustomPrefab Altar1 = new CustomPrefab(AltarFarkas, false);
+				PrefabManager.Instance.AddPrefab(Altar1);
+				CustomPrefab Altar2 = new CustomPrefab(AltarSkirSandburst, false);
+				PrefabManager.Instance.AddPrefab(Altar2);
+				CustomPrefab Altar3 = new CustomPrefab(AltarRambore, false);
+				PrefabManager.Instance.AddPrefab(Altar3);
+				CustomPrefab Altar4 = new CustomPrefab(AltarBitterstump, false);
+				PrefabManager.Instance.AddPrefab(Altar4);
+				CustomPrefab Altar5 = new CustomPrefab(AltarBhygshan, false);
+				PrefabManager.Instance.AddPrefab(Altar5);
+				CustomPrefab Altar6 = new CustomPrefab(AltarFarkasAlt, false);
+				PrefabManager.Instance.AddPrefab(Altar6);
 
-			GameObject BhygshanSummon = DoDAssets.LoadAsset<GameObject>("Bhygshan_Spawn_DoD");
-			GameObject VoidlingSummon = DoDAssets.LoadAsset<GameObject>("Voidling_Spawn_DoD");
-			GameObject ForestWolfSummon = DoDAssets.LoadAsset<GameObject>("ForestWolf_Spawn_DoD");
-			PrefabManager.Instance.AddPrefab(VoidlingSummon);
-			PrefabManager.Instance.AddPrefab(ForestWolfSummon);
-			PrefabManager.Instance.AddPrefab(BhygshanSummon);
+				GameObject BhygshanSummon = DoDAssets.LoadAsset<GameObject>("Bhygshan_Spawn_DoD");
+				GameObject VoidlingSummon = DoDAssets.LoadAsset<GameObject>("Voidling_Spawn_DoD");
+				GameObject ForestWolfSummon = DoDAssets.LoadAsset<GameObject>("ForestWolf_Spawn_DoD");
+				CustomPrefab Sum1 = new CustomPrefab(BhygshanSummon, true);
+				PrefabManager.Instance.AddPrefab(Sum1);
+				CustomPrefab Sum2 = new CustomPrefab(VoidlingSummon, true);
+				PrefabManager.Instance.AddPrefab(Sum2);
+				CustomPrefab Sum3 = new CustomPrefab(ForestWolfSummon, true);
+				PrefabManager.Instance.AddPrefab(Sum3);
 
-			// Debug.Log("DoDMonsters: FX");
-			GameObject FXSkirProtect = DoDAssets.LoadAsset<GameObject>("FX_Skir_Protect_DoD");
-			GameObject FXSkirNova = DoDAssets.LoadAsset<GameObject>("FX_Skir_Nova_DoD");
-			GameObject FXBitterRoot = DoDAssets.LoadAsset<GameObject>("FX_Bitter_RootSpawn_DoD");
-			GameObject FXBackstab = DoDAssets.LoadAsset<GameObject>("FX_Backstab_DoD");
-			GameObject FXCrit = DoDAssets.LoadAsset<GameObject>("FX_Crit_DoD");
-			GameObject FXBhygshanFireballExpl = DoDAssets.LoadAsset<GameObject>("FX_Bhygshan_Fireball_Expl_DoD");
-			PrefabManager.Instance.AddPrefab(FXSkirProtect);
-			PrefabManager.Instance.AddPrefab(FXSkirNova);
-			PrefabManager.Instance.AddPrefab(FXBitterRoot);
-			PrefabManager.Instance.AddPrefab(FXBackstab);
-			PrefabManager.Instance.AddPrefab(FXCrit);
-			PrefabManager.Instance.AddPrefab(FXBhygshanFireballExpl);
+				// Debug.Log("DoDMonsters: FX");
+				GameObject FXSkirProtect = DoDAssets.LoadAsset<GameObject>("FX_Skir_Protect_DoD");
+				GameObject FXSkirNova = DoDAssets.LoadAsset<GameObject>("FX_Skir_Nova_DoD");
+				GameObject FXBitterRoot = DoDAssets.LoadAsset<GameObject>("FX_Bitter_RootSpawn_DoD");
+				GameObject FXBackstab = DoDAssets.LoadAsset<GameObject>("FX_Backstab_DoD");
+				GameObject FXCrit = DoDAssets.LoadAsset<GameObject>("FX_Crit_DoD");
+				GameObject FXBhygshanFireballExpl = DoDAssets.LoadAsset<GameObject>("FX_Bhygshan_Fireball_Expl_DoD");
+				CustomPrefab FX1 = new CustomPrefab(FXSkirProtect, true);
+				PrefabManager.Instance.AddPrefab(FX1);
+				CustomPrefab FX2 = new CustomPrefab(FXSkirNova, true);
+				PrefabManager.Instance.AddPrefab(FX2);
+				CustomPrefab FX3 = new CustomPrefab(FXBitterRoot, true);
+				PrefabManager.Instance.AddPrefab(FX3);
+				CustomPrefab FX4 = new CustomPrefab(FXBackstab, true);
+				PrefabManager.Instance.AddPrefab(FX4);
+				CustomPrefab FX5 = new CustomPrefab(FXCrit, true);
+				PrefabManager.Instance.AddPrefab(FX5);
+				CustomPrefab FX6 = new CustomPrefab(FXBhygshanFireballExpl, true);
+				PrefabManager.Instance.AddPrefab(FX6);
 
-			// Debug.Log("DoDMonsters: SFX");
-			GameObject SFXLivingLavaDeath = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Death_DoD");
-			GameObject SFXLivingLavaHit = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Hit_DoD");
-			GameObject SFXLivingLavaJump = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Jump_DoD");
-			GameObject SFXFrostlingHit = DoDAssets.LoadAsset<GameObject>("SFX_Frostling_Hit_DoD");
-			GameObject SFXFrostlingDeath = DoDAssets.LoadAsset<GameObject>("SFX_Frostling_Death_DoD");
-			GameObject SFXFrostlingAttack = DoDAssets.LoadAsset<GameObject>("SFX_Frostling_Attack_DoD");
-			GameObject SFXStormlingHit = DoDAssets.LoadAsset<GameObject>("SFX_Stormling_Hit_DoD");
-			GameObject SFXStormlingDeath = DoDAssets.LoadAsset<GameObject>("SFX_Stormling_Death_DoD");
-			GameObject SFXStormlingAttack = DoDAssets.LoadAsset<GameObject>("SFX_Stormling_Attack_DoD");
-			GameObject SFXVoidlingHit = DoDAssets.LoadAsset<GameObject>("SFX_Voidling_Hit_DoD");
-			GameObject SFXVoidlingDeath = DoDAssets.LoadAsset<GameObject>("SFX_Voidling_Death_DoD");
-			GameObject SFXVoidlingAttack = DoDAssets.LoadAsset<GameObject>("SFX_Voidling_Attack_DoD");
-			GameObject SFXWolfIdle = DoDAssets.LoadAsset<GameObject>("SFX_Wolf_Idle_DoD");
-			GameObject SFXWolfGetHit = DoDAssets.LoadAsset<GameObject>("SFX_Wolf_GetHit_DoD");
-			PrefabManager.Instance.AddPrefab(SFXWolfGetHit);
-			PrefabManager.Instance.AddPrefab(SFXWolfIdle);
-			PrefabManager.Instance.AddPrefab(SFXLivingLavaDeath);
-			PrefabManager.Instance.AddPrefab(SFXLivingLavaHit);
-			PrefabManager.Instance.AddPrefab(SFXLivingLavaJump);
-			PrefabManager.Instance.AddPrefab(SFXFrostlingHit);
-			PrefabManager.Instance.AddPrefab(SFXFrostlingDeath);
-			PrefabManager.Instance.AddPrefab(SFXFrostlingAttack);
-			PrefabManager.Instance.AddPrefab(SFXStormlingHit);
-			PrefabManager.Instance.AddPrefab(SFXStormlingDeath);
-			PrefabManager.Instance.AddPrefab(SFXStormlingAttack);
-			PrefabManager.Instance.AddPrefab(SFXVoidlingHit);
-			PrefabManager.Instance.AddPrefab(SFXVoidlingDeath);
-			PrefabManager.Instance.AddPrefab(SFXVoidlingAttack);
+				// Debug.Log("DoDMonsters: SFX");
+				GameObject SFXLivingLavaDeath = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Death_DoD");
+				GameObject SFXLivingLavaHit = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Hit_DoD");
+				GameObject SFXLivingLavaJump = DoDAssets.LoadAsset<GameObject>("SFX_LivingLava_Jump_DoD");
+				GameObject SFXFrostlingHit = DoDAssets.LoadAsset<GameObject>("SFX_Frostling_Hit_DoD");
+				GameObject SFXFrostlingDeath = DoDAssets.LoadAsset<GameObject>("SFX_Frostling_Death_DoD");
+				GameObject SFXFrostlingAttack = DoDAssets.LoadAsset<GameObject>("SFX_Frostling_Attack_DoD");
+				GameObject SFXStormlingHit = DoDAssets.LoadAsset<GameObject>("SFX_Stormling_Hit_DoD");
+				GameObject SFXStormlingDeath = DoDAssets.LoadAsset<GameObject>("SFX_Stormling_Death_DoD");
+				GameObject SFXStormlingAttack = DoDAssets.LoadAsset<GameObject>("SFX_Stormling_Attack_DoD");
+				GameObject SFXVoidlingHit = DoDAssets.LoadAsset<GameObject>("SFX_Voidling_Hit_DoD");
+				GameObject SFXVoidlingDeath = DoDAssets.LoadAsset<GameObject>("SFX_Voidling_Death_DoD");
+				GameObject SFXVoidlingAttack = DoDAssets.LoadAsset<GameObject>("SFX_Voidling_Attack_DoD");
+				GameObject SFXWolfIdle = DoDAssets.LoadAsset<GameObject>("SFX_Wolf_Idle_DoD");
+				GameObject SFXWolfGetHit = DoDAssets.LoadAsset<GameObject>("SFX_Wolf_GetHit_DoD");
+				GameObject SFXBoss1 = DoDAssets.LoadAsset<GameObject>("SFX_BossSpawn_DoD");
+				GameObject SFXBoss2 = DoDAssets.LoadAsset<GameObject>("SFX_BossSummon_DoD");
+				GameObject SFXBoss3 = DoDAssets.LoadAsset<GameObject>("SFX_OfferingBones_DoD");
+				GameObject SFXWoodBuild = DoDAssets.LoadAsset<GameObject>("SFX_Build_Hammer_Wood_DoD");
+				CustomPrefab SFX1 = new CustomPrefab(SFXWoodBuild, false);
+				PrefabManager.Instance.AddPrefab(SFX1);
+				CustomPrefab SFX2 = new CustomPrefab(SFXBoss3, false);
+				PrefabManager.Instance.AddPrefab(SFX2);
+				CustomPrefab SFX3 = new CustomPrefab(SFXBoss2, false);
+				PrefabManager.Instance.AddPrefab(SFX3);
+				CustomPrefab SFX4 = new CustomPrefab(SFXBoss1, false);
+				PrefabManager.Instance.AddPrefab(SFX4);
+				CustomPrefab SFX5 = new CustomPrefab(SFXWolfGetHit, false);
+				PrefabManager.Instance.AddPrefab(SFX5);
+				CustomPrefab SFX6 = new CustomPrefab(SFXWolfIdle, false);
+				PrefabManager.Instance.AddPrefab(SFX6);
+				CustomPrefab SFX7 = new CustomPrefab(SFXVoidlingAttack, false);
+				PrefabManager.Instance.AddPrefab(SFX7);
+				CustomPrefab SFX8 = new CustomPrefab(SFXVoidlingDeath, false);
+				PrefabManager.Instance.AddPrefab(SFX8);
+				CustomPrefab SFX9 = new CustomPrefab(SFXStormlingAttack, false);
+				PrefabManager.Instance.AddPrefab(SFX9);
+				CustomPrefab SFX10 = new CustomPrefab(SFXVoidlingHit, false);
+				PrefabManager.Instance.AddPrefab(SFX10);
+				CustomPrefab SFX11 = new CustomPrefab(SFXStormlingDeath, false);
+				PrefabManager.Instance.AddPrefab(SFX11);
+				CustomPrefab SFX12 = new CustomPrefab(SFXStormlingHit, false);
+				PrefabManager.Instance.AddPrefab(SFX12);
+				CustomPrefab SFX13 = new CustomPrefab(SFXFrostlingAttack, false);
+				PrefabManager.Instance.AddPrefab(SFX13);
+				CustomPrefab SFX14 = new CustomPrefab(SFXFrostlingDeath, false);
+				PrefabManager.Instance.AddPrefab(SFX14);
+				CustomPrefab SFX15 = new CustomPrefab(SFXFrostlingHit, false);
+				PrefabManager.Instance.AddPrefab(SFX15);
+				CustomPrefab SFX16 = new CustomPrefab(SFXLivingLavaJump, false);
+				PrefabManager.Instance.AddPrefab(SFX16);
+				CustomPrefab SFX17 = new CustomPrefab(SFXLivingLavaHit, false);
+				PrefabManager.Instance.AddPrefab(SFX17);
+				CustomPrefab SFX18 = new CustomPrefab(SFXLivingLavaDeath, false);
+				PrefabManager.Instance.AddPrefab(SFX18);
 
-			// Debug.Log("DoDMonsters: VFX");
-			GameObject VFXArcaneImpDeath = DoDAssets.LoadAsset<GameObject>("VFX_ArcaneImpDeath_DoD");
-			GameObject VFXBhygshanSpray = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Spray_DoD");
-			GameObject VFXBhygshanBreath = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Breath_DoD");
-			GameObject VFXBhygshanAttack = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Attack_DoD");
-			GameObject VFXBlocked = DoDAssets.LoadAsset<GameObject>("VFX_Blocked_DoD");
-			GameObject VFXFireBoltHit = DoDAssets.LoadAsset<GameObject>("VFX_FireBolt_SurtlingHit_DoD");
-			GameObject VFXHitSparks = DoDAssets.LoadAsset<GameObject>("VFX_HitSparks_DoD");
-			GameObject VFXIceImpDeath = DoDAssets.LoadAsset<GameObject>("VFX_IceImpDeath_DoD");
-			GameObject VFXIceImpHit = DoDAssets.LoadAsset<GameObject>("VFX_IceImpHit_DoD");
-			GameObject VFXLivingLavaDeath = DoDAssets.LoadAsset<GameObject>("VFX_LivingLava_Death_DoD");
-			GameObject VFXLivingLavaAttack = DoDAssets.LoadAsset<GameObject>("VFX_LivingLava_Attack_DoD");
-			GameObject VFXLivingLavaHit = DoDAssets.LoadAsset<GameObject>("VFX_LivingLava_Hit_DoD");
-			GameObject VFXLivingWaterDeath = DoDAssets.LoadAsset<GameObject>("VFX_LivingWater_Death_DoD");
-			GameObject VFXLivingWaterAttack = DoDAssets.LoadAsset<GameObject>("VFX_LivingWater_Attack_DoD");
-			GameObject VFXLivingWaterHit = DoDAssets.LoadAsset<GameObject>("VFX_LivingWater_Hit_DoD");
-			GameObject VFXSkirThrow = DoDAssets.LoadAsset<GameObject>("VFX_Skir_Throw_DoD");
-			GameObject VFXSkeletonHit = DoDAssets.LoadAsset<GameObject>("VFX_Skeleton_Hit_DoD");
-			GameObject VFXStormImpDeath = DoDAssets.LoadAsset<GameObject>("VFX_StormImpDeath_DoD");
-			GameObject VFXStormImpHit = DoDAssets.LoadAsset<GameObject>("VFX_StormImpHit_DoD");
-			GameObject VFXVoidImpHit = DoDAssets.LoadAsset<GameObject>("VFX_VoidImpHit_DoD");
-			GameObject VFXWolfDeath = DoDAssets.LoadAsset<GameObject>("VFX_Wolf_Death_DoD");
-			GameObject VFXWolfHit = DoDAssets.LoadAsset<GameObject>("VFX_Wolf_Hit_DoD");
-			GameObject VFXBloodHit = DoDAssets.LoadAsset<GameObject>("VFX_Blood_Hit_DoD");
-			PrefabManager.Instance.AddPrefab(VFXBhygshanSpray);
-			PrefabManager.Instance.AddPrefab(VFXBhygshanBreath);
-			PrefabManager.Instance.AddPrefab(VFXSkirThrow);
-			PrefabManager.Instance.AddPrefab(VFXBhygshanAttack);
-			PrefabManager.Instance.AddPrefab(VFXSkeletonHit);
-			PrefabManager.Instance.AddPrefab(VFXFireBoltHit);
-			PrefabManager.Instance.AddPrefab(VFXBlocked);
-			PrefabManager.Instance.AddPrefab(VFXHitSparks);
-			PrefabManager.Instance.AddPrefab(VFXWolfDeath);
-			PrefabManager.Instance.AddPrefab(VFXWolfHit);
-			PrefabManager.Instance.AddPrefab(VFXLivingLavaDeath);
-			PrefabManager.Instance.AddPrefab(VFXLivingLavaAttack);
-			PrefabManager.Instance.AddPrefab(VFXLivingLavaHit);
-			PrefabManager.Instance.AddPrefab(VFXLivingWaterDeath);
-			PrefabManager.Instance.AddPrefab(VFXLivingWaterAttack);
-			PrefabManager.Instance.AddPrefab(VFXLivingWaterHit);
-			PrefabManager.Instance.AddPrefab(VFXArcaneImpDeath);
-			PrefabManager.Instance.AddPrefab(VFXIceImpDeath);
-			PrefabManager.Instance.AddPrefab(VFXStormImpDeath);
-			PrefabManager.Instance.AddPrefab(VFXIceImpHit);
-			PrefabManager.Instance.AddPrefab(VFXStormImpHit);
-			PrefabManager.Instance.AddPrefab(VFXVoidImpHit);
-			PrefabManager.Instance.AddPrefab(VFXBloodHit);
+				// Debug.Log("DoDMonsters: VFX");
+				GameObject VFXArcaneImpDeath = DoDAssets.LoadAsset<GameObject>("VFX_ArcaneImpDeath_DoD");
+				GameObject VFXBhygshanSpray = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Spray_DoD");
+				GameObject VFXBhygshanBreath = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Breath_DoD");
+				GameObject VFXBhygshanAttack = DoDAssets.LoadAsset<GameObject>("VFX_Bhygshan_Attack_DoD");
+				GameObject VFXBlocked = DoDAssets.LoadAsset<GameObject>("VFX_Blocked_DoD");
+				GameObject VFXFireBoltHit = DoDAssets.LoadAsset<GameObject>("VFX_FireBolt_SurtlingHit_DoD");
+				GameObject VFXHitSparks = DoDAssets.LoadAsset<GameObject>("VFX_HitSparks_DoD");
+				GameObject VFXIceImpDeath = DoDAssets.LoadAsset<GameObject>("VFX_IceImpDeath_DoD");
+				GameObject VFXIceImpHit = DoDAssets.LoadAsset<GameObject>("VFX_IceImpHit_DoD");
+				GameObject VFXLivingLavaDeath = DoDAssets.LoadAsset<GameObject>("VFX_LivingLava_Death_DoD");
+				GameObject VFXLivingLavaAttack = DoDAssets.LoadAsset<GameObject>("VFX_LivingLava_Attack_DoD");
+				GameObject VFXLivingLavaHit = DoDAssets.LoadAsset<GameObject>("VFX_LivingLava_Hit_DoD");
+				GameObject VFXLivingWaterDeath = DoDAssets.LoadAsset<GameObject>("VFX_LivingWater_Death_DoD");
+				GameObject VFXLivingWaterAttack = DoDAssets.LoadAsset<GameObject>("VFX_LivingWater_Attack_DoD");
+				GameObject VFXLivingWaterHit = DoDAssets.LoadAsset<GameObject>("VFX_LivingWater_Hit_DoD");
+				GameObject VFXSkirThrow = DoDAssets.LoadAsset<GameObject>("VFX_Skir_Throw_DoD");
+				GameObject VFXSkeletonHit = DoDAssets.LoadAsset<GameObject>("VFX_Skeleton_Hit_DoD");
+				GameObject VFXStormImpDeath = DoDAssets.LoadAsset<GameObject>("VFX_StormImpDeath_DoD");
+				GameObject VFXStormImpHit = DoDAssets.LoadAsset<GameObject>("VFX_StormImpHit_DoD");
+				GameObject VFXVoidImpHit = DoDAssets.LoadAsset<GameObject>("VFX_VoidImpHit_DoD");
+				GameObject VFXWolfDeath = DoDAssets.LoadAsset<GameObject>("VFX_Wolf_Death_DoD");
+				GameObject VFXWolfHit = DoDAssets.LoadAsset<GameObject>("VFX_Wolf_Hit_DoD");
+				GameObject VFXBloodHit = DoDAssets.LoadAsset<GameObject>("VFX_Blood_Hit_DoD");
+				GameObject VFXBiiterSpawn = DoDAssets.LoadAsset<GameObject>("VFX_BiiterSpawn_DoD");
+				GameObject VFXBitterSpawnIn = DoDAssets.LoadAsset<GameObject>("VFX_BitterSpawnIn_DoD");
+				GameObject VFXOfferingBowl = DoDAssets.LoadAsset<GameObject>("VFX_OfferingBowl_DoD");
+				CustomPrefab VFX1 = new CustomPrefab(VFXOfferingBowl, true);
+				PrefabManager.Instance.AddPrefab(VFX1);
+				CustomPrefab VFX2 = new CustomPrefab(VFXBitterSpawnIn, true);
+				PrefabManager.Instance.AddPrefab(VFX2);
+				CustomPrefab VFX3 = new CustomPrefab(VFXBiiterSpawn, true);
+				PrefabManager.Instance.AddPrefab(VFX3);
+				CustomPrefab VFX4 = new CustomPrefab(VFXBloodHit, true);
+				PrefabManager.Instance.AddPrefab(VFX4);
+				CustomPrefab VFX5 = new CustomPrefab(VFXWolfHit, true);
+				PrefabManager.Instance.AddPrefab(VFX5);
+				CustomPrefab VFX6 = new CustomPrefab(VFXWolfDeath, true);
+				PrefabManager.Instance.AddPrefab(VFX6);
+				CustomPrefab VFX7 = new CustomPrefab(VFXVoidImpHit, true);
+				PrefabManager.Instance.AddPrefab(VFX7);
+				CustomPrefab VFX8 = new CustomPrefab(VFXStormImpHit, true);
+				PrefabManager.Instance.AddPrefab(VFX8);
+				CustomPrefab VFX9 = new CustomPrefab(VFXStormImpDeath, true);
+				PrefabManager.Instance.AddPrefab(VFX9);
+				CustomPrefab VFX10 = new CustomPrefab(VFXSkeletonHit, true);
+				PrefabManager.Instance.AddPrefab(VFX10);
+				CustomPrefab VFX11 = new CustomPrefab(VFXSkirThrow, true);
+				PrefabManager.Instance.AddPrefab(VFX11);
+				CustomPrefab VFX12 = new CustomPrefab(VFXLivingWaterHit, true);
+				PrefabManager.Instance.AddPrefab(VFX12);
+				CustomPrefab VFX13 = new CustomPrefab(VFXLivingWaterAttack, true);
+				PrefabManager.Instance.AddPrefab(VFX13);
+				CustomPrefab VFX14 = new CustomPrefab(VFXLivingWaterDeath, true);
+				PrefabManager.Instance.AddPrefab(VFX14);
+				CustomPrefab VFX15 = new CustomPrefab(VFXLivingLavaHit, true);
+				PrefabManager.Instance.AddPrefab(VFX15);
+				CustomPrefab VFX16 = new CustomPrefab(VFXLivingLavaAttack, true);
+				PrefabManager.Instance.AddPrefab(VFX16);
+				CustomPrefab VFX17 = new CustomPrefab(VFXLivingLavaDeath, true);
+				PrefabManager.Instance.AddPrefab(VFX17);
+				CustomPrefab VFX18 = new CustomPrefab(VFXIceImpHit, true);
+				PrefabManager.Instance.AddPrefab(VFX18);
+				CustomPrefab VFX19 = new CustomPrefab(VFXIceImpDeath, true);
+				PrefabManager.Instance.AddPrefab(VFX19);
+				CustomPrefab VFX20 = new CustomPrefab(VFXHitSparks, true);
+				PrefabManager.Instance.AddPrefab(VFX20);
+				CustomPrefab VFX21 = new CustomPrefab(VFXFireBoltHit, true);
+				PrefabManager.Instance.AddPrefab(VFX21);
+				CustomPrefab VFX22 = new CustomPrefab(VFXBlocked, true);
+				PrefabManager.Instance.AddPrefab(VFX22);
+				CustomPrefab VFX23 = new CustomPrefab(VFXBhygshanAttack, true);
+				PrefabManager.Instance.AddPrefab(VFX23);
+				CustomPrefab VFX24 = new CustomPrefab(VFXBhygshanBreath, true);
+				PrefabManager.Instance.AddPrefab(VFX24);
+				CustomPrefab VFX25 = new CustomPrefab(VFXBhygshanSpray, true);
+				PrefabManager.Instance.AddPrefab(VFX25);
+				CustomPrefab VFX26 = new CustomPrefab(VFXArcaneImpDeath, true);
+				PrefabManager.Instance.AddPrefab(VFX26);
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding misc prefabs: {ex}");
+			}
+
 		}
 		private void CreateDropables()
 		{
@@ -1197,10 +1326,77 @@ namespace DoDMonsters
 		}
 		private void AddNewMonsters()
 		{
-			// Debug.Log("DoDMonsters: AddNewMonsters");
-			GameObject monster4 = FarkasAlt;
-			CustomPrefab creature4 = new CustomPrefab(monster4, true);
-			PrefabManager.Instance.AddPrefab(creature4);
+            try
+			{
+				//Debug.Log("DoD Boss: Farkas's Clone");
+				var farkasClone = new CustomCreature(FarkasClone, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Coins",
+								Chance = 1,
+								MinAmount = 1,
+								MaxAmount = 1,
+								OnePerPlayer = false,
+								LevelMultiplier = false
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(farkasClone);
+				//Debug.Log("DoD Boss: Farkas");
+				var FarkasMob = new CustomCreature(FarkasAlt, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Coins",
+								Chance = 100,
+								MinAmount = 27,
+								MaxAmount = 87,
+								OnePerPlayer = false,
+								LevelMultiplier = false
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 100,
+								MinAmount = 3,
+								MaxAmount = 10,
+								OnePerPlayer = false,
+								LevelMultiplier = false
+							},
+							new DropConfig
+							{
+								Item = "WolfPelt",
+								Chance = 100,
+								MinAmount = 2,
+								MaxAmount = 5,
+								OnePerPlayer = false,
+								LevelMultiplier = false
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 100,
+								MinAmount = 3,
+								MaxAmount = 10,
+								OnePerPlayer = false,
+								LevelMultiplier = false
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(FarkasMob);
+
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding custom monsters: {ex}");
+			}
 		}
 		private void CreateRugs()
 		{
@@ -1281,6 +1477,86 @@ namespace DoDMonsters
 				}
 			});
 			PieceManager.Instance.AddPiece(customPiece3);
+		}
+		private void AddLocations()
+		{
+			////Debug.Log("DoDMonsters: Locs");
+			DoDBossLoc = AssetUtils.LoadAssetBundleFromResources("dodbosslocs", Assembly.GetExecutingAssembly());
+			try
+			{
+				if (BossesEnable.Value == true)
+				{
+					var BossSkir = ZoneManager.Instance.CreateLocationContainer(DoDBossLoc.LoadAsset<GameObject>("Loc_Boss_Skir_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossSkir, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Plains,
+						Quantity = 4,
+						Priotized = true,
+						ExteriorRadius = 9f,
+						MinAltitude = 2f,
+						ClearArea = true,
+						MinDistance = 4000f,
+						MaxDistance = 9000f,
+						MinDistanceFromSimilar = 1000f,
+					}));
+					var BossFarkas = ZoneManager.Instance.CreateLocationContainer(DoDBossLoc.LoadAsset<GameObject>("Loc_Boss_Farkas_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossFarkas, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Mountain,
+						Quantity = 4,
+						Priotized = true,
+						ExteriorRadius = 9f,
+						MinAltitude = 100f,
+						ClearArea = true,
+						MinDistance = 3000f,
+						MaxDistance = 7000f,
+						MinDistanceFromSimilar = 1000f,
+					}));
+					var BossBhygshan = ZoneManager.Instance.CreateLocationContainer(DoDBossLoc.LoadAsset<GameObject>("Loc_Boss_Bhygshan_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossBhygshan, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Swamp,
+						Quantity = 4,
+						Priotized = true,
+						ExteriorRadius = 12f,
+						MinAltitude = 0.5f,
+						ClearArea = true,
+						MinDistance = 3000f,
+						MaxDistance = 7000f,
+						MinDistanceFromSimilar = 1000f,
+					}));
+					var Rambore = ZoneManager.Instance.CreateLocationContainer(DoDBossLoc.LoadAsset<GameObject>("Loc_Boss_Rambore_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(Rambore, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Meadows,
+						Quantity = 4,
+						Priotized = true,
+						ExteriorRadius = 3f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						SlopeRotation = true,
+						MaxDistance = 3000f,
+						MinDistanceFromSimilar = 1000f,
+					}));
+					var Bitterstump = ZoneManager.Instance.CreateLocationContainer(DoDBossLoc.LoadAsset<GameObject>("Loc_Boss_Bitterstump_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(Bitterstump, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.BlackForest,
+						Quantity = 4,
+						Priotized = true,
+						ExteriorRadius = 3f,
+						MinAltitude = 5f,
+						ClearArea = true,
+						SlopeRotation = true,
+						MaxDistance = 3000f,
+						MinDistanceFromSimilar = 1000f,
+					}));
+				}
+			}
+			finally
+			{
+				DoDBossLoc.Unload(false);
+			}
 		}
 		private void UnloadBundle()
 		{

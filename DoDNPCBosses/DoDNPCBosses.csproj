@@ -97,5 +97,8 @@
   <ItemGroup>
     <EmbeddedResource Include="dodnpc" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="dodnpclocations" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,7 +29,7 @@ namespace Giants
 
 		public const string PluginName = "Fee Fi Fo Fum";
 
-		public const string PluginVersion = "0.0.3";
+		public const string PluginVersion = "0.1.1";
 
 		public static bool isModded = true;
 
@@ -85,13 +85,6 @@ namespace Giants
 		public AssetBundle GiantBundle;
 		private Harmony _harmony;
 		internal static ManualLogSource Log;
-		public static AssetBundle GetAssetBundleFromResources(string fileName)
-		{
-			Assembly executingAssembly = Assembly.GetExecutingAssembly();
-			string text = executingAssembly.GetManifestResourceNames().Single((string str) => str.EndsWith(fileName));
-			using Stream stream = executingAssembly.GetManifestResourceStream(text);
-			return AssetBundle.LoadFromStream(stream);
-		}
 		private void Awake()
 		{
 			Log = Logger;
@@ -114,6 +107,26 @@ namespace Giants
 		}
 		private void LoadAssets()
 		{
+			// Mobs
+			//Debug.Log("Giants: Mobs");
+			GameObject Ragdoll1 = GiantBundle.LoadAsset<GameObject>("FireGiant_RD_HG");
+			CustomPrefab RD1 = new CustomPrefab(Ragdoll1, true);
+			PrefabManager.Instance.AddPrefab(RD1);
+			GameObject Ragdoll2 = GiantBundle.LoadAsset<GameObject>("FrostGiant_RD_HG");
+			CustomPrefab RD2 = new CustomPrefab(Ragdoll2, true);
+			PrefabManager.Instance.AddPrefab(RD2);
+			GameObject Ragdoll3 = GiantBundle.LoadAsset<GameObject>("Giant_RD_HG");
+			CustomPrefab RD3 = new CustomPrefab(Ragdoll3, true);
+			PrefabManager.Instance.AddPrefab(RD3);
+			GameObject Ragdoll4 = GiantBundle.LoadAsset<GameObject>("HillGiant_RD_HG");
+			CustomPrefab RD4 = new CustomPrefab(Ragdoll4, true);
+			PrefabManager.Instance.AddPrefab(RD4);
+			GameObject Ragdoll5 = GiantBundle.LoadAsset<GameObject>("Jotunn_RD_HG");
+			CustomPrefab RD5 = new CustomPrefab(Ragdoll5, true);
+			PrefabManager.Instance.AddPrefab(RD5);
+			GameObject Ragdoll6 = GiantBundle.LoadAsset<GameObject>("MountainGiant_RD_HG");
+			CustomPrefab RD6 = new CustomPrefab(Ragdoll6, true);
+			PrefabManager.Instance.AddPrefab(RD6);
 			// Mobs
 			//Debug.Log("Giants: Mobs");
 			Giant1 = GiantBundle.LoadAsset<GameObject>("HillGiant_HG");

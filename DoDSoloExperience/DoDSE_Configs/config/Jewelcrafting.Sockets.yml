@@ -259,44 +259,58 @@ fiery doom:
 
 gems:
   meadows:
-    green: 0.8
-    black: 0.04
-    purple: 0.04
-    blue: 0.04
-    yellow: 0.04
-    red: 0.04
+    green: 0.6
+    black: 0.02
+    purple: 0.02
+    blue: 0.02
+    yellow: 0.02
+    red: 0.02
   black forest:
-    green: 0.04
-    black: 0.8
-    purple: 0.04
-    blue: 0.04
-    yellow: 0.04
-    red: 0.04
+    green: 0.02
+    black: 0.6
+    purple: 0.02
+    blue: 0.02
+    yellow: 0.02
+    red: 0.02
   swamp:
-    green: 0.04
-    black: 0.04
-    purple: 0.8
-    blue: 0.04
-    yellow: 0.04
-    red: 0.04
+    green: 0.02
+    black: 0.02
+    purple: 0.6
+    blue: 0.02
+    yellow: 0.02
+    red: 0.02
   mountain:
-    green: 0.04
-    black: 0.04
-    purple: 0.04
-    blue: 0.8
-    yellow: 0.04
-    red: 0.04
+    green: 0.02
+    black: 0.02
+    purple: 0.02
+    blue: 0.6
+    yellow: 0.02
+    red: 0.02
   plains:
-    green: 0.04
-    black: 0.04
-    purple: 0.04
-    blue: 0.04
-    yellow: 0.8
-    red: 0.04
+    green: 0.02
+    black: 0.02
+    purple: 0.2
+    blue: 0.02
+    yellow: 0.6
+    red: 0.02
+  mistlands:
+    green: 0.02
+    black: 0.02
+    purple: 0.6
+    blue: 0.02
+    yellow: 0.02
+    red: 0.02
+  deep north:
+    green: 0.02
+    black: 0.02
+    purple: 0.02
+    blue: 0.6
+    yellow: 0.02
+    red: 0.02
   ash lands:
-    green: 0.04
-    black: 0.04
-    purple: 0.04
-    blue: 0.04
-    yellow: 0.04
-    red: 0.8
+    green: 0.02
+    black: 0.02
+    purple: 0.02
+    blue: 0.02
+    yellow: 0.02
+    red: 0.6

@@ -33,7 +33,7 @@ namespace FantasyCreatures
 
 		public const string PluginName = "FantasyCreatures";
 
-		public const string PluginVersion = "0.1.3";
+		public const string PluginVersion = "0.2.2";
 
 		public static bool isModded = true;
 
@@ -137,22 +137,15 @@ namespace FantasyCreatures
 		private Harmony _harmony;
 		internal static ManualLogSource Log;
 
+		public ConfigEntry<bool> BasicLoggingEnable;
 		public ConfigEntry<bool> WorldSpawnsEnable;
-		public ConfigEntry<bool> UnderworldSpawnsEnable;
-		public static AssetBundle GetAssetBundleFromResources(string fileName)
-		{
-			Assembly executingAssembly = Assembly.GetExecutingAssembly();
-			string text = executingAssembly.GetManifestResourceNames().Single((string str) => str.EndsWith(fileName));
-			using Stream stream = executingAssembly.GetManifestResourceStream(text);
-			return AssetBundle.LoadFromStream(stream);
-		}
 		public void CreateConfigurationValues()
 		{
-			WorldSpawnsEnable = base.Config.Bind("World Spawns", "Enable", defaultValue: true, new ConfigDescription("Enables Spawns around the world.", null, new ConfigurationManagerAttributes
+			BasicLoggingEnable = base.Config.Bind("Logging", "Enable", defaultValue: false, new ConfigDescription("Enables some basic logging.", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
 			}));
-			UnderworldSpawnsEnable = base.Config.Bind("Do Or Die Biomes", "Enable", defaultValue: false, new ConfigDescription("Enables Spawns in the Underworld.", null, new ConfigurationManagerAttributes
+			WorldSpawnsEnable = base.Config.Bind("World Spawns", "Enable", defaultValue: true, new ConfigDescription("Enables Spawns around the world.", null, new ConfigurationManagerAttributes
 			{
 				IsAdminOnly = true
 			}));
@@ -175,19 +168,7 @@ namespace FantasyCreatures
 				{
 					System.Console.WriteLine(e);
 				}
-
 			}
-			if (UnderworldSpawnsEnable.Value == true)
-            {
-				try
-				{
-					SpawnerConfigurationManager.OnConfigure += ConfigureUnderworldSpawners;
-				}
-				catch (Exception e)
-				{
-					System.Console.WriteLine(e);
-				}
-            }
 		}
 		public void LoadBundle()
 		{
@@ -195,7 +176,51 @@ namespace FantasyCreatures
 		}
 		private void LoadAssets()
 		{
-			Debug.Log("Fantasy Creatures: Spider Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Ragdolls"); }
+			GameObject Ragdoll1 = FantasyBundle.LoadAsset<GameObject>("Balrog_RD_FC");
+			CustomPrefab RD1 = new CustomPrefab(Ragdoll1, true);
+			PrefabManager.Instance.AddPrefab(RD1);
+			GameObject Ragdoll2 = FantasyBundle.LoadAsset<GameObject>("Cyclops_RD_FC");
+			CustomPrefab RD2 = new CustomPrefab(Ragdoll2, true);
+			PrefabManager.Instance.AddPrefab(RD2);
+			GameObject Ragdoll3 = FantasyBundle.LoadAsset<GameObject>("DarknessSpider_RD_FC");
+			CustomPrefab RD3 = new CustomPrefab(Ragdoll3, true);
+			PrefabManager.Instance.AddPrefab(RD3);
+			GameObject Ragdoll4 = FantasyBundle.LoadAsset<GameObject>("EarthElemental_RD_FC");
+			CustomPrefab RD4 = new CustomPrefab(Ragdoll4, true);
+			PrefabManager.Instance.AddPrefab(RD4);
+			GameObject Ragdoll5 = FantasyBundle.LoadAsset<GameObject>("Ent_RD_FC");
+			CustomPrefab RD5 = new CustomPrefab(Ragdoll5, true);
+			PrefabManager.Instance.AddPrefab(RD5);
+			GameObject Ragdoll6 = FantasyBundle.LoadAsset<GameObject>("FireElemental_RD_FC");
+			CustomPrefab RD6 = new CustomPrefab(Ragdoll6, true);
+			PrefabManager.Instance.AddPrefab(RD6);
+			GameObject Ragdoll7 = FantasyBundle.LoadAsset<GameObject>("Ghoul_RD_FC");
+			CustomPrefab RD7 = new CustomPrefab(Ragdoll7, true);
+			PrefabManager.Instance.AddPrefab(RD7);
+			GameObject Ragdoll8 = FantasyBundle.LoadAsset<GameObject>("GiantViper_RD_FC");
+			CustomPrefab RD8 = new CustomPrefab(Ragdoll8, true);
+			PrefabManager.Instance.AddPrefab(RD8);
+			GameObject Ragdoll9 = FantasyBundle.LoadAsset<GameObject>("Hobgoblin_RD_FC");
+			CustomPrefab RD9 = new CustomPrefab(Ragdoll9, true);
+			PrefabManager.Instance.AddPrefab(RD9);
+			GameObject Ragdoll10 = FantasyBundle.LoadAsset<GameObject>("IceElemental_RD_FC");
+			CustomPrefab RD10 = new CustomPrefab(Ragdoll10, true);
+			PrefabManager.Instance.AddPrefab(RD10);
+			GameObject Ragdoll11 = FantasyBundle.LoadAsset<GameObject>("Kobold_RD_FC");
+			CustomPrefab RD11 = new CustomPrefab(Ragdoll11, true);
+			PrefabManager.Instance.AddPrefab(RD11);
+			GameObject Ragdoll12 = FantasyBundle.LoadAsset<GameObject>("Manitcore_RD_FC");
+			CustomPrefab RD12 = new CustomPrefab(Ragdoll12, true);
+			PrefabManager.Instance.AddPrefab(RD12);
+			GameObject Ragdoll13 = FantasyBundle.LoadAsset<GameObject>("Mummy_RD_FC");
+			CustomPrefab RD13 = new CustomPrefab(Ragdoll13, true);
+			PrefabManager.Instance.AddPrefab(RD13);
+			GameObject Ragdoll14 = FantasyBundle.LoadAsset<GameObject>("Ogre_RD_FC");
+			CustomPrefab RD14 = new CustomPrefab(Ragdoll14, true);
+			PrefabManager.Instance.AddPrefab(RD14);
+
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Spider Attacks"); }
 			SpiderA1 = FantasyBundle.LoadAsset<GameObject>("Spider_Attack1_DoD");
 			CustomPrefab Spiderattack1 = new CustomPrefab(SpiderA1, false);
 			PrefabManager.Instance.AddPrefab(Spiderattack1);
@@ -203,7 +228,7 @@ namespace FantasyCreatures
 			CustomPrefab Viperattack1 = new CustomPrefab(ViperA1, false);
 			PrefabManager.Instance.AddPrefab(Viperattack1);
 
-			Debug.Log("Fantasy Creatures: Manticore Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Manticore Attacks"); }
 			ManticoreA1 = FantasyBundle.LoadAsset<GameObject>("Manticore_Attack1_DoD");
 			CustomPrefab Manticoreattack1 = new CustomPrefab(ManticoreA1, false);
 			PrefabManager.Instance.AddPrefab(Manticoreattack1);
@@ -220,7 +245,7 @@ namespace FantasyCreatures
 			CustomPrefab Manticoreattack5 = new CustomPrefab(ManticoreA5, false);
 			PrefabManager.Instance.AddPrefab(Manticoreattack5);
 
-			Debug.Log("Fantasy Creatures: Ghoul Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Ghoul Attacks"); }
 			GhoulA1 = FantasyBundle.LoadAsset<GameObject>("Ghoul_Attack1_DoD");
 			CustomPrefab Ghoulattack1 = new CustomPrefab(GhoulA1, false);
 			PrefabManager.Instance.AddPrefab(Ghoulattack1);
@@ -237,7 +262,7 @@ namespace FantasyCreatures
 			CustomPrefab Ghoulattack5 = new CustomPrefab(GhoulA5, false);
 			PrefabManager.Instance.AddPrefab(Ghoulattack5);
 
-			Debug.Log("Fantasy Creatures: Mummy Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Mummy Attacks"); }
 			MummyA1 = FantasyBundle.LoadAsset<GameObject>("Mummy_Attack1_DoD");
 			CustomPrefab mummyattack1 = new CustomPrefab(MummyA1, false);
 			PrefabManager.Instance.AddPrefab(mummyattack1);
@@ -269,7 +294,7 @@ namespace FantasyCreatures
 			CustomPrefab mummyattack10 = new CustomPrefab(MummyR5, false);
 			PrefabManager.Instance.AddPrefab(mummyattack10);
 
-			Debug.Log("Fantasy Creatures: Ent Arracks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Ent Arracks"); }
 			EntA1 = FantasyBundle.LoadAsset<GameObject>("Ent_Attack1_DoD");
 			CustomPrefab attack3 = new CustomPrefab(EntA1, false);
 			PrefabManager.Instance.AddPrefab(attack3);
@@ -286,7 +311,7 @@ namespace FantasyCreatures
 			CustomPrefab attack7 = new CustomPrefab(EntA5, false);
 			PrefabManager.Instance.AddPrefab(attack7);
 
-			Debug.Log("Fantasy Creatures: Demon Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Demon Attacks"); }
 			DemonLordA1 = FantasyBundle.LoadAsset<GameObject>("DemonLord_Attack1_DoD");
 			CustomPrefab attack8 = new CustomPrefab(DemonLordA1, false);
 			PrefabManager.Instance.AddPrefab(attack8);
@@ -303,7 +328,7 @@ namespace FantasyCreatures
 			CustomPrefab attack12 = new CustomPrefab(DemonLordA5, false);
 			PrefabManager.Instance.AddPrefab(attack12);
 
-			Debug.Log("Fantasy Creatures: Elemental Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Elemental Attacks"); }
 			ElementalA1 = FantasyBundle.LoadAsset<GameObject>("Element_Attack1_DoD");
 			CustomPrefab attack13 = new CustomPrefab(ElementalA1, false);
 			PrefabManager.Instance.AddPrefab(attack13);
@@ -329,7 +354,7 @@ namespace FantasyCreatures
 			CustomPrefab attack20 = new CustomPrefab(ElementalA8, false);
 			PrefabManager.Instance.AddPrefab(attack20);
 
-			Debug.Log("Fantasy Creatures: Ice Elemental Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Ice Elemental Attacks"); }
 			IceElementalA1 = FantasyBundle.LoadAsset<GameObject>("IceElement_Attack1_DoD");
 			CustomPrefab attack21 = new CustomPrefab(IceElementalA1, false);
 			PrefabManager.Instance.AddPrefab(attack21);
@@ -355,7 +380,7 @@ namespace FantasyCreatures
 			CustomPrefab attack28 = new CustomPrefab(IceElementalA8, false);
 			PrefabManager.Instance.AddPrefab(attack28);
 
-			Debug.Log("Fantasy Creatures: Fire Elemental Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Fire Elemental Attacks"); }
 			FireElementalA1 = FantasyBundle.LoadAsset<GameObject>("FireElement_Attack1_DoD");
 			CustomPrefab attack29 = new CustomPrefab(FireElementalA1, false);
 			PrefabManager.Instance.AddPrefab(attack29);
@@ -381,7 +406,7 @@ namespace FantasyCreatures
 			CustomPrefab attack36 = new CustomPrefab(FireElementalA8, false);
 			PrefabManager.Instance.AddPrefab(attack36);
 
-			Debug.Log("Fantasy Creatures: Kobold Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Kobold Attacks"); }
 			KoboldA1 = FantasyBundle.LoadAsset<GameObject>("Kobold_Attack1_DoD");
 			CustomPrefab attack37 = new CustomPrefab(KoboldA1, false);
 			PrefabManager.Instance.AddPrefab(attack37);
@@ -407,7 +432,7 @@ namespace FantasyCreatures
 			CustomPrefab attack44 = new CustomPrefab(KoboldA8, false);
 			PrefabManager.Instance.AddPrefab(attack44);
 
-			Debug.Log("Fantasy Creatures: Ogre Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Ogre Attacks"); }
 			OgreA1 = FantasyBundle.LoadAsset<GameObject>("Ogre_Attack1_DoD");
 			CustomPrefab attack56 = new CustomPrefab(OgreA1, false);
 			PrefabManager.Instance.AddPrefab(attack56);
@@ -424,7 +449,7 @@ namespace FantasyCreatures
 			CustomPrefab attack60 = new CustomPrefab(OgreA5, false);
 			PrefabManager.Instance.AddPrefab(attack60);
 
-			Debug.Log("Fantasy Creatures: Hobgoblin Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Hobgoblin Attacks"); }
 			HobgoblinA1 = FantasyBundle.LoadAsset<GameObject>("Hobgoblin_Attack1_DoD");
 			CustomPrefab attack61 = new CustomPrefab(HobgoblinA1, false);
 			PrefabManager.Instance.AddPrefab(attack61);
@@ -441,7 +466,7 @@ namespace FantasyCreatures
 			CustomPrefab attack65 = new CustomPrefab(HobgoblinA5, false);
 			PrefabManager.Instance.AddPrefab(attack65);
 
-			Debug.Log("Fantasy Creatures: Cyclops Attacks");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Cyclops Attacks"); }
 			CyclopsA1 = FantasyBundle.LoadAsset<GameObject>("Cyclops_Attack1_DoD");
 			CustomPrefab attack66 = new CustomPrefab(CyclopsA1, false);
 			PrefabManager.Instance.AddPrefab(attack66);
@@ -461,26 +486,36 @@ namespace FantasyCreatures
 			CustomPrefab attack71 = new CustomPrefab(CyclopsA6, false);
 			PrefabManager.Instance.AddPrefab(attack71);
 
-			Debug.Log("Fantasy Creatures: SFX");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: SFX"); }
 			GameObject SFXEntGetHit = FantasyBundle.LoadAsset<GameObject>("SFX_EntGetHit_DoD");
-			PrefabManager.Instance.AddPrefab(SFXEntGetHit);
+			CustomPrefab SFX1 = new CustomPrefab(SFXEntGetHit, false);
+			PrefabManager.Instance.AddPrefab(SFX1);
 			GameObject SFXEntAlert = FantasyBundle.LoadAsset<GameObject>("SFX_EntAlert_DoD");
-			PrefabManager.Instance.AddPrefab(SFXEntAlert);
+			CustomPrefab SFX2 = new CustomPrefab(SFXEntAlert, false);
+			PrefabManager.Instance.AddPrefab(SFX2);
 			GameObject SFXEntIdle = FantasyBundle.LoadAsset<GameObject>("SFX_EntIdle_DoD");
-			PrefabManager.Instance.AddPrefab(SFXEntIdle);
+			CustomPrefab SFX3 = new CustomPrefab(SFXEntIdle, false);
+			PrefabManager.Instance.AddPrefab(SFX3);
 			GameObject SFXEntDeath = FantasyBundle.LoadAsset<GameObject>("SFX_EntDeath_DoD");
-			PrefabManager.Instance.AddPrefab(SFXEntDeath);
+			CustomPrefab SFX4 = new CustomPrefab(SFXEntDeath, false);
+			PrefabManager.Instance.AddPrefab(SFX4);
 			GameObject SFXDLGetHit = FantasyBundle.LoadAsset<GameObject>("SFX_DLGetHit_DoD");
-			PrefabManager.Instance.AddPrefab(SFXDLGetHit);
+			CustomPrefab SFX5 = new CustomPrefab(SFXDLGetHit, false);
+			PrefabManager.Instance.AddPrefab(SFX5);
 			GameObject SFXDLAlert = FantasyBundle.LoadAsset<GameObject>("SFX_DLAlert_DoD");
-			PrefabManager.Instance.AddPrefab(SFXDLAlert);
+			CustomPrefab SFX6 = new CustomPrefab(SFXDLAlert, false);
+			PrefabManager.Instance.AddPrefab(SFX6);
 			GameObject SFXDLIdle = FantasyBundle.LoadAsset<GameObject>("SFX_DLIdle_DoD");
-			PrefabManager.Instance.AddPrefab(SFXDLIdle);
+			CustomPrefab SFX7 = new CustomPrefab(SFXDLIdle, false);
+			PrefabManager.Instance.AddPrefab(SFX7);
 			GameObject SFXDLDeath = FantasyBundle.LoadAsset<GameObject>("SFX_DLDeath_DoD");
-			PrefabManager.Instance.AddPrefab(SFXDLDeath);
+			CustomPrefab SFX8 = new CustomPrefab(SFXDLDeath, false);
+			PrefabManager.Instance.AddPrefab(SFX8);
 			GameObject SFXDLFoot = FantasyBundle.LoadAsset<GameObject>("SFX_DLFootstep_DoD");
-			PrefabManager.Instance.AddPrefab(SFXDLFoot);
-			Debug.Log("Fantasy Creatures: Trophies");
+			CustomPrefab SFX9 = new CustomPrefab(SFXDLFoot, false);
+			PrefabManager.Instance.AddPrefab(SFX9);
+
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Trophies"); }
 			Trophy1 = FantasyBundle.LoadAsset<GameObject>("Trophy_Cyclops_FC");
 			CustomItem customItem1 = new CustomItem(Trophy1, false);
 			ItemManager.Instance.AddItem(customItem1);
@@ -523,36 +558,48 @@ namespace FantasyCreatures
 			Trophy14 = FantasyBundle.LoadAsset<GameObject>("Trophy_Ogre_FC");
 			CustomItem customItem14 = new CustomItem(Trophy14, false);
 			ItemManager.Instance.AddItem(customItem14);
-			Debug.Log("Fantasy Creatures: VFX");
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: VFX"); }
 			GameObject VFX1 = FantasyBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_M_FC");
-			PrefabManager.Instance.AddPrefab(VFX1);
+			CustomPrefab vfx1 = new CustomPrefab(VFX1, false);
+			PrefabManager.Instance.AddPrefab(vfx1);
 			GameObject VFX2 = FantasyBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_L_FC");
-			PrefabManager.Instance.AddPrefab(VFX2);
+			CustomPrefab vfx2 = new CustomPrefab(VFX2, false);
+			PrefabManager.Instance.AddPrefab(vfx2);
 			GameObject VFX3 = FantasyBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_S_FC");
-			PrefabManager.Instance.AddPrefab(VFX3);
+			CustomPrefab vfx3 = new CustomPrefab(VFX3, false);
+			PrefabManager.Instance.AddPrefab(vfx3);
 			GameObject VFX4 = FantasyBundle.LoadAsset<GameObject>("FX_Backstab_FC");
-			PrefabManager.Instance.AddPrefab(VFX4);
+			CustomPrefab vfx4 = new CustomPrefab(VFX4, false);
+			PrefabManager.Instance.AddPrefab(vfx4);
 			GameObject VFX5 = FantasyBundle.LoadAsset<GameObject>("FX_Crit_FC");
-			PrefabManager.Instance.AddPrefab(VFX5);
+			CustomPrefab vfx5 = new CustomPrefab(VFX5, false);
+			PrefabManager.Instance.AddPrefab(vfx5);
 			GameObject VFX6 = FantasyBundle.LoadAsset<GameObject>("VFX_HitSparks_FC");
-			PrefabManager.Instance.AddPrefab(VFX6);
+			CustomPrefab vfx6 = new CustomPrefab(VFX6, false);
+			PrefabManager.Instance.AddPrefab(vfx6);
 			GameObject VFX7 = FantasyBundle.LoadAsset<GameObject>("VFX_Blood_Hit_FC");
-			PrefabManager.Instance.AddPrefab(VFX7);
+			CustomPrefab vfx7 = new CustomPrefab(VFX7, false);
+			PrefabManager.Instance.AddPrefab(vfx7);
 			GameObject VFX8 = FantasyBundle.LoadAsset<GameObject>("VFX_Hit_FC");
-			PrefabManager.Instance.AddPrefab(VFX8);
+			CustomPrefab vfx8 = new CustomPrefab(VFX8, false);
+			PrefabManager.Instance.AddPrefab(vfx8);
 			GameObject VFX9 = FantasyBundle.LoadAsset<GameObject>("VFX_Poisonspit_Hit_FC");
-			PrefabManager.Instance.AddPrefab(VFX9);
+			CustomPrefab vfx9 = new CustomPrefab(VFX9, false);
+			PrefabManager.Instance.AddPrefab(vfx9);
 			// Projectile
+			if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Projectiles"); }
 			GameObject Projectile1 = FantasyBundle.LoadAsset<GameObject>("Fireball_Projectile_FC");
-			PrefabManager.Instance.AddPrefab(Projectile1);
+			CustomPrefab proj1 = new CustomPrefab(Projectile1, false);
+			PrefabManager.Instance.AddPrefab(proj1);
 			GameObject Projectile2 = FantasyBundle.LoadAsset<GameObject>("Poisonspit_Projectile_FC");
-			PrefabManager.Instance.AddPrefab(Projectile2);
+			CustomPrefab proj2 = new CustomPrefab(Projectile2, false);
+			PrefabManager.Instance.AddPrefab(proj2);
 		}
 		private void AddNewCreatures()
 		{
 			try
 			{
-				Debug.Log("Fantasy Creatures: DemonLord");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: DemonLord"); }
 				var DemonLordFab = FantasyBundle.LoadAsset<GameObject>("DemonLord_DoD");
 				var DemonLordMob = new CustomCreature(DemonLordFab, false,
 					new CreatureConfig
@@ -584,7 +631,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(DemonLordMob);
-				Debug.Log("Fantasy Creatures: FireElemental");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: FireElemental"); }
 				var FireElementalFab = FantasyBundle.LoadAsset<GameObject>("FireElemental_DoD");
 				var FireElementalMob = new CustomCreature(FireElementalFab, false,
 					new CreatureConfig
@@ -616,7 +663,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(FireElementalMob);
-				Debug.Log("Fantasy Creatures: IceElemental");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: IceElemental"); }
 				var IceElementalFab = FantasyBundle.LoadAsset<GameObject>("IceElemental_DoD");
 				var IceElementalMob = new CustomCreature(IceElementalFab, false,
 					new CreatureConfig
@@ -647,7 +694,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(IceElementalMob);
-				Debug.Log("Fantasy Creatures: EarthElemental");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: EarthElemental"); }
 				var EarthElementalFab = FantasyBundle.LoadAsset<GameObject>("EarthElemental_DoD");
 				var EarthElementalMob = new CustomCreature(EarthElementalFab, false,
 					new CreatureConfig
@@ -679,7 +726,7 @@ namespace FantasyCreatures
 						},
 					});
 				CreatureManager.Instance.AddCreature(EarthElementalMob);
-				Debug.Log("Fantasy Creatures: Manticore");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Manticore"); }
 				var ManticoreFab = FantasyBundle.LoadAsset<GameObject>("Manticore_FC");
 				var ManticoreMob = new CustomCreature(ManticoreFab, false,
 					new CreatureConfig
@@ -718,7 +765,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(ManticoreMob);
-				Debug.Log("Fantasy Creatures: Cyclops");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Cyclops"); }
 				var CyclopsFab = FantasyBundle.LoadAsset<GameObject>("Cyclops_DoD");
 				var CyclopsMob = new CustomCreature(CyclopsFab, false,
 					new CreatureConfig
@@ -757,7 +804,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(CyclopsMob);
-				Debug.Log("Fantasy Creatures: Ogre");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Ogre"); }
 				var OgreFab = FantasyBundle.LoadAsset<GameObject>("Ogre_DoD");
 				var OgreMob = new CustomCreature(OgreFab, false,
 					new CreatureConfig
@@ -796,7 +843,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(OgreMob);
-				Debug.Log("Fantasy Creatures: Mummy");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Mummy"); }
 				var MummyFab = FantasyBundle.LoadAsset<GameObject>("Mummy_FC");
 				var MummyMob = new CustomCreature(MummyFab, false,
 					new CreatureConfig
@@ -835,7 +882,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(MummyMob);
-				Debug.Log("Fantasy Creatures: Ghoul");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Ghoul"); }
 				var GhoulFab = FantasyBundle.LoadAsset<GameObject>("Ghoul_FC");
 				var GhoulMob = new CustomCreature(GhoulFab, false,
 					new CreatureConfig
@@ -874,7 +921,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(GhoulMob);
-				Debug.Log("Fantasy Creatures: TreeEnt");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: TreeEnt"); }
 				var TreeEntFab = FantasyBundle.LoadAsset<GameObject>("TreeEnt_DoD");
 				var TreeEntMob = new CustomCreature(TreeEntFab, false,
 					new CreatureConfig
@@ -913,7 +960,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(TreeEntMob);
-				Debug.Log("Fantasy Creatures: Ogre");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Ogre"); }
 				var HobgoblinFab = FantasyBundle.LoadAsset<GameObject>("Hobgoblin_DoD");
 				var HobgoblinMob = new CustomCreature(HobgoblinFab, false,
 					new CreatureConfig
@@ -952,7 +999,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(HobgoblinMob);
-				Debug.Log("Fantasy Creatures: Viper");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Viper"); }
 				var ViperFab = FantasyBundle.LoadAsset<GameObject>("GiantViper_FC");
 				var ViperMob = new CustomCreature(ViperFab, false,
 					new CreatureConfig
@@ -984,7 +1031,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(ViperMob);
-				Debug.Log("Fantasy Creatures: Kobold");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Kobold"); }
 				var KoboldFab = FantasyBundle.LoadAsset<GameObject>("Kobold_DoD");
 				var KoboldMob = new CustomCreature(KoboldFab, false,
 					new CreatureConfig
@@ -1023,7 +1070,7 @@ namespace FantasyCreatures
 						}
 					});
 				CreatureManager.Instance.AddCreature(KoboldMob);
-				Debug.Log("Fantasy Creatures: Spider");
+				if (BasicLoggingEnable.Value == true) { Debug.Log("Fantasy Creatures: Spider"); }
 				var SpiderFab = FantasyBundle.LoadAsset<GameObject>("DarknessSpider_FC");
 				var SpiderMob = new CustomCreature(SpiderFab, false,
 					new CreatureConfig
@@ -1066,7 +1113,7 @@ namespace FantasyCreatures
 		}
 		public static void ConfigureUnderworldSpawners(ISpawnerConfigurationCollection config)
 		{
-			Debug.Log("Fantasy Creatures: Configure Underworld Spawns");
+			//Debug.Log("Fantasy Creatures: Configure Underworld Spawns");
 			try
 			{
 				ConfigureUWSpawnerByNamed(config);
@@ -1078,7 +1125,7 @@ namespace FantasyCreatures
 		}
 		public static void ConfigureBiomeSpawners(ISpawnerConfigurationCollection config)
 		{
-			Debug.Log("Fantasy Creatures: Configure Spawns");
+			//Debug.Log("Fantasy Creatures: Configure Spawns");
 			try
 			{
 				ConfigureWorldSpawner(config);
@@ -1090,7 +1137,7 @@ namespace FantasyCreatures
 		}
 		private static void ConfigureUWSpawnerByNamed(ISpawnerConfigurationCollection config)
 		{
-			Debug.Log("Fantasy Creatures: Create Underworld Spawns");
+			//Debug.Log("Fantasy Creatures: Create Underworld Spawns");
 			try
 			{
 				LocalSpawnSettings underworldT1Normal = new()
@@ -1280,7 +1327,7 @@ namespace FantasyCreatures
 		}
 		private static void ConfigureWorldSpawner(ISpawnerConfigurationCollection config)
 		{
-			Debug.Log("Fantasy Creatures: Create Spawns");
+			//Debug.Log("Fantasy Creatures: Create Spawns");
 			try
 			{
 				config.ConfigureWorldSpawner(20_014)

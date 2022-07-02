@@ -191,5 +191,8 @@
   <ItemGroup>
     <EmbeddedResource Include="doditems" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="dodoremines" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

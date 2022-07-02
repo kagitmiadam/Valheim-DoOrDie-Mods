@@ -13,26 +13,9 @@ namespace DoOrDieBiomes
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
-			{"enemy_pin_skirsandburst_dod", "Skir Sandburst"},
-			{"enemy_pin_bhygshan_dod", "Bhygshan"},
-			{"piece_skirsandburstaltar_dod", "Skir Sandburst Altar"},
-			{"piece_skirsandburstaltar_text_dod", "Requires 5 Ruby Foci"},
-
-			{"piece_bhygshanaltar_dod", "Bhygshan Altar"},
-			{"piece_bhygshanaltar_text_dod", "Requires 5 Skeleton Bones"},
-			{"piece_farkascave_dod", "Farkas Altar"},
-			{"piece_farkascave_text_dod", "Requires 5 Large Fangs"},
-
-			{ "item_pickaxe_steel_dod", "Steel Pickaxe" },
-			{ "item_pickaxe_steel_description_dod", "Required to mine Felmetal Ore and Frometal Ore" },
-
 			{ "spawner_firedraketower_dod", "Drake Tower" },
 			{ "spawner_arena_dod", "Arena Spawner" },
-			{ "piece_bitterstumpaltar_dod", "Bitterstump Altar" },
-			{ "object_glowmetal_dod", "Glowing Metal" },
 			{ "object_rock_dod", "Rock" },
-			{ "prop_worldlevel_dod", "World Level" },
-			{ "prop_worldlevel_description_dod", "Level 1: Day 15 - Level 2: Day 25 - Level 3: Day 50 - Level 4: Day 100 - Level 5: Day 200" },
 			{ "prop_cavemushroom_dod", "Cave Mushroom" },
 			{ "item_cavemushroom_dod", "Cave Mushroom" },
 			{ "item_cavemushroom_description_dod", "These come from the underworld." },
@@ -42,31 +25,11 @@ namespace DoOrDieBiomes
 			{ "location_mysterycavet_dod", "Chilly Cavern" },
 			{ "location_mysterycavem_dod", "Fiery Cavern" },
 			{ "location_mysterycave_dod", "Entrance to the Underworld" },
-			{ "piece_startstone_dod", "Welcome to Do or Die" },
-			{ "lore_start_label_dod", "Do or Die Difficulty" },
-			{ "lore_start_dod", "Scaling difficulty is always active. The longer you are in the world and the more bosses you kill, the harder the world will become. Bosses will level up one tier per world level, after you kill them the first time. Biome creatures level up once, after you kill the Vanilla boss in that biome. All creatures gain 5% Damage and Health every world level. Maximum Stars is increased to 10 plus 3 from sector level ups." },
-
-			{"piece_vegvisir_dod", "Location Rune"},
-			{"piece_vegvisir_desc_dod", "Shows the location of a Do or Die boss"},
-			{"prop_altar_bitterstump_dod", "Bitterstump Altar"},
-			{"item_token_skull_dod", "Skull Token"},
-			{"item_token_skull_description_dod", "Knarr the Trader likes these."},
-			{"location_bitterstumpcave_dod", "Bitterstump Altar"},
-			{"location_bitterstumpcave_text_dod", "Requires 5 Greydwarf Hearts"},
-			{"enemy_pin_bitterstump_dod", "Bitterstump"},
-			{"location_bitterstump_dod", "Bitterstump's Cave"},
-			{"lore_bitterstump_dod", "Bitterstump - Unknown"},
 
 			{"prop_bluemushroom_dod", "Blewit"},
 			{"prop_bluemushroom_description_dod", "Found in Mistlands"},
 			{"prop_purpmushroom_dod", "Blushing Bracket"},
 			{"prop_purpmushroom_description_dod", "Found in Mistlands"},
-			{"prop_walnuttree_dod", "Walnut"},
-			{"prop_appletree_dod", "Apple"},
-			{"prop_redcherries_dod", "Cherry"},
-			{"item_banana_dod", "Banana"},
-			{"item_banana_description_dod", "Found in the Plains"},
-			{"prop_bananatree_dod", "Banana Tree"},
 
 			{"prop_mistlandsoak_dod", "Mistlands Oak"},
 			{"prop_mistlandsbush_dod", "Bush"},
@@ -82,20 +45,6 @@ namespace DoOrDieBiomes
 			{"location_castlearenaout_dod", "You left the Arena"},
 			{"location_castlearena_dod", "Castle Arena"},
 
-			{"piece_ramborecave_dod", "Ram'Bore Altar"},
-			{"piece_ramborecave_text_dod", "Requires 5 Boar Tusks"},
-			{"enemy_pin_rambore_dod", "Ram'Bore"},
-			{"location_rambore_dod", "Ram'Bore's Cave"},
-			{"lore_rambore_dod", "Ram'Bore - Unknown"},
-
-			{"piece_lorestone_dod", "Lorestone"},
-
-			{"item_walnut_dod", "Walnuts"},
-			{"item_walnuts_description_dod", "Gatherd from Walnut Tree's in the Mistlands."},
-			{"item_apple_dod", "Pink Lady"},
-			{"item_apple_description_dod", "Gatherd from Apple Tree's in the Black Forest."},
-			{"item_redberries_dod", "Cherries"},
-			{"item_redberries_description_dod", "Gatherd from Cherry Tree's in the Mistlands."},
 		};
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
 

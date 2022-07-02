@@ -129,5 +129,8 @@
   <ItemGroup>
     <EmbeddedResource Include="dodmonsters" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="dodbosslocs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

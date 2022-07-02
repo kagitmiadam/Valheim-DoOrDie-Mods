@@ -13,6 +13,20 @@ namespace DoDItems
         public static Dictionary<string, string> t;
         private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+			{ "item_felmetalore_dod", "Adamantine Ore" },
+			{ "item_felmetalore_desc_dod", "The plane of Arborea is a realm of wondrous sights, sprawling nature and passionate people. Adamantine weapons and armor is the material of choice for the Greek Pantheon's personal armory. Some of the most famous weapons and armor in the history of the realms have been made from Adamantine." },
+			{ "item_felmetalbar_dod", "Adamantine Bar" },
+			{ "item_felmetalbar_desc_dod", "Regardless of its origins, the heavy and destructive metal is as magical as it is deadly, rivaling Valhallium in material effectiveness while still being able to retain enchantments." },
+			{ "item_frometalore_dod", "Valhallium Ore" },
+			{ "item_frometalore_desc_dod", "The metal that they mine on this plane is known as Valhallium, given as a gift from the Norse gods for their deceased heroes’ bravery, so that they can fight honorable battles for eternity." },
+			{ "item_frometalbar_dod", "Valhallium Bar" },
+			{ "item_frometalbar_desc_dod", "Valhallium is a metal that can be sharpened finer than any other, protects greater than any other, and deals death more easily than any other." },
+			{ "item_steelbar_dod", "Steel Bar" },
+			{ "item_steelbar_desc_dod", "Hardened iron good for making items that last." },
+			{ "item_pickaxe_steel_dod", "Steel Pickaxe" },
+			{ "item_pickaxe_steel_description_dod", "Required to mine Adamantine Ore and Valhallium Ore" },
+
+			{ "object_glowmetal_dod", "Glowing Metal" },
 			{"item_spartan_sword", "Spartan's Blade"},
 			{"item_spartan_sword_desc", "You can feel a tingling when you touch this sword."},
 			{"item_priest_staff", "Holy Staff"},
