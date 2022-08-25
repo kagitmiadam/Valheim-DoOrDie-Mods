@@ -1,0 +1,902 @@
+[
+  {
+    "name": "Crow",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 1
+  },
+  {
+    "name": "Gull",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 1
+  },
+  {
+    "name": "Seagal",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 1
+  },
+  {
+    "name": "ChickenB_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 2
+  },
+  {
+    "name": "ChickenBW_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 2
+  },
+  {
+    "name": "ChickenW_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 2
+  },
+  {
+    "name": "TurkeyB_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 2
+  },
+  {
+    "name": "TurkeyR_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 2
+  },
+  {
+    "name": "TurkeyW_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 2
+  },
+  {
+    "name": "Mulefoot_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 3
+  },
+  {
+    "name": "OldSpots_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 3
+  },
+  {
+    "name": "Oxford_FY",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 3
+  },
+  {
+    "name": "CowB_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 3
+  },
+  {
+    "name": "CowBW_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 3
+  },
+  {
+    "name": "Highland_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 3
+  },
+  {
+    "name": "LonghornB_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 3
+  },
+  {
+    "name": "LonghornW_FYA",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 3
+  },
+  {
+    "name": "Deer",
+    "minExp": 9,
+    "maxExp": 11,
+    "level": 4
+  },
+  {
+    "name": "Neck",
+    "minExp": 20,
+    "maxExp": 25,
+    "level": 5
+  },
+  {
+    "name": "Boar",
+    "minExp": 25,
+    "maxExp": 31,
+    "level": 5
+  },
+  {
+    "name": "Greyling",
+    "minExp": 29,
+    "maxExp": 36,
+    "level": 5
+  },
+  {
+    "name": "Kobold_DoD",
+    "minExp": 32,
+    "maxExp": 40,
+    "level": 6
+  },
+  {
+    "name": "DarknessSpider_FC",
+    "minExp": 35,
+    "maxExp": 44,
+    "level": 7
+  },
+  {
+    "name": "ForestWolf_DoD",
+    "minExp": 38,
+    "maxExp": 47,
+    "level": 8
+  },
+  {
+    "name": "HillGiant_HG",
+    "minExp": 41,
+    "maxExp": 51,
+    "level": 9
+  },
+  {
+    "name": "UpirGrim_DoD",
+    "minExp": 215,
+    "maxExp": 269,
+    "level": 10
+  },
+  {
+    "name": "ZaineEvilian_DoD",
+    "minExp": 227,
+    "maxExp": 283,
+    "level": 11
+  },
+  {
+    "name": "Rambone_DoD",
+    "minExp": 476,
+    "maxExp": 595,
+    "level": 12
+  },
+  {
+    "name": "Eikthyr",
+    "minExp": 497,
+    "maxExp": 621,
+    "level": 13
+  },
+  {
+    "name": "Greydwarf",
+    "minExp": 78,
+    "maxExp": 97,
+    "level": 14
+  },
+  {
+    "name": "Greydwarf_Shaman",
+    "minExp": 80,
+    "maxExp": 101,
+    "level": 15
+  },
+  {
+    "name": "Molluscan",
+    "minExp": 122,
+    "maxExp": 152,
+    "level": 16
+  },
+  {
+    "name": "RRR_TrollTosser",
+    "minExp": 125,
+    "maxExp": 156,
+    "level": 17
+  },
+  {
+    "name": "Nomad_DoD",
+    "minExp": 111,
+    "maxExp": 139,
+    "level": 18
+  },
+  {
+    "name": "Skugga_DoD",
+    "minExp": 115,
+    "maxExp": 143,
+    "level": 19
+  },
+  {
+    "name": "Greydwarf_Elite",
+    "minExp": 118,
+    "maxExp": 148,
+    "level": 20
+  },
+  {
+    "name": "Skeleton",
+    "minExp": 128,
+    "maxExp": 160,
+    "level": 21
+  },
+  {
+    "name": "Skeleton_NoArcher",
+    "minExp": 131,
+    "maxExp": 164,
+    "level": 22
+  },
+  {
+    "name": "Skeleton_Poison",
+    "minExp": 135,
+    "maxExp": 168,
+    "level": 23
+  },
+  {
+    "name": "Ghost",
+    "minExp": 138,
+    "maxExp": 172,
+    "level": 24
+  },
+  {
+    "name": "Hobgoblin_DoD",
+    "minExp": 141,
+    "maxExp": 176,
+    "level": 25
+  },
+  {
+    "name": "Stormling_DoD",
+    "minExp": 143,
+    "maxExp": 179,
+    "level": 26
+  },
+  {
+    "name": "TreeEnt_DoD",
+    "minExp": 146,
+    "maxExp": 183,
+    "level": 27
+  },
+  {
+    "name": "TreeSpider",
+    "minExp": 149,
+    "maxExp": 186,
+    "level": 28
+  },
+  {
+    "name": "Troll",
+    "minExp": 152,
+    "maxExp": 190,
+    "level": 29
+  },
+  {
+    "name": "LazarusAutumn_DoD",
+    "minExp": 772,
+    "maxExp": 965,
+    "level": 30
+  },
+  {
+    "name": "GrailThornheart_DoD",
+    "minExp": 786,
+    "maxExp": 982,
+    "level": 31
+  },
+  {
+    "name": "Farkas_Alt_DoD",
+    "minExp": 1597,
+    "maxExp": 1996,
+    "level": 32
+  },
+  {
+    "name": "gd_king",
+    "minExp": 1623,
+    "maxExp": 2028,
+    "level": 33
+  },
+  {
+    "name": "Blob",
+    "minExp": 247,
+    "maxExp": 309,
+    "level": 34
+  },
+  {
+    "name": "BlobElite",
+    "minExp": 251,
+    "maxExp": 314,
+    "level": 35
+  },
+  {
+    "name": "Draugr",
+    "minExp": 255,
+    "maxExp": 318,
+    "level": 36
+  },
+  {
+    "name": "Draugr_Elite",
+    "minExp": 258,
+    "maxExp": 323,
+    "level": 37
+  },
+  {
+    "name": "Draugr_Ranged",
+    "minExp": 262,
+    "maxExp": 327,
+    "level": 38
+  },
+  {
+    "name": "Ghoul_FC",
+    "minExp": 265,
+    "maxExp": 332,
+    "level": 39
+  },
+  {
+    "name": "Mummy_FC",
+    "minExp": 269,
+    "maxExp": 336,
+    "level": 40
+  },
+  {
+    "name": "PoisonDrake_DoD",
+    "minExp": 272,
+    "maxExp": 340,
+    "level": 41
+  },
+  {
+    "name": "Surtling",
+    "minExp": 276,
+    "maxExp": 344,
+    "level": 42
+  },
+  {
+    "name": "WendigoSwamp",
+    "minExp": 279,
+    "maxExp": 349,
+    "level": 43
+  },
+  {
+    "name": "Wraith",
+    "minExp": 282,
+    "maxExp": 353,
+    "level": 44
+  },
+  {
+    "name": "CrisenthShadowsoul_DoD",
+    "minExp": 1427,
+    "maxExp": 1784,
+    "level": 45
+  },
+  {
+    "name": "JaydenShadowmend_DoD",
+    "minExp": 1443,
+    "maxExp": 1804,
+    "level": 46
+  },
+  {
+    "name": "Bitterstump_DoD",
+    "minExp": 2918,
+    "maxExp": 3648,
+    "level": 47
+  },
+  {
+    "name": "Bonemass",
+    "minExp": 2950,
+    "maxExp": 3687,
+    "level": 48
+  },
+  {
+    "name": "Undead_DA",
+    "minExp": 894,
+    "maxExp": 1118,
+    "level": 49
+  },
+  {
+    "name": "UndeadCarver_DA",
+    "minExp": 904,
+    "maxExp": 1129,
+    "level": 50
+  },
+  {
+    "name": "UndeadDesecrator_DA",
+    "minExp": 913,
+    "maxExp": 1141,
+    "level": 51
+  },
+  {
+    "name": "UndeadReaver_DA",
+    "minExp": 922,
+    "maxExp": 1152,
+    "level": 52
+  },
+  {
+    "name": "UndeadRipper_DA",
+    "minExp": 931,
+    "maxExp": 1164,
+    "level": 53
+  },
+  {
+    "name": "Skeleton2H_DA",
+    "minExp": 940,
+    "maxExp": 1175,
+    "level": 54
+  },
+  {
+    "name": "Skeleton1H_DA",
+    "minExp": 949,
+    "maxExp": 1186,
+    "level": 55
+  },
+  {
+    "name": "Vampire_DA",
+    "minExp": 957,
+    "maxExp": 1197,
+    "level": 56
+  },
+  {
+    "name": "UndeadBoss_DA",
+    "minExp": 4966,
+    "maxExp": 7207,
+    "level": 57
+  },
+  {
+    "name": "Leech",
+    "minExp": 379,
+    "maxExp": 474,
+    "level": 58
+  },
+  {
+    "name": "Drake",
+    "minExp": 437,
+    "maxExp": 546,
+    "level": 59
+  },
+  {
+    "name": "Fenring",
+    "minExp": 441,
+    "maxExp": 551,
+    "level": 60
+  },
+  {
+    "name": "Frostling_DoD",
+    "minExp": 444,
+    "maxExp": 555,
+    "level": 61
+  },
+  {
+    "name": "FrostSpider",
+    "minExp": 448,
+    "maxExp": 560,
+    "level": 62
+  },
+  {
+    "name": "GhostWarrior",
+    "minExp": 452,
+    "maxExp": 565,
+    "level": 63
+  },
+  {
+    "name": "Hatchling",
+    "minExp": 455,
+    "maxExp": 569,
+    "level": 64
+  },
+  {
+    "name": "MountainGiant_HG",
+    "minExp": 459,
+    "maxExp": 574,
+    "level": 65
+  },
+  {
+    "name": "Ogre_DoD",
+    "minExp": 463,
+    "maxExp": 578,
+    "level": 66
+  },
+  {
+    "name": "StoneGolem",
+    "minExp": 466,
+    "maxExp": 583,
+    "level": 67
+  },
+  {
+    "name": "Wolf",
+    "minExp": 470,
+    "maxExp": 587,
+    "level": 68
+  },
+  {
+    "name": "Yeti",
+    "minExp": 473,
+    "maxExp": 591,
+    "level": 69
+  },
+  {
+    "name": "LuxFrost_DoD",
+    "minExp": 2383,
+    "maxExp": 2978,
+    "level": 70
+  },
+  {
+    "name": "FirionWinter_DoD",
+    "minExp": 2400,
+    "maxExp": 3000,
+    "level": 71
+  },
+  {
+    "name": "Bhygshan_DoD",
+    "minExp": 4834,
+    "maxExp": 6043,
+    "level": 72
+  },
+  {
+    "name": "Dragon",
+    "minExp": 4868,
+    "maxExp": 6085,
+    "level": 73
+  },
+  {
+    "name": "Cyclops_DoD",
+    "minExp": 613,
+    "maxExp": 766,
+    "level": 74
+  },
+  {
+    "name": "DarkDrake_DoD",
+    "minExp": 617,
+    "maxExp": 771,
+    "level": 75
+  },
+  {
+    "name": "DarknessDrake_DoD",
+    "minExp": 621,
+    "maxExp": 776,
+    "level": 76
+  },
+  {
+    "name": "Deathsquito",
+    "minExp": 625,
+    "maxExp": 781,
+    "level": 77
+  },
+  {
+    "name": "Fuling",
+    "minExp": 629,
+    "maxExp": 787,
+    "level": 78
+  },
+  {
+    "name": "Giant_HG",
+    "minExp": 633,
+    "maxExp": 792,
+    "level": 79
+  },
+  {
+    "name": "GiantViper_FC",
+    "minExp": 637,
+    "maxExp": 797,
+    "level": 80
+  },
+  {
+    "name": "Goblin",
+    "minExp": 641,
+    "maxExp": 802,
+    "level": 81
+  },
+  {
+    "name": "GoblinArcher",
+    "minExp": 645,
+    "maxExp": 807,
+    "level": 82
+  },
+  {
+    "name": "GoblinBrute",
+    "minExp": 649,
+    "maxExp": 812,
+    "level": 83
+  },
+  {
+    "name": "GoblinShaman",
+    "minExp": 653,
+    "maxExp": 817,
+    "level": 84
+  },
+  {
+    "name": "Kraken",
+    "minExp": 657,
+    "maxExp": 822,
+    "level": 85
+  },
+  {
+    "name": "LivingWater_DoD",
+    "minExp": 661,
+    "maxExp": 826,
+    "level": 86
+  },
+  {
+    "name": "Lox",
+    "minExp": 665,
+    "maxExp": 831,
+    "level": 87
+  },
+  {
+    "name": "Manticore_FC",
+    "minExp": 669,
+    "maxExp": 836,
+    "level": 88
+  },
+  {
+    "name": "Serpent",
+    "minExp": 673,
+    "maxExp": 841,
+    "level": 89
+  },
+  {
+    "name": "WereWolfBlack",
+    "minExp": 677,
+    "maxExp": 846,
+    "level": 90
+  },
+  {
+    "name": "WereWolfBrown",
+    "minExp": 680,
+    "maxExp": 850,
+    "level": 91
+  },
+  {
+    "name": "WereWolfDarkGrey",
+    "minExp": 684,
+    "maxExp": 855,
+    "level": 92
+  },
+  {
+    "name": "WereWolfWhite",
+    "minExp": 688,
+    "maxExp": 860,
+    "level": 93
+  },
+  {
+    "name": "EchoBlack_DoD",
+    "minExp": 2075,
+    "maxExp": 2593,
+    "level": 94
+  },
+  {
+    "name": "MathianSerphent_DoD",
+    "minExp": 2086,
+    "maxExp": 2607,
+    "level": 95
+  },
+  {
+    "name": "SkirSandburst_DoD",
+    "minExp": 4893,
+    "maxExp": 6116,
+    "level": 96
+  },
+  {
+    "name": "GoblinKing",
+    "minExp": 7026,
+    "maxExp": 8783,
+    "level": 97
+  },
+  {
+    "name": "Voidling_DoD",
+    "minExp": 777,
+    "maxExp": 971,
+    "level": 98
+  },
+  {
+    "name": "Minotaur_HM",
+    "minExp": 2556,
+    "maxExp": 3195,
+    "level": 99
+  },
+  {
+    "name": "MinotaurArmoured_HM",
+    "minExp": 2569,
+    "maxExp": 3211,
+    "level": 100
+  },
+  {
+    "name": "BrownSpider",
+    "minExp": 861,
+    "maxExp": 1076,
+    "level": 101
+  },
+  {
+    "name": "EarthElemental_DoD",
+    "minExp": 865,
+    "maxExp": 1081,
+    "level": 102
+  },
+  {
+    "name": "Einherjar_DoD",
+    "minExp": 869,
+    "maxExp": 1086,
+    "level": 103
+  },
+  {
+    "name": "ForestSpider",
+    "minExp": 873,
+    "maxExp": 1092,
+    "level": 104
+  },
+  {
+    "name": "SkeletonWarrior",
+    "minExp": 878,
+    "maxExp": 1097,
+    "level": 105
+  },
+  {
+    "name": "VileFang_DoD",
+    "minExp": 882,
+    "maxExp": 1102,
+    "level": 106
+  },
+  {
+    "name": "WendigoForest",
+    "minExp": 886,
+    "maxExp": 1108,
+    "level": 107
+  },
+  {
+    "name": "SceledrusShadowend_DoD",
+    "minExp": 2671,
+    "maxExp": 3338,
+    "level": 108
+  },
+  {
+    "name": "LazarusDeamonne_DoD",
+    "minExp": 2683,
+    "maxExp": 3354,
+    "level": 109
+  },
+  {
+    "name": "DemonLord_DoD",
+    "minExp": 1048,
+    "maxExp": 1310,
+    "level": 110
+  },
+  {
+    "name": "DireWolf_DoD",
+    "minExp": 1053,
+    "maxExp": 1316,
+    "level": 111
+  },
+  {
+    "name": "FireElemental_DoD",
+    "minExp": 1058,
+    "maxExp": 1322,
+    "level": 112
+  },
+  {
+    "name": "FireGiant_HG",
+    "minExp": 1063,
+    "maxExp": 1328,
+    "level": 113
+  },
+  {
+    "name": "FlameDrake_DoD",
+    "minExp": 1067,
+    "maxExp": 1334,
+    "level": 114
+  },
+  {
+    "name": "FrigidSpider",
+    "minExp": 1072,
+    "maxExp": 1340,
+    "level": 115
+  },
+  {
+    "name": "FrostGiant_HG",
+    "minExp": 1077,
+    "maxExp": 1346,
+    "level": 116
+  },
+  {
+    "name": "FrozenBones_DoD",
+    "minExp": 1081,
+    "maxExp": 1352,
+    "level": 117
+  },
+  {
+    "name": "GrayWolf_DoD",
+    "minExp": 1086,
+    "maxExp": 1357,
+    "level": 118
+  },
+  {
+    "name": "GreaterSurtling_DoD",
+    "minExp": 1091,
+    "maxExp": 1363,
+    "level": 119
+  },
+  {
+    "name": "IceDrake_DoD",
+    "minExp": 1095,
+    "maxExp": 1369,
+    "level": 120
+  },
+  {
+    "name": "IceElemental_DoD",
+    "minExp": 1104,
+    "maxExp": 1380,
+    "level": 121
+  },
+  {
+    "name": "IceGolem_DoD",
+    "minExp": 1109,
+    "maxExp": 1386,
+    "level": 122
+  },
+  {
+    "name": "LavaGolem_DoD",
+    "minExp": 1113,
+    "maxExp": 1392,
+    "level": 123
+  },
+  {
+    "name": "LivingLava_DoD",
+    "minExp": 1118,
+    "maxExp": 1397,
+    "level": 124
+  },
+  {
+    "name": "ObsidianGolem_DoD",
+    "minExp": 1122,
+    "maxExp": 1403,
+    "level": 125
+  },
+  {
+    "name": "WereWolfBlackArmored",
+    "minExp": 1127,
+    "maxExp": 1409,
+    "level": 126
+  },
+  {
+    "name": "FrostMinotaur_HM",
+    "minExp": 3394,
+    "maxExp": 4243,
+    "level": 127
+  },
+  {
+    "name": "FrostMinotaurArmoured_HM",
+    "minExp": 3408,
+    "maxExp": 4260,
+    "level": 128
+  },
+  {
+    "name": "FireMinotaur_HM",
+    "minExp": 3421,
+    "maxExp": 4276,
+    "level": 129
+  },
+  {
+    "name": "FireMinotaurArmoured_HM",
+    "minExp": 3434,
+    "maxExp": 4293,
+    "level": 130
+  },
+  {
+    "name": "LincolnHunt_DoD",
+    "minExp": 5746,
+    "maxExp": 7182,
+    "level": 131
+  },
+  {
+    "name": "DravenNox_DoD",
+    "minExp": 5767,
+    "maxExp": 7209,
+    "level": 132
+  },
+  {
+    "name": "CinderMortem_DoD",
+    "minExp": 5789,
+    "maxExp": 7237,
+    "level": 133
+  },
+  {
+    "name": "AshVexx_DoD",
+    "minExp": 5811,
+    "maxExp": 7264,
+    "level": 134
+  }
+]

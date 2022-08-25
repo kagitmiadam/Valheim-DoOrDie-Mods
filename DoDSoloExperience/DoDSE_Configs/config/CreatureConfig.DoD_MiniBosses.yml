@@ -1,0 +1,177 @@
+#### DoD Mini Bosses  ####
+## Upir Grim - Meadows Daytime
+Upir Grim:
+  size: 0
+  health: 1.0
+  damage: 1.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Lightning: 0
+## Zaine Evilian - Meadows Night time
+Zaine Evilian:
+  size: 0
+  health: 1.0
+  damage: 1.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Lightning: 0
+## Lazarus Autumn - Black Forest Daytime
+Lazarus Autumn:
+  size: 0
+  health: 1.0
+  damage: 2.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Lightning: 0
+## Grail Thornheart - Black Forest Night time
+Grail Thornheart:
+  size: 0
+  health: 1.0
+  damage: 2.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Lightning: 0
+## Crisenth Shadowsoul - Swamp Daytime
+Crisenth Shadowsoul:
+  size: 0
+  health: 1.0
+  damage: 4.5
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Poison: 0
+## Jayden Shadowmend - Swamp Night time
+Jayden Shadowmend:
+  size: 0
+  health: 1.0
+  damage: 4.75
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Poison: 0
+## Lux Frost - Mountains Daytime
+Lux Frost:
+  size: 0
+  health: 1.0
+  damage: 7.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Frost: 0
+## Firion Winter - Mountains Night time
+Firion Winter:
+  size: 0
+  health: 1.0
+  damage: 7.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Frost: 0
+## Echo Black - Plains Daytime
+Echo Black:
+  size: 0
+  health: 1.0
+  damage: 9.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Fire: 0
+## Mathian Serphent - Plains Night time
+Mathian Serphent:
+  size: 0
+  health: 1.0
+  damage: 9.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Fire: 0
+## Sceledrus Shadowend - Mistlands Daytime
+Sceledrus Shadowend:
+  size: 0
+  health: 1.0
+  damage: 11.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Poison: 0
+## Lazarus Deamonne - Mistlands Night time
+Lazarus Deamonne:
+  size: 0
+  health: 1.0
+  damage: 11.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Poison: 0
+## Lincoln Hunt - Deep North Daytime
+Lincoln Hunt:
+  size: 0
+  health: 1.0
+  damage: 13.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Frost: 0
+## Draven Nox - Deep North Night time
+Draven Nox:
+  size: 0
+  health: 1.0
+  damage: 13.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Frost: 0
+## Lincoln Hunt - Ash Lands Daytime
+Cinder Mortem:
+  size: 0
+  health: 1.0
+  damage: 15.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Fire: 0
+## Draven Nox - Ash Lands Night time
+Ash Vexx:
+  size: 0
+  health: 1.0
+  damage: 15.0
+  health per star: 0.1
+  damage per star: 0.05
+  movement speed: 1.1
+  attack speed per star: 0.1
+  damage taken:
+    Fire: 0

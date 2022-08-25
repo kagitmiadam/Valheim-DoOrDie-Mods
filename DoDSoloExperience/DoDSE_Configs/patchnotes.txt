@@ -1,5 +1,97 @@
 ﻿Patch Notes
 
+2.0.6
+
+	Added Minotaurs to the difficulty scaling.
+	Updated Jewelcrafting configs.
+	Some general balancing.
+
+2.0.5
+
+	General Bugfixing and Balancing.
+
+2.0.4
+
+	Added missing Drops for Fantasy Creatures.
+	Added more items to Knarr.
+	
+2.0.3
+
+	Added more drops to the Wendigo, Yet and Werewolves
+	Removed the double DLL for DoD SE in the Quest Framework folder (You will need to manual delete this folder)
+	Slight adjustments to some monsters difficulty
+
+2.0.2
+
+	Added Fancy Food dependancy.
+	Updated Jewelcrafting config.
+	
+2.0.1
+
+	Fixed Giant's scaling with CLLC.
+
+2.0.0
+
+	Added Dual Wield, Starvation, Minotaurs, Deds Army, Jewelcrafting, Evasion, Tenacity, Mining, Vitality, Blacksmithing and Cooking as dependancies.
+	Swamp monsters changed to Deds Army mobs once Bonemass is killed. (World Spawns)
+	Zarathos spawns once Bhygshan is killed.
+	Added all mobs to Epic MMO's XP System.	
+	Removed Epic Loot Dependancy.
+	
+1.3.4
+
+	Removed a bunch of config files that made their way into the zip from my testing.
+	Added Set drops for Mistlands, Deep North and Ash Lands monsters included in Giants, Minotaurs and Fantasy Creatures.
+	Tweaked MO Classes.
+	
+1.3.3
+
+	Fix for Priest.
+
+1.3.2
+
+	Included correct EpicMMOSystem config.
+
+1.3.1
+
+	Removed the Build mods, down to user to choose which they want to use, now there are so many.
+	Updated for Magic Overhaul 1.5.5
+	Added Epic MMO System.
+	Added Fantasy Creatures.
+	Added Farmyard Animals.
+	Added Giants.
+	Added Supply Crates.
+
+1.3.0
+
+	Removed RRR Mods.
+	Updated for new DoD Dll's.
+	Moved NPC spawns to the NPC Mod.
+	Moved Reskined mobs spawns to the Monster Mod.
+	Moved Mini Boss scaling to the NPC mod.
+	
+1.2.14
+
+	Deer drop Deer Meat.
+	Judes Equipment uses Armor Kits for crafting.
+
+1.2.13
+
+	Fixed Skugga not showing up.
+	Fixed Black Deer not spawning.
+	Fixed Mini Bosses not showing up.
+	Updated incompatible mod list.
+	Moved Miniboss and Knarr spawns over to Spawn That's API.
+
+1.2.12
+
+	Removed some sneaky test files.
+
+1.2.11
+
+	Minor Bugfixing.
+	Update to new format for Judes Equipment.
+	
 1.2.10
 
 	Moved all NPC's over to DoD Monsters.

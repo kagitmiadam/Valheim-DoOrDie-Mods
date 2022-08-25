@@ -26,7 +26,9 @@ namespace Wildlife
 
 		public const string PluginName = "Wildlife";
 
-		public const string PluginVersion = "0.0.1";
+		public const string PluginVersion = "0.0.2";
+
+		public static bool isModded = true;
 
 		public static GameObject GreenFrog;
 		public static GameObject BlackFrog;

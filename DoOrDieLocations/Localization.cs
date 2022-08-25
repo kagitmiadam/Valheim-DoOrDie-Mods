@@ -13,21 +13,9 @@ namespace DoOrDieBiomes
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
-			{"piece_bhygshanaltar_dod", "Bhygshan Altar"},
-			{"piece_bhygshanaltar_text_dod", "Requires 5 Skeleton Bones"},
-			{"piece_farkascave_dod", "Farkas Altar"},
-			{"piece_farkascave_text_dod", "Requires 5 Large Fangs"},
-
-			{ "item_pickaxe_steel_dod", "Steel Pickaxe" },
-			{ "item_pickaxe_steel_description_dod", "Required to mine Felmetal Ore and Frometal Ore" },
-
 			{ "spawner_firedraketower_dod", "Drake Tower" },
 			{ "spawner_arena_dod", "Arena Spawner" },
-			{ "piece_bitterstumpaltar_dod", "Bitterstump Altar" },
-			{ "object_glowmetal_dod", "Glowing Metal" },
 			{ "object_rock_dod", "Rock" },
-			{ "prop_worldlevel_dod", "World Level" },
-			{ "prop_worldlevel_description_dod", "Level 1: Day 15 - Level 2: Day 25 - Level 3: Day 50 - Level 4: Day 100 - Level 5: Day 200" },
 			{ "prop_cavemushroom_dod", "Cave Mushroom" },
 			{ "item_cavemushroom_dod", "Cave Mushroom" },
 			{ "item_cavemushroom_description_dod", "These come from the underworld." },
@@ -37,30 +25,16 @@ namespace DoOrDieBiomes
 			{ "location_mysterycavet_dod", "Chilly Cavern" },
 			{ "location_mysterycavem_dod", "Fiery Cavern" },
 			{ "location_mysterycave_dod", "Entrance to the Underworld" },
-			{ "piece_startstone_dod", "Welcome to Do or Die" },
-			{ "lore_start_label_dod", "Do or Die Difficulty" },
-			{ "lore_start_dod", "Scaling difficulty is always active. The longer you are in the world and the more bosses you kill, the harder the world will become. Bosses will level up one tier per world level, after you kill them the first time. Biome creatures level up once, after you kill the Vanilla boss in that biome. All creatures gain 5% Damage and Health every world level. Maximum Stars is increased to 10 plus 3 from sector level ups." },
-
-			{"piece_vegvisir_dod", "Runestone"},
-			{"prop_altar_bitterstump_dod", "Bitterstump Altar"},
-			{"item_token_skull_dod", "Skull Token"},
-			{"item_token_skull_description_dod", "Knarr the Trader likes these."},
-			{"location_bitterstumpcave_dod", "Bitterstump Altar"},
-			{"location_bitterstumpcave_text_dod", "Requires 5 Greydwarf Hearts"},
-			{"enemy_pin_bitterstump_dod", "Bitterstump's Cave"},
-			{"location_bitterstump_dod", "Bitterstump's Cave"},
-			{"lore_bitterstump_dod", "Bitterstump - Unknown"},
 
 			{"prop_bluemushroom_dod", "Blewit"},
 			{"prop_bluemushroom_description_dod", "Found in Mistlands"},
 			{"prop_purpmushroom_dod", "Blushing Bracket"},
 			{"prop_purpmushroom_description_dod", "Found in Mistlands"},
-			{"prop_walnuttree_dod", "Walnut"},
-			{"prop_appletree_dod", "Apple"},
-			{"prop_redcherries_dod", "Cherry"},
-			{"item_banana_dod", "Banana"},
-			{"item_banana_description_dod", "Found in the Plains"},
-			{"prop_bananatree_dod", "Banana Tree"},
+
+			{"item_bluemushroom_dod", "Blewit"},
+			{"item_bluemushroom_description_dod", "Found in Mistlands"},
+			{"item_purpmushroom_dod", "Blushing Bracket"},
+			{"item_purpmushroom_description_dod", "Found in Mistlands"},
 
 			{"prop_mistlandsoak_dod", "Mistlands Oak"},
 			{"prop_mistlandsbush_dod", "Bush"},
@@ -76,20 +50,9 @@ namespace DoOrDieBiomes
 			{"location_castlearenaout_dod", "You left the Arena"},
 			{"location_castlearena_dod", "Castle Arena"},
 
-			{"piece_ramborecave_dod", "Ram'Bore Altar"},
-			{"piece_ramborecave_text_dod", "Requires 5 Boar Tusks"},
-			{"enemy_pin_rambore_dod", "Ram'Bore's Cave"},
-			{"location_rambore_dod", "Ram'Bore's Cave"},
-			{"lore_rambore_dod", "Ram'Bore - Unknown"},
+			{"item_oakwood_dod", "Hardwood"},
+			{"item_oakwood_description_dod", "Hardwood is used in crafting"}
 
-			{"piece_lorestone_dod", "Lorestone"},
-
-			{"item_walnut_dod", "Walnuts"},
-			{"item_walnuts_description_dod", "Gatherd from a Walnut Tree in the Mistlands."},
-			{"item_apple_dod", "Apples"},
-			{"item_apple_description_dod", "Gatherd from an Apple Tree in the Mistlands."},
-			{"item_redberries_dod", "Cherries"},
-			{"item_redberries_description_dod", "Gatherd from a Cherry Tree in the Mistlands."},
 		};
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
 
@@ -216,6 +179,91 @@ namespace DoOrDieBiomes
 			{"location_rambore_dod", "Ram'Bores Höhle"},
 			{"lore_rambore_dod", "Ram'Bore - Unbekannt"},
 		};
+		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
+
+			{"enemy_pin_skirsandburst_dod", "Skir Sandburst"},
+			{"enemy_pin_bhygshan_dod", "Bhygshan"},
+			{"piece_skirsandburstaltar_dod", "Skir Sandburst Sunağı"},
+			{"piece_skirsandburstaltar_text_dod", "5 Yakut Odağı gerekiyor."},
+
+			{"piece_bhygshanaltar_dod", "Bhygshan Sunağı"},
+			{"piece_bhygshanaltar_text_dod", "5 İskelet Kemiği gerekiyor."},
+			{"piece_farkascave_dod", "Farkas Sunağı"},
+			{"piece_farkascave_text_dod", "5 Büyük Diş gerekiyor."},
+
+			{ "item_pickaxe_steel_dod", "Çelik Kazma" },
+			{ "item_pickaxe_steel_description_dod", "Alevmetal Cevheri ve Ayazmetal Cevherini çıkarmak için gereklidir." },
+
+			{ "spawner_firedraketower_dod", "Ejder Kulesi" },
+			{ "spawner_arena_dod", "Arena Yumurtlayıcı" },
+			{ "piece_bitterstumpaltar_dod", "Bitterstump Sunağı" },
+			{ "object_glowmetal_dod", "Parlayan Metal" },
+			{ "object_rock_dod", "Kaya" },
+			{ "prop_worldlevel_dod", "Dünya Seviyesi" },
+			{ "prop_worldlevel_description_dod", "Seviye 1: Gün 15 - Seviye 2: Gün 25 - Seviye 3: Gün 50 - Seviye 4: Gün 100 - Seviye 5: Gün 200" },
+			{ "prop_cavemushroom_dod", "Mağara Mantarı" },
+			{ "item_cavemushroom_dod", "Mağara Mantarı" },
+			{ "item_cavemushroom_description_dod", "Bun mantarlar yeraltı dünyasından geliyorlar." },
+			{ "lore_underworld_dod", "Yeraltı, garip ve uğursuz yaratıkların yaşadığı uçsuz bucaksız bir yeraltı krallığıdır. Çok az insanın gittiği ve daha da azının geri döndüğü bir yerdir..." },
+			{ "enemy_pin_underworld_dod", "Yeraltı Dünyası" },
+			{ "location_mysterycaveb_dod", "Buzul Mağara" },
+			{ "location_mysterycavet_dod", "Soğuk Mağara" },
+			{ "location_mysterycavem_dod", "Alevli Mağara" },
+			{ "location_mysterycave_dod", "Yeraltı Dünyası Girişi" },
+			{ "piece_startstone_dod", "Do or Die'ya Hoşgeldiniz" },
+			{ "lore_start_label_dod", "Do or Die Zorluğu" },
+			{ "lore_start_dod", "Ölçeklendirme zorluğu her zaman etkindir. Dünyada ne kadar uzun süre kalırsanız ve ne kadar çok BOSS öldürürseniz, dünya o kadar zorlaşır. BOSSlar, onları ilk kez öldürdükten sonra, dünya seviyesi başına bir seviye atlarlar. Biyom yaratıkları, o biyomdaki Vanilla BOSSu öldürdükten sonra bir kez seviye atlar. Tüm yaratıklar her dünya seviyesinde %5 Hasar ve Sağlık kazanırlar. Maksimum Yıldız, sektör seviyelerinden 10 artı 3'e çıkarılır." },
+
+			{"piece_vegvisir_dod", "Rüntaşı"},
+			{"prop_altar_bitterstump_dod", "Bitterstump Sunağı"},
+			{"item_token_skull_dod", "Kafatası Simgesi"},
+			{"item_token_skull_description_dod", "Tüccar Knarr bunları seviyor görünüyor."},
+			{"location_bitterstumpcave_dod", "Bitterstump Sunağı"},
+			{"location_bitterstumpcave_text_dod", "5 Bozcüce Kalbi gerekiyor."},
+			{"enemy_pin_bitterstump_dod", "Bitterstump Mağarası"},
+			{"location_bitterstump_dod", "Bitterstump' Mağarası"},
+			{"lore_bitterstump_dod", "Bitterstump - Bilinmiyor"},
+
+			{"prop_bluemushroom_dod", "Mavi Mantar"},
+			{"prop_bluemushroom_description_dod", "Sisli Topraklar bölgesinde bulunanan bir çeşit mantar."},
+			{"prop_purpmushroom_dod", "Mor Mantar"},
+			{"prop_purpmushroom_description_dod", "Sisli Topraklar bölgesinde bulunanan bir çeşit mantar."},
+			{"prop_walnuttree_dod", "Ceviz"},
+			{"prop_appletree_dod", "Elma"},
+			{"prop_redcherries_dod", "Kiraz"},
+			{"item_banana_dod", "Muz"},
+			{"item_banana_description_dod", "Ova bölgesinde bulunanan bir çeşit yiyecek."},
+			{"prop_bananatree_dod", "Muz Ağacı"},
+
+			{"prop_mistlandsoak_dod", "Sisli Topraklar Meşesi"},
+			{"prop_mistlandsbush_dod", "Çalı"},
+			{"prop_oldoak_dod", "Eski Meşe"},
+			{"prop_poplar_dod", "Kavak"},
+			{"prop_willow_dod", "Söğüt"},
+			{"prop_northernpine_dod", "Kuzey Çamı"},
+
+			{"location_mistlandscave_dod", "Sisli Topraklar Mağarası"},
+			{"location_mistlandstower_dod", "Gölge Kulesi"},
+			{"location_secretentrance_mistland_dod","Yapım Aşamasında" },
+			{"location_castlearenain_dod", "Arena"},
+			{"location_castlearenaout_dod", "Arenadan ayrıldınız"},
+			{"location_castlearena_dod", "Kale Arenası"},
+
+			{"piece_ramborecave_dod", "Ram'Bore Sunağı"},
+			{"piece_ramborecave_text_dod", "5 adet Domuz Dişi gerekiyor."},
+			{"enemy_pin_rambore_dod", "Ram'Bore'Mağarası"},
+			{"location_rambore_dod", "Ram'Bore Mağarası"},
+			{"lore_rambore_dod", "Ram'Bore - Bilinmiyor"},
+
+			{"piece_lorestone_dod", "Lore Taşı"},
+
+			{"item_walnut_dod", "Ceviz"},
+			{"item_walnuts_description_dod", "Sisli Topraklar bölgesinden toplanan yiyecek."},
+			{"item_apple_dod", "Elma"},
+			{"item_apple_description_dod", "Sisli Topraklar bölgesinden toplanan yiyecek."},
+			{"item_redberries_dod", "Kiraz"},
+			{"item_redberries_description_dod", "Sisli Topraklar bölgesinden toplanan yiyecek."},
+		};
 
 		public static void init(string lang, Localization l)
 		{
@@ -227,6 +275,10 @@ namespace DoOrDieBiomes
 			else if (lang == "English")
 			{
 				t = english;
+			}
+			else if (lang == "Turkish")
+			{
+				t = turkish;
 			}
 			else
 			{

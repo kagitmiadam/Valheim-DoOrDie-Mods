@@ -159,10 +159,8 @@ GoblinKing:
           2: 1.3
           3: 1.4
           4: 1.5
-          5: 1.6					
-##  Any
-Trickster:
-    size: 0
+          5: 1.6
+## Living Water
 LivingWater:
     size: 0
     infusion: 
@@ -172,102 +170,3 @@ LivingWater:
         Spirit: 15
         Poison: 0
         Chaos: 0
-#### DoD Mini Bosses  ####
-## Upir Grim - Meadows Daytime
-Upir Grim:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Zaine Evilian - Meadows Night time
-Zaine Evilian:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Lazarus Autumn - Black Forest Daytime
-Lazarus Autumn:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Grail Thornheart - Black Forest Night time
-Grail Thornheart:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Crisenth Shadowsoul - Swamp Daytime
-Crisenth Shadowsoul:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Jayden Shadowmend - Swamp Night time
-Jayden Shadowmend:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Lux Frost - Mountains Daytime
-Lux Frost:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Firion Winter - Mountains Night time
-Firion Winter:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Echo Black - Plains Daytime
-Echo Black:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Mathian Serphent - Plains Night time
-Mathian Serphent:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Sceledrus Shadowend - Mistlands Daytime
-Sceledrus Shadowend:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Lazarus Deamonne - Mistlands Night time
-Lazarus Deamonne:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Lincoln Hunt - Deep North Daytime
-Lincoln Hunt:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1
-## Draven Nox - Deep North Night time
-Draven Nox:
-    size: 0
-    health per star: 0.25
-    damage per star: 0.05
-    movement speed: 1.1
-    attack speed per star: 0.1

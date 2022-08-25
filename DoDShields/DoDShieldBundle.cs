@@ -23,7 +23,11 @@ namespace DoDShields
 	{
 		public const string PluginGUID = "horemvore.DoDShields";
 		public const string PluginName = "DoOrDieShields";
-		public const string PluginVersion = "0.0.2";
+		public const string PluginVersion = "1.0.1";
+
+		public static bool isModded = true;
+
+		private Harmony _harmony;
 
 		public static GameObject ShieldGSkull;
 		public static GameObject ShieldBGSkull;
@@ -47,23 +51,32 @@ namespace DoDShields
 		public static GameObject ShieldBYagluth;
 
 		public AssetBundle DoDShields;
-		public static AssetBundle GetAssetBundleFromResources(string fileName)
-		{
-			Assembly executingAssembly = Assembly.GetExecutingAssembly();
-			string text = executingAssembly.GetManifestResourceNames().Single((string str) => str.EndsWith(fileName));
-			using Stream stream = executingAssembly.GetManifestResourceStream(text);
-			return AssetBundle.LoadFromStream(stream);
-		}
 		public void LoadBundle()
 		{
 			DoDShields = AssetUtils.LoadAssetBundleFromResources("dodshields", Assembly.GetExecutingAssembly());
 		}
 		private void Awake()
 		{
-			LoadBundle();
-			LoadDoDAssets();
-			CreateShields();
-			DoDShields?.Unload(unloadAllLoadedObjects: false);
+            try
+			{
+				CustomItem shields = ItemManager.Instance.GetItem("BrokenShieldBhygshan_DoD");
+				if (shields != null)
+				{
+					Debug.Log("DoD Shields already added by DoD Items");
+				}
+                else
+				{
+					_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoDShields");
+					LoadBundle();
+					LoadDoDAssets();
+					CreateShields();
+					DoDShields?.Unload(unloadAllLoadedObjects: false);
+                }
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding DoD Shields: {ex}");
+			}
 		}
 		private void LoadDoDAssets()
         {
@@ -79,16 +92,26 @@ namespace DoDShields
 			ShieldBFarkas = DoDShields.LoadAsset<GameObject>("BrokenShieldFarkas_DoD");
 			ShieldBSkir = DoDShields.LoadAsset<GameObject>("BrokenShieldSkir_DoD");
 			ShieldBYagluth = DoDShields.LoadAsset<GameObject>("BrokenShieldYagluth_DoD");
-			PrefabManager.Instance.AddPrefab(ShieldBGSkull);
-			PrefabManager.Instance.AddPrefab(ShieldBEikthyr);
-			PrefabManager.Instance.AddPrefab(ShieldBRambore);
-			PrefabManager.Instance.AddPrefab(ShieldBElder);
-			PrefabManager.Instance.AddPrefab(ShieldBBitter);
-			PrefabManager.Instance.AddPrefab(ShieldBBonemass);
-			PrefabManager.Instance.AddPrefab(ShieldBModer);
-			PrefabManager.Instance.AddPrefab(ShieldBFarkas);
-			PrefabManager.Instance.AddPrefab(ShieldBSkir);
-			PrefabManager.Instance.AddPrefab(ShieldBYagluth);
+			CustomItem customItem1 = new CustomItem(ShieldBGSkull, fixReference: true);
+			ItemManager.Instance.AddItem(customItem1);
+			CustomItem customItem2 = new CustomItem(ShieldBEikthyr, fixReference: true);
+			ItemManager.Instance.AddItem(customItem2);
+			CustomItem customItem3 = new CustomItem(ShieldBRambore, fixReference: true);
+			ItemManager.Instance.AddItem(customItem3);
+			CustomItem customItem4 = new CustomItem(ShieldBYagluth, fixReference: true);
+			ItemManager.Instance.AddItem(customItem4);
+			CustomItem customItem5 = new CustomItem(ShieldBElder, fixReference: true);
+			ItemManager.Instance.AddItem(customItem5);
+			CustomItem customItem6 = new CustomItem(ShieldBBitter, fixReference: true);
+			ItemManager.Instance.AddItem(customItem6);
+			CustomItem customItem7 = new CustomItem(ShieldBBonemass, fixReference: true);
+			ItemManager.Instance.AddItem(customItem7);
+			CustomItem customItem8 = new CustomItem(ShieldBModer, fixReference: true);
+			ItemManager.Instance.AddItem(customItem8);
+			CustomItem customItem9 = new CustomItem(ShieldBFarkas, fixReference: true);
+			ItemManager.Instance.AddItem(customItem9);
+			CustomItem customItem10 = new CustomItem(ShieldBSkir, fixReference: true);
+			ItemManager.Instance.AddItem(customItem10);
 			//Debug.Log("DoDShields: 2");
 			// Shields
 			ShieldGSkull = DoDShields.LoadAsset<GameObject>("ShieldSkullGreen_DoD");
@@ -107,7 +130,7 @@ namespace DoDShields
 			GameObject shield10 = ShieldYagluth;
 			CustomItem customItem10 = new CustomItem(shield10, fixReference: true, new ItemConfig
 			{
-				Name = "Deathgate",
+				//Name = "Deathgate",
 				Amount = 1,
 				CraftingStation = "forge",
 				MinStationLevel = 3,
@@ -143,7 +166,7 @@ namespace DoDShields
 			GameObject shield9 = ShieldSkir;
 			CustomItem customItem9 = new CustomItem(shield9, fixReference: true, new ItemConfig
 			{
-				Name = "Curator Ward",
+				//Name = "Curator Ward",
 				Amount = 1,
 				CraftingStation = "forge",
 				MinStationLevel = 3,
@@ -179,7 +202,7 @@ namespace DoDShields
 			GameObject shield8 = ShieldFarkas;
 			CustomItem customItem8 = new CustomItem(shield8, fixReference: true, new ItemConfig
 			{
-				Name = "Frozen Light",
+				//Name = "Frozen Light",
 				Amount = 1,
 				CraftingStation = "forge",
 				MinStationLevel = 3,
@@ -215,7 +238,7 @@ namespace DoDShields
 			GameObject shield7 = ShieldModer;
 			CustomItem customItem7 = new CustomItem(shield7, fixReference: true, new ItemConfig
 			{
-				Name = "Perfect Storm",
+				//Name = "Perfect Storm",
 				Amount = 1,
 				CraftingStation = "forge",
 				MinStationLevel = 3,
@@ -251,7 +274,7 @@ namespace DoDShields
 			GameObject shield6 = ShieldBonemass;
 			CustomItem customItem6 = new CustomItem(shield6, fixReference: true, new ItemConfig
 			{
-				Name = "Ghostly Wall",
+				//Name = "Ghostly Wall",
 				Amount = 1,
 				CraftingStation = "forge",
 				MinStationLevel = 3,
@@ -287,7 +310,7 @@ namespace DoDShields
 			GameObject shield5 = ShieldBitter;
 			CustomItem customItem5 = new CustomItem(shield5, fixReference: true, new ItemConfig
 			{
-				Name = "Darkheart",
+				//Name = "Darkheart",
 				Amount = 1,
 				CraftingStation = "forge",
 				MinStationLevel = 3,
@@ -323,7 +346,7 @@ namespace DoDShields
 			GameObject shield4 = ShieldElder;
 			CustomItem customItem4 = new CustomItem(shield4, fixReference: true, new ItemConfig
 			{
-				Name = "Ironbark",
+				//Name = "Ironbark",
 				Amount = 1,
 				CraftingStation = "forge",
 				MinStationLevel = 3,
@@ -359,7 +382,7 @@ namespace DoDShields
 			GameObject shield3 = ShieldRambore;
 			CustomItem customItem3 = new CustomItem(shield3, fixReference: true, new ItemConfig
 			{
-				Name = "Enforcer",
+				//Name = "Enforcer",
 				Amount = 1,
 				CraftingStation = "forge",
 				MinStationLevel = 3,
@@ -395,7 +418,7 @@ namespace DoDShields
 			GameObject shield2 = ShieldEikthyr;
 			CustomItem customItem2 = new CustomItem(shield2, fixReference: true, new ItemConfig
 			{
-				Name = "Thundercloud",
+				//Name = "Thundercloud",
 				Amount = 1,
 				CraftingStation = "forge",
 				MinStationLevel = 3,
@@ -431,7 +454,7 @@ namespace DoDShields
 			GameObject shield1 = ShieldGSkull;
 			CustomItem customItem1 = new CustomItem(shield1, fixReference: true, new ItemConfig
 			{
-				Name = "Vortex, Conservator of the Dead",
+				//Name = "Vortex, Conservator of the Dead",
 				Amount = 1,
 				CraftingStation = "forge",
 				MinStationLevel = 3,

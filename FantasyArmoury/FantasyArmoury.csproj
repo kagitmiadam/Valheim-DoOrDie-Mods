@@ -272,9 +272,13 @@
   <ItemGroup>
     <Compile Include="fantasyArmoury.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Localization.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="fabundle" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="smithfa" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
