@@ -30,7 +30,7 @@ namespace FarmyardAnimals
 
 		public const string PluginName = "FarmyardAnimals";
 
-		public const string PluginVersion = "0.2.0";
+		public const string PluginVersion = "0.2.1";
 
 		public static bool isModded = true;
 
@@ -481,7 +481,7 @@ namespace FarmyardAnimals
 						new RequirementConfig
 						{
 							Item = "rk_egg",
-							Amount = 5,
+							Amount = 10,
 							Recover = true
 						},
 						new RequirementConfig
@@ -913,7 +913,7 @@ namespace FarmyardAnimals
 					new RequirementConfig
 					{
 						Item = "Milk_FYA",
-						Amount = 6,
+						Amount = 12,
 						Recover = true
 					},
 					new RequirementConfig
@@ -946,7 +946,7 @@ namespace FarmyardAnimals
 					new RequirementConfig
 					{
 						Item = "Milk_FYA",
-						Amount = 6,
+						Amount = 12,
 						Recover = true
 					},
 					new RequirementConfig

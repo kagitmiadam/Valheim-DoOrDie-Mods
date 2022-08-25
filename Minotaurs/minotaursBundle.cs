@@ -29,7 +29,7 @@ namespace Minotaurs
 
 		public const string PluginName = "Minotaurs";
 
-		public const string PluginVersion = "0.1.1";
+		public const string PluginVersion = "0.2.1";
 
 		public static bool isModded = true;
 
@@ -57,6 +57,8 @@ namespace Minotaurs
 		public static GameObject VFX1;
 		public static GameObject VFX2;
 		public static GameObject VFX3;
+		public static GameObject FX1;
+		public static GameObject FX2;
 		public static GameObject MinotaurTrophy1;
 		public static GameObject MinotaurTrophy2;
 		public static GameObject MinotaurTrophy3;
@@ -74,6 +76,7 @@ namespace Minotaurs
 			LoadBundle();
 			LoadAssets();
 			AddMinotaurs();
+			PrefabManager.OnVanillaPrefabsAvailable += FixSFX;
 			try
 			{
 				SpawnerConfigurationManager.OnConfigure += ConfigureBiomeSpawners;
@@ -177,30 +180,36 @@ namespace Minotaurs
 			VFX1 = MinotaursBundle.LoadAsset<GameObject>("VFX_Blood_Hit_HM");
 			VFX2 = MinotaursBundle.LoadAsset<GameObject>("VFX_Corpse_Destruction_HM");
 			VFX3 = MinotaursBundle.LoadAsset<GameObject>("VFX_HitSparks_HM");
+			FX1 = MinotaursBundle.LoadAsset<GameObject>("FX_Backstab_HM");
+			FX2 = MinotaursBundle.LoadAsset<GameObject>("FX_Crit_HM");
 			CustomPrefab vfx1 = new CustomPrefab(VFX1, false);
 			PrefabManager.Instance.AddPrefab(vfx1);
 			CustomPrefab vfx2 = new CustomPrefab(VFX2, false);
 			PrefabManager.Instance.AddPrefab(vfx2);
 			CustomPrefab vfx3 = new CustomPrefab(VFX3, false);
 			PrefabManager.Instance.AddPrefab(vfx3);
+			CustomPrefab fx1 = new CustomPrefab(FX1, false);
+			PrefabManager.Instance.AddPrefab(fx1);
+			CustomPrefab fx2 = new CustomPrefab(FX2, false);
+			PrefabManager.Instance.AddPrefab(fx2);
 			// Trophies
 			MinotaurTrophy6 = MinotaursBundle.LoadAsset<GameObject>("Trophy_FireMinotaur_HM");
-			CustomItem customItem1 = new CustomItem(MinotaurTrophy6, fixReference: false);
+			CustomItem customItem1 = new CustomItem(MinotaurTrophy6, false);
 			ItemManager.Instance.AddItem(customItem1);
 			MinotaurTrophy5 = MinotaursBundle.LoadAsset<GameObject>("Trophy_FireMinotaurArmoured_HM");
-			CustomItem customItem2 = new CustomItem(MinotaurTrophy5, fixReference: false);
+			CustomItem customItem2 = new CustomItem(MinotaurTrophy5, false);
 			ItemManager.Instance.AddItem(customItem2);
 			MinotaurTrophy4 = MinotaursBundle.LoadAsset<GameObject>("Trophy_Minotaur_HM");
-			CustomItem customItem3 = new CustomItem(MinotaurTrophy4, fixReference: false);
+			CustomItem customItem3 = new CustomItem(MinotaurTrophy4, false);
 			ItemManager.Instance.AddItem(customItem3);
 			MinotaurTrophy3 = MinotaursBundle.LoadAsset<GameObject>("Trophy_MinotaurArmoured_HM");
-			CustomItem customItem4 = new CustomItem(MinotaurTrophy3, fixReference: false);
+			CustomItem customItem4 = new CustomItem(MinotaurTrophy3, false);
 			ItemManager.Instance.AddItem(customItem4);
 			MinotaurTrophy2 = MinotaursBundle.LoadAsset<GameObject>("Trophy_FrostMinotaur_HM");
-			CustomItem customItem5 = new CustomItem(MinotaurTrophy2, fixReference: false);
+			CustomItem customItem5 = new CustomItem(MinotaurTrophy2, false);
 			ItemManager.Instance.AddItem(customItem5);
 			MinotaurTrophy1 = MinotaursBundle.LoadAsset<GameObject>("Trophy_FrostMinotaurArmoured_HM");
-			CustomItem customItem6 = new CustomItem(MinotaurTrophy1, fixReference: false);
+			CustomItem customItem6 = new CustomItem(MinotaurTrophy1, false);
 			ItemManager.Instance.AddItem(customItem6);
 		}
 		private void AddMinotaurs()
@@ -479,6 +488,41 @@ namespace Minotaurs
 			finally
 			{
 				MinotaursBundle.Unload(false);
+			}
+		}
+		private void FixSFX()
+		{
+			try
+			{
+				var sfxfab1 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_MinotaurAlert_HM");
+				var sfxfab2 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_MinotaurAttack_HM");
+				var sfxfab3 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_MinotaurDeath_HM");
+				var sfxfab4 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_MinotaurHit_HM");
+				var sfxfab5 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_MinotaurIdle_HM");
+				if (sfxfab1 != null)
+				{
+					sfxfab1.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab2 != null)
+				{
+					sfxfab2.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab3 != null)
+				{
+					sfxfab3.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab4 != null)
+				{
+					sfxfab4.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab5 != null)
+				{
+					sfxfab5.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+			}
+			catch
+			{
+				Debug.LogWarning("Minotaurs: SFX Fix Failed");
 			}
 		}
 		public static void ConfigureBiomeSpawners(ISpawnerConfigurationCollection config)

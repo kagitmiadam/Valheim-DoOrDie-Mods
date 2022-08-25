@@ -25,7 +25,7 @@ namespace ThemedBuildPieces
 
 		public const string PluginName = "ThemedBuildPieces";
 
-		public const string PluginVersion = "0.0.3";
+		public const string PluginVersion = "0.0.4";
 
 		public static bool isModded = true;
 

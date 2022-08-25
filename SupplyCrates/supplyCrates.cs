@@ -26,7 +26,7 @@ namespace SupplyCrates
 
 		public const string PluginName = "SupplyCrates";
 
-		public const string PluginVersion = "0.0.9";
+		public const string PluginVersion = "0.1.0";
 
 		public static bool isModded = true;
 
@@ -333,14 +333,14 @@ namespace SupplyCrates
 			Food1 = SupplyBundle.LoadAsset<GameObject>("Apple_SC");
 			Food2 = SupplyBundle.LoadAsset<GameObject>("Banana_SC");
 			Food3 = SupplyBundle.LoadAsset<GameObject>("Coconut_SC");
+			Food10 = SupplyBundle.LoadAsset<GameObject>("Watermelon_SC");
+			Food11 = SupplyBundle.LoadAsset<GameObject>("Grapes_SC");
 			Food4 = SupplyBundle.LoadAsset<GameObject>("Lemon_SC");
 			Food5 = SupplyBundle.LoadAsset<GameObject>("Mango_SC");
 			Food6 = SupplyBundle.LoadAsset<GameObject>("Orange_SC");
 			Food7 = SupplyBundle.LoadAsset<GameObject>("Peach_SC");
 			Food8 = SupplyBundle.LoadAsset<GameObject>("Pear_SC");
 			Food9 = SupplyBundle.LoadAsset<GameObject>("Plum_SC");
-			Food10 = SupplyBundle.LoadAsset<GameObject>("Watermelon_SC");
-			Food11 = SupplyBundle.LoadAsset<GameObject>("Grapes_SC");
 			Food29 = SupplyBundle.LoadAsset<GameObject>("Lime_SC");
 			// Veg
 			Food12 = SupplyBundle.LoadAsset<GameObject>("BellPepper_SC");
@@ -2246,6 +2246,36 @@ namespace SupplyCrates
 		{
             try
 			{
+				// Fruit Tree's fruit
+				CustomItem ft = ItemManager.Instance.GetItem("Lemon_SC");
+				if (ft != null)
+				{
+					Debug.Log("Fruit Trees's fruit already added, skipping.");
+				}
+				else
+                {
+					GameObject dropable4 = Food4;
+					CustomItem customItem4 = new CustomItem(dropable4, false);
+					ItemManager.Instance.AddItem(customItem4);
+					GameObject dropable5 = Food5;
+					CustomItem customItem5 = new CustomItem(dropable5, false);
+					ItemManager.Instance.AddItem(customItem5);
+					GameObject dropable6 = Food6;
+					CustomItem customItem6 = new CustomItem(dropable6, false);
+					ItemManager.Instance.AddItem(customItem6);
+					GameObject dropable7 = Food7;
+					CustomItem customItem7 = new CustomItem(dropable7, false);
+					ItemManager.Instance.AddItem(customItem7);
+					GameObject dropable8 = Food8;
+					CustomItem customItem8 = new CustomItem(dropable8, false);
+					ItemManager.Instance.AddItem(customItem8);
+					GameObject dropable9 = Food9;
+					CustomItem customItem9 = new CustomItem(dropable9, false);
+					ItemManager.Instance.AddItem(customItem9);
+					GameObject dropable29 = Food29;
+					CustomItem customItem29 = new CustomItem(dropable29, false);
+					ItemManager.Instance.AddItem(customItem29);
+                }
 				// Fruit
 				GameObject dropable1 = Food1;
 				CustomItem customItem1 = new CustomItem(dropable1, false);
@@ -2256,30 +2286,10 @@ namespace SupplyCrates
 				GameObject dropable3 = Food3;
 				CustomItem customItem3 = new CustomItem(dropable3, false);
 				ItemManager.Instance.AddItem(customItem3);
-				GameObject dropable4 = Food4;
-				CustomItem customItem4 = new CustomItem(dropable4, false);
-				ItemManager.Instance.AddItem(customItem4);
-				GameObject dropable5 = Food5;
-				CustomItem customItem5 = new CustomItem(dropable5, false);
-				ItemManager.Instance.AddItem(customItem5);
-				GameObject dropable6 = Food6;
-				CustomItem customItem6 = new CustomItem(dropable6, false);
-				ItemManager.Instance.AddItem(customItem6);
-				GameObject dropable7 = Food7;
-				CustomItem customItem7 = new CustomItem(dropable7, false);
-				ItemManager.Instance.AddItem(customItem7);
-				GameObject dropable8 = Food8;
-				CustomItem customItem8 = new CustomItem(dropable8, false);
-				ItemManager.Instance.AddItem(customItem8);
-				GameObject dropable9 = Food9;
-				CustomItem customItem9 = new CustomItem(dropable9, false);
-				ItemManager.Instance.AddItem(customItem9);
 				GameObject dropable10 = Food10;
 				CustomItem customItem10 = new CustomItem(dropable10, false);
 				ItemManager.Instance.AddItem(customItem10);
-				GameObject dropable29 = Food29;
-				CustomItem customItem29 = new CustomItem(dropable29, false);
-				ItemManager.Instance.AddItem(customItem29);
+
 				// Veg
 				GameObject dropable11 = Food11;
 				CustomItem customItem11 = new CustomItem(dropable11, false);

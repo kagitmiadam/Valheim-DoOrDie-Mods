@@ -27,7 +27,7 @@ namespace DoDItems
 
 		public const string PluginName = "DoOrDieItems";
 
-		public const string PluginVersion = "0.1.1";
+		public const string PluginVersion = "0.1.5";
 
 		public static bool isModded = true;
 
@@ -154,9 +154,7 @@ namespace DoDItems
 		public ConfigEntry<bool> DeepNorthLocations;
 		public ConfigEntry<bool> MistlandsLocations;
 
-		public AssetBundle DoDAssets;
-		public AssetBundle DoDOreMines;
-
+		public AssetBundle DoDAssets; 
 		public void CreateConfigurationValues()
 		{
 			AModEnable = base.Config.Bind("Enable Mod", "Enable", defaultValue: true, new ConfigDescription("Enables the mod", null, new ConfigurationManagerAttributes
@@ -204,10 +202,10 @@ namespace DoDItems
 					LoadDoDAssets();
 					CreateOakWood();
 					UpdateBlastFurnace();
-					AddCustomOreDeposits();
 					CreateDropables();
 					CreatePickAxe();
 					CreateAnvils(); 
+					AddCustomOreDeposits();
 					if (ArmorCrateEnable.Value == true) {
 						CreateArmorCrates(); 
 					}
@@ -386,33 +384,33 @@ namespace DoDItems
 			PrefabManager.Instance.AddPrefab(AoE4);
 
 			Debug.Log("DoDItems: SFX");
-			GameObject SFX1 = DoDAssets.LoadAsset<GameObject>("i_loc_sfx_rock_destroyed_dod");
-			CustomPrefab sfx1 = new CustomPrefab(SFX1, true);
+			GameObject SFX1 = DoDAssets.LoadAsset<GameObject>("IT_loc_sfx_rock_destroyed_dod");
+			CustomPrefab sfx1 = new CustomPrefab(SFX1, false);
 			PrefabManager.Instance.AddPrefab(sfx1);
-			GameObject SFX2 = DoDAssets.LoadAsset<GameObject>("i_loc_sfx_rock_hit_dod");
-			CustomPrefab sfx2 = new CustomPrefab(SFX2, true);
+			GameObject SFX2 = DoDAssets.LoadAsset<GameObject>("IT_loc_sfx_rock_hit_dod");
+			CustomPrefab sfx2 = new CustomPrefab(SFX2, false);
 			PrefabManager.Instance.AddPrefab(sfx2);
-			GameObject SFX3 = DoDAssets.LoadAsset<GameObject>("i_SFX_Rock_Destroyed_DoD");
-			CustomPrefab sfx3 = new CustomPrefab(SFX3, true);
+			GameObject SFX3 = DoDAssets.LoadAsset<GameObject>("IT_SFX_Rock_Destroyed_DoD");
+			CustomPrefab sfx3 = new CustomPrefab(SFX3, false);
 			PrefabManager.Instance.AddPrefab(sfx3);
-			GameObject SFX4 = DoDAssets.LoadAsset<GameObject>("i_SFX_Rock_Hit_DoD");
-			CustomPrefab sfx4 = new CustomPrefab(SFX4, true);
+			GameObject SFX4 = DoDAssets.LoadAsset<GameObject>("IT_SFX_Rock_Hit_DoD");
+			CustomPrefab sfx4 = new CustomPrefab(SFX4, false);
 			PrefabManager.Instance.AddPrefab(sfx4);
 			Debug.Log("DoDItems: VFX");
-			GameObject VFX1 = DoDAssets.LoadAsset<GameObject>("i_VFX_Felore_Destroy_DoD");
-			CustomPrefab vfx1 = new CustomPrefab(VFX1, true);
+			GameObject VFX1 = DoDAssets.LoadAsset<GameObject>("IT_VFX_Felore_Destroy_DoD");
+			CustomPrefab vfx1 = new CustomPrefab(VFX1, false);
 			PrefabManager.Instance.AddPrefab(vfx1);
-			GameObject VFX2 = DoDAssets.LoadAsset<GameObject>("i_VFX_Mine_Hit_DoD");
-			CustomPrefab vfx2 = new CustomPrefab(VFX2, true);
+			GameObject VFX2 = DoDAssets.LoadAsset<GameObject>("IT_VFX_Mine_Hit_DoD");
+			CustomPrefab vfx2 = new CustomPrefab(VFX2, false);
 			PrefabManager.Instance.AddPrefab(vfx2);
-			GameObject VFX3 = DoDAssets.LoadAsset<GameObject>("i_VFX_RockDestroyed_DoD");
-			CustomPrefab vfx3 = new CustomPrefab(VFX3, true);
+			GameObject VFX3 = DoDAssets.LoadAsset<GameObject>("IT_VFX_RockDestroyed_DoD");
+			CustomPrefab vfx3 = new CustomPrefab(VFX3, false);
 			PrefabManager.Instance.AddPrefab(vfx3);
-			GameObject VFX4 = DoDAssets.LoadAsset<GameObject>("i_VFX_RockHit_DoD");
-			CustomPrefab vfx4 = new CustomPrefab(VFX4, true);
+			GameObject VFX4 = DoDAssets.LoadAsset<GameObject>("IT_VFX_RockHit_DoD");
+			CustomPrefab vfx4 = new CustomPrefab(VFX4, false);
 			PrefabManager.Instance.AddPrefab(vfx4);
-			GameObject VFX5 = DoDAssets.LoadAsset<GameObject>("i_VFX_Hit_DoD");
-			CustomPrefab vfx5 = new CustomPrefab(VFX5, true);
+			GameObject VFX5 = DoDAssets.LoadAsset<GameObject>("IT_VFX_Hit_DoD");
+			CustomPrefab vfx5 = new CustomPrefab(VFX5, false);
 			PrefabManager.Instance.AddPrefab(vfx5);
 		}
 		private void CreateWeaponCrates()
@@ -3084,12 +3082,12 @@ namespace DoDItems
 		private void AddLocations()
 		{
 			Debug.Log("DoDItems: Locations");
-			DoDOreMines = AssetUtils.LoadAssetBundleFromResources("dodoremines", Assembly.GetExecutingAssembly());
+			DoDAssets = AssetUtils.LoadAssetBundleFromResources("doditems", Assembly.GetExecutingAssembly());
 			try
 			{
 				if (DeepNorthLocations.Value == true)
 				{
-					var FroOreMine = ZoneManager.Instance.CreateLocationContainer(DoDOreMines.LoadAsset<GameObject>("Loc_FroOreMine_DoD"));
+					var FroOreMine = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_FroOreMine_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(FroOreMine, true, new LocationConfig
 					{
 						Biome = Heightmap.Biome.DeepNorth,
@@ -3104,7 +3102,7 @@ namespace DoDItems
 				}
 				if (MistlandsLocations.Value == true)
 				{
-					var MistLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDOreMines.LoadAsset<GameObject>("Loc_OreMine_DoD"));
+					var MistLoc2 = ZoneManager.Instance.CreateLocationContainer(DoDAssets.LoadAsset<GameObject>("Loc_OreMine_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(MistLoc2, true, new LocationConfig
 					{
 						Biome = Heightmap.Biome.Mistlands,
@@ -3124,7 +3122,7 @@ namespace DoDItems
 			}
 			finally
 			{
-				DoDOreMines.Unload(false);
+				DoDAssets.Unload(false);
 			}
 		}
 		private void UnloadBundle()

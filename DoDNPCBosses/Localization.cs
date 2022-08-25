@@ -13,6 +13,9 @@ namespace DoDNPCs
 		public static Dictionary<string, string> t;
 		private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+			{"piece_rylanaltar_dod", "Rylan's Altar"},
+			{"piece_rylanaltar_text_dod", "Requires 10 Grey Pearls"},
+			{"npc_rylan_dod", "Laughing Rylan"},
 			{"boss_meadows_ashvexx", "Ash Vexx"},
 			{"boss_meadows_cindermortem", "Cinder Mortem"},
 			{"boss_meadows_lincolnhunt", "Lincoln Hunt"},
@@ -40,6 +43,9 @@ namespace DoDNPCs
 		};
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
 
+			{"piece_rylanaltar_dod", "Rylan's Altar"},
+			{"piece_rylanaltar_text_dod", "Requires 10 Grey Pearls"},
+			{"npc_rylan_dod", "Laughing Rylan"},
 			{"boss_meadows_ashvexx", "Ash Vexx"},
 			{"boss_meadows_cindermortem", "Cinder Mortem"},
 			{"boss_meadows_lincolnhunt", "Lincoln Hunt"},
@@ -67,6 +73,9 @@ namespace DoDNPCs
 			};
 		private static Dictionary<string, string> german = new Dictionary<string, string>() {
 
+			{"piece_rylanaltar_dod", "Rylan's Altar"},
+			{"piece_rylanaltar_text_dod", "Requires 10 Grey Pearls"},
+			{"npc_rylan_dod", "Laughing Rylan"},
 			{"boss_meadows_ashvexx", "Ash Vexx"},
 			{"boss_meadows_cindermortem", "Cinder Mortem"},
 			{"boss_meadows_lincolnhunt", "Lincoln Hunt"},
@@ -94,6 +103,9 @@ namespace DoDNPCs
 			};
 		private static Dictionary<string, string> turkish = new Dictionary<string, string>() {
 
+			{"piece_rylanaltar_dod", "Rylan's Altar"},
+			{"piece_rylanaltar_text_dod", "Requires 10 Grey Pearls"},
+			{"npc_rylan_dod", "Laughing Rylan"},
 			{"boss_meadows_ashvexx", "Ash Vexx"},
 			{"boss_meadows_cindermortem", "Kül Ölüm"},
 			{"boss_meadows_lincolnhunt", "Avcı Lincoln"},

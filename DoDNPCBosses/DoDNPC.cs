@@ -37,7 +37,7 @@ namespace DoDNPCs
 
 		public const string PluginName = "DoOrDieNPC";
 
-		public const string PluginVersion = "0.1.1";
+		public const string PluginVersion = "0.2.1";
 
 		public static bool isModded = true;
 
@@ -52,7 +52,14 @@ namespace DoDNPCs
 		public static GameObject NPCStab;
 		public static GameObject NPCJump;
 		public static GameObject NPCCone;
+		public static GameObject RylanSmash;
+		public static GameObject RylanSpin;
+		public static GameObject RylanJab;
+		public static GameObject RylanStab;
+		public static GameObject RylanJump;
+		public static GameObject RylanCone;
 
+		public static GameObject Rylan;
 		public static GameObject Vidar;
 		public static GameObject Skugga;
 		public static GameObject SkuggaYoung;
@@ -65,11 +72,21 @@ namespace DoDNPCs
 		public static GameObject NPCAuraIce;
 		public static GameObject NPCAuraLightning;
 		public static GameObject NPCAuraPoison;
+		public static GameObject RylanAuraFire;
+		public static GameObject RylanAuraIce;
+		public static GameObject RylanAuraLightning;
+		public static GameObject RylanAuraPoison;
 
 		public static GameObject NPCAuraFireAoE;
 		public static GameObject NPCAuraIceAoE;
 		public static GameObject NPCAuraLightningAoE;
 		public static GameObject NPCAuraPoisonAoE;
+		public static GameObject RylanAuraFireAoE;
+		public static GameObject RylanAuraIceAoE;
+		public static GameObject RylanAuraLightningAoE;
+		public static GameObject RylanAuraPoisonAoE;
+		public static GameObject GreyPearl;
+		public static GameObject RylanAltar;
 
 		public ConfigEntry<bool> DoDLocEnable;
 		public void CreateConfigurationValues()
@@ -97,6 +114,7 @@ namespace DoDNPCs
 			CloneAndAddMistlandsBosses();
 			CloneAndAddDeepNorthBosses();
 			CloneAndAddAshLandsBosses();
+			AddRylan();
 			ZoneManager.OnVanillaLocationsAvailable += AddLocations;
 			try
 			{
@@ -114,6 +132,20 @@ namespace DoDNPCs
 		}
 		private void LoadAssets()
 		{
+			CustomItem gp = ItemManager.Instance.GetItem("GreyPearl_DoD");
+			if (gp != null)
+			{
+				Debug.Log("Grey Pearl already added by DoD Monsters");
+			}
+			else
+			{
+				// Add Grey Pearl Item
+				GreyPearl = NPCBundle.LoadAsset<GameObject>("GreyPearl_DoD");
+				GameObject dropable1 = GreyPearl;
+				CustomItem customItem1 = new CustomItem(dropable1, true);
+				ItemManager.Instance.AddItem(customItem1);
+			}
+			RylanAltar = NPCBundle.LoadAsset<GameObject>("RylanAltar_DoD");
 			//Debug.Log("DoD NPC Assets: Attacks");
 			NPCSmash = NPCBundle.LoadAsset<GameObject>("NPC_SmashAttack_DoD");
 			NPCSpin = NPCBundle.LoadAsset<GameObject>("NPC_SpinAttack_DoD");
@@ -121,8 +153,15 @@ namespace DoDNPCs
 			NPCStab = NPCBundle.LoadAsset<GameObject>("NPC_StabAttack_DoD");
 			NPCJump = NPCBundle.LoadAsset<GameObject>("NPC_JumpAttack_DoD");
 			NPCCone = NPCBundle.LoadAsset<GameObject>("NPC_ConeAttack_DoD");
+			RylanSmash = NPCBundle.LoadAsset<GameObject>("Rylan_SmashAttack_DoD");
+			RylanSpin = NPCBundle.LoadAsset<GameObject>("Rylan_SpinAttack_DoD");
+			RylanJab = NPCBundle.LoadAsset<GameObject>("Rylan_JabAttack_DoD");
+			RylanStab = NPCBundle.LoadAsset<GameObject>("Rylan_StabAttack_DoD");
+			RylanJump = NPCBundle.LoadAsset<GameObject>("Rylan_JumpAttack_DoD");
+			RylanCone = NPCBundle.LoadAsset<GameObject>("Rylan_ConeAttack_DoD");
 
 			//Debug.Log("DoD NPC Assets: NPCs");
+			Rylan = NPCBundle.LoadAsset<GameObject>("LaughingRylan_DoD");
 			Vidar = NPCBundle.LoadAsset<GameObject>("Vidar_DoD");
 			Skugga = NPCBundle.LoadAsset<GameObject>("Skugga_DoD");
 			SkuggaYoung = NPCBundle.LoadAsset<GameObject>("Skugga_Young_DoD");
@@ -136,58 +175,120 @@ namespace DoDNPCs
 			NPCAuraIce = NPCBundle.LoadAsset<GameObject>("NPC_BossAuraI_Attack_DoD");
 			NPCAuraLightning = NPCBundle.LoadAsset<GameObject>("NPC_BossAuraL_Attack_DoD");
 			NPCAuraPoison = NPCBundle.LoadAsset<GameObject>("NPC_BossAuraP_Attack_DoD");
+			RylanAuraFire = NPCBundle.LoadAsset<GameObject>("NPC_RylanAuraF_Attack_DoD");
+			RylanAuraIce = NPCBundle.LoadAsset<GameObject>("NPC_RylanAuraI_Attack_DoD");
+			RylanAuraLightning = NPCBundle.LoadAsset<GameObject>("NPC_RylanAuraL_Attack_DoD");
+			RylanAuraPoison = NPCBundle.LoadAsset<GameObject>("NPC_RylanAuraP_Attack_DoD");
 
 			//Debug.Log("DoD NPC Assets: Aoe");
 			NPCAuraFireAoE = NPCBundle.LoadAsset<GameObject>("AoE_BossFire_DoD");
 			NPCAuraIceAoE = NPCBundle.LoadAsset<GameObject>("AoE_BossIce_DoD");
 			NPCAuraLightningAoE = NPCBundle.LoadAsset<GameObject>("AoE_BossLightning_DoD");
 			NPCAuraPoisonAoE = NPCBundle.LoadAsset<GameObject>("AoE_BossPoison_DoD");
+			RylanAuraFireAoE = NPCBundle.LoadAsset<GameObject>("AoE_RylanFire_DoD");
+			RylanAuraIceAoE = NPCBundle.LoadAsset<GameObject>("AoE_RylanIce_DoD");
+			RylanAuraLightningAoE = NPCBundle.LoadAsset<GameObject>("AoE_RylanLightning_DoD");
+			RylanAuraPoisonAoE = NPCBundle.LoadAsset<GameObject>("AoE_RylanPoison_DoD");
+			//Debug.Log("DoD NPC Assets: SFX");
+			GameObject sfx1 = NPCBundle.LoadAsset<GameObject>("SFX_Laughing_DoD");
+			CustomPrefab SFX1 = new (sfx1, true);
+			PrefabManager.Instance.AddPrefab(SFX1);
 		}
 		private void AddNPCAttacks()
 		{
 			//Debug.Log("DoD NPC: Attacks");
 			GameObject monsteritem1 = NPCSmash;
-			CustomItem customItem1 = new CustomItem(monsteritem1, fixReference: true);
+			CustomItem customItem1 = new CustomItem(monsteritem1, true);
 			ItemManager.Instance.AddItem(customItem1);
 			GameObject monsteritem2 = NPCSpin;
-			CustomItem customItem2 = new CustomItem(monsteritem2, fixReference: true);
+			CustomItem customItem2 = new CustomItem(monsteritem2, true);
 			ItemManager.Instance.AddItem(customItem2);
 			GameObject monsteritem3 = NPCJab;
-			CustomItem customItem3 = new CustomItem(monsteritem3, fixReference: true);
+			CustomItem customItem3 = new CustomItem(monsteritem3, true);
 			ItemManager.Instance.AddItem(customItem3);
 			GameObject monsteritem4 = NPCStab;
-			CustomItem customItem4 = new CustomItem(monsteritem4, fixReference: true);
+			CustomItem customItem4 = new CustomItem(monsteritem4, true);
 			ItemManager.Instance.AddItem(customItem4);
 			GameObject monsteritem5 = NPCJump;
-			CustomItem customItem5 = new CustomItem(monsteritem5, fixReference: true);
+			CustomItem customItem5 = new CustomItem(monsteritem5, true);
 			ItemManager.Instance.AddItem(customItem5);
 			GameObject monsteritem6 = NPCCone;
-			CustomItem customItem6 = new CustomItem(monsteritem6, fixReference: true);
+			CustomItem customItem6 = new CustomItem(monsteritem6, true);
 			ItemManager.Instance.AddItem(customItem6);
+			//Debug.Log("DoD NPC: Rylan Attacks");
+			GameObject monsteritem7 = RylanSmash;
+			CustomItem customItem7 = new CustomItem(monsteritem7, true);
+			ItemManager.Instance.AddItem(customItem7);
+			GameObject monsteritem8 = RylanSpin;
+			CustomItem customItem8 = new CustomItem(monsteritem8, true);
+			ItemManager.Instance.AddItem(customItem8);
+			GameObject monsteritem9 = RylanJab;
+			CustomItem customItem9 = new CustomItem(monsteritem9, true);
+			ItemManager.Instance.AddItem(customItem9);
+			GameObject monsteritem10 = RylanStab;
+			CustomItem customItem10 = new CustomItem(monsteritem10, true);
+			ItemManager.Instance.AddItem(customItem10);
+			GameObject monsteritem11 = RylanJump;
+			CustomItem customItem11 = new CustomItem(monsteritem11, true);
+			ItemManager.Instance.AddItem(customItem11);
+			GameObject monsteritem12 = RylanCone;
+			CustomItem customItem12 = new CustomItem(monsteritem12, true);
+			ItemManager.Instance.AddItem(customItem12);
 		}
 		private void AddNPCAuras()
 		{
 			//Debug.Log("DoD NPC: Auras");
 			GameObject monsteritem1 = NPCAuraFire;
-			CustomItem customItem1 = new CustomItem(monsteritem1, fixReference: true);
+			CustomItem customItem1 = new CustomItem(monsteritem1, true);
 			ItemManager.Instance.AddItem(customItem1);
 			GameObject monsteritem2 = NPCAuraIce;
-			CustomItem customItem2 = new CustomItem(monsteritem2, fixReference: true);
+			CustomItem customItem2 = new CustomItem(monsteritem2, true);
 			ItemManager.Instance.AddItem(customItem2);
 			GameObject monsteritem3 = NPCAuraLightning;
-			CustomItem customItem3 = new CustomItem(monsteritem3, fixReference: true);
+			CustomItem customItem3 = new CustomItem(monsteritem3, true);
 			ItemManager.Instance.AddItem(customItem3);
 			GameObject monsteritem4 = NPCAuraPoison;
-			CustomItem customItem4 = new CustomItem(monsteritem4, fixReference: true);
+			CustomItem customItem4 = new CustomItem(monsteritem4, true);
 			ItemManager.Instance.AddItem(customItem4);
-			GameObject monsteritem5 = NPCAuraFireAoE;
-			PrefabManager.Instance.AddPrefab(monsteritem5);
-			GameObject monsteritem6 = NPCAuraIceAoE;
-			PrefabManager.Instance.AddPrefab(monsteritem6);
-			GameObject monsteritem7 = NPCAuraLightningAoE;
-			PrefabManager.Instance.AddPrefab(monsteritem7);
-			GameObject monsteritem8 = NPCAuraPoisonAoE;
-			PrefabManager.Instance.AddPrefab(monsteritem8);
+			//Debug.Log("DoD NPC: Rylan Auras");
+			GameObject monsteritem5 = RylanAuraFire;
+			CustomItem customItem5 = new CustomItem(monsteritem5, true);
+			ItemManager.Instance.AddItem(customItem5);
+			GameObject monsteritem6 = RylanAuraIce;
+			CustomItem customItem6 = new CustomItem(monsteritem6, true);
+			ItemManager.Instance.AddItem(customItem6);
+			GameObject monsteritem7 = RylanAuraLightning;
+			CustomItem customItem7 = new CustomItem(monsteritem7, true);
+			ItemManager.Instance.AddItem(customItem7);
+			GameObject monsteritem8 = RylanAuraPoison;
+			CustomItem customItem8 = new CustomItem(monsteritem8, true);
+			ItemManager.Instance.AddItem(customItem8);
+			//Debug.Log("DoD NPC: Auras AoE");
+			GameObject aoe1 = NPCAuraFireAoE;
+			CustomPrefab AoE1 = new CustomPrefab(aoe1, true);
+			PrefabManager.Instance.AddPrefab(AoE1);
+			GameObject aoe2 = NPCAuraIceAoE;
+			CustomPrefab AoE2 = new CustomPrefab(aoe2, true);
+			PrefabManager.Instance.AddPrefab(AoE2);
+			GameObject aoe3 = NPCAuraLightningAoE;
+			CustomPrefab AoE3 = new CustomPrefab(aoe3, true);
+			PrefabManager.Instance.AddPrefab(AoE3);
+			GameObject aoe4 = NPCAuraPoisonAoE;
+			CustomPrefab AoE4 = new CustomPrefab(aoe4, true);
+			PrefabManager.Instance.AddPrefab(AoE4);
+			//Debug.Log("DoD NPC: Rylan Auras AoE");
+			GameObject aoe5 = RylanAuraFireAoE;
+			CustomPrefab AoE5 = new CustomPrefab(aoe5, true);
+			PrefabManager.Instance.AddPrefab(AoE5);
+			GameObject aoe6 = RylanAuraIceAoE;
+			CustomPrefab AoE6 = new CustomPrefab(aoe6, true);
+			PrefabManager.Instance.AddPrefab(AoE6);
+			GameObject aoe7 = RylanAuraLightningAoE;
+			CustomPrefab AoE7 = new CustomPrefab(aoe7, true);
+			PrefabManager.Instance.AddPrefab(AoE7);
+			GameObject aoe8 = RylanAuraPoisonAoE;
+			CustomPrefab AoE8 = new CustomPrefab(aoe8, true);
+			PrefabManager.Instance.AddPrefab(AoE8);
 		}
 		private void AddNPCs()
 		{
@@ -229,7 +330,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 1,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -238,7 +339,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 1,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -247,7 +348,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 1,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -288,7 +389,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 1,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -297,7 +398,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 1,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -306,7 +407,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 1,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -347,7 +448,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -356,7 +457,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 1,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -365,7 +466,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 1,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -390,7 +491,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -399,7 +500,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 1,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -408,7 +509,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 1,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -442,7 +543,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -451,7 +552,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -460,7 +561,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -469,7 +570,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -478,7 +579,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -487,7 +588,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -514,7 +615,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -523,7 +624,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -532,7 +633,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -541,7 +642,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -550,7 +651,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -559,7 +660,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -602,7 +703,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -611,7 +712,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -620,7 +721,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -629,7 +730,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -638,7 +739,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -647,7 +748,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -772,7 +873,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -781,7 +882,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -790,7 +891,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -799,7 +900,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -808,7 +909,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -817,7 +918,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -826,7 +927,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -853,7 +954,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -862,7 +963,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -871,7 +972,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -880,7 +981,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -889,7 +990,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -898,7 +999,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -907,7 +1008,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -951,7 +1052,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -960,7 +1061,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -969,7 +1070,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -978,7 +1079,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -987,7 +1088,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -996,7 +1097,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -1023,7 +1124,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1032,7 +1133,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1041,7 +1142,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1050,7 +1151,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1059,7 +1160,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1068,7 +1169,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -1112,7 +1213,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1121,7 +1222,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1130,7 +1231,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1139,7 +1240,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1148,7 +1249,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1157,7 +1258,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -1184,7 +1285,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1193,7 +1294,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1202,7 +1303,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1211,7 +1312,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1220,7 +1321,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1229,7 +1330,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -1273,7 +1374,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1282,7 +1383,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1291,7 +1392,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1300,7 +1401,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1309,7 +1410,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1318,7 +1419,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1327,7 +1428,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -1452,7 +1553,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1461,7 +1562,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1470,7 +1571,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1479,7 +1580,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1488,7 +1589,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1497,7 +1598,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1506,7 +1607,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -1533,7 +1634,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1542,7 +1643,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1551,7 +1652,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1560,7 +1661,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1569,7 +1670,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1578,7 +1679,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1587,7 +1688,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -1631,7 +1732,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1640,7 +1741,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1649,7 +1750,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1658,7 +1759,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1667,7 +1768,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1676,7 +1777,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -1703,7 +1804,7 @@ namespace DoDNPCs
 								MinAmount = 27,
 								MaxAmount = 87,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1712,7 +1813,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1721,7 +1822,7 @@ namespace DoDNPCs
 								MinAmount = 3,
 								MaxAmount = 8,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1730,7 +1831,7 @@ namespace DoDNPCs
 								MinAmount = 1,
 								MaxAmount = 3,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1739,7 +1840,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							},
 							new DropConfig
 							{
@@ -1748,7 +1849,7 @@ namespace DoDNPCs
 								MinAmount = 2,
 								MaxAmount = 5,
 								OnePerPlayer = false,
-								LevelMultiplier = false,
+								LevelMultiplier = false
 							}
 						}
 					});
@@ -1772,14 +1873,100 @@ namespace DoDNPCs
 				CreatureManager.OnVanillaCreaturesAvailable -= CloneAndAddAshLandsBosses;
 			}
 		}
+		private void AddRylan()
+        {
+            try
+            {
+				//Debug.Log("DoD NPC: Rylan");
+				var RylanMob = new CustomCreature(Rylan, true,
+					new CreatureConfig
+					{
+						DropConfigs = new[]
+						{
+							new DropConfig
+							{
+								Item = "Coins",
+								Chance = 100,
+								MinAmount = 30,
+								MaxAmount = 200,
+								OnePerPlayer = false,
+								LevelMultiplier = false
+							},
+							new DropConfig
+							{
+								Item = "FelmetalOre_DoD",
+								Chance = 50,
+								MinAmount = 5,
+								MaxAmount = 15,
+								OnePerPlayer = false,
+								LevelMultiplier = false
+							},
+							new DropConfig
+							{
+								Item = "SkullToken_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 10,
+								OnePerPlayer = false,
+								LevelMultiplier = false
+							},
+							new DropConfig
+							{
+								Item = "OakWood_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 18,
+								OnePerPlayer = false,
+								LevelMultiplier = false
+							},
+							new DropConfig
+							{
+								Item = "SteelBar_DoD",
+								Chance = 50,
+								MinAmount = 3,
+								MaxAmount = 18,
+								OnePerPlayer = false,
+								LevelMultiplier = false
+							},
+							new DropConfig
+							{
+								Item = "InfusedGemstone_DoD",
+								Chance = 50,
+								MinAmount = 2,
+								MaxAmount = 10,
+								OnePerPlayer = false,
+								LevelMultiplier = false
+							}
+						}
+					});
+				CreatureManager.Instance.AddCreature(RylanMob);
+				CustomPrefab Altar1 = new CustomPrefab(RylanAltar, true);
+				PrefabManager.Instance.AddPrefab(Altar1);
+			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Exception caught while adding Rylan: {ex}");
+			}
+		}
 		private void AddLocations()
 		{
-			////Debug.Log("DoDMonsters: 35");
-			NPCLocBundle = AssetUtils.LoadAssetBundleFromResources("dodnpclocations", Assembly.GetExecutingAssembly());
+			////Debug.Log("DoD NPC: Locations");
+			NPCLocBundle = AssetUtils.LoadAssetBundleFromResources("dodnpc", Assembly.GetExecutingAssembly());
 			try
 			{
 				if (DoDLocEnable.Value == true)
 				{
+					var RylanPlatformMist = ZoneManager.Instance.CreateLocationContainer(NPCLocBundle.LoadAsset<GameObject>("Loc_RylanAltar_DoD"));
+					ZoneManager.Instance.AddCustomLocation(new CustomLocation(RylanPlatformMist, true, new LocationConfig
+					{
+						Biome = Heightmap.Biome.Mistlands,
+						Quantity = 4,
+						Priotized = true,
+						ExteriorRadius = 27f,
+						MinAltitude = 1f,
+						ClearArea = true,
+						MinDistanceFromSimilar = 1000f,
+					}));
 					var BossPlatformAL = ZoneManager.Instance.CreateLocationContainer(NPCLocBundle.LoadAsset<GameObject>("Loc_BossPlatform_AL_DoD"));
 					ZoneManager.Instance.AddCustomLocation(new CustomLocation(BossPlatformAL, true, new LocationConfig
 					{

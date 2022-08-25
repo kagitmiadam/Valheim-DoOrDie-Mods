@@ -33,7 +33,7 @@ namespace DoDSoloExperience
 
 		public const string PluginName = "DoOrDieSoloExperience";
 
-		public const string PluginVersion = "2.0.4";
+		public const string PluginVersion = "2.0.7";
 
 		public static bool isModded = true;
 
@@ -73,7 +73,7 @@ namespace DoDSoloExperience
 				Log = Logger;
 				CreateConfigurationValues();
 				ZoneManager.OnVanillaLocationsAvailable += AddSELocations;
-				SpawnerConfigurationManager.OnConfigure += ConfigureSpawners;
+				//SpawnerConfigurationManager.OnConfigure += ConfigureSpawners;
 				_harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "horemvore.DoDSoloExperience"); 
 			}
 			catch (Exception e)

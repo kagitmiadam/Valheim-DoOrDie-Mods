@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="dodMonsters.cs" />
     <Compile Include="Localization.cs" />
+    <Compile Include="SE_Bleeding_DoD.cs" />
     <Compile Include="UpdateAbilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

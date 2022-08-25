@@ -29,7 +29,7 @@ namespace Giants
 
 		public const string PluginName = "Fee Fi Fo Fum";
 
-		public const string PluginVersion = "0.1.1";
+		public const string PluginVersion = "0.1.3";
 
 		public static bool isModded = true;
 
@@ -92,6 +92,7 @@ namespace Giants
 			LoadBundle();
 			LoadAssets();
 			AddGiants();
+			PrefabManager.OnVanillaPrefabsAvailable += FixSFX;
 			try
 			{
 				SpawnerConfigurationManager.OnConfigure += ConfigureBiomeSpawners;
@@ -567,6 +568,41 @@ namespace Giants
 			finally
 			{
 				GiantBundle.Unload(false);
+			}
+		}
+		private void FixSFX()
+		{
+			try
+			{
+				var sfxfab1 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_GiantAlert_HG");
+				var sfxfab2 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_GiantAttack_HG");
+				var sfxfab3 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_GiantDeath_HG");
+				var sfxfab4 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_GiantHit_HG");
+				var sfxfab5 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_GiantIdle_HG");
+				if (sfxfab1 != null)
+                {
+					sfxfab1.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab2 != null)
+				{
+					sfxfab2.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab3 != null)
+				{
+					sfxfab3.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab4 != null)
+				{
+					sfxfab4.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab5 != null)
+				{
+					sfxfab5.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+			}
+			catch
+			{
+				Debug.LogWarning("Giants: SFX Fix Failed");
 			}
 		}
 		public static void ConfigureBiomeSpawners(ISpawnerConfigurationCollection config)

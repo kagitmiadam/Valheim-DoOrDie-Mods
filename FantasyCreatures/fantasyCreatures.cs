@@ -1,22 +1,14 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
-using JetBrains.Annotations;
-using Jotunn;
 using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
 using Jotunn.Utils;
 using UnityEngine;
-using SpawnThat.Integrations.CLLC.Models;
-using SpawnThat.Integrations.EpicLoot.Models;
-using SpawnThat.Options.Conditions;
 using SpawnThat.Spawners;
 using SpawnThat.Spawners.LocalSpawner;
 using SpawnThat.Spawners.WorldSpawner;
@@ -33,7 +25,7 @@ namespace FantasyCreatures
 
 		public const string PluginName = "FantasyCreatures";
 
-		public const string PluginVersion = "0.2.2";
+		public const string PluginVersion = "0.2.3";
 
 		public static bool isModded = true;
 
@@ -158,6 +150,7 @@ namespace FantasyCreatures
 			LoadBundle();
 			LoadAssets();
 			AddNewCreatures();
+			PrefabManager.OnVanillaPrefabsAvailable += FixSFX;
 			if (WorldSpawnsEnable.Value == true)
 			{
 				try
@@ -1109,6 +1102,61 @@ namespace FantasyCreatures
 			finally
 			{
 				FantasyBundle.Unload(false);
+			}
+		}
+		private void FixSFX()
+		{
+			try
+			{
+				var sfxfab1 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_EntGetHit_DoD");
+				var sfxfab2 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_EntAlert_DoD");
+				var sfxfab3 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_EntIdle_DoD");
+				var sfxfab4 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_EntDeath_DoD");
+				var sfxfab5 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_DLGetHit_DoD");
+				var sfxfab6 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_DLAlert_DoD");
+				var sfxfab7 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_DLIdle_DoD");
+				var sfxfab8 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_DLDeath_DoD");
+				var sfxfab9 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_DLFootstep_DoD");
+				if (sfxfab1 != null)
+				{
+					sfxfab1.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab2 != null)
+				{
+					sfxfab2.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab3 != null)
+				{
+					sfxfab3.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab4 != null)
+				{
+					sfxfab4.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab5 != null)
+				{
+					sfxfab5.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab6 != null)
+				{
+					sfxfab6.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab7 != null)
+				{
+					sfxfab7.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab8 != null)
+				{
+					sfxfab8.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab9 != null)
+				{
+					sfxfab9.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+			}
+			catch
+			{
+				Debug.LogWarning("Giants: SFX Fix Failed");
 			}
 		}
 		public static void ConfigureUnderworldSpawners(ISpawnerConfigurationCollection config)

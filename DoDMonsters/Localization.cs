@@ -13,6 +13,11 @@ namespace DoDMonsters
         public static Dictionary<string, string> t;
         private static Dictionary<string, string> english = new Dictionary<string, string>() {
 
+			{"effect_bleeding_dod", "Bleeding"},
+			{"effect_bleedingstart_dod", "You are bleeding"},
+			{"effect_bleedingstop_dod", "You are no longer bleeding"},
+			{"effect_bleedingtooltip_dod", "Your are bleeding from an injury"},
+
 			{"enemy_pin_skirsandburst_dod", "Skir Sandburst"},
 			{"enemy_pin_bhygshan_dod", "Bhygshan"},
 			{"piece_skirsandburstaltar_dod", "Skir Sandburst Altar"},

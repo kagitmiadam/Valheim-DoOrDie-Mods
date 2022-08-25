@@ -26,7 +26,7 @@ namespace DoOrDieBiomes
 
 		public const string PluginName = "DoOrDieBiomes";
 
-		public const string PluginVersion = "0.1.0";
+		public const string PluginVersion = "0.1.1";
 
 		public static bool isModded = true;
 		
@@ -106,6 +106,8 @@ namespace DoOrDieBiomes
 		public static GameObject CaveMushroom;
 		public static GameObject HardLog;
 		public static GameObject HardLogHalf;
+		public static GameObject PickBlueMushroom;
+		public static GameObject PickPurpleMushroom;
 		// oak
 		public static GameObject OakWood;
 		// Config
@@ -232,16 +234,26 @@ namespace DoOrDieBiomes
 			GameObject SFXTreeFall = DoDBiome.LoadAsset<GameObject>("SFX_Tree_Falling_DoD");
 			GameObject SFXWoodChop = DoDBiome.LoadAsset<GameObject>("SFX_Wood_Chop_DoD");
 			GameObject SFXWoodDestroy = DoDBiome.LoadAsset<GameObject>("SFX_Wood_Destroyed_DoD");
-			PrefabManager.Instance.AddPrefab(SFXLoc1);
-			PrefabManager.Instance.AddPrefab(SFXLoc2);
-			PrefabManager.Instance.AddPrefab(SFXWoodDestroy);
-			PrefabManager.Instance.AddPrefab(SFXWoodChop);
-			PrefabManager.Instance.AddPrefab(SFXTreeFall);
-			PrefabManager.Instance.AddPrefab(SFXTreeFallS);
-			PrefabManager.Instance.AddPrefab(SFXBushChop);
-			PrefabManager.Instance.AddPrefab(SFXRockHit);
-			PrefabManager.Instance.AddPrefab(SFXRockDest);
-			PrefabManager.Instance.AddPrefab(SFXPickable);
+			CustomPrefab SFX1 = new CustomPrefab(SFXRockHit, false);
+			PrefabManager.Instance.AddPrefab(SFX1);
+			CustomPrefab SFX2 = new CustomPrefab(SFXRockDest, false);
+			PrefabManager.Instance.AddPrefab(SFX2);
+			CustomPrefab SFX3 = new CustomPrefab(SFXBushChop, false);
+			PrefabManager.Instance.AddPrefab(SFX3);
+			CustomPrefab SFX4 = new CustomPrefab(SFXPickable, false);
+			PrefabManager.Instance.AddPrefab(SFX4);
+			CustomPrefab SFX5 = new CustomPrefab(SFXLoc1, false);
+			PrefabManager.Instance.AddPrefab(SFX5);
+			CustomPrefab SFX6 = new CustomPrefab(SFXLoc2, false);
+			PrefabManager.Instance.AddPrefab(SFX6);
+			CustomPrefab SFX7 = new CustomPrefab(SFXTreeFallS, false);
+			PrefabManager.Instance.AddPrefab(SFX7);
+			CustomPrefab SFX8 = new CustomPrefab(SFXTreeFall, false);
+			PrefabManager.Instance.AddPrefab(SFX8);
+			CustomPrefab SFX9 = new CustomPrefab(SFXWoodChop, false);
+			PrefabManager.Instance.AddPrefab(SFX9);
+			CustomPrefab SFX10 = new CustomPrefab(SFXWoodDestroy, false);
+			PrefabManager.Instance.AddPrefab(SFX10);
 
 			//Debug.Log("DoDBiomes: VFX");
 			GameObject VFXDustPiece = DoDBiome.LoadAsset<GameObject>("VFX_Dust_Piece_DoD");
@@ -252,14 +264,22 @@ namespace DoOrDieBiomes
 			GameObject VFXRockHit = DoDBiome.LoadAsset<GameObject>("VFX_RockHit_DoD");
 			GameObject VFXDestroyed = DoDBiome.LoadAsset<GameObject>("VFX_Destroyed_DoD");
 			GameObject VFXHit = DoDBiome.LoadAsset<GameObject>("VFX_Hit_DoD");
-			PrefabManager.Instance.AddPrefab(VFXMineHit);
-			PrefabManager.Instance.AddPrefab(VFXFelOreDestroy);
-			PrefabManager.Instance.AddPrefab(VFXPickable);
-			PrefabManager.Instance.AddPrefab(VFXDustPiece);
-			PrefabManager.Instance.AddPrefab(VFXRockDestroyed);
-			PrefabManager.Instance.AddPrefab(VFXDestroyed);
-			PrefabManager.Instance.AddPrefab(VFXHit);
-			PrefabManager.Instance.AddPrefab(VFXRockHit);
+			CustomPrefab VFX1 = new CustomPrefab(VFXDustPiece, false);
+			PrefabManager.Instance.AddPrefab(VFX1);
+			CustomPrefab VFX2 = new CustomPrefab(VFXFelOreDestroy, false);
+			PrefabManager.Instance.AddPrefab(VFX2);
+			CustomPrefab VFX3 = new CustomPrefab(VFXMineHit, false);
+			PrefabManager.Instance.AddPrefab(VFX3);
+			CustomPrefab VFX4 = new CustomPrefab(VFXPickable, false);
+			PrefabManager.Instance.AddPrefab(VFX4);
+			CustomPrefab VFX5 = new CustomPrefab(VFXRockDestroyed, false);
+			PrefabManager.Instance.AddPrefab(VFX5);
+			CustomPrefab VFX6 = new CustomPrefab(VFXRockHit, false);
+			PrefabManager.Instance.AddPrefab(VFX6);
+			CustomPrefab VFX7 = new CustomPrefab(VFXDestroyed, false);
+			PrefabManager.Instance.AddPrefab(VFX7);
+			CustomPrefab VFX8 = new CustomPrefab(VFXHit, false);
+			PrefabManager.Instance.AddPrefab(VFX8);
 
 			//Debug.Log("DoDBiomes: Items");
 			CaveMushroom = DoDBiome.LoadAsset<GameObject>("CaveMushroom_DoD");
@@ -270,12 +290,12 @@ namespace DoOrDieBiomes
 			CustomPrefab Log1 = new CustomPrefab(HardLogHalf, true);
 			PrefabManager.Instance.AddPrefab(Log1);
 
-
 			// fruit trees
 			//Debug.Log("DoDBiomes: Fruit Trees");
 			Mushroom_Cave_Pickable_DoD = DoDBiome.LoadAsset<GameObject>("Mushroom_Cave_Pickable_DoD");
+			PickBlueMushroom = DoDBiome.LoadAsset<GameObject>("BlueMushroom_Pickable_DoD");
+			PickPurpleMushroom = DoDBiome.LoadAsset<GameObject>("PurpleMushroom_Pickable_DoD");
 			// mistlands veg
-			////Debug.Log("DoDMonsters: 31");
 			//Debug.Log("DoDBiomes: Mistlands Veg");
 			BlueMushroom_DoD = DoDBiome.LoadAsset<GameObject>("BlueMushroom_DoD");
 			PurpleMushroom_DoD = DoDBiome.LoadAsset<GameObject>("PurpleMushroom_DoD");
@@ -302,7 +322,6 @@ namespace DoOrDieBiomes
 			Flora_Large_DoD = DoDBiome.LoadAsset<GameObject>("Flora_Large_DoD");
 			Flora_LargeTrio_DoD = DoDBiome.LoadAsset<GameObject>("Flora_LargeTrio_DoD");
 			Flora_LargeDuo_DoD = DoDBiome.LoadAsset<GameObject>("Flora_LargeDuo_DoD");
-			////Debug.Log("DoDMonsters: 32");
 			// deep north
 			//Debug.Log("DoDBiomes: Deep North Veg");
 			Bush3_DeepNorth_DoD = DoDBiome.LoadAsset<GameObject>("Bush3_DeepNorth_DoD");
@@ -325,7 +344,6 @@ namespace DoOrDieBiomes
 			WinterPine3_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine3_DoD");
 			WinterPine2_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine2_DoD");
 			WinterPine1_DoD = DoDBiome.LoadAsset<GameObject>("WinterPine1_DoD");
-			////Debug.Log("DoDMonsters: 33");
 			// ash lands
 			//Debug.Log("DoDBiomes: Ashlands Veg");
 			Mineable_SandRock16_DoD = DoDBiome.LoadAsset<GameObject>("Mineable_SandRock16_DoD");
@@ -487,7 +505,7 @@ namespace DoOrDieBiomes
 			////Debug.Log("DoDMonsters: 37");
 			var mistlandsVeg = new List<CustomVegetation>
 			{
-				new CustomVegetation(BlueMushroom_DoD, true, new VegetationConfig
+				new CustomVegetation(PickBlueMushroom, true, new VegetationConfig
 				{
 					Max = 2f,
 					GroupSizeMin = 2,
@@ -498,7 +516,7 @@ namespace DoOrDieBiomes
 					MinAltitude = 100f,
 					MaxTilt = 45f
 				}),
-				new CustomVegetation(PurpleMushroom_DoD, true, new VegetationConfig
+				new CustomVegetation(PickPurpleMushroom, true, new VegetationConfig
 				{
 					Max = 2f,
 					GroupSizeMin = 2,
@@ -1307,8 +1325,14 @@ namespace DoOrDieBiomes
 		}
 		private void CreateFruit()
 		{
+			GameObject food3 = BlueMushroom_DoD;
+			CustomItem customFood3 = new CustomItem(food3, false);
+			ItemManager.Instance.AddItem(customFood3);
+			GameObject food4 = PurpleMushroom_DoD;
+			CustomItem customFood4 = new CustomItem(food4, false);
+			ItemManager.Instance.AddItem(customFood4);
 			GameObject food5 = CaveMushroom;
-			CustomItem customFood5 = new CustomItem(food5, fixReference: true);
+			CustomItem customFood5 = new CustomItem(food5, false);
 			ItemManager.Instance.AddItem(customFood5);
 		}
 		private void CreateOakWood()

@@ -1,6 +1,6 @@
 {
     "name": "DoOrDieSoloExperience",
-    "version_number": "2.0.5",
+    "version_number": "2.0.7",
     "website_url": "https://discord.gg/BYtsnyHNke",
     "description": "A Darksouls/Diablo inspired difficulty and loot mod. Major Update 12.6.22, read description before updating.",
     "dependencies": [
@@ -28,7 +28,7 @@
 		"GoldenJude-Blacksmiths_tools-2.0.0",
 		"HugotheDwarf-Hugos_Armory-6.1.0",
 		"Azumatt-WardIsLove-2.3.3",
-		"Smoothbrain-Jewelcrafting-1.0.7",
+		"Smoothbrain-Jewelcrafting-1.1.14",
 		"Smoothbrain-CreatureLevelAndLootControl-4.3.3",
 		"Smoothbrain-SteadyRegeneration-1.0.0",
 		"Smoothbrain-PassivePowers-1.0.0",

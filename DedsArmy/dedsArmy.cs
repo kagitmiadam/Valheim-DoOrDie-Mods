@@ -29,7 +29,7 @@ namespace DedsArmy
 
 		public const string PluginName = "DedsArmy";
 
-		public const string PluginVersion = "0.1.1";
+		public const string PluginVersion = "0.1.3";
 
 		public static GameObject Ghoul1;
 		public static GameObject Ghoul2;
@@ -153,6 +153,8 @@ namespace DedsArmy
 			if (SkeletonsEnable.Value == true) AddSkeletons();
 			if (VampireEnable.Value == true) AddVampire();
 			if (UndeadBossEnable.Value == true) AddBosses();
+			PrefabManager.OnVanillaPrefabsAvailable += FixSFX;
+			
 			if (EnableSpawns.Value == true)
 			{
 				try
@@ -1044,6 +1046,126 @@ namespace DedsArmy
 			catch (Exception ex)
 			{
 				Logger.LogWarning($"Exception caught while adding custom undead for Ded's Army: {ex}");
+			}
+		}
+		private void FixSFX()
+		{
+			try
+			{
+				var sfxfab1 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_VampireAlert_DA");
+				var sfxfab2 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_VampireAttack_DA");
+				var sfxfab3 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_VampireDeath_DA");
+				var sfxfab5 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_VampireIdle_DA");
+				var sfxfab6 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_ZombieAlert_DA");
+				var sfxfab7 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_ZombieAttack_DA");
+				var sfxfab8 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_ZombieDeath_DA");
+				var sfxfab9 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_ZombieGetHit_DA");
+				var sfxfab10 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_ZombieIdle_DA");
+				var sfxfab11 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonAlert_DA");
+				var sfxfab12 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonAttack_DA");
+				var sfxfab13 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonDeath_DA");
+				var sfxfab14 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonGetHit_DA");
+				var sfxfab15 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonIdle_DA");
+				var sfxfab16 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonBossAlert_DA");
+				var sfxfab17 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonBossAttack_DA");
+				var sfxfab18 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonBossDeath_DA");
+				var sfxfab19 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonBossGetHit_DA");
+				var sfxfab20 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonBossIdle_DA");
+				var sfxfab21 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonBossAttackAoE_DA");
+				var sfxfab22 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_SkeletonBossAttackSpawn_DA");
+				var sfxfab4 = PrefabManager.Cache.GetPrefab<GameObject>("SFX_VampireGetHit_DA");
+				if (sfxfab1 != null)
+				{
+					sfxfab1.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab2 != null)
+				{
+					sfxfab2.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab3 != null)
+				{
+					sfxfab3.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab4 != null)
+				{
+					sfxfab4.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab5 != null)
+				{
+					sfxfab5.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab6 != null)
+				{
+					sfxfab6.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab7 != null)
+				{
+					sfxfab7.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab8 != null)
+				{
+					sfxfab8.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab9 != null)
+				{
+					sfxfab9.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab10 != null)
+				{
+					sfxfab10.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab11 != null)
+				{
+					sfxfab11.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab12 != null)
+				{
+					sfxfab12.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab13 != null)
+				{
+					sfxfab13.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab14 != null)
+				{
+					sfxfab14.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab15 != null)
+				{
+					sfxfab15.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab16 != null)
+				{
+					sfxfab16.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab17 != null)
+				{
+					sfxfab17.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab18 != null)
+				{
+					sfxfab18.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab19 != null)
+				{
+					sfxfab19.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab20 != null)
+				{
+					sfxfab20.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab21 != null)
+				{
+					sfxfab21.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+				if (sfxfab22 != null)
+				{
+					sfxfab22.GetComponent<AudioSource>().outputAudioMixerGroup = AudioMan.instance.m_ambientMixer;
+				}
+			}
+			catch
+			{
+				Debug.LogWarning("Deds Army: SFX Fix Failed");
 			}
 		}
 		public static void ConfigureBiomeSpawners(ISpawnerConfigurationCollection config)

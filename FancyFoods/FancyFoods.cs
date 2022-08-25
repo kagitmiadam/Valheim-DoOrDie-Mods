@@ -30,7 +30,7 @@ namespace FancyFoods
 
 		public const string PluginName = "FancyFoods";
 
-		public const string PluginVersion = "0.0.3";
+		public const string PluginVersion = "0.0.4";
 
 		public static bool isModded = true;
 
@@ -1204,7 +1204,7 @@ namespace FancyFoods
 						},
 						new RequirementConfig
 						{
-							Item = "Cherries_DoD",
+							Item = "Cherry_Food_FT",
 							Amount = 25
 						}
 					}

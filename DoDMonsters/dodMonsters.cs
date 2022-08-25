@@ -33,7 +33,7 @@ namespace DoDMonsters
 
 		public const string PluginName = "DoOrDieMonsters";
 
-		public const string PluginVersion = "0.6.1";
+		public const string PluginVersion = "0.6.2";
 
 		public static bool isModded = true;
 
@@ -200,12 +200,17 @@ namespace DoDMonsters
 		public static GameObject DrakespitVoid;
 
 		public static GameObject BhygshanAlt;
-		public static Sprite RugBDeer;
-		public static Sprite RugDWolf;
-		public static Sprite RugFWolf;
 		public static GameObject RugDeer;
 		public static GameObject RugDire;
 		public static GameObject RugForest;
+
+		public static Sprite RugBDeer;
+		public static Sprite RugDWolf;
+		public static Sprite RugFWolf;
+
+		public static Sprite BleedingIcon;
+
+		public static ScriptableObject Bleeding;
 
 		public ConfigEntry<bool> BossesEnable;
 		public ConfigEntry<bool> MonstersEnable;
@@ -267,6 +272,7 @@ namespace DoDMonsters
 			{
 				SpawnerConfigurationManager.OnConfigure += ConfigureBiomeSpawners;
 			}
+			SetupStatusEffects();
 			//ItemManager.OnItemsRegistered += ModMonsterAttackSE;
 			UnloadBundle();
 		}
@@ -276,6 +282,8 @@ namespace DoDMonsters
 		}
 		private void LoadDoDAssets()
 		{
+			Bleeding = DoDAssets.LoadAsset<ScriptableObject>("SE_Bleeding_DoD"); 
+			BleedingIcon = DoDAssets.LoadAsset<Sprite>("Injured_Icon_DoD");
 			// Debug.Log("DoDMonsters: Rugs");
 			SkullToken = DoDAssets.LoadAsset<GameObject>("SkullToken_DoD");
 			RugBDeer = DoDAssets.LoadAsset<Sprite>("BlackDeerRug_Icon_DoD");
@@ -590,17 +598,17 @@ namespace DoDMonsters
 				GameObject AltarBitterstump = DoDAssets.LoadAsset<GameObject>("AltarBitterstump_DoD");
 				GameObject AltarBhygshan = DoDAssets.LoadAsset<GameObject>("AltarBhygshan_DoD");
 				GameObject AltarFarkasAlt = DoDAssets.LoadAsset<GameObject>("AltarFarkasAlt_DoD");
-				CustomPrefab Altar1 = new CustomPrefab(AltarFarkas, false);
+				CustomPrefab Altar1 = new CustomPrefab(AltarFarkas, true);
 				PrefabManager.Instance.AddPrefab(Altar1);
-				CustomPrefab Altar2 = new CustomPrefab(AltarSkirSandburst, false);
+				CustomPrefab Altar2 = new CustomPrefab(AltarSkirSandburst, true);
 				PrefabManager.Instance.AddPrefab(Altar2);
-				CustomPrefab Altar3 = new CustomPrefab(AltarRambore, false);
+				CustomPrefab Altar3 = new CustomPrefab(AltarRambore, true);
 				PrefabManager.Instance.AddPrefab(Altar3);
-				CustomPrefab Altar4 = new CustomPrefab(AltarBitterstump, false);
+				CustomPrefab Altar4 = new CustomPrefab(AltarBitterstump, true);
 				PrefabManager.Instance.AddPrefab(Altar4);
-				CustomPrefab Altar5 = new CustomPrefab(AltarBhygshan, false);
+				CustomPrefab Altar5 = new CustomPrefab(AltarBhygshan, true);
 				PrefabManager.Instance.AddPrefab(Altar5);
-				CustomPrefab Altar6 = new CustomPrefab(AltarFarkasAlt, false);
+				CustomPrefab Altar6 = new CustomPrefab(AltarFarkasAlt, true);
 				PrefabManager.Instance.AddPrefab(Altar6);
 
 				GameObject BhygshanSummon = DoDAssets.LoadAsset<GameObject>("Bhygshan_Spawn_DoD");
@@ -916,9 +924,17 @@ namespace DoDMonsters
 			CustomItem customItem41 = new CustomItem(dropable41, fixReference: true);
 			ItemManager.Instance.AddItem(customItem41);
 
-			GameObject dropable42 = GreyPearl;
-			CustomItem customItem42 = new CustomItem(dropable42, fixReference: true);
-			ItemManager.Instance.AddItem(customItem42);
+			CustomItem gp = ItemManager.Instance.GetItem("GreyPearl_DoD");
+			if (gp != null)
+			{
+				Debug.Log("Grey Pearl already added by DoD Monsters");
+			}
+            else
+            {
+				GameObject dropable42 = GreyPearl;
+				CustomItem customItem42 = new CustomItem(dropable42, fixReference: true);
+				ItemManager.Instance.AddItem(customItem42);
+            }
 
 			GameObject dropable43 = FrozenBone;
 			CustomItem customItem43 = new CustomItem(dropable43, fixReference: true);
@@ -1564,7 +1580,7 @@ namespace DoDMonsters
 		}
 		private static void ModMonsterAttackSE()
 		{
-			Aoe prefab30 = PrefabManager.Cache.GetPrefab<Aoe>("bonemass_aoe");
+			/*Aoe prefab30 = PrefabManager.Cache.GetPrefab<Aoe>("bonemass_aoe");
 			Aoe prefab34 = PrefabManager.Cache.GetPrefab<Aoe>("shaman_attack_aoe");
 			Aoe prefab35 = PrefabManager.Cache.GetPrefab<Aoe>("blob_aoe");
 			Aoe prefab36 = PrefabManager.Cache.GetPrefab<Aoe>("bee_aoe");
@@ -1579,7 +1595,7 @@ namespace DoDMonsters
 			prefab36.m_statusEffect = "SE_Infected_DoD";
 			prefab38.m_statusEffect = "SE_Blistered_DoD";
 
-			/*ItemDrop prefab28 = PrefabManager.Cache.GetPrefab<ItemDrop>("Eikthyr_stomp");
+			ItemDrop prefab28 = PrefabManager.Cache.GetPrefab<ItemDrop>("Eikthyr_stomp");
 			ItemDrop prefab31 = PrefabManager.Cache.GetPrefab<ItemDrop>("dragon_coldbreath");
 			ItemDrop prefab32 = PrefabManager.Cache.GetPrefab<ItemDrop>("GoblinKing_Nova");
 			ItemDrop prefab37 = PrefabManager.Cache.GetPrefab<ItemDrop>("stonegolem_attack_doublesmash");
@@ -1625,6 +1641,7 @@ namespace DoDMonsters
 					.SetMinDistanceToOther(75)
 					.SetConditionAltitudeMin(0.1f)
 					.SetModifierFaction(Character.Faction.MountainMonsters)
+					.SetModifierHuntPlayer(false)
 					;
 				config.ConfigureWorldSpawner(21_030)
 					.SetPrefabName("WereWolfDarkGrey")
@@ -1641,6 +1658,7 @@ namespace DoDMonsters
 					.SetMinDistanceToOther(75)
 					.SetConditionAltitudeMin(0.1f)
 					.SetModifierFaction(Character.Faction.MountainMonsters)
+					.SetModifierHuntPlayer(false)
 					;
 				config.ConfigureWorldSpawner(21_029)
 					.SetPrefabName("WereWolfBlack")
@@ -1657,6 +1675,7 @@ namespace DoDMonsters
 					.SetMinDistanceToOther(75)
 					.SetConditionAltitudeMin(0.1f)
 					.SetModifierFaction(Character.Faction.MountainMonsters)
+					.SetModifierHuntPlayer(false)
 					;
 				config.ConfigureWorldSpawner(21_028)
 					.SetPrefabName("WereWolfBlackArmored")
@@ -1673,6 +1692,7 @@ namespace DoDMonsters
 					.SetMinDistanceToOther(75)
 					.SetConditionAltitudeMin(0.1f)
 					.SetModifierFaction(Character.Faction.MountainMonsters)
+					.SetModifierHuntPlayer(false)
 					;
 				config.ConfigureWorldSpawner(21_027)
 					.SetPrefabName("WendigoForest")
@@ -1681,14 +1701,15 @@ namespace DoDMonsters
 					.SetSpawnChance(12)
 					.SetSpawnInterval(TimeSpan.FromSeconds(180))
 					.SetPackSizeMin(1)
-					.SetPackSizeMax(2)
-					.SetMaxSpawned(2)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(1)
 					.SetSpawnAtDistanceToPlayerMin(45)
 					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionDistanceToCenter(1500)
 					.SetMinDistanceToOther(75)
 					.SetConditionAltitudeMin(0.1f)
-					.SetModifierFaction(Character.Faction.MountainMonsters)
+					.SetModifierFaction(Character.Faction.PlainsMonsters)
+					.SetModifierHuntPlayer(false)
 					;
 				config.ConfigureWorldSpawner(21_026)
 					.SetPrefabName("Yeti")
@@ -1697,8 +1718,8 @@ namespace DoDMonsters
 					.SetSpawnChance(12)
 					.SetSpawnInterval(TimeSpan.FromSeconds(180))
 					.SetPackSizeMin(1)
-					.SetPackSizeMax(2)
-					.SetMaxSpawned(2)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(1)
 					.SetSpawnAtDistanceToPlayerMin(45)
 					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionEnvironments("SnowStorm")
@@ -1706,6 +1727,7 @@ namespace DoDMonsters
 					.SetMinDistanceToOther(75)
 					.SetConditionAltitudeMin(75f)
 					.SetModifierFaction(Character.Faction.MountainMonsters)
+					.SetModifierHuntPlayer(false)
 					;
 				config.ConfigureWorldSpawner(21_025)
 					.SetPrefabName("WereWolfBrown")
@@ -1723,6 +1745,7 @@ namespace DoDMonsters
 					.SetMinDistanceToOther(75)
 					.SetConditionAltitudeMin(0.1f)
 					.SetModifierFaction(Character.Faction.PlainsMonsters)
+					.SetModifierHuntPlayer(false)
 					;
 				config.ConfigureWorldSpawner(21_024)
 					.SetPrefabName("WendigoSwamp")
@@ -1731,8 +1754,8 @@ namespace DoDMonsters
 					.SetSpawnChance(10)
 					.SetSpawnInterval(TimeSpan.FromSeconds(360))
 					.SetPackSizeMin(1)
-					.SetPackSizeMax(3)
-					.SetMaxSpawned(3)
+					.SetPackSizeMax(1)
+					.SetMaxSpawned(1)
 					.SetSpawnAtDistanceToPlayerMin(45)
 					.SetSpawnAtDistanceToPlayerMax(60)
 					.SetConditionRequiredGlobalKey("defeated_bonemass")
@@ -1740,6 +1763,7 @@ namespace DoDMonsters
 					.SetMinDistanceToOther(75)
 					.SetConditionAltitudeMin(0.1f)
 					.SetModifierFaction(Character.Faction.Undead)
+					.SetModifierHuntPlayer(false)
 					;
 				config.ConfigureWorldSpawner(21_023)
 					.SetPrefabName("Ghost_Ice_DoD")
@@ -2115,6 +2139,11 @@ namespace DoDMonsters
 			{
 				Log.LogError(e);
 			}
+		}
+		// Setup new status effects
+		public void SetupStatusEffects()
+		{
+			ItemManager.Instance.AddStatusEffect(new CustomStatusEffect(ScriptableObject.CreateInstance<SE_Bleeding_DoD>(), false));
 		}
 
 		/*private void ModPlayer()

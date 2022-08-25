@@ -307,6 +307,12 @@ To Do
 	
 ## Patch Notes
 
+**2.0.6**
+
+	Added Minotaurs to the difficulty scaling.
+	Updated Jewelcrafting configs.
+	Some general balancing.
+	
 **2.0.5**
 
 	General Bugfixing and Balancing.

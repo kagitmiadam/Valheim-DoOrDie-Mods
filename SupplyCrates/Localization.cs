@@ -191,6 +191,8 @@ namespace SupplyCrates
 			{"item_banana_desc_sc", "One of your Five a Day!"},
 			{"item_grapes_sc", "Grapes"},
 			{"item_grapes_desc_sc", "Used to make Compote"},
+			{"item_lime_sc", "Lime"},
+			{"item_lime_desc_sc", "Used to make Compote"},
 			{"item_lemon_sc", "Lemon"},
 			{"item_lemon_desc_sc", "Used to make Compote"},
 			{"item_mango_sc", "Mango"},

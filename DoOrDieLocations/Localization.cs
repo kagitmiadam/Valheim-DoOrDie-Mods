@@ -31,6 +31,11 @@ namespace DoOrDieBiomes
 			{"prop_purpmushroom_dod", "Blushing Bracket"},
 			{"prop_purpmushroom_description_dod", "Found in Mistlands"},
 
+			{"item_bluemushroom_dod", "Blewit"},
+			{"item_bluemushroom_description_dod", "Found in Mistlands"},
+			{"item_purpmushroom_dod", "Blushing Bracket"},
+			{"item_purpmushroom_description_dod", "Found in Mistlands"},
+
 			{"prop_mistlandsoak_dod", "Mistlands Oak"},
 			{"prop_mistlandsbush_dod", "Bush"},
 			{"prop_oldoak_dod", "Old Oak"},
@@ -44,6 +49,9 @@ namespace DoOrDieBiomes
 			{"location_castlearenain_dod", "Arena"},
 			{"location_castlearenaout_dod", "You left the Arena"},
 			{"location_castlearena_dod", "Castle Arena"},
+
+			{"item_oakwood_dod", "Hardwood"},
+			{"item_oakwood_description_dod", "Hardwood is used in crafting"}
 
 		};
 		private static Dictionary<string, string> russian = new Dictionary<string, string>() {
