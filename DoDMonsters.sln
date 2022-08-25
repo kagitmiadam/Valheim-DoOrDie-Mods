@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FancyFoods", "FancyFoods\Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FruitTrees", "FruitTrees\FruitTrees.csproj", "{CA520BCE-14A3-4820-BF77-39A39D19BF44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlimesRUs", "SlimesRUs\SlimesRUs.csproj", "{FB5370DA-8147-48EC-8867-F0FCC60390B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{CA520BCE-14A3-4820-BF77-39A39D19BF44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA520BCE-14A3-4820-BF77-39A39D19BF44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA520BCE-14A3-4820-BF77-39A39D19BF44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB5370DA-8147-48EC-8867-F0FCC60390B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5370DA-8147-48EC-8867-F0FCC60390B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5370DA-8147-48EC-8867-F0FCC60390B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5370DA-8147-48EC-8867-F0FCC60390B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
