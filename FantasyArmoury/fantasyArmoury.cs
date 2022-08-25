@@ -36,13 +36,6 @@ namespace FantasyArmoury
         public GameObject firepitPiece;
         public GameObject pressPiece;
         public GameObject troughPiece;
-        public static AssetBundle GetAssetBundleFromResources(string fileName)
-        {
-            Assembly executingAssembly = Assembly.GetExecutingAssembly();
-            string text = executingAssembly.GetManifestResourceNames().Single((string str) => str.EndsWith(fileName));
-            using Stream stream = executingAssembly.GetManifestResourceStream(text);
-            return AssetBundle.LoadFromStream(stream);
-        }
         private void Awake()
         {
             Debug.Log("FantasyArmoury: Loading and Creating Assets");
